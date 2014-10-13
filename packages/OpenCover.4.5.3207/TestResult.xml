@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\Users\mmartin\code\BasicTypes\BasicTypes\bin\Debug\BasicTypes.dll" total="50" errors="0" failures="0" not-run="1" inconclusive="0" ignored="1" skipped="0" invalid="0" date="2014-10-10" time="12:51:42">
+  <environment nunit-version="2.6.3.13283" clr-version="2.0.50727.5477" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Users\mmartin\code\BasicTypes\packages\OpenCover.4.5.3207" machine-name="FMG091" user="mmartin" user-domain="FMG" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="Assembly" name="C:\Users\mmartin\code\BasicTypes\BasicTypes\bin\Debug\BasicTypes.dll" executed="True" result="Success" success="True" time="0.446" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="BasicTypes" executed="True" result="Success" success="True" time="0.437" asserts="0">
+        <results>
+          <test-suite type="TestFixture" name="CorpusKnowledgeTests" executed="True" result="Success" success="True" time="0.212" asserts="0">
+            <results>
+              <test-case name="BasicTypes.CorpusKnowledgeTests.ArrayExtensionsTest" executed="True" result="Success" success="True" time="0.019" asserts="2" />
+              <test-case name="BasicTypes.CorpusKnowledgeTests.ArrayExtensionsTest2" executed="True" result="Success" success="True" time="0.000" asserts="3" />
+              <test-case name="BasicTypes.CorpusKnowledgeTests.CorpusKnowledge_HeadedPhraseParser" executed="True" result="Success" success="True" time="0.084" asserts="3" />
+              <test-case name="BasicTypes.CorpusKnowledgeTests.ParseAndToStringSimpleIntransitive" executed="True" result="Success" success="True" time="0.048" asserts="1" />
+              <test-case name="BasicTypes.CorpusKnowledgeTests.ProcessSingletonEnChainNoEn" executed="True" result="Success" success="True" time="0.001" asserts="3" />
+              <test-case name="BasicTypes.CorpusKnowledgeTests.ProcessSingletonEnChainOneEn" executed="True" result="Success" success="True" time="0.002" asserts="3" />
+              <test-case name="BasicTypes.CorpusKnowledgeTests.ProcessSingletonPredicate" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+              <test-case name="BasicTypes.CorpusKnowledgeTests.RealText" executed="True" result="Success" success="True" time="0.018" asserts="0" />
+              <test-case name="BasicTypes.CorpusKnowledgeTests.SplitOnEn" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+              <test-case name="BasicTypes.CorpusKnowledgeTests.SplitOnEn2" executed="True" result="Success" success="True" time="0.000" asserts="3" />
+              <test-case name="BasicTypes.CorpusKnowledgeTests.SplitRealTest" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+            </results>
+          </test-suite>
+          <test-suite type="TestFixture" name="DiscourseTests" executed="True" result="Success" success="True" time="0.003" asserts="0">
+            <results>
+              <test-case name="BasicTypes.DiscourseTests.Test" executed="True" result="Success" success="True" time="0.002" asserts="0" />
+            </results>
+          </test-suite>
+          <test-suite type="TestFixture" name="ExhangeTests" executed="True" result="Inconclusive" success="False" time="0.001" asserts="0">
+            <results>
+              <test-case name="BasicTypes.ExhangeTests.Test" executed="False" result="Ignored">
+                <reason>
+                  <message><![CDATA[]]></message>
+                </reason>
+              </test-case>
+            </results>
+          </test-suite>
+          <test-suite type="Namespace" name="Globalization" executed="True" result="Success" success="True" time="0.139" asserts="0">
+            <results>
+              <test-suite type="TestFixture" name="TpCultureTest" executed="True" result="Success" success="True" time="0.139" asserts="0">
+                <results>
+                  <test-case name="BasicTypes.Globalization.TpCultureTest.Test" executed="True" result="Success" success="True" time="0.139" asserts="0" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+          <test-suite type="TestFixture" name="HeadedPhraseTest" executed="True" result="Success" success="True" time="0.005" asserts="0">
+            <results>
+              <test-case name="BasicTypes.HeadedPhraseTest.ParseAndToString" executed="True" result="Success" success="True" time="0.002" asserts="5" />
+              <test-case name="BasicTypes.HeadedPhraseTest.TestToStringThreeWords" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+              <test-case name="BasicTypes.HeadedPhraseTest.TwoWordProperModifier" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+              <test-case name="BasicTypes.HeadedPhraseTest.TwoWordProperModifierContainsBoth" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+              <test-case name="BasicTypes.HeadedPhraseTest.TwoWordProperModifierContainsThre" executed="True" result="Success" success="True" time="0.000" asserts="3" />
+            </results>
+          </test-suite>
+          <test-suite type="Namespace" name="Knowledge" executed="True" result="Success" success="True" time="0.004" asserts="0">
+            <results>
+              <test-suite type="TestFixture" name="PhoneNumberTests" executed="True" result="Success" success="True" time="0.004" asserts="0">
+                <results>
+                  <test-case name="BasicTypes.Knowledge.PhoneNumberTests.Test" executed="True" result="Success" success="True" time="0.003" asserts="2" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+          <test-suite type="Namespace" name="Parser" executed="True" result="Success" success="True" time="0.007" asserts="0">
+            <results>
+              <test-suite type="TestFixture" name="ParserUtilTests" executed="True" result="Success" success="True" time="0.007" asserts="0">
+                <results>
+                  <test-case name="BasicTypes.Parser.ParserUtilTests.OneWord" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                  <test-case name="BasicTypes.Parser.ParserUtilTests.ThreWords" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                  <test-case name="BasicTypes.Parser.ParserUtilTests.TwoWords" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                  <test-case name="BasicTypes.Parser.ParserUtilTests.WordsNumbersPunctuationWithDash" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                  <test-case name="BasicTypes.Parser.ParserUtilTests.WordsNumbersPunctuationWithoutDash" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                  <test-case name="BasicTypes.Parser.ParserUtilTests.WordsNumbersWithDash" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                  <test-case name="BasicTypes.Parser.ParserUtilTests.WordsNumbersWithoutDash" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+          <test-suite type="Namespace" name="Parts" executed="True" result="Success" success="True" time="0.010" asserts="0">
+            <results>
+              <test-suite type="TestFixture" name="WordConverterTests" executed="True" result="Success" success="True" time="0.010" asserts="0">
+                <results>
+                  <test-case name="BasicTypes.Parts.WordConverterTests.SampleConversionDoesntYeildNull" executed="True" result="Success" success="True" time="0.007" asserts="1" />
+                  <test-case name="BasicTypes.Parts.WordConverterTests.SampleConversionYeildsSameText" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                  <test-case name="BasicTypes.Parts.WordConverterTests.ToAndFromStringMatch" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                  <test-case name="BasicTypes.Parts.WordConverterTests.YesWeCanConvertFromString" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+          <test-suite type="TestFixture" name="SenteneTests" executed="True" result="Success" success="True" time="0.002" asserts="0">
+            <results>
+              <test-case name="BasicTypes.SenteneTests.ConstructAndToString" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+              <test-case name="BasicTypes.SenteneTests.ParseAndToString" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+            </results>
+          </test-suite>
+          <test-suite type="TestFixture" name="Tester" executed="True" result="Success" success="True" time="0.001" asserts="0">
+            <results>
+              <test-case name="BasicTypes.Tester.Tester1" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+            </results>
+          </test-suite>
+          <test-suite type="TestFixture" name="WordEqualityTests" executed="True" result="Success" success="True" time="0.001" asserts="0">
+            <results>
+              <test-case name="BasicTypes.WordEqualityTests.Tests" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+            </results>
+          </test-suite>
+          <test-suite type="TestFixture" name="WordSetTest" executed="True" result="Success" success="True" time="0.003" asserts="0">
+            <results>
+              <test-case name="BasicTypes.WordSetTest.TestTwoWordsToString" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+              <test-case name="BasicTypes.WordSetTest.TestTwoWordsWihtProperModifierToString" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+              <test-case name="BasicTypes.WordSetTest.TestTwoWordsWihtProperModifierToStringUsingAdd" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+              <test-case name="BasicTypes.WordSetTest.TestTwoWordsWihtProperModifierToStringUsingDictionaryWord" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+            </results>
+          </test-suite>
+          <test-suite type="TestFixture" name="WordTest" executed="True" result="Success" success="True" time="0.020" asserts="0">
+            <results>
+              <test-case name="BasicTypes.WordTest.WeakWord_Constructor2SetsText" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+              <test-case name="BasicTypes.WordTest.WeakWord_ConstructorSetsText" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+              <test-case name="BasicTypes.WordTest.WeakWord_DetectsInvalidCharacterSet" executed="True" result="Success" success="True" time="0.005" asserts="1" />
+              <test-case name="BasicTypes.WordTest.WeakWord_DetectsInvalidPhonology" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+              <test-case name="BasicTypes.WordTest.WeakWord_InvalidPhonology" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+              <test-case name="BasicTypes.WordTest.WeakWord_IsContainedBy" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+              <test-case name="BasicTypes.WordTest.WeakWord_IsNumeric" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+              <test-case name="BasicTypes.WordTest.WeakWord_IsProperModifier" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+              <test-case name="BasicTypes.WordTest.WeakWord_NullNotAllowedInConstructor" executed="True" result="Success" success="True" time="0.003" asserts="0" />
+              <test-case name="BasicTypes.WordTest.WeakWord_ThrowsOnPunctuation" executed="True" result="Success" success="True" time="0.001" asserts="0" />
+              <test-case name="BasicTypes.WordTest.WeakWord_ValidLetterSet" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+              <test-case name="BasicTypes.WordTest.WeakWord_ValidPhonology" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

@@ -1,0 +1,47 @@
+﻿<html>
+    <head>
+        <title></title>
+    </head>
+<body>
+    <h2>Facilities</h2>
+    <ul>
+        <li>Parse text to C# data structure.</li>
+        <li>Support C# data facilities, such as Equality, Comparison, Serialization, TypeConversion, Mapping, etc</li>
+        <li>Serialize C# data structure to a lossy, human readable string.</li>
+        <li>Serialize to alternative formats, namely, English Gloss and Structure Annotated</li>
+    </ul>
+    <h2>TODO</h2>
+    <ul>
+        <li>Support titles, fragments (e.g. conversation), run-ons (e.g. poetry)</li>
+        <li>Deal with foreign words, maybe with escaping.</li>
+        <li>Deal with direct quotes (maybe as a sort of noun).</li>
+    </ul>
+
+    <h2>To and From Strings</h2>
+    <p>The basic types can be converted to human readable format using ToString(). Be careful to not accidentally call the object.ToString() base method.</p>
+    <p>The basic types can be converted from human readable format using two methods: Parse(value), TryParse(value) or using the XXXTypeConverter.</p>
+    
+    <h2>Serialization</h2>
+    <p>Types support binary, XML, and JSON serialization. This differs from Parse/ToString because it isn't (very) lossy and the target consumer is a computer.</p>
+
+    <h2>To and From Other DataType</h2>
+    <p>Except for numbers, there isn't a natural way to convert among types, since they are at best similar. So for these type conversion is done with AutoMapper</p>
+
+    <h2>Equality</h2>
+    <p>All types are Classes, so are left to use their out of the box equality.</p>
+    <p>Equality by value is supported with a XXXByValue class.</p>
+    <p>
+        Collection equality is an important concept-- collections can be the same or different base on:
+        <ol>
+            <li>Same but different order, e.g. strings of modifiers</li>
+            <li>Exact and ordered, e.g. strings of verb phrases (temporal interpretation)</li>
+            <li>Close enough (most match)</li>
+        </ol>
+    </p>
+    <h2>Facts</h2>
+    <p>Facts have scope. Within a scope there are bound facts, which have something that is unique to the word. That would be a noun with a proper modifier.</p>
+    <p>Scopes can be linked via matching proper modifiers</p>
+    
+    
+</body>
+</html>
