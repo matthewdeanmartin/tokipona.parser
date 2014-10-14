@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using BasicTypes.Collections;
+using BasicTypes.Extensions;
 
 namespace BasicTypes
 {
@@ -66,12 +67,16 @@ namespace BasicTypes
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            string result = Head.Text + " (" + (Modifiers == null ? "" : Modifiers.ToString()) +")";
-            if (format == "g")
+            List<string> words = new List<string>();
+            words.Add(head.ToString());
+            if (Modifiers!=null && Modifiers.Count > 0)
             {
-                return result.Replace("(", "").Replace(")", "");
+                words.Add("(");
+                words.AddRange(modifiers.Select(x=>x.ToString()));
+                words.Add(")");
+
             }
-            return result;
+            return words.SpaceJoin(format);
         }
 
         public static HeadedPhrase Parse(string value)

@@ -80,7 +80,10 @@
     <Compile Include="Collections\WordSetByValue.cs" />
     <Compile Include="Collections\SentenceTests.cs" />
     <Compile Include="Collections\WordSetTypeConverter.cs" />
+    <Compile Include="Diagnostics\Tracers.cs" />
+    <Compile Include="Extensions\ListExtension.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="Extensions\StringBuilderExtensions.cs" />
     <Compile Include="Fluent\Say.cs" />
     <Compile Include="Globalization\TpCultureInfo.cs" />
     <Compile Include="Globalization\TpCultureTest.cs" />
@@ -92,6 +95,7 @@
     <Compile Include="Extensions\ArrayExtensions.cs" />
     <Compile Include="Collections\HeadedPhraseTest.cs" />
     <Compile Include="Knowledge\CorpusKnowledge.cs" />
+    <Compile Include="Knowledge\KnowledgeScope.cs" />
     <Compile Include="MoreTypes\EnumerationThing.cs" />
     <Compile Include="MoreTypes\XDictionary.cs" />
     <Compile Include="Parser\ParserUtils.cs" />
@@ -114,6 +118,7 @@
     <Compile Include="Dictionary\Words.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

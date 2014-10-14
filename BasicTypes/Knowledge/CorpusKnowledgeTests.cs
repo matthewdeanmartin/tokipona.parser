@@ -45,6 +45,8 @@ namespace BasicTypes
                 {
                     Sentence sentence = js;
                     Console.WriteLine(sentence.ToString());
+                    Console.WriteLine(sentence.ToString("b"));
+
                     Assert.AreEqual(sample, sentence.ToString());    
                 }
             }

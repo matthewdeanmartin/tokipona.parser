@@ -4,13 +4,14 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using BasicTypes.Extensions;
 
 namespace BasicTypes.Collections
 {
     //Stuff after the 1st li, never itself contains li.
     [DataContract]
     [Serializable]
-    public class TpPredicate : IContainsWord
+    public class TpPredicate : IContainsWord, IFormattable
     {
         [DataMember]
         private readonly HeadedPhrase verbPhrases;
@@ -35,45 +36,41 @@ namespace BasicTypes.Collections
             return chains.Any(x => x != null && x.Contains(word));
         }
 
+        public string ToString(string format)
+        {
+            return this.ToString(format, System.Globalization.CultureInfo.CurrentCulture);
+        }
+
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            return this.ToString(null, System.Globalization.CultureInfo.CurrentCulture);
+        }
 
-            sb.Append(verbPhrases.ToString());
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            //Mixture of adding words, phrases adn brackets. Ugly.
+            List<string> sb = new List<string>();
+
+            sb.Add(verbPhrases.Head.ToString());
+            sb.AddRange(verbPhrases.Modifiers.Select(x=>x.ToString()));
+
 
             foreach (Chain chain in new []{directs,Prepositionals})
             {
                 if(chain==null)continue;
-                sb.Append(" ");
+                
+                sb.Add("{");
                 if (chain.HeadedPhrases.Any())
                 {
-                    sb.Append(chain.Particle);
+                    sb.Add(chain.Particle.ToString());
                 }
                 foreach (HeadedPhrase headedPhrase in chain.HeadedPhrases)
                 {
-                    sb.Append(" ");
-                    sb.Append(headedPhrase.Head);
-                    
-                    sb.Append(" ");
-                    sb.Append(headedPhrase.Modifiers);
-
-                    //if (headedPhrase.SubPhrases != null)
-                    //{
-                    //    foreach (HeadedPhrase subPhrase in headedPhrase.SubPhrases)
-                    //    {
-                    //        sb.Append(" ");
-                    //        sb.Append(subPhrase.Head);
-
-                    //        sb.Append(" ");
-                    //        sb.Append(subPhrase.Modifiers);
-
-                    //        //TODO: uhoh needto recurse
-                    //    }
-                    //}
-                    
+                    sb.Add(headedPhrase.ToString(format));
                 }
+                sb.Add("}");
             }
-            return sb.ToString();
+            return sb.SpaceJoin(format);
         }
     }
 

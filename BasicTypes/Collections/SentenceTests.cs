@@ -12,11 +12,18 @@ namespace BasicTypes
     public class SenteneTests
     {
         [Test]
+        public void MaximalSentences()
+        {
+            string value = "jan li suli la tenpo pi lili mi la mi mute li lukin e sitelen pona kepeken ilo tawa mani li jo e ijo mute lon ma suli pi mi mute.";
+            Sentence s = Sentence.Parse(value);
+            Assert.AreEqual(value, s.ToString(), s.ToString("b"));
+        }
+        [Test]
         public void LaFragment()
         {
             string value = "tenpo pi lili mi la mi li lukin e sitelen pona.";
             Sentence s = Sentence.Parse(value);
-            Assert.AreEqual(value, s.ToString());
+            Assert.AreEqual(value, s.ToString(), s.ToString("b"));
         }
 
         

@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using BasicTypes.Collections;
+using BasicTypes.Diagnostics;
+using BasicTypes.Extensions;
 using KellermanSoftware.CompareNetObjects;
 using NUnit.Framework.Constraints;
 
@@ -14,11 +18,11 @@ namespace BasicTypes
     {
         None = 0,
         Subjects = 1, //Chain of en
-        NounVerbPhrase =2,//Chain of pi (can be a VP
+        NounVerbPhrase = 2,//Chain of pi (can be a VP
         Predicates = 3, //Chain of li
         Directs = 4,//Chain of e
         Prepositionals = 5, //Chain lon(*) (phrases split by any prep)
-        Fragments =6
+        Fragments = 6
     }
 
     //Chains of particles
@@ -57,7 +61,7 @@ namespace BasicTypes
         public bool Contains(Word word)
         {
             if (HeadedPhrases == null) return false;
-            if (HeadedPhrases.Length==0) return false;
+            if (HeadedPhrases.Length == 0) return false;
             return HeadedPhrases.Any(x => x.Contains(word));
         }
 
@@ -67,55 +71,69 @@ namespace BasicTypes
         {
             if (subChains != null)
             {
-                StringBuilder sb = new StringBuilder();
-                sb.Append("[");
+                List<string> sb = new List<string>();
+                //sb.Add("[");
+
+                //Tracers.Stringify.TraceInformation("We have " + SubChains.Count() + " " + Particle.ToString() + " subChains");
                 int i = 0;
+                 
                 foreach (Chain subChain in SubChains)
                 {
                     i++;
-                    if (i != 1)
+                    if (particle.MiddleOnly && i != 1)
                     {
-                        sb.Append(" " + Particle.Text + " ");
+                        sb.Add(particle.ToString());
                     }
+                    if (!particle.MiddleOnly)
+                    {
+                        sb.Add(particle.ToString());
+                    }
+
+                    //Tracers.Stringify.TraceInformation("At Leaf " + subChain.HeadedPhrases + "  headed phrases (i.e. no particles)");
 
                     if (subChain.HeadedPhrases != null)
                     {
-                        sb.Append(string.Join(" " + subChain.Particle.Text + " ",
-                            subChain.HeadedPhrases.Select(phrase => phrase.ToString(format)).ToArray()).Trim().Replace("  ", " "));
+
+                        sb.AddRange(subChain.Particle, subChain.HeadedPhrases.Select(phrase => phrase.ToString(format)));
+                        //Tracers.Stringify.TraceInformation(sb.SpaceJoin(format) + " ... so far");
                     }
                     else
                     {
                         int j = 0;
+                        
+
                         foreach (Chain subSub in subChain.SubChains)
                         {
-                            //j++;
-                            //if (j != 1)
-                            //{
-                            //    sb.Append(" " + subSub.Particle + " ");
-                            //}
-                            sb.Append(string.Join(" " + subSub.Particle.Text + " ",
-                            subSub.HeadedPhrases.Select(phrase => phrase.ToString(format)).ToArray()).Trim().Replace("  ", " "));
+                            j++;
+                            if (subSub.Particle.MiddleOnly && j != 1)
+                            {
+                                sb.Add(subSub.Particle.ToString());
+                            }
+                            if (!subSub.Particle.MiddleOnly)
+                            {
+                                sb.Add(subSub.Particle.ToString());
+                            }
 
+                            sb.Add(subChain.particle.ToString()); //li, prep, others lead with particle?
+                            sb.AddRange(subSub.Particle,subSub.HeadedPhrases.Select(phrase => phrase.ToString(format)));
+                            //Tracers.Stringify.TraceInformation(sb.SpaceJoin(format) + " .... so far");
+                    
                             //TODO: Do we need recursion for arbitrary depth here?
                         }
                     }
-
-
                 }
-                sb.Append("]");
+                //sb.Add("]");
 
-                if (format == null || format == "g")
-                {
-                    return sb.ToString().Replace("(", " ").Replace(")", " ").Replace("[", " ").Replace("]", " ");
-                }
-                else
-                    return sb.ToString().Replace("()", " ").Replace("[]", " ");
+
+                return sb.SpaceJoin(format);
             }
 
 
             if (HeadedPhrases != null)
             {
-                return string.Join(" " + particle.Text + " ", HeadedPhrases.Select(phrase => phrase.ToString(format)).ToArray()).Trim().Replace("  ", " ");
+                List<string> sb = new List<string>();
+                sb.AddRange(particle,HeadedPhrases.Select(phrase => phrase.ToString(format)));
+                return sb.SpaceJoin(format);
             }
             else
             {

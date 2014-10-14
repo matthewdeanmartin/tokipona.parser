@@ -65,12 +65,6 @@ namespace BasicTypes
         }
     
 
-        public static string[] SplitOnLa(string value)
-        {
-            Regex splitOnEn = new Regex("\\b" + Particles.la.Text + "\\b");
-            string[] subjectTokens = splitOnEn.Split(value).Select(x => x.Trim()).ToArray();
-            return subjectTokens;
-        }
 
         //Can double match (word within word) :-(
         public static string[] JustTpWords(string value)
@@ -155,6 +149,7 @@ namespace BasicTypes
 
             //Skip 1 on purpose
             PredicateList verbPhrases = new PredicateList();
+            
             for (int i = 1; i < liParts.Length; i++)
             {
                 string predicate = liParts[1].Trim();
@@ -316,6 +311,74 @@ namespace BasicTypes
             string[] liParts = liSplit.Split(value).Select(x => x.Trim()).ToArray();
             return liParts;
         }
-        
+
+        public static string[] SplitOnO(string value)
+        {
+            Regex oParts = new Regex("\\b" + Particles.o.Text + "\\b");
+            string[] liParts = oParts.Split(value).Select(x => x.Trim()).ToArray();
+            return liParts;
+        }
+
+
+        public static string[] SplitOnLa(string value)
+        {
+            Regex splitOnEn = new Regex("\\b" + Particles.la.Text + "\\b");
+            string[] subjectTokens = splitOnEn.Split(value).Select(x => x.Trim()).ToArray();
+            return subjectTokens;
+        }
+
+        public static string[] SplitOnParticle(Particle particle, string value)
+        {
+            Regex splitOnParticle = new Regex("\\b" + particle.Text + "\\b");
+            string[] tokens = splitOnParticle.Split(value).Select(x => x.Trim()).ToArray();
+            return tokens;
+        }
+
+        public static string[] SplitOnParticlePreserving(Particle particle, string value)
+        {
+            StringBuilder sb = new StringBuilder();
+            List<string> parts = new List<string>();
+            for (int i = 0; i < value.Length; i++)
+            {
+                string possible = value.Substring(i, particle.Text.Length);
+                if (particle.Text == possible)
+                {
+                    if (i<value.Length -1)
+                    {
+                        string nextChar = value.Substring(i + 1, 1);
+                        string lastChar=" ";
+                        if (i - particle.Text.Length >= 0)
+                        {
+                            lastChar = value.Substring(i - particle.Text.Length, 1);
+                     
+                        }
+                        
+                        if (nextChar==" " ||  IsBoundary(nextChar) && IsBoundary(lastChar))
+                        {
+                            parts.Add(sb.ToString());
+                            sb = new StringBuilder();
+
+                        }
+                    }
+                    else
+                    {
+                        parts.Add(sb.ToString());
+                        sb = new StringBuilder();
+                    }
+                }
+                sb.Append(value[i]);
+            }
+            parts.Add(sb.ToString());
+            return parts.ToArray();
+        }
+
+        private static bool IsBoundary(string boundary)
+        {
+            Regex matcher = new Regex("[a-zA-Z]");
+            Match c = matcher.Match(boundary);
+            
+            return !c.Success;
+
+        }
     }
 }

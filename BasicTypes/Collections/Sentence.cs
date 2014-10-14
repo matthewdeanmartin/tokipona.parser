@@ -6,7 +6,8 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using BasicTypes.Collections;
-
+using BasicTypes.Extensions;
+using System.Collections.ObjectModel;
 
 namespace BasicTypes
 {
@@ -14,6 +15,9 @@ namespace BasicTypes
     [Serializable]
     public class Sentence : IContainsWord, IFormattable
     {
+        [DataMember]
+        private readonly Sentence antecedent;
+
         [DataMember]
         private readonly Chain fragments;
 
@@ -120,48 +124,31 @@ namespace BasicTypes
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            StringBuilder sb = new StringBuilder();
+            List<string> sb = new List<string>();
 
             //Unless it is an array, delegate to member ToString();
-            sb.Append("(");
-            sb.Append(string.Join("en", subjects.Select(x => x.ToString())));
-            sb.Append(")");
+            sb.Add("[");
+            sb.AddRange(Particles.en, subjects.Select(x => x.ToString(format)));
+            sb.Add("]");
 
-            sb.Append(" ");
+            sb.Add("<");
+            sb.Add(Predicates.ToString(format));
+            sb.Add(">");
 
-            sb.Append("(");
-            sb.Append(Predicates.ToString());
-            while (sb[sb.Length - 1] == ' ')
+            string spaceJoined = sb.SpaceJoin(format);
+            if (this.Punctuation == null)
             {
-                sb.Remove(sb.Length - 1, 1);
-            }
-            sb.Append(")");
-
-            sb.Replace("  ", " ");
-
-            if (Contains(Words.seme))
-            {
-                sb.Append("?");
+                if (Contains(Words.seme))
+                {
+                   spaceJoined = spaceJoined+ "?";
+                }
             }
             else
             {
-                sb.Append(this.punctuation);
-            }
-            string result = sb.ToString().Trim();
-            if (result.Contains("  "))
-            {
-                result = result.Replace("  ", " ");
+                spaceJoined = spaceJoined + this.punctuation.ToString();
             }
 
-
-            if (format==null||format == "g")
-            {
-                return result.Replace("(", " ").Replace(")", " ").Replace("[", " ").Replace("]", " ");
-            }
-            else
-            {
-                return result.Replace("()", " ").Replace("[]", " ");
-            }
+            return spaceJoined;
         }
 
 

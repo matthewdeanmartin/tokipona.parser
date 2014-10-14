@@ -76,7 +76,7 @@ namespace BasicTypes.Collections
             string value= "jelo esun en kasi esun";
             Chain c = Chain.Parse(value);
             Console.WriteLine(c.ToJsonDcJs());
-            Assert.AreEqual(value, c.ToString());
+            Assert.AreEqual(value, c.ToString(), c.ToString("b"));
         }
 
         [Test]
@@ -84,8 +84,9 @@ namespace BasicTypes.Collections
         {
             string value = "esun en kasi";
             Chain c = Chain.Parse(value);
+            Assert.AreEqual(c.Particle.ToString(), Particles.en.ToString());
             Console.WriteLine(c.ToJsonDcJs());
-            Assert.AreEqual(value, c.ToString());
+            Assert.AreEqual(value, c.ToString(), c.ToString("b"));
         }
 
 
@@ -94,8 +95,9 @@ namespace BasicTypes.Collections
         {
             string value = "esun pi tenpo suno en kasi pi tenpo suno";
             Chain c = Chain.Parse(value);
+            Assert.AreEqual(c.Particle.ToString(), Particles.en.ToString());
             Console.WriteLine(c.ToJsonDcJs());
-            Assert.AreEqual(value, c.ToString());
+            Assert.AreEqual(value, c.ToString(), c.ToString("b"));
         }
     }
 }

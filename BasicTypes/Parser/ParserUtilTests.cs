@@ -12,6 +12,25 @@ namespace BasicTypes.Parser
     [TestFixture]
     public class ParserUtilTests
     {
+        [Test]
+        public void SplitE()
+        {
+            string ePhrase = "li moku e soweli suli mute";
+            TpPredicate predicate= ParserUtils.ProcessPredicates(ePhrase);
+            Console.WriteLine(predicate.ToString("b"));
+            Assert.IsTrue(predicate.Directs !=null);
+        }
+
+        [Test]
+        public void SplitEAndPreserve()
+        {
+            string ePhrase = "li moku e soweli suli mute e wawa e tawa e kala e";
+            string[] parts = ParserUtils.SplitOnParticlePreserving(Particles.e, ePhrase);
+            foreach (string part in parts)
+            {
+                Console.WriteLine(part);
+            }
+        }
 
         [Test]
         public void IdentifyDiscourses_CanItEvenParseTheSentences()
@@ -25,11 +44,38 @@ namespace BasicTypes.Parser
                 {
                     string reToStringed = sentence.ToString();
                     bool match = ck.Setences.Any(x => x.Trim() == reToStringed);
-                    Console.WriteLine(match + " O:" + ck.Setences[i]);
-                    Console.WriteLine(match + " R:" + reToStringed);
+                    if (!match)
+                    {
+                        Console.WriteLine(match + " O:" + ck.Setences[i]);
+                        Console.WriteLine(match + " R:" + sentence.ToString("b"));
+
+                    }
                 }
             }
         }
+
+        [Test]
+        public void IdentifyDiscourses_CanItEvenParseTheSentences_ShowGoodOnes()
+        {
+            string sample = CorpusKnowledgeTests.SampleText;
+            CorpusKnowledge ck = new CorpusKnowledge(sample);
+            Discourse[] s = ck.MakeSentences();
+            for (int i = 0; i < s.Length; i++)
+            {
+                foreach (Sentence sentence in s[i])
+                {
+                    string reToStringed = sentence.ToString();
+                    bool match = ck.Setences.Any(x => x.Trim() == reToStringed);
+                    if (match)
+                    {
+                        Console.WriteLine(match + " O:" + ck.Setences[i]);
+                        Console.WriteLine(match + " R:" + sentence.ToString("b"));
+
+                    }
+                }
+            }
+        }
+
         [Test]
         public void IdentifyDiscourses_CanWeGroupThem()
         {
@@ -56,7 +102,7 @@ namespace BasicTypes.Parser
                 foreach (Sentence sentence in discourse)
                 {
                     i++;
-                    Console.WriteLine(i +") " + sentence.ToString("parens"));    
+                    Console.WriteLine(i +") " + sentence.ToString("b"));    
                 }
                 
                 Console.WriteLine("-------------------");

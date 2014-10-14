@@ -4,44 +4,51 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using BasicTypes.Extensions;
 
 namespace BasicTypes.Collections
 {
-    public class PredicateList:List<TpPredicate>,IContainsWord
+    public class PredicateList:List<TpPredicate>,IContainsWord,IFormattable
     {
         public bool Contains(Word word)
         {
             return this.Any(tpPredicate => tpPredicate.Contains(word));
         }
 
-        public override string ToString()
+        public string ToString(string format, IFormatProvider formatProvider)
         {
-            if (this.Count == 0) return "";
+            if (this.Count == 0) 
+                return "";
 
-            StringBuilder sb = new StringBuilder();
+            List<string> sb = new List<string>();
             foreach (TpPredicate tpPredicate in this)
             {
-                sb.Append("li ");
+                sb.Add(Particles.li.ToString());
                 if (tpPredicate.VerbPhrases != null)
                 {
-                    sb.Append(tpPredicate.VerbPhrases != null ? tpPredicate.VerbPhrases.ToString() : "");
+                    sb.Add(tpPredicate.VerbPhrases.ToString(format));
                 }
                 if (tpPredicate.Directs != null)
                 {
-                    sb.Append("e ");
-                    sb.Append(tpPredicate.Directs != null ? tpPredicate.Directs.ToString() : "");
+                    sb.Add(Particles.e.ToString());
+                    sb.Add(tpPredicate.Directs.ToString(format));
                 }
                 if (tpPredicate.Prepositionals != null)
                 {
-                    sb.Append(tpPredicate.Prepositionals != null ? tpPredicate.Prepositionals.ToString() : "");
+                    sb.Add(tpPredicate.Prepositionals.ToString(format));
                 }
             }
-            // "li " + string.Join(" ", this.Select(x => ).ToArray())
-            //+" " +
-            //string.Join(" ", this.Select(x => x.Directs != null ? x.Directs.ToString() : "").ToArray())
-            //+ " " +
-            //string.Join(" ", this.Select(x => x.Prepositionals != null ? x.Prepositionals.ToString() : "").ToArray());
-            return sb.ToString().Trim();
+            return sb.SpaceJoin(format);
+        }
+
+        public string ToString(string format)
+        {
+            return this.ToString(format, System.Globalization.CultureInfo.CurrentCulture);
+        }
+
+        public override string ToString()
+        {
+            return this.ToString(null, System.Globalization.CultureInfo.CurrentCulture);
         }
     }
 }
