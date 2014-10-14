@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
+using System.Xml.Serialization;
 using BasicTypes.Exceptions;
 using BasicTypes.Knowledge;
 using BasicTypes.MoreTypes;
 using Microsoft.SqlServer.Server;
+using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace BasicTypes
@@ -24,6 +29,8 @@ namespace BasicTypes
     //    Adverb = 6
     //}
     [Serializable]
+    [DataContract]
+    [KnownType(typeof(Enumeration))]
     public class PartOfSpeech : Enumeration
     {
         public static readonly PartOfSpeech Noun = new PartOfSpeech(1, "Noun");
@@ -51,8 +58,8 @@ namespace BasicTypes
     //Content words-- everything not a Particle
     [DataContract]
     [Serializable]
-    public class Word:IFormattable
-        //IConvertible (Basic types, like double, int, date, etc)
+    public partial class Word : IFormattable
+    //IConvertible (Basic types, like double, int, date, etc)
     {
         internal Word()
         {
@@ -62,8 +69,8 @@ namespace BasicTypes
         [DataMember(IsRequired = true)]
         private readonly string word;
 
-        [DataMember(IsRequired = false,EmitDefaultValue = false)]
-        private readonly SerializableDictionary<PartOfSpeech, string> glossMap;
+        [DataMember(IsRequired = false, EmitDefaultValue = false)]
+        private readonly Dictionary<string, Dictionary<string,string[]>> glossMap;
 
         public Word(string word)
         {
@@ -75,12 +82,18 @@ namespace BasicTypes
             {
                 throw new InvalidLetterSetException("Words must not have spaces or punctuation, (other than the preposition marker ~)");
             }
+
+            //Add semantic info
+            if (Words.Dictionary.ContainsKey(word))
+            {
+                glossMap = Words.Dictionary[word].GlossMap;
+            }
             //Validate
+
             this.word = word;
         }
 
-        public Word(string word,
-            SerializableDictionary<PartOfSpeech, string> glossMap)
+        public Word(string word, Dictionary<string, Dictionary<string, string[]>> glossMap)
         {
             if (word == null)
             {
@@ -95,7 +108,7 @@ namespace BasicTypes
         {
             get
             {
-                return Words.Dictionary.Any(x => x.Text == word);
+                return Words.Dictionary.Any(x => x.Value.Text == word);
             }
         }
 
@@ -141,15 +154,29 @@ namespace BasicTypes
                 return word.Substring(0, 1) == word.Substring(0, 1).ToUpperInvariant();
             }
         }
+
+
         public string Text { get { return word; } }
 
-        public SerializableDictionary<PartOfSpeech, string> GlossMap { get { return glossMap; } }
+        [XmlIgnore] //XMLSerializer
+        [ScriptIgnore]
+        public Dictionary<string, Dictionary<string, string[]>> GlossMap { get { return glossMap; } }
+
+        //[XmlIgnore] 
+        //public Dictionary<string, string> GlossMapJavaScriptSerializer {
+        //    get
+        //    {
+        //        if (glossMap == null) return null;
+        //        //https://stackoverflow.com/questions/3685732/c-sharp-serialize-dictionaryulong-ulong-to-json
+        //        return glossMap.ToDictionary(item => item.Key.ToString(), item => (item.Value??"").ToString());
+        //    } 
+        //}
 
         //Lossy, human oriented serialization.
         public override string ToString()
         {
             return this.ToString("g", System.Globalization.CultureInfo.CurrentCulture);
-            
+
         }
 
         public string ToString(string format)
@@ -165,13 +192,57 @@ namespace BasicTypes
             format = format.Trim();
             if (format==null|| format == "g" || format == "G")
                 return Text;
+
+            CultureInfo ci = Thread.CurrentThread.CurrentCulture;
+
+            if (ci.TwoLetterISOLanguageName == "tp") //Can only happen if we can install a custom culture. Not worth the effort.
+            {
+                return Text;
+            }
+            else if (ci.TwoLetterISOLanguageName == "en")
+            {
+                string language = ci.TwoLetterISOLanguageName;
+                switch (format)
+                {
+                    case "n":
+                        return TryGloss(language,PartOfSpeech.Noun.DisplayName);
+                    case "vi":
+                        return TryGloss(language, PartOfSpeech.VerbIntransitive.DisplayName);
+                    case "vt":
+                        return TryGloss(language, PartOfSpeech.VerbTransitive.DisplayName);
+                    case "adj":
+                        return TryGloss(language, PartOfSpeech.Adjective.DisplayName);
+                    case "adv":
+                        return TryGloss(language, PartOfSpeech.Adverb.DisplayName);
+                    case "int":
+                        return TryGloss(language, PartOfSpeech.Interjection.DisplayName);
+                    default:
+                        throw new FormatException("Unrecognized format " + format);
+                }
+            }
             else
-                throw new FormatException("Unrecognized format " + format);
+            {
+                throw new ArgumentOutOfRangeException("Can't translate to " + ci.ThreeLetterISOLanguageName);
+            }
+
+        }
+
+        private string TryGloss(string language,string pos)
+        {
+            if (glossMap == null)
+            {
+                return "[missing map for " + Text + "]";
+            }
+            if (glossMap.ContainsKey(pos))
+            {
+                return glossMap[language][pos][0];//TODO: Pick at random.
+            }
+            return Text;
         }
 
         public static bool IsWord(string word)
         {
-            foreach (Word x in Words.Dictionary)
+            foreach (Word x in Words.Dictionary.Values)
             {
                 if (x.Text == word)
                     return true;

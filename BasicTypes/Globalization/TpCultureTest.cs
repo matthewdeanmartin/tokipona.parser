@@ -14,21 +14,14 @@ namespace BasicTypes.Globalization
         [Test]
         public void Test()
         {
-            CultureAndRegionInfoBuilder cib = null;
+            
             try
             {
                 // Create a CultureAndRegionInfoBuilder object named "x-en-US-sample".
                 Console.WriteLine("Create and explore the CultureAndRegionInfoBuilder...\n");
-                cib = new CultureAndRegionInfoBuilder(
-                                     "x-en-US-sample", CultureAndRegionModifiers.None);
-
+                
                 // Populate the new CultureAndRegionInfoBuilder object with culture information.
-                CultureInfo ci = new CultureInfo("en-US");
-                cib.LoadDataFromCultureInfo(ci);
-
-                // Populate the new CultureAndRegionInfoBuilder object with region information.
-                RegionInfo ri = new RegionInfo("US");
-                cib.LoadDataFromRegionInfo(ri);
+                CultureAndRegionInfoBuilder cib = TpCultureFactory.CreateTpCulture();
 
                 // Display some of the properties of the CultureAndRegionInfoBuilder object.
                 Console.WriteLine("CultureName:. . . . . . . . . . {0}", cib.CultureName);
@@ -50,11 +43,11 @@ namespace BasicTypes.Globalization
 
                 // Register the custom culture.
                 Console.WriteLine("Register the custom culture...");
-                cib.Register();
+                TpCultureFactory.Register(cib);
 
                 // Display some of the properties of the custom culture.
                 Console.WriteLine("Create and explore the custom culture...\n");
-                ci = new CultureInfo("x-en-US-sample");
+                CultureInfo ci = new CultureInfo("x-tp");
 
                 Console.WriteLine("Name: . . . . . . . . . . . . . {0}", ci.Name);
                 Console.WriteLine("EnglishName:. . . . . . . . . . {0}", ci.EnglishName);

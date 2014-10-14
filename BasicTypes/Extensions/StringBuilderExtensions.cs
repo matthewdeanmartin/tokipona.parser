@@ -20,6 +20,7 @@ namespace BasicTypes.Extensions
         public static void RemoveInnerWhiteSpace(this StringBuilder builder)
         {
             builder.Replace("  ", " ");
+            builder.TrimEnd();
         }
     }
 
@@ -39,7 +40,7 @@ namespace BasicTypes.Extensions
         {
             StringBuilder sb = new StringBuilder("yada  yada  blah   ");
             sb.RemoveInnerWhiteSpace();
-            Assert.AreEqual("yada  yada  blah", sb.ToString());
+            Assert.AreEqual("yada yada blah", sb.ToString());
         }
     }
 }

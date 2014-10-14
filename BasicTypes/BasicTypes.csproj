@@ -46,6 +46,9 @@
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Polenter.SharpSerializer">
+      <HintPath>..\packages\SharpSerializer.2.20\lib\net20\Polenter.SharpSerializer.dll</HintPath>
+    </Reference>
     <Reference Include="sysglobl" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -81,12 +84,19 @@
     <Compile Include="Collections\SentenceTests.cs" />
     <Compile Include="Collections\WordSetTypeConverter.cs" />
     <Compile Include="Diagnostics\Tracers.cs" />
+    <Compile Include="Dictionary\Semantics.cs" />
     <Compile Include="Extensions\ListExtension.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\StringBuilderExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Fluent\Say.cs" />
-    <Compile Include="Globalization\TpCultureInfo.cs" />
+    <Compile Include="Globalization\TpCalendar.cs" />
+    <Compile Include="Globalization\TpCultureFactory.cs" />
     <Compile Include="Globalization\TpCultureTest.cs" />
+    <Compile Include="Globalization\TpHackTests.cs" />
+    <Compile Include="Globalization\UseCulture.cs" />
+    <Compile Include="Glosser\GlossMakerTests.cs" />
+    <Compile Include="Glosser\GlossMaker.cs" />
     <Compile Include="Knowledge\CorpusKnowledgeTests.cs" />
     <Compile Include="Dictionary\Particles.cs" />
     <Compile Include="Dictionary\Pronouns.cs" />
@@ -96,12 +106,19 @@
     <Compile Include="Collections\HeadedPhraseTest.cs" />
     <Compile Include="Knowledge\CorpusKnowledge.cs" />
     <Compile Include="Knowledge\KnowledgeScope.cs" />
+    <Compile Include="MoreTypes\CustomKeyedCollection.cs" />
+    <Compile Include="MoreTypes\DictionaryProxy.cs" />
     <Compile Include="MoreTypes\EnumerationThing.cs" />
-    <Compile Include="MoreTypes\XDictionary.cs" />
+    <Compile Include="MoreTypes\SerializableDictionary.cs" />
     <Compile Include="Parser\ParserUtils.cs" />
     <Compile Include="Knowledge\PhoneNumbers.cs" />
     <Compile Include="Knowledge\PhoneNumberTests.cs" />
     <Compile Include="Parser\ParserUtilTests.cs" />
+    <Compile Include="Parts\CompoundWord.cs" />
+    <Compile Include="Parts\CompoundWordsTest.cs" />
+    <Compile Include="Parts\ConvertWordToBasicType.cs" />
+    <Compile Include="Parts\ConvertWordToBasicTypeTests.cs" />
+    <Compile Include="Parts\GlossMap.cs" />
     <Compile Include="Parts\Punctuation.cs" />
     <Compile Include="Parts\WordConverter.cs" />
     <Compile Include="Parts\WordConverterTests.cs" />
@@ -112,6 +129,8 @@
     <Compile Include="Parts\Particle.cs" />
     <Compile Include="Parts\Word.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serialization\WordJson.cs" />
+    <Compile Include="Serialization\WordXml.cs" />
     <Compile Include="Services\Exchange.cs" />
     <Compile Include="Services\Wobato.cs" />
     <Compile Include="Services\ExhangeTests.cs" />
@@ -119,6 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Dictionary\RawData.xlsx" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

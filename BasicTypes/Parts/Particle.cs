@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -10,7 +11,7 @@ namespace BasicTypes
     //la,li,pi,e,preps (preps simplified to either ~prep or lon-prep)
     [DataContract]
     [Serializable]
-    public class Particle
+    public class Particle:IFormattable
     {
         [DataMember]
         private readonly string particle;
@@ -51,6 +52,17 @@ namespace BasicTypes
         public bool MiddleOnly { get { return middleOnly; } }
 
         public override string ToString()
+        {
+            
+            return ToString("g", CultureInfo.CurrentCulture);
+        }
+
+        public string ToString(string format)
+        {
+            return ToString(format, CultureInfo.CurrentCulture);
+        }
+
+        public string ToString(string format, IFormatProvider formatProvider)
         {
             return Text;
         }

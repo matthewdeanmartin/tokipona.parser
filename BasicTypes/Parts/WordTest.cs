@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BasicTypes.Exceptions;
 using BasicTypes.MoreTypes;
+using BasicTypes.Parts;
 using Microsoft.SqlServer.Server;
 using NUnit.Framework;
 
@@ -15,6 +16,35 @@ namespace BasicTypes
     [TestFixture]
     public class WordTest
     {
+        [Test]
+        public void GlossMap_SerializeAll()
+        {
+
+            GlossMap m = new GlossMap()
+            {
+                {"test", new Word("nini")}
+            };
+
+            Console.WriteLine(m.ToJsonDcJs());
+            Assert.NotNull(m.ToJsonDcJs());
+
+            Console.WriteLine(m.ToSharpXml());
+            Assert.NotNull(m.ToSharpXml());
+
+            //Console.WriteLine(m.ToXml()); //Can't deal with dictionaries? Ugh.
+            //Assert.NotNull(m.ToXml());
+            Console.WriteLine(m.ToJsonJss());
+            Assert.NotNull(m.ToJsonJss());
+
+            BinaryFormatter formatter = new BinaryFormatter();
+            using (MemoryStream ms = new MemoryStream())
+            {
+                formatter.Serialize(ms, m);
+                ms.Position = 0;
+                GlossMap result = formatter.Deserialize(ms) as GlossMap;
+                Assert.NotNull(result);
+            }
+        }
 
         [Test]
         public void CanJsonSerialize()
@@ -135,7 +165,7 @@ namespace BasicTypes
         public void WeakWord_Constructor2SetsText()
         {
             string word = "Mato";
-            Word f = new Word(word, new SerializableDictionary<PartOfSpeech, string>());
+            Word f = new Word(word, new Dictionary<string, Dictionary<string, string[]>>());
             Assert.IsTrue(f.Text == word);
         }
     }

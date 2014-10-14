@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,9 +25,12 @@ namespace BasicTypes.MoreTypes
     }
 
     [Serializable]
+    [DataContract]
     public abstract class Enumeration : IComparable
     {
+        [DataMember]
         private readonly int _value;
+        [DataMember]
         private readonly string _displayName;
 
         protected Enumeration()

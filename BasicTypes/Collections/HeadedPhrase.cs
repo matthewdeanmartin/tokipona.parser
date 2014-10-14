@@ -79,6 +79,11 @@ namespace BasicTypes
             return words.SpaceJoin(format);
         }
 
+        public bool IsPlura(string value)
+        {
+            return Modifiers.Contains(Words.mute);
+        }
+
         public static HeadedPhrase Parse(string value)
         {
             return HeadedPhraseConverter.Parse(value);
