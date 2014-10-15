@@ -39,6 +39,7 @@ namespace BasicTypes.Parts
             Console.WriteLine(Number.ConvertToBodyNumber(-4000000.0d));
             Console.WriteLine(Number.ConvertToBodyNumber(-100000000000.0d));
             Console.WriteLine(Number.ConvertToBodyNumber(-10000000000000000d));
+            Console.WriteLine(Number.ConvertToBodyNumber(1234567890000000d));
             Console.WriteLine();
             Console.WriteLine(Number.ConvertToBodyNumber(-4000000000000d, "F"));
             Console.WriteLine(Number.ConvertToBodyNumber(-1234567890000000d, "F"));
