@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading;
@@ -10,6 +12,7 @@ using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Xml.Serialization;
 using BasicTypes.Exceptions;
+using BasicTypes.Extensions;
 using BasicTypes.Knowledge;
 using BasicTypes.MoreTypes;
 using Microsoft.SqlServer.Server;
@@ -58,9 +61,13 @@ namespace BasicTypes
     //Content words-- everything not a Particle
     [DataContract]
     [Serializable]
-    public partial class Word : IFormattable
-    //IConvertible (Basic types, like double, int, date, etc)
+    public partial class Word : IFormattable, ICopySelf<Word>,IParse<Word> 
+        //IConvertible (Basic types, like double, int, date, etc)
     {
+        static Word()
+        {
+            AutoMapper.Mapper.CreateMap<Word, Word>();
+        }
         internal Word()
         {
             //For XML serialization only.
@@ -70,7 +77,7 @@ namespace BasicTypes
         private readonly string word;
 
         [DataMember(IsRequired = false, EmitDefaultValue = false)]
-        private readonly Dictionary<string, Dictionary<string,string[]>> glossMap;
+        private readonly Dictionary<string, Dictionary<string, string[]>> glossMap;
 
         public Word(string word)
         {
@@ -190,7 +197,7 @@ namespace BasicTypes
             if (String.IsNullOrEmpty(format)) format = "g";
             // Remove spaces and convert to uppercase.
             format = format.Trim();
-            if (format==null|| format == "g" || format == "G")
+            if (format == null || format == "g" || format == "G")
                 return Text;
 
             CultureInfo ci = Thread.CurrentThread.CurrentCulture;
@@ -205,7 +212,7 @@ namespace BasicTypes
                 switch (format)
                 {
                     case "n":
-                        return TryGloss(language,PartOfSpeech.Noun.DisplayName);
+                        return TryGloss(language, PartOfSpeech.Noun.DisplayName);
                     case "vi":
                         return TryGloss(language, PartOfSpeech.VerbIntransitive.DisplayName);
                     case "vt":
@@ -227,7 +234,7 @@ namespace BasicTypes
 
         }
 
-        private string TryGloss(string language,string pos)
+        private string TryGloss(string language, string pos)
         {
             if (glossMap == null)
             {
@@ -265,17 +272,48 @@ namespace BasicTypes
             return new Word(value);
         }
 
-        public static void TryParse(string value, out Word result)
+        bool IParse<Word>.TryParse(string value, out Word result)
+        {
+            return TryParse(value,out result);
+        }
+
+        Word IParse<Word>.Parse(string value)
+        {
+            return Parse(value);
+        }
+
+        public static bool TryParse(string value, out Word result)
         {
             try
             {
                 result = new Word(value);
+                return true;
             }
             catch (Exception)
             {
                 result = null;
+                return false;
             }
         }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
+
+        public Word ShallowCopy()
+        {
+            return this.MemberwiseClone() as Word;
+        }
+
+
+        public Word DeepCopy()
+        {
+//           return  AutoMapper.Mapper.Map(this, new Word());   
+            BinaryFormatterCopier<Word> copier = new BinaryFormatterCopier<Word>();
+            return copier.Copy(this);
+        }
+
     }
 
     public class WordByValue : EqualityComparer<Word>

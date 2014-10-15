@@ -74,7 +74,7 @@ namespace BasicTypes
         public static Word alasa = new Word("alasa",
             Map(noun: "gathering", adjective: "gathered", verbIntransitive: "gather"));
 
-        public static Word ale = new Word("alasa",
+        public static Word ale = new Word("ale",
             Map(noun: "everything", adjective: "every"));
         public static Word ali = new Word("ali",
             Map(noun: "everything", adjective: "every"));

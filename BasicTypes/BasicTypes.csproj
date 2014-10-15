@@ -85,11 +85,14 @@
     <Compile Include="Collections\WordSetTypeConverter.cs" />
     <Compile Include="Diagnostics\Tracers.cs" />
     <Compile Include="Dictionary\Semantics.cs" />
+    <Compile Include="Extensions\BinaryFormatterCopier.cs" />
     <Compile Include="Extensions\ListExtension.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\StringBuilderExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Fluent\Say.cs" />
+    <Compile Include="FundamentalTests\TestEquality.cs" />
+    <Compile Include="FundamentalTests\TestObjectInterface.cs" />
     <Compile Include="Globalization\TpCalendar.cs" />
     <Compile Include="Globalization\TpCultureFactory.cs" />
     <Compile Include="Globalization\TpCultureTest.cs" />
@@ -97,6 +100,7 @@
     <Compile Include="Globalization\UseCulture.cs" />
     <Compile Include="Glosser\GlossMakerTests.cs" />
     <Compile Include="Glosser\GlossMaker.cs" />
+    <Compile Include="Interfaces\MissingFrameworkInterfaces.cs" />
     <Compile Include="Knowledge\CorpusKnowledgeTests.cs" />
     <Compile Include="Dictionary\Particles.cs" />
     <Compile Include="Dictionary\Pronouns.cs" />
