@@ -162,6 +162,16 @@ namespace BasicTypes
             }
         }
 
+        static public implicit operator string(Word word)
+        {
+            return word.ToString("g");
+        }
+
+        static public implicit operator Word(string value)
+        {
+            return Word.Parse(value);
+        }
+
 
         public string Text { get { return word; } }
 

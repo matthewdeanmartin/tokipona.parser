@@ -10,6 +10,7 @@ namespace BasicTypes
     //Forgotten interfaces
     public interface IToString
     {
+        string[] SupportedFormats { get; }
         string ToString(string format);
     }
 

@@ -168,5 +168,25 @@ namespace BasicTypes
             Word f = new Word(word, new Dictionary<string, Dictionary<string, string[]>>());
             Assert.IsTrue(f.Text == word);
         }
+
+        [Test]
+        public void ImplicitConversions()
+        {
+            Word s= UseStringAsWord("luka");
+            string text = UseWordAsString(Words.luka);
+            Assert.AreEqual(s.ToString(),text);
+            Assert.IsFalse(object.ReferenceEquals(s.ToString(), text)); 
+        }
+
+        public Word UseStringAsWord(string test)
+        {
+            return test;
+        }
+
+        public string UseWordAsString(Word test)
+        {
+            return test;
+        }
+
     }
 }
