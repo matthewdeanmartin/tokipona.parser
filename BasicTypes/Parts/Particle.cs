@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BasicTypes
@@ -38,7 +39,7 @@ namespace BasicTypes
         public Particle(string particle)
         {
             this.particle = particle;
-            if (particle == "en" || particle == "pi")
+            if (particle == "en" || particle == "pi" || particle ==" ")
             {
                 middleOnly = true;
             }
@@ -62,9 +63,84 @@ namespace BasicTypes
             return ToString(format, CultureInfo.CurrentCulture);
         }
 
+        //Dupe
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            return Text;
+            //// Handle null or empty string. 
+            if (String.IsNullOrEmpty(format)) format = "g";
+            // Remove spaces and convert to uppercase.
+            format = format.Trim();
+            if (format == null || format == "g" || format == "G")
+                return Text;
+
+            bool includePos = false;
+            if (format.Contains(":"))
+            {
+                string[] parts = format.Split(new char[] { ':' });
+                format = parts[0];
+                includePos = Convert.ToBoolean(parts[1]);
+            }
+            CultureInfo ci = Thread.CurrentThread.CurrentCulture;
+
+            if (ci.TwoLetterISOLanguageName == "tp") //Can only happen if we can install a custom culture. Not worth the effort.
+            {
+                return Text;
+            }
+            else if (ci.TwoLetterISOLanguageName == "en")
+            {
+                string language = ci.TwoLetterISOLanguageName;
+                if (includePos)
+                    return TryGloss(language, format) + "(" + format + ")";
+                else
+                {
+                    return TryGloss(language, format);
+                }
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("Can't translate to " + ci.ThreeLetterISOLanguageName);
+            }
+
+        }
+
+        //Dupe
+        private string TryGloss(string language, string pos)
+        {
+            Word w = new Word(Text);
+
+            if (w.GlossMap == null)
+            {
+                return "[missing map for " + Text + "]";
+            }
+            if (w.GlossMap.ContainsKey(language))
+            {
+                if (w.GlossMap[language].ContainsKey(pos))
+                {
+                    Random r = new Random(DateTime.Now.Millisecond);//TODO: Make this a part of config
+                    string[] possibilities = w.GlossMap[language][pos];
+                    return possibilities[r.Next(possibilities.Length)];
+                }
+            }
+
+            foreach (KeyValuePair<string, Dictionary<string, string[]>> pair in w.GlossMap)
+            {
+                StringBuilder sb = new StringBuilder();
+                foreach (var item in pair.Value)
+                {
+                    if (item.Value != null && item.Value.Length > 0)
+                    {
+                        sb.Append(item.Key + " : " + string.Join(",", item.Value) + "; ");
+                    }
+                }
+                Console.WriteLine(pair.Key + " : " + sb.ToString());
+            }
+
+            if (!((Text.ToUpper())[0] == Text[0]))
+            {
+                return "[Error " + pos + " " + Text + "]";
+            }
+            else
+                return Text;
         }
 
         public static bool IsParticle(string token)
@@ -74,6 +150,7 @@ namespace BasicTypes
 
         public static bool ContainsProposition(string phrase)
         {
+
             if (!phrase.Contains(phrase))
             {
                 return false;

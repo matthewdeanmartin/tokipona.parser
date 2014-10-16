@@ -175,7 +175,7 @@ namespace BasicTypes
             Word s= UseStringAsWord("luka");
             string text = UseWordAsString(Words.luka);
             Assert.AreEqual(s.ToString(),text);
-            Assert.IsFalse(object.ReferenceEquals(s.ToString(), text)); 
+            //Assert.IsFalse(object.ReferenceEquals(s.ToString(), text)); //These aren't copies!
         }
 
         public Word UseStringAsWord(string test)

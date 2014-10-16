@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -85,6 +86,7 @@
     <Compile Include="Collections\WordSetTypeConverter.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Diagnostics\Tracers.cs" />
+    <Compile Include="Dictionary\DictionaryGenerator.cs" />
     <Compile Include="Dictionary\Semantics.cs" />
     <Compile Include="Extensions\BinaryFormatterCopier.cs" />
     <Compile Include="Extensions\ListExtension.cs" />

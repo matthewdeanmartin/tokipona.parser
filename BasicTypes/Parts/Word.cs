@@ -21,33 +21,58 @@ using NUnit.Framework;
 
 namespace BasicTypes
 {
-    //public enum PartOfSpeech
-    //{
-    //    None = 0,
-    //    Noun = 1,
-    //    VerbIntransitive = 2,
-    //    VerbTransitive = 3,
-    //    Interjection = 4,
-    //    Adjective = 5,
-    //    Adverb = 6
-    //}
+    /// <summary>
+    /// Standard part of speech categories
+    /// </summary>
     [Serializable]
     [DataContract]
     [KnownType(typeof(Enumeration))]
     public class PartOfSpeech : Enumeration
     {
-        public static readonly PartOfSpeech Noun = new PartOfSpeech(1, "Noun");
-        public static readonly PartOfSpeech VerbIntransitive = new PartOfSpeech(2, "VerbIntranitive");
-        public static readonly PartOfSpeech VerbTransitive = new PartOfSpeech(3, "VerbTransitive");
+        //noun	adj	vt	vi	adv	prep	pronoun	kama	conditional	interj	conj	particle
 
-        public static readonly PartOfSpeech Interjection = new PartOfSpeech(4, "Interjection");
-        public static readonly PartOfSpeech Adjective = new PartOfSpeech(5, "Adjective");
-        public static readonly PartOfSpeech Adverb = new PartOfSpeech(6, "Adverb");
+        //public static readonly PartOfSpeech Noun = new PartOfSpeech(1, "Noun");
+        //public static readonly PartOfSpeech VerbIntransitive = new PartOfSpeech(2, "VerbIntranitive");
+        //public static readonly PartOfSpeech VerbTransitive = new PartOfSpeech(3, "VerbTransitive");
+        //
+        //public static readonly PartOfSpeech Interjection = new PartOfSpeech(4, "Interjection");
+        //public static readonly PartOfSpeech Adjective = new PartOfSpeech(5, "Adjective");
+        //public static readonly PartOfSpeech Adverb = new PartOfSpeech(6, "Adverb");
+
+
+        public static readonly PartOfSpeech Noun = new PartOfSpeech(1, "noun");  //Content word
+        public static readonly PartOfSpeech VerbIntransitive = new PartOfSpeech(2, "vi");//Content word
+        public static readonly PartOfSpeech VerbTransitive = new PartOfSpeech(3, "vt");//Content word
+
+        public static readonly PartOfSpeech Interjection = new PartOfSpeech(4, "interj");//Content word. Degenerate class. Only used in 1 word sentences.
+        public static readonly PartOfSpeech Adjective = new PartOfSpeech(5, "adj");//Content word
+        public static readonly PartOfSpeech Adverb = new PartOfSpeech(6, "adv");//Content word
+
+        public static readonly PartOfSpeech Preposition = new PartOfSpeech(7, "prep"); //Has specialized class!
+        public static readonly PartOfSpeech Pronoun = new PartOfSpeech(8, "pronoun"); //Has specialized class!
+        public static readonly PartOfSpeech Kama = new PartOfSpeech(9, "kama");//Meaning when in a verb chain 
+        public static readonly PartOfSpeech Conditional = new PartOfSpeech(10, "conditional");//Meaning when "x la"
+
+        public static readonly PartOfSpeech Conjunction = new PartOfSpeech(10, "conj"); //Has specialized class!
+        public static readonly PartOfSpeech Particle = new PartOfSpeech(10, "particle"); //Has specialized class!
 
         private PartOfSpeech() { }
         private PartOfSpeech(int value, string displayName) : base(value, displayName) { }
+
+        static public implicit operator string(PartOfSpeech part)
+        {
+            return part.DisplayName;
+        }
+
+        static public implicit operator int(PartOfSpeech part)
+        {
+            return part.Value;
+        }
     }
 
+    /// <summary>
+    /// Maps Particles to more common linguistic jargon
+    /// </summary>
     public enum ParticleType
     {
         None = 0,
@@ -58,11 +83,13 @@ namespace BasicTypes
         Prepositional = 5,
     }
 
-    //Content words-- everything not a Particle
+    /// <summary>
+    /// Content words-- everything not a Particle
+    /// </summary>
     [DataContract]
     [Serializable]
-    public partial class Word : IFormattable, ICopySelf<Word>,IParse<Word> 
-        //IConvertible (Basic types, like double, int, date, etc)
+    public partial class Word : IFormattable, ICopySelf<Word>, IParse<Word>
+    //IConvertible (Basic types, like double, int, date, etc)
     {
         static Word()
         {
@@ -210,6 +237,13 @@ namespace BasicTypes
             if (format == null || format == "g" || format == "G")
                 return Text;
 
+            bool includePos = false;
+            if (format.Contains(":"))
+            {
+                string[] parts=format.Split(new char[] {':'});
+                format = parts[0]; 
+                includePos= Convert.ToBoolean(parts[1]);
+            }
             CultureInfo ci = Thread.CurrentThread.CurrentCulture;
 
             if (ci.TwoLetterISOLanguageName == "tp") //Can only happen if we can install a custom culture. Not worth the effort.
@@ -219,22 +253,11 @@ namespace BasicTypes
             else if (ci.TwoLetterISOLanguageName == "en")
             {
                 string language = ci.TwoLetterISOLanguageName;
-                switch (format)
+                if (includePos)
+                    return TryGloss(language, format) +"("+ format +")";
+                else
                 {
-                    case "n":
-                        return TryGloss(language, PartOfSpeech.Noun.DisplayName);
-                    case "vi":
-                        return TryGloss(language, PartOfSpeech.VerbIntransitive.DisplayName);
-                    case "vt":
-                        return TryGloss(language, PartOfSpeech.VerbTransitive.DisplayName);
-                    case "adj":
-                        return TryGloss(language, PartOfSpeech.Adjective.DisplayName);
-                    case "adv":
-                        return TryGloss(language, PartOfSpeech.Adverb.DisplayName);
-                    case "int":
-                        return TryGloss(language, PartOfSpeech.Interjection.DisplayName);
-                    default:
-                        throw new FormatException("Unrecognized format " + format);
+                    return TryGloss(language, format);
                 }
             }
             else
@@ -250,11 +273,35 @@ namespace BasicTypes
             {
                 return "[missing map for " + Text + "]";
             }
-            if (glossMap.ContainsKey(pos))
+            if (glossMap.ContainsKey(language))
             {
-                return glossMap[language][pos][0];//TODO: Pick at random.
+                if (glossMap[language].ContainsKey(pos))
+                {
+                    Random r = new Random(DateTime.Now.Millisecond);//TODO: Make this a part of config
+                    string[] possibilities = glossMap[language][pos];
+                    return possibilities[r.Next(possibilities.Length)]; 
+                }
             }
-            return Text;
+
+            foreach (KeyValuePair<string, Dictionary<string, string[]>> pair in glossMap)
+            {
+                StringBuilder sb = new StringBuilder();
+                foreach (var item in pair.Value)
+                {
+                    if (item.Value != null && item.Value.Length>0)
+                    {
+                        sb.Append(item.Key + " : " + string.Join(",", item.Value) +"; ");
+                    }
+                }
+                Console.WriteLine(pair.Key+ " : "+ sb.ToString());
+            }
+
+            if (!((Text.ToUpper())[0] == Text[0]))
+            {
+                return "[Error " + pos + " " + Text  + "]";
+            }
+            else
+                return Text;
         }
 
         public static bool IsWord(string word)
@@ -284,7 +331,7 @@ namespace BasicTypes
 
         bool IParse<Word>.TryParse(string value, out Word result)
         {
-            return TryParse(value,out result);
+            return TryParse(value, out result);
         }
 
         Word IParse<Word>.Parse(string value)
@@ -319,7 +366,7 @@ namespace BasicTypes
 
         public Word DeepCopy()
         {
-//           return  AutoMapper.Mapper.Map(this, new Word());   
+            //           return  AutoMapper.Mapper.Map(this, new Word());   
             BinaryFormatterCopier<Word> copier = new BinaryFormatterCopier<Word>();
             return copier.Copy(this);
         }

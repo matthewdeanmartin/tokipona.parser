@@ -44,7 +44,7 @@ namespace BasicTypes.Glosser
         public void IntransitiveVerb()
         {
             GlossMaker gm = new GlossMaker();
-            Console.WriteLine(gm.Gloss("jan li moku kepeken ilo moku"));
+            Console.WriteLine(gm.Gloss("jan li moku, kepeken ilo moku","en",true));
         }
     }
 }

@@ -14,13 +14,42 @@ namespace BasicTypes
         {
             //https://stackoverflow.com/questions/521146/c-sharp-split-string-but-keep-split-chars-separators
             //https://stackoverflow.com/questions/3115150/how-to-escape-regular-expression-special-characters-using-javascript
+
+            //TODO: Normalize well known compound phrases jan pona => jan-pona
+            //TODO: Normalize foreign words zap => 'zap', alternatively assume they are tp, but a mistake
+
             return  Regex
                 .Split(text, @"(?<=[\?!.:])")  //split preserving punctuation
                 .Where(x => !string.IsNullOrWhiteSpace(x)) //skip empties
-                .Select(x => Regex.Replace(x, @"^\s+|\s+$", "")) //Remove extraneous whitespace
-                .Select(x => Regex.Replace(x, @"\bla mi\b", "la mi li"))//normalize contractions
-                .Select(x => Regex.Replace(x, @"\bla sina\b", "la sina li"))//normalize contractions
+                .Select(NormalizeText)
                 .ToArray();  
+        }
+
+        private static string NormalizeText(string text)
+        {
+            string normalized = text;
+                //Normalize prepositions to ~, so that we don't have tokens with embedded spaces (e.g. foo, kepeken => [foo],[, kepeken])
+
+            foreach (string prep in new String[] {"kepeken", "tawa", "poka", "sama", "tan", "lon"})
+            {
+                if (normalized.Contains(prep))
+                {
+                    normalized = Regex.Replace(normalized, ", " + prep, " ~" + prep);
+                    normalized = Regex.Replace(normalized, "," + prep, " ~" + prep);
+                }
+            }
+
+            normalized = Regex.Replace(normalized, @"^\s+|\s+$", ""); //Remove extraneous whitespace
+            if (normalized.Contains("la mi"))
+            {
+                normalized = Regex.Replace(normalized, @"\bla mi\b", "la mi li"); //normalize contractions
+            }
+            if (normalized.Contains("la sina"))
+            {
+                normalized = Regex.Replace(normalized, @"\bla sina\b", "la sina li"); //normalize contractions
+            }
+            
+            return normalized;
         }
 
         public static Discourse[] GroupIntoDiscourses(Sentence[] sentences)
@@ -119,6 +148,10 @@ namespace BasicTypes
 
         public static Sentence ParsedSentenceFactory(string sentence)
         {
+            sentence= NormalizeText(sentence); //Any way to avoid calling this twice?
+
+            Console.WriteLine("Normalized: " + sentence);
+
             string[] laParts = SplitOnLa(sentence);
 
             Regex liFinder=new Regex(@"\bli\b");
@@ -152,7 +185,7 @@ namespace BasicTypes
             
             for (int i = 1; i < liParts.Length; i++)
             {
-                string predicate = liParts[1].Trim();
+                string predicate = liParts[i].Trim();
 
                 verbPhrases.Add(ProcessPredicates(predicate));
             }
@@ -233,12 +266,29 @@ namespace BasicTypes
             Chain prepositionalChain = null;
 
             //Transitive Path.
-            if (liPart.Contains(" e "))
+            if (liPart.Split(new []{' ','\t'}).Contains("e"))
             {
                 Regex eSplit = new Regex("\\be\\b");
                 string[] eParts = eSplit.Split(liPart);
 
                 verbPhrase = HeadedPhraseParser(eParts[0]);
+
+                string verbsMaybePrepositions = eParts[eParts.Length - 1];
+
+                string[] partsWithPreps= SplitOnPrepositions(verbsMaybePrepositions);
+                if (partsWithPreps.Length == 1)
+                {
+                    //This is the last e phrase or 1st prep.
+                    if (partsWithPreps[0].Contains("~"))
+                    {
+                        //That is a prep phrase (is this possible?)
+                    }
+                    else
+                    {
+                        eParts[eParts.Length - 1] = partsWithPreps[0];
+                        //No prep phrases.
+                    }
+                }
 
                 string[] directObjects = ArrayExtensions.Tail(eParts);
 
@@ -250,33 +300,47 @@ namespace BasicTypes
                 }
                 directObjectChain = new Chain(ChainType.Directs, Particles.e, doNPs.ToArray());
 
-                string verbsMaybePrepositions = eParts[eParts.Length - 1];
+                foreach (string partsWithPrep in partsWithPreps)
+                {
+                    string preposition= JustTpWordsNumbersPunctuation(partsWithPrep)[0];
+                    string tail = preposition.Replace(preposition, "").Trim();
 
-                //if (Particle.ContainsProposition(verbAndMaybePrepositions))
-                //{
-                //    //string[] eParts = predicate.Split(new string[] { "e" }, StringSplitOptions.RemoveEmptyEntries);
-                //    //Need to split but preserve what was split on.
-                //    
-                //}
+                    if (partsWithPrep.Contains("~")) //Is it really?
+                    {
+                        //These chains are ordered.
+                        //kepeken x lon y kepeken z lon a   NOT EQUAL TO kepeken x  kepeken z lon a lon y
+                        //Maybe.
+                        prepositionalChain = new Chain(ChainType.Prepositionals, new Particle(preposition), new Chain[] { ProcessEnPiChain(tail) });
+                    }
+                    else
+                    {
+                        //Is that surprising?
+                    }
+                }
             }
             else
             {
                 //Intransitives & Predictates
 
-                Regex splitOnPropositions = new Regex("\\b[~sike|~tawa|~sama|~poka|~insa|~anpa|~lon]\\b");
-                string[] ppParts = splitOnPropositions.Split(liPart);
+                string[] ppParts = SplitOnPrepositions(liPart);
 
                 verbPhrase = HeadedPhraseParser(ppParts[0]);
 
                 string[] prepositions = ArrayExtensions.Tail(ppParts);
 
-                List<HeadedPhrase> ppHPs = new List<HeadedPhrase>();
+                
+                List<Chain> pChains = new List<Chain>();
                 foreach (string pp in prepositions)
                 {
+                    string[] phraseParts = JustTpWordsNumbersPunctuation(pp);
+                    string preposition = phraseParts[0];
+                    string[] tail = ArrayExtensions.Tail(phraseParts);
+
                     HeadedPhrase phrase = HeadedPhraseParser(pp);
-                    ppHPs.Add(phrase);
+                    Chain c = new Chain(ChainType.Prepositionals, new Particle(preposition), new Chain[] { ProcessEnPiChain(string.Join(" ", tail)) });
+                    pChains.Add(c);
                 }
-                prepositionalChain = new Chain(ChainType.Directs, Particles.e, ppHPs.ToArray());
+                prepositionalChain = new Chain(ChainType.Prepositionals, Particles.Blank ,pChains.ToArray());
             }
             return new TpPredicate(verbPhrase, directObjectChain, prepositionalChain);
         }
@@ -327,6 +391,23 @@ namespace BasicTypes
             return subjectTokens;
         }
 
+        public static string[] SplitOnPrepositions(string value)
+        {
+            string pattern = @"{0}\b";
+            string[] preps= new string[]{"~kepeken","~tawa","~poka","~sama","~tan","~lon"};
+            //string[] preps = new string[] { "kepeken", "tawa", "poka", "sama", "tan", };
+            string  parts= string.Join("|", preps.Select(x => String.Format(pattern, x)));
+            //@"\s(?=\bkepeken\b|\bsama\b|\btawa\b|\btawa\b)"
+            Regex splitOnEn = new Regex(@"\s(?="+parts+")");
+            string[] prepTokens = splitOnEn.Split(value).Select(x => x.Trim()).ToArray();
+            if(prepTokens.Any(x=>x.Contains(" ~")))
+            {
+                throw new InvalidOperationException("Split failed");
+            }
+            return prepTokens;
+            
+        }
+
         public static string[] SplitOnParticle(Particle particle, string value)
         {
             Regex splitOnParticle = new Regex("\\b" + particle.Text + "\\b");
@@ -334,6 +415,7 @@ namespace BasicTypes
             return tokens;
         }
 
+        //Gah, what a mess.
         public static string[] SplitOnParticlePreserving(Particle particle, string value)
         {
             StringBuilder sb = new StringBuilder();

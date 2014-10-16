@@ -14,12 +14,16 @@ namespace BasicTypes.Glosser
     //Culture aware! TP = InvariantCulture.
     public class GlossMaker
     {
-        public string Gloss(string sentence, string language = "en")
+        public string Gloss(string sentence, string language = "en", bool includePos =false)
         {
             using (new UseCulture(new CultureInfo("en-US")))
             {
                 List<string> gloss = new List<string>();
                 Sentence s = ParserUtils.ParsedSentenceFactory(sentence);
+
+                Console.WriteLine(sentence);
+                Console.WriteLine(s.ToString("g"));
+                Console.WriteLine(s.ToString("b")); 
 
                 foreach (Chain c in s.Subjects)
                 {
@@ -29,17 +33,17 @@ namespace BasicTypes.Glosser
                         i++;
                         if (i != 1)
                         {
-                            gloss.Add(sub.Particle.ToString("conj"));
+                            gloss.Add(sub.Particle.ToString(PartOfSpeech.Conjunction + ":" + includePos));
                         }
                         //deeper levels?
                         foreach (HeadedPhrase hp in sub.HeadedPhrases)
                         {
-                            gloss.Add(hp.Head.ToString("n"));
-
                             foreach (Word modifier in hp.Modifiers)
                             {
-                                gloss.Add(modifier.ToString("adj"));
+                                gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos));
                             }
+
+                            gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos));
                         }
                     }
 
@@ -47,12 +51,12 @@ namespace BasicTypes.Glosser
                     {
                         foreach (HeadedPhrase hp in c.HeadedPhrases)
                         {
-                            gloss.Add(hp.Head.ToString("n"));
-
                             foreach (Word modifier in hp.Modifiers)
                             {
-                                gloss.Add(modifier.ToString("adj"));
+                                gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos));
                             }
+
+                            gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos));
                         }
                     }
                 }
@@ -70,16 +74,46 @@ namespace BasicTypes.Glosser
                         gloss.Add("and");
                     }
 
-                    string verb = "vi";
+                    string verb = PartOfSpeech.VerbIntransitive;
+
                     if (predicate.Directs != null)
                     {
-                        verb = "vt";
+                        verb = PartOfSpeech.VerbTransitive;
                     }
-                    gloss.Add(predicate.VerbPhrases.Head.ToString(verb));
 
-                    foreach (Word modifier in predicate.VerbPhrases.Modifiers)
+                    if (predicate.VerbPhrases.Head.ToString(verb).Contains("Error"))
                     {
-                        gloss.Add(modifier.ToString("adv"));
+                        foreach (Word modifier in predicate.VerbPhrases.Modifiers)
+                        {
+                            gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos));
+                        }
+
+                        //Can't gloss as verb, assume we have a noun phrase
+                        if (predicate.VerbPhrases.Head.ToString(PartOfSpeech.Noun).Contains("Error"))
+                        {
+                            //Oh, this might be an adjective. jan li laso.
+                            gloss.Add(predicate.VerbPhrases.Head.ToString(PartOfSpeech.Adjective + ":" + includePos));
+                        }
+                        else
+                        {
+                            gloss.Add(predicate.VerbPhrases.Head.ToString(PartOfSpeech.Noun + ":" + includePos));
+                        }
+                        
+                    }
+                    else
+                    {
+                        foreach (Word modifier in predicate.VerbPhrases.Modifiers)
+                        {
+                            string maybeAdverb = modifier.ToString(PartOfSpeech.Adverb + ":" + includePos);
+                            if (maybeAdverb.Contains("Error"))
+                            {
+                                //jan Sonja dictionary treats Adv & Adj the same.
+                                maybeAdverb = modifier.ToString(PartOfSpeech.Adjective + ":" + includePos);
+                            }
+                            gloss.Add(maybeAdverb);
+                        }
+
+                        gloss.Add(predicate.VerbPhrases.Head.ToString(verb));
                     }
 
                     if (predicate.Directs != null)
@@ -91,12 +125,12 @@ namespace BasicTypes.Glosser
                                 //deeper levels?
                                 foreach (HeadedPhrase hp in sub.HeadedPhrases)
                                 {
-                                    gloss.Add(hp.Head.ToString("n"));
-
                                     foreach (Word modifier in hp.Modifiers)
                                     {
-                                        gloss.Add(modifier.ToString("adj"));
+                                        gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos));
                                     }
+
+                                    gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos));   
                                 }
 
                                 gloss.Add("and");
@@ -111,18 +145,10 @@ namespace BasicTypes.Glosser
                         {
                             foreach (Chain sub in predicate.Prepositionals.SubChains)
                             {
-                                gloss.Add("PREP GOES HERE");
+                                gloss.Add(sub.Particle.ToString(PartOfSpeech.Preposition));
 
-                                //deeper levels?
-                                foreach (HeadedPhrase hp in sub.HeadedPhrases)
-                                {
-                                    gloss.Add(hp.Head.ToString("n"));
-
-                                    foreach (Word modifier in hp.Modifiers)
-                                    {
-                                        gloss.Add(modifier.ToString("adj"));
-                                    }
-                                }
+                                ProcessChain(gloss, sub, includePos);
+                                
                             }
                         }
                         //leaf?
@@ -131,6 +157,35 @@ namespace BasicTypes.Glosser
 
                 return gloss.SpaceJoin("g");
             }
+        }
+
+        private void ProcessChain(List<string> gloss, Chain sub, bool includePos)
+        {
+            //deeper levels?
+            if (sub.HeadedPhrases != null && sub.HeadedPhrases.Length > 0)
+            {
+                //Leaf
+                foreach (HeadedPhrase hp in sub.HeadedPhrases)
+                {
+                    gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos));
+
+                    foreach (Word modifier in hp.Modifiers)
+                    {
+                        gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos));
+                    }
+                }
+            }
+            else
+            {
+                
+                foreach (Chain subChain in sub.SubChains)
+                {
+                    gloss.Add(subChain.Particle.ToString(PartOfSpeech.Adjective + ":" + includePos));    
+
+                    ProcessChain(gloss,subChain,includePos);
+                }
+            }
+
         }
     }
 }

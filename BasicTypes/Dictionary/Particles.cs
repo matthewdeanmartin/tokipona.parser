@@ -18,5 +18,6 @@ namespace BasicTypes
         public static Particle anu = new Particle("anu");
 
         public static Particle ante = new Particle("+ante");//Else can't tell what sort.
+        public static Particle Blank = new Particle(" ");
     }
 }

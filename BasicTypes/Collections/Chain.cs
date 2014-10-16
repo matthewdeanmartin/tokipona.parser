@@ -75,53 +75,8 @@ namespace BasicTypes
                 //sb.Add("[");
 
                 //Tracers.Stringify.TraceInformation("We have " + SubChains.Count() + " " + Particle.ToString() + " subChains");
-                int i = 0;
                  
-                foreach (Chain subChain in SubChains)
-                {
-                    i++;
-                    if (particle.MiddleOnly && i != 1)
-                    {
-                        sb.Add(particle.ToString());
-                    }
-                    if (!particle.MiddleOnly)
-                    {
-                        sb.Add(particle.ToString());
-                    }
-
-                    //Tracers.Stringify.TraceInformation("At Leaf " + subChain.HeadedPhrases + "  headed phrases (i.e. no particles)");
-
-                    if (subChain.HeadedPhrases != null)
-                    {
-
-                        sb.AddRange(subChain.Particle, subChain.HeadedPhrases.Select(phrase => phrase.ToString(format)));
-                        //Tracers.Stringify.TraceInformation(sb.SpaceJoin(format) + " ... so far");
-                    }
-                    else
-                    {
-                        int j = 0;
-                        
-
-                        foreach (Chain subSub in subChain.SubChains)
-                        {
-                            j++;
-                            if (subSub.Particle.MiddleOnly && j != 1)
-                            {
-                                sb.Add(subSub.Particle.ToString());
-                            }
-                            if (!subSub.Particle.MiddleOnly)
-                            {
-                                sb.Add(subSub.Particle.ToString());
-                            }
-
-                            sb.Add(subChain.particle.ToString()); //li, prep, others lead with particle?
-                            sb.AddRange(subSub.Particle,subSub.HeadedPhrases.Select(phrase => phrase.ToString(format)));
-                            //Tracers.Stringify.TraceInformation(sb.SpaceJoin(format) + " .... so far");
-                    
-                            //TODO: Do we need recursion for arbitrary depth here?
-                        }
-                    }
-                }
+                ProcessSubChain(format, sb, subChains);
                 //sb.Add("]");
 
 
@@ -138,6 +93,70 @@ namespace BasicTypes
             else
             {
                 return "[Error NULL HeadedPhrases-- This is a problem because this his leaf data.]";
+            }
+        }
+
+        private void ProcessSubChain(string format,  List<string> sb, Chain[] innerChains)
+        {
+            int i = 0;
+            foreach (Chain subChain in innerChains)
+            {
+                i++;
+                if (particle.MiddleOnly && i != 1)
+                {
+                    sb.Add(particle.ToString());
+                }
+                if (!particle.MiddleOnly)
+                {
+                    sb.Add(particle.ToString());
+                }
+
+                //Tracers.Stringify.TraceInformation("At Leaf " + subChain.HeadedPhrases + "  headed phrases (i.e. no particles)");
+
+                if (subChain.HeadedPhrases != null)
+                {
+                    //LEAF
+                    sb.AddRange(subChain.Particle, subChain.HeadedPhrases.Select(phrase => phrase.ToString(format)));
+                    //Tracers.Stringify.TraceInformation(sb.SpaceJoin(format) + " ... so far");
+                }
+                else
+                {
+                    foreach (Chain inner in subChain.SubChains )
+                    {
+                        ProcessSubChain(format, sb, subChain.SubChains);    
+                    }
+                    //int j = 0;
+
+
+                    //foreach (Chain subSub in subChain.SubChains)
+                    //{
+                    //    j++;
+                    //    if (subSub.Particle.MiddleOnly && j != 1)
+                    //    {
+                    //        sb.Add(subSub.Particle.ToString());
+                    //    }
+                    //    if (!subSub.Particle.MiddleOnly)
+                    //    {
+                    //        sb.Add(subSub.Particle.ToString());
+                    //    }
+
+                    //    sb.Add(subChain.particle.ToString()); //li, prep, others lead with particle?
+                    //    if (subSub.HeadedPhrases != null)
+                    //    {
+                    //        sb.AddRange(subSub.Particle,
+                    //            subSub.HeadedPhrases.Select(phrase => phrase.ToString(format)));
+                    //    }
+                    //    else
+                    //    {
+                    //        foreach (Chain chain in subSub.SubChains)
+                    //        {
+                    //        }
+                    //        //TODO: Do we need recursion for arbitrary depth here?
+                    //    }
+
+                    //    //Tracers.Stringify.TraceInformation(sb.SpaceJoin(format) + " .... so far");
+                    //}
+                }
             }
         }
 

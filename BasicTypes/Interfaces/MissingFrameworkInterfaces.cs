@@ -1,12 +1,40 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using BasicTypes.Extensions;
 
 namespace BasicTypes
 {
+    //Iterate through valid values (
+    public interface IRange: IEnumerator, IEnumerable
+    {
+        //IEnumerable Range();
+    }
+
+    //public class Enumerate : IEnumerator, IEnumerable
+    //{
+    //    public bool MoveNext()
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+
+    //    public void Reset()
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+
+    //    public object Current { get; private set; }
+
+    //    public IEnumerator GetEnumerator()
+    //    {
+    //        return this;
+    //    }
+    //}
+
     //Forgotten interfaces
     public interface IToString
     {
@@ -20,7 +48,7 @@ namespace BasicTypes
         string DebuggerDisplay { get; }
     }
 
-    public interface ICopySelf<out T> : ICloneable
+    public interface ICopySelf<out T> //: ICloneable
         where T : class
     {
         T ShallowCopy(); //Utility for avoiding copying large trees.
