@@ -40,7 +40,21 @@ namespace BasicTypes.Collections
 
         public static Chain Parse(object value)
         {
-            return ParserUtils.ProcessEnPiChain(value.ToString());
+            string item = value.ToString(); //unbox
+            if (item.Contains("~"))
+            {
+                string[] parts = ParserUtils.SplitOnPrepositions(item);
+                ParserUtils.ProcessPrepositionalPhrases(parts);
+            }
+
+            if (item.Contains(" e ") || item.StartsWith("e "))
+            {
+                throw new NotImplementedException();
+            }
+            //If subject, then en & pi
+
+            //If pp then 
+            return ParserUtils.ProcessEnPiChain(item);
         }
     }
 }

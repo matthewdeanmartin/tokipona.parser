@@ -19,6 +19,24 @@ namespace BasicTypes
         }
 
         [Test]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void ParticleModifiersWhut()
+        {
+            //li, pi, la, e, are illegal modifiers.
+            HeadedPhrase hp = new HeadedPhrase(Words.jan, new WordSet(new[] { "lili", "suli" ,"li","pi"}));
+            Assert.AreEqual("jan lili suli li pi", hp.ToString());
+        }
+
+        [Test]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void ParticleHeadWordWhut()
+        {
+            //li, pi, la, e, are illegal modifiers.
+            HeadedPhrase hp = new HeadedPhrase(new Word("pi"), new WordSet(new[] { "lili", "suli", "li", "pi" }));
+            Assert.AreEqual("jan lili suli li pi", hp.ToString());
+        }
+
+        [Test]
         public void TwoWordProperModifierContainsThre()
         {
             HeadedPhrase hp = new HeadedPhrase(Words.jan, new WordSet(new[] { "lili", "suli" }));
@@ -32,6 +50,14 @@ namespace BasicTypes
         {
             HeadedPhrase hp = new HeadedPhrase(Words.jan, new WordSet(new[] { "Mato" }));
             Assert.AreEqual("jan Mato", hp.ToString());
+        }
+
+
+        [Test]
+        public void ThreeWordDoubleProperModifier()
+        {
+            HeadedPhrase hp = new HeadedPhrase(Words.jan, new WordSet(new[] { "Mato" ,"Matin"}));
+            Assert.AreEqual("jan Mato Matin", hp.ToString());
         }
 
         [Test]

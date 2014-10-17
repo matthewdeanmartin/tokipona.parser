@@ -24,7 +24,7 @@ namespace BasicTypes.Extensions
         public static string SpaceJoin(this List<string> list, string format)
         {
             string[] parts = list.Where(x => NeedIt(format, x)).ToArray();
-            if (format == "b")
+            if (format == "b" || format=="bs")
             {
                 StringBuilder sb= new StringBuilder();
                 string bracketedWithExtra =String.Join(" ", parts);
@@ -69,7 +69,7 @@ namespace BasicTypes.Extensions
                 return !("<>{}[]()".Contains(value[0])); //Not a bracket? Keep it.
             }
 
-            if(format=="b")//bracketed
+            if (format == "b" || format == "bs")//bracketed
             {
                 //Keep it all!
                 return true;

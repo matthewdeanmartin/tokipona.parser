@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using BasicTypes.Collections;
 using BasicTypes.Extensions;
@@ -140,15 +141,44 @@ namespace BasicTypes
             {
                 if (Contains(Words.seme))
                 {
-                   spaceJoined = spaceJoined+ "?";
+                    spaceJoined = spaceJoined + "?";
                 }
             }
             else
             {
                 spaceJoined = spaceJoined + this.punctuation.ToString();
             }
+            if (format != "bs")
+            {
+                string result = Denormalize(spaceJoined);
+                return result;
+            }
+            else
+            {
+                return spaceJoined;
+            }
 
-            return spaceJoined;
+        }
+
+        private string Denormalize(string value)
+        {
+            if (value.Contains("mi li"))
+            {
+                Regex r = new Regex(@"\bmi li\b");
+                value = r.Replace(value, "mi");
+            }
+
+            if (value.Contains("sina li"))
+            {
+                Regex r = new Regex(@"\bsina li li\b");
+                value = r.Replace(value, "sina");
+            }
+
+            if (value.Contains("~"))
+            {
+                value = value.Replace("~", ", ");
+            }
+            return value;
         }
 
 

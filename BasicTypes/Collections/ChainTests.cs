@@ -91,11 +91,51 @@ namespace BasicTypes.Collections
 
 
         [Test]
+        public void ParseKepekenIlo()
+        {
+            string value = "~kepeken ilo";
+            Chain c = Chain.Parse(value);
+            Assert.AreEqual(c.Particle.ToString(), Particles.en.ToString());
+            Console.WriteLine(c.ToJsonDcJs());
+            Assert.AreEqual("kepeken ilo", c.ToString(), c.ToString("b"));
+        }
+
+        [Test]
+        public void ParseKepekenIloSuli()
+        {
+            string value = "~kepeken ilo suli";
+            Chain c = Chain.Parse(value);
+            Assert.AreEqual(c.Particle.ToString(), Particles.en.ToString());
+            Console.WriteLine(c.ToJsonDcJs());
+            Assert.AreEqual("kepeken ilo suli", c.ToString(), c.ToString("b"));
+        }
+
+        [Test]
+        public void ParseKepekenIloSuliPiMaSuli()
+        {
+            string value = "~kepeken ilo suli pi ma suli";
+            Chain c = Chain.Parse(value);
+            Assert.AreEqual(c.Particle.ToString(), Particles.en.ToString());
+            Console.WriteLine(c.ToJsonDcJs());
+            Assert.AreEqual("kepeken ilo suli pi ma suli", c.ToString(), c.ToString("b"));
+        }
+
+        [Test]
         public void ParseTwoPiPhrasesPlusEn()
         {
             string value = "esun pi tenpo suno en kasi pi tenpo suno";
             Chain c = Chain.Parse(value);
             Assert.AreEqual(c.Particle.ToString(), Particles.en.ToString());
+            Console.WriteLine(c.ToJsonDcJs());
+            Assert.AreEqual(value, c.ToString(), c.ToString("b"));
+        }
+
+        [Test]
+        public void ParseE_eEsunESoweli()
+        {
+            string value = "e esun e soweli";
+            Chain c = Chain.Parse(value);
+            Assert.AreEqual(c.Particle.ToString(), Particles.e.ToString());
             Console.WriteLine(c.ToJsonDcJs());
             Assert.AreEqual(value, c.ToString(), c.ToString("b"));
         }

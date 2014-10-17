@@ -30,14 +30,33 @@ namespace BasicTypes
             string normalized = text;
                 //Normalize prepositions to ~, so that we don't have tokens with embedded spaces (e.g. foo, kepeken => [foo],[, kepeken])
 
+            bool isPunctuated = false;
             foreach (string prep in new String[] {"kepeken", "tawa", "poka", "sama", "tan", "lon"})
             {
                 if (normalized.Contains(prep))
                 {
-                    normalized = Regex.Replace(normalized, ", " + prep, " ~" + prep);
+                    isPunctuated = normalized.Contains(", " + prep) || normalized.Contains("," + prep);
                     normalized = Regex.Replace(normalized, "," + prep, " ~" + prep);
+                    normalized = Regex.Replace(normalized, ", " + prep, "~" + prep);
+                   
+                    if (normalized.Contains("~ ~"))
+                    {
+                        throw new InvalidOperationException(text);
+                    }
                 }
             }
+            if (!isPunctuated && !normalized.Contains("~"))
+            {
+                foreach (string prep in new String[] { "kepeken", "tawa", "poka", "sama", "tan", "lon" })
+                {
+                    if (normalized.Contains(prep))
+                    {
+                        //Naive repair
+                        normalized = Regex.Replace(normalized, prep, " ~" + prep);
+                    }
+                }
+            }
+            
 
             normalized = Regex.Replace(normalized, @"^\s+|\s+$", ""); //Remove extraneous whitespace
             if (normalized.Contains("la mi"))
@@ -228,6 +247,10 @@ namespace BasicTypes
 
         public static Chain ProcessEnPiChain(string subjects)
         {
+            if (String.IsNullOrEmpty(subjects))
+            {
+                throw new ArgumentException("Can't parse null/empty subjects");
+            }
             string[] subjectTokens = SplitOnEn(subjects);
 
             //Split on pi
@@ -266,7 +289,7 @@ namespace BasicTypes
             Chain prepositionalChain = null;
 
             //Transitive Path.
-            if (liPart.Split(new []{' ','\t'}).Contains("e"))
+            if (liPart.Split(new[] {' ', '\t'}).Contains("e"))
             {
                 Regex eSplit = new Regex("\\be\\b");
                 string[] eParts = eSplit.Split(liPart);
@@ -275,20 +298,26 @@ namespace BasicTypes
 
                 string verbsMaybePrepositions = eParts[eParts.Length - 1];
 
-                string[] partsWithPreps= SplitOnPrepositions(verbsMaybePrepositions);
-                if (partsWithPreps.Length == 1)
+                //Only process preps in normalized sentences
+                string[] partsWithPreps = null;
+                if (verbsMaybePrepositions.Contains("~"))
                 {
-                    //This is the last e phrase or 1st prep.
-                    if (partsWithPreps[0].Contains("~"))
+                    partsWithPreps = SplitOnPrepositions(verbsMaybePrepositions);
+                    if (partsWithPreps.Length == 1)
                     {
-                        //That is a prep phrase (is this possible?)
-                    }
-                    else
-                    {
-                        eParts[eParts.Length - 1] = partsWithPreps[0];
-                        //No prep phrases.
+                        //This is the last e phrase or 1st prep.
+                        if (partsWithPreps[0].Contains("~"))
+                        {
+                            //That is a prep phrase (is this possible?)
+                        }
+                        else
+                        {
+                            eParts[eParts.Length - 1] = partsWithPreps[0];
+                            //No prep phrases.
+                        }
                     }
                 }
+
 
                 string[] directObjects = ArrayExtensions.Tail(eParts);
 
@@ -300,22 +329,9 @@ namespace BasicTypes
                 }
                 directObjectChain = new Chain(ChainType.Directs, Particles.e, doNPs.ToArray());
 
-                foreach (string partsWithPrep in partsWithPreps)
+                if (partsWithPreps != null)
                 {
-                    string preposition= JustTpWordsNumbersPunctuation(partsWithPrep)[0];
-                    string tail = preposition.Replace(preposition, "").Trim();
-
-                    if (partsWithPrep.Contains("~")) //Is it really?
-                    {
-                        //These chains are ordered.
-                        //kepeken x lon y kepeken z lon a   NOT EQUAL TO kepeken x  kepeken z lon a lon y
-                        //Maybe.
-                        prepositionalChain = new Chain(ChainType.Prepositionals, new Particle(preposition), new Chain[] { ProcessEnPiChain(tail) });
-                    }
-                    else
-                    {
-                        //Is that surprising?
-                    }
+                  prepositionalChain = new Chain(ChainType.Prepositionals, Particles.Blank ,  ProcessPrepositionalPhrases(partsWithPreps).ToArray());
                 }
             }
             else
@@ -324,6 +340,10 @@ namespace BasicTypes
 
                 string[] ppParts = SplitOnPrepositions(liPart);
 
+                if (ppParts.Length == 0)
+                {
+                    throw new InvalidOperationException("Whoa, got zero parts for " + liPart);
+                }
                 verbPhrase = HeadedPhraseParser(ppParts[0]);
 
                 string[] prepositions = ArrayExtensions.Tail(ppParts);
@@ -345,10 +365,43 @@ namespace BasicTypes
             return new TpPredicate(verbPhrase, directObjectChain, prepositionalChain);
         }
 
+        public static List<Chain> ProcessPrepositionalPhrases(string[] partsWithPreps)
+        {
+            List<Chain> prepositionalChain = new List<Chain>();
+            foreach (string partsWithPrep in partsWithPreps)
+            {
+                string preposition = JustTpWordsNumbersPunctuation(partsWithPrep)[0];
+                string tail = preposition.Replace(preposition, "").Trim();
+
+                if (partsWithPrep.Contains("~")) //Is it really?
+                {
+                    //These chains are ordered.
+                    //kepeken x lon y kepeken z lon a   NOT EQUAL TO kepeken x  kepeken z lon a lon y
+                    //Maybe.
+                    prepositionalChain.Add(new Chain(ChainType.Prepositionals,
+                        new Particle(preposition),
+                        string.IsNullOrEmpty(tail) ? null : new Chain[] {ProcessEnPiChain(tail)}));
+                }
+                else
+                {
+                    //Is that surprising?
+                }
+            }
+            return prepositionalChain;
+        }
+
         public static HeadedPhrase HeadedPhraseParser(string value)
         {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException("Impossible to parse a null or zero length string.");
+            }
             //No Pi!
             string[] words = ParserUtils.JustTpWords(value);
+            if (words.Length == 0)
+            {
+                throw new InvalidOperationException("Failed to parse: " + value);
+            }
             HeadedPhrase phrase = new HeadedPhrase(new Word(words[0]),new WordSet(ArrayExtensions.Tail(words)));
             return phrase;
         }
@@ -357,6 +410,10 @@ namespace BasicTypes
         // jan en soweli
         public static string[] SplitOnEn(string value)
         {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException("Impossible to parse a null or zero length string.");
+            }
             Regex splitOnEn = new Regex("\\b" + Particles.en.Text + "\\b");
             string[] subjectTokens = splitOnEn.Split(value).Select(x => x.Trim()).ToArray();
             return subjectTokens;
@@ -364,6 +421,10 @@ namespace BasicTypes
 
         public static string[] SplitOnPi(string value)
         {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException("Impossible to parse a null or zero length string.");
+            }
             Regex splitOnPi = new Regex("\\b" + Particles.pi.Text + "\\b");
             string[] piLessTokens = splitOnPi.Split(value).Select(x => x.Trim()).ToArray();
             return piLessTokens;
@@ -371,38 +432,62 @@ namespace BasicTypes
 
         public static string[] SplitOnLi(string value)
         {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException("Impossible to parse a null or zero length string.");
+            }
             Regex liSplit = new Regex("\\b"+Particles.li.Text+"\\b");
-            string[] liParts = liSplit.Split(value).Select(x => x.Trim()).ToArray();
-            return liParts;
+            string[] parts = liSplit.Split(value).Select(x => x.Trim()).Where(x => x != "").ToArray();
+            //if (parts.Length == 0)
+            //{
+            //    throw new InvalidOperationException("Parse lost all parts for " + value);
+            //}
+            return parts;
         }
 
         public static string[] SplitOnO(string value)
         {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException("Impossible to parse a null or zero length string.");
+            }
             Regex oParts = new Regex("\\b" + Particles.o.Text + "\\b");
-            string[] liParts = oParts.Split(value).Select(x => x.Trim()).ToArray();
+            string[] liParts = oParts.Split(value).Select(x => x.Trim()).Where(x => x != "").ToArray();
             return liParts;
         }
 
 
         public static string[] SplitOnLa(string value)
         {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException("Impossible to parse a null or zero length string.");
+            }
             Regex splitOnEn = new Regex("\\b" + Particles.la.Text + "\\b");
-            string[] subjectTokens = splitOnEn.Split(value).Select(x => x.Trim()).ToArray();
+            string[] subjectTokens = splitOnEn.Split(value).Select(x => x.Trim()).Where(x => x != "").ToArray();
             return subjectTokens;
         }
 
         public static string[] SplitOnPrepositions(string value)
         {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException("Impossible to parse a null or zero length string.");
+            }
             string pattern = @"{0}\b";
             string[] preps= new string[]{"~kepeken","~tawa","~poka","~sama","~tan","~lon"};
             //string[] preps = new string[] { "kepeken", "tawa", "poka", "sama", "tan", };
             string  parts= string.Join("|", preps.Select(x => String.Format(pattern, x)));
             //@"\s(?=\bkepeken\b|\bsama\b|\btawa\b|\btawa\b)"
             Regex splitOnEn = new Regex(@"\s(?="+parts+")");
-            string[] prepTokens = splitOnEn.Split(value).Select(x => x.Trim()).ToArray();
+            string[] prepTokens = splitOnEn.Split(value).Select(x => x.Trim()).Where(x=>x!="").ToArray();
             if(prepTokens.Any(x=>x.Contains(" ~")))
             {
                 throw new InvalidOperationException("Split failed");
+            }
+            if (prepTokens.Length == 0)
+            {
+                throw new InvalidOperationException("Whoa, got zero parts for " + value);
             }
             return prepTokens;
             
@@ -411,7 +496,7 @@ namespace BasicTypes
         public static string[] SplitOnParticle(Particle particle, string value)
         {
             Regex splitOnParticle = new Regex("\\b" + particle.Text + "\\b");
-            string[] tokens = splitOnParticle.Split(value).Select(x => x.Trim()).ToArray();
+            string[] tokens = splitOnParticle.Split(value).Select(x => x.Trim()).Where(x => x != "").ToArray();
             return tokens;
         }
 
