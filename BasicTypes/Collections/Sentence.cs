@@ -17,9 +17,6 @@ namespace BasicTypes
     public class Sentence : IContainsWord, IFormattable
     {
         [DataMember]
-        private readonly Sentence antecedent;
-
-        [DataMember]
         private readonly Chain fragments;
 
         [DataMember]
@@ -184,6 +181,10 @@ namespace BasicTypes
 
         public static Sentence Parse(string value)
         {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException("value is null or zero length string");
+            }
             return SentenceTypeConverter.Parse(value);
         }
 

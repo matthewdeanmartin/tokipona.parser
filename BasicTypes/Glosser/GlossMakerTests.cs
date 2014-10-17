@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BasicTypes.Exceptions;
 using NUnit.Framework;
 
 namespace BasicTypes.Glosser
@@ -16,6 +17,15 @@ namespace BasicTypes.Glosser
         {
             GlossMaker gm = new GlossMaker();
             Console.WriteLine(gm.Gloss("jan suli"));
+        }
+
+        [Test]
+        [ExpectedException(typeof(DoubleParticleException))]
+        public void IllegalNounPhrase()
+        {
+            GlossMaker gm = new GlossMaker();
+            gm.ThrowOnSyntaxErrors = true;
+            Console.WriteLine(gm.Gloss("jan suli pi pi pi"));
         }
 
         [Test]

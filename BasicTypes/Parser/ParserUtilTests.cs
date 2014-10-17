@@ -9,27 +9,24 @@ using NUnit.Framework;
 
 namespace BasicTypes.Parser
 {
+    /// <summary>
+    /// Tests that parse something higher level than a string array.
+    /// </summary>
     [TestFixture]
     public class ParserUtilTests
     {
-        [Test]
-        public void SplitE()
-        {
-            string ePhrase = "li moku e soweli suli mute";
-            TpPredicate predicate= ParserUtils.ProcessPredicates(ePhrase);
-            Console.WriteLine(predicate.ToString("b"));
-            Assert.IsTrue(predicate.Directs !=null);
-        }
 
         [Test]
-        public void SplitEAndPreserve()
+        public void CrateTpPredicateAfterSplitingEChain()
         {
-            string ePhrase = "li moku e soweli suli mute e wawa e tawa e kala e";
-            string[] parts = ParserUtils.SplitOnParticlePreserving(Particles.e, ePhrase);
-            foreach (string part in parts)
-            {
-                Console.WriteLine(part);
-            }
+            Config c = Config.Default;
+            c.ThrowOnSyntaxError = false;
+            ParserUtils pu = new ParserUtils(c);
+
+            const string ePhrase = "li moku e soweli suli mute";
+            TpPredicate predicate = pu.ProcessPredicates(ePhrase);
+            Console.WriteLine(predicate.ToString("b"));
+            Assert.IsTrue(predicate.Directs != null);
         }
 
         [Test]
@@ -79,13 +76,17 @@ namespace BasicTypes.Parser
         [Test]
         public void IdentifyDiscourses_CanWeGroupThem()
         {
-            Sentence[] s = ParserUtils
+            Config c = Config.Default;
+            c.ThrowOnSyntaxError = false;
+            ParserUtils pu = new ParserUtils(c);
+
+            Sentence[] s = pu
                             .ParseIntoRawSentences(CorpusKnowledgeTests.SampleText)
-                            .Select(x => ParserUtils.ParsedSentenceFactory(x))
+                            .Select(x => pu.ParsedSentenceFactory(x))
                             .ToArray();
            Assert.Greater(s.Length,0);
 
-           Discourse[] d =  ParserUtils.GroupIntoDiscourses(s);
+           Discourse[] d =  pu.GroupIntoDiscourses(s);
             
            Assert.Greater(d.Length,0);
 
@@ -109,89 +110,16 @@ namespace BasicTypes.Parser
             }
         }
 
-        [Test]
-        public void OneWord()
-        {
-            string[] w = ParserUtils.JustTpWords("jan");
-            Assert.AreEqual(1, w.Length);
-        }
-
-        [Test]
-        public void TwoWords()
-        {
-            string[] w = ParserUtils.JustTpWords("jan lili");
-            Assert.AreEqual(2, w.Length);
-        }
-
-
-        [Test]
-        public void ThreWords()
-        {
-            string[] w = ParserUtils.JustTpWords("jan lili lon");
-            Assert.AreEqual(3, w.Length);
-        }
-
-        [Test]
-        public void WordsNumbersWithoutDash()
-        {
-            string[] w = ParserUtils.JustTpWords("1231231");
-            Assert.AreEqual(1, w.Length);
-        }
-
-        [Test]
-        public void WordsNumbersPunctuationWithoutDash()
-        {
-            string[] w = ParserUtils.JustTpWordsNumbersPunctuation("1231231");
-            Assert.AreEqual(1, w.Length);
-        }
-
-        [Test]
-        public void WordsNumbersWithDash()
-        {
-            string[] w= ParserUtils.JustTpWords("123-1231");
-            foreach (string s in w)
-            {
-                Console.WriteLine(s);
-            }
-            Assert.AreEqual(1, w.Length);
-        }
-
-        [Test]
-        public void WordsNumbersPunctuationWithDash()
-        {
-            string value = "123-1231";
-            string[] w = ParserUtils.JustTpWordsNumbersPunctuation(value);
-            foreach (string s in w)
-            {
-                Console.WriteLine(s);
-            }
-            Assert.AreEqual(1, w.Length);
-            Assert.AreEqual(value, w[0]);
-        }
-
-
-        [Test]
-        public void SplitOnEn()
-        {
-            string[] values = ParserUtils.SplitOnEn("jan Mato");
-            Assert.AreEqual(1, values.Length);
-            Assert.AreEqual("jan Mato", values[0]);
-        }
-
-
-        [Test]
-        public void SplitOnEn2()
-        {
-            string[] values = ParserUtils.SplitOnEn("jan Mato en jan Wantu");
-            Assert.AreEqual(2, values.Length);
-            Assert.AreEqual("jan Mato", values[0]);
-            Assert.AreEqual("jan Wantu", values[1]);
-        }
+        
 
         [Test]
         public void CorpusKnowledge_HeadedPhraseParser()
         {
-            HeadedPhrase value = ParserUtils.HeadedPhraseParser("jan Mato");
+            Config c = Config.Default;
+            c.ThrowOnSyntaxError = false;
+            ParserUtils pu = new ParserUtils(c);
+
+            HeadedPhrase value = pu.HeadedPhraseParser("jan Mato");
             Assert.AreEqual(1, value.Modifiers.Count);
             Assert.AreEqual("jan", value.Head.ToString());
             Assert.AreEqual("Mato", value.Modifiers.First().Text);
@@ -200,7 +128,11 @@ namespace BasicTypes.Parser
         [Test]
         public void ProcessSingletonEnChainOneEn()
         {
-            Chain list = ParserUtils.ProcessEnPiChain("jan en soweli");
+            Config c = Config.Default;
+            c.ThrowOnSyntaxError = false;
+            ParserUtils pu = new ParserUtils(c);
+
+            Chain list = pu.ProcessEnPiChain("jan en soweli");
             Console.WriteLine(list.ToJsonNet());
             Console.WriteLine(list);
             Assert.AreEqual(1, list.SubChains[0].HeadedPhrases.Length);
@@ -211,7 +143,11 @@ namespace BasicTypes.Parser
         [Test]
         public void ProcessSingletonEnChainNoEn()
         {
-            Chain list = ParserUtils.ProcessEnPiChain("jan Mato");
+            Config c = Config.Default;
+            c.ThrowOnSyntaxError = false;
+            ParserUtils pu = new ParserUtils(c);
+
+            Chain list = pu.ProcessEnPiChain("jan Mato");
             Console.WriteLine(list);
             Assert.AreEqual(1, list.SubChains[0].HeadedPhrases.Length);
             Assert.AreEqual("jan", list.SubChains[0].HeadedPhrases[0].Head.Text);
@@ -220,7 +156,11 @@ namespace BasicTypes.Parser
         [Test]
         public void ProcessSingletonPredicate()
         {
-            TpPredicate predicate = ParserUtils.ProcessPredicates("soweli lili");
+            Config c = Config.Default;
+            c.ThrowOnSyntaxError = false;
+            ParserUtils pu = new ParserUtils(c);
+
+            TpPredicate predicate = pu.ProcessPredicates("soweli lili");
             Assert.AreEqual("soweli", predicate.VerbPhrases.Head.Text);
             Assert.AreEqual("lili", predicate.VerbPhrases.Modifiers.First().Text);
         }

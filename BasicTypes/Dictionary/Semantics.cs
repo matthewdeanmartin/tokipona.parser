@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace BasicTypes.Dictionary
 {
+    /// <summary>
+    /// Semantics are used with glossing map, but don't vary by language.
+    /// </summary>
+    /// <remarks>
+    /// For example, to correctly gloss meli, you need to know that it is feminine, tu is plural, etc.
+    /// </remarks>
     public class Semantics
     {
         
@@ -13,7 +19,7 @@ namespace BasicTypes.Dictionary
         {
             IsAnimate = animate; //soweli, jan
             IsFeminine = gender == "f"; //meli
-            IsFeminine = gender != "f"; //mije
+            IsMasculine = gender != "f"; //mije
             IsAgent = isAgent; //all animates + some things
         }
         public bool IsAgent { get; private set; }

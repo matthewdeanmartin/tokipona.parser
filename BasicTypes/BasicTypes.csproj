@@ -87,7 +87,9 @@
     <Compile Include="Config.cs" />
     <Compile Include="Diagnostics\Tracers.cs" />
     <Compile Include="Dictionary\DictionaryGenerator.cs" />
+    <Compile Include="Dictionary\DictionaryTests.cs" />
     <Compile Include="Dictionary\Semantics.cs" />
+    <Compile Include="Exceptions\SyntaxErrors.cs" />
     <Compile Include="Extensions\BinaryFormatterCopier.cs" />
     <Compile Include="Extensions\ListExtension.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
@@ -117,9 +119,11 @@
     <Compile Include="MoreTypes\DictionaryProxy.cs" />
     <Compile Include="MoreTypes\EnumerationThing.cs" />
     <Compile Include="MoreTypes\SerializableDictionary.cs" />
+    <Compile Include="Parser\Normalizer.cs" />
     <Compile Include="Parser\ParserUtils.cs" />
     <Compile Include="Knowledge\PhoneNumbers.cs" />
     <Compile Include="Knowledge\PhoneNumberTests.cs" />
+    <Compile Include="Parser\ParserUtilsTestsRegex.cs" />
     <Compile Include="Parser\ParserUtilTests.cs" />
     <Compile Include="Parts\CompoundWord.cs" />
     <Compile Include="Parts\CompoundWordsTest.cs" />

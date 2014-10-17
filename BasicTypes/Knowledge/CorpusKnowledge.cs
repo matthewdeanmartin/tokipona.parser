@@ -26,16 +26,25 @@ namespace BasicTypes.Knowledge
         {
             //https://stackoverflow.com/questions/521146/c-sharp-split-string-but-keep-split-chars-separators
             //https://stackoverflow.com/questions/3115150/how-to-escape-regular-expression-special-characters-using-javascript
-            sentences = ParserUtils.ParseIntoRawSentences(corpus);
+
+            Config c = Config.Default;
+            c.ThrowOnSyntaxError = false;
+            ParserUtils pu = new ParserUtils(c);
+
+            sentences = pu.ParseIntoRawSentences(corpus);
         }
 
         public Discourse[] MakeSentences()
         {
+            Config c = Config.Default;
+            c.ThrowOnSyntaxError = false;
+            ParserUtils pu = new ParserUtils(c);
+
             List<Discourse> facts = new List<Discourse>();
 
             foreach (string sentence in sentences)
             {
-                Sentence parsedSentence = ParserUtils.ParsedSentenceFactory(sentence);
+                Sentence parsedSentence = pu.ParsedSentenceFactory(sentence);
                 facts.Add(new Discourse()
                     {
                         parsedSentence

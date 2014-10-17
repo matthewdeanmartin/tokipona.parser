@@ -41,10 +41,19 @@ namespace BasicTypes.Collections
         public static Chain Parse(object value)
         {
             string item = value.ToString(); //unbox
+            if (string.IsNullOrEmpty(item))
+            {
+                throw new ArgumentException("value is null or zero length string");
+            }
+
+            Config c = Config.Default;
+            c.ThrowOnSyntaxError = false;
+            ParserUtils pu = new ParserUtils(c);
+
             if (item.Contains("~"))
             {
                 string[] parts = ParserUtils.SplitOnPrepositions(item);
-                ParserUtils.ProcessPrepositionalPhrases(parts);
+                pu.ProcessPrepositionalPhrases(parts);
             }
 
             if (item.Contains(" e ") || item.StartsWith("e "))
@@ -54,7 +63,8 @@ namespace BasicTypes.Collections
             //If subject, then en & pi
 
             //If pp then 
-            return ParserUtils.ProcessEnPiChain(item);
+
+            return pu.ProcessEnPiChain(item);
         }
     }
 }

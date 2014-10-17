@@ -86,6 +86,10 @@ namespace BasicTypes
 
         public static HeadedPhrase Parse(string value)
         {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException("value is null or zero length string");
+            }
             return HeadedPhraseConverter.Parse(value);
         }
 

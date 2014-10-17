@@ -41,7 +41,12 @@ namespace BasicTypes.Collections
 
         public static HeadedPhrase Parse(object value)
         {
-            return ParserUtils.HeadedPhraseParser(value.ToString());
+            if (string.IsNullOrEmpty(value.ToString()))
+            {
+                throw new ArgumentException("value is null or zero length string");
+            }
+            ParserUtils pu = new ParserUtils(Config.Instance);
+            return pu.HeadedPhraseParser(value.ToString());
         }
     }
 }

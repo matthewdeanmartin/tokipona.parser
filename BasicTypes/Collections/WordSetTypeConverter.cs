@@ -50,8 +50,12 @@ namespace BasicTypes
 
         public static WordSet Parse(object value)
         {
+            Config c = Config.Default;
+            c.ThrowOnSyntaxError = false;
+            ParserUtils pu = new ParserUtils(c);
+
 //Doesn't deal with Foreign words
-            string[] words = ParserUtils.JustTpWords(value.ToString());
+            string[] words = pu.JustTpWords(value.ToString());
             WordSet wordSet = new WordSet(words);
             //Add to dictionary? Why would we want a side effect like that?
             return wordSet;

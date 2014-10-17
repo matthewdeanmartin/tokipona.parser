@@ -172,6 +172,10 @@ namespace BasicTypes
 
         public static Chain Parse(string value)
         {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException("value is null or zero length string");
+            }
             return ChainTypeConverter.Parse(value);
         }
 

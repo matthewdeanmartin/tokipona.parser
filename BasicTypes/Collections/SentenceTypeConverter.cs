@@ -50,7 +50,10 @@ namespace BasicTypes.Collections
 
         public static Sentence Parse(object value)
         {
-            return ParserUtils.ParsedSentenceFactory(value.ToString());
+            Config c = Config.Default;
+            c.ThrowOnSyntaxError = false;
+            ParserUtils pu = new ParserUtils(c);
+            return pu.ParsedSentenceFactory(value.ToString());
         }
     }
 }

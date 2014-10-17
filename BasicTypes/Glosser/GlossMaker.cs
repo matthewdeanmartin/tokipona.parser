@@ -16,10 +16,14 @@ namespace BasicTypes.Glosser
     {
         public string Gloss(string sentence, string language = "en", bool includePos =false)
         {
+            Config config = Config.Default;
+            config.ThrowOnSyntaxError = false;
+            ParserUtils pu = new ParserUtils(config);
+
             using (new UseCulture(new CultureInfo("en-US")))
             {
                 List<string> gloss = new List<string>();
-                Sentence s = ParserUtils.ParsedSentenceFactory(sentence);
+                Sentence s = pu.ParsedSentenceFactory(sentence);
 
                 Console.WriteLine(sentence);
                 Console.WriteLine(s.ToString("g"));
@@ -98,7 +102,6 @@ namespace BasicTypes.Glosser
                         {
                             gloss.Add(predicate.VerbPhrases.Head.ToString(PartOfSpeech.Noun + ":" + includePos));
                         }
-                        
                     }
                     else
                     {
@@ -187,5 +190,7 @@ namespace BasicTypes.Glosser
             }
 
         }
+
+        public bool ThrowOnSyntaxErrors{ get; set; }
     }
 }

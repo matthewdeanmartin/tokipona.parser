@@ -5,12 +5,18 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using BasicTypes.Collections;
+using BasicTypes.Parser;
 
 namespace BasicTypes
 {
-    class ParserUtils
+    public class ParserUtils
     {
-        public static string[] ParseIntoRawSentences(string text)
+        private Config config;
+        public ParserUtils(Config config)
+        {
+            this.config = config;
+        }
+        public string[] ParseIntoRawSentences(string text)
         {
             //https://stackoverflow.com/questions/521146/c-sharp-split-string-but-keep-split-chars-separators
             //https://stackoverflow.com/questions/3115150/how-to-escape-regular-expression-special-characters-using-javascript
@@ -21,57 +27,12 @@ namespace BasicTypes
             return  Regex
                 .Split(text, @"(?<=[\?!.:])")  //split preserving punctuation
                 .Where(x => !string.IsNullOrWhiteSpace(x)) //skip empties
-                .Select(NormalizeText)
+                .Select(x=> Normalizer.NormalizeText(x, true))
                 .ToArray();  
         }
 
-        private static string NormalizeText(string text)
-        {
-            string normalized = text;
-                //Normalize prepositions to ~, so that we don't have tokens with embedded spaces (e.g. foo, kepeken => [foo],[, kepeken])
-
-            bool isPunctuated = false;
-            foreach (string prep in new String[] {"kepeken", "tawa", "poka", "sama", "tan", "lon"})
-            {
-                if (normalized.Contains(prep))
-                {
-                    isPunctuated = normalized.Contains(", " + prep) || normalized.Contains("," + prep);
-                    normalized = Regex.Replace(normalized, "," + prep, " ~" + prep);
-                    normalized = Regex.Replace(normalized, ", " + prep, "~" + prep);
-                   
-                    if (normalized.Contains("~ ~"))
-                    {
-                        throw new InvalidOperationException(text);
-                    }
-                }
-            }
-            if (!isPunctuated && !normalized.Contains("~"))
-            {
-                foreach (string prep in new String[] { "kepeken", "tawa", "poka", "sama", "tan", "lon" })
-                {
-                    if (normalized.Contains(prep))
-                    {
-                        //Naive repair
-                        normalized = Regex.Replace(normalized, prep, " ~" + prep);
-                    }
-                }
-            }
-            
-
-            normalized = Regex.Replace(normalized, @"^\s+|\s+$", ""); //Remove extraneous whitespace
-            if (normalized.Contains("la mi"))
-            {
-                normalized = Regex.Replace(normalized, @"\bla mi\b", "la mi li"); //normalize contractions
-            }
-            if (normalized.Contains("la sina"))
-            {
-                normalized = Regex.Replace(normalized, @"\bla sina\b", "la sina li"); //normalize contractions
-            }
-            
-            return normalized;
-        }
-
-        public static Discourse[] GroupIntoDiscourses(Sentence[] sentences)
+       
+        public Discourse[] GroupIntoDiscourses(Sentence[] sentences)
         {
             List<Discourse> l = new List<Discourse>();
 
@@ -115,7 +76,7 @@ namespace BasicTypes
 
 
         //Can double match (word within word) :-(
-        public static string[] JustTpWords(string value)
+        public string[] JustTpWords(string value)
         {
             //Allows:
             // a
@@ -141,7 +102,7 @@ namespace BasicTypes
             return list.ToArray();
         }
 
-        public static string[] JustTpWordsNumbersPunctuation(string value)
+        public string[] JustTpWordsNumbersPunctuation(string value)
         {
             //Allows:
             // a
@@ -165,21 +126,21 @@ namespace BasicTypes
             return list.ToArray();
         }
 
-        public static Sentence ParsedSentenceFactory(string sentence)
+        public Sentence ParsedSentenceFactory(string sentence)
         {
-            sentence= NormalizeText(sentence); //Any way to avoid calling this twice?
+            sentence= Normalizer.NormalizeText(sentence); //Any way to avoid calling this twice?
 
             Console.WriteLine("Normalized: " + sentence);
 
             string[] laParts = SplitOnLa(sentence);
 
-            Regex liFinder=new Regex(@"\bli\b");
-
+            const string liFinder = @"\bli\b";
+            
             List<HeadedPhrase> foundFragments = new List<HeadedPhrase>();
             
             foreach (string laPart in laParts)
             {
-                Match m = liFinder.Match(laPart);
+                Match m = Regex.Match(laPart,liFinder);
                 if (m.Success)
                 {
                     //li part
@@ -189,7 +150,7 @@ namespace BasicTypes
                     //fragment
                     string[] piLessParts= ParserUtils.SplitOnPi(laPart);
                     Chain piChain = new Chain(ChainType.None, Particles.pi, piLessParts.Select(HeadedPhrase.Parse).ToArray());
-                    foundFragments.Add(ParserUtils.HeadedPhraseParser(laPart));
+                    foundFragments.Add(HeadedPhraseParser(laPart));
                 }
             }
             
@@ -209,11 +170,14 @@ namespace BasicTypes
                 verbPhrases.Add(ProcessPredicates(predicate));
             }
 
-            Sentence parsedSentence = new Sentence(subjectChain, verbPhrases, new Punctuation(sentence[sentence.Length - 1].ToString()));
+            string possiblePunctuation = sentence[sentence.Length - 1].ToString();
+            Punctuation punctuation = null;
+            Punctuation.TryParse(possiblePunctuation, out punctuation);
+            Sentence parsedSentence = new Sentence(subjectChain, verbPhrases, punctuation);
             return parsedSentence;
         }
 
-        public static Chain ProcessEnPiChain2(string subjects)
+        public Chain ProcessEnPiChain2(string subjects)
         {
             string[] subjectTokens = SplitOnEn(subjects);
 
@@ -245,7 +209,7 @@ namespace BasicTypes
             return subject;
         }
 
-        public static Chain ProcessEnPiChain(string subjects)
+        public Chain ProcessEnPiChain(string subjects)
         {
             if (String.IsNullOrEmpty(subjects))
             {
@@ -282,7 +246,7 @@ namespace BasicTypes
 
         // jan li jo e soweli e kili e wawa lon anpa tawa anpa
         //     li jo e soweli e kili e wawa lon anpa tawa anpa
-        public static TpPredicate ProcessPredicates(string liPart)
+        public TpPredicate ProcessPredicates(string liPart)
         {
             Chain directObjectChain = null;
             HeadedPhrase verbPhrase = null;
@@ -365,7 +329,7 @@ namespace BasicTypes
             return new TpPredicate(verbPhrase, directObjectChain, prepositionalChain);
         }
 
-        public static List<Chain> ProcessPrepositionalPhrases(string[] partsWithPreps)
+        public List<Chain> ProcessPrepositionalPhrases(string[] partsWithPreps)
         {
             List<Chain> prepositionalChain = new List<Chain>();
             foreach (string partsWithPrep in partsWithPreps)
@@ -390,14 +354,18 @@ namespace BasicTypes
             return prepositionalChain;
         }
 
-        public static HeadedPhrase HeadedPhraseParser(string value)
+        public HeadedPhrase HeadedPhraseParser(string value)
         {
+            Config c = Config.Default;
+            c.ThrowOnSyntaxError = false;
+            ParserUtils pu = new ParserUtils(c);
+
             if (string.IsNullOrEmpty(value))
             {
                 throw new ArgumentException("Impossible to parse a null or zero length string.");
             }
             //No Pi!
-            string[] words = ParserUtils.JustTpWords(value);
+            string[] words = pu.JustTpWords(value);
             if (words.Length == 0)
             {
                 throw new InvalidOperationException("Failed to parse: " + value);
@@ -426,9 +394,14 @@ namespace BasicTypes
                 throw new ArgumentException("Impossible to parse a null or zero length string.");
             }
             Regex splitOnPi = new Regex("\\b" + Particles.pi.Text + "\\b");
-            string[] piLessTokens = splitOnPi.Split(value).Select(x => x.Trim()).ToArray();
+            string[] piLessTokens = splitOnPi.Split(value).Select(x => x.Trim()).Where(x=> !string.IsNullOrEmpty(x)).ToArray();
             return piLessTokens;
         }
+
+
+
+
+
 
         public static string[] SplitOnLi(string value)
         {
@@ -437,7 +410,7 @@ namespace BasicTypes
                 throw new ArgumentException("Impossible to parse a null or zero length string.");
             }
             Regex liSplit = new Regex("\\b"+Particles.li.Text+"\\b");
-            string[] parts = liSplit.Split(value).Select(x => x.Trim()).Where(x => x != "").ToArray();
+            string[] parts = liSplit.Split(value).Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x)).ToArray();
             //if (parts.Length == 0)
             //{
             //    throw new InvalidOperationException("Parse lost all parts for " + value);
@@ -452,7 +425,7 @@ namespace BasicTypes
                 throw new ArgumentException("Impossible to parse a null or zero length string.");
             }
             Regex oParts = new Regex("\\b" + Particles.o.Text + "\\b");
-            string[] liParts = oParts.Split(value).Select(x => x.Trim()).Where(x => x != "").ToArray();
+            string[] liParts = oParts.Split(value).Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x)).ToArray();
             return liParts;
         }
 
@@ -464,7 +437,7 @@ namespace BasicTypes
                 throw new ArgumentException("Impossible to parse a null or zero length string.");
             }
             Regex splitOnEn = new Regex("\\b" + Particles.la.Text + "\\b");
-            string[] subjectTokens = splitOnEn.Split(value).Select(x => x.Trim()).Where(x => x != "").ToArray();
+            string[] subjectTokens = splitOnEn.Split(value).Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x)).ToArray();
             return subjectTokens;
         }
 
@@ -480,7 +453,7 @@ namespace BasicTypes
             string  parts= string.Join("|", preps.Select(x => String.Format(pattern, x)));
             //@"\s(?=\bkepeken\b|\bsama\b|\btawa\b|\btawa\b)"
             Regex splitOnEn = new Regex(@"\s(?="+parts+")");
-            string[] prepTokens = splitOnEn.Split(value).Select(x => x.Trim()).Where(x=>x!="").ToArray();
+            string[] prepTokens = splitOnEn.Split(value).Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x)).ToArray();
             if(prepTokens.Any(x=>x.Contains(" ~")))
             {
                 throw new InvalidOperationException("Split failed");
@@ -496,11 +469,12 @@ namespace BasicTypes
         public static string[] SplitOnParticle(Particle particle, string value)
         {
             Regex splitOnParticle = new Regex("\\b" + particle.Text + "\\b");
-            string[] tokens = splitOnParticle.Split(value).Select(x => x.Trim()).Where(x => x != "").ToArray();
+            string[] tokens = splitOnParticle.Split(value).Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x)).ToArray();
             return tokens;
         }
 
         //Gah, what a mess.
+        [Obsolete]
         public static string[] SplitOnParticlePreserving(Particle particle, string value)
         {
             StringBuilder sb = new StringBuilder();

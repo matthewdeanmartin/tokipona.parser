@@ -159,10 +159,13 @@ namespace BasicTypes
         {
             get
             {
+                Config c = Config.Default;
+                c.ThrowOnSyntaxError = false;
+                ParserUtils pu = new ParserUtils(c);
                 //Letters
                 //CVCVN
                 //Invalid syllables.
-                string[] matches = ParserUtils.JustTpWords(word);
+                string[] matches = pu.JustTpWords(word);
 
                 if (matches.Length < 1 && !matches.Contains(word))
                 {
@@ -326,6 +329,10 @@ namespace BasicTypes
 
         public static Word Parse(string value)
         {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException("value is null or zero length string");
+            }
             return new Word(value);
         }
 
@@ -336,6 +343,10 @@ namespace BasicTypes
 
         Word IParse<Word>.Parse(string value)
         {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException("value is null or zero length string");
+            }
             return Parse(value);
         }
 

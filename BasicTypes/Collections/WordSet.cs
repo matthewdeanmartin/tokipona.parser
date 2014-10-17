@@ -38,6 +38,10 @@ namespace BasicTypes
 
         public static WordSet Parse(string value)
         {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException("value is null or zero length string");
+            }
             return WordSetTypeConverter.Parse(value);
         }
 
