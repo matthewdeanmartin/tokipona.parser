@@ -188,15 +188,17 @@ namespace BasicTypes
             return SentenceTypeConverter.Parse(value);
         }
 
-        public static void TryParse(string value, out Sentence result)
+        public static bool TryParse(string value, out Sentence result)
         {
             try
             {
                 result = SentenceTypeConverter.Parse(value);
+                return true;
             }
             catch (Exception)
             {
                 result = null;
+                return false;
             }
         }
 

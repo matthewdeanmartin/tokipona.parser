@@ -59,8 +59,9 @@ namespace BasicTypes
 
     public interface IParse<T>
     {
-        T Parse(string value);
-        bool TryParse(string value, out T result);
+        T Parse(string value);//throws on errors.
+        bool TryParse(string value, out T result);//default config
+        bool TryParse(string value, IFormatProvider provider, out T result);//specific config
     }
 
 

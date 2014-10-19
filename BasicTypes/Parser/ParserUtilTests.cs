@@ -19,7 +19,7 @@ namespace BasicTypes.Parser
         [Test]
         public void CrateTpPredicateAfterSplitingEChain()
         {
-            Config c = Config.Default;
+            Config c = Config.MakeDefault;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -76,7 +76,7 @@ namespace BasicTypes.Parser
         [Test]
         public void IdentifyDiscourses_CanWeGroupThem()
         {
-            Config c = Config.Default;
+            Config c = Config.MakeDefault;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -115,7 +115,7 @@ namespace BasicTypes.Parser
         [Test]
         public void CorpusKnowledge_HeadedPhraseParser()
         {
-            Config c = Config.Default;
+            Config c = Config.MakeDefault;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -128,7 +128,7 @@ namespace BasicTypes.Parser
         [Test]
         public void ProcessSingletonEnChainOneEn()
         {
-            Config c = Config.Default;
+            Config c = Config.MakeDefault;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -143,7 +143,7 @@ namespace BasicTypes.Parser
         [Test]
         public void ProcessSingletonEnChainNoEn()
         {
-            Config c = Config.Default;
+            Config c = Config.MakeDefault;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -156,7 +156,7 @@ namespace BasicTypes.Parser
         [Test]
         public void ProcessSingletonPredicate()
         {
-            Config c = Config.Default;
+            Config c = Config.MakeDefault;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 

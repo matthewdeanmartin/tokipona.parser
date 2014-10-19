@@ -28,7 +28,7 @@ namespace BasicTypes.Parser
         [Test]
         public void OneWord()
         {
-            ParserUtils pu = new ParserUtils(Config.Instance);
+            ParserUtils pu = new ParserUtils(Config.CurrentDialect);
             string[] w = pu.JustTpWords("jan");
             Assert.AreEqual(1, w.Length);
         }
@@ -36,7 +36,7 @@ namespace BasicTypes.Parser
         [Test]
         public void TwoWords()
         {
-            Config c = Config.Default;
+            Config c = Config.MakeDefault;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -48,7 +48,7 @@ namespace BasicTypes.Parser
         [Test]
         public void ThreWords()
         {
-            Config c = Config.Default;
+            Config c = Config.MakeDefault;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -59,7 +59,7 @@ namespace BasicTypes.Parser
         [Test]
         public void WordsNumbersWithoutDash()
         {
-            Config c = Config.Default;
+            Config c = Config.MakeDefault;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -70,7 +70,7 @@ namespace BasicTypes.Parser
         [Test]
         public void WordsNumbersPunctuationWithoutDash()
         {
-            Config c = Config.Default;
+            Config c = Config.MakeDefault;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -81,7 +81,7 @@ namespace BasicTypes.Parser
         [Test]
         public void WordsNumbersWithDash()
         {
-            Config c = Config.Default;
+            Config c = Config.MakeDefault;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -98,7 +98,7 @@ namespace BasicTypes.Parser
         {
             string value = "123-1231";
 
-            Config c = Config.Default;
+            Config c = Config.MakeDefault;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 

@@ -45,7 +45,7 @@ namespace BasicTypes.Collections
             {
                 throw new ArgumentException("value is null or zero length string");
             }
-            ParserUtils pu = new ParserUtils(Config.Instance);
+            ParserUtils pu = new ParserUtils(Config.CurrentDialect);
             return pu.HeadedPhraseParser(value.ToString());
         }
     }

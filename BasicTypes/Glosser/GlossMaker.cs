@@ -16,7 +16,7 @@ namespace BasicTypes.Glosser
     {
         public string Gloss(string sentence, string language = "en", bool includePos =false)
         {
-            Config config = Config.Default;
+            Config config = Config.MakeDefault;
             config.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(config);
 

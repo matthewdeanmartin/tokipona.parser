@@ -21,54 +21,7 @@ using NUnit.Framework;
 
 namespace BasicTypes
 {
-    /// <summary>
-    /// Standard part of speech categories
-    /// </summary>
-    [Serializable]
-    [DataContract]
-    [KnownType(typeof(Enumeration))]
-    public class PartOfSpeech : Enumeration
-    {
-        //noun	adj	vt	vi	adv	prep	pronoun	kama	conditional	interj	conj	particle
-
-        //public static readonly PartOfSpeech Noun = new PartOfSpeech(1, "Noun");
-        //public static readonly PartOfSpeech VerbIntransitive = new PartOfSpeech(2, "VerbIntranitive");
-        //public static readonly PartOfSpeech VerbTransitive = new PartOfSpeech(3, "VerbTransitive");
-        //
-        //public static readonly PartOfSpeech Interjection = new PartOfSpeech(4, "Interjection");
-        //public static readonly PartOfSpeech Adjective = new PartOfSpeech(5, "Adjective");
-        //public static readonly PartOfSpeech Adverb = new PartOfSpeech(6, "Adverb");
-
-
-        public static readonly PartOfSpeech Noun = new PartOfSpeech(1, "noun");  //Content word
-        public static readonly PartOfSpeech VerbIntransitive = new PartOfSpeech(2, "vi");//Content word
-        public static readonly PartOfSpeech VerbTransitive = new PartOfSpeech(3, "vt");//Content word
-
-        public static readonly PartOfSpeech Interjection = new PartOfSpeech(4, "interj");//Content word. Degenerate class. Only used in 1 word sentences.
-        public static readonly PartOfSpeech Adjective = new PartOfSpeech(5, "adj");//Content word
-        public static readonly PartOfSpeech Adverb = new PartOfSpeech(6, "adv");//Content word
-
-        public static readonly PartOfSpeech Preposition = new PartOfSpeech(7, "prep"); //Has specialized class!
-        public static readonly PartOfSpeech Pronoun = new PartOfSpeech(8, "pronoun"); //Has specialized class!
-        public static readonly PartOfSpeech Kama = new PartOfSpeech(9, "kama");//Meaning when in a verb chain 
-        public static readonly PartOfSpeech Conditional = new PartOfSpeech(10, "conditional");//Meaning when "x la"
-
-        public static readonly PartOfSpeech Conjunction = new PartOfSpeech(10, "conj"); //Has specialized class!
-        public static readonly PartOfSpeech Particle = new PartOfSpeech(10, "particle"); //Has specialized class!
-
-        private PartOfSpeech() { }
-        private PartOfSpeech(int value, string displayName) : base(value, displayName) { }
-
-        static public implicit operator string(PartOfSpeech part)
-        {
-            return part.DisplayName;
-        }
-
-        static public implicit operator int(PartOfSpeech part)
-        {
-            return part.Value;
-        }
-    }
+    
 
     /// <summary>
     /// Maps Particles to more common linguistic jargon
@@ -88,9 +41,10 @@ namespace BasicTypes
     /// </summary>
     [DataContract]
     [Serializable]
-    public partial class Word : IFormattable, ICopySelf<Word>, IParse<Word>
+    public partial class Word : IFormattable, ICopySelf<Word>
     //IConvertible (Basic types, like double, int, date, etc)
     {
+        private Config currentDialect;
         static Word()
         {
             AutoMapper.Mapper.CreateMap<Word, Word>();
@@ -106,7 +60,7 @@ namespace BasicTypes
         [DataMember(IsRequired = false, EmitDefaultValue = false)]
         private readonly Dictionary<string, Dictionary<string, string[]>> glossMap;
 
-        public Word(string word)
+        public Word(string word, IFormatProvider provider=null)
         {
             if (word == null)
             {
@@ -117,11 +71,21 @@ namespace BasicTypes
                 throw new InvalidLetterSetException("Words must not have spaces or punctuation, (other than the preposition marker ~)");
             }
 
-            //Add semantic info
+            if (provider == null)
+            {
+                currentDialect = Config.CurrentDialect;
+            }
+            else
+            {
+                currentDialect = provider.GetFormat(typeof (Word)) as Config;
+            }
             if (Words.Dictionary.ContainsKey(word))
             {
                 glossMap = Words.Dictionary[word].GlossMap;
             }
+
+            //TODO:Add semantic info
+
             //Validate
 
             this.word = word;
@@ -159,7 +123,7 @@ namespace BasicTypes
         {
             get
             {
-                Config c = Config.Default;
+                Config c = Config.MakeDefault;
                 c.ThrowOnSyntaxError = false;
                 ParserUtils pu = new ParserUtils(c);
                 //Letters
@@ -327,42 +291,7 @@ namespace BasicTypes
             return parts.Contains(word);
         }
 
-        public static Word Parse(string value)
-        {
-            if (string.IsNullOrEmpty(value))
-            {
-                throw new ArgumentException("value is null or zero length string");
-            }
-            return new Word(value);
-        }
 
-        bool IParse<Word>.TryParse(string value, out Word result)
-        {
-            return TryParse(value, out result);
-        }
-
-        Word IParse<Word>.Parse(string value)
-        {
-            if (string.IsNullOrEmpty(value))
-            {
-                throw new ArgumentException("value is null or zero length string");
-            }
-            return Parse(value);
-        }
-
-        public static bool TryParse(string value, out Word result)
-        {
-            try
-            {
-                result = new Word(value);
-                return true;
-            }
-            catch (Exception)
-            {
-                result = null;
-                return false;
-            }
-        }
 
         public object Clone()
         {
@@ -384,22 +313,4 @@ namespace BasicTypes
 
     }
 
-    public class WordByValue : EqualityComparer<Word>
-    {
-        private static readonly WordByValue instance = new WordByValue();
-        public static WordByValue Instance { get { return instance; } }
-
-        static WordByValue() { }
-        private WordByValue() { }
-
-        public override bool Equals(Word x, Word y)
-        {
-            return StringComparer.InvariantCulture.Equals(x.Text, y.Text);
-        }
-
-        public override int GetHashCode(Word obj)
-        {
-            return StringComparer.InvariantCulture.GetHashCode(obj);
-        }
-    }
 }

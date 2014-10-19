@@ -45,15 +45,17 @@ namespace BasicTypes
             return WordSetTypeConverter.Parse(value);
         }
 
-        public static void TryParse(string value, out WordSet result)
+        public static bool TryParse(string value, out WordSet result)
         {
             try
             {
                 result = WordSetTypeConverter.Parse(value);
+                return true;
             }
             catch (Exception)
             {
                 result = null;
+                return false;
             }
         }
     }

@@ -46,7 +46,7 @@ namespace BasicTypes.Collections
                 throw new ArgumentException("value is null or zero length string");
             }
 
-            Config c = Config.Default;
+            Config c = Config.MakeDefault;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 

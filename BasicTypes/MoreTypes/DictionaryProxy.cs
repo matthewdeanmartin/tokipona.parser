@@ -26,7 +26,7 @@ namespace BasicTypes.MoreTypes
         }
 
         /// <summary>
-        /// Default constructor so deserialization works
+        /// MakeDefault constructor so deserialization works
         /// </summary>
         public DictionaryProxy()
         {

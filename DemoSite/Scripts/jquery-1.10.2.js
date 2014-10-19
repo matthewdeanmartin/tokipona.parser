@@ -7931,7 +7931,7 @@ jQuery.extend({
 			requestHeadersNames = {},
 			// The jqXHR state
 			state = 0,
-			// Default abort message
+			// MakeDefault abort message
 			strAbort = "canceled",
 			// Fake xhr
 			jqXHR = {
@@ -8541,7 +8541,7 @@ jQuery.ajaxTransport( "script", function(s) {
 var oldCallbacks = [],
 	rjsonp = /(=)\?(?=&|$)|\?\?/;
 
-// Default jsonp settings
+// MakeDefault jsonp settings
 jQuery.ajaxSetup({
 	jsonp: "callback",
 	jsonpCallback: function() {
@@ -9543,7 +9543,7 @@ jQuery.fx.stop = function() {
 jQuery.fx.speeds = {
 	slow: 600,
 	fast: 200,
-	// Default speed
+	// MakeDefault speed
 	_default: 400
 };
 

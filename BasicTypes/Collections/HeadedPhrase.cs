@@ -93,15 +93,17 @@ namespace BasicTypes
             return HeadedPhraseConverter.Parse(value);
         }
 
-        public static void TryParse(string value, out HeadedPhrase result)
+        public static bool TryParse(string value, out HeadedPhrase result)
         {
             try
             {
                 result = HeadedPhraseConverter.Parse(value);
+                return true;
             }
             catch (Exception)
             {
                 result = null;
+                return false;
             }
         }
     }

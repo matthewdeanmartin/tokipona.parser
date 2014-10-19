@@ -47,6 +47,13 @@ namespace BasicTypes
             return TryParse(value, out result);
         }
 
+        public bool TryParse(string value, IFormatProvider provider, out Punctuation result)
+        {
+            Config c = provider.GetFormat(typeof (Punctuation)) as Config;
+
+            return TryParse(value, out result);
+        }
+
         Punctuation IParse<Punctuation>.Parse(string value)
         {
             if (string.IsNullOrEmpty(value))

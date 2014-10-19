@@ -179,15 +179,18 @@ namespace BasicTypes
             return ChainTypeConverter.Parse(value);
         }
 
-        public static void TryParse(string value, out Chain result)
+        public static bool TryParse(string value, out Chain result)
         {
             try
             {
                 result = ChainTypeConverter.Parse(value);
+                return true;
             }
             catch (Exception)
             {
                 result = null;
+                return false;
+                
             }
         }
     }

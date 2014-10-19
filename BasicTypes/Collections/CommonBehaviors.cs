@@ -12,10 +12,4 @@ namespace BasicTypes
         bool Contains(Word word);
     }
 
-    //Not sure this is a good idea
-    //public interface IParse<T>
-    //{
-    //    T Parse(string value);
-    //    void TryParse(string value, out T result);
-    //}
 }

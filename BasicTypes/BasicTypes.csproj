@@ -118,6 +118,7 @@
     <Compile Include="MoreTypes\CustomKeyedCollection.cs" />
     <Compile Include="MoreTypes\DictionaryProxy.cs" />
     <Compile Include="MoreTypes\EnumerationThing.cs" />
+    <Compile Include="MoreTypes\ParseOrDefault.cs" />
     <Compile Include="MoreTypes\SerializableDictionary.cs" />
     <Compile Include="Parser\Normalizer.cs" />
     <Compile Include="Parser\ParserUtils.cs" />
@@ -131,12 +132,15 @@
     <Compile Include="Parts\ConvertWordToBasicTypeTests.cs" />
     <Compile Include="Parts\GlossMap.cs" />
     <Compile Include="Parts\Number.cs" />
+    <Compile Include="Parts\PartOfSpeech.cs" />
     <Compile Include="Parts\Punctuation.cs" />
+    <Compile Include="Parts\WordByValue.cs" />
     <Compile Include="Parts\WordConverter.cs" />
     <Compile Include="Parts\WordConverterTests.cs" />
     <Compile Include="Parts\WordEqualityTests.cs" />
     <Compile Include="Collections\WordSetTest.cs" />
     <Compile Include="Parts\WordFormatProvider.cs" />
+    <Compile Include="Parts\WordParse.cs" />
     <Compile Include="Parts\WordTest.cs" />
     <Compile Include="Parts\Particle.cs" />
     <Compile Include="Parts\Word.cs" />

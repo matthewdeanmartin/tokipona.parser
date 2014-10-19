@@ -17,19 +17,38 @@ namespace BasicTypes
     //    private Singleton() { }
     //}
 
-    //Every decision that has never by completely made
-    public sealed class Config
+    //For testing.
+    public class ConfigProvider : IFormatProvider
     {
-        private static readonly Config instance = new Config();
+        private readonly Config dialect;
+        public ConfigProvider(Config dialect)
+        {
+            this.dialect = dialect;
+        }
+        public object GetFormat(Type formatType)
+        {
+            //Regardless of format type
+            return dialect;
+        }
+    }
 
-        public static Config Instance { get { return instance; } }
+    //Every decision that has never by completely made
+    //For deployed apps.
+    public sealed class Config:IFormatProvider 
+    {
+        private static readonly Config currentDialect = new Config();
 
-        private Config()
+        //Should only be 1 of this one.
+        public static Config CurrentDialect { get { return currentDialect; } }
+
+        //Can be others.
+        public Config()
         {
         }
         static Config()
         {
-            instance = Default;
+            //Check AppSettings... if none...
+            currentDialect = MakeDefault;
             Regex.CacheSize = 50;
         }
         public int UpToVersion { get; set; } //oldest (1)| mani, pan, esun... (2)| kipisi,monsuta ...(3)| ... pu (4)|
@@ -45,10 +64,12 @@ namespace BasicTypes
         public bool LiPiIsValid { get; set; } //jan li pi ma Tosi
         public string CalendarType { get; set; }
         public string NumberType { get; set; } //poman, stupid, half-stupid, body
-        public bool ThrowOnSyntaxError { get; set; }
-        public string WritingSystem { get; set; }
+        public bool ThrowOnSyntaxError { get; set; }//With human users, don't throw!
+        public string WritingSystem { get; set; } //ToString to a prestige or utility script (e.g. pretty or compressed)
+        public string WriteProperNounsInThisLanguage { get; set; }
+        //set to tp/en/eo/etc, e.g. ma tomo "New York" vs ma tomo Nujoku
 
-        public static Config Default
+        public static Config MakeDefault
         {
             get
             {
@@ -73,6 +94,9 @@ namespace BasicTypes
             }
         }
 
-//set to tp/en/eo/etc, e.g. ma tomo "New York" vs ma tomo Nujoku
+        public object GetFormat(Type formatType)
+        {
+            return currentDialect;
+        }
     }
 }

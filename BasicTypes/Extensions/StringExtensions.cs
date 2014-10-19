@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,18 @@ namespace BasicTypes.Extensions
 {
     public static class StringExtensions
     {
+        //http://stackoverflow.com/questions/2961656/generic-tryparse
+        public static T Convert<T>(this string input)
+        {
+            var converter = TypeDescriptor.GetConverter(typeof(T));
+            if (converter != null)
+            {
+                //Cast ConvertFromString(string text) : object to (T)
+                return (T)converter.ConvertFromString(input);
+            }
+            return default(T);
+        }
+
         public static String PrintXml(this String xml)
         {
             String result = "";
