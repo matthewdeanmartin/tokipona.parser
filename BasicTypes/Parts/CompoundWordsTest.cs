@@ -10,6 +10,11 @@ namespace BasicTypes.Parts
     [TestFixture]
     public class CompoundWordsTest
     {
-
+        [Test]
+        public void ConstructCompoundWord()
+        {
+            CompoundWord w = new CompoundWord("tomo-tawa-kon");
+            Assert.AreEqual(3,w.Parts.Length);
+        }
     }
 }

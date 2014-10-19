@@ -21,7 +21,7 @@ using NUnit.Framework;
 
 namespace BasicTypes
 {
-    
+
 
     /// <summary>
     /// Maps Particles to more common linguistic jargon
@@ -60,7 +60,7 @@ namespace BasicTypes
         [DataMember(IsRequired = false, EmitDefaultValue = false)]
         private readonly Dictionary<string, Dictionary<string, string[]>> glossMap;
 
-        public Word(string word, IFormatProvider provider=null)
+        public Word(string word, IFormatProvider provider = null)
         {
             if (word == null)
             {
@@ -70,6 +70,10 @@ namespace BasicTypes
             {
                 throw new InvalidLetterSetException("Words must not have spaces or punctuation, (other than the preposition marker ~)");
             }
+            if (Particle.IsParticle(word))
+            {
+                throw new InvalidOperationException("Don't treat particles as words.");
+            }
 
             if (provider == null)
             {
@@ -77,8 +81,9 @@ namespace BasicTypes
             }
             else
             {
-                currentDialect = provider.GetFormat(typeof (Word)) as Config;
+                currentDialect = provider.GetFormat(typeof(Word)) as Config;
             }
+            
             if (Words.Dictionary.ContainsKey(word))
             {
                 glossMap = Words.Dictionary[word].GlossMap;
@@ -123,7 +128,7 @@ namespace BasicTypes
         {
             get
             {
-                Config c = Config.MakeDefault;
+                Config c = Config.DialectFactory;
                 c.ThrowOnSyntaxError = false;
                 ParserUtils pu = new ParserUtils(c);
                 //Letters
@@ -186,50 +191,58 @@ namespace BasicTypes
         //Lossy, human oriented serialization.
         public override string ToString()
         {
-            return this.ToString("g", System.Globalization.CultureInfo.CurrentCulture);
+            return this.ToString("g", Config.CurrentDialect);
 
         }
 
         public string ToString(string format)
         {
-            return this.ToString(format, System.Globalization.CultureInfo.CurrentCulture);
+            return this.ToString(format, Config.CurrentDialect);
         }
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
+            Config c = formatProvider.GetFormat(typeof(Word)) as Config;
+
             //// Handle null or empty string. 
             if (String.IsNullOrEmpty(format)) format = "g";
             // Remove spaces and convert to uppercase.
             format = format.Trim();
             if (format == null || format == "g" || format == "G")
+            {
                 return Text;
+            }
+
 
             bool includePos = false;
             if (format.Contains(":"))
             {
-                string[] parts=format.Split(new char[] {':'});
-                format = parts[0]; 
-                includePos= Convert.ToBoolean(parts[1]);
+                string[] parts = format.Split(new char[] { ':' });
+                format = parts[0];
+                includePos = Convert.ToBoolean(parts[1]);
             }
             CultureInfo ci = Thread.CurrentThread.CurrentCulture;
 
-            if (ci.TwoLetterISOLanguageName == "tp") //Can only happen if we can install a custom culture. Not worth the effort.
+            string language;
+            if (c.TargetGloss == "thread")
             {
-                return Text;
-            }
-            else if (ci.TwoLetterISOLanguageName == "en")
-            {
-                string language = ci.TwoLetterISOLanguageName;
-                if (includePos)
-                    return TryGloss(language, format) +"("+ format +")";
-                else
-                {
-                    return TryGloss(language, format);
-                }
+                language = ci.TwoLetterISOLanguageName;
             }
             else
             {
-                throw new ArgumentOutOfRangeException("Can't translate to " + ci.ThreeLetterISOLanguageName);
+                language = c.TargetGloss;
+            }
+
+            if (language == "tp")
+            {
+                return Text; //And maybe POS
+            }
+
+            if (includePos)
+                return TryGloss(language, format) + "(" + format + ")";
+            else
+            {
+                return TryGloss(language, format);
             }
 
         }
@@ -246,7 +259,7 @@ namespace BasicTypes
                 {
                     Random r = new Random(DateTime.Now.Millisecond);//TODO: Make this a part of config
                     string[] possibilities = glossMap[language][pos];
-                    return possibilities[r.Next(possibilities.Length)]; 
+                    return possibilities[r.Next(possibilities.Length)];
                 }
             }
 
@@ -255,17 +268,17 @@ namespace BasicTypes
                 StringBuilder sb = new StringBuilder();
                 foreach (var item in pair.Value)
                 {
-                    if (item.Value != null && item.Value.Length>0)
+                    if (item.Value != null && item.Value.Length > 0)
                     {
-                        sb.Append(item.Key + " : " + string.Join(",", item.Value) +"; ");
+                        sb.Append(item.Key + " : " + string.Join(",", item.Value) + "; ");
                     }
                 }
-                Console.WriteLine(pair.Key+ " : "+ sb.ToString());
+                Console.WriteLine(pair.Key + " : " + sb.ToString());
             }
 
             if (!((Text.ToUpper())[0] == Text[0]))
             {
-                return "[Error " + pos + " " + Text  + "]";
+                return "[Error " + pos + " " + Text + " " + language + "]";
             }
             else
                 return Text;

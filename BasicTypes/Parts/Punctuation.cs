@@ -9,11 +9,12 @@ namespace BasicTypes
 {
     [DataContract]
     [Serializable]
-    public class Punctuation: IParse<Punctuation>
+    public class Punctuation : IParse<Punctuation>
     {
         [DataMember]
         private readonly string symbol;
 
+        private const string symbols = ":.?!";
         public Punctuation(string symbol)
         {
             symbol = symbol.Trim();
@@ -21,7 +22,7 @@ namespace BasicTypes
             {
                 throw new InvalidOperationException("Punctuation must be 1 char long");
             }
-            if (!":.?!".Contains(symbol))
+            if (!symbols.Contains(symbol))
             {
                 throw new InvalidOperationException("Punctuation must be : or . or ? or !");
             }
@@ -49,7 +50,7 @@ namespace BasicTypes
 
         public bool TryParse(string value, IFormatProvider provider, out Punctuation result)
         {
-            Config c = provider.GetFormat(typeof (Punctuation)) as Config;
+            Config c = provider.GetFormat(typeof(Punctuation)) as Config;
 
             return TryParse(value, out result);
         }
@@ -75,6 +76,32 @@ namespace BasicTypes
                 result = null;
                 return false;
             }
+        }
+
+        public static bool ContainsPunctuation(string value)
+        {
+            foreach (char c in symbols)
+            {
+                if (value.Contains(c))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public static bool ContainsPunctuation(string[] values)
+        {
+            foreach (string value in values)
+            {
+                foreach (char c in symbols)
+                {
+                    if (value.Contains(c))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }

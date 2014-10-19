@@ -38,6 +38,8 @@ namespace BasicTypes
 
         public Particle(string particle)
         {
+            //TODO: Validate, particles is a closed class.
+
             this.particle = particle;
             if (particle == "en" || particle == "pi" || particle ==" ")
             {
@@ -122,6 +124,23 @@ namespace BasicTypes
                 }
             }
 
+            if (language == "en")
+            {
+                switch (Text)
+                {
+                    case "la":
+                        return "then";
+                    case "pi":
+                        return "of";
+                    case "li":
+                        return " ";
+                    case "e":
+                        return " ";
+                    case "o":
+                        return "Hey!";
+                }
+            }
+
             foreach (KeyValuePair<string, Dictionary<string, string[]>> pair in w.GlossMap)
             {
                 StringBuilder sb = new StringBuilder();
@@ -137,7 +156,7 @@ namespace BasicTypes
 
             if (!((Text.ToUpper())[0] == Text[0]))
             {
-                return "[Error " + pos + " " + Text + "]";
+                return "[Error " + pos + " " + Text + " " + language + "]";
             }
             else
                 return Text;

@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using BasicTypes.Collections;
+using BasicTypes.Exceptions;
 using BasicTypes.Extensions;
 
 namespace BasicTypes
@@ -26,19 +27,23 @@ namespace BasicTypes
             {
                 throw new ArgumentNullException("head", "Can't construct with null");
             }
-            this.head = head;
-            this.modifiers = modifiers;
-        }
-
-        public HeadedPhrase(Word head, WordSet modifiers, HeadedPhrase[] subPhrases)
-        {
-            if (head == null)
+            if (Particle.IsParticle(head.Text))
             {
-                throw new ArgumentNullException("head", "Can't construct with null");
+                throw new TpSyntaxException("You can't have a headed phrase that is headed by a particle. That would be a chain.");
             }
             this.head = head;
             this.modifiers = modifiers;
         }
+
+        //public HeadedPhrase(Word head, WordSet modifiers, HeadedPhrase[] subPhrases)
+        //{
+        //    if (head == null)
+        //    {
+        //        throw new ArgumentNullException("head", "Can't construct with null");
+        //    }
+        //    this.head = head;
+        //    this.modifiers = modifiers;
+        //}
 
         public Word Head { get { return head; } }
         public WordSet Modifiers { get { return modifiers; } }
@@ -56,27 +61,32 @@ namespace BasicTypes
 
         public override string ToString()
         {
-            return this.ToString("g", System.Globalization.CultureInfo.CurrentCulture);
+            return this.ToString("g", Config.CurrentDialect);
 
         }
 
         public string ToString(string format)
         {
-            return this.ToString(format, System.Globalization.CultureInfo.CurrentCulture);
+            return this.ToString(format, Config.CurrentDialect);
         }
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
+            var words = ToTokenList(format,formatProvider);
+            return words.SpaceJoin(format);
+        }
+
+        public List<string> ToTokenList(string format, IFormatProvider formatProvider)
+        {
             List<string> words = new List<string>();
-            words.Add(head.ToString());
-            if (Modifiers!=null && Modifiers.Count > 0)
+            words.Add(head.ToString(format,formatProvider));
+            if (Modifiers != null && Modifiers.Count > 0)
             {
                 words.Add("(");
-                words.AddRange(modifiers.Select(x=>x.ToString()));
+                words.AddRange(modifiers.Select(x => x.ToString(format,formatProvider)));
                 words.Add(")");
-
             }
-            return words.SpaceJoin(format);
+            return words;
         }
 
         public bool IsPlura(string value)

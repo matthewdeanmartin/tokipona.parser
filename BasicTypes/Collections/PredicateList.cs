@@ -20,35 +20,41 @@ namespace BasicTypes.Collections
             if (this.Count == 0) 
                 return "";
 
+            var sb = ToTokenList(format, formatProvider);
+            return sb.SpaceJoin(format);
+        }
+
+        public List<string> ToTokenList(string format, IFormatProvider formatProvider)
+        {
             List<string> sb = new List<string>();
             foreach (TpPredicate tpPredicate in this)
             {
-                sb.Add(Particles.li.ToString());
+                sb.Add(tpPredicate.Particle.ToString(format, formatProvider));
                 if (tpPredicate.VerbPhrases != null)
                 {
-                    sb.Add(tpPredicate.VerbPhrases.ToString(format));
+                    sb.AddRange(tpPredicate.VerbPhrases.ToTokenList(format, formatProvider));
                 }
                 if (tpPredicate.Directs != null)
                 {
                     sb.Add(Particles.e.ToString());
-                    sb.Add(tpPredicate.Directs.ToString(format));
+                    sb.AddRange(tpPredicate.Directs.ToTokenList(format, formatProvider));
                 }
                 if (tpPredicate.Prepositionals != null)
                 {
-                    sb.Add(tpPredicate.Prepositionals.ToString(format));
+                    sb.AddRange(tpPredicate.Prepositionals.ToTokenList(format, formatProvider));
                 }
             }
-            return sb.SpaceJoin(format);
+            return sb;
         }
 
         public string ToString(string format)
         {
-            return this.ToString(format, System.Globalization.CultureInfo.CurrentCulture);
+            return this.ToString(format, Config.CurrentDialect);
         }
 
         public override string ToString()
         {
-            return this.ToString(null, System.Globalization.CultureInfo.CurrentCulture);
+            return this.ToString(null, Config.CurrentDialect);
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using BasicTypes.Exceptions;
 using BasicTypes.Extensions;
 
 namespace BasicTypes.Collections
@@ -14,22 +15,42 @@ namespace BasicTypes.Collections
     public class TpPredicate : IContainsWord, IFormattable
     {
         [DataMember]
+        private readonly Particle particle;
+
+        [DataMember]
         private readonly HeadedPhrase verbPhrases;
         [DataMember]
         private readonly Chain directs;
         [DataMember]
         private readonly Chain prepositionals;
 
-        public TpPredicate(HeadedPhrase verbPhrases, Chain directs, Chain prepositionals)
+        public TpPredicate(Particle particle, HeadedPhrase verbPhrases, Chain directs, Chain prepositionals)
         {
+            if (particle.Text != Particles.o.Text && particle.Text != Particles.li.Text)
+            {
+                throw new TpSyntaxException("Tp Predicate can only have a Predicate headed by li or o-- got " + particle.Text);
+            }
+            if (verbPhrases == null && prepositionals == null)
+            {
+                throw new TpSyntaxException("A verb phrase or prepositional phrase required. (Directs are optional)");
+            }
+            if (verbPhrases ==null && directs==null && prepositionals ==null)
+            {
+                throw new TpSyntaxException("Verb, directs and prepositional phrases all null, not good");
+            }
+
             //TODO: Validate. 
+            this.particle = particle;//li or o
             this.verbPhrases = verbPhrases; //only pi, en
             this.directs = directs;//only e, pi, en
-            this.prepositionals = prepositionals;//only ~prop, pi, en
+            this.prepositionals = prepositionals;//only ~prop, pi, en 
         }
+
+        public Particle Particle { get { return particle; } }
         public HeadedPhrase VerbPhrases { get { return verbPhrases; } }
         public Chain Directs { get { return directs; } }
         public Chain Prepositionals { get { return prepositionals; } }
+
         public bool Contains(Word word)
         {
             List<IContainsWord> chains = new List<IContainsWord>() { verbPhrases, directs, prepositionals };
@@ -38,27 +59,33 @@ namespace BasicTypes.Collections
 
         public string ToString(string format)
         {
-            return this.ToString(format, System.Globalization.CultureInfo.CurrentCulture);
+            return this.ToString(format, Config.CurrentDialect);
         }
 
         public override string ToString()
         {
-            return this.ToString(null, System.Globalization.CultureInfo.CurrentCulture);
+            return this.ToString(null, Config.CurrentDialect);
         }
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
             //Mixture of adding words, phrases adn brackets. Ugly.
+            var sb = ToTokenList(format, formatProvider);
+            return sb.SpaceJoin(format);
+        }
+
+        public List<string> ToTokenList(string format, IFormatProvider formatProvider)
+        {
             List<string> sb = new List<string>();
 
             sb.Add(verbPhrases.Head.ToString());
-            sb.AddRange(verbPhrases.Modifiers.Select(x=>x.ToString()));
+            sb.AddRange(verbPhrases.Modifiers.Select(x => x.ToString()));
 
 
-            foreach (Chain chain in new []{directs,Prepositionals})
+            foreach (Chain chain in new[] {directs, Prepositionals})
             {
-                if(chain==null)continue;
-                
+                if (chain == null) continue;
+
                 sb.Add("{");
                 if (chain.HeadedPhrases.Any())
                 {
@@ -70,7 +97,7 @@ namespace BasicTypes.Collections
                 }
                 sb.Add("}");
             }
-            return sb.SpaceJoin(format);
+            return sb;
         }
     }
 

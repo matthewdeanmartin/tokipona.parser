@@ -21,12 +21,16 @@ namespace BasicTypes.Parser
     /// </remarks>
     public class Normalizer
     {
-        public static string NormalizeText(string text, bool throwOnSyntaxErrors =false)
+        public static string NormalizeText(string text, Config dialect=null)
         {
+            if (dialect == null)
+            {
+                dialect = Config.CurrentDialect;
+            }
             string normalized = text;
             //Normalize prepositions to ~, so that we don't have tokens with embedded spaces (e.g. foo, kepeken => [foo],[, kepeken])
 
-            bool hasErrors = DetectErrors(normalized, throwOnSyntaxErrors);
+            bool hasErrors = DetectErrors(normalized, dialect.ThrowOnSyntaxError);
             if(hasErrors)
             {
                 normalized = RepairErrors(normalized);
@@ -53,21 +57,80 @@ namespace BasicTypes.Parser
                 {
                     if (normalized.Contains(prep))
                     {
-                        //Naive repair
-                        normalized = Regex.Replace(normalized, prep, " ~" + prep);
+                        //HACK:Naive repair-- doesn't deal with unusal white space patterns.
+                        normalized = Regex.Replace(normalized, " "+ prep, " ~" + prep);
                     }
                 }
             }
 
 
             normalized = Regex.Replace(normalized, @"^\s+|\s+$", ""); //Remove extraneous whitespace
+            
+            //TODO: detect start of sentence & replace mi X and sina Y with 
+
+            if (normalized.StartsWith("mi ") && !normalized.StartsWith("mi li "))
+            {
+                //modified mi is rare.
+                bool possibleProunoun = !normalized.StartsWith("mi suli")
+                                        && !normalized.StartsWith("mi mute")
+                                        && !normalized.StartsWith("mi tu")
+                                        && !normalized.StartsWith("mi soweli");
+                //mi mute li suli.
+                //mi toki.
+
+                //modified mi will force a li.
+                if (possibleProunoun && normalized.Contains(" li "))
+                {
+                    //Skip we probalby have a li already.
+                }
+                else
+                {
+                    normalized = "mi li " + normalized.Substring(3);
+                }
+            }
+            if (normalized.StartsWith("sina ") && !normalized.StartsWith("sina li "))
+            {
+                bool possibleProunoun = !normalized.StartsWith("sina suli")
+                                        && !normalized.StartsWith("sina mute")
+                                        && !normalized.StartsWith("sina tu")
+                                        && !normalized.StartsWith("sina soweli");
+                //mi mute li suli.
+                //mi toki.
+
+                if (possibleProunoun && normalized.Contains(" li "))
+                {
+                    //Skip we probalby have a li already.
+                }
+                else
+                {
+                    normalized = "sina li " + normalized.Substring(5);
+                }
+            }
+
             if (normalized.Contains("la mi"))
             {
                 normalized = Regex.Replace(normalized, @"\bla mi\b", "la mi li"); //normalize contractions
+
+                //If original was, say, "kin la mi li pali", we get a double li li
+                if (normalized.Contains(" li li "))
+                {
+                    //undo doubling.
+                    normalized = Regex.Replace(normalized, @"\bli li\b", "li"); //normalize contractions
+                }
+
             }
+
+            
             if (normalized.Contains("la sina"))
             {
                 normalized = Regex.Replace(normalized, @"\bla sina\b", "la sina li"); //normalize contractions
+
+                //If original was, say, "kin la sina li pali", we get a double li li
+                if (normalized.Contains(" li li "))
+                {
+                    //undo doubling.
+                    normalized = Regex.Replace(normalized, @"\bli li\b", "li"); //normalize contractions
+                }
             }
 
             return normalized;

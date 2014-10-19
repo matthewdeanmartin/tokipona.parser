@@ -85,7 +85,7 @@ jan suli li toki: o pali ala e sitelen akesi anu insa akesi. o sona e sona nanpa
 
 jan suli li pilin ike tawa sitelen mi la mi pali ala e sitelen sin. 
 
-mi pali e ijo ante. mi kepeken e tomo tawa kon. ni li lon: sona ma li pona tawa mi. mi ken sona e ante pi ma Kina en ma Alisona. tenpo pimeja la sona ni li pona. 
+mi pali e ijo ante. mi kepeken e tomo-tawa-kon. ni li lon: sona ma li pona tawa mi. mi ken sona e ante pi ma Kina en ma Alisona. tenpo pimeja la sona ni li pona. 
 
 tenpo lili la mi sona mute e jan suli. taso, mi pilin ike tan ni! 
 

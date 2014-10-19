@@ -50,7 +50,7 @@ namespace BasicTypes
 
         public static WordSet Parse(object value)
         {
-            Config c = Config.MakeDefault;
+            Config c = Config.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 

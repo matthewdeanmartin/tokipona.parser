@@ -23,7 +23,12 @@ namespace BasicTypes
             {
                 throw new ArgumentException("value is null or zero length string");
             }
-            Config c = provider.GetFormat(typeof(Punctuation)) as Config;
+            if (provider == null)
+            {
+                throw new ArgumentNullException("provider", "IFormatProvider can't be null");
+            }
+            Config c = provider.GetFormat(typeof (Punctuation)) as Config;
+
             ParserUtils pu = new ParserUtils(c);
             string[] possibleWords = pu.JustTpWords(value);
             return new Word(possibleWords[0], provider);

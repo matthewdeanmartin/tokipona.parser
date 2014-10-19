@@ -14,7 +14,7 @@ namespace BasicTypes.Collections
         public void CanSerialize()
         {
             HeadedPhrase hp = new HeadedPhrase(Words.jan,new WordSet(){ Words.seme});
-            TpPredicate p = new TpPredicate(hp, ChainTests.SampleChain(), ChainTests.SampleChain());
+            TpPredicate p = new TpPredicate(Particles.li, hp, ChainTests.SampleChain(), ChainTests.SampleChain());
             Assert.NotNull(p.ToJsonDcJs());
         }
     }

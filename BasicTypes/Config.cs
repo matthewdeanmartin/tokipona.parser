@@ -48,7 +48,7 @@ namespace BasicTypes
         static Config()
         {
             //Check AppSettings... if none...
-            currentDialect = MakeDefault;
+            currentDialect = DialectFactory;
             Regex.CacheSize = 50;
         }
         public int UpToVersion { get; set; } //oldest (1)| mani, pan, esun... (2)| kipisi,monsuta ...(3)| ... pu (4)|
@@ -67,9 +67,11 @@ namespace BasicTypes
         public bool ThrowOnSyntaxError { get; set; }//With human users, don't throw!
         public string WritingSystem { get; set; } //ToString to a prestige or utility script (e.g. pretty or compressed)
         public string WriteProperNounsInThisLanguage { get; set; }
+        public string TargetGloss { get; set; } //Language letter codes, defaults to tp, thread is special & means culture of current computer.
+        
         //set to tp/en/eo/etc, e.g. ma tomo "New York" vs ma tomo Nujoku
 
-        public static Config MakeDefault
+        public static Config DialectFactory
         {
             get
             {
@@ -89,7 +91,8 @@ namespace BasicTypes
                     CalendarType = "Compact",
                     NumberType = "Body",
                     WritingSystem = "Roman",
-                    ThrowOnSyntaxError = true
+                    ThrowOnSyntaxError = false,
+                    TargetGloss = "tp"
                 };
             }
         }

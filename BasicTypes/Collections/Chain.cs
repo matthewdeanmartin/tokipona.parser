@@ -28,7 +28,7 @@ namespace BasicTypes
     //Chains of particles
     [DataContract]
     [Serializable]
-    public class Chain : IContainsWord, IFormattable
+    public partial class Chain : IContainsWord, IFormattable
     {
         [DataMember(IsRequired = true)]
         readonly ChainType chainType;
@@ -41,6 +41,10 @@ namespace BasicTypes
 
         public Chain(ChainType type, Particle particle, HeadedPhrase[] headedPhrases)
         {
+            if (headedPhrases.Length == 0)
+            {
+                throw new InvalidOperationException("Chain with no headed phrases. This would be a bare particle if written as text");
+            }
             this.chainType = type;
             this.particle = particle;
             this.headedPhrases = headedPhrases;
@@ -48,6 +52,21 @@ namespace BasicTypes
 
         public Chain(ChainType type, Particle particle, Chain[] subChains)
         {
+            if (subChains ==null || subChains.Length == 0)
+            {
+                throw new InvalidOperationException("Chain with no no subchains. This would be a bare particle if written as text");
+            }
+
+            foreach (Chain subChain in subChains)
+            {
+                bool hasHeadedPhrase = subChain.HeadedPhrases != null && subChain.HeadedPhrases.Length > 0;
+                bool hasSubSubChain = subChain.subChains != null && subChain.subChains.Length > 0;
+                if (!hasHeadedPhrase && ! hasSubSubChain)
+                {
+                    throw new InvalidOperationException("Subchain with no subchains or headed phrases. This would be a bare particle if written as text");
+                }   
+            }
+            
             this.chainType = type;
             this.particle = particle;
             this.subChains = subChains;
@@ -69,31 +88,29 @@ namespace BasicTypes
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
+            List<string> sb = ToTokenList(format, formatProvider);
+
+            return sb.SpaceJoin(format);
+            
+        }
+
+        public List<string> ToTokenList(string format, IFormatProvider formatProvider)
+        {
+            List<string> sb = new List<string>();
+
             if (subChains != null)
             {
-                List<string> sb = new List<string>();
-                //sb.Add("[");
-
-                //Tracers.Stringify.TraceInformation("We have " + SubChains.Count() + " " + Particle.ToString() + " subChains");
-                 
                 ProcessSubChain(format, sb, subChains);
-                //sb.Add("]");
-
-
-                return sb.SpaceJoin(format);
             }
-
-
-            if (HeadedPhrases != null)
+            else if (HeadedPhrases != null)
             {
-                List<string> sb = new List<string>();
-                sb.AddRange(particle,HeadedPhrases.Select(phrase => phrase.ToString(format)));
-                return sb.SpaceJoin(format);
+                sb.AddRange(particle, HeadedPhrases.Select(phrase => phrase.ToString(format, formatProvider)));
             }
             else
             {
-                return "[Error NULL HeadedPhrases-- This is a problem because this his leaf data.]";
+                throw new InvalidOperationException("No sub chain, no head phrase");
             }
+            return sb;
         }
 
         private void ProcessSubChain(string format,  List<string> sb, Chain[] innerChains)
@@ -123,75 +140,21 @@ namespace BasicTypes
                 {
                     foreach (Chain inner in subChain.SubChains )
                     {
-                        ProcessSubChain(format, sb, subChain.SubChains);    
+                        ProcessSubChain(format, sb, inner.SubChains);    
                     }
-                    //int j = 0;
-
-
-                    //foreach (Chain subSub in subChain.SubChains)
-                    //{
-                    //    j++;
-                    //    if (subSub.Particle.MiddleOnly && j != 1)
-                    //    {
-                    //        sb.Add(subSub.Particle.ToString());
-                    //    }
-                    //    if (!subSub.Particle.MiddleOnly)
-                    //    {
-                    //        sb.Add(subSub.Particle.ToString());
-                    //    }
-
-                    //    sb.Add(subChain.particle.ToString()); //li, prep, others lead with particle?
-                    //    if (subSub.HeadedPhrases != null)
-                    //    {
-                    //        sb.AddRange(subSub.Particle,
-                    //            subSub.HeadedPhrases.Select(phrase => phrase.ToString(format)));
-                    //    }
-                    //    else
-                    //    {
-                    //        foreach (Chain chain in subSub.SubChains)
-                    //        {
-                    //        }
-                    //        //TODO: Do we need recursion for arbitrary depth here?
-                    //    }
-
-                    //    //Tracers.Stringify.TraceInformation(sb.SpaceJoin(format) + " .... so far");
-                    //}
                 }
             }
         }
 
         public string ToString(string format)
         {
-            return this.ToString(format, System.Globalization.CultureInfo.CurrentCulture);
+            return this.ToString(format, Config.CurrentDialect);
         }
 
         public override string ToString()
         {
-            return this.ToString(null, System.Globalization.CultureInfo.CurrentCulture);
+            return this.ToString(null, Config.CurrentDialect);
         }
 
-        public static Chain Parse(string value)
-        {
-            if (string.IsNullOrEmpty(value))
-            {
-                throw new ArgumentException("value is null or zero length string");
-            }
-            return ChainTypeConverter.Parse(value);
-        }
-
-        public static bool TryParse(string value, out Chain result)
-        {
-            try
-            {
-                result = ChainTypeConverter.Parse(value);
-                return true;
-            }
-            catch (Exception)
-            {
-                result = null;
-                return false;
-                
-            }
-        }
     }
 }

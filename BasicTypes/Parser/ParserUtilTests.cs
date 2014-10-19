@@ -19,7 +19,7 @@ namespace BasicTypes.Parser
         [Test]
         public void CrateTpPredicateAfterSplitingEChain()
         {
-            Config c = Config.MakeDefault;
+            Config c = Config.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -76,7 +76,7 @@ namespace BasicTypes.Parser
         [Test]
         public void IdentifyDiscourses_CanWeGroupThem()
         {
-            Config c = Config.MakeDefault;
+            Config c = Config.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -115,7 +115,7 @@ namespace BasicTypes.Parser
         [Test]
         public void CorpusKnowledge_HeadedPhraseParser()
         {
-            Config c = Config.MakeDefault;
+            Config c = Config.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -128,7 +128,7 @@ namespace BasicTypes.Parser
         [Test]
         public void ProcessSingletonEnChainOneEn()
         {
-            Config c = Config.MakeDefault;
+            Config c = Config.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -143,7 +143,7 @@ namespace BasicTypes.Parser
         [Test]
         public void ProcessSingletonEnChainNoEn()
         {
-            Config c = Config.MakeDefault;
+            Config c = Config.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -156,11 +156,11 @@ namespace BasicTypes.Parser
         [Test]
         public void ProcessSingletonPredicate()
         {
-            Config c = Config.MakeDefault;
+            Config c = Config.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
-            TpPredicate predicate = pu.ProcessPredicates("soweli lili");
+            TpPredicate predicate = pu.ProcessPredicates("li soweli lili");
             Assert.AreEqual("soweli", predicate.VerbPhrases.Head.Text);
             Assert.AreEqual("lili", predicate.VerbPhrases.Modifiers.First().Text);
         }

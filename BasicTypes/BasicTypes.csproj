@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Collections\Chain.cs" />
     <Compile Include="Collections\ChainByValue.cs" />
+    <Compile Include="Collections\ChainParse.cs" />
     <Compile Include="Collections\ChainTests.cs" />
     <Compile Include="Collections\ChainTypeConverter.cs" />
     <Compile Include="Collections\CommonBehaviors.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Collections\WordSetTypeConverter.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Diagnostics\Tracers.cs" />
+    <Compile Include="Dictionary\CompoundWordDictionary.cs" />
     <Compile Include="Dictionary\DictionaryGenerator.cs" />
     <Compile Include="Dictionary\DictionaryTests.cs" />
     <Compile Include="Dictionary\Semantics.cs" />
@@ -105,6 +107,10 @@
     <Compile Include="Globalization\UseCulture.cs" />
     <Compile Include="Glosser\GlossMakerTests.cs" />
     <Compile Include="Glosser\GlossMaker.cs" />
+    <Compile Include="Interfaces\ICopySelf.cs" />
+    <Compile Include="Interfaces\IParse.cs" />
+    <Compile Include="Interfaces\ISerializeToProxy.cs" />
+    <Compile Include="Interfaces\IToString.cs" />
     <Compile Include="Interfaces\MissingFrameworkInterfaces.cs" />
     <Compile Include="Knowledge\CorpusKnowledgeTests.cs" />
     <Compile Include="Dictionary\Particles.cs" />
@@ -126,6 +132,7 @@
     <Compile Include="Knowledge\PhoneNumberTests.cs" />
     <Compile Include="Parser\ParserUtilsTestsRegex.cs" />
     <Compile Include="Parser\ParserUtilTests.cs" />
+    <Compile Include="Parser\Splitters.cs" />
     <Compile Include="Parts\CompoundWord.cs" />
     <Compile Include="Parts\CompoundWordsTest.cs" />
     <Compile Include="Parts\ConvertWordToBasicType.cs" />

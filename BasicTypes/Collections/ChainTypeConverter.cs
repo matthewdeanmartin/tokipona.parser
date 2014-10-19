@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BasicTypes.Parser;
 
 namespace BasicTypes.Collections
 {
@@ -46,13 +47,13 @@ namespace BasicTypes.Collections
                 throw new ArgumentException("value is null or zero length string");
             }
 
-            Config c = Config.MakeDefault;
+            Config c = Config.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
             if (item.Contains("~"))
             {
-                string[] parts = ParserUtils.SplitOnPrepositions(item);
+                string[] parts = Splitters.SplitOnPrepositions(item);
                 pu.ProcessPrepositionalPhrases(parts);
             }
 

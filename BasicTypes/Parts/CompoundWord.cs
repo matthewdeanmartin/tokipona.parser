@@ -63,5 +63,13 @@ namespace BasicTypes.Parts
             this.glossMap = glossMap;
         }
 
+        public Word[] Parts
+        {
+            get 
+            { 
+                return word.Split('-').Select(x=>new Word(x)).ToArray();
+            }
+        }
+
     }
 }

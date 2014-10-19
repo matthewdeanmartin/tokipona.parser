@@ -54,7 +54,7 @@ namespace BasicTypes
             HeadedPhrase verbs = new HeadedPhrase(jo, null);
             
             Chain directs = new Chain(ChainType.Directs, e, new[] { new HeadedPhrase(nanpa, new WordSet() { fiveEtc }) });
-            TpPredicate predicate = new TpPredicate(verbs, directs,null);
+            TpPredicate predicate = new TpPredicate(Particles.li, verbs, directs,null);
             Sentence fact = new Sentence(subject, new PredicateList{predicate});
             return fact;
         }
@@ -74,7 +74,7 @@ namespace BasicTypes
             HeadedPhrase verbs =  new HeadedPhrase(jo, null) ;
             Chain directs = new Chain(ChainType.Directs, e, new[] { new HeadedPhrase(nanpa, new WordSet() { fiveEtc }) });
 
-            TpPredicate predicate = new TpPredicate(verbs, directs, null);
+            TpPredicate predicate = new TpPredicate(Particles.li, verbs, directs, null);
             Sentence fact = new Sentence(subject, new PredicateList { predicate });
             return fact;
         }

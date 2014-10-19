@@ -9,6 +9,12 @@ namespace BasicTypes.Collections
 {
     public class SentenceTypeConverter : TypeConverter
     {
+        private readonly IFormatProvider dialect;
+        public SentenceTypeConverter(IFormatProvider formatProvider)
+        {
+            this.dialect = formatProvider;
+
+        }
         public static T GetDefaultValue<T>(object propertyName)
         {
             var tc = TypeDescriptor.GetConverter(typeof(T));
@@ -41,17 +47,17 @@ namespace BasicTypes.Collections
         {
             if (value.GetType() == typeof(string))
             {
-                return Parse(value);
+                return Parse(value, dialect);
             }
 
             //Again, when would this ever work? Maybe numerics?
             return base.ConvertFrom(context, culture, value);
         }
 
-        public static Sentence Parse(object value)
+        public static Sentence Parse(object value, IFormatProvider formatProvider)
         {
-            Config c = Config.MakeDefault;
-            c.ThrowOnSyntaxError = false;
+            Config c = formatProvider.GetFormat(typeof(Sentence)) as Config;
+            
             ParserUtils pu = new ParserUtils(c);
             return pu.ParsedSentenceFactory(value.ToString());
         }

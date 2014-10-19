@@ -299,9 +299,9 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                ante = new Word("ante ", glossMap);
+                ante = new Word("ante", glossMap);
 
-                Dictionary.Add("ante ", ante);
+                Dictionary.Add("ante", ante);
             }
 
 

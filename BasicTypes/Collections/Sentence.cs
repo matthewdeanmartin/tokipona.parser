@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using BasicTypes.Collections;
+using BasicTypes.Exceptions;
 using BasicTypes.Extensions;
 using System.Collections.ObjectModel;
 
@@ -16,6 +18,16 @@ namespace BasicTypes
     [Serializable]
     public class Sentence : IContainsWord, IFormattable
     {
+        [DataMember]
+        private readonly Sentence conclusion;
+
+        [DataMember]
+        private readonly Sentence[] preconditions;
+
+        //Breaks immutability :-(
+        [DataMember]
+        public List<Chain> LaFragment { get; set; }
+
         [DataMember]
         private readonly Chain fragments;
 
@@ -29,9 +41,33 @@ namespace BasicTypes
         [DataMember]
         private readonly Particle conjunction;
 
+        public Sentence(Sentence[] preconditions = null, Sentence conclusion = null)
+        {
+            if (preconditions != null && preconditions.Length > 0 && conclusion == null)
+            {
+                throw new TpSyntaxException("There must be a head sentence (conclusions) if there are preconditions.");
+            }
+            if (conclusion != null && (preconditions != null))
+            {
+                throw new TpSyntaxException("Only a head sentence can have preconditions.");
+            }
+            this.conclusion = conclusion;
+            this.preconditions = preconditions;//Entire sentences.       
+
+            if (preconditions != null)
+            {
+                foreach (Sentence precondition in preconditions)
+                {
+                    precondition.HeadSentence = conclusion;
+                }
+
+            }
+        }
+
+        public Sentence HeadSentence { get; private set; }
+
         public Sentence(Chain fragments, Chain subjects, PredicateList predicates, Punctuation punctuation = null, Particle conjuction = null)
         {
-            //TODO: Validate. 
             this.subjects = new Chain[] { subjects }; //only (*), o, en
             this.predicates = predicates; //only li, pi, en
             this.punctuation = punctuation ?? new Punctuation(".");
@@ -112,39 +148,35 @@ namespace BasicTypes
 
         public string ToString(string format)
         {
-            return this.ToString(format, System.Globalization.CultureInfo.CurrentCulture);
+            return this.ToString(format, Config.CurrentDialect);
         }
 
         public override string ToString()
         {
-            return this.ToString(null, System.Globalization.CultureInfo.CurrentCulture);
+            return this.ToString(null, Config.CurrentDialect);
         }
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
             List<string> sb = new List<string>();
-
-            //Unless it is an array, delegate to member ToString();
-            sb.Add("[");
-            sb.AddRange(Particles.en, subjects.Select(x => x.ToString(format)));
-            sb.Add("]");
-
-            sb.Add("<");
-            sb.Add(Predicates.ToString(format));
-            sb.Add(">");
-
-            string spaceJoined = sb.SpaceJoin(format);
-            if (this.Punctuation == null)
+            if (preconditions != null)
             {
-                if (Contains(Words.seme))
+                foreach (Sentence precondition in preconditions)
                 {
-                    spaceJoined = spaceJoined + "?";
+                    sb.AddRange(precondition.ToTokenList(format, formatProvider));
                 }
+                sb.AddRange(conclusion.ToTokenList(format, formatProvider));
+
             }
             else
             {
-                spaceJoined = spaceJoined + this.punctuation.ToString();
+                //Simple sentence
+                sb = ToTokenList(format, formatProvider);   
             }
+
+            string spaceJoined = sb.SpaceJoin(format);
+            spaceJoined = spaceJoined + this.punctuation.ToString();
+            
             if (format != "bs")
             {
                 string result = Denormalize(spaceJoined);
@@ -154,7 +186,33 @@ namespace BasicTypes
             {
                 return spaceJoined;
             }
+        }
 
+        public List<string> ToTokenList(string format, IFormatProvider formatProvider)
+        {
+            List<string> sb = new List<string>();
+
+            if (LaFragment != null)
+            {
+                foreach (Chain chain in LaFragment)
+                {
+                    sb.Add("{");
+                    sb.AddRange(chain.ToTokenList(format, formatProvider));
+                    sb.Add(Particles.la.ToString(format, formatProvider));
+                    sb.Add("}");
+                }
+            }
+            
+            //Unless it is an array, delegate to member ToString();
+            sb.Add("[");
+            sb.AddRange(Particles.en, subjects.Select(x => x.ToString(format, formatProvider)));
+            sb.Add("]");
+
+            sb.Add("<");
+            sb.AddRange(Predicates.ToTokenList(format, formatProvider));
+            sb.Add(">");
+
+            return sb;
         }
 
         private string Denormalize(string value)
@@ -179,20 +237,20 @@ namespace BasicTypes
         }
 
 
-        public static Sentence Parse(string value)
+        public static Sentence Parse(string value, IFormatProvider formatProvider)
         {
             if (string.IsNullOrEmpty(value))
             {
                 throw new ArgumentException("value is null or zero length string");
             }
-            return SentenceTypeConverter.Parse(value);
+            return SentenceTypeConverter.Parse(value, formatProvider);
         }
 
-        public static bool TryParse(string value, out Sentence result)
+        public static bool TryParse(string value,  IFormatProvider formatProvider, out Sentence result)
         {
             try
             {
-                result = SentenceTypeConverter.Parse(value);
+                result = SentenceTypeConverter.Parse(value, formatProvider);
                 return true;
             }
             catch (Exception)

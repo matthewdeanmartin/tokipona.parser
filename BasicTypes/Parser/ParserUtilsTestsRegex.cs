@@ -13,17 +13,82 @@ namespace BasicTypes.Parser
     [TestFixture]
     public class ParserUtilsTestsRegex
     {
+        [Test]
+        public void CompoundWordParseSimple()
+        {
+            ParserUtils pu = new ParserUtils(Config.CurrentDialect);
+            string[] oneCompound= pu. JustTpWordsNumbersPunctuation("tomo-tawa-kon");
+            oneCompound = pu.RemergeCompounds(oneCompound);
+            foreach (string s in oneCompound)
+            {
+                Console.WriteLine(s);
+            }
+            Assert.AreEqual(1, oneCompound.Length);
+            Assert.AreEqual("tomo-tawa-kon", oneCompound[0]);
+
+        }
 
         [Test]
-        public void SplitEAndPreserve()
+        public void ParseLiAla()
         {
-            string ePhrase = "li moku e soweli suli mute e wawa e tawa e kala e";
-            string[] parts = ParserUtils.SplitOnParticlePreserving(Particles.e, ePhrase);
-            foreach (string part in parts)
+            ParserUtils pu = new ParserUtils(Config.CurrentDialect);
+            string[] twoWords= pu. JustTpWordsNumbersPunctuation("li ala");
+            Assert.AreEqual(2, twoWords.Length);
+            Assert.AreEqual("li", twoWords[0]);
+            Assert.AreEqual("ala", twoWords[1]);
+
+        }
+
+        [Test]
+        public void ParseEachWordInDictionary()
+        {
+            ParserUtils pu = new ParserUtils(Config.CurrentDialect);
+            foreach (Word word in Words.Dictionary.Values)
             {
-                Console.WriteLine(part);
+                string[] oneWord = pu.JustTpWords(word.Text);
+                Assert.AreEqual(1,oneWord.Length);
+                Assert.AreEqual(word.Text,oneWord[0]);
             }
         }
+
+        [Test]
+        public void ParseEachWordInDictionary2()
+        {
+            bool canary = false;
+            ParserUtils pu = new ParserUtils(Config.CurrentDialect);
+            foreach (Word word in Words.Dictionary.Values)
+            {
+                string[] oneWord = pu.JustTpWordsNumbersPunctuation(word.Text);
+                if (oneWord.Length == 0)
+                {
+
+                    canary = true;
+                    Console.WriteLine(word.Text);
+                }
+                if (oneWord.Length==1 &&  oneWord[0] != word.Text)
+                {
+                    canary = true;
+                    Console.WriteLine(word.Text);
+                }
+                //Assert.AreEqual(1, oneWord.Length, word.Text);
+                //Assert.AreEqual(word.Text, oneWord[0], word.Text);
+            }
+            if (canary)
+            {
+                Assert.Fail("Something failed to parse");
+            }
+        }
+
+        //[Test]
+        //public void SplitEAndPreserve()
+        //{
+        //    string ePhrase = "li moku e soweli suli mute e wawa e tawa e kala e";
+        //    string[] parts = ParserUtils.SplitOnParticlePreserving(Particles.e, ePhrase);
+        //    foreach (string part in parts)
+        //    {
+        //        Console.WriteLine(part);
+        //    }
+        //}
 
         [Test]
         public void OneWord()
@@ -36,7 +101,7 @@ namespace BasicTypes.Parser
         [Test]
         public void TwoWords()
         {
-            Config c = Config.MakeDefault;
+            Config c = Config.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -48,7 +113,7 @@ namespace BasicTypes.Parser
         [Test]
         public void ThreWords()
         {
-            Config c = Config.MakeDefault;
+            Config c = Config.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -59,7 +124,7 @@ namespace BasicTypes.Parser
         [Test]
         public void WordsNumbersWithoutDash()
         {
-            Config c = Config.MakeDefault;
+            Config c = Config.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -70,7 +135,7 @@ namespace BasicTypes.Parser
         [Test]
         public void WordsNumbersPunctuationWithoutDash()
         {
-            Config c = Config.MakeDefault;
+            Config c = Config.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -81,7 +146,7 @@ namespace BasicTypes.Parser
         [Test]
         public void WordsNumbersWithDash()
         {
-            Config c = Config.MakeDefault;
+            Config c = Config.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -98,7 +163,7 @@ namespace BasicTypes.Parser
         {
             string value = "123-1231";
 
-            Config c = Config.MakeDefault;
+            Config c = Config.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -115,7 +180,7 @@ namespace BasicTypes.Parser
         [Test]
         public void SplitOnEn()
         {
-            string[] values = ParserUtils.SplitOnEn("jan Mato");
+            string[] values = Splitters.SplitOnEn("jan Mato");
             Assert.AreEqual(1, values.Length);
             Assert.AreEqual("jan Mato", values[0]);
         }
@@ -124,7 +189,7 @@ namespace BasicTypes.Parser
         [Test]
         public void SplitOnEn2()
         {
-            string[] values = ParserUtils.SplitOnEn("jan Mato en jan Wantu");
+            string[] values = Splitters.SplitOnEn("jan Mato en jan Wantu");
             Assert.AreEqual(2, values.Length);
             Assert.AreEqual("jan Mato", values[0]);
             Assert.AreEqual("jan Wantu", values[1]);

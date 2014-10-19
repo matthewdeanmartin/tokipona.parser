@@ -12,17 +12,57 @@ namespace BasicTypes
     public class SenteneTests
     {
         [Test]
+        public void MaximalSentences_Part1()
+        {
+            string value = "jan li suli la tenpo pi lili mi.";
+            Sentence s = Sentence.Parse(value, Config.DialectFactory);
+            Console.WriteLine("Original: " + value);
+            Console.WriteLine("ToString: " + s.ToString("g"));
+            Console.WriteLine("ToStringb:" + s.ToString("b"));
+
+            Config en = Config.DialectFactory;
+
+            Console.WriteLine("ToString: " + s.ToString("g"));
+
+            Assert.AreEqual(value, s.ToString(), s.ToString("b"));
+        }
+
+        [Test]
+        public void MaximalSentences_Part_Tail()
+        {
+            string value = "mi mute li lukin e sitelen pona kepeken ilo tawa mani li jo e ijo mute lon ma suli pi mi mute.";
+            Sentence s = Sentence.Parse(value, Config.DialectFactory);
+            Console.WriteLine("Original: " + value);
+            Console.WriteLine("ToString: " + s.ToString("g", Config.DialectFactory));
+            Config en = Config.DialectFactory;
+
+            Console.WriteLine("ToString: " + s.ToString("g"));
+
+            Assert.AreEqual(value, s.ToString(), s.ToString("b"));
+        }
+
+        [Test]
         public void MaximalSentences()
         {
             string value = "jan li suli la tenpo pi lili mi la mi mute li lukin e sitelen pona kepeken ilo tawa mani li jo e ijo mute lon ma suli pi mi mute.";
-            Sentence s = Sentence.Parse(value);
+            Sentence s = Sentence.Parse(value, Config.DialectFactory);
+            Console.WriteLine("Original: " + value);
+            Console.WriteLine("ToString: " + s.ToString("g",Config.DialectFactory));
+            Config en = Config.DialectFactory;
+            
+            Console.WriteLine("ToString: " + s.ToString("g"));
+
             Assert.AreEqual(value, s.ToString(), s.ToString("b"));
         }
         [Test]
         public void LaFragment()
         {
-            string value = "tenpo pi lili mi la mi li lukin e sitelen pona.";
-            Sentence s = Sentence.Parse(value);
+            string value = "tenpo pi lili mi la mi lukin e sitelen pona.";
+
+            Sentence s = Sentence.Parse(value, Config.DialectFactory);
+            Console.WriteLine(s.ToString());
+            Console.WriteLine(s.ToString("b"));
+            Console.WriteLine(s.ToJsonNet());
             Assert.AreEqual(value, s.ToString(), s.ToString("b"));
         }
 
@@ -38,7 +78,7 @@ namespace BasicTypes
         public void ParseAndToString()
         {
             string value = "jan li jo e nanpa 555-1234.";
-            Sentence s = Sentence.Parse(value);
+            Sentence s = Sentence.Parse(value, Config.DialectFactory);
             Assert.AreEqual(value, s.ToString());
         }
 
@@ -57,7 +97,7 @@ namespace BasicTypes
             HeadedPhrase verbs = new HeadedPhrase(jo, null);
             Chain directs = new Chain(ChainType.Directs, e, new[] { new HeadedPhrase(nanpa, new WordSet() { fiveEtc }) });
 
-            TpPredicate predicate = new TpPredicate(verbs, directs, null);
+            TpPredicate predicate = new TpPredicate(Particles.li, verbs, directs, null);
             Sentence fact = new Sentence(subject, new PredicateList { predicate });
             return fact;
         }

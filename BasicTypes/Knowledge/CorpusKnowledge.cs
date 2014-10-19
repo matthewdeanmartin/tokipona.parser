@@ -27,7 +27,7 @@ namespace BasicTypes.Knowledge
             //https://stackoverflow.com/questions/521146/c-sharp-split-string-but-keep-split-chars-separators
             //https://stackoverflow.com/questions/3115150/how-to-escape-regular-expression-special-characters-using-javascript
 
-            Config c = Config.MakeDefault;
+            Config c = Config.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -36,7 +36,7 @@ namespace BasicTypes.Knowledge
 
         public Discourse[] MakeSentences()
         {
-            Config c = Config.MakeDefault;
+            Config c = Config.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
