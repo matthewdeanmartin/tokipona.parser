@@ -140,7 +140,14 @@ namespace BasicTypes
                 {
                     foreach (Chain inner in subChain.SubChains )
                     {
-                        ProcessSubChain(format, sb, inner.SubChains);    
+                        if (inner.headedPhrases != null)
+                        {
+                            sb.AddRange(inner.Particle, inner.HeadedPhrases.Select(phrase => phrase.ToString(format)));
+                        }
+                        else
+                        {
+                            ProcessSubChain(format, sb, inner.SubChains);    
+                        }
                     }
                 }
             }

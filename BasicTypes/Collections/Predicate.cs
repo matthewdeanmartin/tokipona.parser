@@ -23,8 +23,31 @@ namespace BasicTypes.Collections
         private readonly Chain directs;
         [DataMember]
         private readonly Chain prepositionals;
+        [DataMember]
+        private readonly Chain nominalPredicate;
+        public TpPredicate(Particle particle, Chain nominalPredicate, Chain directs, Chain prepositionals)
+        {
+            if (particle.Text != Particles.o.Text && particle.Text != Particles.li.Text)
+            {
+                throw new TpSyntaxException("Tp Predicate can only have a Predicate headed by li or o-- got " + particle.Text);
+            }
+            if (nominalPredicate == null && prepositionals == null)
+            {
+                throw new TpSyntaxException("A nominal predicate phrase or prepositional phrase required. (Directs are optional)");
+            }
+            if (nominalPredicate == null && directs == null && prepositionals == null)
+            {
+                throw new TpSyntaxException("Nominal Predicate, directs(transformatives) and prepositional phrases all null, not good");
+            }
 
-        public TpPredicate(Particle particle, HeadedPhrase verbPhrases, Chain directs, Chain prepositionals)
+            //TODO: Validate. 
+            this.particle = particle;//li or o
+            this.nominalPredicate= nominalPredicate; //only pi, en
+            this.directs = directs;//only e, pi, en
+            this.prepositionals = prepositionals;//only ~prop, pi, en 
+        }
+
+        public TpPredicate(Particle particle,  HeadedPhrase verbPhrases, Chain directs, Chain prepositionals)
         {
             if (particle.Text != Particles.o.Text && particle.Text != Particles.li.Text)
             {
@@ -50,6 +73,7 @@ namespace BasicTypes.Collections
         public HeadedPhrase VerbPhrases { get { return verbPhrases; } }
         public Chain Directs { get { return directs; } }
         public Chain Prepositionals { get { return prepositionals; } }
+        public Chain NominalPredicate { get { return nominalPredicate; } }
 
         public bool Contains(Word word)
         {
@@ -86,16 +110,19 @@ namespace BasicTypes.Collections
             {
                 if (chain == null) continue;
 
-                sb.Add("{");
-                if (chain.HeadedPhrases.Any())
+                if (chain.HeadedPhrases != null)
                 {
-                    sb.Add(chain.Particle.ToString());
+                    sb.Add("{");
+                    if (chain.HeadedPhrases.Any())
+                    {
+                        sb.Add(chain.Particle.ToString());
+                    }
+                    foreach (HeadedPhrase headedPhrase in chain.HeadedPhrases)
+                    {
+                        sb.Add(headedPhrase.ToString(format));
+                    }
+                    sb.Add("}");
                 }
-                foreach (HeadedPhrase headedPhrase in chain.HeadedPhrases)
-                {
-                    sb.Add(headedPhrase.ToString(format));
-                }
-                sb.Add("}");
             }
             return sb;
         }

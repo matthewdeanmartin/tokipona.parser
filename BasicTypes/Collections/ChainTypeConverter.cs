@@ -59,7 +59,16 @@ namespace BasicTypes.Collections
 
             if (item.Contains(" e ") || item.StartsWith("e "))
             {
-                throw new NotImplementedException();
+                throw new NotImplementedException("Need a pi chain processor");
+                //string[] parts = Splitters.SplitOnE(item);
+
+                //HeadedPhrase
+                //foreach (string part in parts)
+                //{
+
+                //}
+                //Chain c  = new Chain(ChainType.Directs, Particles.e, pu.HeadedPhraseParser());
+                //return c;
             }
             //If subject, then en & pi
 

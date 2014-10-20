@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -18,9 +19,11 @@ namespace BasicTypes
     //}
 
     //For testing.
+    [Serializable]
     public class ConfigProvider : IFormatProvider
     {
         private readonly Config dialect;
+
         public ConfigProvider(Config dialect)
         {
             this.dialect = dialect;
@@ -30,10 +33,12 @@ namespace BasicTypes
             //Regardless of format type
             return dialect;
         }
+
     }
 
     //Every decision that has never by completely made
     //For deployed apps.
+    [Serializable]
     public sealed class Config:IFormatProvider 
     {
         private static readonly Config currentDialect = new Config();

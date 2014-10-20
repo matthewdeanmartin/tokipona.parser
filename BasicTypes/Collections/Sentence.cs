@@ -43,13 +43,10 @@ namespace BasicTypes
 
         public Sentence(Sentence[] preconditions = null, Sentence conclusion = null)
         {
+            LaFragment=new List<Chain>();
             if (preconditions != null && preconditions.Length > 0 && conclusion == null)
             {
                 throw new TpSyntaxException("There must be a head sentence (conclusions) if there are preconditions.");
-            }
-            if (conclusion != null && (preconditions != null))
-            {
-                throw new TpSyntaxException("Only a head sentence can have preconditions.");
             }
             this.conclusion = conclusion;
             this.preconditions = preconditions;//Entire sentences.       
@@ -68,6 +65,7 @@ namespace BasicTypes
 
         public Sentence(Chain fragments, Chain subjects, PredicateList predicates, Punctuation punctuation = null, Particle conjuction = null)
         {
+            LaFragment = new List<Chain>();
             this.subjects = new Chain[] { subjects }; //only (*), o, en
             this.predicates = predicates; //only li, pi, en
             this.punctuation = punctuation ?? new Punctuation(".");
@@ -77,7 +75,7 @@ namespace BasicTypes
 
         public Sentence(Chain subjects, PredicateList predicates, Punctuation punctuation = null, Particle conjuction = null)
         {
-            //TODO: Validate. 
+            LaFragment = new List<Chain>();
             this.subjects = new Chain[] { subjects }; //only (*), o, en
             this.predicates = predicates; //only li, pi, en
             this.punctuation = punctuation ?? new Punctuation(".");
@@ -86,7 +84,7 @@ namespace BasicTypes
 
         public Sentence(Chain[] subjects, PredicateList predicates, Punctuation punctuation = null)
         {
-            //TODO: Validate. 
+            LaFragment = new List<Chain>();
             this.subjects = subjects; //only (*), o, en
             this.predicates = predicates; //only li, pi, en
             this.punctuation = punctuation ?? new Punctuation(".");
@@ -175,7 +173,10 @@ namespace BasicTypes
             }
 
             string spaceJoined = sb.SpaceJoin(format);
-            spaceJoined = spaceJoined + this.punctuation.ToString();
+            if (punctuation != null)
+            {
+                spaceJoined = spaceJoined + this.punctuation.ToString();//format, formatProvider
+            }
             
             if (format != "bs")
             {
@@ -204,9 +205,17 @@ namespace BasicTypes
             }
             
             //Unless it is an array, delegate to member ToString();
-            sb.Add("[");
-            sb.AddRange(Particles.en, subjects.Select(x => x.ToString(format, formatProvider)));
-            sb.Add("]");
+            if (subjects != null)
+            {
+                //Should only happen for imperatives
+                sb.Add("[");
+                sb.AddRange(Particles.en, subjects.Select(x =>x==null?"[NULL]": x.ToString(format, formatProvider)));
+                sb.Add("]");
+            }
+            else
+            {
+                Console.WriteLine("This was surprising.. no subjects");
+            }
 
             sb.Add("<");
             sb.AddRange(Predicates.ToTokenList(format, formatProvider));

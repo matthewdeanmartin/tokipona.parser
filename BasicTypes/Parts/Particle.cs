@@ -22,14 +22,18 @@ namespace BasicTypes
 
         public  static string[] dictionary = new string[]
         {
-            "en", //subject chains, but also other things. The only one where it is skipped for 1st.
             "la", //Sentence conj.
-            "anu",//Sentence conj.
-            "taso",//Sentence conj.
+
+             //"en", //subject chains, but also other things. The only one where it is skipped for 1st.
+
+            //Conj not supported yet... Treat as content word
+            //"anu",//Sentence conj. - Joins NPs but also prefixes sentences
+            //"taso",//Sentence conj. - 
+
             "li",
+            "o", //overlays li
             "pi",
             "e",
-            "o", //overlays li
             "~kepeken",
             "~tawa",
             "~sike",
@@ -108,8 +112,19 @@ namespace BasicTypes
         //Dupe
         private string TryGloss(string language, string pos)
         {
-            Word w = new Word(Text);
 
+            Word w;
+
+            if (Particle.IsParticle(Text))
+            {
+                w = Words.Dictionary[Text];
+            }
+            else
+            {
+                w = new Word(Text);
+
+            }
+            
             if (w.GlossMap == null)
             {
                 return "[missing map for " + Text + "]";

@@ -9,6 +9,13 @@ namespace BasicTypes.Parser
 {
     class Splitters
     {
+        public static string[] SplitOnE(string value)
+        {
+            string[] eParts = Regex.Split(value, @"\s(?=\be\b)");
+
+            return eParts;
+        }
+
         //Split on en
         // jan en soweli
         public static string[] SplitOnEn(string value)
@@ -104,7 +111,7 @@ namespace BasicTypes.Parser
             }
             //Regex splitOnEn = new Regex("\\b" + Particles.la.Text + "\\b");
             string parts = @"\bla\b";
-            string[] tokens = Regex.Split(@"\s(?=" + parts + ")", value).Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x)).ToArray();
+            string[] tokens = Regex.Split(value, @"\s(?=" + parts + ")").Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x)).ToArray();
             return tokens;
         }
 

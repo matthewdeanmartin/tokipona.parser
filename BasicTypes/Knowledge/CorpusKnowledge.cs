@@ -16,19 +16,18 @@ namespace BasicTypes.Knowledge
     public class CorpusKnowledge
     {
         private readonly string[] sentences;
-
+        private Config c;
         public string[] Setences
         {
             get { return sentences; }
         }
 
-        public CorpusKnowledge(string corpus)
+        public CorpusKnowledge(string corpus, Config dialect)
         {
             //https://stackoverflow.com/questions/521146/c-sharp-split-string-but-keep-split-chars-separators
             //https://stackoverflow.com/questions/3115150/how-to-escape-regular-expression-special-characters-using-javascript
 
-            Config c = Config.DialectFactory;
-            c.ThrowOnSyntaxError = false;
+            c = dialect;
             ParserUtils pu = new ParserUtils(c);
 
             sentences = pu.ParseIntoRawSentences(corpus);

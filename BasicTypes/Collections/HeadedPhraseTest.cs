@@ -72,18 +72,18 @@ namespace BasicTypes
         [Test]
         public void ParseAndToString()
         {
-            HeadedPhrase hp = HeadedPhrase.Parse("jan Mato pi tomo suli");
+            HeadedPhrase hp = HeadedPhrase.Parse("jan Mato tomo suli");
             Assert.IsTrue(hp.Contains(new Word("jan")));
             Assert.IsTrue(hp.Contains(new Word("Mato")));
             Assert.IsTrue(hp.Contains(new Word("tomo")));
             Assert.IsTrue(hp.Contains(new Word("suli")));
-            Assert.AreEqual("jan Mato pi tomo suli",hp.ToString());
+            Assert.AreEqual("jan Mato tomo suli",hp.ToString());
         }
 
         [Test]
         public void CanSerialize()
         {
-            HeadedPhrase hp = HeadedPhrase.Parse("jan Mato pi tomo suli");
+            HeadedPhrase hp = HeadedPhrase.Parse("jan Mato tomo suli");
             Assert.NotNull(hp.ToJsonDcJs());
         }
     }

@@ -133,6 +133,24 @@ namespace BasicTypes.Parser
                 }
             }
 
+            if (!(normalized.Contains(" li ") ||
+                normalized.Contains(" o ") ||
+                normalized.StartsWith("o")
+                ))
+            {
+                //Add a marker that we can later remove. Allows for parsing NPs, like titles, as if
+                //they were sentences.
+                if (normalized.EndsWith("."))
+                {
+                    normalized = normalized.Substring(0, normalized.Length-1) + " li ijo Nanunanuwakawakawawa.";
+                }
+                else
+                {
+                    normalized =  normalized+ " li ijo Nanunanuwakawakawawa.";
+
+                }
+            }
+
             return normalized;
         }
 

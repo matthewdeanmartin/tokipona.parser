@@ -37,7 +37,10 @@ namespace BasicTypes
         public void ParseAndToStringSimpleIntransitive()
         {
             string sample = "jan Mato li jan soweli.";
-            CorpusKnowledge ck = new CorpusKnowledge(sample);
+            Config dialect = Config.DialectFactory;
+            dialect.TargetGloss = "en";
+
+            CorpusKnowledge ck = new CorpusKnowledge(sample, dialect);
             Discourse[] s = ck.MakeSentences();
             foreach (Discourse d in s)
             {
@@ -56,7 +59,10 @@ namespace BasicTypes
         [Test]
         public void SplitRealTest()
         {
-            CorpusKnowledge c = new CorpusKnowledge(SampleText);
+            Config dialect = Config.DialectFactory;
+            dialect.TargetGloss = "en";
+
+            CorpusKnowledge c = new CorpusKnowledge(SampleText,dialect);
             int i = 0;
             foreach (string sentence in c.Setences)
             {

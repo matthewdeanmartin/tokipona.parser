@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using BasicTypes.Collections;
+using BasicTypes.Exceptions;
 using BasicTypes.Parser;
 
 namespace BasicTypes
@@ -74,10 +75,10 @@ namespace BasicTypes
         }
 
         public const string validTpWordSplitter =
-            @"([0-9-]+)|\b([JKLMNPSTW]?[aeiou]([jklmnpstw][aeiou][n]?)*)\b"+
-            @"|\b([aeiou])\b"+
-            @"|\b(([jklmnpstw]?[aeiou][n]?)*)\b"+
-            @"|\b([aeiou][n]?)\b|"+
+            @"([0-9-]+)|\b([JKLMNPSTW]?[aeiou]([jklmnpstw][aeiou][n]?)*)\b" +
+            @"|\b([aeiou])\b" +
+            @"|\b(([jklmnpstw]?[aeiou][n]?)*)\b" +
+            @"|\b([aeiou][n]?)\b|" +
             @"\b([AEIOU][n]?)\b";
 
         //Can double match (word within word) :-(
@@ -94,9 +95,9 @@ namespace BasicTypes
             // Nan
 
             //http://regexhero.net/tester/
-            
-            return (from Match s in Regex.Matches(value,validTpWordSplitter) 
-                    where !string.IsNullOrEmpty(s.Value) 
+
+            return (from Match s in Regex.Matches(value, validTpWordSplitter)
+                    where !string.IsNullOrEmpty(s.Value)
                     select s.Value).ToArray();
         }
 
@@ -107,22 +108,22 @@ namespace BasicTypes
                 //No compound words here
                 return words;
             }
-            List<string> merged= new List<string>();
+            List<string> merged = new List<string>();
             List<string> compound = new List<string>();
             for (int index = 0; index < words.Length; index++)
             {
                 string word = words[index];
-                if (word== "-")
+                if (word == "-")
                 {
                     compound.Add(word);
                     continue;
                 }
-                if (index+1<words.Length &&  words[index + 1] == "-")
+                if (index + 1 < words.Length && words[index + 1] == "-")
                 {
                     compound.Add(word);
                     continue;
                 }
-                if (index - 1 >0 && words[index - 1] == "-")
+                if (index - 1 > 0 && words[index - 1] == "-")
                 {
                     compound.Add(word);
                     continue;
@@ -158,7 +159,7 @@ namespace BasicTypes
             // nan
             // Na
             // Nan
-            Regex r = new Regex( validTpWordSplitter +"|"
+            Regex r = new Regex(validTpWordSplitter + "|"
                 //+ "(" +validTpWordSplitter +")*" //Doesn't match compounds.
                 + @"|([?.!'])");
             List<string> list = new List<string>();
@@ -187,7 +188,7 @@ namespace BasicTypes
             Punctuation punctuation;
             if (Punctuation.TryParse(possiblePunctuation, out punctuation))
             {
-                sentence = sentence.Substring(0, sentence.Length-1);
+                sentence = sentence.Substring(0, sentence.Length - 1);
             }
 
             const string liFinder = @"\bli\b";
@@ -203,41 +204,41 @@ namespace BasicTypes
             //[{F la S} la {S} la {F la S}] la <S> 
 
             //Just dealing with la fragments
-            string[] laParts =null;
+            string[] laParts = null;
 
-            Sentence headSentence=null;
+            Sentence headSentence = null;
             List<Sentence> preconditions = new List<Sentence>();
 
             laParts = Splitters.SplitOnLa(sentence);
 
-            if (laParts.Length>1)
+            if (laParts.Length > 1)
             {
                 int i = 0;
                 List<Chain> laFragments = new List<Chain>();
                 Sentence currentSentence = null;
-                foreach (string laPart in laParts.Reverse())
+                foreach (string subSentence in laParts.Reverse())
                 {
                     i++;
                     if (i == 1)
                     {
                         //Head sentence.
-                        string laLessString = laPart.StartsWith("la ") ? laPart.Substring(3) : laPart;
+                        string laLessString = subSentence.StartsWith("la ") ? subSentence.Substring(3) : subSentence;
                         headSentence = ProcessSimpleSentence(laLessString, punctuation);
                         continue; //Not dealing with "kin la!"
                     }
 
                     //Fragments & preconditions
-                    Match m = Regex.Match(laPart, liFinder);
+                    Match m = Regex.Match(subSentence, liFinder);
                     if (m.Success)
                     {
                         //This is a sentence
                         //Maybe should recurse.
-                        currentSentence = ProcessSimpleSentence(sentence, punctuation);
+                        currentSentence = ProcessSimpleSentence(subSentence, punctuation);
                         preconditions.Add(currentSentence);
                     }
                     else
                     {
-                        Chain fragment = ProcessEnPiChain(laPart);
+                        Chain fragment = ProcessEnPiChain(subSentence);
                         if (currentSentence == null)
                         {
                             if (headSentence == null)
@@ -276,12 +277,21 @@ namespace BasicTypes
             string[] liParts = Splitters.SplitOnLiOrO(sentence);
             string subjects = liParts[0].Trim();
 
-            Chain subjectChain = ProcessEnPiChain(subjects);
+            Chain subjectChain = null;
+            int startAt = 1; //slot 0 is normally a subject
+            if (subjects.StartsWith("o "))
+            {
+                //This is a verb phrase with implicit subjects!
+                startAt = 0;
+            }
+            else
+            {
+                subjectChain = ProcessEnPiChain(subjects);    
+            }
 
-            //Skip 1 on purpose
             PredicateList verbPhrases = new PredicateList();
 
-            for (int i = 1; i < liParts.Length; i++)
+            for (int i = startAt; i < liParts.Length; i++)
             {
                 string predicate = liParts[i].Trim();
 
@@ -325,11 +335,40 @@ namespace BasicTypes
             return subject;
         }
 
+        public Chain ProcessPiChain(string value)
+        {
+            if (String.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException("Can't parse null/empty subjects");
+            }
+            if (value.Contains(" la "))
+            {
+                throw new ArgumentException("Contains la. This isn't possible.");
+            }
+
+            string piChains = value;
+
+            string[] piLessTokens = Splitters.SplitOnPi(piChains);
+
+            List<HeadedPhrase> piCollection = new List<HeadedPhrase>();
+            foreach (string piLessToken in piLessTokens)
+            {
+                HeadedPhrase piPhrase = HeadedPhraseParser(piLessToken);
+                piCollection.Add(piPhrase);
+            }
+            return new Chain(ChainType.NounVerbPhrase, Particles.pi, piCollection.ToArray());
+
+        }
+
         public Chain ProcessEnPiChain(string subjects)
         {
             if (String.IsNullOrEmpty(subjects))
             {
                 throw new ArgumentException("Can't parse null/empty subjects");
+            }
+            if (subjects.Contains(" la "))
+            {
+                throw new ArgumentException("Contains la. This isn't possible.");
             }
             string[] subjectTokens = Splitters.SplitOnEn(subjects);
 
@@ -343,13 +382,10 @@ namespace BasicTypes
 
                 string[] piLessTokens = Splitters.SplitOnPi(piChains);
 
-                List<HeadedPhrase> piCollection = new List<HeadedPhrase>();
+                List<Chain> piCollection = new List<Chain>();
                 foreach (string piLessToken in piLessTokens)
                 {
-                    //Console.WriteLine("Preparing to parse [" + piLessToken + "] as piLessToken");
-                    //Splits on spaces & separates into head & tail
-                    HeadedPhrase piPhrase = HeadedPhraseParser(piLessToken);
-                    //Console.WriteLine("Ended up with " + piPhrase);
+                    Chain piPhrase = ProcessPiChain(piLessToken);
                     piCollection.Add(piPhrase);
                 }
                 Chain piChain = new Chain(ChainType.NounVerbPhrase, Particles.pi, piCollection.ToArray());
@@ -368,20 +404,32 @@ namespace BasicTypes
             Chain directObjectChain = null;
             HeadedPhrase verbPhrase = null;
             Chain prepositionalChain = null;
-
+            Chain nominalPredicate = null;
             //Transitive Path.
             if (liPart.Split(new[] { ' ', '\t' }).Contains("e"))
             {
-                Regex eSplit = new Regex("\\be\\b");
-                string[] eParts = eSplit.Split(liPart);
+                string[] eParts = Splitters.SplitOnE(liPart);
 
-                string[] verbPhraseParts = 
+                string[] verbPhraseParts =
                     RemergeCompounds(
                     JustTpWordsNumbersPunctuation(eParts[0]));
+                if (!Particle.IsParticle(verbPhraseParts[0]))
+                {
+                    throw new TpSyntaxException("uh-oh not a particle: " + verbPhraseParts[0] + " from "+ liPart);
+                }
                 verbPhraseParticle = new Particle(verbPhraseParts[0]);
                 if (verbPhraseParts.Length > 1)
                 {
-                    verbPhrase = HeadedPhraseParser(ArrayExtensions.Tail(verbPhraseParts));
+                    if (verbPhraseParts.Any(x => x == "pi"))
+                    {
+                        //nominal predicate
+                        nominalPredicate = ProcessPiChain(string.Join(" ", ArrayExtensions.Tail(verbPhraseParts)));
+                    }
+                    else
+                    {
+                        verbPhrase = HeadedPhraseParser(ArrayExtensions.Tail(verbPhraseParts));
+                
+                    }
                 }
                 else
                 {
@@ -410,16 +458,17 @@ namespace BasicTypes
                     }
                 }
 
-
                 string[] directObjects = ArrayExtensions.Tail(eParts);
 
-                List<HeadedPhrase> doNPs = new List<HeadedPhrase>();
+                //List<HeadedPhrase> doNPs = new List<HeadedPhrase>();
+                List<Chain> doPiChains = new List<Chain>();
                 foreach (string directObject in directObjects)
                 {
-                    HeadedPhrase phrase = HeadedPhraseParser(directObject);
-                    doNPs.Add(phrase);
+                    string eFree = directObject.Substring(2);
+                    Chain phrase = ProcessPiChain(eFree);
+                    doPiChains.Add(phrase);
                 }
-                directObjectChain = new Chain(ChainType.Directs, Particles.e, doNPs.ToArray());
+                directObjectChain = new Chain(ChainType.Directs, Particles.e, doPiChains.ToArray());
 
                 if (partsWithPreps != null)
                 {
@@ -443,13 +492,26 @@ namespace BasicTypes
                 }
                 string[] verbPhraseParts = RemergeCompounds(
                     JustTpWordsNumbersPunctuation((ppParts[0])));
-                
+
+                if (!Particle.IsParticle(verbPhraseParts[0]))
+                {
+                    throw new TpSyntaxException("uh-oh not a particle: " + verbPhraseParts[0] + " from " + liPart);
+                }
                 verbPhraseParticle = new Particle(verbPhraseParts[0]);
 
-                
+
                 if (verbPhraseParts.Length > 1)
                 {
-                    verbPhrase = HeadedPhraseParser(ArrayExtensions.Tail(verbPhraseParts));
+                    if (verbPhraseParts.Any(x => x == "pi"))
+                    {
+                        //nominal predicate
+                        nominalPredicate = ProcessPiChain(string.Join(" ", ArrayExtensions.Tail(verbPhraseParts)));
+                    }
+                    else
+                    {
+                        verbPhrase = HeadedPhraseParser(ArrayExtensions.Tail(verbPhraseParts));
+
+                    }
                 }
                 else
                 {
@@ -474,6 +536,8 @@ namespace BasicTypes
                             //uh oh. This is an intransitive verb, like "ni li lon"
                             //HACK: Oh, this is so ugly
                             verbPhrase = HeadedPhraseParser(new string[] { preposition.Replace("~", "") });
+                            //or a noun phrase.
+
                             continue;
                         }
 
@@ -493,7 +557,13 @@ namespace BasicTypes
                     }
                 }
             }
-            return new TpPredicate(verbPhraseParticle, verbPhrase, directObjectChain, prepositionalChain);
+            if(nominalPredicate==null)
+                return new TpPredicate(verbPhraseParticle, verbPhrase, directObjectChain, prepositionalChain);
+            else
+            {
+                return new TpPredicate(verbPhraseParticle, nominalPredicate, directObjectChain, prepositionalChain);
+ 
+            }
         }
 
         public List<Chain> ProcessPrepositionalPhrases(string[] partsWithPreps)
@@ -536,6 +606,18 @@ namespace BasicTypes
 
         public HeadedPhrase HeadedPhraseParser(string value)
         {
+            if (value.Contains(" pi "))
+            {
+                throw new TpSyntaxException("Headed phrases have no particles. This one has pi");
+            }
+            if (value.Contains(" la "))
+            {
+                throw new TpSyntaxException("Headed phrases have no particles. This one has la");
+            }
+            if (value.Contains(" e "))
+            {
+                throw new TpSyntaxException("Headed phrases have no particles. This one has la");
+            }
             Config c = Config.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
@@ -555,5 +637,9 @@ namespace BasicTypes
         }
 
 
+        public string ProcessDirects(object value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
