@@ -98,6 +98,7 @@
     <Compile Include="Extensions\StringBuilderExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Fluent\Say.cs" />
+    <Compile Include="FundamentalTests\ListkovSubstitutionTests.cs" />
     <Compile Include="FundamentalTests\TestEquality.cs" />
     <Compile Include="FundamentalTests\TestObjectInterface.cs" />
     <Compile Include="Globalization\TpCalendar.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Parser\ParserUtilsTestsRegex.cs" />
     <Compile Include="Parser\ParserUtilTests.cs" />
     <Compile Include="Parser\Splitters.cs" />
+    <Compile Include="Parser\StringInverseFormat.cs" />
     <Compile Include="Parts\CompoundWord.cs" />
     <Compile Include="Parts\CompoundWordsTest.cs" />
     <Compile Include="Parts\ConvertWordToBasicType.cs" />
@@ -141,6 +143,7 @@
     <Compile Include="Parts\Number.cs" />
     <Compile Include="Parts\PartOfSpeech.cs" />
     <Compile Include="Parts\Punctuation.cs" />
+    <Compile Include="Parts\TemplatedPhrase.cs" />
     <Compile Include="Parts\WordByValue.cs" />
     <Compile Include="Parts\WordConverter.cs" />
     <Compile Include="Parts\WordConverterTests.cs" />
