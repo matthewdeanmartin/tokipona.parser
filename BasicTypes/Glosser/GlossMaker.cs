@@ -39,15 +39,43 @@ namespace BasicTypes.Glosser
                         {
                             gloss.Add(sub.Particle.ToString(PartOfSpeech.Conjunction + ":" + includePos));
                         }
-                        //deeper levels?
-                        foreach (HeadedPhrase hp in sub.HeadedPhrases)
-                        {
-                            foreach (Word modifier in hp.Modifiers)
-                            {
-                                gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos));
-                            }
 
-                            gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos));
+                        int k = 0;
+                        if (sub.SubChains != null)
+                        {
+                            foreach (Chain subsub in sub.SubChains)
+                            {
+                                k++;
+                                if (k != 1)
+                                {
+                                    gloss.Add(subsub.Particle.ToString(PartOfSpeech.Conjunction + ":" + includePos));
+                                }
+
+
+                                //deeper levels?
+                                foreach (HeadedPhrase hp in subsub.HeadedPhrases)
+                                {
+                                    foreach (Word modifier in hp.Modifiers)
+                                    {
+                                        gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos));
+                                    }
+
+                                    gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos));
+                                }
+                            }
+                        }
+                        else
+                        {
+                            //deeper levels?
+                            foreach (HeadedPhrase hp in sub.HeadedPhrases)
+                            {
+                                foreach (Word modifier in hp.Modifiers)
+                                {
+                                    gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos));
+                                }
+
+                                gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos));
+                            }
                         }
                     }
 

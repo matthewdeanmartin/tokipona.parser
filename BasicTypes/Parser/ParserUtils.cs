@@ -25,8 +25,18 @@ namespace BasicTypes
             //TODO: Normalize well known compound phrases jan pona => jan-pona
             //TODO: Normalize foreign words zap => 'zap', alternatively assume they are tp, but a mistake
 
+            //Normalize end lines.
+            if (text.Contains("\r\n"))
+            {
+                text = text.Replace("\r\n", "\n");    
+            }
+            if (text.Contains("\n\n"))
+            {
+                text = text.Replace("\n\n", "\n");
+            }
+
             return Regex
-                .Split(text, @"(?<=[\?!.:])")  //split preserving punctuation
+                .Split(text, @"(?<=[\?!.:\n])")  //split preserving punctuation
                 .Where(x => !string.IsNullOrWhiteSpace(x)) //skip empties
                 .Select(x => Normalizer.NormalizeText(x, config))
                 .ToArray();
@@ -176,6 +186,24 @@ namespace BasicTypes
         public Sentence ParsedSentenceFactory(string sentence)
         {
             sentence = Normalizer.NormalizeText(sentence); //Any way to avoid calling this twice?
+            if (sentence == "")
+            {
+                return null;
+            }
+            bool startsQuotedSpeech;
+            bool endsQuotedSpeech;
+            if (sentence.StartsWith("«"))
+            {
+                startsQuotedSpeech = true;
+                sentence = sentence.Replace("«", " ").Trim();
+            }
+            if (sentence.StartsWith("»"))
+            {
+                endsQuotedSpeech= true;
+                sentence = sentence.Replace("»", " ").Trim();
+            }
+            //TODO: do something with quoted speech.
+
 
             if (sentence.EndsWith(" "))
             {
@@ -211,6 +239,15 @@ namespace BasicTypes
 
             laParts = Splitters.SplitOnLa(sentence);
 
+            //Degenerate sentences.
+            if (laParts[laParts.Length - 1] == "la")
+            {
+                //We have a vocative sentence...
+                Fragment fragment = new Fragment(ProcessEnPiChain(laParts[0]));
+                Sentence fragmentSentence = new Sentence(fragment, punctuation);
+                return fragmentSentence;
+            }
+
             if (laParts.Length > 1)
             {
                 int i = 0;
@@ -233,12 +270,13 @@ namespace BasicTypes
                     {
                         //This is a sentence
                         //Maybe should recurse.
-                        currentSentence = ProcessSimpleSentence(subSentence, punctuation);
+                        currentSentence = ProcessSimpleSentence(subSentence, null);
                         preconditions.Add(currentSentence);
                     }
                     else
                     {
-                        Chain fragment = ProcessEnPiChain(subSentence);
+                        string laLessString = subSentence.StartsWith("la ") ? subSentence.Substring(3) : subSentence;
+                        Chain fragment = ProcessEnPiChain(laLessString);
                         if (currentSentence == null)
                         {
                             if (headSentence == null)
@@ -275,10 +313,23 @@ namespace BasicTypes
         private Sentence ProcessSimpleSentence(string sentence, Punctuation punctuation)
         {
             string[] liParts = Splitters.SplitOnLiOrO(sentence);
+
+            
+
+            //Degenerate sentences.
+            if (liParts[liParts.Length - 1] == "o")
+            {
+                //We have a vocative sentence...
+                Vocative vocative = new Vocative(ProcessEnPiChain(liParts[0]));
+                Sentence s = new Sentence(vocative, punctuation);
+                return s;
+            }
+
             string subjects = liParts[0].Trim();
 
             Chain subjectChain = null;
             int startAt = 1; //slot 0 is normally a subject
+
             if (subjects.StartsWith("o "))
             {
                 //This is a verb phrase with implicit subjects!
@@ -288,6 +339,10 @@ namespace BasicTypes
             {
                 subjectChain = ProcessEnPiChain(subjects);    
             }
+
+            
+
+
 
             PredicateList verbPhrases = new PredicateList();
 
@@ -299,6 +354,13 @@ namespace BasicTypes
             }
 
 
+            if (punctuation == null)
+            {
+                //Condition
+                return new Sentence(subjectChain, verbPhrases);
+            }
+            
+            //Head or complete sentence.
             Sentence parsedSentence = new Sentence(subjectChain, verbPhrases, punctuation);
             return parsedSentence;
         }
@@ -341,7 +403,7 @@ namespace BasicTypes
             {
                 throw new ArgumentException("Can't parse null/empty subjects");
             }
-            if (value.Contains(" la "))
+            if (value.Contains(" la ") || value.EndsWith(" la"))
             {
                 throw new ArgumentException("Contains la. This isn't possible.");
             }
@@ -380,6 +442,9 @@ namespace BasicTypes
             {
                 string piChains = subjectTokens[i];
 
+                if(piChains=="")
+                    continue; //But how did that happen?
+
                 string[] piLessTokens = Splitters.SplitOnPi(piChains);
 
                 List<Chain> piCollection = new List<Chain>();
@@ -400,6 +465,14 @@ namespace BasicTypes
         //     li jo e soweli e kili e wawa lon anpa tawa anpa
         public TpPredicate ProcessPredicates(string liPart)
         {
+            if (string.IsNullOrWhiteSpace(liPart))
+            {
+                throw new InvalidOperationException("Missing argument, can't continue");
+            }
+            if (liPart == "li")
+            {
+                throw new InvalidOperationException("Can't do anything with just li");
+            }
             Particle verbPhraseParticle = null;
             Chain directObjectChain = null;
             HeadedPhrase verbPhrase = null;
@@ -606,28 +679,20 @@ namespace BasicTypes
 
         public HeadedPhrase HeadedPhraseParser(string value)
         {
-            if (value.Contains(" pi "))
+            foreach (string particle in new string[]{" pi ", " la ", " e ", " li "})
             {
-                throw new TpSyntaxException("Headed phrases have no particles. This one has pi");
+                if (value.Contains(particle))
+                {
+                    throw new TpSyntaxException("Headed phrases have no particles. This one has " + particle + " ref: " + value);
+                }    
             }
-            if (value.Contains(" la "))
-            {
-                throw new TpSyntaxException("Headed phrases have no particles. This one has la");
-            }
-            if (value.Contains(" e "))
-            {
-                throw new TpSyntaxException("Headed phrases have no particles. This one has la");
-            }
-            Config c = Config.DialectFactory;
-            c.ThrowOnSyntaxError = false;
-            ParserUtils pu = new ParserUtils(c);
 
             if (string.IsNullOrEmpty(value))
             {
                 throw new ArgumentException("Impossible to parse a null or zero length string.");
             }
             //No Pi!
-            string[] words = pu.JustTpWords(value);
+            string[] words = JustTpWords(value);
             if (words.Length == 0)
             {
                 throw new InvalidOperationException("Failed to parse: " + value);

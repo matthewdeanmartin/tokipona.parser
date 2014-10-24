@@ -21,8 +21,35 @@ namespace BasicTypes.Parser
     /// </remarks>
     public class Normalizer
     {
-        public static string NormalizeText(string text, Config dialect=null)
+        public static bool IsNullWhiteOrPunctuation(string value)
         {
+            if (string.IsNullOrWhiteSpace(value)) return true;
+
+
+            foreach (char c in value)
+            {
+                if (!"!.', !@#$%^&*())_[]|~`<>?:\n '".Contains(c))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public static string NormalizeText(string text, Config dialect = null)
+        {
+            Console.WriteLine("Before: " + text);
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return "";
+            }
+
+            if (IsNullWhiteOrPunctuation(text))
+            {
+                return "";
+            }
+
+
             if (dialect == null)
             {
                 dialect = Config.CurrentDialect;
@@ -31,13 +58,14 @@ namespace BasicTypes.Parser
             //Normalize prepositions to ~, so that we don't have tokens with embedded spaces (e.g. foo, kepeken => [foo],[, kepeken])
 
             bool hasErrors = DetectErrors(normalized, dialect.ThrowOnSyntaxError);
-            if(hasErrors)
+            if (hasErrors)
             {
                 normalized = RepairErrors(normalized);
             }
 
+            string[] preps = new String[] { "kepeken", "tawa", "poka", "sama", "tan", "lon" };
             bool isPunctuated = false;
-            foreach (string prep in new String[] { "kepeken", "tawa", "poka", "sama", "tan", "lon" })
+            foreach (string prep in preps)
             {
                 if (normalized.Contains(prep))
                 {
@@ -53,59 +81,111 @@ namespace BasicTypes.Parser
             }
             if (!isPunctuated && !normalized.Contains("~"))
             {
-                foreach (string prep in new String[] { "kepeken", "tawa", "poka", "sama", "tan", "lon" })
+                foreach (string prep in preps)
                 {
                     if (normalized.Contains(prep))
                     {
                         //HACK:Naive repair-- doesn't deal with unusal white space patterns.
-                        normalized = Regex.Replace(normalized, " "+ prep, " ~" + prep);
+                        normalized = Regex.Replace(normalized, " " + prep, " ~" + prep);
                     }
                 }
             }
 
+            //.. li sama.
+            foreach (string prep in preps)
+            {
+                foreach (char c in ":!?.")
+                {
+                    string terminalPrep = "~" + prep + c;
+                    if (normalized.Contains(terminalPrep))
+                    {
+                        normalized = normalized.Replace(terminalPrep, prep + c);
+                    }
+                }
+            }
+
+            //variation on terminal prep
+            //lon lawa sama o tawa...
+            foreach (string prep in preps)
+            {
+                foreach (var predicateSplitter in new string[] { " o " ," li "})
+                {
+                    string terminalPrep = "~" + prep + predicateSplitter;
+                    if (normalized.Contains(terminalPrep))
+                    {
+                        normalized = normalized.Replace(terminalPrep, prep + " o ");
+                    }    
+                }
+            }
+
+
+            //e ~sama
+            foreach (string prep in preps)
+            {
+                //e
+                foreach (char c in "e")
+                {
+                    string terminalPrep = " " + c + " ~" + prep;
+                    if (normalized.Contains(terminalPrep))
+                    {
+                        normalized = normalized.Replace(terminalPrep, " e " + prep);
+                    }
+                }
+            }
+
+            //la o
+            //invisible implicit subject.
+            if (normalized.Contains(" la o "))
+            {
+                normalized = normalized.Replace(" la o ", " la jan Sanwan o ");
+            }
+
+            //~tawa pi jan Puta li pona
+
+            //lon poka ma ni.
+            foreach (string prep1 in preps)
+            {
+                foreach (string prep2 in preps)
+                {
+                    string doublePrep = "~" + prep1 + " " + "~" + prep2;
+                    if (normalized.Contains(doublePrep))
+                    {
+                        normalized = normalized.Replace(doublePrep, "~" + prep1 + " " + prep2);
+                    }
+                    doublePrep = "~" + prep2 + " " + "~" + prep1;
+                    if (normalized.Contains(doublePrep))
+                    {
+                        normalized = normalized.Replace(doublePrep, "~" + prep2 + " " + prep1);
+                    }
+                }
+            }
 
             normalized = Regex.Replace(normalized, @"^\s+|\s+$", ""); //Remove extraneous whitespace
-            
+
             //TODO: detect start of sentence & replace mi X and sina Y with 
 
-            if (normalized.StartsWith("mi ") && !normalized.StartsWith("mi li "))
+            if (normalized.Contains("mi"))
             {
-                //modified mi is rare.
-                bool possibleProunoun = !normalized.StartsWith("mi suli")
-                                        && !normalized.StartsWith("mi mute")
-                                        && !normalized.StartsWith("mi tu")
-                                        && !normalized.StartsWith("mi soweli");
-                //mi mute li suli.
-                //mi toki.
-
-                //modified mi will force a li.
-                if (possibleProunoun && normalized.Contains(" li "))
+                if (normalized.Contains("mi wile ala e ma li"))
                 {
-                    //Skip we probalby have a li already.
+                    Console.WriteLine("Ok");
                 }
-                else
-                {
-                    normalized = "mi li " + normalized.Substring(3);
-                }
+                normalized = NormalizedMiLi(normalized);
+                normalized = NormalizedMiLi(normalized, "'");
+                normalized = NormalizedMiLi(normalized, "«");
+                normalized = NormalizedMiLi(normalized, "' ");
+                normalized = NormalizedMiLi(normalized, "« ");
             }
-            if (normalized.StartsWith("sina ") && !normalized.StartsWith("sina li "))
+
+            if (normalized.Contains("sina"))
             {
-                bool possibleProunoun = !normalized.StartsWith("sina suli")
-                                        && !normalized.StartsWith("sina mute")
-                                        && !normalized.StartsWith("sina tu")
-                                        && !normalized.StartsWith("sina soweli");
-                //mi mute li suli.
-                //mi toki.
-
-                if (possibleProunoun && normalized.Contains(" li "))
-                {
-                    //Skip we probalby have a li already.
-                }
-                else
-                {
-                    normalized = "sina li " + normalized.Substring(5);
-                }
+                normalized = NormalizedSinaLi(normalized);
+                normalized = NormalizedSinaLi(normalized, "'");
+                normalized = NormalizedSinaLi(normalized, "«");
+                normalized = NormalizedSinaLi(normalized, "' ");
+                normalized = NormalizedSinaLi(normalized, "« ");
             }
+
 
             if (normalized.Contains("la mi"))
             {
@@ -120,7 +200,7 @@ namespace BasicTypes.Parser
 
             }
 
-            
+
             if (normalized.Contains("la sina"))
             {
                 normalized = Regex.Replace(normalized, @"\bla sina\b", "la sina li"); //normalize contractions
@@ -133,32 +213,128 @@ namespace BasicTypes.Parser
                 }
             }
 
-            if (!(normalized.Contains(" li ") ||
-                normalized.Contains(" o ") ||
-                normalized.StartsWith("o")
-                ))
+            string fakePredicate = " li ijo Nanunanuwakawakawawa.";
+            if (!(normalized.Contains(" li ")) && !IsVocative(normalized) && !IsExclamatory(normalized) && !IsFragment(normalized))
             {
                 //Add a marker that we can later remove. Allows for parsing NPs, like titles, as if
                 //they were sentences.
                 if (normalized.EndsWith("."))
                 {
-                    normalized = normalized.Substring(0, normalized.Length-1) + " li ijo Nanunanuwakawakawawa.";
+                    normalized = normalized.Substring(0, normalized.Length - 1) + fakePredicate;
                 }
                 else
                 {
-                    normalized =  normalized+ " li ijo Nanunanuwakawakawawa.";
+                    normalized = normalized + fakePredicate;
 
                 }
             }
+            //vocatives & exlamations are expected to be fragmentary.
 
+            if (normalized.Contains("'"))
+            {
+                StringBuilder sb = new StringBuilder();
+                bool open = true;
+                foreach (char c in normalized)
+                {
+                    if (c == '\'')
+                    {
+                        if (open)
+                        {
+                            sb.Append("«");
+                        }
+                        else
+                        {
+                            sb.Append("»");
+                        }
+                        open = !open;
+                    }
+                    else
+                    {
+                        sb.Append(c);
+                    }
+                }
+                normalized = sb.ToString();
+            }
+
+            if (normalized == fakePredicate)
+            {
+                throw new InvalidOperationException("started with " + text);
+            }
             return normalized;
+        }
+
+        private static string NormalizedSinaLi(string normalized, string punctuation = "")
+        {
+            if (normalized.StartsWith(punctuation + "sina ") && !normalized.StartsWith(punctuation + "sina li "))
+            {
+                bool possibleProunoun = !normalized.StartsWith(punctuation + "sina suli")
+                                        && !normalized.StartsWith(punctuation + "sina mute")
+                                        && !normalized.StartsWith(punctuation + "sina tu")
+                                        && !normalized.StartsWith(punctuation + "sina soweli");
+                //mi mute li suli.
+                //mi toki.
+
+                if (possibleProunoun && normalized.Contains("sina li " + normalized.Substring(5 + punctuation.Length)))
+                {
+                    //Skip we probalby have a li already.
+                }
+                else
+                {
+                    normalized = punctuation + "sina li " + normalized.Substring(5 + punctuation.Length);
+                }
+            }
+            return normalized;
+        }
+
+        private static string NormalizedMiLi(string normalized, string punctuation = "")
+        {
+            if (normalized.StartsWith(punctuation + "mi ") && !normalized.StartsWith(punctuation + "mi li "))
+            {
+                //modified mi is rare.
+                bool possibleProunoun = !normalized.StartsWith(punctuation + "mi suli")
+                                        && !normalized.StartsWith(punctuation + "mi mute")
+                                        && !normalized.StartsWith(punctuation + "mi tu")
+                                        && !normalized.StartsWith(punctuation + "mi soweli");
+                //mi mute li suli.
+                //mi toki.
+
+                //modified mi will force a li.
+                if (possibleProunoun && !normalized.Contains("mi li " + normalized.Substring(3 + punctuation.Length)))
+                {
+                    //Skip we probalby have a li already.
+                }
+                //else
+                {
+                    normalized = punctuation + "mi li " + normalized.Substring(3 + punctuation.Length);
+                }
+            }
+            return normalized;
+        }
+
+        private static bool IsFragment(string value)
+        {
+            string normalized = value.Trim(new char[] { ' ', '\'', '«', '»', '?', '!', '.' });
+            return normalized.EndsWith(" la");
+        }
+
+        public static bool IsExclamatory(string value)
+        {
+            string normalized = value.Trim(new char[] { ' ', '\'', '«' });
+            return normalized.EndsWith("!");
+        }
+
+        public static bool IsVocative(string value)
+        {
+            string normalized = value.Trim(new char[] { ' ', '\'', '«' });
+            return normalized.Contains(" o ") ||
+                   normalized.StartsWith("o");
         }
 
         public static string RepairErrors(string phrase)
         {
             foreach (string s1 in new String[] { "li", "la", "e", "pi" })
             {
-                phrase= Regex.Replace(phrase, @"\b" + s1 + " " + s1 + @"\b", "[SYNTAX ERROR: "+ s1 + " " + s1 +"]");
+                phrase = Regex.Replace(phrase, @"\b" + s1 + " " + s1 + @"\b", "[SYNTAX ERROR: " + s1 + " " + s1 + "]");
             }
             foreach (string s1 in new String[] { "li", "la", "e", "pi" })
             {
@@ -175,13 +351,13 @@ namespace BasicTypes.Parser
             return phrase;
         }
 
-        
+
         public static bool DetectErrors(string phrase, bool throwOnSyntaxErrors = false)
         {
-            
-            foreach (string s1 in new String[] {"li", "la", "e", "pi"})
+
+            foreach (string s1 in new String[] { "li", "la", "e", "pi" })
             {
-                Match found = Regex.Match(phrase, @"\b" +s1+" "+s1+@"\b");    
+                Match found = Regex.Match(phrase, @"\b" + s1 + " " + s1 + @"\b");
                 if (found.Success)
                 {
                     if (throwOnSyntaxErrors)
@@ -192,15 +368,15 @@ namespace BasicTypes.Parser
                     }
                 }
             }
-            foreach (string s1 in new String[] { "li", "la", "e","pi" })
+            foreach (string s1 in new String[] { "li", "la", "e", "pi" })
             {
-                foreach (string s2 in new String[] {"li", "la", "e", "pi"})
+                foreach (string s2 in new String[] { "li", "la", "e", "pi" })
                 {
-                    Match found = Regex.Match(phrase, @"\b"+ s1+ " " +s2 + @"\b");
+                    Match found = Regex.Match(phrase, @"\b" + s1 + " " + s2 + @"\b");
                     if (found.Success)
                     {
                         if (throwOnSyntaxErrors)
-                            throw new TpSyntaxException("Illegal series of particles : " + s1+ " " +s2 + " in " + phrase);
+                            throw new TpSyntaxException("Illegal series of particles : " + s1 + " " + s2 + " in " + phrase);
                         else
                         {
                             return true;
@@ -208,7 +384,7 @@ namespace BasicTypes.Parser
                     }
                 }
             }
-            
+
             return false;
 
         }

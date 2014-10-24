@@ -72,7 +72,7 @@ namespace BasicTypes
             }
             if (Particle.IsParticle(word))
             {
-                throw new InvalidOperationException("Don't treat particles as words.");
+                throw new InvalidOperationException("Don't treat particles as words : " + word);
             }
 
             if (provider == null)

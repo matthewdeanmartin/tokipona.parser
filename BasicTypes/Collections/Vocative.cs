@@ -8,13 +8,11 @@ using BasicTypes.Exceptions;
 
 namespace BasicTypes.Collections
 {
-    //La fragments.
-    //kin la?
-    public class Fragment
+    public class Vocative
     {
         [DataMember]
         private readonly Chain nominal;
-        public Fragment(Chain nominal)
+         public Vocative(Chain nominal)
         {
             if (nominal == null)
             {
@@ -23,7 +21,7 @@ namespace BasicTypes.Collections
             this.nominal= nominal;
         }
 
-        public Chain Nominal{ get { return nominal; } }
+         public Chain Nominal{ get { return nominal; } }
 
         public List<string> ToTokenList(string format, IFormatProvider formatProvider)
         {

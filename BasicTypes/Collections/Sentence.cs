@@ -40,7 +40,20 @@ namespace BasicTypes
 
         [DataMember]
         private readonly Particle conjunction;
+        private Vocative vocative;
+        private Fragment fragment;
 
+        public Sentence(Vocative vocative, BasicTypes.Punctuation punctuation)
+        {
+            this.vocative = vocative;
+            this.punctuation = punctuation;
+        }
+
+        public Sentence(Fragment fragment, BasicTypes.Punctuation punctuation)
+        {
+            this.fragment = fragment;
+            this.punctuation = punctuation;
+        }
         public Sentence(Sentence[] preconditions = null, Sentence conclusion = null)
         {
             LaFragment=new List<Chain>();
@@ -49,15 +62,25 @@ namespace BasicTypes
                 throw new TpSyntaxException("There must be a head sentence (conclusions) if there are preconditions.");
             }
             this.conclusion = conclusion;
+            
             this.preconditions = preconditions;//Entire sentences.       
 
+
+            if (conclusion != null && conclusion.punctuation == null)
+            {
+                throw new InvalidOperationException("Conclusions require punctuation, if only through normalization");
+            }
             if (preconditions != null)
             {
                 foreach (Sentence precondition in preconditions)
                 {
                     precondition.HeadSentence = conclusion;
-                }
 
+                    if (precondition.punctuation != null)
+                    {
+                        throw new InvalidOperationException("Preconditions should have no punctuation.");
+                    }
+                }
             }
         }
 
@@ -73,7 +96,17 @@ namespace BasicTypes
             this.fragments = fragments;
         }
 
-        public Sentence(Chain subjects, PredicateList predicates, Punctuation punctuation = null, Particle conjuction = null)
+        //Preconditions
+        public Sentence(Chain subjects, PredicateList predicates)
+        {
+            LaFragment = new List<Chain>();
+            this.subjects = new Chain[] { subjects }; //only (*), o, en
+            this.predicates = predicates; //only li, pi, en
+        }
+
+
+        //Simple Sentences
+        public Sentence(Chain subjects, PredicateList predicates, Punctuation punctuation, Particle conjuction = null)
         {
             LaFragment = new List<Chain>();
             this.subjects = new Chain[] { subjects }; //only (*), o, en
@@ -89,6 +122,8 @@ namespace BasicTypes
             this.predicates = predicates; //only li, pi, en
             this.punctuation = punctuation ?? new Punctuation(".");
         }
+
+        
 
         public Sentence BindSeme(Sentence question)
         {
@@ -130,6 +165,7 @@ namespace BasicTypes
         public PredicateList Predicates { get { return predicates; } }
         public Punctuation Punctuation { get { return punctuation; } }
         public Particle Conjunction { get { return conjunction; } }
+        public Vocative Vocative { get { return vocative; } }
 
         public Sentence EquivallencyGenerator()
         {
@@ -157,27 +193,34 @@ namespace BasicTypes
         public string ToString(string format, IFormatProvider formatProvider)
         {
             List<string> sb = new List<string>();
+            string spaceJoined = null;
             if (preconditions != null)
             {
                 foreach (Sentence precondition in preconditions)
                 {
                     sb.AddRange(precondition.ToTokenList(format, formatProvider));
                 }
+                sb.Add(Particles.la.ToString(format, formatProvider));
                 sb.AddRange(conclusion.ToTokenList(format, formatProvider));
 
+                spaceJoined = sb.SpaceJoin(format);
+                if (conclusion.punctuation != null)
+                {
+                    spaceJoined = spaceJoined + conclusion.punctuation.ToString();//format, formatProvider
+                }
             }
             else
             {
                 //Simple sentence
-                sb = ToTokenList(format, formatProvider);   
+                sb = ToTokenList(format, formatProvider);
+
+                spaceJoined = sb.SpaceJoin(format);
+                if (punctuation != null)
+                {
+                    spaceJoined = spaceJoined + this.punctuation.ToString();//format, formatProvider
+                }
             }
 
-            string spaceJoined = sb.SpaceJoin(format);
-            if (punctuation != null)
-            {
-                spaceJoined = spaceJoined + this.punctuation.ToString();//format, formatProvider
-            }
-            
             if (format != "bs")
             {
                 string result = Denormalize(spaceJoined);
@@ -193,33 +236,49 @@ namespace BasicTypes
         {
             List<string> sb = new List<string>();
 
-            if (LaFragment != null)
+
+            //TODO Vocative sentences
+            //[chain]o[!.?]
+            if (vocative != null)
             {
-                foreach (Chain chain in LaFragment)
-                {
-                    sb.Add("{");
-                    sb.AddRange(chain.ToTokenList(format, formatProvider));
-                    sb.Add(Particles.la.ToString(format, formatProvider));
-                    sb.Add("}");
-                }
+                sb.AddRange(vocative.ToTokenList(format,formatProvider));
             }
-            
-            //Unless it is an array, delegate to member ToString();
-            if (subjects != null)
+            else if (fragment != null)
             {
-                //Should only happen for imperatives
-                sb.Add("[");
-                sb.AddRange(Particles.en, subjects.Select(x =>x==null?"[NULL]": x.ToString(format, formatProvider)));
-                sb.Add("]");
+                sb.AddRange(fragment.ToTokenList(format, formatProvider));
             }
             else
             {
-                Console.WriteLine("This was surprising.. no subjects");
+                if (LaFragment != null)
+                {
+                    foreach (Chain chain in LaFragment)
+                    {
+                        sb.Add("{");
+                        sb.AddRange(chain.ToTokenList(format, formatProvider));
+                        sb.Add(Particles.la.ToString(format, formatProvider));
+                        sb.Add("}");
+                    }
+                }
+
+                //Unless it is an array, delegate to member ToString();
+                if (subjects != null)
+                {
+                    //Should only happen for imperatives
+                    sb.Add("[");
+                    sb.AddRange(Particles.en,
+                        subjects.Select(x => x == null ? "[NULL]" : x.ToString(format, formatProvider)));
+                    sb.Add("]");
+                }
+                else
+                {
+                    Console.WriteLine("This was surprising.. no subjects");
+                }
+
+                sb.Add("<");
+                sb.AddRange(Predicates.ToTokenList(format, formatProvider));
+                sb.Add(">");
             }
 
-            sb.Add("<");
-            sb.AddRange(Predicates.ToTokenList(format, formatProvider));
-            sb.Add(">");
 
             return sb;
         }

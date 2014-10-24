@@ -81,6 +81,7 @@
     <Compile Include="Collections\SentenceByValue.cs" />
     <Compile Include="Collections\SentenceSemeEqual.cs" />
     <Compile Include="Collections\SentenceTypeConverter.cs" />
+    <Compile Include="Collections\Vocative.cs" />
     <Compile Include="Collections\WordSet.cs" />
     <Compile Include="Collections\WordSetByValue.cs" />
     <Compile Include="Collections\SentenceTests.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="MoreTypes\ParseOrDefault.cs" />
     <Compile Include="MoreTypes\SerializableDictionary.cs" />
     <Compile Include="Parser\Normalizer.cs" />
+    <Compile Include="Parser\NormalizerTests.cs" />
     <Compile Include="Parser\ParserUtils.cs" />
     <Compile Include="Knowledge\PhoneNumbers.cs" />
     <Compile Include="Knowledge\PhoneNumberTests.cs" />
@@ -139,6 +141,7 @@
     <Compile Include="Parts\CompoundWordsTest.cs" />
     <Compile Include="Parts\ConvertWordToBasicType.cs" />
     <Compile Include="Parts\ConvertWordToBasicTypeTests.cs" />
+    <Compile Include="Parts\DirectSpeech.cs" />
     <Compile Include="Parts\GlossMap.cs" />
     <Compile Include="Parts\Number.cs" />
     <Compile Include="Parts\PartOfSpeech.cs" />

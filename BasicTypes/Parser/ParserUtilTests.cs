@@ -15,9 +15,33 @@ namespace BasicTypes.Parser
     [TestFixture]
     public class ParserUtilTests
     {
+        //
+        [Test]
+        public void SplitSentenceWithColon_Normalized()
+        {
+            string s = "sina toki e ni: mi wile e ni.";
+            Config c = Config.DialectFactory;
+            //c.ThrowOnSyntaxError = false;
+            ParserUtils pu = new ParserUtils(c);
+            string[] parts= pu.ParseIntoRawSentences(s);
+            Assert.AreEqual("sina li toki e ni:",parts[0]);
+            Assert.AreEqual("mi li wile e ni.", parts[1]);
+        }
 
         [Test]
-        public void CrateTpPredicateAfterSplitingEChain()
+        public void ProcessVocative()
+        {
+            Config c = Config.DialectFactory;
+            //c.ThrowOnSyntaxError = false;
+            ParserUtils pu = new ParserUtils(c);
+
+            const string vocative = "jan sona pi ma pi kasi suli o!";
+            Sentence s = pu.ParsedSentenceFactory(vocative);
+            Console.WriteLine(s.ToString("b"));
+        }
+
+        [Test]
+        public void CreateTpPredicateAfterSplitingEChain()
         {
             Config c = Config.DialectFactory;
             c.ThrowOnSyntaxError = false;
@@ -41,12 +65,12 @@ namespace BasicTypes.Parser
             {
                 foreach (Sentence sentence in s[i])
                 {
-                    string reToStringed = sentence.ToString();
+                    string reToStringed = sentence==null?"[NULL SENTENCE]":sentence.ToString();
                     bool match = ck.Setences.Any(x => x.Trim() == reToStringed);
                     if (!match)
                     {
                         Console.WriteLine(match + " O:" + ck.Setences[i]);
-                        Console.WriteLine(match + " R:" + sentence.ToString("b"));
+                        Console.WriteLine(match + " R:" +  (sentence==null?"[NULL SENTENCE]":sentence.ToString("b")));
 
                     }
                 }

@@ -8,6 +8,19 @@ namespace BasicTypes.Extensions
 {
     public static class ListExtension
     {
+        public static void Format(this List<string> template, Dictionary<string,string> values)
+        {
+            //Swap {#n} tokens found in list with n#th value in values
+            
+        }
+
+        //ParseFormat( ni/li/pona/tawa/mi,  {XX}{0}/li/pona{XX}/tawa/{1}{XX}  where XX is extra crap.
+        public static void ParseFormat(this List<string> list, List<string> template)
+        {
+            //Return all the possible matching lists of tokens
+            //Can be exact, or match despite extra stuff 
+        }
+
         public static void  AddRange(this List<string> list, Particle particle, IEnumerable<string> strings)
         {
             int i = 0;
@@ -37,7 +50,7 @@ namespace BasicTypes.Extensions
                     {
                         if (index == 0) continue; //skip first space e.g. " foo"
                         if(index-1>0 && bracketedWithExtra[index-1]==' ') continue; //skip double, e.g. foo  bar
-                        if (index - 1 >= 0 &&  "<{[(".Contains(bracketedWithExtra[index - 1])) continue; //previous was opening, e.g. "[ foo"
+                        if (index - 1 >= 0 && "<{[(#".Contains(bracketedWithExtra[index - 1])) continue; //previous was opening, e.g. "[ foo"
                         if (index + 1 < bracketedWithExtra.Length && ">}])".Contains(bracketedWithExtra[index +1])) continue; //skip if upcoming is closing bracket e.g. foo)
 
                         //if (index - 1 > 0 && "<{[(".Contains(bracketedWithExtra[index - 1])) continue; //previous was opening, e.g. "[ foo"
@@ -66,7 +79,7 @@ namespace BasicTypes.Extensions
                 //[] = modifiers
                 //() = NP/VP
 
-                return !("<>{}[]()".Contains(value[0])); //Not a bracket? Keep it.
+                return !("<>{}[]()#".Contains(value[0])); //Not a bracket? Keep it.
             }
 
             if (format == "b" || format == "bs")//bracketed

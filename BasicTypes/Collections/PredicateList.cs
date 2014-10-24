@@ -36,8 +36,7 @@ namespace BasicTypes.Collections
                 }
                 if (tpPredicate.Directs != null)
                 {
-                    sb.Add(Particles.e.ToString());
-                    sb.AddRange(tpPredicate.Directs.ToTokenList(format, formatProvider));
+                    sb.AddRange(tpPredicate.Directs.ToTokenList(format, formatProvider)); //Chains manage their own particles.
                 }
                 if (tpPredicate.Prepositionals != null)
                 {

@@ -9,8 +9,17 @@ using NUnit.Framework;
 namespace BasicTypes
 {
     [TestFixture]
-    public class SenteneTests
+    public class SentenceTests
     {
+        [Test]
+        public void SentenceWithFullSentenceConditional()
+        {
+            string value = "ni li soweli la waso li pona.";
+            Sentence s = Sentence.Parse(value, Config.DialectFactory);
+            Assert.AreEqual(value, s.ToString());
+        }
+
+
         [Test]
         public void MaximalSentences_Part1()
         {
@@ -80,6 +89,8 @@ namespace BasicTypes
             string value = "jan li jo e nanpa 555-1234.";
             Sentence s = Sentence.Parse(value, Config.DialectFactory);
             Assert.AreEqual(value, s.ToString());
+            Console.WriteLine(s.ToString("b"));
+            Console.WriteLine(s.ToString("bs"));
         }
 
         private static Sentence EstablishAFact()

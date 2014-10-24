@@ -45,6 +45,7 @@ namespace BasicTypes
         //    this.modifiers = modifiers;
         //}
 
+        
         public Word Head { get { return head; } }
         public WordSet Modifiers { get { return modifiers; } }
         
@@ -79,6 +80,7 @@ namespace BasicTypes
         public List<string> ToTokenList(string format, IFormatProvider formatProvider)
         {
             List<string> words = new List<string>();
+            words.Add("#");
             words.Add(head.ToString(format,formatProvider));
             if (Modifiers != null && Modifiers.Count > 0)
             {
