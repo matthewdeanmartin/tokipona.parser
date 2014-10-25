@@ -28,7 +28,7 @@ namespace BasicTypes.Parser
 
             foreach (char c in value)
             {
-                if (!"!.', !@#$%^&*())_[]|~`<>?:\n '".Contains(c))
+                if (!"!.', !@#$%^&*())_[]|~`<>?:\n '»".Contains(c))
                 {
                     return false;
                 }
@@ -115,6 +115,19 @@ namespace BasicTypes.Parser
                     {
                         normalized = normalized.Replace(terminalPrep, prep + " o ");
                     }    
+                }
+            }
+
+            //And again with commas
+            foreach (string prep in preps)
+            {
+                foreach (var predicateSplitter in new string[] { ", o ", ", li " })
+                {
+                    string terminalPrep = "~" + prep + predicateSplitter;
+                    if (normalized.Contains(terminalPrep))
+                    {
+                        normalized = normalized.Replace(terminalPrep, prep + ", o ");
+                    }
                 }
             }
 

@@ -90,12 +90,12 @@ namespace BasicTypes.Parser
             {
                 foreach (Sentence sentence in s[i])
                 {
-                    string reToStringed = sentence.ToString();
+                    string reToStringed = sentence==null?"[NULL]":sentence.ToString();
                     bool match = ck.Setences.Any(x => x.Trim() == reToStringed);
                     if (match)
                     {
                         Console.WriteLine(match + " O:" + ck.Setences[i]);
-                        Console.WriteLine(match + " R:" + sentence.ToString("b"));
+                        Console.WriteLine(match + " R:" + (sentence==null?"[NULL]":sentence.ToString("b")));
 
                     }
                 }
