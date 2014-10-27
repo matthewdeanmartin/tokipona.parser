@@ -43,6 +43,7 @@ namespace BasicTypes
                 .Split(text, @"(?<=[\?!.:])")  //split preserving punctuation
                 .Where(x => !string.IsNullOrWhiteSpace(x)) //skip empties
                 .Select(x => Normalizer.NormalizeText(x, config))
+                .Where(x => x!=null)
                 .ToArray();
         }
 
@@ -187,10 +188,10 @@ namespace BasicTypes
             return list.ToArray();
         }
 
-        public Sentence ParsedSentenceFactory(string sentence)
+        public Sentence ParsedSentenceFactory(string sentence, string original)
         {
             sentence = Normalizer.NormalizeText(sentence); //Any way to avoid calling this twice?
-            if (sentence == "")
+            if (string.IsNullOrWhiteSpace(sentence))
             {
                 return null;
             }
@@ -263,7 +264,7 @@ namespace BasicTypes
                         //Head sentence.
                         // subSentence.StartsWith("la ") ? subSentence.Substring(3) : subSentence
                         string laLessString = subSentence.RemoveLeadingWholeWord("la");
-                        headSentence = ProcessSimpleSentence(laLessString, punctuation);
+                        headSentence = ProcessSimpleSentence(laLessString, punctuation,original);
                         continue; //Not dealing with "kin la!"
                     }
 
@@ -276,12 +277,12 @@ namespace BasicTypes
                         //Maybe should recurse.
                         string laLessString = subSentence.RemoveLeadingWholeWord("la");
 
-                        currentSentence = ProcessSimpleSentence(laLessString, null);
+                        currentSentence = ProcessSimpleSentence(laLessString, null, original);
                         preconditions.Add(currentSentence);
                     }
                     else
                     {
-                        string laLessString = subSentence.StartsWith("la ") ? subSentence.Substring(3) : subSentence;
+                        string laLessString = subSentence.RemoveLeadingWholeWord("la");
                         Chain fragment = ProcessEnPiChain(laLessString);
                         if (currentSentence == null)
                         {
@@ -303,7 +304,7 @@ namespace BasicTypes
             {
                 //No la at all.
                 //Simple Sentence
-                return ProcessSimpleSentence(sentence, punctuation);
+                return ProcessSimpleSentence(sentence, punctuation, original);
             }
             if (headSentence == null)
             {
@@ -316,11 +317,18 @@ namespace BasicTypes
         }
 
 
-        private Sentence ProcessSimpleSentence(string sentence, Punctuation punctuation)
+        private Sentence ProcessSimpleSentence(string sentence, Punctuation punctuation, string original)
         {
             if (sentence.StartsOrContainsOrEnds("la"))
             {
                 throw new InvalidOperationException("If it contains a la, anywhere, it isn't a simple sentence. " + sentence);
+            }
+
+            bool isHortative = false;
+            if (sentence.StartsWith("o "))
+            {
+                isHortative = true;
+                sentence = sentence.RemoveLeadingWholeWord("o");
             }
 
             string[] liParts = Splitters.SplitOnLiOrO(sentence);
@@ -363,14 +371,22 @@ namespace BasicTypes
             }
 
 
-            if (punctuation == null)
-            {
-                //Condition
-                return new Sentence(subjectChain, verbPhrases);
-            }
+            //if (punctuation == null)
+            //{
+            //    //Condition
+            //    return new Sentence(subjectChain, verbPhrases);
+            //}
             
             //Head or complete sentence.
-            Sentence parsedSentence = new Sentence(subjectChain, verbPhrases, punctuation);
+
+            Sentence parsedSentence = new Sentence(subjectChain, verbPhrases, new SentenceOptionalParts()
+            {
+                //Conjunction
+                //Etc
+                Punctuation = punctuation,
+                IsHortative = isHortative
+            },
+            original,sentence);
             return parsedSentence;
         }
 

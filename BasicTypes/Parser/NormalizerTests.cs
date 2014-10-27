@@ -11,6 +11,30 @@ namespace BasicTypes.Parser
     public class NormalizerTests
     {
 
+        //nena meli kin li tawa en tan, li kama nena pi suli en kiwen.
+
+        [Test]
+        public void LiTawaEnTan()
+        {
+            //sina toki e ni: 
+            const string s = "nena meli kin li tawa en tan, li kama nena pi suli en kiwen.";
+            Console.WriteLine("Original  : " + s);
+            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+            Console.WriteLine("Normalized: " + normalized);
+            //sina li toki e ni: 
+            const string expected = "nena meli kin li tawa en tan li kama nena pi suli en kiwen.";
+            Assert.AreEqual(expected, normalized);
+        }
+
+
+        [Test]
+        public void Normalize_IntransitiveVerb()
+        {
+            string value = Normalizer.NormalizeText("jan li moku, kepeken ilo moku");
+            Console.WriteLine(value);
+            Assert.IsTrue(value.Contains("~"), value);
+        }
+
         [Test]
         public void MiWileENi()
         {

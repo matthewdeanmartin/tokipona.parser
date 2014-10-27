@@ -14,7 +14,7 @@ namespace BasicTypes.Glosser
     //Culture aware! TP = InvariantCulture.
     public class GlossMaker
     {
-        public string Gloss(string sentence, string language = "en", bool includePos =false)
+        public string Gloss(string normalized, string original, string language = "en", bool includePos =false)
         {
             Dialect config = Dialect.DialectFactory;
             config.ThrowOnSyntaxError = false;
@@ -24,7 +24,7 @@ namespace BasicTypes.Glosser
             
             {
                 List<string> gloss = new List<string>();
-                Sentence sentenceTree = pu.ParsedSentenceFactory(sentence);
+                Sentence sentenceTree = pu.ParsedSentenceFactory(normalized, original);
 
                 //Console.WriteLine(sentence);
                 //Console.WriteLine(sentenceTree.ToString("g"));
@@ -142,39 +142,43 @@ namespace BasicTypes.Glosser
                     verb = PartOfSpeech.VerbTransitive;
                 }
 
-                if (predicate.VerbPhrases.Head.ToString(verb).Contains("Error"))
+                if (predicate.VerbPhrases != null) //This is possible
                 {
-                    foreach (Word modifier in predicate.VerbPhrases.Modifiers)
+                    if (predicate.VerbPhrases.Head.ToString(verb).Contains("Error"))
                     {
-                        gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
-                    }
+                        foreach (Word modifier in predicate.VerbPhrases.Modifiers)
+                        {
+                            gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
+                        }
 
-                    //Can't gloss as verb, assume we have a noun phrase
-                    if (predicate.VerbPhrases.Head.ToString(PartOfSpeech.Noun).Contains("Error"))
-                    {
-                        //Oh, this might be an adjective. jan li laso.
-                        gloss.Add(predicate.VerbPhrases.Head.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
+                        //Can't gloss as verb, assume we have a noun phrase
+                        if (predicate.VerbPhrases.Head.ToString(PartOfSpeech.Noun).Contains("Error"))
+                        {
+                            //Oh, this might be an adjective. jan li laso.
+                            gloss.Add(predicate.VerbPhrases.Head.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
+                        }
+                        else
+                        {
+                            gloss.Add(predicate.VerbPhrases.Head.ToString(PartOfSpeech.Noun + ":" + includePos, config));
+                        }
                     }
                     else
                     {
-                        gloss.Add(predicate.VerbPhrases.Head.ToString(PartOfSpeech.Noun + ":" + includePos, config));
-                    }
-                }
-                else
-                {
-                    foreach (Word modifier in predicate.VerbPhrases.Modifiers)
-                    {
-                        string maybeAdverb = modifier.ToString(PartOfSpeech.Adverb + ":" + includePos, config);
-                        if (maybeAdverb.Contains("Error"))
+                        foreach (Word modifier in predicate.VerbPhrases.Modifiers)
                         {
-                            //jan Sonja dictionary treats Adv & Adj the same.
-                            maybeAdverb = modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config);
+                            string maybeAdverb = modifier.ToString(PartOfSpeech.Adverb + ":" + includePos, config);
+                            if (maybeAdverb.Contains("Error"))
+                            {
+                                //jan Sonja dictionary treats Adv & Adj the same.
+                                maybeAdverb = modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config);
+                            }
+                            gloss.Add(maybeAdverb);
                         }
-                        gloss.Add(maybeAdverb);
-                    }
 
-                    gloss.Add(predicate.VerbPhrases.Head.ToString(verb, config));
+                        gloss.Add(predicate.VerbPhrases.Head.ToString(verb, config));
+                    }
                 }
+                
 
                 int directCount = 0;
                 if (predicate.Directs != null)

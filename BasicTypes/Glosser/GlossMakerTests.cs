@@ -16,8 +16,9 @@ namespace BasicTypes.Glosser
         [Test]
         public void NounPhrase()
         {
+            string s = "jan suli";
             GlossMaker gm = new GlossMaker();
-            Console.WriteLine(gm.Gloss("jan suli"));
+            Console.WriteLine(gm.Gloss(s,s));
         }
 
         [Test]
@@ -28,7 +29,8 @@ namespace BasicTypes.Glosser
             {
                 GlossMaker gm = new GlossMaker();
                 gm.ThrowOnSyntaxErrors = true;
-                Console.WriteLine(gm.Gloss("jan suli pi pi pi"));
+                string s = "jan suli pi pi pi";
+                Console.WriteLine(gm.Gloss(s,s));
             }
             catch (InvalidOperationException)
             {
@@ -47,7 +49,8 @@ namespace BasicTypes.Glosser
         public void SimplePredicate()
         {
             GlossMaker gm = new GlossMaker();
-            Console.WriteLine(gm.Gloss("jan li suli"));
+            string s = "jan li suli";
+            Console.WriteLine(gm.Gloss(s,s));
         }
 
 
@@ -55,30 +58,26 @@ namespace BasicTypes.Glosser
         public void SimplePredicateConjunction()
         {
             GlossMaker gm = new GlossMaker();
-            Console.WriteLine(gm.Gloss("jan li suli li wawa"));
+            string s = "jan li suli li wawa";
+            Console.WriteLine(gm.Gloss(s,s));
         }
 
         [Test]
         public void TransitiveVerb()
         {
             GlossMaker gm = new GlossMaker();
-            Console.WriteLine(gm.Gloss("jan li moku e kili"));
+            string s = "jan li moku e kili";
+            Console.WriteLine(gm.Gloss(s,s));
         }
 
         [Test]
         public void IntransitiveVerb()
         {
             GlossMaker gm = new GlossMaker();
-            Console.WriteLine(gm.Gloss("jan li moku, kepeken ilo moku","en",true));
-            Console.WriteLine(gm.Gloss("jan li moku, kepeken ilo moku"));
+            string s = "jan li moku, kepeken ilo moku";
+            Console.WriteLine(gm.Gloss(s,s,"en",true));
+            Console.WriteLine(gm.Gloss(s, s));
         }
 
-        [Test]
-        public void Normalize_IntransitiveVerb()
-        {
-            string value= Normalizer.NormalizeText("jan li moku, kepeken ilo moku");
-            Console.WriteLine(value);
-            Assert.IsTrue(value.Contains("~"),value);
-        }
     }
 }

@@ -14,6 +14,18 @@ using System.Collections.ObjectModel;
 
 namespace BasicTypes
 {
+
+    [DataContract]
+    [Serializable]
+    public class SentenceOptionalParts
+    {
+        public bool IsHortative { get; set; } //o
+        public Particle Conjunction { get; set; }//anu, taso
+        public Chain Fragments { get; set; } // x la ni la 
+        //Basic Sentence goes here. S+V+PP
+        public Punctuation Punctuation { get; set; }//.?!
+    }
+
     [DataContract]
     [Serializable]
     public class Sentence : IContainsWord, IFormattable
@@ -50,18 +62,13 @@ namespace BasicTypes
         [DataMember]
         private readonly bool isHortative; //o mi mute li moku e kili.
 
-        public Sentence(Vocative vocative, Punctuation punctuation)
-        {
-            this.vocative = vocative;
-            this.punctuation = punctuation;
-        }
+        [DataMember]
+        private readonly string original;
 
-        public Sentence(Fragment fragment, Punctuation punctuation)
-        {
-            this.fragment = fragment;
-            this.punctuation = punctuation;
-        }
-        public Sentence(Sentence[] preconditions = null, Sentence conclusion = null)
+        [DataMember]
+        private readonly string normalized;
+
+        public Sentence(Sentence[] preconditions = null, Sentence conclusion = null, string original = null, string normalized = null)
         {
             LaFragment=new List<Chain>();
             if (preconditions != null && preconditions.Length > 0 && conclusion == null)
@@ -89,49 +96,52 @@ namespace BasicTypes
                     }
                 }
             }
+            this.original = original;
+            this.normalized = normalized;
         }
 
-        
-
-        public Sentence(Chain fragments, Chain subjects, PredicateList predicates, Punctuation punctuation = null, Particle conjuction = null, bool isHortative= false)
+        //Suggest that vocatives don't chain.  o jan o meli o soweli => o jan! o meli! o soweli!
+        public Sentence(Vocative vocative, Punctuation punctuation, string original = null, string normalized = null)
         {
-            LaFragment = new List<Chain>();
-            this.subjects = new Chain[] { subjects }; //only (*), o, en
-            this.predicates = predicates; //only li, pi, en
-            this.punctuation = punctuation ?? new Punctuation(".");
-            this.conjunction = conjuction;
-            this.fragments = fragments;
-            this.isHortative = isHortative;
+            this.vocative = vocative;
+            this.punctuation = punctuation;
+
+            this.original = original;
+            this.normalized = normalized;
+        }
+
+        public Sentence(Fragment fragment, Punctuation punctuation, string original = null, string normalized = null)
+        {
+            this.fragment = fragment;
+            this.punctuation = punctuation;
+
+            this.original = original;
+            this.normalized = normalized;
         }
 
         //Preconditions
-        public Sentence(Chain subjects, PredicateList predicates)
+        public Sentence(Chain subjects, PredicateList predicates, string original = null, string normalized = null)
         {
             LaFragment = new List<Chain>();
             this.subjects = new Chain[] { subjects }; //only (*), o, en
             this.predicates = predicates; //only li, pi, en
+
+            this.original = original;
+            this.normalized = normalized;
         }
-
-
-        //Simple Sentences
-        public Sentence(Chain subjects, PredicateList predicates, Punctuation punctuation, Particle conjuction = null)
-        {
-            LaFragment = new List<Chain>();
-            this.subjects = new Chain[] { subjects }; //only (*), o, en
-            this.predicates = predicates; //only li, pi, en
-            this.punctuation = punctuation ?? new Punctuation(".");
-            this.conjunction = conjuction;
-        }
-
-        public Sentence(Chain[] subjects, PredicateList predicates, Punctuation punctuation = null)
-        {
-            LaFragment = new List<Chain>();
-            this.subjects = subjects; //only (*), o, en
-            this.predicates = predicates; //only li, pi, en
-            this.punctuation = punctuation ?? new Punctuation(".");
-        }
-
         
+        //Simple Sentences
+        public Sentence(Chain subjects, PredicateList predicates, SentenceOptionalParts parts, string original = null, string normalized = null)
+        {
+            LaFragment = new List<Chain>();
+            this.subjects = new Chain[] { subjects }; //only (*), o, en
+            this.predicates = predicates; //only li, pi, en
+            this.punctuation = parts.Punctuation;
+            this.conjunction = parts.Conjunction;
+
+            this.original = original;
+            this.normalized = normalized;
+        }
 
         public Sentence BindSeme(Sentence question)
         {
@@ -360,3 +370,4 @@ namespace BasicTypes
 
 
 }
+

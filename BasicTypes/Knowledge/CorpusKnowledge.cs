@@ -43,7 +43,7 @@ namespace BasicTypes.Knowledge
 
             foreach (string sentence in sentences)
             {
-                Sentence parsedSentence = pu.ParsedSentenceFactory(sentence);
+                Sentence parsedSentence = pu.ParsedSentenceFactory(sentence,sentence);
                 facts.Add(new Discourse()
                     {
                         parsedSentence

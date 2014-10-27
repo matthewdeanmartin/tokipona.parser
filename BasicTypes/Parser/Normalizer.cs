@@ -41,12 +41,12 @@ namespace BasicTypes.Parser
             Console.WriteLine("Before: " + text);
             if (string.IsNullOrWhiteSpace(text))
             {
-                return "";
+                return null;
             }
 
             if (IsNullWhiteOrPunctuation(text))
             {
-                return "";
+                return null;
             }
 
 
@@ -67,6 +67,18 @@ namespace BasicTypes.Parser
             if (normalized.Contains("[NULL]"))
             {
                 normalized = normalized.Replace("[NULL]", "");
+            }
+
+            //Extraneous commas
+            if (normalized.Contains(", li "))
+            {
+                normalized = normalized.Replace(", li ", " li ");
+            }
+
+            //Extraneous whitespace
+            while (normalized.Contains("  "))
+            {
+                normalized = normalized.Replace("  ", " ");
             }
 
             string[] preps = new String[] { "kepeken", "tawa", "poka", "sama", "tan", "lon" };
@@ -97,74 +109,7 @@ namespace BasicTypes.Parser
                 }
             }
 
-            //.. li sama.
-            foreach (string prep in preps)
-            {
-                foreach (char c in ":!?.")
-                {
-                    string terminalPrep = "~" + prep + c;
-                    if (normalized.Contains(terminalPrep))
-                    {
-                        normalized = normalized.Replace(terminalPrep, prep + c);
-                    }
-                }
-            }
-
-            //variation on terminal prep
-            //lon lawa sama o tawa...
-            foreach (string prep in preps)
-            {
-                foreach (var predicateSplitter in new string[] { " o " ," li "})
-                {
-                    string terminalPrep = "~" + prep + predicateSplitter;
-                    if (normalized.Contains(terminalPrep))
-                    {
-                        normalized = normalized.Replace(terminalPrep, prep + predicateSplitter);
-                    }    
-                }
-            }
-
-
-            //la terminates
-            foreach (string prep in preps)
-            {
-                foreach (var predicateSplitter in new string[] { " la "})
-                {
-                    string terminalPrep = "~" + prep + predicateSplitter;
-                    if (normalized.Contains(terminalPrep))
-                    {
-                        normalized = normalized.Replace(terminalPrep, prep + predicateSplitter);
-                    }
-                }
-            }
-
-            //And again with commas
-            foreach (string prep in preps)
-            {
-                foreach (var predicateSplitter in new string[] { ", o ", ", li " })
-                {
-                    string terminalPrep = "~" + prep + predicateSplitter;
-                    if (normalized.Contains(terminalPrep))
-                    {
-                        normalized = normalized.Replace(terminalPrep, prep + ", o ");
-                    }
-                }
-            }
-
-
-            //e ~sama
-            foreach (string prep in preps)
-            {
-                //e
-                foreach (char c in "e")
-                {
-                    string terminalPrep = " " + c + " ~" + prep;
-                    if (normalized.Contains(terminalPrep))
-                    {
-                        normalized = normalized.Replace(terminalPrep, " e " + prep);
-                    }
-                }
-            }
+            
 
             //la o
             //invisible implicit subject.
@@ -173,46 +118,9 @@ namespace BasicTypes.Parser
                 normalized = normalized.Replace(" la o ", " la jan Sanwan o ");
             }
 
-            //~tawa pi jan Puta li pona
-
-            //lon poka ma ni.
-            foreach (string prep1 in preps)
+            if (normalized.Contains("~"))
             {
-                foreach (string prep2 in preps)
-                {
-                    string doublePrep = "~" + prep1 + " " + "~" + prep2;
-                    if (normalized.Contains(doublePrep))
-                    {
-                        normalized = normalized.Replace(doublePrep, "~" + prep1 + " " + prep2);
-                    }
-                    doublePrep = "~" + prep2 + " " + "~" + prep1;
-                    if (normalized.Contains(doublePrep))
-                    {
-                        normalized = normalized.Replace(doublePrep, "~" + prep2 + " " + prep1);
-                    }
-                }
-            }
-
-            //This could go many directions.  
-            //li tawa en tan (lon ...) -- prep phrase like  *** Prep phrase parser blows chunks on these.
-            //li tawa en tan li .... -- verb like
-            //li tawa en tan e ... -- verb like *edgy but sort of okay
-            //li tawa en tan. ... -- predicate like. ** OK as predicate
-            foreach (string prep1 in preps)
-            {
-                foreach (string prep2 in preps)
-                {
-                    string doublePrep = "~" + prep1 + " en " + "~" + prep2;
-                    if (normalized.Contains(doublePrep))
-                    {
-                        normalized = normalized.Replace(doublePrep,   prep1 + " " + prep2);
-                    }
-                    doublePrep = "~" + prep2 + " en " + "~" + prep1;
-                    if (normalized.Contains(doublePrep))
-                    {
-                        normalized = normalized.Replace(doublePrep,  prep2 + " " + prep1);
-                    }
-                }
+                normalized=ThoseArentPrepositions(preps, normalized);
             }
 
             normalized = Regex.Replace(normalized, @"^\s+|\s+$", ""); //Remove extraneous whitespace
@@ -285,6 +193,13 @@ namespace BasicTypes.Parser
             }
             //vocatives & exlamations are expected to be fragmentary.
 
+
+            //Probably added above by mistake
+            while (normalized.Contains("  "))
+            {
+                normalized = normalized.Replace("  ", " ");
+            }
+
             if (normalized.Contains("'"))
             {
                 StringBuilder sb = new StringBuilder();
@@ -314,6 +229,163 @@ namespace BasicTypes.Parser
             if (normalized == fakePredicate)
             {
                 throw new InvalidOperationException("started with " + text);
+            }
+            return normalized;
+        }
+
+        private static string ThoseArentPrepositions(string[] preps, string normalized)
+        {
+
+            //.. li sama.
+            foreach (string prep in preps)
+            {
+                foreach (char c in ":!?.")
+                {
+                    string terminalPrep = "~" + prep + c;
+                    if (normalized.Contains(terminalPrep))
+                    {
+                        normalized = normalized.Replace(terminalPrep, prep + c);
+                    }
+                }
+            }
+
+            //variation on terminal prep
+            //lon lawa sama o tawa...
+            foreach (string prep in preps)
+            {
+                foreach (var predicateSplitter in new string[] { " o ", " li " })
+                {
+                    string terminalPrep = "~" + prep + predicateSplitter;
+                    if (normalized.Contains(terminalPrep))
+                    {
+                        normalized = normalized.Replace(terminalPrep, prep + predicateSplitter);
+                    }
+                }
+            }
+
+
+            //la terminates
+            foreach (string prep in preps)
+            {
+                foreach (var predicateSplitter in new string[] { " la " })
+                {
+                    string terminalPrep = "~" + prep + predicateSplitter;
+                    if (normalized.Contains(terminalPrep))
+                    {
+                        normalized = normalized.Replace(terminalPrep, prep + predicateSplitter);
+                    }
+                }
+            }
+
+            //And again with commas
+            foreach (string prep in preps)
+            {
+                foreach (var predicateSplitter in new string[] { ", o ", ", li " })
+                {
+                    string terminalPrep = "~" + prep + predicateSplitter;
+                    if (normalized.Contains(terminalPrep))
+                    {
+                        normalized = normalized.Replace(terminalPrep, prep + predicateSplitter);
+                    }
+                }
+            }
+
+
+            //e ~sama
+            foreach (string prep in preps)
+            {
+                //e
+                foreach (char c in "e")
+                {
+                    string terminalPrep = " " + c + " ~" + prep;
+                    if (normalized.Contains(terminalPrep))
+                    {
+                        normalized = normalized.Replace(terminalPrep, " e " + prep);
+                    }
+                }
+            }
+
+//~tawa pi jan Puta li pona
+
+            //lon poka ma ni.
+            foreach (string prep1 in preps)
+            {
+                foreach (string prep2 in preps)
+                {
+                    string doublePrep = "~" + prep1 + " " + "~" + prep2;
+                    if (normalized.Contains(doublePrep))
+                    {
+                        normalized = normalized.Replace(doublePrep, "~" + prep1 + " " + prep2);
+                    }
+                    doublePrep = "~" + prep2 + " " + "~" + prep1;
+                    if (normalized.Contains(doublePrep))
+                    {
+                        normalized = normalized.Replace(doublePrep, "~" + prep2 + " " + prep1);
+                    }
+                }
+            }
+
+
+            //This could go many directions.  
+            //li tawa en tan (lon ...) -- prep phrase like  *** Prep phrase parser blows chunks on these.
+            //li tawa en tan li .... -- verb like
+            //li tawa en tan e ... -- verb like *edgy but sort of okay
+            //li tawa en tan. ... -- predicate like. ** OK as predicate
+            foreach (string prep1 in preps)
+            {
+                foreach (string prep2 in preps)
+                {
+                    string doublePrep = "~" + prep1 + " en " + "~" + prep2;
+                    if (normalized.Contains(doublePrep))
+                    {
+                        normalized = normalized.Replace(doublePrep, prep1 + " " + prep2);
+                    }
+                    doublePrep = "~" + prep2 + " en " + "~" + prep1;
+                    if (normalized.Contains(doublePrep))
+                    {
+                        normalized = normalized.Replace(doublePrep, prep2 + " " + prep1);
+                    }
+                }
+            }
+
+
+            //Can't be prep phrase
+            //li ~tawa en tan li 
+
+            foreach (string prep1 in preps)
+            {
+                foreach (string prep2 in preps)
+                {
+                    string doublePrep = " li ~" + prep1 + " en " + prep2 + " li ";
+                    if (normalized.Contains(doublePrep))
+                    {
+                        normalized = normalized.Replace(doublePrep, doublePrep.Replace("~", ""));
+                    }
+                    doublePrep = " li ~" + prep2 + " en " + prep1 + " li ";
+                    if (normalized.Contains(doublePrep))
+                    {
+                        normalized = normalized.Replace(doublePrep, doublePrep.Replace("~", ""));
+                    }
+                }
+            }
+
+
+            //li tawa en ~tan li 
+            foreach (string prep1 in preps)
+            {
+                foreach (string prep2 in preps)
+                {
+                    string doublePrep = " li " + prep1 + " en ~" + prep2 + " li ";
+                    if (normalized.Contains(doublePrep))
+                    {
+                        normalized = normalized.Replace(doublePrep, doublePrep.Replace("~", ""));
+                    }
+                    doublePrep = " li " + prep2 + " en ~" + prep1 + " li ";
+                    if (normalized.Contains(doublePrep))
+                    {
+                        normalized = normalized.Replace(doublePrep, doublePrep.Replace("~", ""));
+                    }
+                }
             }
             return normalized;
         }

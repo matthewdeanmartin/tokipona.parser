@@ -59,7 +59,8 @@ namespace BasicTypes.Collections
             Dialect c = formatProvider.GetFormat(typeof(Sentence)) as Dialect;
             
             ParserUtils pu = new ParserUtils(c);
-            return pu.ParsedSentenceFactory(value.ToString());
+            string result = value.ToString();
+            return pu.ParsedSentenceFactory(result, result);
         }
     }
 }

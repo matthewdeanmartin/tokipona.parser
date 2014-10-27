@@ -24,7 +24,7 @@ namespace BasicTypes.Parser
             Dialect c = Dialect.DialectFactory;
             //c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
-            Sentence sentence = pu.ParsedSentenceFactory(s);
+            Sentence sentence = pu.ParsedSentenceFactory(s,s);
             Assert.IsNotNull(sentence.Subjects);
             Assert.IsNotNull(sentence.Subjects.Length>0);
             Assert.IsNotNull(sentence.Subjects[0].HeadedPhrases[0].Head.Text,"mi");
@@ -51,7 +51,7 @@ namespace BasicTypes.Parser
             ParserUtils pu = new ParserUtils(c);
 
             const string vocative = "jan sona pi ma pi kasi suli o!";
-            Sentence s = pu.ParsedSentenceFactory(vocative);
+            Sentence s = pu.ParsedSentenceFactory(vocative, vocative);
             Console.WriteLine(s.ToString("b"));
         }
         [Test]
@@ -59,7 +59,7 @@ namespace BasicTypes.Parser
         {
             
             const string vocative = "jan Oliwa o, o, o.";
-            bool isIt= Normalizer.IsVocative(vocative);
+            bool isIt = Normalizer.IsVocative(vocative);
             Assert.IsTrue(isIt, "Expected to ID a vocative.");
         }
 
@@ -73,7 +73,7 @@ namespace BasicTypes.Parser
             ParserUtils pu = new ParserUtils(c);
 
             const string vocative = "jan Oliwa o, o, o.";
-            Sentence s = pu.ParsedSentenceFactory(vocative);
+            Sentence s = pu.ParsedSentenceFactory(vocative, vocative);
             Console.WriteLine(s.ToString("b"));
         }
         
@@ -98,6 +98,7 @@ namespace BasicTypes.Parser
             Dialect c = Dialect.DialectFactory;
             c.TargetGloss = "en";
             CorpusKnowledge ck = new CorpusKnowledge(sample,c);
+            
             Discourse[] s = ck.MakeSentences();
             for (int i = 0; i < s.Length; i++)
             {
@@ -149,7 +150,7 @@ namespace BasicTypes.Parser
                             Console.WriteLine(match + " Rb:" + (sentence == null ? "[NULL]" : sentence.ToString("b")));
 
                             //TODO: Need to store original somewhere...
-                            Console.WriteLine(match + " Ren:" + (sentence == null ? "[NULL]" : gm.Gloss(sentence.ToString("g"))));
+                            Console.WriteLine(match + " Ren:" + (sentence == null ? "[NULL]" : gm.Gloss(sentence.ToString("g"), "n/a")));
                         //}
                     }
                 }    
@@ -166,7 +167,8 @@ namespace BasicTypes.Parser
 
             Sentence[] s = pu
                             .ParseIntoRawSentences(CorpusTexts.UnpaText)
-                            .Select(x => pu.ParsedSentenceFactory(x))
+                            .Select(x => pu.ParsedSentenceFactory(x,x))
+                            .Where(x=>x!=null)
                             .ToArray();
            Assert.Greater(s.Length,0);
 
