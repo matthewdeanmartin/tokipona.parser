@@ -113,8 +113,22 @@ namespace BasicTypes.Parser
                     string terminalPrep = "~" + prep + predicateSplitter;
                     if (normalized.Contains(terminalPrep))
                     {
-                        normalized = normalized.Replace(terminalPrep, prep + " o ");
+                        normalized = normalized.Replace(terminalPrep, prep + predicateSplitter);
                     }    
+                }
+            }
+
+
+            //la terminates
+            foreach (string prep in preps)
+            {
+                foreach (var predicateSplitter in new string[] { " la "})
+                {
+                    string terminalPrep = "~" + prep + predicateSplitter;
+                    if (normalized.Contains(terminalPrep))
+                    {
+                        normalized = normalized.Replace(terminalPrep, prep + predicateSplitter);
+                    }
                 }
             }
 

@@ -270,7 +270,9 @@ namespace BasicTypes
                     {
                         //This is a sentence
                         //Maybe should recurse.
-                        currentSentence = ProcessSimpleSentence(subSentence, null);
+                        string laLessString = subSentence.StartsWith("la ") ? subSentence.Substring(3) : subSentence;
+
+                        currentSentence = ProcessSimpleSentence(laLessString, null);
                         preconditions.Add(currentSentence);
                     }
                     else

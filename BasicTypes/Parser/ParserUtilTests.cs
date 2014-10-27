@@ -80,7 +80,15 @@ namespace BasicTypes.Parser
         [Test]
         public void IdentifyDiscourses_CanItEvenParseTheSentences_ShowGoodOnes()
         {
-            string sample = CorpusKnowledgeTests.SampleText;
+            string[] sample =
+                new string[]
+                {
+                CorpusKnowledgeTests.SampleText,
+                CorpusKnowledgeTests.Gilgamesh,
+                CorpusKnowledgeTests.SampleText1,
+                CorpusKnowledgeTests.SampleText3
+                    
+                };
             Config dialect = Config.DialectFactory;
             dialect.TargetGloss = "en";
 
