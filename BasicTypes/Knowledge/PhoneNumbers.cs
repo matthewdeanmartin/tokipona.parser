@@ -50,7 +50,7 @@ namespace BasicTypes.Knowledge
             Chain directs = new Chain(ChainType.Directs, e, new[] { new HeadedPhrase(nanpa, new WordSet() { fiveEtc }) });
 
             TpPredicate predicate = new TpPredicate(Particles.li, verb, directs, null);
-            Sentence fact = new Sentence(subject, new PredicateList { predicate });
+            Sentence fact = new Sentence(subject, new PredicateList { predicate },new Punctuation("."));
             return fact;
         }
 

@@ -11,6 +11,47 @@ namespace BasicTypes.Extensions
 {
     public static class StringExtensions
     {
+        public static string RemoveLeadingWholeWord(this string value, string word)
+        {
+            if (!value.Contains(word)) return value;//short circuit
+
+            //TODO: Maybe use regex instead?
+            foreach (var white in new String[]{" ","\n"})
+            {
+                if (value.Contains(white))
+                {
+                    string wordWithWhite = word + white;
+                    value = value.StartsWith(wordWithWhite) ? value.Substring(wordWithWhite.Length) : value;    
+                }
+            }
+            return value;
+        }
+
+        public static bool StartsOrContainsOrEnds(this string value,string target)
+        {
+            if (value == target)
+            {
+                return true;
+            }
+            foreach (var white in new string[] {" ","\n" })
+            {
+                if (value.StartsWith(target + white))
+                {
+                    return true;
+                }
+                if (value.EndsWith(white + target))
+                {
+                    return true;
+                }
+                if (value.Contains(white + target + white))
+                {
+                    return true;
+                }    
+            }
+            
+            return false;
+        }
+
         //http://stackoverflow.com/questions/2961656/generic-tryparse
         public static T Convert<T>(this string input)
         {

@@ -44,7 +44,7 @@ namespace BasicTypes
     public partial class Word : IFormattable, ICopySelf<Word>
     //IConvertible (Basic types, like double, int, date, etc)
     {
-        private Config currentDialect;
+        private Dialect currentDialect;
         static Word()
         {
             AutoMapper.Mapper.CreateMap<Word, Word>();
@@ -66,13 +66,19 @@ namespace BasicTypes
             {
                 throw new ArgumentNullException("word", "Can't construct words with null");
             }
-            if (word.IndexOfAny(new char[] { '.', ' ', '?', '!' }) != -1)
+            if (word.IndexOfAny(new char[] { '.', ' ', '?', '!', '\n','\r' }) != -1)
             {
-                throw new InvalidLetterSetException("Words must not have spaces or punctuation, (other than the preposition marker ~)");
+                throw new InvalidLetterSetException("Words must not have spaces or punctuation, (other than the preposition marker ~): found: " + word);
             }
-            if (Particle.IsParticle(word))
+            //TODO: How to impelment this rule? Need to rework dictionary, since dictionary stores all words (particles included) as Word
+            //if (Particle.IsParticle(word))
+            //{
+            //    throw new InvalidOperationException("Don't treat particles as words : " + word);
+            //}
+            //Can be a number, word, compound word or escaped word.
+            if (!CheckIsNumber(word) && !Word.ValidateCompoundWordLetterSet(word) && !IsEscaped(word))
             {
-                throw new InvalidOperationException("Don't treat particles as words : " + word);
+                throw new InvalidOperationException("Unescaped, Invalid Characters : " + word + " ==> " + ListInvalidCharacters(word));
             }
 
             if (provider == null)
@@ -81,7 +87,7 @@ namespace BasicTypes
             }
             else
             {
-                currentDialect = provider.GetFormat(typeof(Word)) as Config;
+                currentDialect = provider.GetFormat(typeof(Word)) as Dialect;
             }
             
             if (Words.Dictionary.ContainsKey(word))
@@ -94,6 +100,12 @@ namespace BasicTypes
             //Validate
 
             this.word = word;
+        }
+
+        public static bool IsEscaped(string value)
+        {
+            //TODO:check for internal "
+            return !(value.StartsWith("\"") && value.EndsWith("\""));
         }
 
         public Word(string word, Dictionary<string, Dictionary<string, string[]>> glossMap)
@@ -117,18 +129,43 @@ namespace BasicTypes
 
         public bool IsValidLetterSet
         {
-            get
-            {
-                string lowerWord = word.ToLowerInvariant();
-                return lowerWord.All(c => "jklmnpstwaeiou".Contains(c));
+            get {
+                return ValidateLetterSet(word);
             }
+        }
+
+        public static bool ValidateLetterSet(string value)
+        {
+            string lowerWord = value.ToLowerInvariant();
+            return lowerWord.All(c => "jklmnpstwaeiou".Contains(c));
+        }
+
+        public static bool ValidateCompoundWordLetterSet(string value)
+        {
+            string lowerWord = value.ToLowerInvariant();
+            return lowerWord.All(c => "jklmnpstwaeiou-".Contains(c));
+        }
+
+        public static string ListInvalidCharacters(string value)
+        {
+            string lowerWord = value.ToLowerInvariant();
+
+            List<string> wrongOnes=new List<string>();
+            foreach (char c in lowerWord)
+            {
+                if (!"jklmnpstwaeiou".Contains(c))
+                {
+                    wrongOnes.Add(c.ToString());
+                }
+            }
+            return string.Concat(",", wrongOnes);
         }
 
         public bool IsValidPhonology
         {
             get
             {
-                Config c = Config.DialectFactory;
+                Dialect c = Dialect.DialectFactory;
                 c.ThrowOnSyntaxError = false;
                 ParserUtils pu = new ParserUtils(c);
                 //Letters
@@ -149,8 +186,25 @@ namespace BasicTypes
         {
             get
             {
-                return word.All(c => "1234567890-.".Contains(c));
+                return word.All(c => "1234567890-.#".Contains(c));
             }
+        }
+
+        public static bool CheckIsNumber(string value)
+        {
+            if (!value.All(c => "1234567890-.#".Contains(c)))
+            {
+                if (value.Contains("#"))
+                {
+                    if (value.StartsWith("#"))
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+                return true;
+            }
+            return false;
         }
 
         public bool IsProperModifier
@@ -202,7 +256,7 @@ namespace BasicTypes
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            Config c = formatProvider.GetFormat(typeof(Word)) as Config;
+            Dialect c = formatProvider.GetFormat(typeof(Word)) as Dialect;
 
             //// Handle null or empty string. 
             if (String.IsNullOrEmpty(format)) format = "g";
@@ -273,7 +327,7 @@ namespace BasicTypes
                         sb.Append(item.Key + " : " + string.Join(",", item.Value) + "; ");
                     }
                 }
-                Console.WriteLine(pair.Key + " : " + sb.ToString());
+                Console.WriteLine(pair.Key + " : " + sb);
             }
 
             if (!((Text.ToUpper())[0] == Text[0]))

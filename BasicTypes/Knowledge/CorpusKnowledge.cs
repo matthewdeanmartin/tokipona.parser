@@ -16,13 +16,13 @@ namespace BasicTypes.Knowledge
     public class CorpusKnowledge
     {
         private readonly string[] sentences;
-        private Config c;
+        private Dialect c;
         public string[] Setences
         {
             get { return sentences; }
         }
 
-        public CorpusKnowledge(string corpus, Config dialect)
+        public CorpusKnowledge(string corpus, Dialect dialect)
         {
             //https://stackoverflow.com/questions/521146/c-sharp-split-string-but-keep-split-chars-separators
             //https://stackoverflow.com/questions/3115150/how-to-escape-regular-expression-special-characters-using-javascript
@@ -35,7 +35,7 @@ namespace BasicTypes.Knowledge
 
         public Discourse[] MakeSentences()
         {
-            Config c = Config.DialectFactory;
+            Dialect c = Dialect.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 

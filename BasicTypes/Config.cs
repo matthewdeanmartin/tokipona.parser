@@ -38,13 +38,17 @@ namespace BasicTypes
 
     //Every decision that has never by completely made
     //For deployed apps.
-    [Serializable]
-    public sealed class Config:IFormatProvider 
-    {
-        private static readonly Config currentDialect = new Config();
 
-        //Should only be 1 of this one.
-        public static Config CurrentDialect { get { return currentDialect; } }
+    //This is for a machine wide config when none has been specified. 
+    //Works best when you want behavior to match the Users OS on an installed windows app.
+    //Otherwise, it is all pain. Have to specify dialect all the time.
+    [Serializable]
+    public sealed class Config 
+    {
+        private static readonly Dialect currentDialect = new Dialect();
+
+        //Should only be 1 of this one. //app domain wide, default if none other provided.
+        public static Dialect CurrentDialect { get { return currentDialect; } }
 
         //Can be others.
         public Config()
@@ -53,9 +57,15 @@ namespace BasicTypes
         static Config()
         {
             //Check AppSettings... if none...
-            currentDialect = DialectFactory;
+            currentDialect = Dialect.DialectFactory;
             Regex.CacheSize = 50;
         }
+        
+    }
+
+    [Serializable]
+    public class Dialect : IFormatProvider
+    {
         public int UpToVersion { get; set; } //oldest (1)| mani, pan, esun... (2)| kipisi,monsuta ...(3)| ... pu (4)|
         public bool StrictPos { get; set; } //e.g. vt must have e phrase, adj must follow head word, etc.
         public bool ObligatoryPlural { get; set; } //e.g. jan tu li jan mute.
@@ -73,14 +83,14 @@ namespace BasicTypes
         public string WritingSystem { get; set; } //ToString to a prestige or utility script (e.g. pretty or compressed)
         public string WriteProperNounsInThisLanguage { get; set; }
         public string TargetGloss { get; set; } //Language letter codes, defaults to tp, thread is special & means culture of current computer.
-        
+
         //set to tp/en/eo/etc, e.g. ma tomo "New York" vs ma tomo Nujoku
 
-        public static Config DialectFactory
+        public static Dialect DialectFactory
         {
             get
             {
-                return new Config()
+                return new Dialect()
                 {
                     UpToVersion = 999,
                     StrictPos = false,
@@ -104,7 +114,10 @@ namespace BasicTypes
 
         public object GetFormat(Type formatType)
         {
-            return currentDialect;
+            //Dialect can vary by type, e.g. Word,  Particle, Chain.
+            //I don't know why except maybe to return different objects 
+            //more specialized to a given type. (e.g. number or date)
+            return this;
         }
     }
 }

@@ -27,7 +27,7 @@ namespace BasicTypes
             {
                 throw new ArgumentNullException("provider", "IFormatProvider can't be null");
             }
-            Config c = provider.GetFormat(typeof (Punctuation)) as Config;
+            Dialect c = provider.GetFormat(typeof(Punctuation)) as Dialect;
 
             ParserUtils pu = new ParserUtils(c);
             string[] possibleWords = pu.JustTpWords(value);

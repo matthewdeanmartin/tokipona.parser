@@ -16,7 +16,7 @@ namespace BasicTypes.Parser
         [Test]
         public void CompoundWordParseSimple()
         {
-            ParserUtils pu = new ParserUtils(Config.CurrentDialect);
+            ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
             string[] oneCompound= pu. JustTpWordsNumbersPunctuation("tomo-tawa-kon");
             oneCompound = pu.RemergeCompounds(oneCompound);
             foreach (string s in oneCompound)
@@ -31,7 +31,7 @@ namespace BasicTypes.Parser
         [Test]
         public void ParseLiAla()
         {
-            ParserUtils pu = new ParserUtils(Config.CurrentDialect);
+            ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
             string[] twoWords= pu. JustTpWordsNumbersPunctuation("li ala");
             Assert.AreEqual(2, twoWords.Length);
             Assert.AreEqual("li", twoWords[0]);
@@ -42,7 +42,7 @@ namespace BasicTypes.Parser
         [Test]
         public void ParseEachWordInDictionary()
         {
-            ParserUtils pu = new ParserUtils(Config.CurrentDialect);
+            ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
             foreach (Word word in Words.Dictionary.Values)
             {
                 string[] oneWord = pu.JustTpWords(word.Text);
@@ -55,7 +55,7 @@ namespace BasicTypes.Parser
         public void ParseEachWordInDictionary2()
         {
             bool canary = false;
-            ParserUtils pu = new ParserUtils(Config.CurrentDialect);
+            ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
             foreach (Word word in Words.Dictionary.Values)
             {
                 string[] oneWord = pu.JustTpWordsNumbersPunctuation(word.Text);
@@ -93,7 +93,7 @@ namespace BasicTypes.Parser
         [Test]
         public void OneWord()
         {
-            ParserUtils pu = new ParserUtils(Config.CurrentDialect);
+            ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
             string[] w = pu.JustTpWords("jan");
             Assert.AreEqual(1, w.Length);
         }
@@ -101,7 +101,7 @@ namespace BasicTypes.Parser
         [Test]
         public void TwoWords()
         {
-            Config c = Config.DialectFactory;
+            Dialect c = Dialect.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -113,7 +113,7 @@ namespace BasicTypes.Parser
         [Test]
         public void ThreWords()
         {
-            Config c = Config.DialectFactory;
+            Dialect c = Dialect.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -124,7 +124,7 @@ namespace BasicTypes.Parser
         [Test]
         public void WordsNumbersWithoutDash()
         {
-            Config c = Config.DialectFactory;
+            Dialect c = Dialect.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -135,7 +135,7 @@ namespace BasicTypes.Parser
         [Test]
         public void WordsNumbersPunctuationWithoutDash()
         {
-            Config c = Config.DialectFactory;
+            Dialect c = Dialect.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -146,7 +146,7 @@ namespace BasicTypes.Parser
         [Test]
         public void WordsNumbersWithDash()
         {
-            Config c = Config.DialectFactory;
+            Dialect c = Dialect.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -163,7 +163,7 @@ namespace BasicTypes.Parser
         {
             string value = "123-1231";
 
-            Config c = Config.DialectFactory;
+            Dialect c = Dialect.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 

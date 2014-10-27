@@ -30,9 +30,10 @@ namespace BasicTypes.Collections
             foreach (TpPredicate tpPredicate in this)
             {
                 sb.Add(tpPredicate.Particle.ToString(format, formatProvider));
+
                 if (tpPredicate.VerbPhrases != null)
                 {
-                    sb.AddRange(tpPredicate.VerbPhrases.ToTokenList(format, formatProvider));
+                    sb.AddRange(tpPredicate.VerbPhrases.ToTokenList(format, formatProvider, tpPredicate.Directs!=null));
                 }
                 if (tpPredicate.Directs != null)
                 {

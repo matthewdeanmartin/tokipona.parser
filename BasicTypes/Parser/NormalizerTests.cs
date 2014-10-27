@@ -15,27 +15,27 @@ namespace BasicTypes.Parser
         public void MiWileENi()
         {
             //sina toki e ni: 
-            string s = "mi wile e ni.";
+            const string s = "mi wile e ni.";
 
 
             Console.WriteLine("Original  : " + s);
-            string normalized = Normalizer.NormalizeText(s, Config.CurrentDialect);
+            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
             Console.WriteLine("Normalized: " + normalized);
             //sina li toki e ni: 
-            string expected = "mi li wile e ni.";
+            const string expected = "mi li wile e ni.";
             Assert.AreEqual(expected, normalized);
         }
 
         [Test]
         public void LonPokaSentence()
         {
-            string s = "jan Puta li lon poka ma Nepali en Inteja";
+            const string s = "jan Puta li lon poka ma Nepali en Inteja";
 
             Console.WriteLine("Original  : " + s);
-            string normalized=  Normalizer.NormalizeText(s, Config.CurrentDialect);
+            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
             Console.WriteLine("Normalized: " + normalized);
 
-            string expected = "jan Puta li ~lon poka ma Nepali en Inteja";
+            const string expected = "jan Puta li ~lon poka ma Nepali en Inteja";
             Assert.AreEqual(expected,normalized);
         }
 
@@ -43,26 +43,26 @@ namespace BasicTypes.Parser
         [Test]
         public void SomethingLiSama()
         {
-            string s = "ni li sama.";
+            const string s = "ni li sama.";
 
             Console.WriteLine("Original  : " + s);
-            string normalized = Normalizer.NormalizeText(s, Config.CurrentDialect);
+            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
             Console.WriteLine("Normalized: " + normalized);
 
-            string expected = "ni li sama.";
+            const string expected = "ni li sama.";
             Assert.AreEqual(expected, normalized);
         }
 
         [Test]
         public void TawaPiJanPutaLiPona()
         {
-            string s = "tawa pi jan Puta li pona.";
+            const string s = "tawa pi jan Puta li pona.";
 
             Console.WriteLine("Original  : " + s);
-            string normalized = Normalizer.NormalizeText(s, Config.CurrentDialect);
+            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
             Console.WriteLine("Normalized: " + normalized);
 
-            string expected = "tawa pi jan Puta li pona.";
+            const string expected = "tawa pi jan Puta li pona.";
             Assert.AreEqual(expected, normalized);
         }
 

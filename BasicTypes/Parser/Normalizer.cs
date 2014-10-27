@@ -36,7 +36,7 @@ namespace BasicTypes.Parser
             return true;
         }
 
-        public static string NormalizeText(string text, Config dialect = null)
+        public static string NormalizeText(string text, Dialect dialect = null)
         {
             Console.WriteLine("Before: " + text);
             if (string.IsNullOrWhiteSpace(text))
@@ -63,6 +63,12 @@ namespace BasicTypes.Parser
                 normalized = RepairErrors(normalized);
             }
 
+            //Left overs from initial parsing.
+            if (normalized.Contains("[NULL]"))
+            {
+                normalized = normalized.Replace("[NULL]", "");
+            }
+
             string[] preps = new String[] { "kepeken", "tawa", "poka", "sama", "tan", "lon" };
             bool isPunctuated = false;
             foreach (string prep in preps)
@@ -71,7 +77,7 @@ namespace BasicTypes.Parser
                 {
                     isPunctuated = normalized.Contains(", " + prep) || normalized.Contains("," + prep);
                     normalized = Regex.Replace(normalized, "," + prep, " ~" + prep);
-                    normalized = Regex.Replace(normalized, ", " + prep, "~" + prep);
+                    normalized = Regex.Replace(normalized, ", " + prep, " ~" + prep);
 
                     if (normalized.Contains("~ ~"))
                     {
@@ -183,6 +189,28 @@ namespace BasicTypes.Parser
                     if (normalized.Contains(doublePrep))
                     {
                         normalized = normalized.Replace(doublePrep, "~" + prep2 + " " + prep1);
+                    }
+                }
+            }
+
+            //This could go many directions.  
+            //li tawa en tan (lon ...) -- prep phrase like  *** Prep phrase parser blows chunks on these.
+            //li tawa en tan li .... -- verb like
+            //li tawa en tan e ... -- verb like *edgy but sort of okay
+            //li tawa en tan. ... -- predicate like. ** OK as predicate
+            foreach (string prep1 in preps)
+            {
+                foreach (string prep2 in preps)
+                {
+                    string doublePrep = "~" + prep1 + " en " + "~" + prep2;
+                    if (normalized.Contains(doublePrep))
+                    {
+                        normalized = normalized.Replace(doublePrep,   prep1 + " " + prep2);
+                    }
+                    doublePrep = "~" + prep2 + " en " + "~" + prep1;
+                    if (normalized.Contains(doublePrep))
+                    {
+                        normalized = normalized.Replace(doublePrep,  prep2 + " " + prep1);
                     }
                 }
             }
@@ -344,17 +372,21 @@ namespace BasicTypes.Parser
             return normalized.EndsWith(" la");
         }
 
+        //trying to catch ike a!
         public static bool IsExclamatory(string value)
         {
             string normalized = value.Trim(new char[] { ' ', '\'', '«' });
             return normalized.EndsWith("!");
         }
 
+        //Trying to catch o! jan o! jan o. jan o, o.
         public static bool IsVocative(string value)
         {
-            string normalized = value.Trim(new char[] { ' ', '\'', '«' });
+            string normalized = value.Trim(new char[] { ' ', '\'', '«','.','!','?',',' });
             return normalized.Contains(" o ") ||
-                   normalized.StartsWith("o");
+                   normalized.StartsWith("o ") ||
+                   normalized.EndsWith(" o") ||
+                   normalized=="o";
         }
 
         public static string RepairErrors(string phrase)

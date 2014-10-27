@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BasicTypes.Exceptions;
+using BasicTypes.Parser;
 using NUnit.Framework;
 
 namespace BasicTypes.Glosser
@@ -20,12 +21,26 @@ namespace BasicTypes.Glosser
         }
 
         [Test]
-        [ExpectedException(typeof(Exception))] //A bad sentence can be all sorts of bad.
+        //[ExpectedException(typeof(Exception))] //A bad sentence can be all sorts of bad.
         public void IllegalNounPhrase()
         {
-            GlossMaker gm = new GlossMaker();
-            gm.ThrowOnSyntaxErrors = true;
-            Console.WriteLine(gm.Gloss("jan suli pi pi pi"));
+            try
+            {
+                GlossMaker gm = new GlossMaker();
+                gm.ThrowOnSyntaxErrors = true;
+                Console.WriteLine(gm.Gloss("jan suli pi pi pi"));
+            }
+            catch (InvalidOperationException)
+            {
+                Assert.Pass();
+                return;
+            }
+            catch (TpSyntaxException)
+            {
+                Assert.Pass();
+                return;
+            }
+            Assert.Fail("Expected some sort of exception, didn't get it. Maybe this is throwing a different exception now?");
         }
 
         [Test]
@@ -55,6 +70,15 @@ namespace BasicTypes.Glosser
         {
             GlossMaker gm = new GlossMaker();
             Console.WriteLine(gm.Gloss("jan li moku, kepeken ilo moku","en",true));
+            Console.WriteLine(gm.Gloss("jan li moku, kepeken ilo moku"));
+        }
+
+        [Test]
+        public void Normalize_IntransitiveVerb()
+        {
+            string value= Normalizer.NormalizeText("jan li moku, kepeken ilo moku");
+            Console.WriteLine(value);
+            Assert.IsTrue(value.Contains("~"),value);
         }
     }
 }

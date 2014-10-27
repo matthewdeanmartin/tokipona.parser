@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using BasicTypes.Exceptions;
 using NUnit.Framework;
 
 namespace BasicTypes
@@ -19,21 +20,49 @@ namespace BasicTypes
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void ParticleModifiersWhut()
         {
-            //li, pi, la, e, are illegal modifiers.
-            HeadedPhrase hp = new HeadedPhrase(Words.jan, new WordSet(new[] { "lili", "suli" ,"li","pi"}));
-            Assert.AreEqual("jan lili suli li pi", hp.ToString());
+            try
+            {
+                //li, pi, la, e, are illegal modifiers.
+                HeadedPhrase hp = new HeadedPhrase(Words.jan, new WordSet(new[] {"lili", "suli", "li", "pi"}));
+                Assert.AreEqual("jan lili suli li pi", hp.ToString());
+            }
+            catch (InvalidOperationException)
+            {
+                Assert.Pass();
+                return;
+            }
+            catch (TpSyntaxException)
+            {
+                Assert.Pass();
+                return;
+            }
+            Assert.Fail();
+
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
         public void ParticleHeadWordWhut()
         {
-            //li, pi, la, e, are illegal modifiers.
-            HeadedPhrase hp = new HeadedPhrase(new Word("pi"), new WordSet(new[] { "lili", "suli", "li", "pi" }));
-            Assert.AreEqual("jan lili suli li pi", hp.ToString());
+            try
+            {
+                //li, pi, la, e, are illegal modifiers.
+                HeadedPhrase hp = new HeadedPhrase(new Word("pi"), new WordSet(new[] {"lili", "suli", "li", "pi"}));
+                Assert.AreEqual("jan lili suli li pi", hp.ToString());
+            }
+            catch (InvalidOperationException)
+            {
+                Assert.Pass();
+                return;
+            }
+            catch (TpSyntaxException)
+            {
+                Assert.Pass();
+                return;
+            }
+            Assert.Fail("Expected some sort of exception.");
+
         }
 
         [Test]

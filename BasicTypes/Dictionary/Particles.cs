@@ -16,8 +16,9 @@ namespace BasicTypes
         public static Particle pi = new Particle("pi");
 
         public static Particle anu = new Particle("anu");
+        public static Particle taso = new Particle("taso");
 
         public static Particle ante = new Particle("+ante");//Else can't tell what sort.
-        public static Particle Blank = new Particle(" ");
+        public static Particle Blank = new Particle(" ", true);//Joins prepositional phrases. Otherwise, this is weird.
     }
 }

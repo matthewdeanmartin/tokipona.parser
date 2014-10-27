@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BasicTypes.Collections;
+using BasicTypes.Glosser;
 using BasicTypes.Knowledge;
 using NUnit.Framework;
 
@@ -15,12 +16,26 @@ namespace BasicTypes.Parser
     [TestFixture]
     public class ParserUtilTests
     {
+        //o mi tu li kama tomo mi.
+        [Test]
+        public void OLetsHaveThisSentenceParse()
+        {
+            string s = "o mi tu li kama tomo mi.";
+            Dialect c = Dialect.DialectFactory;
+            //c.ThrowOnSyntaxError = false;
+            ParserUtils pu = new ParserUtils(c);
+            Sentence sentence = pu.ParsedSentenceFactory(s);
+            Assert.IsNotNull(sentence.Subjects);
+            Assert.IsNotNull(sentence.Subjects.Length>0);
+            Assert.IsNotNull(sentence.Subjects[0].HeadedPhrases[0].Head.Text,"mi");
+        }
+
         //
         [Test]
         public void SplitSentenceWithColon_Normalized()
         {
             string s = "sina toki e ni: mi wile e ni.";
-            Config c = Config.DialectFactory;
+            Dialect c = Dialect.DialectFactory;
             //c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
             string[] parts= pu.ParseIntoRawSentences(s);
@@ -31,7 +46,7 @@ namespace BasicTypes.Parser
         [Test]
         public void ProcessVocative()
         {
-            Config c = Config.DialectFactory;
+            Dialect c = Dialect.DialectFactory;
             //c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -39,11 +54,34 @@ namespace BasicTypes.Parser
             Sentence s = pu.ParsedSentenceFactory(vocative);
             Console.WriteLine(s.ToString("b"));
         }
+        [Test]
+        public void ProcessCalmVocative_JustRunIsVocative()
+        {
+            
+            const string vocative = "jan Oliwa o, o, o.";
+            bool isIt= Normalizer.IsVocative(vocative);
+            Assert.IsTrue(isIt, "Expected to ID a vocative.");
+        }
+
+
+        
+        [Test]
+        public void ProcessCalmVocative()
+        {
+            Dialect c = Dialect.DialectFactory;
+            //c.ThrowOnSyntaxError = false;
+            ParserUtils pu = new ParserUtils(c);
+
+            const string vocative = "jan Oliwa o, o, o.";
+            Sentence s = pu.ParsedSentenceFactory(vocative);
+            Console.WriteLine(s.ToString("b"));
+        }
+        
 
         [Test]
         public void CreateTpPredicateAfterSplitingEChain()
         {
-            Config c = Config.DialectFactory;
+            Dialect c = Dialect.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -56,8 +94,8 @@ namespace BasicTypes.Parser
         [Test]
         public void IdentifyDiscourses_CanItEvenParseTheSentences()
         {
-            string sample = CorpusKnowledgeTests.SampleText;
-            Config c = Config.DialectFactory;
+            string sample = CorpusTexts.UnpaText;
+            Dialect c = Dialect.DialectFactory;
             c.TargetGloss = "en";
             CorpusKnowledge ck = new CorpusKnowledge(sample,c);
             Discourse[] s = ck.MakeSentences();
@@ -80,45 +118,54 @@ namespace BasicTypes.Parser
         [Test]
         public void IdentifyDiscourses_CanItEvenParseTheSentences_ShowGoodOnes()
         {
-            string[] sample =
+            string[] samples =
                 new string[]
                 {
-                CorpusKnowledgeTests.SampleText,
-                CorpusKnowledgeTests.Gilgamesh,
-                CorpusKnowledgeTests.SampleText1,
-                CorpusKnowledgeTests.SampleText3
+                CorpusTexts.UnpaText,
+                CorpusTexts.Gilgamesh,
+                CorpusTexts.SampleText1,
+                CorpusTexts.SampleText3,
+                CorpusTexts.Lao
                     
                 };
-            Config dialect = Config.DialectFactory;
+            Dialect dialect = Dialect.DialectFactory;
             dialect.TargetGloss = "en";
 
-            CorpusKnowledge ck = new CorpusKnowledge(sample, dialect);
-            Discourse[] s = ck.MakeSentences();
-            for (int i = 0; i < s.Length; i++)
+            GlossMaker gm = new GlossMaker();
+            foreach (string sample in samples)
             {
-                foreach (Sentence sentence in s[i])
+                CorpusKnowledge ck = new CorpusKnowledge(sample, dialect);
+                Discourse[] s = ck.MakeSentences();
+                for (int i = 0; i < s.Length; i++)
                 {
-                    string reToStringed = sentence==null?"[NULL]":sentence.ToString();
-                    bool match = ck.Setences.Any(x => x.Trim() == reToStringed);
-                    if (match)
+                    foreach (Sentence sentence in s[i])
                     {
-                        Console.WriteLine(match + " O:" + ck.Setences[i]);
-                        Console.WriteLine(match + " R:" + (sentence==null?"[NULL]":sentence.ToString("b")));
+                        string reToStringed = sentence == null ? "[NULL]" : sentence.ToString();
+                        bool match = ck.Setences.Any(x => x.Trim() == reToStringed);
+                        //if (match)
+                        //{
+                            Console.WriteLine(match + " O:" + ck.Setences[i]);
+                            Console.WriteLine(match + " Rg:" + (sentence == null ? "[NULL]" : sentence.ToString("g")));
+                            Console.WriteLine(match + " Rb:" + (sentence == null ? "[NULL]" : sentence.ToString("b")));
 
+                            //TODO: Need to store original somewhere...
+                            Console.WriteLine(match + " Ren:" + (sentence == null ? "[NULL]" : gm.Gloss(sentence.ToString("g"))));
+                        //}
                     }
-                }
+                }    
             }
+            
         }
 
         [Test]
         public void IdentifyDiscourses_CanWeGroupThem()
         {
-            Config c = Config.DialectFactory;
+            Dialect c = Dialect.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
             Sentence[] s = pu
-                            .ParseIntoRawSentences(CorpusKnowledgeTests.SampleText)
+                            .ParseIntoRawSentences(CorpusTexts.UnpaText)
                             .Select(x => pu.ParsedSentenceFactory(x))
                             .ToArray();
            Assert.Greater(s.Length,0);
@@ -152,7 +199,7 @@ namespace BasicTypes.Parser
         [Test]
         public void CorpusKnowledge_HeadedPhraseParser()
         {
-            Config c = Config.DialectFactory;
+            Dialect c = Dialect.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -165,7 +212,7 @@ namespace BasicTypes.Parser
         [Test]
         public void ProcessSingletonEnChainOneEn()
         {
-            Config c = Config.DialectFactory;
+            Dialect c = Dialect.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -180,7 +227,7 @@ namespace BasicTypes.Parser
         [Test]
         public void ProcessSingletonEnChainNoEn()
         {
-            Config c = Config.DialectFactory;
+            Dialect c = Dialect.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -193,7 +240,7 @@ namespace BasicTypes.Parser
         [Test]
         public void ProcessSingletonPredicate()
         {
-            Config c = Config.DialectFactory;
+            Dialect c = Dialect.DialectFactory;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 

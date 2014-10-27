@@ -73,14 +73,20 @@ namespace BasicTypes
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            var words = ToTokenList(format,formatProvider);
+            var words = ToTokenList(format,formatProvider,false);
             return words.SpaceJoin(format);
         }
 
-        public List<string> ToTokenList(string format, IFormatProvider formatProvider)
+        public List<string> ToTokenList(string format, IFormatProvider formatProvider, bool isVerbTransitive)
         {
+             
             List<string> words = new List<string>();
+            if (isVerbTransitive)
+            {
+                words.Add("#");
+            }
             words.Add("#");
+
             words.Add(head.ToString(format,formatProvider));
             if (Modifiers != null && Modifiers.Count > 0)
             {

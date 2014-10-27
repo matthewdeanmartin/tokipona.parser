@@ -56,7 +56,7 @@ namespace BasicTypes.Collections
 
         public static Sentence Parse(object value, IFormatProvider formatProvider)
         {
-            Config c = formatProvider.GetFormat(typeof(Sentence)) as Config;
+            Dialect c = formatProvider.GetFormat(typeof(Sentence)) as Dialect;
             
             ParserUtils pu = new ParserUtils(c);
             return pu.ParsedSentenceFactory(value.ToString());

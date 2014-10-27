@@ -122,6 +122,7 @@
     <Compile Include="Extensions\ArrayExtensions.cs" />
     <Compile Include="Collections\HeadedPhraseTest.cs" />
     <Compile Include="Knowledge\CorpusKnowledge.cs" />
+    <Compile Include="Knowledge\CorpusTexts.cs" />
     <Compile Include="Knowledge\KnowledgeScope.cs" />
     <Compile Include="MoreTypes\CustomKeyedCollection.cs" />
     <Compile Include="MoreTypes\DictionaryProxy.cs" />

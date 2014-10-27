@@ -21,15 +21,22 @@ namespace BasicTypes.Extensions
             //Can be exact, or match despite extra stuff 
         }
 
-        public static void  AddRange(this List<string> list, Particle particle, IEnumerable<string> strings)
+        public static void AddRange(this List<string> list, Particle particle, IEnumerable<string> strings, string format, IFormatProvider formatProvider)
         {
             int i = 0;
             foreach (string s in strings)
             {
                 i++;
-                if (i > 1)
+                if (particle.MiddleOnly)
                 {
-                    list.Add(particle.ToString());
+                    if (i > 1)
+                    {
+                        list.Add(particle.ToString(format,formatProvider));
+                    }
+                }
+                else
+                {
+                    list.Add(particle.ToString(format, formatProvider));
                 }
                 list.Add(s);
             }
@@ -67,7 +74,7 @@ namespace BasicTypes.Extensions
 
         public static bool NeedIt( string format, string value)
         {
-            if (format == null || format == "g" || format=="")
+            if (format == null || format == "g" || format == "" || format == "t")
             {
                 if (value.Length == 0) return false; //Never need empties
 

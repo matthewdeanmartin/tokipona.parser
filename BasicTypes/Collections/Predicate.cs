@@ -103,7 +103,7 @@ namespace BasicTypes.Collections
             List<string> sb = new List<string>();
 
             sb.Add(verbPhrases.Head.ToString());
-            sb.AddRange(verbPhrases.Modifiers.Select(x => x.ToString()));
+            sb.AddRange(verbPhrases.Modifiers.Select(x => x.ToString(format, formatProvider)));
 
 
             foreach (Chain chain in new[] {directs, Prepositionals})
@@ -115,11 +115,11 @@ namespace BasicTypes.Collections
                     sb.Add("{");
                     if (chain.HeadedPhrases.Any())
                     {
-                        sb.Add(chain.Particle.ToString());
+                        sb.Add(chain.Particle.ToString(format, formatProvider));
                     }
                     foreach (HeadedPhrase headedPhrase in chain.HeadedPhrases)
                     {
-                        sb.Add(headedPhrase.ToString(format));
+                        sb.Add(headedPhrase.ToString(format, formatProvider));
                     }
                     sb.Add("}");
                 }

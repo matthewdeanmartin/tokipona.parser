@@ -12,7 +12,18 @@
     </ul>
     <h2>TODO</h2>
     <ul>
-        <li>Support titles, fragments (e.g. conversation), run-ons (e.g. poetry)</li>
+        <li>Fragments (e.g. conversation)-- probably via normalization &amp; null tokens</li>
+        <li>Run-ons (e.g. poetry)-- probably via normalization (insert missing periods)</li>
+        <li>Deal with foreign words, maybe with escaping.</li>
+        <li>Deal with direct quotes (maybe as a sort of noun).</li>
+        <li>Deal with o o o vocative edge case.</li>
+        <li>Implement proper modifiers</li>
+        <li>Remove null tokens from ToString() results (but maybe leave in bracketed or change to 0)</li>
+        <li>Possibly treat ... (missing text) as a formal thing</li>
+    </ul>
+    <h2>DONE</h2>
+    <ul>
+        <li>Support titles- Uses li XXX token, which can be removed before displaying. It's alike a null token.</li>
         <li>Deal with foreign words, maybe with escaping.</li>
         <li>Deal with direct quotes (maybe as a sort of noun).</li>
     </ul>

@@ -100,11 +100,11 @@ namespace BasicTypes
 
             if (subChains != null)
             {
-                ProcessSubChain(format, sb, subChains);
+                ProcessSubChain(format,formatProvider, sb, subChains);
             }
             else if (HeadedPhrases != null)
             {
-                sb.AddRange(particle, HeadedPhrases.Select(phrase => phrase.ToString(format, formatProvider)));
+                sb.AddRange(particle, HeadedPhrases.Select(phrase => phrase.ToString(format, formatProvider)), format, formatProvider);
             }
             else
             {
@@ -113,7 +113,7 @@ namespace BasicTypes
             return sb;
         }
 
-        private void ProcessSubChain(string format,  List<string> sb, Chain[] innerChains)
+        private void ProcessSubChain(string format, IFormatProvider formatProvider, List<string> sb, Chain[] innerChains)
         {
             int i = 0;
             foreach (Chain subChain in innerChains)
@@ -121,11 +121,11 @@ namespace BasicTypes
                 i++;
                 if (particle.MiddleOnly && i != 1)
                 {
-                    sb.Add(particle.ToString());
+                    sb.Add(particle.ToString(format,formatProvider));
                 }
                 if (!particle.MiddleOnly)
                 {
-                    sb.Add(particle.ToString());
+                    sb.Add(particle.ToString(format, formatProvider));
                 }
 
                 //Tracers.Stringify.TraceInformation("At Leaf " + subChain.HeadedPhrases + "  headed phrases (i.e. no particles)");
@@ -133,7 +133,7 @@ namespace BasicTypes
                 if (subChain.HeadedPhrases != null)
                 {
                     //LEAF
-                    sb.AddRange(subChain.Particle, subChain.HeadedPhrases.Select(phrase => phrase.ToString(format)));
+                    sb.AddRange(subChain.Particle, subChain.HeadedPhrases.Select(phrase => phrase.ToString(format, formatProvider)), format, formatProvider);
                     //Tracers.Stringify.TraceInformation(sb.SpaceJoin(format) + " ... so far");
                 }
                 else
@@ -142,11 +142,11 @@ namespace BasicTypes
                     {
                         if (inner.headedPhrases != null)
                         {
-                            sb.AddRange(inner.Particle, inner.HeadedPhrases.Select(phrase => phrase.ToString(format)));
+                            sb.AddRange(inner.Particle, inner.HeadedPhrases.Select(phrase => phrase.ToString(format, formatProvider)),format, formatProvider);
                         }
                         else
                         {
-                            ProcessSubChain(format, sb, inner.SubChains);    
+                            ProcessSubChain(format,formatProvider, sb, inner.SubChains);    
                         }
                     }
                 }

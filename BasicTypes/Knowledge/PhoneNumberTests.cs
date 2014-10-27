@@ -19,11 +19,11 @@ namespace BasicTypes.Knowledge
             x.MoveNext();
             string value = x.Current.ToString();
             Console.WriteLine(value);
-            Assert.AreEqual("jan Mato li jo e nanpa 555-1523.", value);
+            Assert.AreEqual("jan Mato li jo e nanpa 555-1523.", value , x.Current.ToString("b"));
             x.MoveNext();
             value = x.Current.ToString();
             Console.WriteLine(value);
-            Assert.AreEqual("jan Seko li jo e nanpa 123-4568.", value);
+            Assert.AreEqual("jan Seko li jo e nanpa 123-4568.", value , x.Current.ToString("b"));
         }
     }
 }

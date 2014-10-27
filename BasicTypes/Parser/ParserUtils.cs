@@ -6,14 +6,15 @@ using System.Text;
 using System.Text.RegularExpressions;
 using BasicTypes.Collections;
 using BasicTypes.Exceptions;
+using BasicTypes.Extensions;
 using BasicTypes.Parser;
 
 namespace BasicTypes
 {
     public class ParserUtils
     {
-        private Config config;
-        public ParserUtils(Config config)
+        private readonly Dialect config;
+        public ParserUtils(Dialect config)
         {
             this.config = config;
         }
@@ -35,8 +36,11 @@ namespace BasicTypes
                 text = text.Replace("\n\n", "\n");
             }
 
+            //Crap. If we break on \n then sentences with line feeds are cut in half.
+            //If we don't break on \n, then we blow up on intentional fragments like titles.
+            //Choosing to not break on \n & and manually add . to titles.
             return Regex
-                .Split(text, @"(?<=[\?!.:\n])")  //split preserving punctuation
+                .Split(text, @"(?<=[\?!.:])")  //split preserving punctuation
                 .Where(x => !string.IsNullOrWhiteSpace(x)) //skip empties
                 .Select(x => Normalizer.NormalizeText(x, config))
                 .ToArray();
@@ -84,7 +88,7 @@ namespace BasicTypes
             return l.ToArray();
         }
 
-        public const string validTpWordSplitter =
+        public const string ValidTpWordSplitter =
             @"([0-9-]+)|\b([JKLMNPSTW]?[aeiou]([jklmnpstw][aeiou][n]?)*)\b" +
             @"|\b([aeiou])\b" +
             @"|\b(([jklmnpstw]?[aeiou][n]?)*)\b" +
@@ -106,7 +110,7 @@ namespace BasicTypes
 
             //http://regexhero.net/tester/
 
-            return (from Match s in Regex.Matches(value, validTpWordSplitter)
+            return (from Match s in Regex.Matches(value, ValidTpWordSplitter)
                     where !string.IsNullOrEmpty(s.Value)
                     select s.Value).ToArray();
         }
@@ -169,7 +173,7 @@ namespace BasicTypes
             // nan
             // Na
             // Nan
-            Regex r = new Regex(validTpWordSplitter + "|"
+            Regex r = new Regex(ValidTpWordSplitter + "|"
                 //+ "(" +validTpWordSplitter +")*" //Doesn't match compounds.
                 + @"|([?.!'])");
             List<string> list = new List<string>();
@@ -202,7 +206,7 @@ namespace BasicTypes
                 endsQuotedSpeech= true;
                 sentence = sentence.Replace("»", " ").Trim();
             }
-            //TODO: do something with quoted speech.
+            //TODO: do something with quoted speech. Big problem #1 it spans multiple sentences
 
 
             if (sentence.EndsWith(" "))
@@ -219,8 +223,7 @@ namespace BasicTypes
                 sentence = sentence.Substring(0, sentence.Length - 1);
             }
 
-            const string liFinder = @"\bli\b";
-
+            
             //Square bracket sentence contains all others
             //[S]
             //F la [S]
@@ -232,12 +235,11 @@ namespace BasicTypes
             //[{F la S} la {S} la {F la S}] la <S> 
 
             //Just dealing with la fragments
-            string[] laParts = null;
 
             Sentence headSentence = null;
             List<Sentence> preconditions = new List<Sentence>();
 
-            laParts = Splitters.SplitOnLa(sentence);
+            string[] laParts = Splitters.SplitOnLa(sentence);
 
             //Degenerate sentences.
             if (laParts[laParts.Length - 1] == "la")
@@ -259,18 +261,20 @@ namespace BasicTypes
                     if (i == 1)
                     {
                         //Head sentence.
-                        string laLessString = subSentence.StartsWith("la ") ? subSentence.Substring(3) : subSentence;
+                        // subSentence.StartsWith("la ") ? subSentence.Substring(3) : subSentence
+                        string laLessString = subSentence.RemoveLeadingWholeWord("la");
                         headSentence = ProcessSimpleSentence(laLessString, punctuation);
                         continue; //Not dealing with "kin la!"
                     }
 
                     //Fragments & preconditions
+                    const string liFinder = @"\bli\b";
                     Match m = Regex.Match(subSentence, liFinder);
                     if (m.Success)
                     {
                         //This is a sentence
                         //Maybe should recurse.
-                        string laLessString = subSentence.StartsWith("la ") ? subSentence.Substring(3) : subSentence;
+                        string laLessString = subSentence.RemoveLeadingWholeWord("la");
 
                         currentSentence = ProcessSimpleSentence(laLessString, null);
                         preconditions.Add(currentSentence);
@@ -314,9 +318,12 @@ namespace BasicTypes
 
         private Sentence ProcessSimpleSentence(string sentence, Punctuation punctuation)
         {
-            string[] liParts = Splitters.SplitOnLiOrO(sentence);
+            if (sentence.StartsOrContainsOrEnds("la"))
+            {
+                throw new InvalidOperationException("If it contains a la, anywhere, it isn't a simple sentence. " + sentence);
+            }
 
-            
+            string[] liParts = Splitters.SplitOnLiOrO(sentence);
 
             //Degenerate sentences.
             if (liParts[liParts.Length - 1] == "o")
@@ -430,10 +437,14 @@ namespace BasicTypes
             {
                 throw new ArgumentException("Can't parse null/empty subjects");
             }
-            if (subjects.Contains(" la "))
+            foreach (var particle in new string[] {"la","li"})
             {
-                throw new ArgumentException("Contains la. This isn't possible.");
+                if (subjects.StartsOrContainsOrEnds(particle))
+                {
+                    throw new ArgumentException("Subject phrase : " + subjects + " Contains "+particle+". This isn't possible.");
+                }
             }
+
             string[] subjectTokens = Splitters.SplitOnEn(subjects);
 
             //Split on pi
@@ -681,9 +692,9 @@ namespace BasicTypes
 
         public HeadedPhrase HeadedPhraseParser(string value)
         {
-            foreach (string particle in new string[]{" pi ", " la ", " e ", " li "})
+            foreach (string particle in new string[]{"pi", "la", "e", "li"})
             {
-                if (value.Contains(particle))
+                if (value.StartsOrContainsOrEnds(particle))
                 {
                     throw new TpSyntaxException("Headed phrases have no particles. This one has " + particle + " ref: " + value);
                 }    

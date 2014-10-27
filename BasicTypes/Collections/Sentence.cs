@@ -40,16 +40,23 @@ namespace BasicTypes
 
         [DataMember]
         private readonly Particle conjunction;
-        private Vocative vocative;
-        private Fragment fragment;
 
-        public Sentence(Vocative vocative, BasicTypes.Punctuation punctuation)
+        [DataMember]
+        private readonly Vocative vocative;
+
+        [DataMember]
+        private readonly Fragment fragment;
+
+        [DataMember]
+        private readonly bool isHortative; //o mi mute li moku e kili.
+
+        public Sentence(Vocative vocative, Punctuation punctuation)
         {
             this.vocative = vocative;
             this.punctuation = punctuation;
         }
 
-        public Sentence(Fragment fragment, BasicTypes.Punctuation punctuation)
+        public Sentence(Fragment fragment, Punctuation punctuation)
         {
             this.fragment = fragment;
             this.punctuation = punctuation;
@@ -84,9 +91,9 @@ namespace BasicTypes
             }
         }
 
-        public Sentence HeadSentence { get; private set; }
+        
 
-        public Sentence(Chain fragments, Chain subjects, PredicateList predicates, Punctuation punctuation = null, Particle conjuction = null)
+        public Sentence(Chain fragments, Chain subjects, PredicateList predicates, Punctuation punctuation = null, Particle conjuction = null, bool isHortative= false)
         {
             LaFragment = new List<Chain>();
             this.subjects = new Chain[] { subjects }; //only (*), o, en
@@ -94,6 +101,7 @@ namespace BasicTypes
             this.punctuation = punctuation ?? new Punctuation(".");
             this.conjunction = conjuction;
             this.fragments = fragments;
+            this.isHortative = isHortative;
         }
 
         //Preconditions
@@ -161,11 +169,19 @@ namespace BasicTypes
             return false;
         }
 
-        public Chain[] Subjects { get { return subjects; } }
-        public PredicateList Predicates { get { return predicates; } }
-        public Punctuation Punctuation { get { return punctuation; } }
-        public Particle Conjunction { get { return conjunction; } }
+
+        //If we have the following 2, we don't have the others (except punct).
+        public Sentence[] Preconditions { get { return preconditions; } }
+        public Sentence Conclusion { get { return conclusion; } } //Only preconditions have these.
+        public Sentence HeadSentence { get; private set; } //Only preconditions have these.
+
+        //Also an odd ball.
         public Vocative Vocative { get { return vocative; } }
+
+        public Particle Conjunction { get { return conjunction; } } //Anu, taso
+        public Chain[] Subjects { get { return subjects; } } //jan 
+        public PredicateList Predicates { get { return predicates; } }//li verb li noun li prep phrase
+        public Punctuation Punctuation { get { return punctuation; } } //.?!
 
         public Sentence EquivallencyGenerator()
         {
@@ -236,7 +252,6 @@ namespace BasicTypes
         {
             List<string> sb = new List<string>();
 
-
             //TODO Vocative sentences
             //[chain]o[!.?]
             if (vocative != null)
@@ -266,7 +281,7 @@ namespace BasicTypes
                     //Should only happen for imperatives
                     sb.Add("[");
                     sb.AddRange(Particles.en,
-                        subjects.Select(x => x == null ? "[NULL]" : x.ToString(format, formatProvider)));
+                        subjects.Select(x => x == null ? "[NULL]" : x.ToString(format, formatProvider)), format, formatProvider);
                     sb.Add("]");
                 }
                 else
@@ -300,6 +315,10 @@ namespace BasicTypes
             if (value.Contains("~"))
             {
                 value = value.Replace("~", ", ");
+            }
+            if (value.Contains("li ijo Nanunanuwakawakawawa."))
+            {
+                value = value.Replace("li ijo Nanunanuwakawakawawa.", "[NULL TOKEN]");
             }
             return value;
         }

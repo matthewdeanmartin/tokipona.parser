@@ -15,7 +15,7 @@ namespace BasicTypes
         public void SentenceWithFullSentenceConditional()
         {
             string value = "ni li soweli la waso li pona.";
-            Sentence s = Sentence.Parse(value, Config.DialectFactory);
+            Sentence s = Sentence.Parse(value, Dialect.DialectFactory);
             Assert.AreEqual(value, s.ToString());
         }
 
@@ -24,12 +24,10 @@ namespace BasicTypes
         public void MaximalSentences_Part1()
         {
             string value = "jan li suli la tenpo pi lili mi.";
-            Sentence s = Sentence.Parse(value, Config.DialectFactory);
+            Sentence s = Sentence.Parse(value, Dialect.DialectFactory);
             Console.WriteLine("Original: " + value);
             Console.WriteLine("ToString: " + s.ToString("g"));
             Console.WriteLine("ToStringb:" + s.ToString("b"));
-
-            Config en = Config.DialectFactory;
 
             Console.WriteLine("ToString: " + s.ToString("g"));
 
@@ -40,10 +38,10 @@ namespace BasicTypes
         public void MaximalSentences_Part_Tail()
         {
             string value = "mi mute li lukin e sitelen pona kepeken ilo tawa mani li jo e ijo mute lon ma suli pi mi mute.";
-            Sentence s = Sentence.Parse(value, Config.DialectFactory);
+            Sentence s = Sentence.Parse(value, Dialect.DialectFactory);
             Console.WriteLine("Original: " + value);
-            Console.WriteLine("ToString: " + s.ToString("g", Config.DialectFactory));
-            Config en = Config.DialectFactory;
+            Console.WriteLine("ToString: " + s.ToString("g", Dialect.DialectFactory));
+            
 
             Console.WriteLine("ToString: " + s.ToString("g"));
 
@@ -54,10 +52,9 @@ namespace BasicTypes
         public void MaximalSentences()
         {
             string value = "jan li suli la tenpo pi lili mi la mi mute li lukin e sitelen pona kepeken ilo tawa mani li jo e ijo mute lon ma suli pi mi mute.";
-            Sentence s = Sentence.Parse(value, Config.DialectFactory);
+            Sentence s = Sentence.Parse(value, Dialect.DialectFactory);
             Console.WriteLine("Original: " + value);
-            Console.WriteLine("ToString: " + s.ToString("g",Config.DialectFactory));
-            Config en = Config.DialectFactory;
+            Console.WriteLine("ToString: " + s.ToString("g",Dialect.DialectFactory));
             
             Console.WriteLine("ToString: " + s.ToString("g"));
 
@@ -68,7 +65,7 @@ namespace BasicTypes
         {
             string value = "tenpo pi lili mi la mi lukin e sitelen pona.";
 
-            Sentence s = Sentence.Parse(value, Config.DialectFactory);
+            Sentence s = Sentence.Parse(value, Dialect.DialectFactory);
             Console.WriteLine(s.ToString());
             Console.WriteLine(s.ToString("b"));
             Console.WriteLine(s.ToJsonNet());
@@ -87,7 +84,7 @@ namespace BasicTypes
         public void ParseAndToString()
         {
             string value = "jan li jo e nanpa 555-1234.";
-            Sentence s = Sentence.Parse(value, Config.DialectFactory);
+            Sentence s = Sentence.Parse(value, Dialect.DialectFactory);
             Assert.AreEqual(value, s.ToString());
             Console.WriteLine(s.ToString("b"));
             Console.WriteLine(s.ToString("bs"));

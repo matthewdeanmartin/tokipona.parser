@@ -12,7 +12,7 @@ namespace BasicTypes
     //la,li,pi,e,preps (preps simplified to either ~prep or lon-prep)
     [DataContract]
     [Serializable]
-    public class Particle:IFormattable
+    public class Particle : IFormattable
     {
         [DataMember]
         private readonly string particle;
@@ -20,7 +20,7 @@ namespace BasicTypes
         [DataMember]
         private readonly bool middleOnly;
 
-        public  static string[] dictionary = new string[]
+        public static string[] dictionary = new string[]
         {
             "la", //Sentence conj.
 
@@ -40,12 +40,20 @@ namespace BasicTypes
             "~poka"
         };
 
-        public Particle(string particle)
+        public Particle(string particle, bool iAmAPrepositionChain = true)
         {
+            if (!iAmAPrepositionChain)
+            {
+                if (string.IsNullOrWhiteSpace(particle))
+                {
+                    throw new ArgumentException("Got whitespace particle. What does this mean?");
+                }
+            }
+
             //TODO: Validate, particles is a closed class.
 
             this.particle = particle;
-            if (particle == "en" || particle == "pi" || particle ==" ")
+            if (particle == "en" || particle == "pi" || particle == " ")
             {
                 middleOnly = true;
             }
@@ -60,7 +68,7 @@ namespace BasicTypes
 
         public override string ToString()
         {
-            
+
             return ToString("g", CultureInfo.CurrentCulture);
         }
 
@@ -72,6 +80,8 @@ namespace BasicTypes
         //Dupe
         public string ToString(string format, IFormatProvider formatProvider)
         {
+            Dialect c = formatProvider.GetFormat(typeof(Particle)) as Dialect;
+
             //// Handle null or empty string. 
             if (String.IsNullOrEmpty(format)) format = "g";
             // Remove spaces and convert to uppercase.
@@ -88,31 +98,40 @@ namespace BasicTypes
             }
             CultureInfo ci = Thread.CurrentThread.CurrentCulture;
 
-            if (ci.TwoLetterISOLanguageName == "tp") //Can only happen if we can install a custom culture. Not worth the effort.
+            string language;
+            if (c.TargetGloss == "thread")
             {
-                return Text;
-            }
-            else if (ci.TwoLetterISOLanguageName == "en")
-            {
-                string language = ci.TwoLetterISOLanguageName;
-                if (includePos)
-                    return TryGloss(language, format) + "(" + format + ")";
-                else
-                {
-                    return TryGloss(language, format);
-                }
+                language = ci.TwoLetterISOLanguageName;
             }
             else
             {
-                throw new ArgumentOutOfRangeException("Can't translate to " + ci.ThreeLetterISOLanguageName);
+                language = c.TargetGloss;
             }
+
+            if (language == "tp")
+            {
+                return Text; //And maybe POS
+            }
+            if (includePos)
+                return TryGloss(language, format) + "(" + format + ")";
+            else
+            {
+                return TryGloss(language, format);
+            }
+
 
         }
 
         //Dupe
         private string TryGloss(string language, string pos)
         {
-
+            if (Text == " ")
+            {
+                //This is for prepositional chains, which are joined by nothing
+                //lon x lon y == chain, sort joined by lon
+                //lon x lon y poka a poka b == chain, but these chains aren't anything!
+                return " ";
+            }
             Word w;
 
             if (Particle.IsParticle(Text))
@@ -124,7 +143,7 @@ namespace BasicTypes
                 w = new Word(Text);
 
             }
-            
+
             if (w.GlossMap == null)
             {
                 return "[missing map for " + Text + "]";
@@ -191,7 +210,7 @@ namespace BasicTypes
             }
             string[] parts = phrase.Split(new string[] { " ", Environment.NewLine, ".", "!", "?" }, StringSplitOptions.RemoveEmptyEntries);
             var preps = dictionary.Where(z => z.StartsWith("~"));
-            
+
             foreach (string prep in preps)
             {
                 if (parts.Contains(prep))
@@ -202,7 +221,7 @@ namespace BasicTypes
             return false;
         }
 
-        public  bool ContainsPreposition(string phrase)
+        public bool ContainsPreposition(string phrase)
         {
             if (!phrase.Contains(phrase))
             {
