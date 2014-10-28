@@ -58,34 +58,14 @@ namespace BasicTypes
         [DataMember(IsRequired = true)]
         private readonly string word;
 
-        [DataMember(IsRequired = false, EmitDefaultValue = false)]
-        [ScriptIgnore]
-        [IgnoreDataMember]
-        private readonly Dictionary<string, Dictionary<string, string[]>> glossMap;
+        //[DataMember(IsRequired = false, EmitDefaultValue = false)]
+        //[ScriptIgnore]
+        //[IgnoreDataMember]
+        //private readonly Dictionary<string, Dictionary<string, string[]>> glossMap;
 
         public Word(string word, IFormatProvider provider = null)
         {
-            if (word == null)
-            {
-                throw new ArgumentNullException("word", "Can't construct words with null");
-            }
-            if (word.IndexOfAny(new char[] { '.', ' ', '?', '!', '\n','\r' }) != -1 
-                
-                && !ForeignWord.IsForeign(word)
-                )
-            {
-                throw new InvalidLetterSetException("Words must not have spaces or punctuation, (other than the preposition marker ~): found: " + word);
-            }
-            //TODO: How to impelment this rule? Need to rework dictionary, since dictionary stores all words (particles included) as Word
-            //if (Particle.IsParticle(word))
-            //{
-            //    throw new InvalidOperationException("Don't treat particles as words : " + word);
-            //}
-            //Can be a number, word, compound word or escaped word.
-            if (!CheckIsNumber(word) && !Word.ValidateCompoundWordLetterSet(word) && !IsEscaped(word))
-            {
-                throw new InvalidOperationException("Unescaped, Invalid Characters : " + word + " ==> " + ListInvalidCharacters(word));
-            }
+            ValidateOnConstruction(word);
 
             if (provider == null)
             {
@@ -96,16 +76,37 @@ namespace BasicTypes
                 currentDialect = provider.GetFormat(typeof(Word)) as Dialect;
             }
             
-            if (Words.Dictionary.ContainsKey(word))
-            {
-                glossMap = Words.Dictionary[word].GlossMap;
-            }
-
             //TODO:Add semantic info
 
             //Validate
 
             this.word = word;
+        }
+
+        private static void ValidateOnConstruction(string word)
+        {
+            if (word == null)
+            {
+                throw new ArgumentNullException("word", "Can't construct words with null");
+            }
+            if (word.IndexOfAny(new char[] {'.', ' ', '?', '!', '\n', '\r'}) != -1
+                && !ForeignWord.IsForeign(word)
+                )
+            {
+                throw new InvalidLetterSetException(
+                    "Words must not have spaces or punctuation, (other than the preposition marker ~): found: " + word);
+            }
+            //TODO: How to impelment this rule? Need to rework dictionary, since dictionary stores all words (particles included) as Word
+            //if (Particle.IsParticle(word))
+            //{
+            //    throw new InvalidOperationException("Don't treat particles as words : " + word);
+            //}
+            //Can be a number, word, compound word or escaped word.
+            if (!CheckIsNumber(word) && !Word.ValidateCompoundWordLetterSet(word) && !IsEscaped(word))
+            {
+                throw new InvalidOperationException("Unescaped, Invalid Characters : " + word + " ==> " +
+                                                    ListInvalidCharacters(word));
+            }
         }
 
         public static bool IsEscaped(string value)
@@ -114,15 +115,15 @@ namespace BasicTypes
             return !(value.StartsWith("\"") && value.EndsWith("\""));
         }
 
-        public Word(string word, Dictionary<string, Dictionary<string, string[]>> glossMap)
+        public Word(string word)
         {
             if (word == null)
             {
                 throw new ArgumentNullException("word", "Can't construct words with null");
             }
+            ValidateOnConstruction(word);
             //Validate
             this.word = word;
-            this.glossMap = glossMap;
         }
 
         public bool IsKnown
@@ -234,20 +235,6 @@ namespace BasicTypes
 
         public string Text { get { return word; } }
 
-        [XmlIgnore] //XMLSerializer
-        [ScriptIgnore]
-        [IgnoreDataMember]
-        public Dictionary<string, Dictionary<string, string[]>> GlossMap { get { return glossMap; } }
-
-        //[XmlIgnore] 
-        //public Dictionary<string, string> GlossMapJavaScriptSerializer {
-        //    get
-        //    {
-        //        if (glossMap == null) return null;
-        //        //https://stackoverflow.com/questions/3685732/c-sharp-serialize-dictionaryulong-ulong-to-json
-        //        return glossMap.ToDictionary(item => item.Key.ToString(), item => (item.Value??"").ToString());
-        //    } 
-        //}
 
         //Lossy, human oriented serialization.
         public override string ToString()
@@ -310,6 +297,9 @@ namespace BasicTypes
 
         private string TryGloss(string language, string pos)
         {
+            Dictionary<string, Dictionary<string, string[]>> glossMap;
+            Words.Glosses.TryGetValue(word, out glossMap);
+
             if (glossMap == null)
             {
                 return "[missing map for " + Text + "]";
@@ -334,7 +324,7 @@ namespace BasicTypes
                 return Text;
         }
 
-        private void TraceMissingGloss()
+        private void TraceMissingGloss( Dictionary<string, Dictionary<string, string[]>> glossMap)
         {
             foreach (KeyValuePair<string, Dictionary<string, string[]>> pair in glossMap)
             {

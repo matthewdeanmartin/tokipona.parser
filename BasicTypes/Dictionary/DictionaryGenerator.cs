@@ -162,9 +162,10 @@ namespace BasicTypes.Dictionary
         {{
             var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
             {0}
-            {1} = new Word(""{1}"", glossMap);
+            {1} = new Word(""{1}"");
 
             Dictionary.Add(""{1}"",{1});
+            Glosses.Add(""{1}"",glossMap);
         }}
 ";
 

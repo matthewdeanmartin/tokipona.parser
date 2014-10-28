@@ -90,14 +90,14 @@ namespace BasicTypes
         }
 
         public const string ValidTpWordSplitter =
-            //@"([0-9-]+)" +  //Numbers okay
-            @"(#[0-9-]+)" +  //Pounded numbers better
+            @"([0-9-]+)" +  //Numbers okay
+            @"|(#[0-9-]+)" +  //Pounded numbers better
             @"|[""][a-zA-Z0-9\*\?.!]*[""]" +  //Quoted text joined by * is okay == foreign text
-            @"|\b([JKLMNPSTW]?[aeiou]([jklmnpstw][aeiou][n]?)*)\b" +  //Capitalized syllable followed by any number of whole syllables with optional n's 
+            @"|\b([JKLMNPSTW]?[aeiou]([jklmnpstw][aeiou][n]?-?)*)\b" +  //Capitalized syllable followed by any number of whole syllables with optional n's 
             @"|\b([aeiou])\b" + //Bare vowel is okay.
-            @"|\b(([jklmnpstw]?[aeiou][n]?)*)\b" + //Uncapitalized syllables with optional constants or final n's
-            @"|\b([aeiou][n]?)\b|" + //vowels with optional n's
-            @"\b([AEIOU][n]?)\b"; //Capital vowels with optional n's
+            @"|\b(([jklmnpstw]?[aeiou][n]?-?)*)\b" + //Uncapitalized syllables with optional constants or final n's
+            @"|\b([aeiou][n]?-?)\b|" + //vowels with optional n's
+            @"\b([AEIOU][n]?-?)\b"; //Capital vowels with optional n's
 
         //Can double match (word within word) :-(
         public string[] JustTpWords(string value)
@@ -178,7 +178,7 @@ namespace BasicTypes
             // Na
             // Nan
             Regex r = new Regex(ValidTpWordSplitter + "|"
-                //+ "(" +validTpWordSplitter +")*" //Doesn't match compounds.
+                //+ "((" + ValidTpWordSplitter + ")[-])*" //Doesn't match compounds.
                 + @"|([?.!'])");
             List<string> list = new List<string>();
             foreach (Match s in r.Matches(value))
@@ -188,6 +188,9 @@ namespace BasicTypes
                     list.Add(s.Value);
                 }
             }
+
+            
+
             return list.ToArray();
         }
 

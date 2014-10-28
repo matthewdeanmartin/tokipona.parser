@@ -16,7 +16,7 @@ namespace BasicTypes.Dictionary
             int count = 0;
             foreach (Word word in Words.Dictionary.Values)
             {
-                var map = word.GlossMap;
+                var map = Words.Glosses[word.Text];
                 var eo = map["eo"];
                 var en = map["en"];
 

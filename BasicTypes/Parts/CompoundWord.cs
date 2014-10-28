@@ -24,9 +24,7 @@ namespace BasicTypes.Parts
         [DataMember(IsRequired = true)]
         private readonly string word;
 
-        [DataMember(IsRequired = false,EmitDefaultValue = false)]
-        private readonly Dictionary<string, Dictionary<string, string[]>> glossMap;
-
+        
         public CompoundWord(string word)
         {
             if (word == null)
@@ -42,27 +40,11 @@ namespace BasicTypes.Parts
                 throw new InvalidLetterSetException("Words must not have spaces or punctuation, (other than the preposition marker ~)");
             }
 
-            //Add semantic info
-            if (Words.Dictionary.ContainsKey(word))
-            {
-                glossMap = Words.Dictionary[word].GlossMap;
-            }
             //Validate
 
             this.word = word;
         }
-
-        public CompoundWord(string word, Dictionary<string, Dictionary<string, string[]>> glossMap)
-        {
-            if (word == null)
-            {
-                throw new ArgumentNullException("word", "Can't construct words with null");
-            }
-            //Validate
-            this.word = word;
-            this.glossMap = glossMap;
-        }
-
+        
         public Word[] Parts
         {
             get 

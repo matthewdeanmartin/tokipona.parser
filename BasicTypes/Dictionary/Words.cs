@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BasicTypes.MoreTypes;
+using BasicTypes.Parts;
 
 namespace BasicTypes
 {
@@ -138,10 +139,12 @@ namespace BasicTypes
 
         public static Dictionary<string, Word> Dictionary;
 
+        public static Dictionary<string, Dictionary<string, Dictionary<string, string[]>>> Glosses;
+
         static Words()
         {
-            Dictionary = new Dictionary<string, Word>();
-
+            Dictionary = new Dictionary<string, Word>(125);
+            Glosses = new Dictionary<string, Dictionary<string, Dictionary<string, string[]>>>(125);
 
             {
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
@@ -158,9 +161,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                a = new Word("a", glossMap);
+                a = new Word("a");
 
                 Dictionary.Add("a", a);
+                Glosses.Add("a", glossMap);
             }
 
 
@@ -179,9 +183,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                akesi = new Word("akesi", glossMap);
+                akesi = new Word("akesi");
 
                 Dictionary.Add("akesi", akesi);
+                Glosses.Add("akesi", glossMap);
             }
 
 
@@ -200,14 +205,16 @@ namespace BasicTypes
                 {
                     var eo = new Dictionary<string, string[]>();
                     eo.Add("noun", new[] { "nenio", "neado", "nul" });
-                    eo.Add("adj", new[] { "ne", "neniu" });
+                    eo.Add("adj", new[] { "ne" });
+                    eo.Add("adv", new[] { "ne" });
                     eo.Add("interj", new[] { "ne!" });
 
                     glossMap.Add("eo", eo);
                 }
-                ala = new Word("ala", glossMap);
+                ala = new Word("ala");
 
                 Dictionary.Add("ala", ala);
+                Glosses.Add("ala", glossMap);
             }
 
 
@@ -226,9 +233,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                alasa = new Word("alasa", glossMap);
+                alasa = new Word("alasa");
 
                 Dictionary.Add("alasa", alasa);
+                Glosses.Add("alasa", glossMap);
             }
 
 
@@ -239,6 +247,7 @@ namespace BasicTypes
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "everything", "anything", "life", "the universe" });
                     en.Add("adj", new[] { "all", "every", "complete", "whole" });
+                    en.Add("adv", new[] { "completely", "wholely" });
 
                     glossMap.Add("en", en);
                 }
@@ -246,12 +255,14 @@ namespace BasicTypes
                     var eo = new Dictionary<string, string[]>();
                     eo.Add("noun", new[] { "ĉio", "la vivo", "la universo" });
                     eo.Add("adj", new[] { "ĉiu(j)", "tuta", "kompleta" });
+                    eo.Add("adv", new[] { "tute", "komplete" });
 
                     glossMap.Add("eo", eo);
                 }
-                ale = new Word("ale", glossMap);
+                ale = new Word("ale");
 
                 Dictionary.Add("ale", ale);
+                Glosses.Add("ale", glossMap);
             }
 
 
@@ -262,6 +273,7 @@ namespace BasicTypes
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "everything", "anything", "life", "the universe" });
                     en.Add("adj", new[] { "all", "every", "complete", "whole" });
+                    en.Add("adv", new[] { "completely", "wholely" });
 
                     glossMap.Add("en", en);
                 }
@@ -269,12 +281,14 @@ namespace BasicTypes
                     var eo = new Dictionary<string, string[]>();
                     eo.Add("noun", new[] { "ĉio", "la vivo", "la universo" });
                     eo.Add("adj", new[] { "ĉiu(j)", "tuta", "kompleta" });
+                    eo.Add("adv", new[] { "tute", "komplete" });
 
                     glossMap.Add("eo", eo);
                 }
-                ali = new Word("ali", glossMap);
+                ali = new Word("ali");
 
                 Dictionary.Add("ali", ali);
+                Glosses.Add("ali", glossMap);
             }
 
 
@@ -286,6 +300,7 @@ namespace BasicTypes
                     en.Add("noun", new[] { "difference" });
                     en.Add("adj", new[] { "different" });
                     en.Add("vt", new[] { "change", "alter", "modify" });
+                    en.Add("adv", new[] { "differently" });
                     en.Add("conj", new[] { "otherwise", "or else" });
 
                     glossMap.Add("en", en);
@@ -295,13 +310,15 @@ namespace BasicTypes
                     eo.Add("noun", new[] { "diferenco", "malsameco" });
                     eo.Add("adj", new[] { "alia", "malsama" });
                     eo.Add("vt", new[] { "ŝanĝi", "aliigi" });
+                    eo.Add("adv", new[] { "alie", "malsame" });
                     eo.Add("conj", new[] { "alie", "aliokaze" });
 
                     glossMap.Add("eo", eo);
                 }
-                ante = new Word("ante", glossMap);
+                ante = new Word("ante ");
 
-                Dictionary.Add("ante", ante);
+                Dictionary.Add("ante ", ante);
+                Glosses.Add("ante ", glossMap);
             }
 
 
@@ -320,9 +337,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                anu = new Word("anu", glossMap);
+                anu = new Word("anu");
 
                 Dictionary.Add("anu", anu);
+                Glosses.Add("anu", glossMap);
             }
 
 
@@ -333,6 +351,7 @@ namespace BasicTypes
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "bottom", "lower part", "under", "below", "floor", "beneath" });
                     en.Add("adj", new[] { "low", "lower", "bottom", "down" });
+                    en.Add("adv", new[] { "lowly" });
 
                     glossMap.Add("en", en);
                 }
@@ -340,12 +359,14 @@ namespace BasicTypes
                     var eo = new Dictionary<string, string[]>();
                     eo.Add("noun", new[] { "malsupro", "subo", "suba parto", "planko" });
                     eo.Add("adj", new[] { "malsupra", "suba" });
+                    eo.Add("adv", new[] { "malsupre", "sube" });
 
                     glossMap.Add("eo", eo);
                 }
-                anpa = new Word("anpa", glossMap);
+                anpa = new Word("anpa");
 
                 Dictionary.Add("anpa", anpa);
+                Glosses.Add("anpa", glossMap);
             }
 
 
@@ -357,6 +378,7 @@ namespace BasicTypes
                     en.Add("adj", new[] { "remaining", "stationary", "permanent", "sedentary" });
                     en.Add("vt", new[] { "keep" });
                     en.Add("vi", new[] { "stay", "wait", "remain" });
+                    en.Add("adv", new[] { "permanently" });
 
                     glossMap.Add("en", en);
                 }
@@ -365,12 +387,14 @@ namespace BasicTypes
                     eo.Add("adj", new[] { "restanta", "cetera", "daŭra" });
                     eo.Add("vt", new[] { "gardi" });
                     eo.Add("vi", new[] { "resti", "atendi", "daŭri" });
+                    eo.Add("adv", new[] { "daŭre" });
 
                     glossMap.Add("eo", eo);
                 }
-                awen = new Word("awen", glossMap);
+                awen = new Word("awen");
 
                 Dictionary.Add("awen", awen);
+                Glosses.Add("awen", glossMap);
             }
 
 
@@ -387,9 +411,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                e = new Word("e", glossMap);
+                e = new Word("e");
 
                 Dictionary.Add("e", e);
+                Glosses.Add("e", glossMap);
             }
 
 
@@ -397,10 +422,10 @@ namespace BasicTypes
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
 
                 {
-                    var eng = new Dictionary<string, string[]>();
-                    eng.Add("conj", new[] { "and" });
+                    var enLang = new Dictionary<string, string[]>();
+                    enLang.Add("conj", new[] { "and" });
 
-                    glossMap.Add("en", eng);
+                    glossMap.Add("en", enLang);
                 }
                 {
                     var eo = new Dictionary<string, string[]>();
@@ -408,9 +433,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                en = new Word("en", glossMap);
+                en = new Word("en");
 
                 Dictionary.Add("en", en);
+                Glosses.Add("en", glossMap);
             }
 
 
@@ -429,9 +455,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                esun = new Word("esun", glossMap);
+                esun = new Word("esun");
 
                 Dictionary.Add("esun", esun);
+                Glosses.Add("esun", glossMap);
             }
 
 
@@ -448,9 +475,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                ijo = new Word("ijo", glossMap);
+                ijo = new Word("ijo");
 
                 Dictionary.Add("ijo", ijo);
+                Glosses.Add("ijo", glossMap);
             }
 
 
@@ -463,6 +491,7 @@ namespace BasicTypes
                     en.Add("adj", new[] { "bad", "negative", "wrong", "evil", "overly complex", "unhealthy" });
                     en.Add("vt", new[] { "to make bad", "to worsen", "to have a negative effect upon" });
                     en.Add("vi", new[] { "to be bad", "to suck" });
+                    en.Add("adv", new[] { "badly", "negatively", "wrongly", "evilly", "overly complex", "unhealthyly" });
                     en.Add("interj", new[] { "oh dear! woe! alas!" });
 
                     glossMap.Add("en", en);
@@ -473,13 +502,15 @@ namespace BasicTypes
                     eo.Add("adj", new[] { "malbona", "aĉa", "malĝusta", "malica", "tro kompleksa", "malsana" });
                     eo.Add("vt", new[] { "malbonigi", "noci" });
                     eo.Add("vi", new[] { "aĉi" });
+                    eo.Add("adv", new[] { "malbone", "aĉe", "malĝuste", "malice", "tro komplekse", "malsane" });
                     eo.Add("interj", new[] { "ho ve!" });
 
                     glossMap.Add("eo", eo);
                 }
-                ike = new Word("ike", glossMap);
+                ike = new Word("ike");
 
                 Dictionary.Add("ike", ike);
+                Glosses.Add("ike", glossMap);
             }
 
 
@@ -498,9 +529,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                ilo = new Word("ilo", glossMap);
+                ilo = new Word("ilo");
 
                 Dictionary.Add("ilo", ilo);
+                Glosses.Add("ilo", glossMap);
             }
 
 
@@ -511,6 +543,7 @@ namespace BasicTypes
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "inside", "inner world", "centre", "stomach" });
                     en.Add("adj", new[] { "inner", "internal" });
+                    en.Add("adv", new[] { "internally" });
 
                     glossMap.Add("en", en);
                 }
@@ -518,12 +551,14 @@ namespace BasicTypes
                     var eo = new Dictionary<string, string[]>();
                     eo.Add("noun", new[] { "eno", "interno", "interna mondo", "centro", "ventro" });
                     eo.Add("adj", new[] { "ena", "interna" });
+                    eo.Add("adv", new[] { "ene", "interne" });
 
                     glossMap.Add("eo", eo);
                 }
-                insa = new Word("insa", glossMap);
+                insa = new Word("insa");
 
                 Dictionary.Add("insa", insa);
+                Glosses.Add("insa", glossMap);
             }
 
 
@@ -535,6 +570,7 @@ namespace BasicTypes
                     en.Add("noun", new[] { "dirt", "pollution", "garbage", "filth" });
                     en.Add("adj", new[] { "dirty", "gross", "filthy" });
                     en.Add("vt", new[] { "pollute", "dirty" });
+                    en.Add("adv", new[] { "dirtily", "grossly", "filthily" });
                     en.Add("interj", new[] { "ew! yuck!" });
 
                     glossMap.Add("en", en);
@@ -544,13 +580,15 @@ namespace BasicTypes
                     eo.Add("noun", new[] { "malpuro", "poluo", "rubo" });
                     eo.Add("adj", new[] { "malpura", "naŭza" });
                     eo.Add("vt", new[] { "malpurigi", "polui" });
+                    eo.Add("adv", new[] { "malpure", "naŭze" });
                     eo.Add("interj", new[] { "kiom naŭze!" });
 
                     glossMap.Add("eo", eo);
                 }
-                jaki = new Word("jaki", glossMap);
+                jaki = new Word("jaki");
 
                 Dictionary.Add("jaki", jaki);
+                Glosses.Add("jaki", glossMap);
             }
 
 
@@ -562,6 +600,7 @@ namespace BasicTypes
                     en.Add("noun", new[] { "person", "people", "human", "being", "somebody", "anybody" });
                     en.Add("adj", new[] { "human", "somebody's", "personal", "of people" });
                     en.Add("vt", new[] { "personify", "humanize", "personalize" });
+                    en.Add("adv", new[] { "humanly", "personally" });
                     en.Add("pronoun", new[] { "one", "someone" });
 
                     glossMap.Add("en", en);
@@ -571,12 +610,14 @@ namespace BasicTypes
                     eo.Add("noun", new[] { "homo", "ulo", "persono", "estaĵo", "iu" });
                     eo.Add("adj", new[] { "homa", "ies", "persona" });
                     eo.Add("vt", new[] { "personigi", "homigi" });
+                    eo.Add("adv", new[] { "home", "persone" });
 
                     glossMap.Add("eo", eo);
                 }
-                jan = new Word("jan", glossMap);
+                jan = new Word("jan");
 
                 Dictionary.Add("jan", jan);
+                Glosses.Add("jan", glossMap);
             }
 
 
@@ -595,9 +636,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                jelo = new Word("jelo", glossMap);
+                jelo = new Word("jelo");
 
                 Dictionary.Add("jelo", jelo);
+                Glosses.Add("jelo", glossMap);
             }
 
 
@@ -618,9 +660,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                jo = new Word("jo", glossMap);
+                jo = new Word("jo");
 
                 Dictionary.Add("jo", jo);
+                Glosses.Add("jo", glossMap);
             }
 
 
@@ -639,9 +682,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                kala = new Word("kala", glossMap);
+                kala = new Word("kala");
 
                 Dictionary.Add("kala", kala);
+                Glosses.Add("kala", glossMap);
             }
 
 
@@ -664,9 +708,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                kalama = new Word("kalama", glossMap);
+                kalama = new Word("kalama");
 
                 Dictionary.Add("kalama", kalama);
+                Glosses.Add("kalama", glossMap);
             }
 
 
@@ -691,9 +736,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                kama = new Word("kama", glossMap);
+                kama = new Word("kama");
 
                 Dictionary.Add("kama", kama);
+                Glosses.Add("kama", glossMap);
             }
 
 
@@ -712,9 +758,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                kasi = new Word("kasi", glossMap);
+                kasi = new Word("kasi");
 
                 Dictionary.Add("kasi", kasi);
+                Glosses.Add("kasi", glossMap);
             }
 
 
@@ -739,9 +786,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                ken = new Word("ken", glossMap);
+                ken = new Word("ken");
 
                 Dictionary.Add("ken", ken);
+                Glosses.Add("ken", glossMap);
             }
 
 
@@ -762,9 +810,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                kepeken = new Word("kepeken", glossMap);
+                kepeken = new Word("kepeken");
 
                 Dictionary.Add("kepeken", kepeken);
+                Glosses.Add("kepeken", glossMap);
             }
 
 
@@ -783,9 +832,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                kili = new Word("kili", glossMap);
+                kili = new Word("kili");
 
                 Dictionary.Add("kili", kili);
+                Glosses.Add("kili", glossMap);
             }
 
 
@@ -795,19 +845,22 @@ namespace BasicTypes
                 {
                     var en = new Dictionary<string, string[]>();
                     en.Add("adj", new[] { "also", "too", "even", "indeed" });
+                    en.Add("adv", new[] { "also", "too", "even", "indeed" });
 
                     glossMap.Add("en", en);
                 }
                 {
                     var eo = new Dictionary<string, string[]>();
                     eo.Add("adj", new[] { "ankaŭ", "eĉ", "ja" });
+                    eo.Add("adv", new[] { "ankaŭ", "eĉ", "ja" });
                     eo.Add("conditional", new[] { "indeed" });
 
                     glossMap.Add("eo", eo);
                 }
-                kin = new Word("kin", glossMap);
+                kin = new Word("kin");
 
                 Dictionary.Add("kin", kin);
+                Glosses.Add("kin", glossMap);
             }
 
 
@@ -826,9 +879,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                kipisi = new Word("kipisi", glossMap);
+                kipisi = new Word("kipisi");
 
                 Dictionary.Add("kipisi", kipisi);
+                Glosses.Add("kipisi", glossMap);
             }
 
 
@@ -839,6 +893,7 @@ namespace BasicTypes
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "hard thing", "rock", "stone", "metal", "mineral", "clay" });
                     en.Add("adj", new[] { "hard", "solid", "stone-like", "made of stone", "made of metal" });
+                    en.Add("adv", new[] { "solidly" });
 
                     glossMap.Add("en", en);
                 }
@@ -846,12 +901,14 @@ namespace BasicTypes
                     var eo = new Dictionary<string, string[]>();
                     eo.Add("noun", new[] { "malmolaĵo", "ŝtono", "metalo", "mineralo", "argilo" });
                     eo.Add("adj", new[] { "malmola", "dura", "solida", "ŝton(ec)a", "metala" });
+                    eo.Add("adv", new[] { "malmole", "solide" });
 
                     glossMap.Add("eo", eo);
                 }
-                kiwen = new Word("kiwen", glossMap);
+                kiwen = new Word("kiwen");
 
                 Dictionary.Add("kiwen", kiwen);
+                Glosses.Add("kiwen", glossMap);
             }
 
 
@@ -870,9 +927,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                ko = new Word("ko", glossMap);
+                ko = new Word("ko");
 
                 Dictionary.Add("ko", ko);
+                Glosses.Add("ko", glossMap);
             }
 
 
@@ -893,9 +951,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                kon = new Word("kon", glossMap);
+                kon = new Word("kon");
 
                 Dictionary.Add("kon", kon);
+                Glosses.Add("kon", glossMap);
             }
 
 
@@ -907,6 +966,7 @@ namespace BasicTypes
                     en.Add("noun", new[] { "colour", "paint" });
                     en.Add("adj", new[] { "colourful" });
                     en.Add("vt", new[] { "colour", "paint" });
+                    en.Add("adv", new[] { "colourfully" });
 
                     glossMap.Add("en", en);
                 }
@@ -915,12 +975,14 @@ namespace BasicTypes
                     eo.Add("noun", new[] { "koloro", "farbo" });
                     eo.Add("adj", new[] { "kolora", "bunta" });
                     eo.Add("vt", new[] { "kolori", "farbi" });
+                    eo.Add("adv", new[] { "kolore", "bunte" });
 
                     glossMap.Add("eo", eo);
                 }
-                kule = new Word("kule", glossMap);
+                kule = new Word("kule");
 
                 Dictionary.Add("kule", kule);
+                Glosses.Add("kule", glossMap);
             }
 
 
@@ -931,6 +993,7 @@ namespace BasicTypes
                     var en = new Dictionary<string, string[]>();
                     en.Add("adj", new[] { "auditory", "hearing" });
                     en.Add("vt", new[] { "listen", "hear" });
+                    en.Add("adv", new[] { "audibly" });
 
                     glossMap.Add("en", en);
                 }
@@ -938,12 +1001,14 @@ namespace BasicTypes
                     var eo = new Dictionary<string, string[]>();
                     eo.Add("adj", new[] { "aŭda", "aŭskulta" });
                     eo.Add("vt", new[] { "aŭskulti", "aŭdi" });
+                    eo.Add("adv", new[] { "aŭde", "aŭskulte" });
 
                     glossMap.Add("eo", eo);
                 }
-                kute = new Word("kute", glossMap);
+                kute = new Word("kute");
 
                 Dictionary.Add("kute", kute);
+                Glosses.Add("kute", glossMap);
             }
 
 
@@ -954,6 +1019,7 @@ namespace BasicTypes
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "group", "community", "society", "company", "people" });
                     en.Add("adj", new[] { "communal", "shared", "public", "of the society" });
+                    en.Add("adv", new[] { "communally", "publicly" });
 
                     glossMap.Add("en", en);
                 }
@@ -961,12 +1027,14 @@ namespace BasicTypes
                     var eo = new Dictionary<string, string[]>();
                     eo.Add("noun", new[] { "grupo", "komunumo", "socio", "firmao", "popolo" });
                     eo.Add("adj", new[] { "komuna", "publika", "socia" });
+                    eo.Add("adv", new[] { "komune", "publike", "socie" });
 
                     glossMap.Add("eo", eo);
                 }
-                kulupu = new Word("kulupu", glossMap);
+                kulupu = new Word("kulupu");
 
                 Dictionary.Add("kulupu", kulupu);
+                Glosses.Add("kulupu", glossMap);
             }
 
 
@@ -983,9 +1051,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                la = new Word("la", glossMap);
+                la = new Word("la");
 
                 Dictionary.Add("la", la);
+                Glosses.Add("la", glossMap);
             }
 
 
@@ -997,19 +1066,23 @@ namespace BasicTypes
                     en.Add("noun", new[] { "sleep", "rest" });
                     en.Add("adj", new[] { "sleeping", "of sleep" });
                     en.Add("vi", new[] { "sleep", "rest" });
+                    en.Add("adv", new[] { "sleepily" });
 
                     glossMap.Add("en", en);
                 }
                 {
                     var eo = new Dictionary<string, string[]>();
                     eo.Add("noun", new[] { "dormo", "ripozo" });
+                    eo.Add("adj", new[] { "dorma", "ripoza" });
                     eo.Add("vi", new[] { "dormi", "ripozi a dormanta", "dorma", "ripoza" });
+                    eo.Add("adv", new[] { "dorme", "ripoze" });
 
                     glossMap.Add("eo", eo);
                 }
-                lape = new Word("lape", glossMap);
+                lape = new Word("lape");
 
                 Dictionary.Add("lape", lape);
+                Glosses.Add("lape", glossMap);
             }
 
 
@@ -1028,9 +1101,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                laso = new Word("laso", glossMap);
+                laso = new Word("laso");
 
                 Dictionary.Add("laso", laso);
+                Glosses.Add("laso", glossMap);
             }
 
 
@@ -1042,6 +1116,7 @@ namespace BasicTypes
                     en.Add("noun", new[] { "head", "mind" });
                     en.Add("adj", new[] { "main", "leading", "in charge" });
                     en.Add("vt", new[] { "lead", "control", "rule", "steer" });
+                    en.Add("adv", new[] { "mainly" });
 
                     glossMap.Add("en", en);
                 }
@@ -1050,12 +1125,14 @@ namespace BasicTypes
                     eo.Add("noun", new[] { "kapo", "menso" });
                     eo.Add("adj", new[] { "ĉefa", "estra" });
                     eo.Add("vt", new[] { "estri", "regi" });
+                    eo.Add("adv", new[] { "ĉefe", "estre" });
 
                     glossMap.Add("eo", eo);
                 }
-                lawa = new Word("lawa", glossMap);
+                lawa = new Word("lawa");
 
                 Dictionary.Add("lawa", lawa);
+                Glosses.Add("lawa", glossMap);
             }
 
 
@@ -1074,9 +1151,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                len = new Word("len", glossMap);
+                len = new Word("len");
 
                 Dictionary.Add("len", len);
+                Glosses.Add("len", glossMap);
             }
 
 
@@ -1088,6 +1166,7 @@ namespace BasicTypes
                     en.Add("noun", new[] { "cold" });
                     en.Add("adj", new[] { "cold", "uncooked" });
                     en.Add("vt", new[] { "cool down", "chill" });
+                    en.Add("adv", new[] { "coldly" });
 
                     glossMap.Add("en", en);
                 }
@@ -1096,12 +1175,14 @@ namespace BasicTypes
                     eo.Add("noun", new[] { "malvarmo" });
                     eo.Add("adj", new[] { "malvarma", "frida", "nekuirita" });
                     eo.Add("vt", new[] { "malvarmigi" });
+                    eo.Add("adv", new[] { "malvarme", "fride" });
 
                     glossMap.Add("eo", eo);
                 }
-                lete = new Word("lete", glossMap);
+                lete = new Word("lete");
 
                 Dictionary.Add("lete", lete);
+                Glosses.Add("lete", glossMap);
             }
 
 
@@ -1118,9 +1199,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                li = new Word("li", glossMap);
+                li = new Word("li");
 
                 Dictionary.Add("li", li);
+                Glosses.Add("li", glossMap);
             }
 
 
@@ -1131,6 +1213,7 @@ namespace BasicTypes
                     var en = new Dictionary<string, string[]>();
                     en.Add("adj", new[] { "small", "little", "young", "a bit", "short", "few", "less" });
                     en.Add("vt", new[] { "reduce", "shorten", "shrink", "lessen" });
+                    en.Add("adv", new[] { "little", "a bit", "less" });
 
                     glossMap.Add("en", en);
                 }
@@ -1138,12 +1221,14 @@ namespace BasicTypes
                     var eo = new Dictionary<string, string[]>();
                     eo.Add("adj", new[] { "malgranda", "eta", "juna", "iomete", "mallonga", "malalta", "malmulte", "malpli" });
                     eo.Add("vt", new[] { "malpliigi", "mallongigi", "malgrandigi" });
+                    eo.Add("adv", new[] { "iomete", "malmulte", "malpli" });
 
                     glossMap.Add("eo", eo);
                 }
-                lili = new Word("lili", glossMap);
+                lili = new Word("lili");
 
                 Dictionary.Add("lili", lili);
+                Glosses.Add("lili", glossMap);
             }
 
 
@@ -1162,9 +1247,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                linja = new Word("linja", glossMap);
+                linja = new Word("linja");
 
                 Dictionary.Add("linja", linja);
+                Glosses.Add("linja", glossMap);
             }
 
 
@@ -1183,9 +1269,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                lipu = new Word("lipu", glossMap);
+                lipu = new Word("lipu");
 
                 Dictionary.Add("lipu", lipu);
+                Glosses.Add("lipu", glossMap);
             }
 
 
@@ -1204,9 +1291,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                loje = new Word("loje", glossMap);
+                loje = new Word("loje");
 
                 Dictionary.Add("loje", loje);
+                Glosses.Add("loje", glossMap);
             }
 
 
@@ -1227,9 +1315,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                lon = new Word("lon", glossMap);
+                lon = new Word("lon");
 
                 Dictionary.Add("lon", lon);
+                Glosses.Add("lon", glossMap);
             }
 
 
@@ -1248,9 +1337,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                luka = new Word("luka", glossMap);
+                luka = new Word("luka");
 
                 Dictionary.Add("luka", luka);
+                Glosses.Add("luka", glossMap);
             }
 
 
@@ -1262,6 +1352,7 @@ namespace BasicTypes
                     en.Add("adj", new[] { "visual", "visually" });
                     en.Add("vt", new[] { "see", "look at", "watch", "read" });
                     en.Add("vi", new[] { "look", "watch out", "pay attention" });
+                    en.Add("adv", new[] { "visually" });
 
                     glossMap.Add("en", en);
                 }
@@ -1270,12 +1361,14 @@ namespace BasicTypes
                     eo.Add("adj", new[] { "vida", "vide" });
                     eo.Add("vt", new[] { "vidi", "rigardi", "spekti", "observi", "legi" });
                     eo.Add("vi", new[] { "rigardi", "atenti" });
+                    eo.Add("adv", new[] { "vide" });
 
                     glossMap.Add("eo", eo);
                 }
-                lukin = new Word("lukin", glossMap);
+                lukin = new Word("lukin");
 
                 Dictionary.Add("lukin", lukin);
+                Glosses.Add("lukin", glossMap);
             }
 
 
@@ -1294,9 +1387,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                lupa = new Word("lupa", glossMap);
+                lupa = new Word("lupa");
 
                 Dictionary.Add("lupa", lupa);
+                Glosses.Add("lupa", glossMap);
             }
 
 
@@ -1315,9 +1409,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                ma = new Word("ma", glossMap);
+                ma = new Word("ma");
 
                 Dictionary.Add("ma", ma);
+                Glosses.Add("ma", glossMap);
             }
 
 
@@ -1328,6 +1423,7 @@ namespace BasicTypes
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "parent", "mother", "father" });
                     en.Add("adj", new[] { "of the parent", "parental", "maternal", "fatherly" });
+                    en.Add("adv", new[] { "maternally", "fatherly" });
 
                     glossMap.Add("en", en);
                 }
@@ -1335,12 +1431,14 @@ namespace BasicTypes
                     var eo = new Dictionary<string, string[]>();
                     eo.Add("noun", new[] { "patrino", "patro" });
                     eo.Add("adj", new[] { "gepatra", "patra", "patrina" });
+                    eo.Add("adv", new[] { "gepatre", "patre", "patrine" });
 
                     glossMap.Add("eo", eo);
                 }
-                mama = new Word("mama", glossMap);
+                mama = new Word("mama");
 
                 Dictionary.Add("mama", mama);
+                Glosses.Add("mama", glossMap);
             }
 
 
@@ -1350,18 +1448,19 @@ namespace BasicTypes
                 {
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "money", "material wealth", "currency", "dollar", "capital" });
-                    en.Add("adj", new[] { "mono", "materia havaĵo", "valuto", "dolaro", "kapitalo" });
 
                     glossMap.Add("en", en);
                 }
                 {
                     var eo = new Dictionary<string, string[]>();
+                    eo.Add("noun", new[] { "mono", "materia havaĵo", "valuto", "dolaro", "kapitalo" });
 
                     glossMap.Add("eo", eo);
                 }
-                mani = new Word("mani", glossMap);
+                mani = new Word("mani");
 
                 Dictionary.Add("mani", mani);
+                Glosses.Add("mani", glossMap);
             }
 
 
@@ -1382,9 +1481,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                meli = new Word("meli", glossMap);
+                meli = new Word("meli");
 
                 Dictionary.Add("meli", meli);
+                Glosses.Add("meli", glossMap);
             }
 
 
@@ -1406,9 +1506,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                mi = new Word("mi", glossMap);
+                mi = new Word("mi");
 
                 Dictionary.Add("mi", mi);
+                Glosses.Add("mi", glossMap);
             }
 
 
@@ -1429,9 +1530,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                mije = new Word("mije", glossMap);
+                mije = new Word("mije");
 
                 Dictionary.Add("mije", mije);
+                Glosses.Add("mije", glossMap);
             }
 
 
@@ -1452,9 +1554,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                moku = new Word("moku", glossMap);
+                moku = new Word("moku");
 
                 Dictionary.Add("moku", moku);
+                Glosses.Add("moku", glossMap);
             }
 
 
@@ -1479,9 +1582,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                moli = new Word("moli", glossMap);
+                moli = new Word("moli");
 
                 Dictionary.Add("moli", moli);
+                Glosses.Add("moli", glossMap);
             }
 
 
@@ -1502,9 +1606,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                monsi = new Word("monsi", glossMap);
+                monsi = new Word("monsi");
 
                 Dictionary.Add("monsi", monsi);
+                Glosses.Add("monsi", glossMap);
             }
 
 
@@ -1523,9 +1628,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                mu = new Word("mu", glossMap);
+                mu = new Word("mu");
 
                 Dictionary.Add("mu", mu);
+                Glosses.Add("mu", glossMap);
             }
 
 
@@ -1546,9 +1652,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                mun = new Word("mun", glossMap);
+                mun = new Word("mun");
 
                 Dictionary.Add("mun", mun);
+                Glosses.Add("mun", glossMap);
             }
 
 
@@ -1573,9 +1680,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                musi = new Word("musi", glossMap);
+                musi = new Word("musi");
 
                 Dictionary.Add("musi", musi);
+                Glosses.Add("musi", glossMap);
             }
 
 
@@ -1598,9 +1706,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                mute = new Word("mute", glossMap);
+                mute = new Word("mute");
 
                 Dictionary.Add("mute", mute);
+                Glosses.Add("mute", glossMap);
             }
 
 
@@ -1618,9 +1727,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                namako = new Word("namako", glossMap);
+                namako = new Word("namako");
 
                 Dictionary.Add("namako", namako);
+                Glosses.Add("namako", glossMap);
             }
 
 
@@ -1639,9 +1749,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                nanpa = new Word("nanpa", glossMap);
+                nanpa = new Word("nanpa");
 
                 Dictionary.Add("nanpa", nanpa);
+                Glosses.Add("nanpa", glossMap);
             }
 
 
@@ -1662,9 +1773,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                nasa = new Word("nasa", glossMap);
+                nasa = new Word("nasa");
 
                 Dictionary.Add("nasa", nasa);
+                Glosses.Add("nasa", glossMap);
             }
 
 
@@ -1683,9 +1795,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                nasin = new Word("nasin", glossMap);
+                nasin = new Word("nasin");
 
                 Dictionary.Add("nasin", nasin);
+                Glosses.Add("nasin", glossMap);
             }
 
 
@@ -1704,9 +1817,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                nena = new Word("nena", glossMap);
+                nena = new Word("nena");
 
                 Dictionary.Add("nena", nena);
+                Glosses.Add("nena", glossMap);
             }
 
 
@@ -1725,9 +1839,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                ni = new Word("ni", glossMap);
+                ni = new Word("ni");
 
                 Dictionary.Add("ni", ni);
+                Glosses.Add("ni", glossMap);
             }
 
 
@@ -1746,9 +1861,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                nimi = new Word("nimi", glossMap);
+                nimi = new Word("nimi");
 
                 Dictionary.Add("nimi", nimi);
+                Glosses.Add("nimi", glossMap);
             }
 
 
@@ -1767,9 +1883,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                noka = new Word("noka", glossMap);
+                noka = new Word("noka");
 
                 Dictionary.Add("noka", noka);
+                Glosses.Add("noka", glossMap);
             }
 
 
@@ -1788,9 +1905,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                o = new Word("o", glossMap);
+                o = new Word("o");
 
                 Dictionary.Add("o", o);
+                Glosses.Add("o", glossMap);
             }
 
 
@@ -1809,9 +1927,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                oko = new Word("oko", glossMap);
+                oko = new Word("oko");
 
                 Dictionary.Add("oko", oko);
+                Glosses.Add("oko", glossMap);
             }
 
 
@@ -1834,9 +1953,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                olin = new Word("olin", glossMap);
+                olin = new Word("olin");
 
                 Dictionary.Add("olin", olin);
+                Glosses.Add("olin", glossMap);
             }
 
 
@@ -1858,9 +1978,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                ona = new Word("ona", glossMap);
+                ona = new Word("ona");
 
                 Dictionary.Add("ona", ona);
+                Glosses.Add("ona", glossMap);
             }
 
 
@@ -1879,9 +2000,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                open = new Word("open", glossMap);
+                open = new Word("open");
 
                 Dictionary.Add("open", open);
+                Glosses.Add("open", glossMap);
             }
 
 
@@ -1906,9 +2028,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                pakala = new Word("pakala", glossMap);
+                pakala = new Word("pakala");
 
                 Dictionary.Add("pakala", pakala);
+                Glosses.Add("pakala", glossMap);
             }
 
 
@@ -1933,9 +2056,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                pali = new Word("pali", glossMap);
+                pali = new Word("pali");
 
                 Dictionary.Add("pali", pali);
+                Glosses.Add("pali", glossMap);
             }
 
 
@@ -1954,9 +2078,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                palisa = new Word("palisa", glossMap);
+                palisa = new Word("palisa");
 
                 Dictionary.Add("palisa", palisa);
+                Glosses.Add("palisa", glossMap);
             }
 
 
@@ -1975,9 +2100,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                pan = new Word("pan", glossMap);
+                pan = new Word("pan");
 
                 Dictionary.Add("pan", pan);
+                Glosses.Add("pan", glossMap);
             }
 
 
@@ -1998,9 +2124,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                pana = new Word("pana", glossMap);
+                pana = new Word("pana");
 
                 Dictionary.Add("pana", pana);
+                Glosses.Add("pana", glossMap);
             }
 
 
@@ -2019,9 +2146,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                pata = new Word("pata", glossMap);
+                pata = new Word("pata");
 
                 Dictionary.Add("pata", pata);
+                Glosses.Add("pata", glossMap);
             }
 
 
@@ -2038,9 +2166,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                pi = new Word("pi", glossMap);
+                pi = new Word("pi");
 
                 Dictionary.Add("pi", pi);
+                Glosses.Add("pi", glossMap);
             }
 
 
@@ -2063,9 +2192,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                pilin = new Word("pilin", glossMap);
+                pilin = new Word("pilin");
 
                 Dictionary.Add("pilin", pilin);
+                Glosses.Add("pilin", glossMap);
             }
 
 
@@ -2088,9 +2218,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                pimeja = new Word("pimeja", glossMap);
+                pimeja = new Word("pimeja");
 
                 Dictionary.Add("pimeja", pimeja);
+                Glosses.Add("pimeja", glossMap);
             }
 
 
@@ -2113,9 +2244,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                pini = new Word("pini", glossMap);
+                pini = new Word("pini");
 
                 Dictionary.Add("pini", pini);
+                Glosses.Add("pini", glossMap);
             }
 
 
@@ -2134,9 +2266,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                pipi = new Word("pipi", glossMap);
+                pipi = new Word("pipi");
 
                 Dictionary.Add("pipi", pipi);
+                Glosses.Add("pipi", glossMap);
             }
 
 
@@ -2159,9 +2292,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                poka = new Word("poka", glossMap);
+                poka = new Word("poka");
 
                 Dictionary.Add("poka", poka);
+                Glosses.Add("poka", glossMap);
             }
 
 
@@ -2180,9 +2314,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                poki = new Word("poki", glossMap);
+                poki = new Word("poki");
 
                 Dictionary.Add("poki", poki);
+                Glosses.Add("poki", glossMap);
             }
 
 
@@ -2207,9 +2342,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                pona = new Word("pona", glossMap);
+                pona = new Word("pona");
 
                 Dictionary.Add("pona", pona);
+                Glosses.Add("pona", glossMap);
             }
 
 
@@ -2230,9 +2366,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                sama = new Word("sama", glossMap);
+                sama = new Word("sama");
 
                 Dictionary.Add("sama", sama);
+                Glosses.Add("sama", glossMap);
             }
 
 
@@ -2255,9 +2392,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                seli = new Word("seli", glossMap);
+                seli = new Word("seli");
 
                 Dictionary.Add("seli", seli);
+                Glosses.Add("seli", glossMap);
             }
 
 
@@ -2276,9 +2414,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                selo = new Word("selo", glossMap);
+                selo = new Word("selo");
 
                 Dictionary.Add("selo", selo);
+                Glosses.Add("selo", glossMap);
             }
 
 
@@ -2297,9 +2436,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                seme = new Word("seme", glossMap);
+                seme = new Word("seme");
 
                 Dictionary.Add("seme", seme);
+                Glosses.Add("seme", glossMap);
             }
 
 
@@ -2320,9 +2460,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                sewi = new Word("sewi", glossMap);
+                sewi = new Word("sewi");
 
                 Dictionary.Add("sewi", sewi);
+                Glosses.Add("sewi", glossMap);
             }
 
 
@@ -2341,9 +2482,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                sijelo = new Word("sijelo", glossMap);
+                sijelo = new Word("sijelo");
 
                 Dictionary.Add("sijelo", sijelo);
+                Glosses.Add("sijelo", glossMap);
             }
 
 
@@ -2364,9 +2506,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                sike = new Word("sike", glossMap);
+                sike = new Word("sike");
 
                 Dictionary.Add("sike", sike);
+                Glosses.Add("sike", glossMap);
             }
 
 
@@ -2387,9 +2530,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                sin = new Word("sin", glossMap);
+                sin = new Word("sin");
 
                 Dictionary.Add("sin", sin);
+                Glosses.Add("sin", glossMap);
             }
 
 
@@ -2412,9 +2556,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                sina = new Word("sina", glossMap);
+                sina = new Word("sina");
 
                 Dictionary.Add("sina", sina);
+                Glosses.Add("sina", glossMap);
             }
 
 
@@ -2433,9 +2578,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                sinpin = new Word("sinpin", glossMap);
+                sinpin = new Word("sinpin");
 
                 Dictionary.Add("sinpin", sinpin);
+                Glosses.Add("sinpin", glossMap);
             }
 
 
@@ -2456,9 +2602,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                sitelen = new Word("sitelen", glossMap);
+                sitelen = new Word("sitelen");
 
                 Dictionary.Add("sitelen", sitelen);
+                Glosses.Add("sitelen", glossMap);
             }
 
 
@@ -2483,9 +2630,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                sona = new Word("sona", glossMap);
+                sona = new Word("sona");
 
                 Dictionary.Add("sona", sona);
+                Glosses.Add("sona", glossMap);
             }
 
 
@@ -2504,9 +2652,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                soweli = new Word("soweli", glossMap);
+                soweli = new Word("soweli");
 
                 Dictionary.Add("soweli", soweli);
+                Glosses.Add("soweli", glossMap);
             }
 
 
@@ -2529,9 +2678,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                suli = new Word("suli", glossMap);
+                suli = new Word("suli");
 
                 Dictionary.Add("suli", suli);
+                Glosses.Add("suli", glossMap);
             }
 
 
@@ -2550,9 +2700,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                suno = new Word("suno", glossMap);
+                suno = new Word("suno");
 
                 Dictionary.Add("suno", suno);
+                Glosses.Add("suno", glossMap);
             }
 
 
@@ -2571,9 +2722,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                supa = new Word("supa", glossMap);
+                supa = new Word("supa");
 
                 Dictionary.Add("supa", supa);
+                Glosses.Add("supa", glossMap);
             }
 
 
@@ -2596,9 +2748,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                suwi = new Word("suwi", glossMap);
+                suwi = new Word("suwi");
 
                 Dictionary.Add("suwi", suwi);
+                Glosses.Add("suwi", glossMap);
             }
 
 
@@ -2619,9 +2772,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                tan = new Word("tan", glossMap);
+                tan = new Word("tan");
 
                 Dictionary.Add("tan", tan);
+                Glosses.Add("tan", glossMap);
             }
 
 
@@ -2642,9 +2796,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                taso = new Word("taso", glossMap);
+                taso = new Word("taso");
 
                 Dictionary.Add("taso", taso);
+                Glosses.Add("taso", glossMap);
             }
 
 
@@ -2671,9 +2826,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                tawa = new Word("tawa", glossMap);
+                tawa = new Word("tawa");
 
                 Dictionary.Add("tawa", tawa);
+                Glosses.Add("tawa", glossMap);
             }
 
 
@@ -2694,9 +2850,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                telo = new Word("telo", glossMap);
+                telo = new Word("telo");
 
                 Dictionary.Add("telo", telo);
+                Glosses.Add("telo", glossMap);
             }
 
 
@@ -2715,9 +2872,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                tenpo = new Word("tenpo", glossMap);
+                tenpo = new Word("tenpo");
 
                 Dictionary.Add("tenpo", tenpo);
+                Glosses.Add("tenpo", glossMap);
             }
 
 
@@ -2744,9 +2902,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                toki = new Word("toki", glossMap);
+                toki = new Word("toki");
 
                 Dictionary.Add("toki", toki);
+                Glosses.Add("toki", glossMap);
             }
 
 
@@ -2767,9 +2926,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                tomo = new Word("tomo", glossMap);
+                tomo = new Word("tomo");
 
                 Dictionary.Add("tomo", tomo);
+                Glosses.Add("tomo", glossMap);
             }
 
 
@@ -2792,9 +2952,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                tu = new Word("tu", glossMap);
+                tu = new Word("tu");
 
                 Dictionary.Add("tu", tu);
+                Glosses.Add("tu", glossMap);
             }
 
 
@@ -2819,9 +2980,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                unpa = new Word("unpa", glossMap);
+                unpa = new Word("unpa");
 
                 Dictionary.Add("unpa", unpa);
+                Glosses.Add("unpa", glossMap);
             }
 
 
@@ -2842,9 +3004,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                uta = new Word("uta", glossMap);
+                uta = new Word("uta");
 
                 Dictionary.Add("uta", uta);
+                Glosses.Add("uta", glossMap);
             }
 
 
@@ -2865,9 +3028,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                utala = new Word("utala", glossMap);
+                utala = new Word("utala");
 
                 Dictionary.Add("utala", utala);
+                Glosses.Add("utala", glossMap);
             }
 
 
@@ -2888,9 +3052,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                walo = new Word("walo", glossMap);
+                walo = new Word("walo");
 
                 Dictionary.Add("walo", walo);
+                Glosses.Add("walo", glossMap);
             }
 
 
@@ -2913,9 +3078,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                wan = new Word("wan", glossMap);
+                wan = new Word("wan");
 
                 Dictionary.Add("wan", wan);
+                Glosses.Add("wan", glossMap);
             }
 
 
@@ -2934,9 +3100,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                waso = new Word("waso", glossMap);
+                waso = new Word("waso");
 
                 Dictionary.Add("waso", waso);
+                Glosses.Add("waso", glossMap);
             }
 
 
@@ -2959,9 +3126,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                wawa = new Word("wawa", glossMap);
+                wawa = new Word("wawa");
 
                 Dictionary.Add("wawa", wawa);
+                Glosses.Add("wawa", glossMap);
             }
 
 
@@ -2984,9 +3152,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                weka = new Word("weka", glossMap);
+                weka = new Word("weka");
 
                 Dictionary.Add("weka", weka);
+                Glosses.Add("weka", glossMap);
             }
 
 
@@ -3009,10 +3178,13 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                wile = new Word("wile", glossMap);
+                wile = new Word("wile");
 
                 Dictionary.Add("wile", wile);
+                Glosses.Add("wile", glossMap);
             }
+
+
 
 
 

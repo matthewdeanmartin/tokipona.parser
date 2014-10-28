@@ -34,7 +34,8 @@ namespace BasicTypes.Parts
             foreach (string part in parts)
             {
                 Word w = Words.Dictionary[part.Trim()];
-                string g= w.GlossMap["en"].First().Value.First();
+                var glossMap = Words.Glosses[w.Text];
+                string g= glossMap["en"].First().Value.First();
                 s.Add(g);
             }
             Console.WriteLine(glossTemplate,s.ToArray());

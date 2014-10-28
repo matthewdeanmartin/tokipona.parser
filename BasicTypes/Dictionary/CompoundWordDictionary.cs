@@ -11,6 +11,7 @@ namespace BasicTypes.Dictionary
     public class CompoundWords
     {
         public static Dictionary<string, CompoundWord> Dictionary;
+        public static Dictionary<string, Dictionary<string, Dictionary<string, string[]>>> Glosses;
 
         public static CompoundWord TomoTawaKon;
 
@@ -24,18 +25,17 @@ namespace BasicTypes.Dictionary
                 {
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] {"airplane"});
-
                     glossMap.Add("en", en);
                 }
                 {
                     var eo = new Dictionary<string, string[]>();
                     eo.Add("noun", new[] {"[aeroplano?]"});
-
                     glossMap.Add("eo", eo);
                 }
-                TomoTawaKon = new CompoundWord("tomo-tawa-kon", glossMap);
+                TomoTawaKon = new CompoundWord("tomo-tawa-kon");
 
                 Dictionary.Add("tomo-tawa-kon", TomoTawaKon);
+                Glosses.Add("tomo-tawa-kon", glossMap);
             }
         }
     }

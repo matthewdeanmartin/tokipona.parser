@@ -144,16 +144,18 @@ namespace BasicTypes
 
             }
 
-            if (w.GlossMap == null)
+            var glossMap = Words.Glosses[Text];
+            if (glossMap == null)
             {
                 return "[missing map for " + Text + "]";
             }
-            if (w.GlossMap.ContainsKey(language))
+            if (glossMap.ContainsKey(language))
             {
-                if (w.GlossMap[language].ContainsKey(pos))
+                //Move this code to GlossMap
+                if (glossMap[language].ContainsKey(pos))
                 {
                     Random r = new Random(DateTime.Now.Millisecond);//TODO: Make this a part of config
-                    string[] possibilities = w.GlossMap[language][pos];
+                    string[] possibilities = glossMap[language][pos];
                     return possibilities[r.Next(possibilities.Length)];
                 }
             }
@@ -175,7 +177,7 @@ namespace BasicTypes
                 }
             }
 
-            foreach (KeyValuePair<string, Dictionary<string, string[]>> pair in w.GlossMap)
+            foreach (KeyValuePair<string, Dictionary<string, string[]>> pair in glossMap)
             {
                 StringBuilder sb = new StringBuilder();
                 foreach (var item in pair.Value)

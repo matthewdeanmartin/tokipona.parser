@@ -36,13 +36,17 @@ namespace BasicTypes
             {
                 throw new TpSyntaxException("Proper modifiers can't be the head of a headed phrase");
             }
-            foreach (Word word in modifiers)
+            if (modifiers != null)
             {
-                if (Particle.IsParticle(word.Text))
+                foreach (Word word in modifiers)
                 {
-                    throw new TpSyntaxException("Particles shouldn't be modifiers");
+                    if (Particle.IsParticle(word.Text))
+                    {
+                        throw new TpSyntaxException("Particles shouldn't be modifiers");
+                    }
                 }
             }
+            
 
             this.head = head;
             this.modifiers = modifiers;

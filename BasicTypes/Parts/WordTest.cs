@@ -165,7 +165,7 @@ namespace BasicTypes
         public void WeakWord_Constructor2SetsText()
         {
             string word = "Mato";
-            Word f = new Word(word, new Dictionary<string, Dictionary<string, string[]>>());
+            Word f = new Word(word);//new Dictionary<string, Dictionary<string, string[]>>()
             Assert.IsTrue(f.Text == word);
         }
 
