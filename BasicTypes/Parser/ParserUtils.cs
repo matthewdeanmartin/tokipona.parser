@@ -90,11 +90,14 @@ namespace BasicTypes
         }
 
         public const string ValidTpWordSplitter =
-            @"([0-9-]+)|\b([JKLMNPSTW]?[aeiou]([jklmnpstw][aeiou][n]?)*)\b" +
-            @"|\b([aeiou])\b" +
-            @"|\b(([jklmnpstw]?[aeiou][n]?)*)\b" +
-            @"|\b([aeiou][n]?)\b|" +
-            @"\b([AEIOU][n]?)\b";
+            //@"([0-9-]+)" +  //Numbers okay
+            @"(#[0-9-]+)" +  //Pounded numbers better
+            @"|[""][a-zA-Z0-9\*\?.!]*[""]" +  //Quoted text joined by * is okay == foreign text
+            @"|\b([JKLMNPSTW]?[aeiou]([jklmnpstw][aeiou][n]?)*)\b" +  //Capitalized syllable followed by any number of whole syllables with optional n's 
+            @"|\b([aeiou])\b" + //Bare vowel is okay.
+            @"|\b(([jklmnpstw]?[aeiou][n]?)*)\b" + //Uncapitalized syllables with optional constants or final n's
+            @"|\b([aeiou][n]?)\b|" + //vowels with optional n's
+            @"\b([AEIOU][n]?)\b"; //Capital vowels with optional n's
 
         //Can double match (word within word) :-(
         public string[] JustTpWords(string value)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection.Emit;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters;
 using System.Text;
@@ -187,6 +188,7 @@ namespace BasicTypes
 
         //Also an odd ball.
         public Vocative Vocative { get { return vocative; } }
+        public Fragment Fragement { get { return fragment; } }
 
         public Particle Conjunction { get { return conjunction; } } //Anu, taso
         public Chain[] Subjects { get { return subjects; } } //jan 
@@ -258,7 +260,7 @@ namespace BasicTypes
 
             if (format != "bs")
             {
-                string result = Denormalize(spaceJoined);
+                string result = Denormalize(spaceJoined, format);
                 return result;
             }
             else
@@ -317,15 +319,38 @@ namespace BasicTypes
             return sb;
         }
 
-        private string Denormalize(string value)
+        private bool NeedToReplace(string value, string pronoun)
         {
-            if (value.Contains("mi li"))
+            bool startsWith = value.Contains(pronoun+ " li") && value.StartsWith(pronoun+ " ");
+            if(startsWith) return true;
+
+            bool followsConditional = value.Contains(pronoun + " li") && value.Contains(" la "+pronoun+" li ");
+            if(followsConditional) return true;
+
+            bool followsPunctuation = value.Contains(pronoun + " li") && value.Contains(". " + pronoun + " li ");
+            if (followsPunctuation) return true;
+
+            bool followsColon = value.Contains(pronoun + " li") && value.Contains(": " + pronoun + " li ");
+            if (followsColon) return true;
+
+            return false;
+        }
+    
+
+        private string Denormalize(string value, string format)
+        {
+            if (format == null)
+            {
+                format = "g";
+            }
+            //tenpo kama la jan lili mi li toki e ni
+            if (NeedToReplace(value,"mi"))
             {
                 Regex r = new Regex(@"\bmi li\b");
                 value = r.Replace(value, "mi");
             }
 
-            if (value.Contains("sina li"))
+            if (NeedToReplace(value, "sina"))
             {
                 Regex r = new Regex(@"\bsina li li\b");
                 value = r.Replace(value, "sina");
@@ -337,7 +362,11 @@ namespace BasicTypes
             }
             if (value.Contains("li ijo Nanunanuwakawakawawa."))
             {
-                value = value.Replace("li ijo Nanunanuwakawakawawa.", "[NULL TOKEN]");
+                value = value.Replace("li ijo Nanunanuwakawakawawa.", format.StartsWith("b")?"[NULL TOKEN]":"");
+            }
+            if (value.Contains("[NULL]") && !format.StartsWith("b"))
+            {
+                value = value.Replace("[NULL]","");
             }
             return value;
         }

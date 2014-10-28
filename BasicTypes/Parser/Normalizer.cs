@@ -63,6 +63,11 @@ namespace BasicTypes.Parser
                 normalized = RepairErrors(normalized);
             }
 
+            if (normalized.Contains("\""))
+            {
+                normalized = ProcessWhiteSpaceInForeignText(normalized);
+            }
+
             //Left overs from initial parsing.
             if (normalized.Contains("[NULL]"))
             {
@@ -75,11 +80,18 @@ namespace BasicTypes.Parser
                 normalized = normalized.Replace(", li ", " li ");
             }
 
+            //Line breaks & other white spaces make it harder to find boundaries
+            //jan li
+            //tawa. ==> jan li tawa.
+            normalized = normalized.Replace("\n", " ");
+            
+
             //Extraneous whitespace
             while (normalized.Contains("  "))
             {
                 normalized = normalized.Replace("  ", " ");
             }
+            
 
             string[] preps = new String[] { "kepeken", "tawa", "poka", "sama", "tan", "lon" };
             bool isPunctuated = false;
@@ -177,20 +189,7 @@ namespace BasicTypes.Parser
             }
 
             string fakePredicate = " li ijo Nanunanuwakawakawawa.";
-            if (!(normalized.Contains(" li ")) && !IsVocative(normalized) && !IsExclamatory(normalized) && !IsFragment(normalized))
-            {
-                //Add a marker that we can later remove. Allows for parsing NPs, like titles, as if
-                //they were sentences.
-                if (normalized.EndsWith("."))
-                {
-                    normalized = normalized.Substring(0, normalized.Length - 1) + fakePredicate;
-                }
-                else
-                {
-                    normalized = normalized + fakePredicate;
-
-                }
-            }
+            //normalized = UseDummyPredicateForObviousFragments(normalized, fakePredicate);
             //vocatives & exlamations are expected to be fragmentary.
 
 
@@ -231,6 +230,52 @@ namespace BasicTypes.Parser
                 throw new InvalidOperationException("started with " + text);
             }
             return normalized;
+        }
+
+        private static string UseDummyPredicateForObviousFragments(string normalized, string fakePredicate)
+        {
+            if (!(normalized.Contains(" li ")) && !IsVocative(normalized) && !IsExclamatory(normalized) &&
+                !IsFragment(normalized))
+            {
+                //Add a marker that we can later remove. Allows for parsing NPs, like titles, as if
+                //they were sentences.
+                if (normalized.EndsWith("."))
+                {
+                    normalized = normalized.Substring(0, normalized.Length - 1) + fakePredicate;
+                }
+                else
+                {
+                    normalized = normalized + fakePredicate;
+                }
+            }
+            return normalized;
+        }
+
+        private static string ProcessWhiteSpaceInForeignText(string normalized)
+        {
+            StringBuilder sb = new StringBuilder(normalized.Length);
+            bool insideForeignText=false;
+
+            foreach (char c in normalized)
+            {
+                if (c == '"')
+                {
+                    insideForeignText = !insideForeignText;
+                }
+                if (insideForeignText && c == ' ')
+                {
+                    sb.Append('*');
+                }
+                else
+                {
+                    sb.Append(c);
+                }
+            }
+            if (insideForeignText)
+            {
+                sb.Append('"');
+            }
+            return sb.ToString();
         }
 
         private static string ThoseArentPrepositions(string[] preps, string normalized)

@@ -13,6 +13,17 @@ namespace BasicTypes.Parser
     [TestFixture]
     public class ParserUtilsTestsRegex
     {
+
+        [Test]
+        public void GoDawgs()
+        {
+            //"Go*Dawgs!"
+            ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
+            string[] oneForeinString = pu.JustTpWords("\"Go*Dawgs!\"");
+            Assert.AreEqual(1, oneForeinString.Length);
+
+        }
+
         [Test]
         public void CompoundWordParseSimple()
         {

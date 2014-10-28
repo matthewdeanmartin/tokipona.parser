@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using BasicTypes.Collections;
 using BasicTypes.Exceptions;
 using BasicTypes.Extensions;
+using BasicTypes.Parts;
 
 namespace BasicTypes
 {
@@ -31,6 +32,18 @@ namespace BasicTypes
             {
                 throw new TpSyntaxException("You can't have a headed phrase that is headed by a particle. That would be a chain.");
             }
+            if (ProperModifier.IsProperModifer(head.Text))
+            {
+                throw new TpSyntaxException("Proper modifiers can't be the head of a headed phrase");
+            }
+            foreach (Word word in modifiers)
+            {
+                if (Particle.IsParticle(word.Text))
+                {
+                    throw new TpSyntaxException("Particles shouldn't be modifiers");
+                }
+            }
+
             this.head = head;
             this.modifiers = modifiers;
         }

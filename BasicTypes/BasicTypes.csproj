@@ -68,6 +68,7 @@
     <Compile Include="Collections\ChainTests.cs" />
     <Compile Include="Collections\ChainTypeConverter.cs" />
     <Compile Include="Collections\CommonBehaviors.cs" />
+    <Compile Include="Collections\DirectSpeech.cs" />
     <Compile Include="Collections\Discourse.cs" />
     <Compile Include="Collections\Fragment.cs" />
     <Compile Include="Collections\HeadedPhrase.cs" />
@@ -142,12 +143,16 @@
     <Compile Include="Parts\CompoundWordsTest.cs" />
     <Compile Include="Parts\ConvertWordToBasicType.cs" />
     <Compile Include="Parts\ConvertWordToBasicTypeTests.cs" />
-    <Compile Include="Parts\DirectSpeech.cs" />
+    <Compile Include="Parts\NumberTest.cs" />
+    <Compile Include="Parts\Onomatopoeia.cs" />
+    <Compile Include="Parts\ForeignWord.cs" />
     <Compile Include="Parts\GlossMap.cs" />
     <Compile Include="Parts\Number.cs" />
     <Compile Include="Parts\PartOfSpeech.cs" />
+    <Compile Include="Parts\ProperModifier.cs" />
     <Compile Include="Parts\Punctuation.cs" />
     <Compile Include="Parts\TemplatedPhrase.cs" />
+    <Compile Include="Parts\Token.cs" />
     <Compile Include="Parts\WordByValue.cs" />
     <Compile Include="Parts\WordConverter.cs" />
     <Compile Include="Parts\WordConverterTests.cs" />
@@ -173,6 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="notes.html" />
+    <Content Include="Parts\PartsComments.html" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

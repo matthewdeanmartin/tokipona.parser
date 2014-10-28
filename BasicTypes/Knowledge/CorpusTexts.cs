@@ -8,6 +8,7 @@ namespace BasicTypes.Knowledge
 {
     class CorpusTexts
     {
+        //-- => ! exclamation point instead of long dash
         public static string GeorgeSong = @"tomo sona ""Georgia"" o a!
 
 tenpo pini la jan pona li lon ma ni. kon ona en sijelo ona en lawa ona li pona tawa jan Bulldog ali.
@@ -16,7 +17,7 @@ tenpo suli la jan ni en jan ante mute li pali e nasin pona.
 
 tenpo ni la jan ""Bulldog"" sin li lon li wile utala lon ma ni. ona li wile lawa pona e nasin pi jan Georgia pi tenpo pini. ona li sona e ni: jan ante ali li wile e nasin sama nasin pi tomo sona Georgia. kulupu pi tomo sona Georgia li sewi kulupu ante ali.
 
-mi mute li kama tawa ma insa linja kasi. jan ""Bulldog"" pona ali o wan anpa jan pi len pi loje en pimeja. o toki e nimi tu--nimi tu ni li toki e pilin pi jan ""Bulldog"" ali: ""Go Dawgs!""";
+mi mute li kama tawa ma insa linja kasi. jan ""Bulldog"" pona ali o wan anpa jan pi len pi loje en pimeja. o toki e nimi tu! nimi tu ni li toki e pilin pi jan ""Bulldog"" ali: ""Go Dawgs!""";
 
         //Added . to title.
         //Add + to en e.g. ma Napli en Inteja
@@ -28,7 +29,7 @@ mi mute li kama tawa ma insa linja kasi. jan ""Bulldog"" pona ali o wan anpa jan
 
 jan Puta li pilin ala pi musi pona li tawa tan tomo mute sama. mama mije li sona ala e ni li pana ala e ken. jan Puta li lukin e jan pi sijelo ike e jan sin ala e jan moli. ijo ni li sin tawa jan Puta lili! jan Puta li toki e nimi ni: 'ike a! tenpo kama la mi kama jan pi sijelo ike li kama jan sin ala e jan moli. jan ale li sama! ike a!' jan Puta li tawa noka tan tomo mute. jan Puta li weka e meli olin e jan mije lili kin. jan Puta li jan taso li jan sewi ala.
 
-jan Puta li tawa ma pi kasi suli li kama alasa e jan sona mute. jan ni li jo ala e pali e kulupu mama. 'jan sona pi ma pi kasi suli o! o sona e mi e ijo sina' jan sona ni li pilin e ni. jan li wile e sona e wawa tan ike la o moku ala o wile ala o pali e sama e ike. jan Puta li moku ala li wile ala li pali e ike tawa sama kin. sijelo pi jan Puta li kama sama linja. taso tenpo ni kin la jan Puta li pilin ike. meli li lukin e jan Puta li pilin ike tawa jan nasa ni li pana e moku pan tawa jan Puta. sin la sijelo pi jan Puta li kama pona. tan ni la jan Puta li pilin e ni: nasin pi jo ale li ike. nasin pi jo ala li ike. jan Puta li toki e ni tawa jan sona pi ma pi kasi suli: 'mi tawa. mi alasa e nasin ante. ken la mi alasa e nasin insa.'
+jan Puta li tawa ma pi kasi suli li kama alasa e jan sona mute. jan ni li jo ala e pali e kulupu mama. 'jan sona pi ma pi kasi suli o! o sona e mi e ijo sina.' jan sona ni li pilin e ni. jan li wile e sona e wawa tan ike la o moku ala o wile ala o pali e sama e ike. jan Puta li moku ala li wile ala li pali e ike tawa sama kin. sijelo pi jan Puta li kama sama linja. taso tenpo ni kin la jan Puta li pilin ike. meli li lukin e jan Puta li pilin ike tawa jan nasa ni li pana e moku pan tawa jan Puta. sin la sijelo pi jan Puta li kama pona. tan ni la jan Puta li pilin e ni: nasin pi jo ale li ike. nasin pi jo ala li ike. jan Puta li toki e ni tawa jan sona pi ma pi kasi suli: 'mi tawa. mi alasa e nasin ante. ken la mi alasa e nasin insa.'
 
 jan Puta li ken awen ala li wile kama sona e nasin sin. jan Puta li toki e ni: 'mi awen lon anpa kasi suli ni li kama sona e nasin sin. anu mi tawa ala.' jan Puta li pilin li pilin li pilin. jan Puta li lukin e kon ike Mawa. kon ike Mawa li toki e ni tawa jan Puta: 'o pali ala! sina ken musi! sina ken jo e mani e unpa e moku!' jan Puta li awen. kon ike Mawa li toki e ni: 'o pali ala! mi ken ala e sina! sina li seli li pilin ike li moli!' jan Puta li awen. tenpo ni la jan Puta li pilin e ma kepeken luka li toki e ni: 'o ma li lukin e ni: mi kama sona e pini pi nasin pi pilin ike.' kon ike Mawa li anpa li tawa.
 
@@ -49,7 +50,7 @@ jan Puta li toki e ni: 'o lukin pona o pilin pona' ni li sona e ni: sina ken son
 
 jan sona pi ma pi kasi suli li toki e ni: 'a! ni li sona suli kin. o toki e ijo pi toki en pali en mani!'
 
-jan Puta li toki e ni: 'o toki pona o pali pona o mani pona!' ni li sona e ni: 'o toki ala e ijo pi lon ala. o toki ala e ike tawa jan ante. o pali ala e ike. o moli ala. o unpa ike ala. o pali ala e ike tawa mani. o moku ala e telo nasa'
+jan Puta li toki e ni: 'o toki pona o pali pona o mani pona!' ni li sona e ni: 'o toki ala e ijo pi lon ala. o toki ala e ike tawa jan ante. o pali ala e ike. o moli ala. o unpa ike ala. o pali ala e ike tawa mani. o moku ala e telo nasa.'
 
 jan sona pi ma pi kasi suli li toki e ni: 'a! ni li sin ala. nasin ale li toki li pilin e ni. o toki e ijo pi wawa en sona en awen!'
 
@@ -190,6 +191,7 @@ jan Oliwa li anpa e sama lon insa pi noka sama li lon e sinpin lawa ona lon insa
         //li toki pi nasin ==> li toki e nasin (usage of pi as particle of last resort, when e would have worked)
         //Line breaks!!!!
         //Aiigh! don't use comma for sentence break.
+        //o toki tawa jan e ni. ==> o toki e ni tawa jan.
         public static readonly string Lao = @"jan li ken toki e nasin la
 nasin li ala nasin awen.
 jan li ken nimi e nimi la
@@ -241,8 +243,8 @@ utala li ala
 tan pilin wile sewi li ala.
 
 o lili e ma e nanpa pi jan.
-o toki tawa jen e ni: 'o kepeken ala e ilo sina.'
-o toki tawa jan e ni: 'o sona e moli. o tawa ala utala
+o toki e ni tawa jan: 'o kepeken ala e ilo sina.'
+o toki e ni tawa jan: 'o sona e moli. o tawa ala utala
 ma ike.'
 jan mute li jo e tomo tawa e tomo telo. taso jan
 mute li kepeken ala e ni.

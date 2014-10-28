@@ -5,10 +5,12 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BasicTypes.Collections
+namespace BasicTypes
 {
+    //Base class. 
+    [DataContract]
     [Serializable]
-    public class Discourse : List<Sentence>
+    public class Token
     {
     }
 }

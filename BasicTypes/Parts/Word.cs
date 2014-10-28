@@ -15,6 +15,7 @@ using BasicTypes.Exceptions;
 using BasicTypes.Extensions;
 using BasicTypes.Knowledge;
 using BasicTypes.MoreTypes;
+using BasicTypes.Parts;
 using Microsoft.SqlServer.Server;
 using Newtonsoft.Json;
 using NUnit.Framework;
@@ -58,6 +59,8 @@ namespace BasicTypes
         private readonly string word;
 
         [DataMember(IsRequired = false, EmitDefaultValue = false)]
+        [ScriptIgnore]
+        [IgnoreDataMember]
         private readonly Dictionary<string, Dictionary<string, string[]>> glossMap;
 
         public Word(string word, IFormatProvider provider = null)
@@ -66,7 +69,10 @@ namespace BasicTypes
             {
                 throw new ArgumentNullException("word", "Can't construct words with null");
             }
-            if (word.IndexOfAny(new char[] { '.', ' ', '?', '!', '\n','\r' }) != -1)
+            if (word.IndexOfAny(new char[] { '.', ' ', '?', '!', '\n','\r' }) != -1 
+                
+                && !ForeignWord.IsForeign(word)
+                )
             {
                 throw new InvalidLetterSetException("Words must not have spaces or punctuation, (other than the preposition marker ~): found: " + word);
             }
@@ -230,6 +236,7 @@ namespace BasicTypes
 
         [XmlIgnore] //XMLSerializer
         [ScriptIgnore]
+        [IgnoreDataMember]
         public Dictionary<string, Dictionary<string, string[]>> GlossMap { get { return glossMap; } }
 
         //[XmlIgnore] 
@@ -317,6 +324,18 @@ namespace BasicTypes
                 }
             }
 
+            //TraceMissingGloss();
+
+            if (!((Text.ToUpper())[0] == Text[0]))
+            {
+                return "[Error " + pos + " " + Text + " " + language + "]";
+            }
+            else
+                return Text;
+        }
+
+        private void TraceMissingGloss()
+        {
             foreach (KeyValuePair<string, Dictionary<string, string[]>> pair in glossMap)
             {
                 StringBuilder sb = new StringBuilder();
@@ -329,13 +348,6 @@ namespace BasicTypes
                 }
                 Console.WriteLine(pair.Key + " : " + sb);
             }
-
-            if (!((Text.ToUpper())[0] == Text[0]))
-            {
-                return "[Error " + pos + " " + Text + " " + language + "]";
-            }
-            else
-                return Text;
         }
 
         public static bool IsWord(string word)

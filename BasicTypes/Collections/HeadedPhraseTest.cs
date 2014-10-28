@@ -30,12 +30,12 @@ namespace BasicTypes
             }
             catch (InvalidOperationException)
             {
-                Assert.Pass();
+                //Assert.Pass(); Throws SuccessException-- huh?
                 return;
             }
             catch (TpSyntaxException)
             {
-                Assert.Pass();
+                //Assert.Pass(); Throws SuccessException-- huh?
                 return;
             }
             Assert.Fail();

@@ -111,6 +111,16 @@ namespace BasicTypes.Collections
         }
 
         [Test]
+        public void SmallestPiChain()
+        {
+            string value = "tomo pi telo nasa";
+            Chain c = Chain.Parse(value);
+            Assert.AreEqual(c.Particle.ToString(), Particles.en.ToString());
+            Console.WriteLine(c.ToJsonDcJs());
+            Assert.AreEqual(value, c.ToString(), c.ToString("b"));
+        }
+
+        [Test]
         public void ParseKepekenIloSuliPiMaSuli()
         {
             string value = "~kepeken ilo suli pi ma suli";

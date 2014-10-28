@@ -26,6 +26,22 @@ namespace BasicTypes.Parser
             Assert.AreEqual(expected, normalized);
         }
 
+        [Test]
+        public void ImperativeAreNotFramgents()
+        {
+            //sina toki e ni: 
+            const string s = "o toki e ni ~tawa jan:'";
+            Console.WriteLine("Original  : " + s);
+            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+            Console.WriteLine("Normalized: " + normalized);
+            //sina li toki e ni: 
+            
+            Assert.IsFalse(normalized.Contains("Nanunanuwakawakawawa"));
+            normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+            Assert.IsFalse(normalized.Contains("Nanunanuwakawakawawa"));
+        }
+        
+
 
         [Test]
         public void Normalize_IntransitiveVerb()

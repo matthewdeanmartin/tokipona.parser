@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+    <body>
+        <h2>Word like</h2>
+        <ul>
+            <li>Token. Hopefully a useful abstraction for all the below types of parts</li>
+            <li>Word. Fixed set of words. Can be glossed to a foreign language. Usually a content word.</li>
+            <li>Numbers. Can generate more of them. Behave somewhat like compound words. Can gloss to a somewhat universal format of Arabic numbers algorithmicly without a dictionary.</li>
+            <li>Compound Word. Essentially any noun or verb phrase (or sometimes sentence) that can be used as head noun, verb. Modifiers can be infixed.</li>
+            <li>Proper Modifier. Must be capitalized. Can't be a head of a headed phrase. Can be glossed from dictionary.</li>
+            <li>Foreign Word. Can't be glossed. Syntactically like Compound Words. Can't infix modifiers.</li>
+            <li>
+                Particle. Different from the rest of the content words. More constrained by rules than content words.
+                In the case of prepositions, these overlap with content words.
+            </li>
+        </ul>
+        <h2>Token like, but not word like</h2>
+        <ul>
+            <li>Punctuation. Particularly end of sentence punctuation-- !, ? and : add meaning that is relevantly different from . and not available in the sentence</li>
+            <li>Template. Least token-like concept. {0} li pona tawa {1} ==> {1} likes {0} </li>
+        </ul>
+        <p>Tokens. The most generic, atomic piece of syntax.</p>
+        
+        <p></p>
+    </body>
+</html>

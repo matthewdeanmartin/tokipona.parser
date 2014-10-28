@@ -59,69 +59,35 @@ namespace BasicTypes.Glosser
 
         private void ProcessSimpleSentence(bool includePos, Sentence s, List<string> gloss, Dialect config)
         {
-            foreach (Chain c in s.Subjects)
+            if (s.Vocative != null)
             {
-                int i = 0;
-                foreach (Chain sub in c.SubChains)
-                {
-                    i++;
-                    if (i != 1)
-                    {
-                        gloss.Add(sub.Particle.ToString(PartOfSpeech.Conjunction + ":" + includePos, config));
-                    }
-
-                    int k = 0;
-                    if (sub.SubChains != null)
-                    {
-                        foreach (Chain subsub in sub.SubChains)
-                        {
-                            k++;
-                            if (k != 1)
-                            {
-                                gloss.Add(subsub.Particle.ToString(PartOfSpeech.Conjunction + ":" + includePos, config));
-                            }
-
-                            //deeper levels?
-                            foreach (HeadedPhrase hp in subsub.HeadedPhrases)
-                            {
-                                foreach (Word modifier in hp.Modifiers)
-                                {
-                                    gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
-                                }
-
-                                gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos, config));
-                            }
-                        }
-                    }
-                    else
-                    {
-                        //deeper levels?
-                        foreach (HeadedPhrase hp in sub.HeadedPhrases)
-                        {
-                            foreach (Word modifier in hp.Modifiers)
-                            {
-                                gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
-                            }
-
-                            gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos, config));
-                        }
-                    }
-                }
-
-                if (c.HeadedPhrases != null)
-                {
-                    foreach (HeadedPhrase hp in c.HeadedPhrases)
-                    {
-                        foreach (Word modifier in hp.Modifiers)
-                        {
-                            gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
-                        }
-
-                        gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos, config));
-                    }
-                }
+                //TODO: extend to many vocatives?
+                ProcessOneChain(includePos, gloss, config, s.Vocative.Nominal);
+                //Need o?
             }
 
+            if (s.Fragement!= null)
+            {
+                //Simpler to treat fragments as degenerate, independent things.
+                ProcessOneChain(includePos, gloss, config, s.Fragement.Nominal);
+                //Need ...?
+            }
+
+            //Although if you have predicates, you should always have subjects.
+            if (s.Subjects != null)
+            {
+                ProcessSubjects(includePos, s, gloss, config);
+            }
+
+            if (s.Predicates != null)
+            {
+                ProcessPredicates(includePos, s, gloss, config);
+            }
+            
+        }
+
+        private void ProcessPredicates(bool includePos, Sentence s, List<string> gloss, Dialect config)
+        {
             int j = 0;
             foreach (TpPredicate predicate in s.Predicates)
             {
@@ -178,7 +144,7 @@ namespace BasicTypes.Glosser
                         gloss.Add(predicate.VerbPhrases.Head.ToString(verb, config));
                     }
                 }
-                
+
 
                 int directCount = 0;
                 if (predicate.Directs != null)
@@ -219,6 +185,87 @@ namespace BasicTypes.Glosser
                         }
                     }
                     //leaf?
+                }
+            }
+        }
+
+        private static void ProcessSubjects(bool includePos, Sentence s, List<string> gloss, Dialect config)
+        {
+            foreach (Chain c in s.Subjects)
+            {
+                if (c == null)
+                {
+                    Console.WriteLine("WARN: No subject, but a non-null array. That is odd");
+                    continue;
+                }
+                ProcessOneChain(includePos, gloss, config, c);
+            }
+        }
+
+        private static void ProcessOneChain(bool includePos, List<string> gloss, Dialect config, Chain c)
+        {
+            //Odd chain if the subchains and headedphrase are missing.
+
+            int i = 0;
+            if (c.SubChains != null)
+            {
+                foreach (Chain sub in c.SubChains)
+                {
+                    i++;
+                    if (i != 1)
+                    {
+                        gloss.Add(sub.Particle.ToString(PartOfSpeech.Conjunction + ":" + includePos, config));
+                    }
+
+                    int k = 0;
+                    if (sub.SubChains != null)
+                    {
+                        foreach (Chain subsub in sub.SubChains)
+                        {
+                            k++;
+                            if (k != 1)
+                            {
+                                gloss.Add(subsub.Particle.ToString(PartOfSpeech.Conjunction + ":" + includePos, config));
+                            }
+
+                            //deeper levels?
+                            foreach (HeadedPhrase hp in subsub.HeadedPhrases)
+                            {
+                                foreach (Word modifier in hp.Modifiers)
+                                {
+                                    gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
+                                }
+
+                                gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos, config));
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //deeper levels?
+                        foreach (HeadedPhrase hp in sub.HeadedPhrases)
+                        {
+                            foreach (Word modifier in hp.Modifiers)
+                            {
+                                gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
+                            }
+
+                            gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos, config));
+                        }
+                    }
+                }
+            }
+            
+            if (c.HeadedPhrases != null)
+            {
+                foreach (HeadedPhrase hp in c.HeadedPhrases)
+                {
+                    foreach (Word modifier in hp.Modifiers)
+                    {
+                        gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
+                    }
+
+                    gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos, config));
                 }
             }
         }

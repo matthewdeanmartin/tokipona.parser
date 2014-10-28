@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 namespace BasicTypes.Parts
 {
     //Acts like a word, but contains whole sentences! Whut?
-    class DirectSpeech
+    public class Onomatopoeia :Token
     {
+        //Similar to a proper modifier, but it isn't a modifier, except maybe of mu, kalama.
+
     }
 }

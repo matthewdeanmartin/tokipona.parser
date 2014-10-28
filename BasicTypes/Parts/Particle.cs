@@ -12,7 +12,7 @@ namespace BasicTypes
     //la,li,pi,e,preps (preps simplified to either ~prep or lon-prep)
     [DataContract]
     [Serializable]
-    public class Particle : IFormattable
+    public class Particle : Token, IFormattable
     {
         [DataMember]
         private readonly string particle;
