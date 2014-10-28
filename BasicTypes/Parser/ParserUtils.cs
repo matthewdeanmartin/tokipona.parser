@@ -190,6 +190,11 @@ namespace BasicTypes
 
         public Sentence ParsedSentenceFactory(string sentence, string original)
         {
+            string preNormalize = string.Copy(sentence);
+            if (sentence.EndsWith(" li")  || sentence.EndsWith(" li."))
+            {
+                throw new InvalidOperationException("Something went wrong, sentence ends with li");
+            }
             sentence = Normalizer.NormalizeText(sentence); //Any way to avoid calling this twice?
             if (string.IsNullOrWhiteSpace(sentence))
             {
@@ -319,17 +324,31 @@ namespace BasicTypes
 
         private Sentence ProcessSimpleSentence(string sentence, Punctuation punctuation, string original)
         {
+            if (sentence.EndsWith(" li"))
+            {
+                throw new InvalidOperationException("Something went wrong-- sentenc ends with li. " + sentence);
+            
+            }
             if (sentence.StartsOrContainsOrEnds("la"))
             {
                 throw new InvalidOperationException("If it contains a la, anywhere, it isn't a simple sentence. " + sentence);
             }
 
             bool isHortative = false;
-            if (sentence.StartsWith("o "))
+            bool isImperative = false;
+            if (sentence.StartsWith("o ") && sentence.Contains(" li "))
             {
+                //o mi mute li moku
                 isHortative = true;
                 sentence = sentence.RemoveLeadingWholeWord("o");
             }
+            if (sentence.StartsWith("o ") && !sentence.Contains(" li "))
+            {
+                //o pana e pan
+                isImperative = true;
+                //sentence = sentence.RemoveLeadingWholeWord("o");
+            }
+            // someting o ==> vocative
 
             string[] liParts = Splitters.SplitOnLiOrO(sentence);
 

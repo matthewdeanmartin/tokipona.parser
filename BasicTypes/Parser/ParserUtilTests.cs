@@ -126,7 +126,8 @@ namespace BasicTypes.Parser
                 CorpusTexts.Gilgamesh,
                 CorpusTexts.SampleText1,
                 CorpusTexts.SampleText3,
-                CorpusTexts.Lao
+                CorpusTexts.Lao,
+                CorpusTexts.GeorgeSong
                     
                 };
             Dialect dialect = Dialect.DialectFactory;
@@ -157,6 +158,20 @@ namespace BasicTypes.Parser
             }
             
         }
+
+        //nena meli kin li tawa en tan li kama nena pi suli en kiwen.
+        [Test]
+        public void ParseThreePart()
+        {
+            string s = "nena meli kin li tawa en tan li kama nena pi suli en kiwen.";
+            ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
+
+            Sentence parsedSentence = pu.ParsedSentenceFactory(s,s);
+            Console.WriteLine(parsedSentence.ToString());
+            Assert.AreEqual(2,parsedSentence.Predicates.Count);
+            Assert.IsNotNull(parsedSentence);
+        }
+
 
         [Test]
         public void IdentifyDiscourses_CanWeGroupThem()

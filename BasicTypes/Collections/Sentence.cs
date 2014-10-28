@@ -229,6 +229,10 @@ namespace BasicTypes
                 sb.Add(Particles.la.ToString(format, formatProvider));
                 sb.AddRange(conclusion.ToTokenList(format, formatProvider));
 
+                if (sb[sb.Count() - 1] == "li")
+                {
+                    throw new InvalidOperationException("Something went wrong, sentence ends in li");
+                }
                 spaceJoined = sb.SpaceJoin(format);
                 if (conclusion.punctuation != null)
                 {
@@ -240,7 +244,12 @@ namespace BasicTypes
                 //Simple sentence
                 sb = ToTokenList(format, formatProvider);
 
+                if (sb[sb.Count() - 1] == "li")
+                {
+                    throw new InvalidOperationException("Something went wrong, sentence ends in li");
+                }
                 spaceJoined = sb.SpaceJoin(format);
+                
                 if (punctuation != null)
                 {
                     spaceJoined = spaceJoined + this.punctuation.ToString();//format, formatProvider

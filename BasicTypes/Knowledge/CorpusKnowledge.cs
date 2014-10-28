@@ -35,8 +35,6 @@ namespace BasicTypes.Knowledge
 
         public Discourse[] MakeSentences()
         {
-            Dialect c = Dialect.DialectFactory;
-            c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
             List<Discourse> facts = new List<Discourse>();

@@ -31,10 +31,17 @@ namespace BasicTypes.Collections
             {
                 sb.Add(tpPredicate.Particle.ToString(format, formatProvider));
 
-                if (tpPredicate.VerbPhrases != null)
+                //Don't think you can have both
+                if (tpPredicate.NominalPredicate != null)
+                {
+                    sb.AddRange(tpPredicate.NominalPredicate.ToTokenList(format, formatProvider));
+                }
+                else if (tpPredicate.VerbPhrases != null)
                 {
                     sb.AddRange(tpPredicate.VerbPhrases.ToTokenList(format, formatProvider, tpPredicate.Directs!=null));
                 }
+
+                //Can have nominal predicate & direct object. (tranformative thingy)
                 if (tpPredicate.Directs != null)
                 {
                     sb.AddRange(tpPredicate.Directs.ToTokenList(format, formatProvider)); //Chains manage their own particles.

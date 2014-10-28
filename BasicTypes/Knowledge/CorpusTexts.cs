@@ -8,6 +8,16 @@ namespace BasicTypes.Knowledge
 {
     class CorpusTexts
     {
+        public static string GeorgeSong = @"tomo sona ""Georgia"" o a!
+
+tenpo pini la jan pona li lon ma ni. kon ona en sijelo ona en lawa ona li pona tawa jan Bulldog ali.
+
+tenpo suli la jan ni en jan ante mute li pali e nasin pona.
+
+tenpo ni la jan ""Bulldog"" sin li lon li wile utala lon ma ni. ona li wile lawa pona e nasin pi jan Georgia pi tenpo pini. ona li sona e ni: jan ante ali li wile e nasin sama nasin pi tomo sona Georgia. kulupu pi tomo sona Georgia li sewi kulupu ante ali.
+
+mi mute li kama tawa ma insa linja kasi. jan ""Bulldog"" pona ali o wan anpa jan pi len pi loje en pimeja. o toki e nimi tu--nimi tu ni li toki e pilin pi jan ""Bulldog"" ali: ""Go Dawgs!""";
+
         //Added . to title.
         //Add + to en e.g. ma Napli en Inteja
         //Deferred dealing with direct speech as a content word  jan li toki e 'mi suli kin!'
