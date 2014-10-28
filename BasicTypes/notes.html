@@ -10,16 +10,30 @@
         <li>Serialize C# data structure to a lossy, human readable string.</li>
         <li>Serialize to alternative formats, namely, English Gloss and Structure Annotated</li>
     </ul>
+
     <h2>TODO</h2>
     <ul>
-        <li>Fragments (e.g. conversation)-- probably via normalization &amp; null tokens</li>
         <li>Run-ons (e.g. poetry)-- probably via normalization (insert missing periods)</li>
-        <li>Deal with foreign words, maybe with escaping.</li>
-        <li>Deal with direct quotes (maybe as a sort of noun).</li>
-        <li>Deal with o o o vocative edge case.</li>
-        <li>Implement proper modifiers</li>
-        <li>Remove null tokens from ToString() results (but maybe leave in bracketed or change to 0)</li>
+        <li>Verb phrase work: modals (m m m V adv adv adv)</li>
+        <li>Verb phrase work: transformatives (li phrase with pi e ...)</li>
+        <li>Verb phrase work: better nominal/adjective predicate/intransitive detection.</li>
+        <li>Verb phrase- kama/tawa + np </li>
         <li>Possibly treat ... (missing text) as a formal thing</li>
+        <li>Better treatment of direct speech</li>
+        <li>Pronouns as 1st class</li>
+        <li>Better treatment of Discourse runs of linked sentences</li>
+        <li>Compound word dictionary</li>
+    </ul>
+
+    <h2>INPROCESS</h2>
+    <ul>
+        <li>Remove null tokens from ToString() results (but maybe leave in bracketed or change to 0)</li>
+        <li>Deal with o o o vocative edge case.</li>
+        <li>Implement class hierarchy with Token as a base for essentially all content (and maybe a separate class for particle)</li>
+        <li>Implement proper modifiers</li>
+        <li>Fragments (e.g. conversation)-- probably via normalization &amp; null tokens- STARTED</li>
+        <li>Deal with foreign words, maybe with escaping.- STARTED</li>
+        <li>Deal with direct quotes (maybe as a sort of noun).- STARTED</li>
     </ul>
     <h2>DONE</h2>
     <ul>

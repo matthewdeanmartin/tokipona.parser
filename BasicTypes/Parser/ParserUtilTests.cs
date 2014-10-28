@@ -128,8 +128,10 @@ namespace BasicTypes.Parser
                 CorpusTexts.SampleText1,
                 CorpusTexts.SampleText3,
                 CorpusTexts.Lao,
-                CorpusTexts.GeorgeSong
-                    
+                CorpusTexts.GeorgeSong,
+                    CorpusTexts.CrazyAnimal,
+                    CorpusTexts.CrazyAnimal2,
+                    CorpusTexts.JanSin 
                 };
             Dialect dialect = Dialect.DialectFactory;
             dialect.TargetGloss = "en";
