@@ -75,9 +75,12 @@ namespace BasicTypes.Parser
             }
 
             //Extraneous commas
-            if (normalized.Contains(", li "))
+            foreach (string s in new String[] { ", li ", ", la ", ",la ", " la, ", " la," })
             {
-                normalized = normalized.Replace(", li ", " li ");
+                if (normalized.Contains(s))
+                {
+                    normalized = normalized.Replace(s, " " + s.Trim(new char[]{' ',','}) +" ");
+                }
             }
 
             //Line breaks & other white spaces make it harder to find boundaries

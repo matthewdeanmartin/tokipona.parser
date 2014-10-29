@@ -67,6 +67,8 @@ namespace BasicTypes
         {
             ValidateOnConstruction(word);
 
+            
+
             if (provider == null)
             {
                 currentDialect = Config.CurrentDialect;
@@ -89,6 +91,7 @@ namespace BasicTypes
             {
                 throw new ArgumentNullException("word", "Can't construct words with null");
             }
+            
             if (word.IndexOfAny(new char[] {'.', ' ', '?', '!', '\n', '\r'}) != -1
                 && !ForeignWord.IsForeign(word)
                 )
@@ -106,6 +109,24 @@ namespace BasicTypes
             {
                 throw new InvalidOperationException("Unescaped, Invalid Characters : " + word + " ==> " +
                                                     ListInvalidCharacters(word));
+            }
+
+            if (Words.Dictionary.Count >124)
+            {
+                //Strictest test.
+                Word blah = Words.a;
+                Word test;
+                if (!Words.Dictionary.TryGetValue(word, out test))
+                {
+                    Console.WriteLine(word[0].ToString().ToUpper());
+                    Console.WriteLine(word[0].ToString());
+                    Console.WriteLine(Words.Dictionary.Count);
+                    if (word[0].ToString().ToUpper() != word[0].ToString())
+                    {
+                        throw new InvalidOperationException("This word (" + word + ") isn't in the dictionary and isn't upper cased like a proper modifier. What is wrong.");
+                    }
+                }
+
             }
         }
 

@@ -315,10 +315,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                ante = new Word("ante ");
+                ante = new Word("ante");
 
-                Dictionary.Add("ante ", ante);
-                Glosses.Add("ante ", glossMap);
+                Dictionary.Add("ante", ante);
+                Glosses.Add("ante", glossMap);
             }
 
 
