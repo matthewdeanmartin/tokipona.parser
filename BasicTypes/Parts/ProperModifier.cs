@@ -25,7 +25,7 @@ namespace BasicTypes.Parts
 
             //People make so many mistakes-- this may confuse matters. 
             //Really need a "probably is modifier"
-            foreach (char c in text)
+            foreach (char c in text.ToLower())
             {
                 if (!"jklmnpstwaeiou".Contains(c))
                 {

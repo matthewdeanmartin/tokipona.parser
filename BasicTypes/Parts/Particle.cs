@@ -12,13 +12,19 @@ namespace BasicTypes
     //la,li,pi,e,preps (preps simplified to either ~prep or lon-prep)
     [DataContract]
     [Serializable]
-    public class Particle : Token, IFormattable
+    public class Particle : Token, IFormattable, IToString
     {
         [DataMember]
         private readonly string particle;
 
         [DataMember]
         private readonly bool middleOnly;
+
+        [DataMember]
+        private readonly bool preComma;
+
+        [DataMember]
+        private readonly bool postComma;
 
         public static string[] dictionary = new string[]
         {
@@ -34,10 +40,12 @@ namespace BasicTypes
             "o", //overlays li
             "pi",
             "e",
+            "~lon",
             "~kepeken",
             "~tawa",
             "~sike",
-            "~poka"
+            "~poka",
+            "~sama"
         };
 
         public Particle(string particle, bool iAmAPrepositionChain = true)
@@ -49,6 +57,16 @@ namespace BasicTypes
                     throw new ArgumentException("Got whitespace particle. What does this mean?");
                 }
             }
+
+            if (particle.EndsWith(","))
+            {
+                postComma = true;
+            }
+            if (particle.StartsWith(","))
+            {
+                preComma= true;
+            }
+            particle = particle.Trim(new char[] {','});
 
             //TODO: Validate, particles is a closed class.
 
@@ -65,11 +83,21 @@ namespace BasicTypes
 
         public string Text { get { return particle; } }
         public bool MiddleOnly { get { return middleOnly; } }
+        public bool PreComma { get { return preComma; }}
+        public bool PostComma { get { return postComma; } }
 
         public override string ToString()
         {
 
             return ToString("g", CultureInfo.CurrentCulture);
+        }
+
+        public string[] SupportedsStringFormats
+        {
+            get
+            {
+                return new string[] { "g", "b", "bs" };
+            }
         }
 
         public string ToString(string format)
@@ -134,17 +162,31 @@ namespace BasicTypes
             }
             Word w;
 
+
+            string normalizeForLookup;
+            if (Text.StartsWith("~"))
+            {
+                normalizeForLookup = Text.Substring(1);
+                //pos should be prep!
+            }
+            else
+            {
+                normalizeForLookup = Text;
+            }
+
             if (Particle.IsParticle(Text))
             {
-                w = Words.Dictionary[Text];
+                w = Words.Dictionary[normalizeForLookup];
             }
             else
             {
                 w = new Word(Text);
-
             }
 
-            var glossMap = Words.Glosses[Text];
+            
+
+
+            var glossMap = Words.Glosses[normalizeForLookup];
             if (glossMap == null)
             {
                 return "[missing map for " + Text + "]";
@@ -200,7 +242,16 @@ namespace BasicTypes
 
         public static bool IsParticle(string token)
         {
-            return dictionary.Contains(token);
+            string lookupForm;
+            if (token.Contains(","))
+            {
+                lookupForm = token.Trim(new char[] {','});
+            }
+            else
+            {
+                lookupForm = token;
+            }
+            return dictionary.Contains(lookupForm);
         }
 
         public static bool ContainsProposition(string phrase)

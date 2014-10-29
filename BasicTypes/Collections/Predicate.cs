@@ -12,7 +12,7 @@ namespace BasicTypes.Collections
     //Stuff after the 1st li, never itself contains li.
     [DataContract]
     [Serializable]
-    public class TpPredicate : IContainsWord, IFormattable
+    public class TpPredicate : IContainsWord, IFormattable, IToString
     {
         [DataMember]
         private readonly Particle particle;
@@ -79,6 +79,14 @@ namespace BasicTypes.Collections
         {
             List<IContainsWord> chains = new List<IContainsWord>() { verbPhrases, directs, prepositionals };
             return chains.Any(x => x != null && x.Contains(word));
+        }
+
+        public string[] SupportedsStringFormats
+        {
+            get
+            {
+                return new string[] { "g" };
+            }
         }
 
         public string ToString(string format)

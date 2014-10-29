@@ -20,5 +20,8 @@ namespace BasicTypes
 
         public static Particle ante = new Particle("+ante");//Else can't tell what sort.
         public static Particle Blank = new Particle(" ", true);//Joins prepositional phrases. Otherwise, this is weird.
+        public static string[] Prepositions {
+            get { return new String[] {"kepeken", "tawa", "poka", "sama", "tan", "lon"}; }
+        }
     }
 }

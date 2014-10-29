@@ -30,8 +30,8 @@ namespace BasicTypes.MoreTypes
         public void Test()
         {
             CustomKeyedCollection m = new CustomKeyedCollection();
-            m.Add(new Word("lala"));
-            m.Add(new Word("nini"));
+            m.Add(new Word("ken"));
+            m.Add(new Word("nimi"));
             m.Add(Words.nanpa);
 
             Console.WriteLine("");

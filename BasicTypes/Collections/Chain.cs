@@ -28,7 +28,7 @@ namespace BasicTypes
     //Chains of particles
     [DataContract]
     [Serializable]
-    public partial class Chain : IContainsWord, IFormattable
+    public partial class Chain : IContainsWord, IFormattable, IToString
     {
         [DataMember(IsRequired = true)]
         readonly ChainType chainType;
@@ -151,6 +151,13 @@ namespace BasicTypes
                     }
                 }
             }
+        }
+
+        public string[] SupportedsStringFormats {
+            get
+            {
+                return new string[] { "g" };
+            } 
         }
 
         public string ToString(string format)

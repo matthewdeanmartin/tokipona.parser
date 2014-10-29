@@ -25,7 +25,7 @@ namespace BasicTypes.Parts
         [DataMember(IsRequired = false,EmitDefaultValue = false)]
         private readonly Dictionary<string, Dictionary<string, string[]>> glossMap;
 
-        public ForeignWord(string word)
+        public ForeignWord(string word):base(word)
         {
             if (word == null)
             {
@@ -49,23 +49,6 @@ namespace BasicTypes.Parts
             get 
             { 
                 return word.Split('*').Select(x=>new Word(x)).ToArray();
-            }
-        }
-
-        /// <summary>
-        /// Anything of the form "{anything}" but without spaces.
-        /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
-        public static bool IsForeign(string s)
-        {
-            if (s.StartsWith("\"") && s.EndsWith("\"") && !s.Contains(" "))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
             }
         }
     }

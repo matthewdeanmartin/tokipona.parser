@@ -85,8 +85,8 @@ namespace BasicTypes
         [Test]
         public void ThreeWordDoubleProperModifier()
         {
-            HeadedPhrase hp = new HeadedPhrase(Words.jan, new WordSet(new[] { "Mato" ,"Matin"}));
-            Assert.AreEqual("jan Mato Matin", hp.ToString());
+            HeadedPhrase hp = new HeadedPhrase(Words.jan, new WordSet(new[] { "Mato" ,"Maton"}));
+            Assert.AreEqual("jan Mato Maton", hp.ToString()); //ti is illegal
         }
 
         [Test]

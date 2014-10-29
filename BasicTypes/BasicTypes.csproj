@@ -92,6 +92,7 @@
     <Compile Include="Dictionary\CompoundWordDictionary.cs" />
     <Compile Include="Dictionary\DictionaryGenerator.cs" />
     <Compile Include="Dictionary\DictionaryTests.cs" />
+    <Compile Include="Dictionary\ExtractNewLexemes.cs" />
     <Compile Include="Dictionary\Semantics.cs" />
     <Compile Include="Exceptions\SyntaxErrors.cs" />
     <Compile Include="Extensions\BinaryFormatterCopier.cs" />
@@ -139,10 +140,12 @@
     <Compile Include="Parser\ParserUtilTests.cs" />
     <Compile Include="Parser\Splitters.cs" />
     <Compile Include="Parser\StringInverseFormat.cs" />
+    <Compile Include="Parser\TokenParserUtils.cs" />
     <Compile Include="Parts\CompoundWord.cs" />
     <Compile Include="Parts\CompoundWordsTest.cs" />
     <Compile Include="Parts\ConvertWordToBasicType.cs" />
     <Compile Include="Parts\ConvertWordToBasicTypeTests.cs" />
+    <Compile Include="Parts\Neologism.cs" />
     <Compile Include="Parts\NumberTest.cs" />
     <Compile Include="Parts\Onomatopoeia.cs" />
     <Compile Include="Parts\ForeignWord.cs" />
@@ -153,6 +156,7 @@
     <Compile Include="Parts\Punctuation.cs" />
     <Compile Include="Parts\TemplatedPhrase.cs" />
     <Compile Include="Parts\Token.cs" />
+    <Compile Include="Parts\TokenTests.cs" />
     <Compile Include="Parts\WordByValue.cs" />
     <Compile Include="Parts\WordConverter.cs" />
     <Compile Include="Parts\WordConverterTests.cs" />

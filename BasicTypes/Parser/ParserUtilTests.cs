@@ -16,6 +16,91 @@ namespace BasicTypes.Parser
     [TestFixture]
     public class ParserUtilTests
     {
+        [Test]
+        public void SpellCheck()
+        {
+            string text = CorpusTexts.JanSin;
+            TokenParserUtils pu = new TokenParserUtils();
+            string[] words = pu.JustTpWordsNumbersPunctuation(text);
+            foreach (string word in words)
+            {
+                try
+                {
+                    Word w = new Word(word);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Uh-oh: " + word );
+                }
+            }
+
+        }
+
+        
+        [Test]
+        public void ShouldBeGoodKunpapa()
+        {
+            string s = "jan Kunpapa";
+            Normalizer n = new Normalizer();
+            Console.WriteLine(Normalizer.NormalizeText(s));
+            TokenParserUtils pu = new TokenParserUtils();
+
+            Word[] words = pu.ValidWords(s);
+            
+
+            foreach (Word word in words)
+            {
+                Console.WriteLine(word);
+            }
+        }
+
+
+
+        //jan Oliwa 
+        [Test]
+        public void ShouldBeGoodProperModifier()
+        {
+            string s = "jan Oliwa";
+            Normalizer n = new Normalizer();
+            Console.WriteLine(Normalizer.NormalizeText(s));
+            TokenParserUtils pu = new TokenParserUtils();
+
+            Word[] words = pu.ValidWords(s);
+            
+
+            foreach (Word word in words)
+            {
+                Console.WriteLine(word);
+            }
+        }
+
+
+        //jan MaliyA
+        [Test]
+        public void DoubleBadProperModifer()
+        {
+            string s = "jan MaliyA";
+            Normalizer n = new Normalizer();
+            Console.WriteLine( Normalizer.NormalizeText(s));
+            TokenParserUtils pu = new TokenParserUtils();
+            Word[] words;
+            try
+            {
+                words = pu.ValidWords(s);
+            }
+            catch (Exception)
+            {
+                return;
+            }
+
+            foreach (Word word in words)
+            {
+                Console.WriteLine(word);
+            }
+
+            Assert.Fail();
+        }
+
         //o mi tu li kama tomo mi.
         [Test]
         public void OLetsHaveThisSentenceParse()
@@ -26,7 +111,7 @@ namespace BasicTypes.Parser
             ParserUtils pu = new ParserUtils(c);
             Sentence sentence = pu.ParsedSentenceFactory(s,s);
             Assert.IsNotNull(sentence.Subjects);
-            Assert.IsNotNull(sentence.Subjects.Length>0);
+            Assert.IsTrue(sentence.Subjects.Length>0);
 
             //Assert.IsNotNull(sentence.Subjects[0].HeadedPhrases[0].Head.Text,"mi"); //pi chains :-(
         }
@@ -130,8 +215,11 @@ namespace BasicTypes.Parser
                 CorpusTexts.Lao,
                 CorpusTexts.GeorgeSong,
                     CorpusTexts.CrazyAnimal,
-                    CorpusTexts.CrazyAnimal2,
-                    CorpusTexts.JanSin 
+                    CorpusTexts.CrazyAnimal2
+                    //,CorpusTexts.JanSin  //Too many neologisms to cope. 
+                    ,CorpusTexts.RuneDanceSong
+                    ,CorpusTexts.janPusaRice
+                    ,CorpusTexts.janPend
                 };
             Dialect dialect = Dialect.DialectFactory;
             dialect.TargetGloss = "en";

@@ -8,7 +8,7 @@ using BasicTypes.Extensions;
 
 namespace BasicTypes.Collections
 {
-    public class PredicateList:List<TpPredicate>,IContainsWord,IFormattable
+    public class PredicateList:List<TpPredicate>,IContainsWord,IFormattable, IToString
     {
         public bool Contains(Word word)
         {
@@ -52,6 +52,14 @@ namespace BasicTypes.Collections
                 }
             }
             return sb;
+        }
+
+        public string[] SupportedsStringFormats
+        {
+            get
+            {
+                return new string[] { "g" };
+            }
         }
 
         public string ToString(string format)

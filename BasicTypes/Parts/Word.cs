@@ -42,7 +42,7 @@ namespace BasicTypes
     /// </summary>
     [DataContract]
     [Serializable]
-    public partial class Word : IFormattable, ICopySelf<Word>
+    public partial class Word : Token, IFormattable, ICopySelf<Word>
     //IConvertible (Basic types, like double, int, date, etc)
     {
         private Dialect currentDialect;
@@ -55,19 +55,35 @@ namespace BasicTypes
             //For XML serialization only.
         }
 
-        [DataMember(IsRequired = true)]
-        private readonly string word;
+        [DataMember]
+        private readonly bool preComma;
 
-        //[DataMember(IsRequired = false, EmitDefaultValue = false)]
-        //[ScriptIgnore]
-        //[IgnoreDataMember]
-        //private readonly Dictionary<string, Dictionary<string, string[]>> glossMap;
+        [DataMember]
+        private readonly bool postComma;
 
-        public Word(string word, IFormatProvider provider = null)
+        //[DataMember(IsRequired = true)]
+        //private readonly string word;
+        //
+        //public string Text { get { return word; } }
+        
+        //The constructor that a parser uses. e.g. Parse/TryParse
+        public Word(string word, IFormatProvider provider = null):base(word)
         {
-            ValidateOnConstruction(word);
+            if (string.IsNullOrWhiteSpace(word))
+            {
+                throw new ArgumentNullException("word");
+            }
+            if (word.EndsWith(","))
+            {
+                postComma = true;
+            }
+            if (word.StartsWith(","))
+            {
+                preComma = true;
+            }
+            word = word.Trim(new char[] { ',' });
 
-            
+            ValidateOnConstruction(word);
 
             if (provider == null)
             {
@@ -85,50 +101,82 @@ namespace BasicTypes
             this.word = word;
         }
 
-        private static void ValidateOnConstruction(string word)
+        private void ValidateOnConstruction(string prospectiveWord)
         {
-            if (word == null)
+            if (prospectiveWord == null)
             {
-                throw new ArgumentNullException("word", "Can't construct words with null");
+                throw new ArgumentNullException("prospectiveWord", "Can't construct words with null");
             }
-            
-            if (word.IndexOfAny(new char[] {'.', ' ', '?', '!', '\n', '\r'}) != -1
-                && !ForeignWord.IsForeign(word)
-                )
+
+            //HACK: and an ugly one. This brackets potentially entire sentences, sometimes a word. Sort of like compound word.
+            if (prospectiveWord.Contains('«') || prospectiveWord.Contains('»'))
+            {
+                prospectiveWord = prospectiveWord.Trim(new char[] {'«', '»'});
+            }
+
+            if (prospectiveWord.IndexOfAny(new char[] {'.', ' ', '?', '!', '\n', '\r'}) != -1
+                && !IsForeign(prospectiveWord))
             {
                 throw new InvalidLetterSetException(
-                    "Words must not have spaces or punctuation, (other than the preposition marker ~): found: " + word);
+                    "Words must not have spaces or punctuation, (other than the preposition marker ~): found: " + prospectiveWord);
             }
-            //TODO: How to impelment this rule? Need to rework dictionary, since dictionary stores all words (particles included) as Word
+            //TODO: How to implement this rule? Need to rework dictionary, since dictionary stores all words (particles included) as Word
             //if (Particle.IsParticle(word))
             //{
             //    throw new InvalidOperationException("Don't treat particles as words : " + word);
             //}
             //Can be a number, word, compound word or escaped word.
-            if (!CheckIsNumber(word) && !Word.ValidateCompoundWordLetterSet(word) && !IsEscaped(word))
-            {
-                throw new InvalidOperationException("Unescaped, Invalid Characters : " + word + " ==> " +
-                                                    ListInvalidCharacters(word));
-            }
+            
+            //if (!CheckIsNumber(prospectiveWord)&& !ValidateCompoundWordLetterSet(prospectiveWord) && !IsEscaped(prospectiveWord))
+            //{
+            //    throw new InvalidOperationException("Unescaped, Invalid Characters : " + prospectiveWord + " ==> " +
+            //                                        ListInvalidCharacters(prospectiveWord));
+            //}
 
-            if (Words.Dictionary.Count >124)
+            if (Words.Dictionary.Count ==125)//==125
             {
                 //Strictest test.
                 Word blah = Words.a;
                 Word test;
-                if (!Words.Dictionary.TryGetValue(word, out test))
+                if (!Words.Dictionary.TryGetValue(prospectiveWord, out test))
                 {
-                    Console.WriteLine(word[0].ToString().ToUpper());
-                    Console.WriteLine(word[0].ToString());
-                    Console.WriteLine(Words.Dictionary.Count);
-                    if (word[0].ToString().ToUpper() != word[0].ToString())
-                    {
-                        throw new InvalidOperationException("This word (" + word + ") isn't in the dictionary and isn't upper cased like a proper modifier. What is wrong.");
-                    }
-                }
+                    //Console.WriteLine(prospectiveWord[0].ToString().ToUpper());
+                    //Console.WriteLine(prospectiveWord[0].ToString());
+                    //Console.WriteLine(Words.Dictionary.Count);
 
+                    if (CheckIsPreposition(prospectiveWord))
+                    {
+                        Console.WriteLine("PREPOSITION: " + prospectiveWord);
+                    }
+                    else if (CheckIsNumber(prospectiveWord))
+                    {
+                        Console.WriteLine("NUMBER: " + prospectiveWord);
+                    }
+                    else if (prospectiveWord.Contains("-") &&  CheckIsCompoundWord(prospectiveWord))
+                    {
+                        Console.WriteLine("COMPOUND: " + prospectiveWord);
+                    }
+                    else if (CheckIsProperModifier(prospectiveWord))
+                    {
+                        // if (prospectiveWord[0].ToString().ToUpper() != prospectiveWord[0].ToString())
+                        Console.WriteLine("PROPER MODIFIER: " + prospectiveWord);
+                    }//Escaped foreign
+                    else if (IsForeign(prospectiveWord))
+                    {
+                        // if (prospectiveWord[0].ToString().ToUpper() != prospectiveWord[0].ToString())
+                        Console.WriteLine("Foreign Text: " + prospectiveWord);
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException("This word (" + prospectiveWord +
+                                                            ") isn't in the dictionary and isn't upper cased like a proper modifier. What is wrong.");
+                    }
+
+                }
             }
         }
+
+
 
         public static bool IsEscaped(string value)
         {
@@ -136,111 +184,24 @@ namespace BasicTypes
             return !(value.StartsWith("\"") && value.EndsWith("\""));
         }
 
-        public Word(string word)
+        public Word(string word): base(word)
         {
             if (word == null)
             {
                 throw new ArgumentNullException("word", "Can't construct words with null");
             }
+            if (word.EndsWith(","))
+            {
+                postComma = true;
+            }
+            if (word.StartsWith(","))
+            {
+                preComma = true;
+            }
+            word = word.Trim(new char[] { ',' });
             ValidateOnConstruction(word);
             //Validate
             this.word = word;
-        }
-
-        public bool IsKnown
-        {
-            get
-            {
-                return Words.Dictionary.Any(x => x.Value.Text == word);
-            }
-        }
-
-        public bool IsValidLetterSet
-        {
-            get {
-                return ValidateLetterSet(word);
-            }
-        }
-
-        public static bool ValidateLetterSet(string value)
-        {
-            string lowerWord = value.ToLowerInvariant();
-            return lowerWord.All(c => "jklmnpstwaeiou".Contains(c));
-        }
-
-        public static bool ValidateCompoundWordLetterSet(string value)
-        {
-            string lowerWord = value.ToLowerInvariant();
-            return lowerWord.All(c => "jklmnpstwaeiou-".Contains(c));
-        }
-
-        public static string ListInvalidCharacters(string value)
-        {
-            string lowerWord = value.ToLowerInvariant();
-
-            List<string> wrongOnes=new List<string>();
-            foreach (char c in lowerWord)
-            {
-                if (!"jklmnpstwaeiou".Contains(c))
-                {
-                    wrongOnes.Add(c.ToString());
-                }
-            }
-            return string.Concat(",", wrongOnes);
-        }
-
-        public bool IsValidPhonology
-        {
-            get
-            {
-                Dialect c = Dialect.DialectFactory;
-                c.ThrowOnSyntaxError = false;
-                ParserUtils pu = new ParserUtils(c);
-                //Letters
-                //CVCVN
-                //Invalid syllables.
-                string[] matches = pu.JustTpWords(word);
-
-                if (matches.Length < 1 && !matches.Contains(word))
-                {
-                    Console.WriteLine(string.Join(", ", matches));
-                }
-                return matches.Length >= 1 && matches.Contains(word);
-                //return lowerWord.All(c => "jklmnpstwaeiou".Contains(c));
-            }
-        }
-
-        public bool IsNumeric
-        {
-            get
-            {
-                return word.All(c => "1234567890-.#".Contains(c));
-            }
-        }
-
-        public static bool CheckIsNumber(string value)
-        {
-            if (!value.All(c => "1234567890-.#".Contains(c)))
-            {
-                if (value.Contains("#"))
-                {
-                    if (value.StartsWith("#"))
-                    {
-                        return true;
-                    }
-                    return false;
-                }
-                return true;
-            }
-            return false;
-        }
-
-        public bool IsProperModifier
-        {
-            get
-            {
-                return word.Substring(0, 1) == word.Substring(0, 1).ToUpperInvariant();
-            }
         }
 
         static public implicit operator string(Word word)
@@ -253,8 +214,6 @@ namespace BasicTypes
             return Word.Parse(value);
         }
 
-
-        public string Text { get { return word; } }
 
 
         //Lossy, human oriented serialization.
@@ -371,15 +330,6 @@ namespace BasicTypes
             return false;
         }
 
-        public bool ContainedBy(string phrase)
-        {
-            if (!phrase.Contains(phrase))
-            {
-                return false;
-            }
-            string[] parts = phrase.Split(new string[] { " ", Environment.NewLine, ".", "!", "?" }, StringSplitOptions.RemoveEmptyEntries);
-            return parts.Contains(word);
-        }
 
 
 
@@ -400,7 +350,6 @@ namespace BasicTypes
             BinaryFormatterCopier<Word> copier = new BinaryFormatterCopier<Word>();
             return copier.Copy(this);
         }
-
     }
 
 }

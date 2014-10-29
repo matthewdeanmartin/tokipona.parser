@@ -18,8 +18,9 @@ namespace BasicTypes.Parser
         public void GoDawgs()
         {
             //"Go*Dawgs!"
-            ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
-            string[] oneForeinString = pu.JustTpWords("\"Go*Dawgs!\"");
+            
+            TokenParserUtils tpu = new TokenParserUtils();
+            string[] oneForeinString = tpu.JustTpWords("\"Go*Dawgs!\"");
             Assert.AreEqual(1, oneForeinString.Length);
 
         }
@@ -27,7 +28,7 @@ namespace BasicTypes.Parser
         [Test]
         public void CompoundWordParseSimple()
         {
-            ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
+            TokenParserUtils pu = new TokenParserUtils();
             string[] oneCompound= pu. JustTpWordsNumbersPunctuation("tomo-tawa-kon");
             oneCompound = pu.RemergeCompounds(oneCompound);
             foreach (string s in oneCompound)
@@ -42,7 +43,7 @@ namespace BasicTypes.Parser
         [Test]
         public void ParseLiAla()
         {
-            ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
+            TokenParserUtils pu = new TokenParserUtils();
             string[] twoWords= pu. JustTpWordsNumbersPunctuation("li ala");
             Assert.AreEqual(2, twoWords.Length);
             Assert.AreEqual("li", twoWords[0]);
@@ -53,7 +54,7 @@ namespace BasicTypes.Parser
         [Test]
         public void ParseEachWordInDictionary()
         {
-            ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
+            TokenParserUtils pu = new TokenParserUtils();
             foreach (Word word in Words.Dictionary.Values)
             {
                 string[] oneWord = pu.JustTpWords(word.Text);
@@ -66,7 +67,7 @@ namespace BasicTypes.Parser
         public void ParseEachWordInDictionary2()
         {
             bool canary = false;
-            ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
+            TokenParserUtils pu = new TokenParserUtils();
             foreach (Word word in Words.Dictionary.Values)
             {
                 string[] oneWord = pu.JustTpWordsNumbersPunctuation(word.Text);
@@ -104,7 +105,7 @@ namespace BasicTypes.Parser
         [Test]
         public void OneWord()
         {
-            ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
+            TokenParserUtils pu = new TokenParserUtils();
             string[] w = pu.JustTpWords("jan");
             Assert.AreEqual(1, w.Length);
         }
@@ -112,10 +113,7 @@ namespace BasicTypes.Parser
         [Test]
         public void TwoWords()
         {
-            Dialect c = Dialect.DialectFactory;
-            c.ThrowOnSyntaxError = false;
-            ParserUtils pu = new ParserUtils(c);
-
+            TokenParserUtils pu = new TokenParserUtils();
             string[] w = pu.JustTpWords("jan lili");
             Assert.AreEqual(2, w.Length);
         }
@@ -124,9 +122,7 @@ namespace BasicTypes.Parser
         [Test]
         public void ThreWords()
         {
-            Dialect c = Dialect.DialectFactory;
-            c.ThrowOnSyntaxError = false;
-            ParserUtils pu = new ParserUtils(c);
+            TokenParserUtils pu = new TokenParserUtils();
 
             string[] w = pu.JustTpWords("jan lili lon");
             Assert.AreEqual(3, w.Length);
@@ -135,9 +131,7 @@ namespace BasicTypes.Parser
         [Test]
         public void WordsNumbersWithoutDash()
         {
-            Dialect c = Dialect.DialectFactory;
-            c.ThrowOnSyntaxError = false;
-            ParserUtils pu = new ParserUtils(c);
+            TokenParserUtils pu = new TokenParserUtils();
 
             string[] w = pu.JustTpWords("1231231");
             Assert.AreEqual(1, w.Length);
@@ -146,9 +140,7 @@ namespace BasicTypes.Parser
         [Test]
         public void WordsNumbersPunctuationWithoutDash()
         {
-            Dialect c = Dialect.DialectFactory;
-            c.ThrowOnSyntaxError = false;
-            ParserUtils pu = new ParserUtils(c);
+            TokenParserUtils pu = new TokenParserUtils();
 
             string[] w = pu.JustTpWordsNumbersPunctuation("1231231");
             Assert.AreEqual(1, w.Length);
@@ -157,9 +149,7 @@ namespace BasicTypes.Parser
         [Test]
         public void WordsNumbersWithDash()
         {
-            Dialect c = Dialect.DialectFactory;
-            c.ThrowOnSyntaxError = false;
-            ParserUtils pu = new ParserUtils(c);
+            TokenParserUtils pu = new TokenParserUtils();
 
             string[] w = pu.JustTpWords("123-1231");
             foreach (string s in w)
@@ -174,9 +164,7 @@ namespace BasicTypes.Parser
         {
             string value = "123-1231";
 
-            Dialect c = Dialect.DialectFactory;
-            c.ThrowOnSyntaxError = false;
-            ParserUtils pu = new ParserUtils(c);
+            TokenParserUtils pu = new TokenParserUtils();
 
             string[] w = pu.JustTpWordsNumbersPunctuation(value);
             foreach (string s in w)

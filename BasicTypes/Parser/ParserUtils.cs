@@ -89,111 +89,8 @@ namespace BasicTypes
             return l.ToArray();
         }
 
-        public const string ValidTpWordSplitter =
-            @"([0-9-]+)" +  //Numbers okay
-            @"|(#[0-9-]+)" +  //Pounded numbers better
-            @"|[""][a-zA-Z0-9\*\?.!]*[""]" +  //Quoted text joined by * is okay == foreign text
-            @"|\b([JKLMNPSTW]?[aeiou]([jklmnpstw][aeiou][n]?-?)*)\b" +  //Capitalized syllable followed by any number of whole syllables with optional n's 
-            @"|\b([aeiou])\b" + //Bare vowel is okay.
-            @"|\b(([jklmnpstw]?[aeiou][n]?-?)*)\b" + //Uncapitalized syllables with optional constants or final n's
-            @"|\b([aeiou][n]?-?)\b|" + //vowels with optional n's
-            @"\b([AEIOU][n]?-?)\b"; //Capital vowels with optional n's
 
-        //Can double match (word within word) :-(
-        public string[] JustTpWords(string value)
-        {
-            //Allows:
-            // a
-            // an
-            // A
-            // An
-            // na
-            // nan
-            // Na
-            // Nan
-
-            //http://regexhero.net/tester/
-
-            return (from Match s in Regex.Matches(value, ValidTpWordSplitter)
-                    where !string.IsNullOrEmpty(s.Value)
-                    select s.Value).ToArray();
-        }
-
-        public string[] RemergeCompounds(string[] words)
-        {
-            if (!words.Any(x => x.Contains("-")))
-            {
-                //No compound words here
-                return words;
-            }
-            List<string> merged = new List<string>();
-            List<string> compound = new List<string>();
-            for (int index = 0; index < words.Length; index++)
-            {
-                string word = words[index];
-                if (word == "-")
-                {
-                    compound.Add(word);
-                    continue;
-                }
-                if (index + 1 < words.Length && words[index + 1] == "-")
-                {
-                    compound.Add(word);
-                    continue;
-                }
-                if (index - 1 > 0 && words[index - 1] == "-")
-                {
-                    compound.Add(word);
-                    continue;
-                }
-
-                if (compound.Count > 0)
-                {
-                    merged.Add(string.Join("", compound.ToArray()));
-                    compound.Clear();
-                }
-                else
-                {
-                    merged.Add(word);
-                }
-            }
-            //Edge case where the whole thing is a compound
-            if (compound.Count > 0)
-            {
-                merged.Add(string.Join("", compound.ToArray()));
-                compound.Clear();
-            }
-            return merged.ToArray();
-        }
-
-        public string[] JustTpWordsNumbersPunctuation(string value)
-        {
-            //Allows:
-            // a
-            // an
-            // A
-            // An
-            // na
-            // nan
-            // Na
-            // Nan
-            Regex r = new Regex(ValidTpWordSplitter + "|"
-                //+ "((" + ValidTpWordSplitter + ")[-])*" //Doesn't match compounds.
-                + @"|([?.!'])");
-            List<string> list = new List<string>();
-            foreach (Match s in r.Matches(value))
-            {
-                if (!string.IsNullOrEmpty(s.Value))
-                {
-                    list.Add(s.Value);
-                }
-            }
-
-            
-
-            return list.ToArray();
-        }
-
+        //This should only operate on normalized sentences.
         public Sentence ParsedSentenceFactory(string sentence, string original)
         {
             string preNormalize = string.Copy(sentence);
@@ -294,7 +191,18 @@ namespace BasicTypes
                     else
                     {
                         string laLessString = subSentence.RemoveLeadingWholeWord("la");
-                        Chain fragment = ProcessEnPiChain(laLessString);
+                        Chain fragment;
+                        if (laLessString.StartsWith("~"))
+                        {
+                            string[] parts = Splitters.SplitOnPrepositions(laLessString);
+                            fragment= new Chain(ChainType.Prepositionals, Particles.Blank,
+                                ProcessPrepositionalPhrases(parts).ToArray());
+                        }
+                        else
+                        {
+                            fragment = ProcessEnPiChain(laLessString);
+                        }
+                        
                         if (currentSentence == null)
                         {
                             if (headSentence == null)
@@ -455,7 +363,11 @@ namespace BasicTypes
             }
             if (value.Contains(" la ") || value.EndsWith(" la"))
             {
-                throw new ArgumentException("Contains la. This isn't possible.");
+                throw new ArgumentException("Contains la. This isn't possible in a pi chain.");
+            }
+            if (value.Contains("~"))
+            {
+                throw new ArgumentException("Contains preposition. This isn't possible in a pi chain. (well not right now. kule pi lon palisa)");
             }
 
             string piChains = value;
@@ -519,6 +431,7 @@ namespace BasicTypes
         //     li jo e soweli e kili e wawa lon anpa tawa anpa
         public TpPredicate ProcessPredicates(string liPart)
         {
+            
             if (string.IsNullOrWhiteSpace(liPart))
             {
                 throw new InvalidOperationException("Missing argument, can't continue");
@@ -527,6 +440,7 @@ namespace BasicTypes
             {
                 throw new InvalidOperationException("Can't do anything with just li");
             }
+            TokenParserUtils pu = new TokenParserUtils();
             Particle verbPhraseParticle = null;
             Chain directObjectChain = null;
             HeadedPhrase verbPhrase = null;
@@ -537,26 +451,38 @@ namespace BasicTypes
             {
                 string[] eParts = Splitters.SplitOnE(liPart);
 
-                string[] verbPhraseParts =
-                    RemergeCompounds(
-                    JustTpWordsNumbersPunctuation(eParts[0]));
+                string[] verbPhraseParts = pu.WordsPunctuationAndCompounds(eParts[0]); //Could contain particles.
+
                 if (!Particle.IsParticle(verbPhraseParts[0]))
                 {
                     throw new TpSyntaxException("uh-oh not a particle: " + verbPhraseParts[0] + " from "+ liPart);
                 }
                 verbPhraseParticle = new Particle(verbPhraseParts[0]);
+
+                //Only process preps in normalized sentences
+                string[] partsWithPreps = null;
+
                 if (verbPhraseParts.Length > 1)
                 {
-                    if (verbPhraseParts.Any(x => x == "pi"))
+                    //if (!verbPhraseParts[1].StartsWith("~"))
                     {
-                        //nominal predicate
-                        nominalPredicate = ProcessPiChain(string.Join(" ", ArrayExtensions.Tail(verbPhraseParts)));
+                        if (verbPhraseParts.Any(x => x == "pi"))
+                        {
+                            //nominal predicate
+                            nominalPredicate = ProcessPiChain(string.Join(" ", ArrayExtensions.Tail(verbPhraseParts)));
+                        }
+                        else
+                        {
+                            verbPhrase = HeadedPhraseParser(ArrayExtensions.Tail(verbPhraseParts));
+
+                        }
                     }
-                    else
+                    //else
                     {
-                        verbPhrase = HeadedPhraseParser(ArrayExtensions.Tail(verbPhraseParts));
-                
+                        //this is a li ~lon ... prepositional predicate thing.
+                        //partsWithPreps = ArrayExtensions.Tail(verbPhraseParts);
                     }
+                    
                 }
                 else
                 {
@@ -565,8 +491,7 @@ namespace BasicTypes
 
                 string verbsMaybePrepositions = eParts[eParts.Length - 1];
 
-                //Only process preps in normalized sentences
-                string[] partsWithPreps = null;
+                
                 if (verbsMaybePrepositions.Contains("~"))
                 {
                     partsWithPreps = Splitters.SplitOnPrepositions(verbsMaybePrepositions);
@@ -589,7 +514,19 @@ namespace BasicTypes
 
                 //List<HeadedPhrase> doNPs = new List<HeadedPhrase>();
                 List<Chain> doPiChains = new List<Chain>();
-                foreach (string directObject in directObjects)
+
+                //Fancy foot work for when we have e ... ~... & that's all.
+                string[] toUse =null;
+                if (partsWithPreps != null)
+                {
+                    toUse = partsWithPreps.Where(x => x.StartsWith("e ")).ToArray();
+                }
+                else
+                {
+                    toUse = directObjects;
+                }
+
+                foreach (string directObject in toUse)
                 {
                     string eFree = directObject.Substring(2);
                     Chain phrase = ProcessPiChain(eFree);
@@ -617,8 +554,7 @@ namespace BasicTypes
                 {
                     throw new InvalidOperationException("This has punctuation, may fail to parse");
                 }
-                string[] verbPhraseParts = RemergeCompounds(
-                    JustTpWordsNumbersPunctuation((ppParts[0])));
+                string[] verbPhraseParts = pu.WordsPunctuationAndCompounds(ppParts[0]);
 
                 if (!Particle.IsParticle(verbPhraseParts[0]))
                 {
@@ -653,8 +589,7 @@ namespace BasicTypes
                     List<Chain> pChains = new List<Chain>();
                     foreach (string pp in prepositions)
                     {
-                        string[] phraseParts = RemergeCompounds(
-                    JustTpWordsNumbersPunctuation(pp));
+                        string[] phraseParts = pu.WordsPunctuationAndCompounds(pp);//Could contain particles.
                         string preposition = phraseParts[0];
                         string[] tail = ArrayExtensions.Tail(phraseParts);
 
@@ -700,9 +635,9 @@ namespace BasicTypes
             {
                 if (partsWithPrep.Contains("~")) //Is it really?
                 {
-                    string preposition = RemergeCompounds(
-                   JustTpWordsNumbersPunctuation((partsWithPrep)))[0];
-                    string tail = preposition.Replace(partsWithPrep, "").Trim();
+                    TokenParserUtils pu = new TokenParserUtils();
+                    string preposition = pu.WordsPunctuationAndCompounds(partsWithPrep)[0];
+                    string tail = partsWithPrep.Replace(preposition, "").Trim();
                     //These chains are ordered.
                     //kepeken x lon y kepeken z lon a   NOT EQUAL TO kepeken x  kepeken z lon a lon y
                     //Maybe.
@@ -726,6 +661,18 @@ namespace BasicTypes
             {
                 throw new ArgumentException("Impossible to parse a null or zero length string.");
             }
+            foreach (string s in value)
+            {
+                if (s.Contains(" "))
+                {
+                    throw new ArgumentException("One of the strings in the array contains spaces, this must not have been properly normalized.");
+                }
+                if (s.Contains("~"))
+                {
+                    throw new ArgumentException("One of the strings in the array starts with a ~, so the prep wasn't stripped off.");
+                } 
+            }
+            
             //No Pi!
             HeadedPhrase phrase = new HeadedPhrase(new Word(value[0]), new WordSet(ArrayExtensions.Tail(value)));
             return phrase;
@@ -733,6 +680,10 @@ namespace BasicTypes
 
         public HeadedPhrase HeadedPhraseParser(string value)
         {
+            if (value.Contains("~"))
+            {
+                throw new TpSyntaxException("Headed phrase can't contain a preposition. This one does: " + value);
+            }    
             foreach (string particle in new string[]{"pi", "la", "e", "li"})
             {
                 if (value.StartsOrContainsOrEnds(particle))
@@ -746,12 +697,16 @@ namespace BasicTypes
                 throw new ArgumentException("Impossible to parse a null or zero length string.");
             }
             //No Pi!
-            string[] words = JustTpWords(value);
+            TokenParserUtils pu = new TokenParserUtils();
+            
+            Word[] words = pu.ValidWords(value);
+
+
             if (words.Length == 0)
             {
                 throw new InvalidOperationException("Failed to parse: " + value);
             }
-            HeadedPhrase phrase = new HeadedPhrase(new Word(words[0]), new WordSet(ArrayExtensions.Tail(words)));
+            HeadedPhrase phrase = new HeadedPhrase(words[0], new WordSet(ArrayExtensions.Tail(words)));
             return phrase;
         }
 

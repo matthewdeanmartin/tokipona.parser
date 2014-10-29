@@ -29,7 +29,7 @@ namespace BasicTypes
 
     [DataContract]
     [Serializable]
-    public class Sentence : IContainsWord, IFormattable
+    public class Sentence : IContainsWord, IFormattable, IToString
     {
         [DataMember]
         private readonly Sentence conclusion;
@@ -206,6 +206,14 @@ namespace BasicTypes
             w.AddRange(Predicates);
             w.AddRange(Subjects);
             return w.ToArray();
+        }
+
+        public string[] SupportedsStringFormats
+        {
+            get
+            {
+                return new string[] { "g", "b", "bs" };
+            }
         }
 
         public string ToString(string format)

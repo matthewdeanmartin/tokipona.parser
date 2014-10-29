@@ -75,11 +75,11 @@ namespace BasicTypes.Parser
             }
 
             //Extraneous commas
-            foreach (string s in new String[] { ", li ", ", la ", ",la ", " la, ", " la," })
+            foreach (string s in new String[] { ", li ", ", la ", ",la ", " la, ", " la,", ", o ", ",o " })
             {
                 if (normalized.Contains(s))
                 {
-                    normalized = normalized.Replace(s, " " + s.Trim(new char[]{' ',','}) +" ");
+                    normalized = normalized.Replace(s, " " + s.Trim(new char[] { ' ', ',' }) + " ");
                 }
             }
 
@@ -87,16 +87,16 @@ namespace BasicTypes.Parser
             //jan li
             //tawa. ==> jan li tawa.
             normalized = normalized.Replace("\n", " ");
-            
+
 
             //Extraneous whitespace
             while (normalized.Contains("  "))
             {
                 normalized = normalized.Replace("  ", " ");
             }
-            
 
-            string[] preps = new String[] { "kepeken", "tawa", "poka", "sama", "tan", "lon" };
+
+            string[] preps = Particles.Prepositions;
             bool isPunctuated = false;
             foreach (string prep in preps)
             {
@@ -124,7 +124,7 @@ namespace BasicTypes.Parser
                 }
             }
 
-            
+
 
             //la o
             //invisible implicit subject.
@@ -133,12 +133,7 @@ namespace BasicTypes.Parser
                 normalized = normalized.Replace(" la o ", " la jan Sanwan o ");
             }
 
-            if (normalized.Contains("~"))
-            {
-                normalized=ThoseArentPrepositions(preps, normalized);
-            }
-
-            normalized = Regex.Replace(normalized, @"^\s+|\s+$", ""); //Remove extraneous whitespace
+            
 
             //TODO: detect start of sentence & replace mi X and sina Y with 
 
@@ -153,6 +148,30 @@ namespace BasicTypes.Parser
                 normalized = NormalizedMiLi(normalized, "«");
                 normalized = NormalizedMiLi(normalized, "' ");
                 normalized = NormalizedMiLi(normalized, "« ");
+
+                foreach (Word possible in Words.Dictionary.Values)
+                {
+                    //Need a new concept-- ordinary POS & fallback POS
+                    string pronoun = "mi";
+                    Dictionary<string, Dictionary<string, string[]>> glosses;
+                    if(Words.Glosses.TryGetValue(possible.Text, out glosses))
+                    {
+                        Dictionary<string, string[]> enGlosses;
+                        if (glosses.TryGetValue("en", out enGlosses))
+                        {
+                            if ((enGlosses.ContainsKey("vt") && enGlosses["vt"].Length > 0) 
+                                || 
+                                (enGlosses.ContainsKey("vi")  && enGlosses["vi"].Length > 0))
+                            {
+                                string unLied = " " + pronoun + " " + possible + " ";
+                                if (normalized.Contains(unLied))
+                                {
+                                    normalized = normalized.Replace(unLied, " "+ pronoun +" li " + possible + " ");
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
             if (normalized.Contains("sina"))
@@ -162,6 +181,31 @@ namespace BasicTypes.Parser
                 normalized = NormalizedSinaLi(normalized, "«");
                 normalized = NormalizedSinaLi(normalized, "' ");
                 normalized = NormalizedSinaLi(normalized, "« ");
+
+
+                foreach (Word possible in Words.Dictionary.Values)
+                {
+                    //Need a new concept-- ordinary POS & fallback POS
+                    string pronoun = "sina";
+                    Dictionary<string, Dictionary<string, string[]>> glosses;
+                    if (Words.Glosses.TryGetValue(possible.Text, out glosses))
+                    {
+                        Dictionary<string, string[]> enGlosses;
+                        if (glosses.TryGetValue("en", out enGlosses))
+                        {
+                            if ((enGlosses.ContainsKey("vt") && enGlosses["vt"].Length > 0)
+                                ||
+                                (enGlosses.ContainsKey("vi") && enGlosses["vi"].Length > 0))
+                            {
+                                string unLied = " " + pronoun + " " + possible + " ";
+                                if (normalized.Contains(unLied))
+                                {
+                                    normalized = normalized.Replace(unLied, " " + pronoun + " li " + possible + " ");
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
 
@@ -189,6 +233,19 @@ namespace BasicTypes.Parser
                     //undo doubling.
                     normalized = Regex.Replace(normalized, @"\bli li\b", "li"); //normalize contractions
                 }
+            }
+
+            if (normalized.Contains("~"))
+            {
+                normalized = ThoseArentPrepositions(preps, normalized);
+            }
+
+            normalized = Regex.Replace(normalized, @"^\s+|\s+$", ""); //Remove extraneous whitespace
+
+            //If it is a sentence fragment, I really can't deal with prep phrase that may or may not be in it.
+            if (normalized.Contains("~") && !normalized.Contains(" li "))
+            {
+                normalized = normalized.Replace("~", ""); //HACK: This may erase ~ added by user at the start?
             }
 
             string fakePredicate = " li ijo Nanunanuwakawakawawa.";
@@ -257,7 +314,7 @@ namespace BasicTypes.Parser
         private static string ProcessWhiteSpaceInForeignText(string normalized)
         {
             StringBuilder sb = new StringBuilder(normalized.Length);
-            bool insideForeignText=false;
+            bool insideForeignText = false;
 
             foreach (char c in normalized)
             {
@@ -283,6 +340,134 @@ namespace BasicTypes.Parser
 
         private static string ThoseArentPrepositions(string[] preps, string normalized)
         {
+            //I don't even know what that means.
+            //This is just so corpus texts can pass. Better solution is to write annoted text in the first place.
+            foreach (string  oneOff in new string[] {
+                                                        " li ~tawa wawa e", // motion thingy.  Maybe catch with common adverbs?
+                                                        " li ~lon wawa e ",// placement thingy. Quickly place something.
+                                                        "tenpo ~tawa ali la", //This is just strange.
+                                                        "kon ~tawa seli li",// tawa is normal adjective. 
+                                                         "kon ~tawa lete li",// tawa is normal adjective. 
+                                                         "kon ~tawa telo li",// tawa is normal adjective. 
+                                                         "tenpo ~tawa mi", //Time of my leaving
+                                                         "li ~tawa anpa ", //Go down.
+                                                         "li ~tawa kon ", //fly
+                                                         "li ~tawa sewi " //go up
+                                                    })
+            {
+                normalized = normalized.Replace(oneOff, oneOff.Replace("~",""));
+            }
+
+            //As in jan sama o!
+            //jan ~sama o!
+            if (normalized.Contains(" ~sama o "))
+            {
+                normalized = normalized.Replace(" ~sama o ", " sama o ");
+            }
+            if (normalized.Contains(" ~sama o, "))
+            {
+                normalized = normalized.Replace(" ~sama o, ", " sama o, ");
+            }
+            if (normalized.EndsWith(" ~sama o"))
+            {
+                normalized = normalized.Replace(" ~sama o", " sama o");
+            }
+            if (normalized.EndsWith(" ~sama o!"))
+            {
+                normalized = normalized.Replace(" ~sama o!", " sama o!");
+            }
+            if (normalized.EndsWith(" ~sama o?"))
+            {
+                normalized = normalized.Replace(" ~sama o?", " sama o?");
+            }
+            if (normalized.EndsWith(" ~sama o."))
+            {
+                normalized = normalized.Replace(" ~sama o.", " sama o.");
+            }
+            //li kama tawa ==> verb!
+
+
+            //li ~kepeken e
+            foreach (string prep in preps)
+            {
+                string barePrep = " li ~" + prep + " e ";
+                if (normalized.Contains(barePrep))
+                {
+                    normalized = normalized.Replace(barePrep, barePrep.Replace("~", ""));
+                }
+            }
+
+            //li ~tawa ala e
+            foreach (string prep in preps)
+            {
+                string barePrep = " li ~" + prep + " ala e ";
+                if (normalized.Contains(barePrep))
+                {
+                    normalized = normalized.Replace(barePrep, barePrep.Replace("~", ""));
+                }
+            }
+            //~tawa e
+            foreach (string prep in preps)
+            {
+                string barePrep = " ~" + prep + " e ";
+                if (normalized.Contains(barePrep))
+                {
+                    normalized = normalized.Replace(barePrep, barePrep.Replace("~", ""));
+                }
+            }
+            //li ken ~tawa sike e 
+            foreach (string prep in preps)
+            {
+                //TODO: Add other modals.
+                //modal + prep => probably verb.
+                string barePrep = " li ken ~" + prep;
+                if (normalized.Contains(barePrep))
+                {
+                    normalized = normalized.Replace(barePrep, barePrep.Replace("~", ""));
+                }
+            }
+
+            //~tan-  it's a prep but inside a compound phrase, we don't care. It's opaque.
+            foreach (string prep in preps)
+            {
+                string barePrep = "~" + prep + "-";
+                if (normalized.Contains(barePrep))
+                {
+                    normalized = normalized.Replace(barePrep, barePrep.Replace("~", ""));
+                }
+            }
+
+            //~tawa pi --- not possible.
+            foreach (string prep in preps)
+            {
+                string barePrep = "~" + prep + " pi ";
+                if (normalized.Contains(barePrep))
+                {
+                    normalized = normalized.Replace(barePrep, barePrep.Replace("~", ""));
+                }
+            }
+
+            //lon ala li pana e lon
+            foreach (string prep in preps)
+            {
+                string initial = "~" + prep + " ";
+                if (normalized.StartsWith(initial))
+                {
+                    normalized = prep + " " + normalized.Substring((prep + " ").Length);
+                    //normalized = normalized.Replace(initial, initial.Replace("~", ""));
+                }
+            }
+
+            //This is so uncommon, that it actually better to assume it isn't a prep.
+            foreach (string prep in preps)
+            {
+                string piHeadedPrep = " pi ~" + prep + " ";
+                if (normalized.Contains(piHeadedPrep))
+                {
+                    normalized = normalized.Replace(piHeadedPrep, piHeadedPrep.Replace("~", ""));
+                }
+            }
+            
 
             //.. li sama.
             foreach (string prep in preps)
@@ -353,7 +538,7 @@ namespace BasicTypes.Parser
                 }
             }
 
-//~tawa pi jan Puta li pona
+            //~tawa pi jan Puta li pona
 
             //lon poka ma ni.
             foreach (string prep1 in preps)
@@ -502,11 +687,11 @@ namespace BasicTypes.Parser
         //Trying to catch o! jan o! jan o. jan o, o.
         public static bool IsVocative(string value)
         {
-            string normalized = value.Trim(new char[] { ' ', '\'', '«','.','!','?',',' });
+            string normalized = value.Trim(new char[] { ' ', '\'', '«', '.', '!', '?', ',' });
             return normalized.Contains(" o ") ||
                    normalized.StartsWith("o ") ||
                    normalized.EndsWith(" o") ||
-                   normalized=="o";
+                   normalized == "o";
         }
 
         public static string RepairErrors(string phrase)

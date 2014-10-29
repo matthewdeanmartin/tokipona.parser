@@ -9,7 +9,7 @@ namespace BasicTypes
 {
     //Unordered words.-- uh oh, this may be same concept as headed phrase.
     [Serializable]
-    public class WordSet : HashSet<Word>, IContainsWord
+    public class WordSet : HashSet<Word>, IContainsWord, IToString
     {
         public WordSet():base()
         {
@@ -28,12 +28,20 @@ namespace BasicTypes
             }
         }
 
+        public WordSet(IEnumerable<Word> strings)
+            : base()
+        {
+            foreach (string s in strings)
+            {
+                this.Add(s);
+            }
+        }
+
         //Same if same jumble of words. E.g. the set of words following a noun.
 
         public override string ToString()
         {
-            if (this.Count == 0) return "";
-            return string.Join(" ", this.Select(x=>x.Text).ToArray());
+            return this.ToString("g");
         }
 
         public static WordSet Parse(string value)
@@ -57,6 +65,19 @@ namespace BasicTypes
                 result = null;
                 return false;
             }
+        }
+
+        public string[] SupportedsStringFormats
+        {
+            get
+            {
+                return new string[] { "g", "b", "bs" };
+            }
+        }
+        public string ToString(string format)
+        {
+            if (this.Count == 0) return "";
+            return string.Join(" ", this.Select(x => x.Text).ToArray());
         }
     }
 

@@ -24,6 +24,11 @@ namespace BasicTypes.Parser
             {
                 throw new ArgumentException("Impossible to parse a null or zero length string.");
             }
+            //HACK
+            if (value.Contains("-en-") && !value.Contains(" en "))
+            {
+                return new string[]{value};
+            }
             Regex splitOnEn = new Regex("\\b" + Particles.en.Text + "\\b");
             string[] subjectTokens = splitOnEn.Split(value).Select(x => x.Trim()).ToArray();
             return subjectTokens;

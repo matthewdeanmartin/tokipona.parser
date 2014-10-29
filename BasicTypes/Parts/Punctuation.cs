@@ -9,7 +9,7 @@ namespace BasicTypes
 {
     [DataContract]
     [Serializable]
-    public class Punctuation : IParse<Punctuation>
+    public class Punctuation : IParse<Punctuation>, IToString
     {
         [DataMember]
         private readonly string symbol;
@@ -31,7 +31,7 @@ namespace BasicTypes
 
         public override string ToString()
         {
-            return symbol;
+            return this.ToString("g");
         }
 
         public static Punctuation Parse(string value)
@@ -102,6 +102,18 @@ namespace BasicTypes
                 }
             }
             return false;
+        }
+
+        public string[] SupportedsStringFormats
+        {
+            get
+            {
+                return new string[] { "g" };
+            }
+        }
+        public string ToString(string format)
+        {
+            return symbol;
         }
     }
 }

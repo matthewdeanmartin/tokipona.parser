@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BasicTypes.Parser;
 
 namespace BasicTypes
 {
@@ -29,7 +30,7 @@ namespace BasicTypes
             }
             Dialect c = provider.GetFormat(typeof(Punctuation)) as Dialect;
 
-            ParserUtils pu = new ParserUtils(c);
+            TokenParserUtils pu = new TokenParserUtils();
             string[] possibleWords = pu.JustTpWords(value);
             return new Word(possibleWords[0], provider);
         }

@@ -22,7 +22,7 @@ namespace BasicTypes
 
             GlossMap m = new GlossMap()
             {
-                {"test", new Word("nini")}
+                {"test", new Word("nena")}
             };
 
             Console.WriteLine(m.ToJsonDcJs());
@@ -49,28 +49,28 @@ namespace BasicTypes
         [Test]
         public void CanJsonSerialize()
         {
-            Word f = new Word("asdfghjkl");
+            Word f = new Word("nimi");
             Assert.NotNull(f.ToJsonDcJs());
         }
 
         [Test]
         public void CanJsonSerializeJss()
         {
-            Word f = new Word("asdfghjkl");
+            Word f = new Word("nimi");
             Assert.NotNull(f.ToJsonJss());
         }
 
         [Test]
         public void CanXmlSerialize()
         {
-            Word f = new Word("asdfghjkl");
+            Word f = new Word("nimi");
             Assert.NotNull(f.ToXml());
         }
 
         [Test]
         public void CanBinarySerialize()
         {
-            Word f = new Word("asdfghjkl");
+            Word f = new Word("nimi");
 
             BinaryFormatter formatter = new BinaryFormatter();
             using (MemoryStream ms = new MemoryStream())
@@ -81,100 +81,128 @@ namespace BasicTypes
                 Assert.NotNull(WordByValue.Instance.Equals(result, f));
             }
         }
-        
+
 
         [Test]
-        public void WeakWord_DetectsInvalidCharacterSet()
+        public void WrongWord_DetectsInvalidCharacterSet()
         {
-            Word f = new Word("asdfghjkl");
-            Assert.IsFalse(f.IsValidLetterSet); 
+            try
+            {
+                Word f = new Word("asdfghjkl");
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            Assert.Fail();
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void WeakWord_NullNotAllowedInConstructor()
+        public void WrongWord_NullNotAllowedInConstructor()
         {
-            Word f = new Word(null);
+            try
+            {
+                Word f = new Word(null);
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            Assert.Fail();
         }
 
         [Test]
-        [ExpectedException(typeof(InvalidLetterSetException))]
-        public void WeakWord_ThrowsOnPunctuation()
+        public void WrongWord_ThrowsOnPunctuation()
         {
-            Word f = new Word("....");
+            try
+            {
+                Word f = new Word("....");
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            Assert.Fail();
         }
 
         [Test]
-        public void WeakWord_DetectsInvalidPhonology()
+        public void WrongWord_DetectsInvalidPhonology()
         {
-            Word f = new Word("asdfghjkl");
-            Assert.IsFalse(f.IsValidLetterSet);
+            try
+            {
+                Word f = new Word("asdfghjkl");
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            Assert.Fail();
         }
 
         [Test]
-        public void WeakWord_ValidPhonology()
+        public void WrongWord_ValidPhonology()
         {
-            Word f = new Word("nonon");
-            Assert.IsTrue(f.IsValidPhonology);
+            try
+            {
+                Word f = new Word("nonon");
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            Assert.Fail();
         }
 
         [Test]
-        public void WeakWord_InvalidPhonology()
+        public void WrongWord_InvalidPhonology()
         {
-            Word f = new Word("nnonon");
-            Assert.IsFalse(f.IsValidPhonology);
+            try
+            {
+                Word f = new Word("nnonon");
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            Assert.Fail();
         }
 
         [Test]
-        public void WeakWord_ValidLetterSet()
+        public void WrongWord_ValidLetterSet()
         {
-            Word f = new Word("jklmnpstwaeiou");
-            Assert.IsTrue(f.IsValidLetterSet);
+            try
+            {
+                Word f = new Word("jklmnpstwaeiou");
+            }
+            catch (Exception)
+            {
+                return;
+            }
+            Assert.Fail();
         }
 
         [Test]
-        public void WeakWord_IsNumeric()
+        public void WrongWord_IsNumeric()
         {
             Word f = new Word("1324");
             Assert.IsTrue(f.IsNumeric);
         }
 
         [Test]
-        public void WeakWord_IsProperModifier()
+        public void WrongWord_IsProperModifier()
         {
-            Word f = new Word("Mato");
+            
+                Word f = new Word("Mato");
             Assert.IsTrue(f.IsProperModifier);
         }
 
-        [Test]
-        public void WeakWord_IsContainedBy()
-        {
-            Word f = new Word("Mato");
-            Assert.IsTrue(f.ContainedBy("jan Mato"));
-        }
-
-        [Test]
-        public void WeakWord_ConstructorSetsText()
-        {
-            string word="Mato";
-            Word f = new Word(word);
-            Assert.IsTrue(f.Text == word);
-        }
-
-        [Test]
-        public void WeakWord_Constructor2SetsText()
-        {
-            string word = "Mato";
-            Word f = new Word(word);//new Dictionary<string, Dictionary<string, string[]>>()
-            Assert.IsTrue(f.Text == word);
-        }
-
+        
         [Test]
         public void ImplicitConversions()
         {
-            Word s= UseStringAsWord("luka");
+            Word s = UseStringAsWord("luka");
             string text = UseWordAsString(Words.luka);
-            Assert.AreEqual(s.ToString(),text);
+            Assert.AreEqual(s.ToString(), text);
             //Assert.IsFalse(object.ReferenceEquals(s.ToString(), text)); //These aren't copies!
         }
 

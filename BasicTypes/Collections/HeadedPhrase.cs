@@ -15,7 +15,7 @@ namespace BasicTypes
     //i.e. same as girls school & little school & pretty school, etc.
     [DataContract]
     [Serializable]
-    public class HeadedPhrase : IContainsWord, IFormattable
+    public class HeadedPhrase : IContainsWord, IFormattable, IToString
     {
         [DataMember]
         private readonly Word head;
@@ -83,6 +83,14 @@ namespace BasicTypes
 
         }
 
+        public string[] SupportedsStringFormats
+        {
+            get
+            {
+                return new string[] { "g" };
+            }
+        }
+
         public string ToString(string format)
         {
             return this.ToString(format, Config.CurrentDialect);
@@ -114,7 +122,7 @@ namespace BasicTypes
             return words;
         }
 
-        public bool IsPlura(string value)
+        public bool IsPlural(string value)
         {
             return Modifiers.Contains(Words.mute);
         }

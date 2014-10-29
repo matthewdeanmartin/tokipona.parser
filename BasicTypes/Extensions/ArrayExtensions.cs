@@ -14,5 +14,12 @@ namespace BasicTypes
             Array.Copy(value, 1, target, 0, value.Length - 1);
             return target;
         }
+
+        public static Word[] Tail(Word[] value)
+        {
+            Word[] target = new Word[value.Length - 1];
+            Array.Copy(value, 1, target, 0, value.Length - 1);
+            return target;
+        }
     }
 }

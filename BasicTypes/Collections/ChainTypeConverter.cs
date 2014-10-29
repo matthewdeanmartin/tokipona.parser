@@ -54,7 +54,12 @@ namespace BasicTypes.Collections
             if (item.Contains("~"))
             {
                 string[] parts = Splitters.SplitOnPrepositions(item);
-                pu.ProcessPrepositionalPhrases(parts);
+                List<Chain> chain = pu.ProcessPrepositionalPhrases(parts);
+                if (chain.Count != 1)
+                {
+                    throw new InvalidOperationException("Tried to parse a single chain, but value contains " + chain.Count);
+                }
+                return chain[0];
             }
 
             if (item.Contains(" e ") || item.StartsWith("e "))

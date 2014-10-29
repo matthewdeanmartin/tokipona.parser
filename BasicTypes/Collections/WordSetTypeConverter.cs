@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BasicTypes.Parser;
 
 namespace BasicTypes
 {
@@ -50,14 +51,9 @@ namespace BasicTypes
 
         public static WordSet Parse(object value)
         {
-            Dialect c = Dialect.DialectFactory;
-            c.ThrowOnSyntaxError = false;
-            ParserUtils pu = new ParserUtils(c);
-
-//Doesn't deal with Foreign words
-            string[] words = pu.JustTpWords(value.ToString());
+            TokenParserUtils pu = new TokenParserUtils();
+            Word[] words = pu.ValidWords(value.ToString()); //Can't be particles
             WordSet wordSet = new WordSet(words);
-            //Add to dictionary? Why would we want a side effect like that?
             return wordSet;
         }
     }
