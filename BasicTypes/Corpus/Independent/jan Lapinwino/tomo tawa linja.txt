@@ -1,8 +1,8 @@
-tomo tawa linja
+tomo-tawa-linja
 
 pona
 mi lon ilo tawa
-li lon tomo tawa linja
+li lon tomo-tawa-linja
 li tawa
 li tawa linja
 tawa tomo.

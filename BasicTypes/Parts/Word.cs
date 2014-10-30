@@ -61,6 +61,12 @@ namespace BasicTypes
         [DataMember]
         private readonly bool postComma;
 
+        [DataMember]
+        private readonly bool preQuote;
+
+        [DataMember]
+        private readonly bool postQuote;
+
         //[DataMember(IsRequired = true)]
         //private readonly string word;
         //
@@ -101,8 +107,9 @@ namespace BasicTypes
             this.word = word;
         }
 
-        private void ValidateOnConstruction(string prospectiveWord)
+        public string[] ValidateOnConstruction(string prospectiveWord, bool failFast=true)
         {
+            List<string> errors = new List<string>();
             if (prospectiveWord == null)
             {
                 throw new ArgumentNullException("prospectiveWord", "Can't construct words with null");
@@ -117,8 +124,12 @@ namespace BasicTypes
             if (prospectiveWord.IndexOfAny(new char[] {'.', ' ', '?', '!', '\n', '\r'}) != -1
                 && !IsForeign(prospectiveWord))
             {
-                throw new InvalidLetterSetException(
-                    "Words must not have spaces or punctuation, (other than the preposition marker ~): found: " + prospectiveWord);
+                string message =
+                    "Words must not have spaces or punctuation, (other than the preposition marker ~): found: " +
+                    prospectiveWord;
+
+                if(failFast)
+                    throw new InvalidLetterSetException(message);
             }
             //TODO: How to implement this rule? Need to rework dictionary, since dictionary stores all words (particles included) as Word
             //if (Particle.IsParticle(word))
@@ -133,7 +144,7 @@ namespace BasicTypes
             //                                        ListInvalidCharacters(prospectiveWord));
             //}
 
-            if (Words.Dictionary.Count ==125)//==125
+            if (Words.Dictionary.Count == 141)//==125
             {
                 //Strictest test.
                 Word blah = Words.a;
@@ -170,15 +181,19 @@ namespace BasicTypes
                         //{
                         //    Console.WriteLine(Convert.ToInt32(c));
                         //}
-                        throw new InvalidOperationException("This word (" + prospectiveWord +
-                                                            ")  failed all checks.");
+                        string message = "This word (" + prospectiveWord +
+                                         ")  failed all checks.";
+                        errors.Add(message);
+                        if (failFast) throw new InvalidOperationException(message);
                     }
 
                 }
             }
+            return errors.ToArray();
         }
 
 
+        
 
         public static bool IsEscaped(string value)
         {

@@ -36,6 +36,19 @@ namespace BasicTypes
                 text = text.Replace("\n\n", "\n");
             }
 
+
+            //swap quote/terminator order
+            foreach (string delims in new String[] { ".'", ".\"","?'", "?\"","!'", "!\"", })
+            {
+                if (text.Contains(delims))
+                {
+                    text = text.Replace(delims, delims[1] + delims[0].ToString());
+                }
+            }
+            
+
+
+
             //Crap. If we break on \n then sentences with line feeds are cut in half.
             //If we don't break on \n, then we blow up on intentional fragments like titles.
             //Choosing to not break on \n & and manually add . to titles.
@@ -122,7 +135,7 @@ namespace BasicTypes
             {
                 throw new InvalidOperationException("Normalizer failed to trim");
             }
-            Console.WriteLine("Normalized: " + sentence);
+            Console.WriteLine("NORMALIZED: " + sentence);
 
             //Get the final punctuation out or it will mess up parsing later.
             string possiblePunctuation = sentence[sentence.Length - 1].ToString();

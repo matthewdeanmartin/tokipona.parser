@@ -236,6 +236,7 @@ namespace BasicTypes.Parser
             {
                 foreach (string original in pu.ParseIntoRawSentences(s))
                 {
+                    Console.WriteLine("ORIGINAL  : " + original);
                     string normalized = Normalizer.NormalizeText(original);
                     Sentence structured = pu.ParsedSentenceFactory(normalized, original);
                     Console.WriteLine(structured.ToString("b"));

@@ -62,7 +62,7 @@ pilin en nimi
 toki !
 toki pona li jo ala e nimi pi pilin ("rapide/quick, fast, speedy").
 ken la nasin ni li pona :
-tomo tawa ni li ken tawa mute lon tenpo lili.
+tomo-tawa ni li ken tawa mute lon tenpo lili.
 mi pilin e ni : nasin ni li pona.
 sina sona ala sona e nasin pona mute ?
 *kanso 110105  
@@ -74,7 +74,7 @@ lon en tawa
 > B. mi lon ala lon ma tomo Paki.
 kulupu nimi B li kulupu nimi seme (it's a question). sina wile toki e
 kulupu nimi ala (a negative sentence) la o kepeken kulupu nimi A.
-> tomo tawa ni li ken tawa mute lon tenpo lili.
+> tomo-tawa ni li ken tawa mute lon tenpo lili.
 ni li pona.
 *moku 110105  
 
@@ -88,7 +88,7 @@ o weka e ike !
 
 1409
 tenpo wan la mi toki e ni:
-tomo tawa li tawa wawa.
+tomo-tawa li tawa wawa.
 *locan 110105  
 
 051102
@@ -97,12 +97,12 @@ sina toki tu e ni tan seme?
 *ajk 110205 
 
 1411
-kulupu nimi "tomo tawa li tawa wawa" li kulupu nimi musi!
+kulupu nimi "tomo-tawa li tawa wawa" li kulupu nimi musi!
 *ajk 110205  
 
 051107
 1412
-ni li lon. kulupu nimi ni li musi li pona kin. jan ali li ken sona e kulupu nimi "tomo tawa li tawa wawa". 
+ni li lon. kulupu nimi ni li musi li pona kin. jan ali li ken sona e kulupu nimi "tomo-tawa li tawa wawa". 
 mi wile kin sona e ijo ante : jan li ken ante e nimi pi wan mute pi tenpo suno lon nasin seme : 
 mateno / morning / matin / Morgen  (tenpo ni : suno li sewi)
 tagmezo / noon / midi / Mittag (tenpo ni : suno li lon sewi)
@@ -1330,7 +1330,7 @@ ni li pini. pona, mi tawa! jan Male
 *Toki Pona Translation:
 mama o, suno lili mute ni li seme?
 
-ni li ma tomo Kojanimu. jan ni li nasa. tenpo pimeja la ona li kepeken e suno lili mute. taso ona li pilin ala e ni: suno lili sewi li suno pona. ona li utala mute li moli e ona sama. taso ona li sona ala e ni: utala mute li lon ma ante. ona li kepeken ala e ilo utala sama ilo utala pi jan ante. ona li kepeken e ilo utala nasa. ilo utala nasa ona li kepeken ala e ilo utala palisa kasi. o tawa ala poka soweli kiwen ona. suweli kiwen ona li sama tomo tawa. tenpo lili la ona li tawa mute mute! jan li ken ala pakala e soweli kiwen ni kepeken ilo utala palisa kasi. jan lili mi o tawa ala tomo tawa ona.
+ni li ma tomo Kojanimu. jan ni li nasa. tenpo pimeja la ona li kepeken e suno lili mute. taso ona li pilin ala e ni: suno lili sewi li suno pona. ona li utala mute li moli e ona sama. taso ona li sona ala e ni: utala mute li lon ma ante. ona li kepeken ala e ilo utala sama ilo utala pi jan ante. ona li kepeken e ilo utala nasa. ilo utala nasa ona li kepeken ala e ilo utala palisa kasi. o tawa ala poka soweli kiwen ona. suweli kiwen ona li sama tomo-tawa. tenpo lili la ona li tawa mute mute! jan li ken ala pakala e soweli kiwen ni kepeken ilo utala palisa kasi. jan lili mi o tawa ala tomo-tawa ona.
 
 mama o, ma tomo li seme? 	
 *Semi-literal retranslation from TP:
@@ -1451,7 +1451,7 @@ nimi ala la jan li ken tawa nasin pona.
 nimi ala la jan li ken sona ni.
 
 tawa nasin pona la
-jan li tawa kan ala pilin pi pali pini palaka.
+jan li tawa kan ala pilin pi pali pini pakala.
 ni li pali e wawa pi jan.
 wawa ni li pona tawa jan ale.
 
@@ -1664,9 +1664,9 @@ jan Cain e jan Abel
 jan Eve li pana e jan lili tu. jan lili wan li jo e nimi. ona li "Cain." jan lili tu li jo e nimi. ona li "Abel". jan Cain li pali e kili. jan Abel li pali e soweli. tenpo li pini. jan Abel li pana e soweli tawa jan sewi Jawe. jan sewi Jawe li olin e soweli jan Abel. jan Cain li pana e kili tawa jan sewi Jawe. taso jan sewi Jawe li olin lili e kili jan Cain. jan Cain li moli e jan Able tan ni. jan sewi Jawe toki e ni tawa jan Cain: "sina wile ala jo e kili! jan ala li moki e sina."
 
 
-tomo tawa suli pi telo
+tomo-tawa suli pi telo
 
-jan ale li ike. tan ni,jan sewi Jawe li wile pakala a ma. taso jan Noah li pona. jan sewi Jawe li pakala ala e ona tan ni. jan sewi Jawe li toki e ni tawa jan Noah "sina wile pali e tomo tawa suli pi telo. telo mute li kama tawa ma. sina wile pana e soweli e akesi e waso ale lon e tomo tawa pi telo. tenpo kama lili la mi wile moli e jan ale. mi wile moli ala e sina e kulupu sina. tenpo pini. telo mute li kama tawa ma. tenpo mute pini. jan Noah li pana e waso. taso ona li lukin ala e ma. tenpo pini lili la jan Noah li pana e waso: ona li kama ala.tan ni: jan Noah sona e ni: ma li lon. tomo tawa pi telo li lon e nena ma. nimi pi nena ma li "Ararat". jan sewi Jawe li pali e kule sewi. ona li pali e ni tan ni. ona li toki e ni tawa jan Noah : tenpo kama la mi wile pakala ala e ma kepeken e telo.
+jan ale li ike. tan ni,jan sewi Jawe li wile pakala a ma. taso jan Noah li pona. jan sewi Jawe li pakala ala e ona tan ni. jan sewi Jawe li toki e ni tawa jan Noah "sina wile pali e tomo-tawa suli pi telo. telo mute li kama tawa ma. sina wile pana e soweli e akesi e waso ale lon e tomo-tawa pi telo. tenpo kama lili la mi wile moli e jan ale. mi wile moli ala e sina e kulupu sina. tenpo pini. telo mute li kama tawa ma. tenpo mute pini. jan Noah li pana e waso. taso ona li lukin ala e ma. tenpo pini lili la jan Noah li pana e waso: ona li kama ala.tan ni: jan Noah sona e ni: ma li lon. tomo-tawa pi telo li lon e nena ma. nimi pi nena ma li "Ararat". jan sewi Jawe li pali e kule sewi. ona li pali e ni tan ni. ona li toki e ni tawa jan Noah : tenpo kama la mi wile pakala ala e ma kepeken e telo.
 
 
 ma tomo pi toki nasa

@@ -93,7 +93,7 @@ namespace BasicTypes
         public static Word palisa;
         public static Word pan;
         public static Word pana;
-        public static Word pata;
+        
         public static Word pi;
         public static Word pilin;
         public static Word pimeja;
@@ -137,20 +137,42 @@ namespace BasicTypes
         public static Word weka;
         public static Word wile;
 
+        //obs
+        public static Word pata;
+        public static Word kapa;
+        public static Word iki;
+        public static Word kan;
+        public static Word pasila;
+        public static Word kapesi;
+        public static Word leko;
+        public static Word majuno;
+        public static Word tuli;
+        public static Word po;
+        public static Word kijetesantakalu;
+        public static Word ipi;
+        public static Word jalan;
+        public static Word pu;
+        public static Word apeja;
+        public static Word pake;
+        public static Word monsuata;
+
         public static Dictionary<string, Word> Dictionary;
 
         public static Dictionary<string, Dictionary<string, Dictionary<string, string[]>>> Glosses;
 
         static Words()
         {
-            Dictionary = new Dictionary<string, Word>(125);
-            Glosses = new Dictionary<string, Dictionary<string, Dictionary<string, string[]>>>(125);
+            Dictionary = new Dictionary<string, Word>(141);
+            Glosses = new Dictionary<string, Dictionary<string, Dictionary<string, string[]>>>(141);
 
             {
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
 
                 {
                     var en = new Dictionary<string, string[]>();
+                    en.Add("noun", new[] { "laugh" });
+                    en.Add("adj", new[] { "indeed" });
+                    en.Add("vi", new[] { "say ah" });
                     en.Add("interj", new[] { "ah", "ha", "uh", "oh", "ooh", "aw", "well" });
 
                     glossMap.Add("en", en);
@@ -422,10 +444,10 @@ namespace BasicTypes
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
 
                 {
-                    var enLang = new Dictionary<string, string[]>();
-                    enLang.Add("conj", new[] { "and" });
+                    var eng = new Dictionary<string, string[]>();
+                    eng.Add("conj", new[] { "and" });
 
-                    glossMap.Add("en", enLang);
+                    glossMap.Add("en", eng);
                 }
                 {
                     var eo = new Dictionary<string, string[]>();
@@ -1618,6 +1640,9 @@ namespace BasicTypes
 
                 {
                     var en = new Dictionary<string, string[]>();
+                    en.Add("noun", new[] { "sound", "noise" });
+                    en.Add("vt", new[] { "make a noise like" });
+                    en.Add("vi", new[] { "to bellow" });
                     en.Add("interj", new[] { "woof! meow! moo!" });
 
                     glossMap.Add("en", en);
@@ -1975,6 +2000,7 @@ namespace BasicTypes
                     var eo = new Dictionary<string, string[]>();
                     eo.Add("noun", new[] { "ŝi", "li", "ĝi", "ili" });
                     eo.Add("adj", new[] { "ŝia", "lia", "ĝia", "ilia" });
+                    eo.Add("pronoun", new[] { "ŝi", "li", "ĝi", "ili" });
 
                     glossMap.Add("eo", eo);
                 }
@@ -3184,6 +3210,377 @@ namespace BasicTypes
                 Glosses.Add("wile", glossMap);
             }
 
+
+            {
+                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+
+                {
+                    var en = new Dictionary<string, string[]>();
+                    en.Add("noun", new[] { "bump", "nose", "hill", "mountain", "button" });
+
+                    glossMap.Add("en", en);
+                }
+                {
+                    var eo = new Dictionary<string, string[]>();
+                    eo.Add("noun", new[] { "elstaraĵo", "nazo", "monto", "monteto", "butono" });
+
+                    glossMap.Add("eo", eo);
+                }
+                kapa = new Word("kapa ");
+
+                Dictionary.Add("kapa ", kapa);
+                Glosses.Add("kapa ", glossMap);
+            }
+
+
+            {
+                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+
+                {
+                    var en = new Dictionary<string, string[]>();
+                    en.Add("noun", new[] { "she", "he", "it", "they" });
+                    en.Add("adj", new[] { "her", "his", "its", "their" });
+                    en.Add("pronoun", new[] { "he", "she", "it", "they" });
+
+                    glossMap.Add("en", en);
+                }
+                {
+                    var eo = new Dictionary<string, string[]>();
+                    eo.Add("noun", new[] { "ŝi", "li", "ĝi", "ili" });
+                    eo.Add("adj", new[] { "ŝia", "lia", "ĝia", "ilia" });
+                    eo.Add("pronoun", new[] { "ŝi", "li", "ĝi", "ili" });
+
+                    glossMap.Add("eo", eo);
+                }
+                iki = new Word("iki");
+
+                Dictionary.Add("iki", iki);
+                Glosses.Add("iki", glossMap);
+            }
+
+
+            {
+                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+
+                {
+                    var en = new Dictionary<string, string[]>();
+                    en.Add("noun", new[] { "side", "hip", "area next to" });
+                    en.Add("adj", new[] { "neighbouring" });
+                    en.Add("prep", new[] { "in the accompaniment of", "with" });
+
+                    glossMap.Add("en", en);
+                }
+                {
+                    var eo = new Dictionary<string, string[]>();
+                    eo.Add("noun", new[] { "flanko", "kokso", "apudo" });
+                    eo.Add("adj", new[] { "apuda", "najbara" });
+                    eo.Add("prep", new[] { "en la akompano de", "kun" });
+
+                    glossMap.Add("eo", eo);
+                }
+                kan = new Word("kan");
+
+                Dictionary.Add("kan", kan);
+                Glosses.Add("kan", glossMap);
+            }
+
+
+            {
+                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+
+                {
+                    var en = new Dictionary<string, string[]>();
+                    en.Add("noun", new[] { "good", "simplicity", "positivity" });
+                    en.Add("adj", new[] { "good", "simple", "positive", "nice", "correct", "right" });
+                    en.Add("vt", new[] { "improve", "fix", "repair", "make good" });
+
+                    glossMap.Add("en", en);
+                }
+                {
+                    var eo = new Dictionary<string, string[]>();
+                    eo.Add("noun", new[] { "bona", "simplo", "pozitivo" });
+                    eo.Add("adj", new[] { "bona", "simpla", "pozitiva", "afabla", "ĝusta" });
+                    eo.Add("vt", new[] { "bonigi", "plibonigi", "ripari" });
+
+                    glossMap.Add("eo", eo);
+                }
+                pasila = new Word("pasila");
+
+                Dictionary.Add("pasila", pasila);
+                Glosses.Add("pasila", glossMap);
+            }
+
+
+            {
+                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+
+                {
+                    var en = new Dictionary<string, string[]>();
+                    en.Add("noun", new[] { "darkness", "shadows" });
+                    en.Add("adj", new[] { "black", "dark" });
+                    en.Add("vt", new[] { "darken" });
+
+                    glossMap.Add("en", en);
+                }
+                {
+                    var eo = new Dictionary<string, string[]>();
+                    eo.Add("noun", new[] { "mallumo", "nigro" });
+                    eo.Add("adj", new[] { "nigra", "malluma", "malhela" });
+                    eo.Add("vt", new[] { "mallumigi" });
+
+                    glossMap.Add("eo", eo);
+                }
+                kapesi = new Word("kapesi");
+
+                Dictionary.Add("kapesi", kapesi);
+                Glosses.Add("kapesi", glossMap);
+            }
+
+
+            {
+                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+
+                {
+                    var en = new Dictionary<string, string[]>();
+                    en.Add("noun", new[] { "stairs" });
+
+                    glossMap.Add("en", en);
+                }
+                {
+                    var eo = new Dictionary<string, string[]>();
+
+                    glossMap.Add("eo", eo);
+                }
+                leko = new Word("leko");
+
+                Dictionary.Add("leko", leko);
+                Glosses.Add("leko", glossMap);
+            }
+
+
+            {
+                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+
+                {
+                    var en = new Dictionary<string, string[]>();
+                    en.Add("adj", new[] { "old" });
+
+                    glossMap.Add("en", en);
+                }
+                {
+                    var eo = new Dictionary<string, string[]>();
+
+                    glossMap.Add("eo", eo);
+                }
+                majuno = new Word("majuno");
+
+                Dictionary.Add("majuno", majuno);
+                Glosses.Add("majuno", glossMap);
+            }
+
+
+            {
+                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+
+                {
+                    var en = new Dictionary<string, string[]>();
+                    en.Add("adj", new[] { "three" });
+
+                    glossMap.Add("en", en);
+                }
+                {
+                    var eo = new Dictionary<string, string[]>();
+
+                    glossMap.Add("eo", eo);
+                }
+                tuli = new Word("tuli");
+
+                Dictionary.Add("tuli", tuli);
+                Glosses.Add("tuli", glossMap);
+            }
+
+
+            {
+                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+
+                {
+                    var en = new Dictionary<string, string[]>();
+                    en.Add("adj", new[] { "four" });
+
+                    glossMap.Add("en", en);
+                }
+                {
+                    var eo = new Dictionary<string, string[]>();
+
+                    glossMap.Add("eo", eo);
+                }
+                po = new Word("po");
+
+                Dictionary.Add("po", po);
+                Glosses.Add("po", glossMap);
+            }
+
+
+            {
+                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+
+                {
+                    var en = new Dictionary<string, string[]>();
+                    en.Add("noun", new[] { "armadillo", "pangolin" });
+
+                    glossMap.Add("en", en);
+                }
+                {
+                    var eo = new Dictionary<string, string[]>();
+
+                    glossMap.Add("eo", eo);
+                }
+                kijetesantakalu = new Word("kijetesantakalu");
+
+                Dictionary.Add("kijetesantakalu", kijetesantakalu);
+                Glosses.Add("kijetesantakalu", glossMap);
+            }
+
+
+            {
+                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+
+                {
+                    var en = new Dictionary<string, string[]>();
+                    en.Add("noun", new[] { "she", "he", "it", "they" });
+                    en.Add("adj", new[] { "her", "his", "its", "their" });
+                    en.Add("pronoun", new[] { "he", "she", "it", "they" });
+
+                    glossMap.Add("en", en);
+                }
+                {
+                    var eo = new Dictionary<string, string[]>();
+                    eo.Add("noun", new[] { "ŝi", "li", "ĝi", "ili" });
+                    eo.Add("adj", new[] { "ŝia", "lia", "ĝia", "ilia" });
+                    eo.Add("pronoun", new[] { "ŝi", "li", "ĝi", "ili" });
+
+                    glossMap.Add("eo", eo);
+                }
+                ipi = new Word("ipi");
+
+                Dictionary.Add("ipi", ipi);
+                Glosses.Add("ipi", glossMap);
+            }
+
+
+            {
+                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+
+                {
+                    var en = new Dictionary<string, string[]>();
+                    en.Add("noun", new[] { "leg", "foot" });
+
+                    glossMap.Add("en", en);
+                }
+                {
+                    var eo = new Dictionary<string, string[]>();
+                    eo.Add("noun", new[] { "kruro", "gambo", "piedo" });
+
+                    glossMap.Add("eo", eo);
+                }
+                jalan = new Word("jalan");
+
+                Dictionary.Add("jalan", jalan);
+                Glosses.Add("jalan", glossMap);
+            }
+
+
+            {
+                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+
+                {
+                    var en = new Dictionary<string, string[]>();
+                    en.Add("noun", new[] { "toki pona text book" });
+                    en.Add("vi", new[] { "study toki pona" });
+
+                    glossMap.Add("en", en);
+                }
+                {
+                    var eo = new Dictionary<string, string[]>();
+
+                    glossMap.Add("eo", eo);
+                }
+                pu = new Word("pu");
+
+                Dictionary.Add("pu", pu);
+                Glosses.Add("pu", glossMap);
+            }
+
+
+            {
+                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+
+                {
+                    var en = new Dictionary<string, string[]>();
+                    en.Add("noun", new[] { "disparagement" });
+                    en.Add("adj", new[] { "disparaging" });
+                    en.Add("vt", new[] { "disparage" });
+                    en.Add("adv", new[] { "disparagingly" });
+
+                    glossMap.Add("en", en);
+                }
+                {
+                    var eo = new Dictionary<string, string[]>();
+
+                    glossMap.Add("eo", eo);
+                }
+                apeja = new Word("apeja");
+
+                Dictionary.Add("apeja", apeja);
+                Glosses.Add("apeja", glossMap);
+            }
+
+
+            {
+                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+
+                {
+                    var en = new Dictionary<string, string[]>();
+                    en.Add("vt", new[] { "block" });
+                    en.Add("vi", new[] { "block" });
+
+                    glossMap.Add("en", en);
+                }
+                {
+                    var eo = new Dictionary<string, string[]>();
+
+                    glossMap.Add("eo", eo);
+                }
+                pake = new Word("pake");
+
+                Dictionary.Add("pake", pake);
+                Glosses.Add("pake", glossMap);
+            }
+
+
+            {
+                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+
+                {
+                    var en = new Dictionary<string, string[]>();
+                    en.Add("noun", new[] { "fear", "monster" });
+                    en.Add("adj", new[] { "scary" });
+                    en.Add("vt", new[] { "scare" });
+                    en.Add("vi", new[] { "be scared" });
+                    en.Add("adv", new[] { "frighteningly" });
+
+                    glossMap.Add("en", en);
+                }
+                {
+                    var eo = new Dictionary<string, string[]>();
+
+                    glossMap.Add("eo", eo);
+                }
+                monsuata = new Word("monsuata");
+
+                Dictionary.Add("monsuata", monsuata);
+                Glosses.Add("monsuata", glossMap);
+            }
 
 
 

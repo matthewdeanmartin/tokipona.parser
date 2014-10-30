@@ -25,7 +25,7 @@ pona. mi tawa.
 toki sin: 
 jan sona mute li toki e ni tawa kulupu pi jan lawa pi ma ali UNO : 
 jan li tawa e nasin moku ike.
-tomo tawa li moku mute e telo kiwen.
+tomo-tawa li moku mute e telo kiwen.
 jan li suli e kasi e kili kepeken nasin ike.
 jan li jaki e ma.
 ma li ken ala pana e moku tawa jan ali.
@@ -286,8 +286,8 @@ jan Anjo o toki.
 mi pilin pona tan ni : jan li lukin e sitelen toki mi.
 nasin musi anu nasin sewi li pona ala pona tawa jan suli anu jan suli lili.
 ni li suli. mi kepeken e sitelen :
-jan li ken ala tawa kepeken noka tu la jan li ken ala lawa e tomo tawa kin.
-"tawa kepeken noka tu" li nasin musi. "lawa e tomo tawa" li nasin sewi. 
+jan li ken ala tawa kepeken noka tu la jan li ken ala lawa e tomo-tawa kin.
+"tawa kepeken noka tu" li nasin musi. "lawa e tomo-tawa" li nasin sewi. 
 jan Puta en jan Kanso pi ma tomo Asisi en jan ante mute li tawa nasin musi.
 nasin musi li pini la ona mute li tawa nasin sewi.
 ken la nasin ante li pona kin. mi sona ala. taso mi wile e ni : jan mute li tawa nasin musi.

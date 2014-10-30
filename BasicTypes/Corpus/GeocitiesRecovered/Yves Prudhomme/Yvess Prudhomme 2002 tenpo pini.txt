@@ -1,5 +1,3 @@
-http://www.oocities.com/yves_prudhomme/toki_pona/tenpo_suno_ni/pini.html
-
 tenpo pini
 tenpo suno pini
 
@@ -100,6 +98,5 @@ mi ken ala lukin e pini pi pali mi.
 ni li ike tawa mi.
 mi wile e pini e pali.
 
-Copyright (C) 2002, Yves Prudhomme.
+"Copyright (C) 2002, Yves Prudhomme."
 
-Read more: http://www.oocities.com/yves_prudhomme/toki_pona/tenpo_suno_ni/pini.html?201024#ixzz0ueb5qvWw

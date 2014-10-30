@@ -23,6 +23,8 @@ namespace BasicTypes.Parser
                 foreach (string sentence in pu.ParseIntoRawSentences(s))
                 {
                     string result = Normalizer.NormalizeText(sentence);
+                    decimal percent = NormalizeChaos.PercentTokiPona(result);
+                    Console.WriteLine(percent + "%");
                     i++;
                 }
             }
@@ -30,6 +32,19 @@ namespace BasicTypes.Parser
         }
 
         //nena meli kin li tawa en tan, li kama nena pi suli en kiwen.
+
+        [Test]
+        public void MissingLi()
+        {
+            string s = "taso sina tawa ma Mewika la sina ken kama jo e ijo mute kepeken ona.";
+
+            Console.WriteLine("Original  : " + s);
+            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+            Console.WriteLine("Normalized: " + normalized);
+
+            const string expected = "taso sina li ~tawa ma Mewika la sina li ken kama jo e ijo mute ~kepeken ona.";
+            Assert.AreEqual(expected, normalized);
+        }
 
         [Test]
         public void LiTawaEnTan()
@@ -82,6 +97,18 @@ namespace BasicTypes.Parser
             //sina li toki e ni: 
             const string expected = "mi li wile e ni.";
             Assert.AreEqual(expected, normalized);
+        }
+
+        [Test]
+        public void SimpleMiSonaENi()
+        {
+            const string s = "'mi sona e ni.'";
+                Console.WriteLine("Original  : " + s);
+            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+            Console.WriteLine("Normalized: " + normalized);
+
+            const string expected = "«mi li sona e ni.»";
+            Assert.AreEqual(expected,normalized);
         }
 
         [Test]

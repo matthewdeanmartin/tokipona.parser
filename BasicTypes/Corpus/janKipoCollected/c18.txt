@@ -127,9 +127,9 @@ pona tawa lipu ni
 *kipo 090406
 
 1847
-Loglan/Lojban/ LoCCan3 
+"Loglan/Lojban/ LoCCan3"
 > jan seme li toki e ni?
-jan Kipo li nimi jan Pycyn kepeken toki Losan.
+jan Kipo li nimi jan "Pycyn" kepeken toki Losan.
 *kipo 090406
 
 1842

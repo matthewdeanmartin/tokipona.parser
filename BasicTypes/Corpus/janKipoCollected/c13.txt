@@ -408,15 +408,15 @@ toki ni kepeken toki pona. taso mi jo ala e tenpo.
 
 050812
 1358
-jan mute li tawa kepeken tomo tawa. tomo tawa li moku e telo wawa. tan ni la telo wawa li weka. sina wile kama jo e telo wawa la sina wile pana e mani mute.
-ni li pona. kepeken pi tomo tawa li ike. pali mute li ike. musi mute li pona. sina ken musi mute kepeken tomo tawa ala.
-tan ni la o weka e tomo tawa sina o musi. a.
+jan mute li tawa kepeken tomo-tawa. tomo-tawa li moku e telo wawa. tan ni la telo wawa li weka. sina wile kama jo e telo wawa la sina wile pana e mani mute.
+ni li pona. kepeken pi tomo-tawa li ike. pali mute li ike. musi mute li pona. sina ken musi mute kepeken tomo-tawa ala.
+tan ni la o weka e tomo-tawa sina o musi. a.
 *kanso 081205
 
 1359
-ni li lon. tan ni la mi jo ala e tomo tawa.
-mi tawa tomo pali kepeken tomo tawa pi jan mute. ni li pona tawa mi.
-mi tawa tomo pali la, mi ken lukin e lipu. mi tawa kepeken tomo tawa
+ni li lon. tan ni la mi jo ala e tomo-tawa.
+mi tawa tomo pali kepeken tomo-tawa pi jan mute. ni li pona tawa mi.
+mi tawa tomo pali la, mi ken lukin e lipu. mi tawa kepeken tomo-tawa
 la, mi ken ala lukin e lipu. ni li ike. mi lukin e lipu la, mi musi.
 *pili 081205
 
@@ -425,10 +425,10 @@ sina ken toki kepeken nasin ni tan ni: sina awen lon ma pi ilo mute
 sin. taso jan lon ma ante -- mute la lon ma jo mani lili -- li jo ala
 e ken sina.
 tenpo sike mute lili pini la jan pi ma Sonko li tawa kepeken ilo pi
-sike tu. taso tenpo ni la ona mute li kepeken tomo tawa. tan seme? tan
+sike tu. taso tenpo ni la ona mute li kepeken tomo-tawa. tan seme? tan
 ni: tenpo ni la ona mute li jo e ken. jan lon ma jo mani lili li wile
-kepeken e tomo tawa. jan lon ma jo mani mute li ken toki ala kepeken
-nasin ni: weka pi tomo tawa li nasin pona. ma jo mani mute taso li jo
+kepeken e tomo-tawa. jan lon ma jo mani mute li ken toki ala kepeken
+nasin ni: weka pi tomo-tawa li nasin pona. ma jo mani mute taso li jo
 e ken ni.
 kin la, nasin musi li tawa jan pi mani mute kin. jan pi mani lili li
 ken ala awen kepeken nasin mute. ona li wile pali mute!
@@ -437,7 +437,7 @@ sama ni li pona mute tawa mi. jan pi kulupu ni li wile toki e pilin suli!
 pita 081205
 
 1361
-mi sona e ni. jan pi ma mute pi mani lili li wile jo e tomo tawa. taso ni li ike tawa ma. ma li pakala.  jan mute li lon ma. jan ali ni li ken ala tawa nasin pi ma Mewika. jan pi ma mute pi mani mute li weka e tomo tawa la nasin ni li pona tawa ma. mi wile e ni : jan pi ma Mewika en jan pi ma Elopa li ante e nasin ona li moku lili e telo wawa. ona li pali e ni la ni li ijo pona tawa jan ali en tawa ma.
+mi sona e ni. jan pi ma mute pi mani lili li wile jo e tomo-tawa. taso ni li ike tawa ma. ma li pakala.  jan mute li lon ma. jan ali ni li ken ala tawa nasin pi ma Mewika. jan pi ma mute pi mani mute li weka e tomo-tawa la nasin ni li pona tawa ma. mi wile e ni : jan pi ma Mewika en jan pi ma Elopa li ante e nasin ona li moku lili e telo wawa. ona li pali e ni la ni li ijo pona tawa jan ali en tawa ma.
  *kanso 081205
 
 1362
@@ -617,7 +617,7 @@ Nemo lon ala lon jan ala ?
 
 1384
 lon. nimi "Nemo" li nimi "jan ala" (neniu/nobody/personne) lon toki Lasin.
-jan Nemo li jan lawa pi tomo tawa telo "Nautilus" lon toki awen "Nasin mute lon anpa pi telo suli" (Vingt mille lieues sous les mers). jan Jules Verne li sitelen e toki ni.
+jan Nemo li jan lawa pi tomo-tawa-telo "Nautilus" lon toki awen "Nasin mute lon anpa pi telo suli" (Vingt mille lieues sous les mers). jan Jules Verne li sitelen e toki ni.
 mi wile sona e ni : jan seme pi kulupu ni li lukin e toki ni ? sina li lukin e toki ni lon toki seme ?
 nimi pi toki ni li seme lon toki Kanse ala ?
 *kanso 092005

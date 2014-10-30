@@ -117,16 +117,16 @@ mi toki lape ...
 
 031013
 430
-ni li tenpo suno pi jan Kitopokolonpo (Christopher Columbus). jan
+ni li tenpo suno pi jan Kitopokolonpo "(Christopher Columbus)". jan
 Kitopokolonpo li suli li pona tawa ma Elopa.
 jan Kitopokolonpo li jo e pata mute. jan li pana ala e sona tawa ona.
 taso ona li lukin sona e toki awen mute li kama sona kepeken nasin ni.
 telo suli li pona tawa jan Kolonpo. taso jan li utala lon telo. jan
-Kolonpo li lon tomo tawa telo la jan Kanse li utala e tomo tawa ona!
-tomo tawa li tawa anpa. jan Kolonpo li jo ala e tomo tawa li tawa lon
+Kolonpo li lon tomo-tawa-telo la jan Kanse li utala e tomo-tawa ona!
+tomo-tawa li tawa anpa. jan Kolonpo li jo ala e tomo-tawa li tawa lon
 telo.
-jan Kolonpo li tawa ma tomo Lisbon. ona li pali e sitelen ma. ona li
-kin tawa ma Elopa mute kepeken tomo tawa telo.
+jan Kolonpo li tawa ma tomo "Lisbon". ona li pali e sitelen ma. ona li
+kin tawa ma Elopa mute kepeken tomo-tawa-telo.
 jan Elopa li sona e ni: jan pi ma Asija (Asians) li jo e mani mute.
 taso ni li ike: jan li wile tawa ma Asija la ona li tawa mute mute.
 sina tawa lon poka pi ma Apika. ni li ike.
@@ -134,12 +134,12 @@ jan Kolonpo li toki e ni: "mi wile ala tawa lon poka pi ma Apika. mi
 wile ala tawa kepeken nasin ni. mi ken tawa nasin ante."
 jan Kolonpo li tawa jan lawa pi ma Potuke li toki e ni: "mi ken tawa
 ma Asija kepeken nasin ante. mi ken kama jo e mani mute li ken pana e
-mani tawa sina. taso mi wile e tomo tawa telo. sina pana ala pana e
-tomo tawa telo tawa mi?" -- jan lawa pi ma Potuke li pilin e ni: jan
+mani tawa sina. taso mi wile e tomo-tawa-telo. sina pana ala pana e
+tomo-tawa-telo tawa mi?" -- jan lawa pi ma Potuke li pilin e ni: jan
 Kolonpo li nasa. ona li pana ala e mani tawa jan Kolonpo.
 jan Kolonpo li toki e ijo sama tawa jan lawa pi ma Epanja. jan lawa
 ni li pana e mani tawa jan Kolonpo. pona! jan Kolonpo li jo e tomo
-tawa Ninja e tomo tawa Pinta e tomo tawa Santamalija.
+tawa Ninja e tomo-tawa Pinta e tomo-tawa Santamalija.
 tenpo suli la jan Kolonpo li tawa. "ma Asija li lon anu seme?" jan
 pali ona li toki e ni: "mi mute li jo ala e moku mute! sina tawa ala
 ma Elopa la mi mute li moli e sina!" taso jan Kolonpo li tawa...
@@ -256,7 +256,8 @@ mi tawa,
 
 
 
-040112
+
+040112
 From the Earth to the Moon 
 by Jules Verne
 During the War of the Rebellion, a new and influential club was 

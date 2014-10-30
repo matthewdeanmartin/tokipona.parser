@@ -132,6 +132,7 @@
     <Compile Include="MoreTypes\EnumerationThing.cs" />
     <Compile Include="MoreTypes\ParseOrDefault.cs" />
     <Compile Include="MoreTypes\SerializableDictionary.cs" />
+    <Compile Include="Parser\NormalizeChaos.cs" />
     <Compile Include="Parser\Normalizer.cs" />
     <Compile Include="Parser\NormalizerTests.cs" />
     <Compile Include="Parser\ParserUtils.cs" />

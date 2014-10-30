@@ -51,82 +51,28 @@ mi pana e iki lon www.tokipona.org
 Toki pona!
 Tawa!
 jan Tomas Klapka pali e iki ni.
-sina ken toki tawa e mi: Tomas.Klapka@...
+sina ken toki tawa e mi: "Tomas.Klapka"
 wile! sina pana e toki tawa iki ni. mi wile pali e iki ni pona.
 sina kepeken iki ni tawa wile ale.
-napsal Tom&#225;&#353; Klapka.
-M&#367;&#382;ete mi poslat mail: Tomas.Klapka@...
-Pros&#237;m, po&#353;lete mi jak&#233;koliv p&#345;ipom&#237;nky k textu.
-J&#225; ho uprav&#237;m.
-Tento text m&#367;&#382;ete libovoln&#283; pou&#382;&#237;t.
-EN: Soon fire, soon ashes -- Hungarian quotation
-CS: Brzy ohe&#328;, brzy popel -- Ma&#271;arsk&#233; p&#345;&#237;slov&#237;
-TP: tenpo lili la silo, tenpo lili la ko -- toki sona Masija
-EN: Man tells, what he knows, woman tells, what will give her a fancy. --
-Rousseau
-CS: Mu&#382; vypravuje, co v&#237;, &#382;ena to, &#269;&#237;m by se
-zal&#237;bila. -- Rousseau
-TP: jan mije li toki e, iki li sona e iki seme, jan meli li toki e, iki li kama
+
+tenpo lili la silo, tenpo lili la ko -- toki sona Masija
+jan mije li toki e, iki li sona e iki seme, jan meli li toki e, iki li kama
 pona tawa ale tan iki seme. -- jan Wuso
-EN: It is better to be sad with love than be happy without it. -- Goethe
-CS: L&#233;pe b&#253;t smutn&#253; s l&#225;skou ne&#382; vesel&#253; bez
-n&#237;. -- Goethe
-TP: iki li jo e tenpo pona en olin ala. iki li pona mute jo e tenpo ala en olin
+iki li jo e tenpo pona en olin ala. iki li pona mute jo e tenpo ala en olin
 pona. -- jan Kete
-EN: All clear to clear.
-CS: &#268;ist&#253;m v&#353;e &#269;ist&#233;.
-LT: OMNIA MUNDA MUNDIS.
-TP: pona ale li tawa e pona.
-EN: Goes from eyes, goes from mind.
-CS: Sejde z o&#269;&#237;, sejde z mysli.
-LT: PROCUL EX OCULIS, PROCUL EX MENTE.
-TP: iki li kama ala e oko, iki li kama ala e sona.
-EN: What a life, the same finish.
-CS: Jak&#253; &#382;ivot, takov&#253; konec.
-LT: QUALIS VITA, FINIS ITA.
-TP: iki li lon seme, iki li pini.
-EN: Who digs a hole, he falls in it (himself).
-CS: Kdo kope j&#225;mu, spadne do n&#237; (s&#225;m).
-LT: QUI FODIT FOVEAM, INCIDET IN EAM.
-TP: jan seme pali e lupa ma, iki tawa iki sama.
-EN: The king is death, viva The king
-CS: Kr&#225;l je mrtev, a&#357; &#382;ije (nov&#253;) kr&#225;l.
-LT: REX MORTUS, VIVAT REX.
-TP: jan lawa li moli, jan lawa sin li pali pona.
-EN: I think, so I am. -- Descartes
-CS: P&#345;em&#253;&#353;l&#237;m, p&#345;em&#237;t&#225;m a tud&#237;&#382;
-jsem. -- Descartes
-LT: COGITO, ERGO SUM. -- Descartes
-TP: mi sona, mi lon. -- jan Tesaltes
-EN: Rich, who wise is.
-CS: Bohat&#253; je ten, kdo je moudr&#253;.
-LT: DIVES, QUI SAPIENS EST.
-TP: jan mani, jan seme li sona.
-EN: From two evils, choose the less.
-CS: Ze dvou zel je t&#345;eba vybrat men&#353;&#237;.
-LT: E DUOBUS MALIS MINUS ELIGENDUM.
-TP: tan ike mute (tu) la sina wile e ike lili.
-EN: You will know the tree by the fruit.
-CS: Po ovoci se pozn&#225; strom.
-LT: E FRUCTU COGNOSCITUR ARBOR.
-TP: tan kili la iki kama sona e kasi.
-EN: Names of stupid people on all places.
-CS: Jm&#233;na hloup&#253;ch na v&#353;ech m&#237;stech (sloup&#237;ch).
-LT: NOMINA STULTORUM UBIQUE LOCORUM.
-TP: nimi mute pi jan nasa li lon ma ale.
-EN: Said word can't go back.
-CS: Vypu&#353;t&#283;n&#233; slovo se nedok&#225;&#382;e vr&#225;tit.
-LT: NESCIT VOX MISSA REVERTI.
-TP: wan toki pana wile ala tawa monsi.
-EN: The book is like a garden you wear in the pocket. -- arabic quotation
-CS: Kniha je jako zahrada, kterou nos&#237;&#353; v kapse. -- arabsk&#233;
-p&#345;&#237;slov&#237;
-TP: lipu mute li ma kili, jan seme li jo e poki len. -- toki sona Alapi
-EN: To be old it isn't stupid, but that talking of the others about it is. --
-Kopeck&#253;
-CS: Blb&#233; nen&#237; st&#225;&#345;&#237;, ale ty blb&#233; kecy t&#283;ch
-druh&#253;ch o tom! -- Kopeck&#253;
-TP: Lili ala li ala nasa, taso toki ale tawa iki li nasa. -- jan Kopeski
+pona ale li tawa e pona.
+iki li kama ala e oko, iki li kama ala e sona.
+iki li lon seme, iki li pini.
+jan seme pali e lupa ma, iki tawa iki sama.
+jan lawa li moli, jan lawa sin li pali pona.
+mi sona, mi lon. -- jan Tesaltes
+jan mani, jan seme li sona.
+tan ike mute (tu) la sina wile e ike lili.
+tan kili la iki kama sona e kasi.
+wan toki pana wile ala tawa monsi.
+lipu mute li ma kili, jan seme li jo e poki len. -- toki sona Alapi
+
+lili ala li ala nasa, taso toki ale tawa iki li nasa. -- jan Kopeski
 *tomasklapka
 
 020408
@@ -254,7 +200,7 @@ jan li wile pali e ni: kili lili kapesi li pana ala e kon ike.
 
 020528
 70
-mi pana e tomo tawa sina.
+mi pana e tomo-tawa sina.
 *ayzikovsky 052802
 
 71

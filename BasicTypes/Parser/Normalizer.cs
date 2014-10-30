@@ -12,6 +12,8 @@ namespace BasicTypes.Parser
     /// Turns human written text into machine parsable text.
     /// </summary>
     /// <remarks>
+    /// Assumes the text is toki pona and correctly punctuated.
+    /// 
     /// Detect impossible syntax.
     /// 
     /// Turn ", (prep)" into " ~prep"
@@ -48,7 +50,6 @@ namespace BasicTypes.Parser
             {
                 return null;
             }
-
 
             if (dialect == null)
             {
@@ -258,8 +259,18 @@ namespace BasicTypes.Parser
 
             string fakePredicate = " li ijo Nanunanuwakawakawawa.";
             //normalized = UseDummyPredicateForObviousFragments(normalized, fakePredicate);
-            //vocatives & exlamations are expected to be fragmentary.
+            //vocatives & exclamations are expected to be fragmentary.
 
+
+            //It's a prep, but missing the li.
+            if (normalized.Contains("sina ~tawa"))
+            {
+                normalized = normalized.Replace("sina ~tawa", " sina li ~tawa");
+            }
+            if (normalized.Contains("mi ~tawa"))
+            {
+                normalized = normalized.Replace("mi ~tawa", "mi li ~tawa");
+            }
 
             //Probably added above by mistake
             while (normalized.Contains("  "))
@@ -296,6 +307,10 @@ namespace BasicTypes.Parser
             if (normalized == fakePredicate)
             {
                 throw new InvalidOperationException("started with " + text);
+            }
+            if (normalized.StartsWith("« »"))
+            {
+                throw new InvalidOperationException("quote recognition went wrong: "  + text);
             }
             return normalized;
         }
@@ -360,12 +375,13 @@ namespace BasicTypes.Parser
                                                          "tenpo ~tawa mi", //Time of my leaving
                                                          "li ~tawa anpa ", //Go down.
                                                          "li ~tawa kon ", //fly
-                                                         "li ~tawa sewi " //go up
+                                                         "li ~tawa sewi ", //go up
+                                                         "nasin ~sama ala la",//as for different ways... 
                                                     })
             {
                 normalized = normalized.Replace(oneOff, oneOff.Replace("~",""));
             }
-
+            
             //As in jan sama o!
             //jan ~sama o!
             if (normalized.Contains(" ~sama o "))
@@ -404,6 +420,7 @@ namespace BasicTypes.Parser
                     normalized = normalized.Replace(barePrep, barePrep.Replace("~", ""));
                 }
             }
+
 
             //li ~tawa ala e
             foreach (string prep in preps)
@@ -628,6 +645,18 @@ namespace BasicTypes.Parser
                     }
                 }
             }
+
+            //li ~kepeken ala kepeken e
+            foreach (string prep in preps)
+            {
+                string question = " li ~" + prep + " ala " + prep + " e ";
+                if (normalized.Contains(question))
+                {
+                    normalized = normalized.Replace(question, question.Replace("~", ""));
+                }
+            }
+
+
             return normalized;
         }
 

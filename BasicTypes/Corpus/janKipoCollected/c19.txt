@@ -210,10 +210,10 @@ ona li tawa e sewi kiwen. –
 
 1958
 i li pona tawa mi:
-tenpo lili la tomo tawa ni li ken tawa mute.
-tenpo lili la tomo tawa ni li ken tawa lili/suli.
-tenpo suli la tomo tawa ni li ken tawa mute.
-tenpo suli la tomo tawa ni li ken tawa lili/suli.
+tenpo lili la tomo-tawa ni li ken tawa mute.
+tenpo lili la tomo-tawa ni li ken tawa lili/suli.
+tenpo suli la tomo-tawa ni li ken tawa mute.
+tenpo suli la tomo-tawa ni li ken tawa lili/suli.
 *setepo 091006
 
 1957
@@ -294,19 +294,19 @@ mi pilin e ni : nasin ni li pona mute.
 060913
 1983
 1. 
-akesi linja li lon tomo tawa kon.
+akesi linja li lon tomo-tawa-kon.
 2.
-tomo tawa suwi li wile utala.
-tomo tawa suwi ante li pana e pona tawa ona.
+tomo-tawa suwi li wile utala.
+tomo-tawa suwi ante li pana e pona tawa ona.
 3.
 jan luka wan li lon telo suli.
-ona li ken ala sewi lon tomo tawa telo.
+ona li ken ala sewi lon tomo-tawa-telo.
 *ajv2805  091306
 
 1981
 anu:
 mi kepeken e poki li moku e telo.
-mi kepeken e tomo tawa li tawa ma Kanata.
+mi kepeken e tomo-tawa li tawa ma Kanata.
 ona li kepeken e ilo nasa li pali e ijo.
 ni li pona ala pona?
 *jimhenry 091306
