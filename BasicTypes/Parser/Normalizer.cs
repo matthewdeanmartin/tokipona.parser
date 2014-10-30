@@ -77,6 +77,8 @@ namespace BasicTypes.Parser
 
             }
 
+            
+
             //Left overs from initial parsing.
             if (normalized.Contains("[NULL]"))
             {
@@ -272,6 +274,22 @@ namespace BasicTypes.Parser
                 normalized = normalized.Replace("mi ~tawa", "mi li ~tawa");
             }
 
+            //missing li (ha,previously I skiped this on purpose!)
+            if (normalized.Contains("taso, sina soweli"))
+            {
+                normalized = normalized.Replace("taso, sina soweli", "taso, sina li soweli");
+            }
+
+
+            //One off that comes back?
+            foreach (string oneOff in new string[] {
+                                                         "li ~lon poka e", //place something next to
+                                                         "li ~tawa tu e"
+                                                    })
+            {
+                normalized = normalized.Replace(oneOff, oneOff.Replace("~", ""));
+            }
+
             //Probably added above by mistake
             while (normalized.Contains("  "))
             {
@@ -377,6 +395,12 @@ namespace BasicTypes.Parser
                                                          "li ~tawa kon ", //fly
                                                          "li ~tawa sewi ", //go up
                                                          "nasin ~sama ala la",//as for different ways... 
+                                                         "li ~sama lili e ",//to copy somewhat
+                                                         "kon en ~lon en moli", //existence vs in
+                                                         "li ~tawa suli e", //move something
+                                                         "mi ~lon poka e", //place something next to
+                                                         "li ~lon poka e", //place something next to
+                                                         "li ~lon poka e"
                                                     })
             {
                 normalized = normalized.Replace(oneOff, oneOff.Replace("~",""));
@@ -421,6 +445,16 @@ namespace BasicTypes.Parser
                 }
             }
 
+
+            //la ~lon 
+            foreach (string prep in preps)
+            {
+                string leadPrep = " la ~" + prep + " ";
+                if (normalized.Contains(leadPrep))
+                {
+                    normalized = normalized.Replace(leadPrep, leadPrep.Replace("~", ""));
+                }
+            }
 
             //li ~tawa ala e
             foreach (string prep in preps)

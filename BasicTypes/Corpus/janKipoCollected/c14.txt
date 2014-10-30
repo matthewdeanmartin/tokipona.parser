@@ -1390,7 +1390,7 @@ jan sewi Jawe o pana e pona tawa sina ale!
 
 o kama pona!
 
-mi wile sitelen e ni tawa sina. lipu ni li lon nasin Katolike en toki nasin tawa toki pona. ona ken toki e wile tawa jan sewi Jawe anu mama Mewi en jan pona sewi mute lon sewi pona.
+mi wile sitelen e ni tawa sina. lipu ni li lon nasin Katolike en toki nasin tawa toki pona. ona li ken toki e wile tawa jan sewi Jawe anu mama Mewi en jan pona sewi mute lon sewi pona.
 
 nasin mute li pona. nasin Katolike li kin pona tan ni: jan Jesu li kama pana e nasin Katolike tawa jan pona ona Peto.
 
@@ -1755,7 +1755,7 @@ mi tawa,
 *jan Male
 
 1497
-mi mute o pana e sitelen tawa
+mi mute o pana e sitelen-tawa
 iso639-3@...
 
 tenpo kama la mi pana e ona. taso, ken la
@@ -1817,7 +1817,7 @@ nimi lili "tok" anu "toa" li pona tawa mi.
 060213
 1500
 nimi lili "tok" anu "tki" li pona tawa mi.
-mi pilin e ni: jan pi toki pona li sitelen tawa
+mi pilin e ni: jan pi toki pona li sitelen-tawa
 iso639-3@... li toki e ni: toki pona
 li wile jo e nimi lili "tok".
 

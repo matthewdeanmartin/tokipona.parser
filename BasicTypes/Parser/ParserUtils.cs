@@ -36,6 +36,11 @@ namespace BasicTypes
                 text = text.Replace("\n\n", "\n");
             }
 
+            if (text.Contains(";"))
+            {
+                //2 sentences connected... or 2 phrases connected?
+                text = text.Replace(";", ":");
+            }
 
             //swap quote/terminator order
             foreach (string delims in new String[] { ".'", ".\"","?'", "?\"","!'", "!\"", })
@@ -678,11 +683,11 @@ namespace BasicTypes
             {
                 if (s.Contains(" "))
                 {
-                    throw new ArgumentException("One of the strings in the array contains spaces, this must not have been properly normalized.");
+                    throw new ArgumentException("One of the strings in the array contains spaces, this must not have been properly normalized.: " + s);
                 }
                 if (s.Contains("~"))
                 {
-                    throw new ArgumentException("One of the strings in the array starts with a ~, so the prep wasn't stripped off.");
+                    throw new ArgumentException("One of the strings in the array starts with a ~, so the prep wasn't stripped off. : " + s);
                 } 
             }
             

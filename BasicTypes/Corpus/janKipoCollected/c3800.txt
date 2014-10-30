@@ -499,8 +499,8 @@ tomo-->"poki suli" anu "poki jan."
 uta-->"lupa moku"
 
 wile--"mi wile tawa tomo telo"-->"mi tawa ala tomo telo la, ike (tawa
-mi);" "mi wile lukin e sitelen tawa"-->"ni li pona (tawa mi): mi
-lukin e sitelen tawa;" "mi wile ala tawa tomo sona"-->"ni li ike
+mi);" "mi wile lukin e sitelen-tawa"-->"ni li pona (tawa mi): mi
+lukin e sitelen-tawa;" "mi wile ala tawa tomo sona"-->"ni li ike
 (tawa mi): mi tawa tomo sona" anu "mi tawa ala tomo sona la, kin
 pona."
 
@@ -549,8 +549,8 @@ mi pilin ike lon pilin ante sina:
 > ona-->"jan ni" anu "ijo ni"
 >
 > wile--"mi wile tawa tomo telo"-->"mi tawa ala tomo telo la, ike (tawa
-> mi);" "mi wile lukin e sitelen tawa"-->"ni li pona (tawa mi): mi
-> lukin e sitelen tawa;" "mi wile ala tawa tomo sona"-->"ni li ike
+> mi);" "mi wile lukin e sitelen-tawa"-->"ni li pona (tawa mi): mi
+> lukin e sitelen-tawa;" "mi wile ala tawa tomo sona"-->"ni li ike
 > (tawa mi): mi tawa tomo sona" anu "mi tawa ala tomo sona la, kin
 > pona."
 *jimhenry

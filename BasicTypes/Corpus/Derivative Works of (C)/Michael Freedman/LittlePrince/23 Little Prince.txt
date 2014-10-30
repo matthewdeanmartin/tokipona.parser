@@ -1,17 +1,17 @@
-jan lawa lili — 23
+jan lawa lili  -  23
 
-jan lawa lili li toki "toki!"
+jan lawa lili li toki 'toki!'
 
-jan esun li toki "toki!"
+jan esun li toki 'toki!'
 
 jan esun li esun e moku ni: tenpo wan la sina moku e ona. tenpo mute la sina ken moku ala e telo.
 
-jan lawa lili li toki: "sina esun e ni tan seme?"
+jan lawa lili li toki: 'sina esun e ni tan seme?'
 
-"ilo ni li pona li mute e tenpo jan. jan sona li nanpa e ona. sina ken mute e tenpo mute."
+'ilo ni li pona li mute e tenpo jan. jan sona li nanpa e ona. sina ken mute e tenpo mute.'
 
-"mi pali e seme kepeken tenpo sin ni?"
+'mi pali e seme kepeken tenpo sin ni?'
 
-"sina ken pali e ni: sina wile pali."
+'sina ken pali e ni: sina wile pali.'
 
-jan lawa lili li pilin: "mi jo e tenpo sin la mi tawa e telo kepeken tenpo ni."
+jan lawa lili li pilin: 'mi jo e tenpo sin la mi tawa e telo kepeken tenpo ni.'
