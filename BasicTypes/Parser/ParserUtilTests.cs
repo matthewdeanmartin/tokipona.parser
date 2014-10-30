@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BasicTypes.Collections;
+using BasicTypes.Corpus;
 using BasicTypes.Glosser;
 using BasicTypes.Knowledge;
 using NUnit.Framework;
@@ -30,13 +32,13 @@ namespace BasicTypes.Parser
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Uh-oh: " + word );
+                    Console.WriteLine("Uh-oh: " + word);
                 }
             }
 
         }
 
-        
+
         [Test]
         public void ShouldBeGoodKunpapa()
         {
@@ -46,7 +48,7 @@ namespace BasicTypes.Parser
             TokenParserUtils pu = new TokenParserUtils();
 
             Word[] words = pu.ValidWords(s);
-            
+
 
             foreach (Word word in words)
             {
@@ -66,7 +68,7 @@ namespace BasicTypes.Parser
             TokenParserUtils pu = new TokenParserUtils();
 
             Word[] words = pu.ValidWords(s);
-            
+
 
             foreach (Word word in words)
             {
@@ -81,7 +83,7 @@ namespace BasicTypes.Parser
         {
             string s = "jan MaliyA";
             Normalizer n = new Normalizer();
-            Console.WriteLine( Normalizer.NormalizeText(s));
+            Console.WriteLine(Normalizer.NormalizeText(s));
             TokenParserUtils pu = new TokenParserUtils();
             Word[] words;
             try
@@ -109,9 +111,9 @@ namespace BasicTypes.Parser
             Dialect c = Dialect.DialectFactory;
             //c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
-            Sentence sentence = pu.ParsedSentenceFactory(s,s);
+            Sentence sentence = pu.ParsedSentenceFactory(s, s);
             Assert.IsNotNull(sentence.Subjects);
-            Assert.IsTrue(sentence.Subjects.Length>0);
+            Assert.IsTrue(sentence.Subjects.Length > 0);
 
             //Assert.IsNotNull(sentence.Subjects[0].HeadedPhrases[0].Head.Text,"mi"); //pi chains :-(
         }
@@ -124,8 +126,8 @@ namespace BasicTypes.Parser
             Dialect c = Dialect.DialectFactory;
             //c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
-            string[] parts= pu.ParseIntoRawSentences(s);
-            Assert.AreEqual("sina li toki e ni:",parts[0]);
+            string[] parts = pu.ParseIntoRawSentences(s);
+            Assert.AreEqual("sina li toki e ni:", parts[0]);
             Assert.AreEqual("mi li wile e ni.", parts[1]);
         }
 
@@ -143,14 +145,14 @@ namespace BasicTypes.Parser
         [Test]
         public void ProcessCalmVocative_JustRunIsVocative()
         {
-            
+
             const string vocative = "jan Oliwa o, o, o.";
             bool isIt = Normalizer.IsVocative(vocative);
             Assert.IsTrue(isIt, "Expected to ID a vocative.");
         }
 
 
-        
+
         [Test]
         public void ProcessCalmVocative()
         {
@@ -162,7 +164,7 @@ namespace BasicTypes.Parser
             Sentence s = pu.ParsedSentenceFactory(vocative, vocative);
             Console.WriteLine(s.ToString("b"));
         }
-        
+
 
         [Test]
         public void CreateTpPredicateAfterSplitingEChain()
@@ -178,24 +180,90 @@ namespace BasicTypes.Parser
         }
 
         [Test]
+        public void SpellCheck_ForStressTest_UsingOnlyWordConstructor()
+        {
+            CorpusFileReader reader = new CorpusFileReader();
+            Dictionary<string, string> bad = new Dictionary<string, string>();
+            List<string> good = new List<string>();
+            TokenParserUtils tpu = new TokenParserUtils();
+            ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
+
+            foreach (string s in reader.NextFile())
+            {
+                string[] rawSentences = pu.ParseIntoRawSentences(s);
+                foreach (string sentence in rawSentences)
+                {
+                    string normalized = Normalizer.NormalizeText(sentence);
+                    //Normalization improved stuff
+                    string[] words = tpu.JustTokens(normalized);
+                    foreach (string word in words.Where(x => !string.IsNullOrEmpty(x)))
+                    {
+                        if (good.Contains(word)) continue;
+
+                        try
+                        {
+                            Word w = new Word(word);
+                        }
+                        catch (Exception ex)
+                        {
+                            if (bad.ContainsKey(word))
+                            {
+                            }
+                            else
+                            {
+                                bad.Add(word, ex.Message);
+                            }
+                        }
+                    }
+                }
+            }
+            foreach (KeyValuePair<string, string> pair in bad)
+            {
+                Console.WriteLine("Uh-oh: " + pair.Key + " " + pair.Value);
+
+            }
+
+        }
+
+        [Test]
+        public void StressTestNormalizeAndParseEverything()
+        {
+            int i = 0;
+            ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
+
+            CorpusFileReader reader = new CorpusFileReader();
+            foreach (string s in reader.NextFile())
+            {
+                foreach (string original in pu.ParseIntoRawSentences(s))
+                {
+                    string normalized = Normalizer.NormalizeText(original);
+                    Sentence structured = pu.ParsedSentenceFactory(normalized, original);
+                    Console.WriteLine(structured.ToString("b"));
+                    i++;
+                }
+            }
+            Console.WriteLine("Sentences normalized: " + i);
+        }
+
+        [Test]
         public void IdentifyDiscourses_CanItEvenParseTheSentences()
         {
             string sample = CorpusTexts.UnpaText;
             Dialect c = Dialect.DialectFactory;
             c.TargetGloss = "en";
-            CorpusKnowledge ck = new CorpusKnowledge(sample,c);
-            
+            CorpusKnowledge ck = new CorpusKnowledge(sample, c);
+
             Discourse[] s = ck.MakeSentences();
             for (int i = 0; i < s.Length; i++)
             {
                 foreach (Sentence sentence in s[i])
                 {
-                    string reToStringed = sentence==null?"[NULL SENTENCE]":sentence.ToString();
+                    string reToStringed = sentence == null ? "[NULL SENTENCE]" : sentence.ToString();
                     bool match = ck.Setences.Any(x => x.Trim() == reToStringed);
                     if (!match)
                     {
                         Console.WriteLine(match + " O:" + ck.Setences[i]);
-                        Console.WriteLine(match + " R:" +  (sentence==null?"[NULL SENTENCE]":sentence.ToString("b")));
+                        Console.WriteLine(match + " R:" + (sentence == null ? "[NULL SENTENCE]" : sentence.ToString("b")));
 
                     }
                 }
@@ -237,17 +305,17 @@ namespace BasicTypes.Parser
                         bool match = ck.Setences.Any(x => x.Trim() == reToStringed);
                         //if (match)
                         //{
-                            Console.WriteLine(match + " O:" + ck.Setences[i]);
-                            Console.WriteLine(match + " Rg:" + (sentence == null ? "[NULL]" : sentence.ToString("g")));
-                            Console.WriteLine(match + " Rb:" + (sentence == null ? "[NULL]" : sentence.ToString("b")));
+                        Console.WriteLine(match + " O:" + ck.Setences[i]);
+                        Console.WriteLine(match + " Rg:" + (sentence == null ? "[NULL]" : sentence.ToString("g")));
+                        Console.WriteLine(match + " Rb:" + (sentence == null ? "[NULL]" : sentence.ToString("b")));
 
-                            //TODO: Need to store original somewhere...
-                            Console.WriteLine(match + " Ren:" + (sentence == null ? "[NULL]" : gm.Gloss(sentence.ToString("g"), "n/a")));
+                        //TODO: Need to store original somewhere...
+                        Console.WriteLine(match + " Ren:" + (sentence == null ? "[NULL]" : gm.Gloss(sentence.ToString("g"), "n/a")));
                         //}
                     }
-                }    
+                }
             }
-            
+
         }
 
         //nena meli kin li tawa en tan li kama nena pi suli en kiwen.
@@ -257,9 +325,9 @@ namespace BasicTypes.Parser
             string s = "nena meli kin li tawa en tan li kama nena pi suli en kiwen.";
             ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
 
-            Sentence parsedSentence = pu.ParsedSentenceFactory(s,s);
+            Sentence parsedSentence = pu.ParsedSentenceFactory(s, s);
             Console.WriteLine(parsedSentence.ToString());
-            Assert.AreEqual(2,parsedSentence.Predicates.Count);
+            Assert.AreEqual(2, parsedSentence.Predicates.Count);
             Assert.IsNotNull(parsedSentence);
         }
 
@@ -273,36 +341,36 @@ namespace BasicTypes.Parser
 
             Sentence[] s = pu
                             .ParseIntoRawSentences(CorpusTexts.UnpaText)
-                            .Select(x => pu.ParsedSentenceFactory(x,x))
-                            .Where(x=>x!=null)
+                            .Select(x => pu.ParsedSentenceFactory(x, x))
+                            .Where(x => x != null)
                             .ToArray();
-           Assert.Greater(s.Length,0);
+            Assert.Greater(s.Length, 0);
 
-           Discourse[] d =  pu.GroupIntoDiscourses(s);
-            
-           Assert.Greater(d.Length,0);
+            Discourse[] d = pu.GroupIntoDiscourses(s);
+
+            Assert.Greater(d.Length, 0);
 
             foreach (Discourse discourse in d)
             {
-                Assert.Greater(discourse.Count,0);     
+                Assert.Greater(discourse.Count, 0);
             }
 
             Console.WriteLine("-------------------");
             foreach (Discourse discourse in d)
             {
-                
+
                 int i = 0;
                 foreach (Sentence sentence in discourse)
                 {
                     i++;
-                    Console.WriteLine(i +") " + sentence.ToString("b"));    
+                    Console.WriteLine(i + ") " + sentence.ToString("b"));
                 }
-                
+
                 Console.WriteLine("-------------------");
             }
         }
 
-        
+
 
         [Test]
         public void CorpusKnowledge_HeadedPhraseParser()

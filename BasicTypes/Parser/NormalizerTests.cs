@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BasicTypes.Corpus;
 using NUnit.Framework;
 
 namespace BasicTypes.Parser
@@ -10,6 +11,23 @@ namespace BasicTypes.Parser
     [TestFixture]
     public class NormalizerTests
     {
+        [Test]
+        public void NormalizeAllTextFiles()
+        {
+            int i = 0;
+            ParserUtils pu  = new ParserUtils(Dialect.DialectFactory);
+            
+            CorpusFileReader reader =new CorpusFileReader();
+            foreach (string s in reader.NextFile())
+            {
+                foreach (string sentence in pu.ParseIntoRawSentences(s))
+                {
+                    string result = Normalizer.NormalizeText(sentence);
+                    i++;
+                }
+            }
+            Console.WriteLine("Sentences normalized: " + i);
+        }
 
         //nena meli kin li tawa en tan, li kama nena pi suli en kiwen.
 

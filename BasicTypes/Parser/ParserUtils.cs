@@ -367,7 +367,7 @@ namespace BasicTypes
             }
             if (value.Contains("~"))
             {
-                throw new ArgumentException("Contains preposition. This isn't possible in a pi chain. (well not right now. kule pi lon palisa)");
+                throw new ArgumentException("Contains preposition. This isn't possible in a pi chain. (well not right now. kule pi lon palisa): actual: " + value);
             }
 
             string piChains = value;

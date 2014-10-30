@@ -146,30 +146,32 @@ namespace BasicTypes
 
                     if (CheckIsPreposition(prospectiveWord))
                     {
-                        Console.WriteLine("PREPOSITION: " + prospectiveWord);
+                        //Console.WriteLine("PREPOSITION: " + prospectiveWord);
                     }
                     else if (CheckIsNumber(prospectiveWord))
                     {
-                        Console.WriteLine("NUMBER: " + prospectiveWord);
+                        //Console.WriteLine("NUMBER: " + prospectiveWord);
                     }
                     else if (prospectiveWord.Contains("-") &&  CheckIsCompoundWord(prospectiveWord))
                     {
-                        Console.WriteLine("COMPOUND: " + prospectiveWord);
+                        //Console.WriteLine("COMPOUND: " + prospectiveWord);
                     }
                     else if (CheckIsProperModifier(prospectiveWord))
                     {
-                        // if (prospectiveWord[0].ToString().ToUpper() != prospectiveWord[0].ToString())
-                        Console.WriteLine("PROPER MODIFIER: " + prospectiveWord);
+                        //Console.WriteLine("PROPER MODIFIER: " + prospectiveWord);
                     }//Escaped foreign
                     else if (IsForeign(prospectiveWord))
                     {
-                        // if (prospectiveWord[0].ToString().ToUpper() != prospectiveWord[0].ToString())
-                        Console.WriteLine("Foreign Text: " + prospectiveWord);
+                        //Console.WriteLine("Foreign Text: " + prospectiveWord);
                     }
                     else
                     {
+                        //foreach (char c in prospectiveWord)
+                        //{
+                        //    Console.WriteLine(Convert.ToInt32(c));
+                        //}
                         throw new InvalidOperationException("This word (" + prospectiveWord +
-                                                            ") isn't in the dictionary and isn't upper cased like a proper modifier. What is wrong.");
+                                                            ")  failed all checks.");
                     }
 
                 }

@@ -1,0 +1,248 @@
+0201
+Thank you!
+pona! Kasije! (in Pije-Lamentian dialect)
+> We waited a long time for him.
+tenpo mute la mi mute li wile e ni: ona li kama.
+> That is an easy question.
+ni li toki pona. OR, mi sona e ni.> Can you help me?
+sina ken ala ken pali e ijo tawa mi?
+> The meaning of this picture is clear.
+sitelen ni li pona. OR, mi sona e sitelen ni. OR, mi sona e nasin pi sitelen
+ni. Or something like that.
+> He is learning a more difficult language.
+ona li kama sona e toki suli. (There're no relative comparisons in toki pona)
+> I received your letter.
+mi kama jo e lipu sina.
+> The fridge is wide but not very tall or long.
+You can't say that.
+> The bottle is still almost full.
+tenpo ni la poki li jo e telo mute li jo e kon lili.
+> She is frightened of him.
+mije ni li ike tawa meli ni.
+*ayzikovsky 101602
+
+021017
+0202
+mi wile sona e ni: seme li toki e "Indian" pi toki Inli?
+pona!
+*eliki	101702 = Oleg Izyumenko.
+
+021018
+0203
+pini pi tenpo suno la mi li kama jaki ala lon poki pi telo seli li
+sona e ni: jan li ken ala ken toki e ale lon toki ale? jan li ken ala
+ken toki e ale lon toki pona?
+tenpo mute la jan li toki e ni: tenpo la jan li ken toki e ijo lon
+toki nanpa wan, kama la jan li ken toki e ijo sama lon toki nanpa du.
+ken la jan li wile kepeken e nimi mute lon toki nanpa du. taso tenpo
+ale la jan li ken pana e sona sama lon toki nanpa du.
+taso mi sona e ni: jan li ken ala toki e ale lon toki pona. jan li ken
+ala toki e ale kepeken luka pi luka pi luka pi nimi. anu jan li ken
+toki, taso jan ante li ken ala sona pona.
+jan li wile toki e ale li wile e seme? luka pi luka pi luka pi nimi li
+pona ala. luka pi luka pi luka pi luka pi nimi li pona ala pona? pona
+ala! nanpa pona li lon ala. jan li ken ala toki e ale lon toki lili.
+jan li ken ala toki e ale kin lon toki suli.
+sona li ma suli, taso toki li tomo lili.
+*temun 101802 = Edmund GE
+[pi nanpa] [tu]
+
+021024
+204
+sona kin toki
+*bacchus
+
+021027
+mi jo mala e tomo. I don't have a house.
+tenpo mala la ona li kama. He never came.
+ale li pona. Everything is good. Life is good.
+*christian kisa 102702
+
+sina wile kepeken e toki Epelanto la sina o tawa ona.
+*damian 102702 = tepple?
+
+021029
+218
+*toki lili
+] Abstract/Resumé
+* wan li ken lukin lon pali ni e ni:
+] In this work one can see the following:
+* sona pi lukin ala pi wan lili li ike.
+] Quantum cryptology is complicated.
+* taso tenpo la toki pali li pona, en toki pali ante li pona,
+* kama la toki pali tu pi kama wan li kin pona.
+] But if one protocol is secure, and another protocol is secure,
+] their composition is also secure.
+* tenpo la wan lili ala la toki pali pi wan lili ala li pona,
+* kama la wan lili la toki pali ni li kin pona.
+] If some classical protocol is secure in the classical case,
+] then this protocol is also secure in the quantum case.
+*dominique unruh 102902 =DniQ
+
+Abstract
+
+The objective of this work is to introduce the notion of formal
+security into quantum computation. In order to achieve this, we
+introduce a new security model, containing a quantum communication
+model. We will lay some stress on formal details to show which are the
+problems arising in a formal definition of quantum security.
+
+Based on this model we will analyse some basic aspects of quantum
+protocols:
+- Are quantum protocols composable?
+- Do classically secure classical protocols stay secure in a
+quantum environment?
+Both questions we will answer by and large positively. This discussion
+(and especially the proofs) will be less formal, because of the
+complex nature of the underlying communication processes.
+===
+
+021102
+228
+sina wile sona e toki pona
+la sina wile kepeken e toki seme?
+*tokipona 110202
+
+021106
+232
+mi lukin e luka sama ona.
+mi lon ma tan sina.
+mi pana e tomo tawa kon.
+*temun	 110602
+
+021114
+233
+kalama musi li toki pona\
+Toki
+tenpo suno li pona"
+*tobiah 111402
+
+234
+ipu ilo toki poki (email) 
+Retoki!
+Mi manpa wan lipu ilo toki poki lon toki pona. Mi pilin e olin kalama musi lon toki pona...
+mi tawa
+*roger uchtman 111402
+
+
+021127
+240
+a! tenpo suno pi moku mute [Day of much food = Thanksgiving] li kama.
+tenpo pimeja ni la mi pali e ijo musi. mi tawa tomo pi mama mije mi.
+jan lili Mesu pi pata pi mama mije mi [my cousin Matthew] li lon li
+moku e telo nasa mute. ona li toki nasa li tawa nasa. ona li wile
+pali e kalama musi kepeken ilo musi. taso ona li moku e telo nasa
+mute la ona li pali ike e kalama musi. a a a! mi kama sona e ni:
+tenpo pini la mama mije mi li kepeken e kasi lili nasa. mi mute li
+lukin e sitelen tawa pi lipu Www.joecartoon.com. kin la [which brings
+me to the point of the reason for this post. Is "kin la" still
+allowed to mean "..., and ..." like a conjuction in a normal English
+sentence? Is it perhaps "en la" or just "en" now?] meli pi jan Mesu
+li lon. ona li pona lukin. nimi ona li Ansija.
+mi wile lape. mi wile e ni: tenpo suno sina pi moku mute li pona tawa
+sina. o moku mute!
+
+mi tawa,
+*pije 112702
+
+021210
+245
+mi wile e nimi "anu".
+jan pi toki pona o,
+ijo ike li pakala e toki pona. ijo ike wan li ni: lipu lawa
+Www.tokipona.org li pali ala. taso ijo ike ante li lon. ijo ike ni li
+ni: jan Kisijan li weka e nimi "anu". ni li nasa mute! jan Kisijan li
+toki ala e ni: "jan ali pi toki pona li wile e seme?" jan Kisijan li
+kute e toki pi wile ona taso.
+mi wile mute e nimi "anu". nimi "kan" li weka la mi toki lili. taso
+tenpo ni la mi toki. mi wile e nimi "anu"!! ni li nasa li
+ike: "soweli ken pipi li moku lili e sina?"
+sina pilin e ijo sama ni la o toki: nimi "anu" li pona. o awen e ona!
+pona,
+jan Pije en jan Lamen
+
+
+People of Toki Pona,
+Lately, some bad occurrences have been harming the state of our
+language. One such thing is that the main site for Toki Pona,
+www.tokipona.org, is currently down. But, there are other problems as
+well. One such problem is that Christian has removed the word
+for "or". However, he did so without asking for the opinions of other
+speakers. He only heeded his own desires.
+I certainly want "or" in our language. When the word for "with"
+("kan") was removed, it didn't bother me greatly and I did not say
+very much. But now I will speak out. I want "anu"!! Here is an
+example of Christian's new idea: "soweli ken pipi li moku lili?" How
+bad! How crazy!
+If you feel the same way, speak forth! "anu" is good. Help keep it.
+*pije 121002
+
+021211
+248
+Mi tawa
+*rogeruchtman 121102
+
+249
+Mi wile sona e ni: ijo ni li ken ala ken? (I'd like to know
+if that would work.) [Sina lukin e ni: "ken" li nimi suli... Kisijan li wile e
+ni: "ken" en "anu" li nimi wan, en nimi ni li suli _mute_. Mi pilin e ni: Ijo ni
+li ike.]
+O jo e tenpo suno pona!
+*eleni 121102
+
+021214
+236
+Mi kama a sona e toki pona lon tomo pi jan pona mi.
+Tenpo ale ala, ona li awen e toki lon
+tokipona@yahoogroups. Ona li toki pona li toki pona, taso mi toki ike e ni...
+*eleni 121402 =Helena Weitz
+
+021227
+257
+o pana e mani tawa jan Kisijan la ona li pona e lipu Www.tokipona.org
+*pije 122202
+
+030110
+273
+mi jan Nikita :)
+*nikita 011003
+
+030111
+276
+Anakin pi tawa lon kon" ("Star Wars")? :-)
+Pona,
+*eleni 011103
+
+020113
+277
+sina pona e ale la sina pona e sina.
+*christian kisa 011303
+
+030123
+286
+mi wile e moku = mi volas manghajhon
+mi wile moku = mi volas manghi (plej uzinda)
+mi wile moku e kili = mi volas manghi frukton (plej uzinda)
+mi wile e moku e kili = mi volas kaj manghajhon kaj frukton
+*christian
+
+030209
+Toki ali,
+*lawrenco 020903 = Laurent Burgbacher
+
+030211
+297
+sina kama ala kama? 
+are you coming sina kama anu seme? 
+(literally: you're coming or what?) 
+I think you're coming, but please correct me and tell me what is really happening. 
+aren't you coming? 
+*christian kisa 0211103
+
+030212
+298
+Toki ali!
+mi pali "supermemo database" e toki pona tawa french. Mi ken pana e sina.
+Sina wile ala wile ?
+Mi tawa,
+*alawa 021203 = lawrwenco

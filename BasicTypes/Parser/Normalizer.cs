@@ -38,7 +38,7 @@ namespace BasicTypes.Parser
 
         public static string NormalizeText(string text, Dialect dialect = null)
         {
-            Console.WriteLine("Before: " + text);
+            //Console.WriteLine("Before: " + text);
             if (string.IsNullOrWhiteSpace(text))
             {
                 return null;
@@ -66,6 +66,14 @@ namespace BasicTypes.Parser
             if (normalized.Contains("\""))
             {
                 normalized = ProcessWhiteSpaceInForeignText(normalized);
+            }
+
+            //Extraneous punctuation-- TODO, expand to most other symbols.
+            if (normalized.Contains("(") || normalized.Contains(")"))
+            {
+                normalized = normalized.Replace("(","");
+                normalized = normalized.Replace(")", "");
+
             }
 
             //Left overs from initial parsing.
