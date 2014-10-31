@@ -32,8 +32,8 @@ tawa mi : jan mute li sona ala e nimi Polling.
 *kanso
 
 2431
-tenpo pini la nimi "pata" li lon toki pona. taso jan
-li weka e nimi ni tan toki pona li kepeken e kulupu
+tenpo pini la nimi "pata" li lon toki-pona. taso jan
+li weka e nimi ni tan toki-pona li kepeken e kulupu
 nimi "jan pona". ni li pona tawa mi tan ni : ken la
 "pata" sina li ike. taso tenpo ali la jan pona sina li
 pona !
@@ -41,13 +41,13 @@ pona !
 
 2432
 mi pilin e ni: nimi "pata" li sona e kulupu nimi "jan sama" e kilupu "jan sama" ala. taso tenpo
-kama la jan pi toki pona li ken open kepeken e nimi sin tawa kulupu nimi ni: tenpo pini lajan li
+kama la jan pi toki-pona li ken open kepeken e nimi sin tawa kulupu nimi ni: tenpo pini lajan li
 kepeken ona . mi mute li kepeken e nasin pi nanpa tu la. nimi li seme: ni li suli ala.
 *kipo 012107
 
 2433
 jan Sonja o
-tenpo ali la toki pona! :-)
+tenpo ali la toki-pona! :-)
 *wiko 012107
 
 2436
@@ -91,13 +91,13 @@ Inli pona a.
 2458
 mi wile e ni: sina mute pi toki Inli lili anu ala li weka e ike mi. taso mi
 wile sitelen e lipu
-nimi pi toki pona en toki Inli. mi pali e ni la mi wile kepeken e nimi pi sona
+nimi pi toki-pona en toki Inli. mi pali e ni la mi wile kepeken e nimi pi sona
 ilo. ante la mi
-wile sitelen e toki suli mute. ken la toki ni li sona ala e wile toki mi. tempo
+wile sitelen e toki suli mute. ken la toki ni li sona ala e wile toki mi. tenpo
 kama la mi wile
 pana sona e nimi kepeken mi. (mi ken sitelen kepeken toki Epelanto. taso mi
 sitelen lili mute lon
-tempo suli mute. Tan ni la mi sitelen kepeken toki Inli. Toki pona kin li jo ala
+tenpo suli mute. Tan ni la mi sitelen kepeken toki Inli. toki-pona kin li jo ala
 e nimi sona mi.)
 *kipo
 
@@ -107,7 +107,7 @@ jan seme li wile e lipu sama ni
 *setepo
 
 2464
-nimi "worthless" li seme kepeken toki pona?
+nimi "worthless" li seme kepeken toki-pona?
 *kipo
 
 2466
@@ -159,7 +159,7 @@ jan AJK li sitelen e ni:
 2471
 toki awen seme li ike? nimi "ike" taso? toki awen toki mi?
 mi sona ala e ni: jan li jan lawa pi kulupu ni. taso jan li kama jan lawa pi kulupu ni la jan li
-sitelen mute kepeken toki pona li pali e toki ilo.
+sitelen mute kepeken toki-pona li pali e toki ilo.
 jan ike li seme? jan pona kin li seme? jan seme li sona e ni? jan seme li pan e toki lawa sama ni:
 ni kin li lon, ni kin li ike? nasin seme la mi mute li sona?
 sina sona e ike seme?
@@ -187,7 +187,7 @@ ni la mi ale li toki pi ijo "worthless masters degree". ona li kama tan
 toki awen ni:
 mi pilin e ni: toki awen _ni_ li ike. toki mi la toki awen ike li ijo
 "spam" lon toki Inli. jan ike li pali e toki awen ni. ja ni li wile kama
-jo e mani li wile ala toki pi toki pona. tan ni la, mi toki e ni tawa
+jo e mani li wile ala toki pi toki-pona. tan ni la, mi toki e ni tawa
 jan lawa pi kulupu toki ni: o weka e jan ike tan kulupu toki ni!
 
 mi lukin e ni: tenpo ni la jan "skye-ollmann893@..." li
@@ -195,13 +195,13 @@ lon ala kulupu toki ni. taso ken la jan ike ante li kama lon tenpo ante
 li pana e toki awen ike tawa mi mute. tan ni la mi wile e ni: jan li
 wile kama sin tawa kulupu toki ni la ona li sitelen e toki lili tawa jan
 lawa. ni li lon la jan lawa li ken lukin e ni: jan ni li wile kama jo e
-mani anu sona pi toki pona?
+mani anu sona pi toki-pona?
 
 tenpo ni la sina sona ala sona e ni: mi wile e seme?
 *male
 
 2479
-jan Kipo kepeken toki pona
+jan Kipo kepeken toki-pona
 sona. pona a.
 taso kepeken nasin seme la jan lawa (ni seme)li weka e jan ike tan kulupu toki
 ni. mi jan pi
@@ -231,10 +231,10 @@ toki "Restricted (you approve all requests for membership)".
 
 jan li wile kama kulupu lon tenpo kama la ilo nanpa li wile e ni: o
 sitelen e nimi pi nanpa lili tawa jan lawa! jan ni li ken toki e ni: "I
-want to learn more about the toki pona language"; anu e ni: "Mi
+want to learn more about the toki-pona language"; anu e ni: "Mi
 interesigxas pri tokipono, bonvolu permesi al mi eniri". tan nimi ni la
 jan lawa li ken toki e ni: jan ni li ike ala li jan pona li wile toki pi
-toki pona.
+toki-pona.
 
 jan Mimoku anu jan Sonja (jan lawa pi kulupu toki ni) o, sina wile ala
 wile pali e ni? sina wile la, o pali e ona! sina wile ala la, mi ken
@@ -245,7 +245,7 @@ li jan lawa.
 2485
 mi pilin sama. taso jan ante li pilin ante. ni li pona tawa jan ni: kalama ali
 pi nimijan lon toki
-ante li lon nimi pi toki pona.
+ante li lon nimi pi toki-pona.
 *kipo
 
 2486
@@ -255,7 +255,7 @@ taso lukin la toki awen tan jan kulupu ala li ken lon lipu
 2487
 seme li nimi mi? jan Wa? jan La? jan Lu?
 
-(toki pona li jo ala e nimi "Wu")
+(toki-pona li jo ala e nimi "Wu")
 *russ
 
 2488
@@ -288,7 +288,7 @@ tenpo wan li ike ala. taso tenpo tu li ike mute.
 2497
 toki!
 mi sona "suwi". taso mi sona ala e ni: "salty, sour, bitter" li nimi
-seme kepeken toki pona.
+seme kepeken toki-pona.
 Pona!
 *Elumutu
 

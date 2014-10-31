@@ -40,6 +40,25 @@ namespace BasicTypes.Parser
 
         }
 
+
+        //lon-ma-pi-ike-ale
+
+        [Test]
+        public void CompoundWordParsePrepPhraseAsCompound()
+        {
+            TokenParserUtils pu = new TokenParserUtils();
+            string[] oneCompound = pu.JustTpWordsNumbersPunctuation("lon-ma-pi-ike-ale");
+            oneCompound = pu.RemergeCompounds(oneCompound);
+            foreach (string s in oneCompound)
+            {
+                Console.WriteLine(s);
+            }
+            Assert.AreEqual(1, oneCompound.Length);
+            Assert.AreEqual("lon-ma-pi-ike-ale", oneCompound[0]);
+
+        }
+
+
         [Test]
         public void ParseLiAla()
         {

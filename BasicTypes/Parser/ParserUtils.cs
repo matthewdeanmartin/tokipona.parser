@@ -8,6 +8,7 @@ using BasicTypes.Collections;
 using BasicTypes.Exceptions;
 using BasicTypes.Extensions;
 using BasicTypes.Parser;
+using NUnit.Framework;
 
 namespace BasicTypes
 {
@@ -29,7 +30,7 @@ namespace BasicTypes
             //Normalize end lines.
             if (text.Contains("\r\n"))
             {
-                text = text.Replace("\r\n", "\n");    
+                text = text.Replace("\r\n", "\n");
             }
             if (text.Contains("\n\n"))
             {
@@ -43,14 +44,14 @@ namespace BasicTypes
             }
 
             //swap quote/terminator order
-            foreach (string delims in new String[] { ".'", ".\"","?'", "?\"","!'", "!\"", })
+            foreach (string delims in new String[] { ".'", ".\"", "?'", "?\"", "!'", "!\"", })
             {
                 if (text.Contains(delims))
                 {
                     text = text.Replace(delims, delims[1] + delims[0].ToString());
                 }
             }
-            
+
 
 
 
@@ -61,7 +62,7 @@ namespace BasicTypes
                 .Split(text, @"(?<=[\?!.:])")  //split preserving punctuation
                 .Where(x => !string.IsNullOrWhiteSpace(x)) //skip empties
                 .Select(x => Normalizer.NormalizeText(x, config))
-                .Where(x => x!=null)
+                .Where(x => x != null)
                 .ToArray();
         }
 
@@ -112,7 +113,7 @@ namespace BasicTypes
         public Sentence ParsedSentenceFactory(string sentence, string original)
         {
             string preNormalize = string.Copy(sentence);
-            if (sentence.EndsWith(" li")  || sentence.EndsWith(" li."))
+            if (sentence.EndsWith(" li") || sentence.EndsWith(" li."))
             {
                 throw new InvalidOperationException("Something went wrong, sentence ends with li");
             }
@@ -130,7 +131,7 @@ namespace BasicTypes
             }
             if (sentence.StartsWith("»"))
             {
-                endsQuotedSpeech= true;
+                endsQuotedSpeech = true;
                 sentence = sentence.Replace("»", " ").Trim();
             }
             //TODO: do something with quoted speech. Big problem #1 it spans multiple sentences
@@ -150,7 +151,7 @@ namespace BasicTypes
                 sentence = sentence.Substring(0, sentence.Length - 1);
             }
 
-            
+
             //Square bracket sentence contains all others
             //[S]
             //F la [S]
@@ -190,7 +191,7 @@ namespace BasicTypes
                         //Head sentence.
                         // subSentence.StartsWith("la ") ? subSentence.Substring(3) : subSentence
                         string laLessString = subSentence.RemoveLeadingWholeWord("la");
-                        headSentence = ProcessSimpleSentence(laLessString, punctuation,original);
+                        headSentence = ProcessSimpleSentence(laLessString, punctuation, original);
                         continue; //Not dealing with "kin la!"
                     }
 
@@ -213,14 +214,14 @@ namespace BasicTypes
                         if (laLessString.StartsWith("~"))
                         {
                             string[] parts = Splitters.SplitOnPrepositions(laLessString);
-                            fragment= new Chain(ChainType.Prepositionals, Particles.Blank,
+                            fragment = new Chain(ChainType.Prepositionals, Particles.Blank,
                                 ProcessPrepositionalPhrases(parts).ToArray());
                         }
                         else
                         {
                             fragment = ProcessEnPiChain(laLessString);
                         }
-                        
+
                         if (currentSentence == null)
                         {
                             if (headSentence == null)
@@ -259,7 +260,7 @@ namespace BasicTypes
             if (sentence.EndsWith(" li"))
             {
                 throw new InvalidOperationException("Something went wrong-- sentenc ends with li. " + sentence);
-            
+
             }
             if (sentence.StartsOrContainsOrEnds("la"))
             {
@@ -305,10 +306,10 @@ namespace BasicTypes
             }
             else
             {
-                subjectChain = ProcessEnPiChain(subjects);    
+                subjectChain = ProcessEnPiChain(subjects);
             }
 
-            
+
 
 
 
@@ -327,7 +328,7 @@ namespace BasicTypes
             //    //Condition
             //    return new Sentence(subjectChain, verbPhrases);
             //}
-            
+
             //Head or complete sentence.
 
             Sentence parsedSentence = new Sentence(subjectChain, verbPhrases, new SentenceOptionalParts()
@@ -337,7 +338,7 @@ namespace BasicTypes
                 Punctuation = punctuation,
                 IsHortative = isHortative
             },
-            original,sentence);
+            original, sentence);
             return parsedSentence;
         }
 
@@ -408,11 +409,11 @@ namespace BasicTypes
             {
                 throw new ArgumentException("Can't parse null/empty subjects");
             }
-            foreach (var particle in new string[] {"la","li"})
+            foreach (var particle in new string[] { "la", "li" })
             {
                 if (subjects.StartsOrContainsOrEnds(particle))
                 {
-                    throw new ArgumentException("Subject phrase : " + subjects + " Contains "+particle+". This isn't possible.");
+                    throw new ArgumentException("Subject phrase : " + subjects + " Contains " + particle + ". This isn't possible.");
                 }
             }
 
@@ -426,7 +427,7 @@ namespace BasicTypes
             {
                 string piChains = subjectTokens[i];
 
-                if(piChains=="")
+                if (piChains == "")
                     continue; //But how did that happen?
 
                 string[] piLessTokens = Splitters.SplitOnPi(piChains);
@@ -449,7 +450,7 @@ namespace BasicTypes
         //     li jo e soweli e kili e wawa lon anpa tawa anpa
         public TpPredicate ProcessPredicates(string liPart)
         {
-            
+
             if (string.IsNullOrWhiteSpace(liPart))
             {
                 throw new InvalidOperationException("Missing argument, can't continue");
@@ -473,7 +474,7 @@ namespace BasicTypes
 
                 if (!Particle.IsParticle(verbPhraseParts[0]))
                 {
-                    throw new TpSyntaxException("uh-oh not a particle: " + verbPhraseParts[0] + " from "+ liPart);
+                    throw new TpSyntaxException("uh-oh not a particle: " + verbPhraseParts[0] + " from " + liPart);
                 }
                 verbPhraseParticle = new Particle(verbPhraseParts[0]);
 
@@ -482,25 +483,16 @@ namespace BasicTypes
 
                 if (verbPhraseParts.Length > 1)
                 {
-                    //if (!verbPhraseParts[1].StartsWith("~"))
+                    if (verbPhraseParts.Any(x => x == "pi"))
                     {
-                        if (verbPhraseParts.Any(x => x == "pi"))
-                        {
-                            //nominal predicate
-                            nominalPredicate = ProcessPiChain(string.Join(" ", ArrayExtensions.Tail(verbPhraseParts)));
-                        }
-                        else
-                        {
-                            verbPhrase = HeadedPhraseParser(ArrayExtensions.Tail(verbPhraseParts));
+                        //nominal predicate
+                        nominalPredicate = ProcessPiChain(string.Join(" ", ArrayExtensions.Tail(verbPhraseParts)));
+                    }
+                    else
+                    {
+                        verbPhrase = HeadedPhraseParser(ArrayExtensions.Tail(verbPhraseParts));
 
-                        }
                     }
-                    //else
-                    {
-                        //this is a li ~lon ... prepositional predicate thing.
-                        //partsWithPreps = ArrayExtensions.Tail(verbPhraseParts);
-                    }
-                    
                 }
                 else
                 {
@@ -509,7 +501,7 @@ namespace BasicTypes
 
                 string verbsMaybePrepositions = eParts[eParts.Length - 1];
 
-                
+
                 if (verbsMaybePrepositions.Contains("~"))
                 {
                     partsWithPreps = Splitters.SplitOnPrepositions(verbsMaybePrepositions);
@@ -534,7 +526,7 @@ namespace BasicTypes
                 List<Chain> doPiChains = new List<Chain>();
 
                 //Fancy foot work for when we have e ... ~... & that's all.
-                string[] toUse =null;
+                string[] toUse = null;
                 if (partsWithPreps != null)
                 {
                     toUse = partsWithPreps.Where(x => x.StartsWith("e ")).ToArray();
@@ -637,12 +629,12 @@ namespace BasicTypes
                     }
                 }
             }
-            if(nominalPredicate==null)
+            if (nominalPredicate == null)
                 return new TpPredicate(verbPhraseParticle, verbPhrase, directObjectChain, prepositionalChain);
             else
             {
                 return new TpPredicate(verbPhraseParticle, nominalPredicate, directObjectChain, prepositionalChain);
- 
+
             }
         }
 
@@ -688,9 +680,9 @@ namespace BasicTypes
                 if (s.Contains("~"))
                 {
                     throw new ArgumentException("One of the strings in the array starts with a ~, so the prep wasn't stripped off. : " + s);
-                } 
+                }
             }
-            
+
             //No Pi!
             HeadedPhrase phrase = new HeadedPhrase(new Word(value[0]), new WordSet(ArrayExtensions.Tail(value)));
             return phrase;
@@ -701,13 +693,13 @@ namespace BasicTypes
             if (value.Contains("~"))
             {
                 throw new TpSyntaxException("Headed phrase can't contain a preposition. This one does: " + value);
-            }    
-            foreach (string particle in new string[]{"pi", "la", "e", "li"})
+            }
+            foreach (string particle in new string[] { "pi", "la", "e", "li" })
             {
                 if (value.StartsOrContainsOrEnds(particle))
                 {
                     throw new TpSyntaxException("Headed phrases have no particles. This one has " + particle + " ref: " + value);
-                }    
+                }
             }
 
             if (string.IsNullOrEmpty(value))
@@ -716,7 +708,7 @@ namespace BasicTypes
             }
             //No Pi!
             TokenParserUtils pu = new TokenParserUtils();
-            
+
             Word[] words = pu.ValidWords(value);
 
 

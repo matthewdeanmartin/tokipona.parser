@@ -20,11 +20,6 @@ namespace BasicTypes
         [DataMember]
         private readonly bool middleOnly;
 
-        [DataMember]
-        private readonly bool preComma;
-
-        [DataMember]
-        private readonly bool postComma;
 
         public static string[] dictionary = new string[]
         {
@@ -58,15 +53,7 @@ namespace BasicTypes
                 }
             }
 
-            if (particle.EndsWith(","))
-            {
-                postComma = true;
-            }
-            if (particle.StartsWith(","))
-            {
-                preComma= true;
-            }
-            particle = particle.Trim(new char[] {','});
+            particle = ProcessPuncuation(particle);
 
             //TODO: Validate, particles is a closed class.
 
@@ -243,9 +230,9 @@ namespace BasicTypes
         public static bool IsParticle(string token)
         {
             string lookupForm;
-            if (token.Contains(","))
+            if (token.Contains(",") || token.Contains("»") || token.Contains("«"))
             {
-                lookupForm = token.Trim(new char[] {','});
+                lookupForm = token.Trim(new char[] {',','»','«'});
             }
             else
             {

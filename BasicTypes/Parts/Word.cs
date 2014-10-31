@@ -55,17 +55,7 @@ namespace BasicTypes
             //For XML serialization only.
         }
 
-        [DataMember]
-        private readonly bool preComma;
 
-        [DataMember]
-        private readonly bool postComma;
-
-        [DataMember]
-        private readonly bool preQuote;
-
-        [DataMember]
-        private readonly bool postQuote;
 
         //[DataMember(IsRequired = true)]
         //private readonly string word;
@@ -79,15 +69,7 @@ namespace BasicTypes
             {
                 throw new ArgumentNullException("word");
             }
-            if (word.EndsWith(","))
-            {
-                postComma = true;
-            }
-            if (word.StartsWith(","))
-            {
-                preComma = true;
-            }
-            word = word.Trim(new char[] { ',' });
+            word = ProcessPuncuation(word);
 
             ValidateOnConstruction(word);
 
@@ -106,6 +88,8 @@ namespace BasicTypes
 
             this.word = word;
         }
+
+       
 
         public string[] ValidateOnConstruction(string prospectiveWord, bool failFast=true)
         {
@@ -184,6 +168,7 @@ namespace BasicTypes
                         string message = "This word (" + prospectiveWord +
                                          ")  failed all checks.";
                         errors.Add(message);
+                        //Console.WriteLine("BAAAAAAAAAAAAAAAAD: " + prospectiveWord);
                         if (failFast) throw new InvalidOperationException(message);
                     }
 
@@ -206,6 +191,10 @@ namespace BasicTypes
             if (word == null)
             {
                 throw new ArgumentNullException("word", "Can't construct words with null");
+            }
+            if (word.EndsWith(" "))
+            {
+                throw new InvalidOperationException("Untrimmed word.");
             }
             if (word.EndsWith(","))
             {

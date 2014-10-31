@@ -3,7 +3,7 @@
 Toki!
 o lukin lon ni:
 *website http://www.google.com/coop/cse?cx=010530258174171504331%3Atrmsq7cfp8g
- lukin lon toki pona 
+ lukin lon toki-pona 
 
 070809
 3715
@@ -20,20 +20,20 @@ mi pilin pona e toki sama ni: "tenpo kama la mi pali e ..." .
 
 3717
 mi pilin pona e nasin kepeken pi nimi "la".
-toki pona li jo ala e nasin toki tenpo (Grammatical tense). tenpo li kama tan
+toki-pona li jo ala e nasin toki tenpo (Grammatical tense). tenpo li kama tan
 "toki kama en toki tawa" (context).
 "la phrase" li "Present tense" ala. taso nimi "la" li kama e "context". tan ni
 la mi ken
 sona e ni: toki ni li lon "Present" ala. ni li ike pali tan seme?
 
-mi jo e tan pi pilin pona. nasin kepeken pi nimi "la" lon toki pona li sama
+mi jo e tan pi pilin pona. nasin kepeken pi nimi "la" lon toki-pona li sama
 nasin kepeken pi nimi "ra" lon toki Nijon. ;-)
 *Jo
 
 3718
 mi pilin e ni: jan pi tenpo sike suno mute li ken toki e tenpo sike suno ona la
 pona.
-nimi 20 li lon la, jan pi tenpo sike suno 80 li ken toki pona pali.
+nimi 20 li lon la, jan pi tenpo sike suno 80 li ken toki-pona pali.
 taso mi sona kin e ni: nanpa ni li suli mute. jan pi tenpo sike suno 81 en 82 li
 ante lili.
 mi pilin e ni: nimi "ala" li ken kepeken anpa pi nimi nanpa la, ni li pona ala
@@ -60,8 +60,8 @@ a a a a a!
 070808
 3740
 Toki!
-nanpa wan ni la mi toki kepeken toki pona.  mi sona ala.  mi pilin ni: ale li sama.  
-lon la o lukin e toki pona
+nanpa wan ni la mi toki kepeken toki-pona.  mi sona ala.  mi pilin ni: ale li sama.  
+lon la o lukin e toki-pona
 O ilo sona! Lipu mi lon seme?
 topi pona pi jan ma pi sona ala
 *matthew
@@ -69,7 +69,7 @@ topi pona pi jan ma pi sona ala
 070810
 3742
 *website bknight0.myweb.uga.edu/toki/text/tokisewi.html
-Chapter, Passage  	Good News Translation  	Pije's Toki Pona translation  	Notes
+Chapter, Passage  	Good News Translation  	Pije's toki-pona translation  	Notes
 Matthew 5:1 - 5:2 	Jesus saw the crowds and went up a hill, where he sat down. His disciples gathered round him, and he began to teach them: 	jan Jesu li lukin e kulupu jan li tawa sewi nena. ona li anpa e monsi ona. jan nasin ona li tawa poka ona. jan Jesu li pana e sona tawa ona: 	 
 True Happiness
 Matthew 5:3 - 5:12
@@ -290,7 +290,7 @@ Matthew 5:25 - 5:26 	"You have heard that people were told in the past, ‘Do not 
 
 
 
-The Toki Pona translation here begins somewhat differently than the English version. Roughly translated back into English, it reads,  "Imagine this situation: You are in the church..."
+The toki-pona translation here begins somewhat differently than the English version. Roughly translated back into English, it reads,  "Imagine this situation: You are in the church..."
 
 
 
@@ -352,7 +352,7 @@ Matthew 5:32 	"It was also said, 'Anyone who divorces his wife must give her a w
 
 lipu pi wile weka = notice of divorce
 
-The Toki Pona version is somewhat different than the English version here.  The Toki Pona text reads, "If a wife commits adultery, her husband can justifiably get rid of this wife. But if the husband gets rid of his wife due to other things, this husband causes adultery. If his former wife takes a new husband, then that woman and her new husband commit adultery."
+The toki-pona version is somewhat different than the English version here.  The toki-pona text reads, "If a wife commits adultery, her husband can justifiably get rid of this wife. But if the husband gets rid of his wife due to other things, this husband causes adultery. If his former wife takes a new husband, then that woman and her new husband commit adultery."
 Teaching about Vows
 Matthew 5:33 - 5:37
 Matthew 5:33
@@ -449,7 +449,7 @@ Matthew 5:42 	"You have heard that it was said, 'An eye for an eye, and a tooth 
 "jan li wile e ijo la o pana e ona." 	"weka oko li wile e weka oko sin" translates as "The removal of an eye demands the removal of another eye."
 
 
-The Toki Pona translation replaces "cheek" with "hand." The underlying message is maintained, and using "luka" is easier than using some complex phrase to express "cheek" in Toki Pona.
+The toki-pona translation replaces "cheek" with "hand." The underlying message is maintained, and using "luka" is easier than using some complex phrase to express "cheek" in toki-pona.
 
 
 
@@ -457,7 +457,7 @@ The Toki Pona translation replaces "cheek" with "hand." The underlying message i
 
 
 
-The Toki Pona text has been modified because Toki Pona can't express the concept of a kilometer. The text translates back into English as "Maybe a foreign soldier wants you to carry his big pack along a road. But carry it along two roads."
+The toki-pona text has been modified because toki-pona can't express the concept of a kilometer. The text translates back into English as "Maybe a foreign soldier wants you to carry his big pack along a road. But carry it along two roads."
 Love for Enemies
 Matthew 5:43 - 5:48
 Matthew 5:43
@@ -528,7 +528,7 @@ olin sama ni = to love like that
 
 
 
-I found "tax collector" to be difficult to translate into Toki Pona. "jan pi jo mani ike" is the best I could come up with.
+I found "tax collector" to be difficult to translate into toki-pona. "jan pi jo mani ike" is the best I could come up with.
 Teaching about Charity
 Matthew 6:1 - 6:4
 Matthew 6:1
@@ -562,7 +562,7 @@ Matthew 6:4 	"Make certain you do not perform your religious duties in public so
 	"o pali ala e ijo sewi lon poka pi kulupu jan. sina pali e ijo sewi lon poka pi kulupu jan la sina ken ala jo e ijo pona tan mama sina lon ma sewi pona.
 
 
-"sina pana e ijo tawa jan pi mani ala la o wile ala e ni: jan ali li lukin. jan pi nasin ante tu li lon tomo sewi en nasin li wile e ni: jan ali li lukin e pana mani. jan pi nasin ante tu li wile e toki pona tan jan ali.
+"sina pana e ijo tawa jan pi mani ala la o wile ala e ni: jan ali li lukin. jan pi nasin ante tu li lon tomo sewi en nasin li wile e ni: jan ali li lukin e pana mani. jan pi nasin ante tu li wile e toki-pona tan jan ali.
 
 "taso sina pana e ijo tawa jan pi mani ala la o kama e ni: jan pona sina li sona ala.
 
@@ -579,7 +579,7 @@ Matthew 6:4 	"Make certain you do not perform your religious duties in public so
 jan pi nasin ante tu = hypocrite
 
 lukin e pana mani = see the donation of money
-wile e toki pona tan = want to be praised by
+wile e toki-pona tan = want to be praised by
 
 
 Teaching about Prayer
@@ -724,7 +724,7 @@ jan pi nasin ante tu = hypocrite
 
 
 
-The Toki Pona text here is somewhat different than the English version. The Toki Pona text reads, "When you pray, don't use lots of silly words. People of other faiths use many silly words and think, 'If I use lots of words in my prayer, the gods will hear me.'"
+The toki-pona text here is somewhat different than the English version. The toki-pona text reads, "When you pray, don't use lots of silly words. People of other faiths use many silly words and think, 'If I use lots of words in my prayer, the gods will hear me.'"
 
 
 
@@ -753,7 +753,7 @@ The Toki Pona text here is somewhat different than the English version. The Toki
 
 
 
-The Toki Pona text here reads, "Don't lead me to evil desires. Lead me from evil." It is based on the King James Version, which reads, "And lead us not into temptation, but deliver us from evil."
+The toki-pona text here reads, "Don't lead me to evil desires. Lead me from evil." It is based on the King James Version, which reads, "And lead us not into temptation, but deliver us from evil."
 Teaching about Fasting
 Matthew 6:16 - 6:18
 Matthew 6:16
@@ -898,23 +898,23 @@ Matthew 6:34
 
 
 "o pilin ala ike tan ijo pi tenpo suno kama. o suli ala e ike pi tenpo suno ali."
-	Translated back into English, the Toki Pona text here begins: "No one can work a lot for two leaders. The worker thinks this: 'One leader is good. The other leader is bad.'"
+	Translated back into English, the toki-pona text here begins: "No one can work a lot for two leaders. The worker thinks this: 'One leader is good. The other leader is bad.'"
 
 
 
 
 
-The Toki Pona text reads somewhat differently than the English. Back in English, it reads, "Due to this, don't feel bad due to the need for food or the need for clothing. If you want to be alive, you must eat. But food doesn't make a good life. Your body needs clothes. But clothes don't make a good body."
+The toki-pona text reads somewhat differently than the English. Back in English, it reads, "Due to this, don't feel bad due to the need for food or the need for clothing. If you want to be alive, you must eat. But food doesn't make a good life. Your body needs clothes. But clothes don't make a good body."
 
 
 
 
 
-The next-to-last sentence of the English version becomes three sentences in Toki Pona. They read, "Birds are unimportant. You are very important. That's the truth or what?
+The next-to-last sentence of the English version becomes three sentences in toki-pona. They read, "Birds are unimportant. You are very important. That's the truth or what?
 
 
 
-Here the Toki Pona version differs somewhat from the English text. The Toki Pona text reads, "[...] King Solomon had much money and many clothes. But if you look at these colorful plants, then you'll think this: The clothes of Solomon were only a little attractive."
+Here the toki-pona version differs somewhat from the English text. The toki-pona text reads, "[...] King Solomon had much money and many clothes. But if you look at these colorful plants, then you'll think this: The clothes of Solomon were only a little attractive."
 
 Judging Others
 Matthew 7:1 - 7:6
@@ -1011,7 +1011,7 @@ Matthew 7:14 	"Go in through the narrow gate, because the gate to hell is wide a
 
 
 
-"[T]he way that leads to it is hard" has been changed somewhat in the Toki Pona version, which roughly translates back into English as, "If you want to travel on its road, many things want to stop you."
+"[T]he way that leads to it is hard" has been changed somewhat in the toki-pona version, which roughly translates back into English as, "If you want to travel on its road, many things want to stop you."
 A Tree and Its Fruit
 Matthew 7:15 - 7:20
 Matthew 7:15
@@ -1105,7 +1105,7 @@ Matthew 7:24 - 7:25
  
 *The Shahadah
 *Arabic:  la ilaha illa-llah, wa muhammadan rasulu-llah 	
-*English Translation: 	There is no god but Allah, and Muhammad is the messenger of Allah. 	*Pije's Toki Pona Translation:
+*English Translation: 	There is no god but Allah, and Muhammad is the messenger of Allah. 	*Pije's toki-pona Translation:
 jan Ila li jan sewi wan. jan sewi ante li lon ala. jan Mukama li jan toki pi jan sewi Ila.
 *pije
 
@@ -1206,7 +1206,7 @@ mi wile toki e nimi "easy" la, mi kepeken e nimi "pona pali". sijelo pi nimi ni 
 sama ni: "pona lukin" "pona pilin" "pona moku"....
 mi pilin e ni: nimi "try" lon toki Inli li jo e ijo mute.
 mi jan Nijon. mi wile toki e nimi "try" lon toki Nijon la, mi toki sama ni:
-"chotto (verb) shite miru". mi ante e ni lon toki pona la, ni li sama ni:
+"chotto (verb) shite miru". mi ante e ni lon toki-pona la, ni li sama ni:
 "mi (verb) lili li lukin e ni".
 taso mi sona ala e ni: nasin ni li pona ala pona tawa jan ali. mi pilin e ni:
 nasin ante li lon li pona mute.
@@ -1221,4 +1221,4 @@ ni li pona ala pona?
 *elumutu
 
 *website  groups.yahoo.com/group/tokipona/
-ni li kulupu toki pi toki pona. sina ken toki lon toki pona.
+ni li kulupu toki pi toki-pona. sina ken toki lon toki-pona.

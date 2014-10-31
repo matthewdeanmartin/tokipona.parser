@@ -93,10 +93,10 @@ ma mi li wile pona tawa mi.
 *toto
 
 4720
-mi wile kama sona e toki pona BUSCO MAESTRO, LOOKING FOR TEACHER 	  
+mi wile kama sona e toki-pona BUSCO MAESTRO, LOOKING FOR TEACHER 	  
 toki!
 nimi mi li Pisku mi lon ma Mesico
-mi wile kama sona e toki pona
+mi wile kama sona e toki-pona
 mi sona lili pi tokipona
 mi tokipona level: basic
 mi nivel de tokipona: basico
@@ -131,7 +131,7 @@ ma mi li pona tawa mi
 toto
 
 4728
-o lukin e kulupu pi toki pona lon lipu LiveJournal. taso mi en jan Sewe li jan
+o lukin e kulupu pi toki-pona lon lipu LiveJournal. taso mi en jan Sewe li jan
 toki taso.
  
 jan Pusa
@@ -287,7 +287,7 @@ jan Janluka
 
 o kama pona!
 
-sina kama sona e toki pona kepeken seme?
+sina kama sona e toki-pona kepeken seme?
 *jim henry
 
 081122
@@ -380,7 +380,7 @@ poka pali -> "side of making"
 
 nimi ni li pona tawa mi ;)
 
-tenpo ni la mi ken toki mute kepeken toki pona!
+tenpo ni la mi ken toki mute kepeken toki-pona!
 lukin e ni: mi wile tawa kepeken nasin pi poka pilin
 
 mi tawa!
@@ -419,7 +419,7 @@ pona
 toki!
 
 toki tawa jan ale lon. mi jan Riccardo.
-mi sin tawa toki pona en toki pona kulupu.
+mi sin tawa toki-pona en toki-pona kulupu.
 tenpo suno ni kin e nimi mula mi sitelen te lili.
 mi wile sona e ni: nimi mute mi li pona ala pona?
 
@@ -447,7 +447,7 @@ ricky genova
 4800
 
 > toki tawa jan ale lon. mi jan Riccardo.
-> mi sin tawa toki pona en toki pona kulupu.
+> mi sin tawa toki-pona en toki-pona kulupu.
 
 o kama pona!
 

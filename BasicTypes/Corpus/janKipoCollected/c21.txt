@@ -1,11 +1,11 @@
 061124
 21??
 pona!
-mi sitelen ike e toki pona. mi pona e sitelen pini mi.
-"toki pona pi nanpa nasin li ike mute.
- jan Setepo li pona e nanpa nasin pi toki pona.
+mi sitelen ike e toki-pona. mi pona e sitelen pini mi.
+'toki-pona pi nanpa nasin li ike mute.
+ jan Setepo li pona e nanpa nasin pi toki-pona.
 tu wan = tu, wan en wan = tu, tu ala = ala.
-nanpa nasin ni li ike lili. nanpa nasin pi toki pona li ike mute."
+nanpa nasin ni li ike lili. nanpa nasin pi toki-pona li ike mute.'
 *lenati 
 
 2103
@@ -14,7 +14,7 @@ mi pilin sama : nanpa suli li suli ala.
 
 2104
 jan Setepo o
-suno pini la sina toki e ni: mi mute o toki kepeken e toki pona taso.
+suno pini la sina toki e ni: mi mute o toki kepeken e toki-pona taso.
 suno ni la sina toki kepeken e toki Inli mute.
 jan Setepo o lon pona. o toki ala pi nanpa nasa sina.
 *wiko 
@@ -32,10 +32,10 @@ nanpa nasa mi li pona tawa mi.
 2108
 toki!
 tenpo ni la mi wile ala toki pi nanpa.
-"Tiku ja Taku" li kalama musi pi jan lili lon ma Sumi. soweli pi moku
+'Tiku ja Taku' li kalama musi pi jan lili lon ma Sumi. soweli pi moku
 kili kiwen (?) tu li lon. tenpo pini la mi en jan pona mi li pana e ni
 tawa toki Epelanto. taso tenpo ni la mi wile pana e kalama musi ni
-tawa toki pona.
+tawa toki-pona.
 sina sona ala sona e kalama musi ni?
 sina sona ala sona e soweli tu ni?
 sina pilin seme?
@@ -91,7 +91,7 @@ sina ali pali ala pali e sama?
 2111
 jan Wiko!
 nimi mi li easternspring - Itepi.
-mi toki tawa sina e ni: mi mute o toki kepeken toki pona taso.
+mi toki tawa sina e ni: mi mute o toki kepeken toki-pona taso.
 mi toki ala kepeken toki Inli...
 mi pilin e ni: jan Setepo li toki ala e ni tawa sina.
 *itepi 
@@ -121,7 +121,7 @@ mi sona ala e nimi sina.  o kama sona e mi.  nimi sina li sama seme?
 
 2116
 jan setepo o!
-mi en jan wiko li toki e ni. mi mute o toki kepeken toki pona taso. 
+mi en jan wiko li toki e ni. mi mute o toki kepeken toki-pona taso. 
 ona li pilin e ni. sina toki e ni tawa ona.
 mi en ona li pilin e ni: toki Inli li ike tawa toki awen pi Toki 
 pona...
@@ -148,15 +148,15 @@ mi ken ala ken pali e ni. meli sina li lon ma seme?
 
 2120
 jan Setepo o!
-nimi mi li "AVIV". nimi kulupu lili mi li "MIZRAHI".
-"Aviv Mizrahi" li nimi lon toki Iwisi. nimi ni li "Eastern Spring" lon 
-Toki Inli. nimi ni li "Itepi" pi toki pona. 
+nimi mi li 'AVIV'. nimi kulupu lili mi li 'MIZRAHI'.
+'Aviv Mizrahi' li nimi lon toki Iwisi. nimi ni li 'Eastern Spring' lon 
+Toki Inli. nimi ni li 'Itepi' pi toki-pona. 
 tomo mi li lon ma Isale.
 jan Setepo o, nimi sina li seme?
 *itepi 
 
 2121
-nimi Mi pi toki pona li nimi ijo li nimi ante. 
+nimi Mi pi toki-pona li nimi ijo li nimi ante. 
 nimi Sina kin li nimi ijo li nimi ante. 
 nimi Ona kin li nimi ijo li nimi ante. 
 taso nimi Ni li nimi ante taso. 
@@ -235,7 +235,7 @@ http://tokipona. esperanto- jeunes.org/ lesson/lesson0. html
 2134
 jan setepo o!
 mi sona ala e toki sina. sina toki ala toki e toki Iwisi ? :)
-"pi ma tomo nena suno" - mi sona ala e toki sina...
+'pi ma tomo nena suno' - mi sona ala e toki sina...
 *itepi (= eastspring)  
 
 2135
@@ -248,7 +248,7 @@ mi sona ala e ni. nanpa 51 (27+ (2.9) + (2.3) + 0)li sama ala nanpa 83 (64 (2*6)
 *kipo 112406
 
 2137
-toki pi moku suli pi suno pini la nimi Inli "Thanksgiving" (Sankiwin)li sona pi toki pona e seme
+toki pi moku suli pi suno pini la nimi Inli 'Thanksgiving' (Sankiwin)li sona pi toki-pona e seme
 *kipo 112406
 
 2138
@@ -271,20 +271,20 @@ mi toki e ma tomo seme?
 *setepo 112406
 
 2140
-a a a pakala mi nanpa lon ala e nanpa sina: nimi "tu" luka li lon. nimi "tu" luka wan taso li lon
+a a a pakala mi nanpa lon ala e nanpa sina: nimi 'tu' luka li lon. nimi 'tu' luka wan taso li lon
 ala.
 *kipo 112406
 
 2141
 jan Setepo o!
-jan Itepi li toki pona.
+jan Itepi li toki-pona.
 mi pilin nasa pi nimi sina mute.
 mi nasa lili.
 *wiko 112406
 
 061125
 2142
-sina toki e ni tawa mi: "mi pilin nasa pi nimi sina mute".
+sina toki e ni tawa mi: 'mi pilin nasa pi nimi sina mute'.
 nimi mi seme? 
 *setepo
 
@@ -307,15 +307,15 @@ sina lon ala lon ma Isale lon tenpo pini?
 2146
 jan setepo o!
 ni li pona ala pona:
-"tenpo sike li jo wan tu tu" sama "May"
-"tenpo laso" sama "spring"
-"tenpo loje" sama "summer"
+'tenpo sike li jo wan tu tu' sama 'May'
+'tenpo laso' sama 'spring'
+'tenpo loje' sama 'summer'
 ?
-sina pona mute mute - "tel" lon toki iwisi li nena...
+sina pona mute mute - 'tel' lon toki iwisi li nena...
 *itepi 
 
 2149
-TOKI PONA TASO!
+toki-pona TASO!
 toki mi li sina lili. toki sina li sona mute.
 *itepi 
 
@@ -356,44 +356,44 @@ mi kin li sona lili e toki Iwisi. toki Iwisi li pona mute tawa mi.
 2155
 toki !
 o lukin e ni :
-1. "mi sona pona e toki sina"
-2. "mi wile pona e toki sina"
+1. 'mi sona pona e toki sina'
+2. 'mi wile pona e toki sina'
 kulupu nimi tu ni li lukin sama mute.
-taso lon kulupu nimi pi nanpa wan la nimi "pona" li nimi poka (modifier)
-lon kulupu nimi pi nanpa tu la nimi "pona" li nimi pali (verb)
+taso lon kulupu nimi pi nanpa wan la nimi 'pona' li nimi poka (modifier)
+lon kulupu nimi pi nanpa tu la nimi 'pona' li nimi pali (verb)
 ni li nasa, anu seme ?
 o pilin : jan meli pi ma Italija li toki e ni tawa sina : 
-"Ti voglio bene !"
-lon toki pona : "mi wile pona e sina"
+'Ti voglio bene !'
+lon toki-pona : 'mi wile pona e sina'
 sina ken ala sona e ni : jan meli li wile unpa e sina anu ona li wile
 ante e sina tawa soweli pi sona ala !
 tan ni la o awen e monsi sina lon sinpin pi jan meli pi ma Italija !
 jan Kanso
 P.S. : tenpo pini la mi sitelen e ni :
-"nanpa suli li suli ala"
+'nanpa suli li suli ala'
 jan mute lili li sitelen e ni tawa mi : ni li toki e seme ?
 pona. sina ken ante tawa toki Inli lon nasin ni :
-"Big numbers are not important"
+'Big numbers are not important'
 taso sina ken kin ante tawa toki Inli lon nasin ante ni 
-"Important numbers are not big"
+'Important numbers are not big'
 ni li pona kin.
-( a a a . mi musi mute kepeken toki pona !)
+( a a a . mi musi mute kepeken toki-pona !)
 *kanso 
 
 2156
 toki!
 mi pilin e ni: ni li pona li ike ala! toki Epelanto la mi lukin e nimi 
 sina kepeken nasin ni:
-> 1. "mi sona pona e toki sina"
+> 1. 'mi sona pona e toki sina'
 Mi bon-scias vian lingvon.
-> 2. "mi wile pona e toki sina"
+> 2. 'mi wile pona e toki sina'
 Mi ripar-volas vian lingvon.
-kulupu nimi pi nanpa tu li toki e "mi volas ripari" en "mi ripare volas" 
-en ante lon tenpo sama. ona li ken toki e "mi bone volas" anu "mi 
-bonvolas" kin, taso ni li pakala ala pi nimi "sona"/"wile" , ni li pakala 
-pi nimi "pona" (ona li ken toki e ijo ante mute).
+kulupu nimi pi nanpa tu li toki e 'mi volas ripari' en 'mi ripare volas' 
+en ante lon tenpo sama. ona li ken toki e 'mi bone volas' anu 'mi 
+bonvolas' kin, taso ni li pakala ala pi nimi 'sona'/'wile' , ni li pakala 
+pi nimi 'pona' (ona li ken toki e ijo ante mute).
 ali ni li ike ala tawa mi li pona tawa mi.
-mi pilin e ni: toki pona li sona ala e nimi poka li sona ala e nimi pali 
+mi pilin e ni: toki-pona li sona ala e nimi poka li sona ala e nimi pali 
 li sona e nimi taso. ni li pona mute
 *male 
 
@@ -424,14 +424,14 @@ ona li wile ala wile tawa tomo
 *setepo
 
 2162
-nimi "ala sona" li ijo sin lon kulupu nimi ni li pali suli e nimi "sona" 
+nimi 'ala sona' li ijo sin lon kulupu nimi ni li pali suli e nimi 'sona' 
 taso li pakala ala a kulupu nimi ni.
 *male
 
 2164
-mi pilin e ni: nimi sina li lon. nimi mute lon toki pona li toki e ijo mute.
+mi pilin e ni: nimi sina li lon. nimi mute lon toki-pona li toki e ijo mute.
 taso jan li ken lukin e ni kin: kulupu nimi sina li jo ala jo e sitelen 
-"?" lon pini ona? ona jo la, kulupu nimi ni li kulupu nimi seme. ona jo 
+'?' lon pini ona? ona jo la, kulupu nimi ni li kulupu nimi seme. ona jo 
 ala la, kulupu nimi ni li kulupu nimi pi seme ala.
 *male 
 
@@ -459,10 +459,10 @@ sina pona.  mi ante e nasin mi sama ni:
 *setepo 
 
 2173
-sina toki e lon. lon lipu pi nimi ali pi toki pona la
-nimi "sike" li nimi ijo (noun) li nimi poka (modifier)
-taso. nimi "sike" li nimi pali (transitive verb) ala.
-taso jan Pije li kepeken e kulupu nimi "sike e suno"
+sina toki e lon. lon lipu pi nimi ali pi toki-pona la
+nimi 'sike' li nimi ijo (noun) li nimi poka (modifier)
+taso. nimi 'sike' li nimi pali (transitive verb) ala.
+taso jan Pije li kepeken e kulupu nimi 'sike e suno'
 *kanso 
 
 2187

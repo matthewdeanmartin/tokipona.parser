@@ -1,5 +1,5 @@
-tenpo pini
-tenpo suno pini
+tenpo pini.
+tenpo suno pini.
 
 pata mi kin meli olin pi pata mi li lon. pona!
 mi kin ona li moku kan.
@@ -76,7 +76,7 @@ ona li pona tawa jan pi ma ale.
 nasin pona li toki musi suli.
 
 tenpo suno ni la mi pali e lipu sike tomo palisa.
-mi ante toki ni insa toki pona.
+mi ante toki ni insa toki-pona.
 ona li toki sike jan sewi Jawe.
 ona li toki suli tawa jan pi nasin sewi Jawatu.
 ona li toki suli tawa jan pi nasin sewi Kolisu.
@@ -98,5 +98,5 @@ mi ken ala lukin e pini pi pali mi.
 ni li ike tawa mi.
 mi wile e pini e pali.
 
-"Copyright (C) 2002, Yves Prudhomme."
+'Copyright (C) 2002, Yves Prudhomme.'
 

@@ -24,17 +24,18 @@ namespace BasicTypes
 
         public HeadedPhrase(Word head, WordSet modifiers)
         {
+            
             if (head == null)
             {
                 throw new ArgumentNullException("head", "Can't construct with null");
             }
             if (Particle.IsParticle(head.Text))
             {
-                throw new TpSyntaxException("You can't have a headed phrase that is headed by a particle. That would be a chain.");
+                throw new TpSyntaxException("You can't have a headed phrase that is headed by a particle. That would be a chain. " + head.Text);
             }
             if (ProperModifier.IsProperModifer(head.Text))
             {
-                throw new TpSyntaxException("Proper modifiers can't be the head of a headed phrase");
+                throw new TpSyntaxException("Proper modifiers can't be the head of a headed phrase " + head.Text);
             }
             if (modifiers != null)
             {
@@ -46,7 +47,22 @@ namespace BasicTypes
                     }
                 }
             }
-            
+            if (modifiers != null && modifiers.Count > 5)
+            {
+                if (head.Text == "nanpa")
+                {
+                    //no surprise there
+                }
+                    //HACK:
+                else if (modifiers.Any(x => x.Text == "anu" || x.Text == "en")) //Because we've deferred dealing with conj.
+                {
+
+                }
+                else
+                {
+                    throw new InvalidOperationException("Suspiciously long headed phrase " + head + " " + modifiers);
+                }
+            }
 
             this.head = head;
             this.modifiers = modifiers;

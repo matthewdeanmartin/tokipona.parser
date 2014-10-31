@@ -6,10 +6,13 @@ jan Uluka li wan, li pilin ike.
 jan Uluka ni li wile e seme?
 
 seli li pona tawa jan Uluka.
-moku e luka jan li pona tawa jan Uluka.
-pali e lupo pi sinpin jan li pona tawa jan Uluka.
-anpa e kiwen tawa kawa jan li pona tawa jan Uluka.
-tu e kawa jan li pona tawa jan Uluka.
+
+"Unrepairable text".
+"moku e luka jan li pona tawa jan Uluka."
+"pali e lupa pi sinpin jan li pona tawa jan Uluka."
+"anpa e kiwen tawa kawa jan li pona tawa jan Uluka."
+"tu e kawa jan li pona tawa jan Uluka."
+
 
 jan Uluka li wile kute e kalama musi utala.
 jan Uluka li wile lukin e telo loje pi jan lili mute.
@@ -23,7 +26,7 @@ ijo jaki li pona tawa jan Uluka.
 jan moli li pona tawa jan Uluka.
 tenpo pimeja li pona tawa jan Uluka.
 
-jan Uluka li wile palaka seli e tomo jan.
+jan Uluka li wile pakala seli e tomo jan.
 jan Uluka li wile moku e luka jan wan.
 
 taso ala!
@@ -35,7 +38,7 @@ jan Uluka li jo ala e ilo utala wan!
 
 tenpo suno li lon. suno mute li lon!
 suno li pana e seli tawa selo pi jan Uluka!
-kaso li lon! waso mute li lon!
+waso li lon! waso mute li lon!
 waso mute li pana e kalama musi waso!
 
 ni li pona ala tawa jan Uluka!

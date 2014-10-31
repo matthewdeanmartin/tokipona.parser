@@ -21,8 +21,8 @@ pona mute!
 *christian 032602
 
 8
-kin "fyksland"?
-toki "fyksland" li toki pona!
+kin 'fyksland'?
+toki 'fyksland' li toki-pona!
 *kvasir 032602
 
 9
@@ -48,10 +48,10 @@ mi pana e iki lon www.tokipona.org
 
 020331
 18
-Toki pona!
+toki-pona!
 Tawa!
 jan Tomas Klapka pali e iki ni.
-sina ken toki tawa e mi: "Tomas.Klapka"
+sina ken toki tawa e mi: 'Tomas.Klapka'
 wile! sina pana e toki tawa iki ni. mi wile pali e iki ni pona.
 sina kepeken iki ni tawa wile ale.
 
@@ -135,7 +135,7 @@ mi lukin e mije. sina olin e iki.
 
 020514
 38
-toki pona li pona tawa mi
+toki-pona li pona tawa mi
 *willkoffel 051402
 
 020515

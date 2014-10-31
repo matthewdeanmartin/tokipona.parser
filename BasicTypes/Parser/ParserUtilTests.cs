@@ -196,6 +196,12 @@ namespace BasicTypes.Parser
                     string normalized = Normalizer.NormalizeText(sentence);
                     //Normalization improved stuff
                     string[] words = tpu.JustTokens(normalized);
+                    for (int index = 0; index < words.Length; index++)
+                    {
+                        //Don't remove double quotes or we can't ID some marked foreign text.
+                        //'"'
+                        words[index] = words[index].Trim(new char[]{':','.','\'','«','»','!','?','-','[',']'});
+                    }
                     foreach (string word in words.Where(x => !string.IsNullOrEmpty(x)))
                     {
                         if (good.Contains(word)) continue;
@@ -208,10 +214,12 @@ namespace BasicTypes.Parser
                         {
                             if (bad.ContainsKey(word))
                             {
+                                bad[word] = (Convert.ToInt32(bad[word]) + 1).ToString();
+                                //bad.Add(word, ex.Message);
                             }
                             else
                             {
-                                bad.Add(word, ex.Message);
+                                bad.Add(word, "1");
                             }
                         }
                     }
@@ -219,8 +227,10 @@ namespace BasicTypes.Parser
             }
             foreach (KeyValuePair<string, string> pair in bad)
             {
-                Console.WriteLine("Uh-oh: " + pair.Key + " " + pair.Value);
-
+                if (Convert.ToInt32(pair.Value) > 10)
+                {
+                    Console.WriteLine("Uh-oh: " + pair.Key + " " + pair.Value);
+                }
             }
 
         }

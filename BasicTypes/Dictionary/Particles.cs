@@ -23,5 +23,10 @@ namespace BasicTypes
         public static string[] Prepositions {
             get { return new String[] {"kepeken", "tawa", "poka", "sama", "tan", "lon"}; }
         }
+
+        public static string[] Conjunctions
+        {
+            get { return new String[] {"en", "anu", "taso" }; } //ante?
+        }
     }
 }

@@ -11,7 +11,7 @@ nasin pi pini pi pilin ike li nasin pona Puta.
 nasin sona Puta li ni:
 lukin pona: o kama sona e sona lon tu tu.
 wile pona: o wile pona e sona e sijelo e wile kulupu kepeken nasin pona.
-toki pona: o toki kepeken ike ala kepeken mute ala kepeken sona lon.
+toki-pona: o toki kepeken ike ala kepeken mute ala kepeken sona lon.
 pali pona: o pali pona. o pali ala e ni: sina tan e pilin ike tawa jan ante.
 nasin pona: o pakala ala e sina e jan ante.
 wile pali pona: o pali tawa pona.

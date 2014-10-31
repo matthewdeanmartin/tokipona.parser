@@ -29,14 +29,34 @@ namespace BasicTypes.Extensions
                 i++;
                 if (particle.MiddleOnly)
                 {
-                    if (i > 1)
-                    {
-                        list.Add(particle.ToString(format,formatProvider));
-                    }
+                    //if (i > 1)
+                    //{
+                        if (list.Count>0)
+                        {
+                            string lastWord = list[list.Count - 1];
+
+                            if (!Particle.IsParticle(lastWord) && !Token.CheckIsConjunction(lastWord))
+                            {
+                                list.Add(particle.ToString(format, formatProvider));
+                            }
+                        }
+                
+                    //}
                 }
                 else
                 {
-                    list.Add(particle.ToString(format, formatProvider));
+                    if (list.Count > 0)
+                    {
+                        string lastWord = list[list.Count - 1];
+                        if ((!Particle.IsParticle(lastWord) && !Token.CheckIsConjunction(lastWord)))
+                        {
+                            list.Add(particle.ToString(format, formatProvider));
+                        }
+                    }
+                    else if (list.Count == 0)
+                    {
+                        list.Add(particle.ToString(format, formatProvider));
+                    }
                 }
                 list.Add(s);
             }

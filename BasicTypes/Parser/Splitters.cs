@@ -40,8 +40,30 @@ namespace BasicTypes.Parser
             {
                 throw new ArgumentException("Impossible to parse a null or zero length string.");
             }
+            if (value.Contains("-") &&  value.Contains("-pi-"))
+            {
+                value = value.Replace("-pi-", "ZZZZZZZZZZZZ");
+            }
+            if (value.Contains("*") && value.Contains("*pi*"))
+            {
+                value = value.Replace("*pi*", "VVVVVVVVVVV");
+            }
             Regex splitOnPi = new Regex("\\b" + Particles.pi.Text + "\\b");
             string[] piLessTokens = splitOnPi.Split(value).Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x)).ToArray();
+            for (int i = 0; i < piLessTokens.Length; i++)
+            {
+                if (piLessTokens[i].Contains("ZZZZZZZZZZZZ"))
+                {
+                    piLessTokens[i]=piLessTokens[i].Replace("ZZZZZZZZZZZZ", "-pi-");
+                }
+            }
+            for (int i = 0; i < piLessTokens.Length; i++)
+            {
+                if (piLessTokens[i].Contains("VVVVVVVVVVV"))
+                {
+                    piLessTokens[i] = piLessTokens[i].Replace("VVVVVVVVVVV", "*pi*");
+                }
+            }
             return piLessTokens;
         }
 

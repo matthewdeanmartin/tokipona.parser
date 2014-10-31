@@ -1,5 +1,5 @@
-jan
-jan wile e ali la jan weka e ali.
+jan.
+jan li wile e ali la jan li weka e ali.
 jan li jo ala la jan li weka e ala.
 jan sama li lon poka.
 moli li sama e jan.
@@ -12,7 +12,7 @@ jan pona pi jan ali li jan pona pi jan ala.
 mije pona li lon poka meli pona
 jan li pilin pona la jan li pilin ala e tenpo
 
-pali
+pali.
 toki li lili. pali li suli.
 pali pi pini pona li pona.
 sina pali la sina ken musi.
@@ -26,7 +26,7 @@ pali pi jan ali li sama pali pi jan ala.
 pali pona li weka ala.
 jan li sona la jan li pali pona.
 
-toki en sona
+toki en sona.
 sona li wawa.
 toki lili li sama sona.
 toki utala li pakala ala.
@@ -34,7 +34,7 @@ tenpo ali la o kama sona.
 o kute mute. o toki lili.
 tenpo ike li pana e sona.
 
-pona en ike
+pona en ike.
 ijo pana li sama ijo kama.
 kili li sama kasi ona.
 ike lili li insa pona mute.

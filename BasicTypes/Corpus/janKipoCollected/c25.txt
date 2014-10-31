@@ -31,7 +31,7 @@ pona
 
 2508
 ali o, toki!
-jan wile sitelen e nanpa suli kepeken toki pona la jan ken sitelen e
+jan wile sitelen e nanpa suli kepeken toki-pona la jan ken sitelen e
 ni: (tenpo) seki suno 2007 mun 12 suno 24 8-)! Sina mute pilin e ni:
 pona ala pona?
 *Elumutu
@@ -46,7 +46,7 @@ pakala a. mi wile pana e lipu nimi tawa jan Elumutu taso. o weka e ike mi.
 *Kipo
 
 2519
-mi pilin e ni pona: toki pona kama jo nimi sin pi nanpa suli. taso
+mi pilin e ni pona: toki-pona kama jo nimi sin pi nanpa suli. taso
 nimi "ten" "sen" "tasan" "mijo" li ike mute.
 o lukin e ni.
 http://www.tokipona.org/etym.html
@@ -55,7 +55,7 @@ wa" "tu" "wan" li kama tan toki Inli. nimi "insa" "kama"
 kulupu" "lukin" "pakala" "pi" "suwi" "taso" "toki" li kama tan toki
 Topisin tan toki Inli. mi wile ala nimi sin tan toki Inli.
 mi wile e ni: nimi sin tan toki Anku li pona mute. tenpo pini ni la
-nimi tan toki Anku li lon ala lon toki pona.
+nimi tan toki Anku li lon ala lon toki-pona.
 "si" (sip=10)
 "pe" (pek=100)
 "sen" (cheon=1000)
@@ -91,7 +91,7 @@ nasin ni li pona ala pona tawa sina?
 
 2521
 mi ken ala sona pona. sina wile ala wile toki e ni :
-"toki pona LI kama jo E nimi sin pi nanpa suli" ?
+"toki-pona LI kama jo E nimi sin pi nanpa suli" ?
 toki !
 *kanso
 
@@ -101,7 +101,7 @@ nanpa suli li suli ala.
 
 2523
 nasin ni pi kepeken "poka" li pona mute tawa mi.
-Mi jo kin pilin sin pi pona e toki pona:
+Mi jo kin pilin sin pi pona e toki-pona:
 Pona
 *elumutu
 
@@ -135,9 +135,9 @@ jan ante li tawa e linja pi ilo waso lipu la ona li ken waso. jan
 lili ali pi ilo sijelo waso li wile tawa e linja ni. jan ali li pilin
 pona mute tan ni.
 
-mi pilin e ni: toki pona lon nasin sama. ken ala toki e nanpa suli
-kepeken toki pona, taso ni li suli ala. toki ante li ken e ni. toki
-ante en toki pona li kulupu la jan ali li pilin pona.
+mi pilin e ni: toki-pona lon nasin sama. ken ala toki e nanpa suli
+kepeken toki-pona, taso ni li suli ala. toki ante li ken e ni. toki
+ante en toki-pona li kulupu la jan ali li pilin pona.
 
 tan seme la sitelen "seki suno 2007" li pona tawa mi. ni li ken
 sitelen li ken ala toki. mi ali li jo e toki ante. kepeken toki ni
@@ -191,7 +191,7 @@ pona. mi pilin awen ala e ni tu
 2544
 ni li musi. mi kepeken e kulupu nimi "sitelen-tawa" tawa nimi "movie". taso ni
 li pana kin e
-sitelen nimi tan toki Inli tawa toki pona (kulupu nimi ni li ike tawa mi).
+sitelen nimi tan toki Inli tawa toki-pona (kulupu nimi ni li ike tawa mi).
 nasin seme la sina kama ni?
 *kipo
 
@@ -237,16 +237,16 @@ mi jan Tanja. mi ken e toki mute. mi mama meli e jan lili mute.
 070206
 2566
 jan Tanja o, toki !
-o kama pona ! sina ken musi mute kepeken toki pona :
+o kama pona ! sina ken musi mute kepeken toki-pona :
 jan nasa mute li lon kulupu ni.
 *kanso
 
 2567
 jan Kanso en jan Tanja o,
-ni li lon. jan ken musi mute kepeken toki pona. jan nasa mute li lon
+ni li lon. jan ken musi mute kepeken toki-pona. jan nasa mute li lon
 kulupu ni. lukin la mi jan nasa kin ;). mi pilin e ni: jan Tanja li
 wile ken kama sona kepeken tenpo lili. :) taso o kama sona pona tan
-ni: jan pi sona ike pi toki pona li ike lili tawa mi li nasa e lawa
+ni: jan pi sona ike pi toki-pona li ike lili tawa mi li nasa e lawa
 mi...
 mi tawa
 *mimoku
@@ -296,7 +296,7 @@ mi pilin e ni:
 tenpo ni la
 mi o pona
 mi o pilin pona mute
-kepeken toki pona
+kepeken toki-pona
 
 tenpo ni la mi lon
 mi o musi o pali ike ala tan ni

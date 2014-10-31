@@ -5,14 +5,14 @@ li ken toki kepeken ni: "mi wile li pali e ni: mi toki kepeken e toki
 pona.
 mi toki e "important" e "easy"
 suli tawa jan en pona pali li pona tawa mi.
-mi toki e ni: toki pona li kepeken nanpa. nanpa li pona mute tawa mi
+mi toki e ni: toki-pona li kepeken nanpa. nanpa li pona mute tawa mi
 *toby
 
 070821
 3820
 mi pilin e ni: nimi "Try" li ike tawa ali. ((la*) tan la ni li pona
 tawa jan tawa ni: ona li nimi sin)
-ni li ijo pi sona ala sin: nimi "Internet" li seme lon toki pona
+ni li ijo pi sona ala sin: nimi "Internet" li seme lon toki-pona
 *toby
 
 070814
@@ -450,10 +450,10 @@ tawa ni: mi ****
 
 070825
 3851
-toki pi lipu pi ijo sin li toki e toki pona
+toki pi lipu pi ijo sin li toki e toki-pona
 
 tenpo nanpa wan la jan sitelen li toki e kama kulupu pi kam lon toki. taso ona li toki ala e
-kulupu li toki mute e toki pona en jan Sonja (poka sitelen suno) en toki tomo ante. toki ni li
+kulupu li toki mute e toki-pona en jan Sonja (poka sitelen suno) en toki tomo ante. toki ni li
 lon
 http://www.latimes. com/news/ printedition/ columnone/
 o kama pona.
@@ -466,7 +466,7 @@ e jan Sonja e toki tomo ante!
 070827
 3854
 toki!
-mi pilin pona mute tan ni: mi sitelen kepeken toki pona!!!
+mi pilin pona mute tan ni: mi sitelen kepeken toki-pona!!!
 sina mute li sona e sitelen mi la mi pilin pona mute!!
 sina mute li sona e sitelen mi la o toki tawa mi.
 mi sona e sitelen sina la, mi pilin pona mute...
@@ -480,7 +480,7 @@ sina jan pi kulupu mama Morin genopro anu seme?
 3856
 jan Sonja li wile
 
-mi pilin e ni: toki pona li ken weka e nimi ni.
+mi pilin e ni: toki-pona li ken weka e nimi ni.
 
 len-->"lipu" anu "lipu pi selo jan"
 
@@ -510,13 +510,13 @@ sina pilin seme?
 070828
 3860
 mi lukin e toki ni la mi pilin ike tan ni: Very often, these words are used in combination with others, such as len lawa, poki len, pipi/kasi mani, tomo mani (bank), tenpo mun, ilo uta walo, tomo-tawa, tomo telo, wile sona ... So it would be rather difficult and clumsy to use your proposed phrases in all these cases.
-mi pana e pilin ni tawa jan ali pi toki pona: o weka e nimi "ale", o kepeken e nimi "li" lon monsi pi nimi lawa ali, o pona e ike pi nanpa suli, o awen e nasin pona (simplicity) pi toki pona.
+mi pana e pilin ni tawa jan ali pi toki-pona: o weka e nimi "ale", o kepeken e nimi "li" lon monsi pi nimi lawa ali, o pona e ike pi nanpa suli, o awen e nasin pona (simplicity) pi toki-pona.
 poka la kulupu nimi "kin pona" li ike tawa mi. "ni li pona kin" li pona tawa mi.
 *elumutu
 
 3867
 John o! toki!
-nimi mi li Pierre Morin. nimi mama mama... mi pi nampa wan (lon ma suli sin) li Pierre Morin kin! tempo ona la ona awen lon Akati. mije lili ona li unpa poka meli lili pi jan lawa ma. tan ni la kulupu mama Morin ali li weka tan Akati. ona li tawa lon Kepeke.
+nimi mi li Pierre Morin. nimi mama mama... mi pi nampa wan (lon ma suli sin) li Pierre Morin kin! tenpo ona la ona awen lon Akati. mije lili ona li unpa poka meli lili pi jan lawa ma. tan ni la kulupu mama Morin ali li weka tan Akati. ona li tawa lon Kepeke.
 mi sona ala e Genopro. ona li pona ala pona?
 ni li pona tawa mi: mi sona e mama mama ali lon ma suli sin.
 ni li pona sin tawa mi: mi sona e ni: mi jo ala jo e mama mama tan Amelika. mi nasin ni: mi mute Kepeka li yo mute e telo loje tan jan tan Amelika.
@@ -581,7 +581,7 @@ pali e pakala. o lukin e ni :
 
 3884
 jan Kanso o. toki!
-sina toki pona.
+sina toki-pona.
 taso mi pilin ante.
 *wiko
 
@@ -605,6 +605,6 @@ mi ali li lon lon lon.
 *kanso
 
 3896
-mi sona *e* nimi ali pi toki pona.
+mi sona *e* nimi ali pi toki-pona.
 *setepo
 

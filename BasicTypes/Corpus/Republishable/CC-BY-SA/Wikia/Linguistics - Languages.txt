@@ -13,7 +13,7 @@ toki Katala li kama tan toki Kanse en toki Epanja.
 
 toki Epelanto li toki sin. nimi ona li Esperanto kepeken toki Epelanto.
 jan Sameno li pali e ona. ona li pali e nimi Epelanto kepeken nimi pi toki Elopa mute. jan Sameno li wile e ni: jan mute pi ma ali li kepeken e toki Epelanto.
-jan mute pi toki pona li toki e toki Epelanto.
+jan mute pi toki-pona li toki e toki Epelanto.
 
 
 
@@ -67,7 +67,7 @@ toki Kuwenja li pona kute.
 
 toki Kanse li toki. toki Kanse la nimi pi toki Kanse li français.
 jan li toki e toki Kanse lon ma Kanse, lon ma Kanata, lon ma Suwasi, li ma Pesije. ma mute lon ma suli Apika li kepeken kin e toki Kanse.
-jan Sonja li ken toki kepeken toki Kanse pi ma Akasi (Acadia). nimi mute pi toki pona li nimi pi toki Kanse en toki Kanse pi ma Akasi.
+jan Sonja li ken toki kepeken toki Kanse pi ma Akasi (Acadia). nimi mute pi toki-pona li nimi pi toki Kanse en toki Kanse pi ma Akasi.
 anpa = en bas
 kule = couleur
 kute = écouter

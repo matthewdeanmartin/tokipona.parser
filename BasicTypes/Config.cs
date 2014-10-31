@@ -66,6 +66,7 @@ namespace BasicTypes
     [Serializable]
     public class Dialect : IFormatProvider
     {
+        public bool AllowMiOVerbPhrase { get; set; } //E.g. mi o moku. vs o mi moku.
         public int UpToVersion { get; set; } //oldest (1)| mani, pan, esun... (2)| kipisi,monsuta ...(3)| ... pu (4)|
         public bool StrictPos { get; set; } //e.g. vt must have e phrase, adj must follow head word, etc.
         public bool ObligatoryPlural { get; set; } //e.g. jan tu li jan mute.

@@ -13,9 +13,9 @@ jan Sapiju en jan Wopu li pona.
 *damian
 
 804
-a a a! mi jan Ke lon toki pona. mama Sonja pi toki pona li kama ala
-lon kulupu toki pi toki pona la mi kin pana e toki Kanse tawa lipu pi
-kama sona pi toki pona. mi ken ala ken pana e toki Epelanto poka sina
+a a a! mi jan Ke lon toki-pona. mama Sonja pi toki-pona li kama ala
+lon kulupu toki pi toki-pona la mi kin pana e toki Kanse tawa lipu pi
+kama sona pi toki-pona. mi ken ala ken pana e toki Epelanto poka sina
 anu toki Epanja. mi sona mute e toki Pilipina la mi pana kin e
 Pilipina. (mi kama sona e toki Pilipina tan ni: mi jan Pilipina.)
 ke
@@ -24,10 +24,10 @@ ke
 806
 toki!
 mi jan Nachete. mi mije Epanja.
-mi wile kawa sona e toki pona.
-toki pona li pona tawa mi :)
+mi wile kawa sona e toki-pona.
+toki-pona li pona tawa mi :)
 ni li toki suwi.
-mi wile toki tawa sina kepeken e toki pona.
+mi wile toki tawa sina kepeken e toki-pona.
 mi tawa!
 *nachete
 
@@ -42,7 +42,7 @@ mi tawa,
 
 040822
 810
-o kama pona tawa kulupu mi mute pi toki pona! mi pilin pona tan ni:
+o kama pona tawa kulupu mi mute pi toki-pona! mi pilin pona tan ni:
 mi kama sona e jan Nakete! tenpo suli la o awen pona!
 *ke
 
@@ -56,9 +56,9 @@ ala kepeken e nimi "li".
 040822
 toki!!!
 kama sina li pona tawa mi kin!
-sina toki pona. :)
+sina toki-pona. :)
 mi wile sona e ni: jan Epanja mute li lon ala lon ni?
-mi jan Kataluna. mi lon ma tomo Paselona. jan pi toki pona li lon ala lon ma
+mi jan Kataluna. mi lon ma tomo Paselona. jan pi toki-pona li lon ala lon ma
 tomo ni?
 a! tenpo suno pini wan la mi toki kalama tawa jan tu pi tokipona kepeken ilo pi
 ilo sona!!! ni li pona mute!
@@ -76,7 +76,7 @@ e lipu sona pi nanpa seme?
 *jim henry
 
 815
-o lukin! mi pali e toki awen pi jan Akapeli Pin kepeken toki pona.
+o lukin! mi pali e toki awen pi jan Akapeli Pin kepeken toki-pona.
 mi pakala la o pona!
 
 o lon pona!
@@ -234,7 +234,7 @@ e lipu tu wan ni. tenpo kama la, mi pali e lipu ante tu wan.
 jan Pita li toki e ni:
 mi toki e ni tawa ona: "sina wile ala wile e moku?"
 pona.
-mi pilin e toki pona." = I think about Toki Pona.
+mi pilin e toki-pona." = I think about toki-pona.
 "mi pilin ike tan ali mani." = I feel bad about the money-all.
 "mi pilin pona tan pona sijelo sina." = I am happy about your
 good health.
@@ -244,11 +244,11 @@ mi toki e ni tawa ona lon pona sijelo ona: "sijelo sina li pona ala pona?"
 
 040826
 822
-sina jo e lipu lon toki pona la lipu sina li ken lon lipu ni:
+sina jo e lipu lon toki-pona la lipu sina li ken lon lipu ni:
 *sonja
 
 ex page?
-Just to get a hang of toki pona, I translated the first couple opening pages of Thomas Reid's Inquiry and Essays to toki pona and back:
+Just to get a hang of toki-pona, I translated the first couple opening pages of Thomas Reid's Inquiry and Essays to toki-pona and back:
 
     jan Tomasu Le : wile sona lipu toki lili. wan: tenpo ni - nasin sona pi jan Descartes en jan Malebranche en jan Locke.
 
@@ -263,8 +263,8 @@ Maybe it could be said: our present epistemology is complicated. Is the current 
 Descartes wanted to fix this, so he threw away the external world (outside earth) and held on to the mind and the inner self. If he existed, yet had no good reason for thinking this, he did not believe it. Descartes says this: If man thinks, man exists, because of this drunken dream. But if I think, do I not already exist? If I exist, do I not already think? This is circular reasoning.1
 *everything2 082404
 
-sitelen lon toki pona tan mi
-(My translations into toki pona)
+sitelen lon toki-pona tan mi
+(My translations into toki-pona)
     * sona wile tan jan Eloto (Herodotus: The Histories)
     * jan lawa pi jan Eta tan jan Kote (Goethe: Erlkönig)
     * sama li sama tan jan Kote (Goethe: Gleich und Gleich)
@@ -278,7 +278,7 @@ ale ken sona e ken pali jan tan ni: jan Eloto lon ma tomo Alikanaso li wile e ni
    3. sitelen ni toki kin mute. tenpo kama lili la, jan Pali li kama sona e sitelen ni, li mije lili pi jan Pijan. jan Pali li wile jo wawa e meli lon Elena. ona li pilin ni: mi ken jo wawa e meli la, ike li kama ala tawa mi. mi ken pali e ike. tan ni la ona li jo wawa weka e jan Elen. 
 *temon 082494
 
-toki pona 	toki Tosi/Deutsch 	toki Inli/English
+toki-pona 	toki Tosi/Deutsch 	toki Inli/English
 tenpo pimeja la jan seme li tawa? 	Wer reitet so spät durch Nacht und Wind? 	Who rides so late through the grisly night?
 mama mije en mije lili li tawa. 	Es ist der Vater mit seinem Kind. 	'Tis a father and child, and he grasps him tight;
 mije lili ona li poka, li poka. 	Er hat den Knaben wohl in dem Arm, 	He wraps him close in his mantle's fold,
@@ -351,7 +351,7 @@ a! mije lili ona kin li moli. 	In seinen Armen das Kind war tot. 	But, alack! in
 ama li sama tan jan Kote
 Gleich und Gleich von Goethe
 
-toki pona 		toki Tosi/Deutsch
+toki-pona 		toki Tosi/Deutsch
 kasi kule li lili 		Ein Blumenglöckchen
 li kama lon anpa. 		Vom Boden hervor
 tenpo pini la 		War früh gesprosset
@@ -380,13 +380,13 @@ e pakala mi!
 838
 mi wile sona e ni: jan Epanja mute li lon ala lon ni?
 tenpo pi kulupu pi jan toki Epelanto la meli Mawija Lute Matine li toki
-tawa mi. ona li wile sona e toki pona.
+tawa mi. ona li wile sona e toki-pona.
 *sami 082704
 
 839
 toki jan Lluis!
 mi pilin pona tan ni: jan Epanja sin li lon ni.
-sina toki pona mute.
+sina toki-pona mute.
 mi jan Palisja (Galicia)
 mi lon ma tomo Pontepeta (Pontevedra).
 taso mi kama soma lon ma tomo Mapi (Madrid).
@@ -510,7 +510,7 @@ lon:http://gxangalo.com/noticoj/1696.html
 852
 ni li pona mute tawa mi en kin tawa jan pakala!! taso pakala wan lon
 toki sina li lon. 'ti' (en 'wo' en 'wu' en 'ji') li lon ala kepeken
-toki pona. 'ti' li 'si'.
+toki-pona. 'ti' li 'si'.
 jan Timiti li jan Simisi... anu Temili anu nimi ante.
 ma (tomo?) Alesantija li Alesansija anu Alesanlija.
 sina sona ala sona? pona! ^_^
@@ -550,7 +550,7 @@ ale o pona tawa sina!
 
 856
 a a a! ona li lon ala lon? taso mi wile toki e ni tawa sina: sina li
-pona tan ni: sina li kama jo e ijo sin li pana e toki pona tawa ijo
+pona tan ni: sina li kama jo e ijo sin li pana e toki-pona tawa ijo
 sin. sina pona mute tawa ale!
 a a a! tenpo ni la mi wile tawa tomo sona. mi tawa!! :p
 *ke 091704
@@ -560,7 +560,7 @@ toki kepeken nimi 'Ototosi' li pona. mi wile toki e ni kepeken
 kulupu nimi 'nasin linja': 'straight path'. nimi 'linja' ken toki e
 pilin 'straight'. nimi 'linja' li wile toki taso e pilin 'hair'.
 nimi ni li ken toki ijo ante. ken la mi pilin pakala.
-mi wile toki ante e nimi 'helicopter' kepeken toki pona. taso pali
+mi wile toki ante e nimi 'helicopter' kepeken toki-pona. taso pali
 ni li pakala e lawa mi! sina ken ala ken toki e nimi ni kepeken nimi
 ante?
 ale o pona tawa sina!
@@ -568,13 +568,13 @@ ale o pona tawa sina!
 
 040918
 859
-mi sona. tenpo ante la toki pona li toki e... mu, a a a! 
+mi sona. tenpo ante la toki-pona li toki e... mu, a a a! 
 sina kin pakala ala! mi
 pilin e ni: pakala lili li pona li suwi. taso sina pakala ala.
 aso toki sina pi 'palisa sike' li pana e ni: uta
 mi li pana e kon pi pilin pona! ona li suwi mute. Nu... palisa sike
 suli li lon ijo sin!! a a a!! 
-nimi 'helicopter' li 'tomo-tawa-kon' lon lipu pi toki pona.
+nimi 'helicopter' li 'tomo-tawa-kon' lon lipu pi toki-pona.
 tomo-tawa - au'to
 tomo-tawa-telo - akvau'to, s'ipo
 tomo-tawa-kon - aerau'to, aeroplano, 'helicopter'
@@ -661,10 +661,10 @@ toki!
 mi pana e lipu pi kama sona pi jan Pije tawa toki Kataluna!
 mi sitelen ala e sitelen pini. sitelen pini pi jan Pije kin li lon lipu ni.
 tenpo kama la mi pona e lipu ni. tenpo kama la mi sitelen e sitelen pini pi mi
-kepeken toki pona. :)
+kepeken toki-pona. :)
 lipu ni li lon nimi http://vicerveza.homeunix.net/~viric/tokipona/. tomo sona ni
-mi pi toki pona li lon toki Kataluna taso.
-lipu nimi pi toki pona li lon ni. lipu pi kama sona kin li lon ni.
+mi pi toki-pona li lon toki Kataluna taso.
+lipu nimi pi toki-pona li lon ni. lipu pi kama sona kin li lon ni.
 jan li ken lukin e lipu kepeken ilo PDF taso.
 o tawa pona!
 *lluisbatlle 092004
@@ -680,7 +680,7 @@ Mi kama sona e: pana wile ala pi toki Volapuku li moli e toki Volapuku.
 jan Silaje li wile ala pana ijo sin e toki Volapuku. jan Silaje li kute
 ala e wile pi jan ali. ona li toki: mi jo e toki Volapuku. tenpo lili
 kama la toki Volapuku li kama e ala. tenpo pali la toki Volapuku li
-wawa. tenpo ni la toki pona li weka. jan mama pi toki ijo li wile e toki
+wawa. tenpo ni la toki-pona li weka. jan mama pi toki ijo li wile e toki
 pi tenpo mute la pana wile ala li ike.
 *sami 092204
 
@@ -727,7 +727,7 @@ mi tawa,
 *kijen 092704
 
 877
-toki! toki pona sina li ike ala! :p
+toki! toki-pona sina li ike ala! :p
 *ke 092704
 
 040929
@@ -748,7 +748,7 @@ sitelen sina li pona mute. :)
 041001
 885
 kulupu nimi li toki e ijo ante tu
-mi jan sin pi toki pona. mi ike toki la o pona e mi.
+mi jan sin pi toki-pona. mi ike toki la o pona e mi.
 mi pilin ike tan kulupu nimi ni: "ken pona"
 lon Wikipesija la mi lukin e ni: jan Pasila li olin li ken pona e sike noka.
 ni la kulupu nimi ni li toki e ni: "povas bone".
@@ -780,7 +780,7 @@ pilin ante. ni li kama la o toki!
 887
 kulupu nimi li toki e ijo ante tu
 toki!
-sina wile sitelen ni: "jan Makosi". lon toki pona la "c" li lon ala.
+sina wile sitelen ni: "jan Makosi". lon toki-pona la "c" li lon ala.
 (sina toki e seme tawa nimi ni pi toki Epelanto: "litero"?)
 mi pilin e ni: ijo tu ken. "mi toki ike" li jo e sona ni: "mi parolas fusxe".
 "mi ike toki" li jo e sona ni: "mi fusxas lingve".
@@ -792,7 +792,7 @@ mi tawa,
 
 041002
 889
-toki pona li jo ala e nasin pi toki ni. jan li wile toki kepeken
+toki-pona li jo ala e nasin pi toki ni. jan li wile toki kepeken
 nasin ni:
 "jan li moku e suwi mi. jan ni li ike."
 kepeken nimi ante la sina wile toki lon tenpo tu e jan pali
@@ -821,7 +821,7 @@ sina jan Muke mute tawa mi
 895
 jan li jo e nimi jan la jan li ken kepeken e ona mute poka 'pi' en
 poka ala 'pi.' taso mi pilin e ni: kepeken mi li ike ala ike? mi sona
-ala pona e kepeken. taso ale li pona lon toki pona.
+ala pona e kepeken. taso ale li pona lon toki-pona.
 
 o kama pona mute tawa kulupu toki pi mi mute! (ni li pona mute.)
 o kama pona mute tawa kulupu toki mi mute! (ni li pona lili.)
@@ -832,7 +832,7 @@ pona! mi wile tawa tomo sona mi. mi jo mute e lipu pali! :p
 899/900
 sina toki pi nasin seme e ni
 sina toki pi nasin seme e kulupu nimi ni. (ni li kulupu nimi pi nampa tu lon
-wikipesija pi toki pona).
+wikipesija pi toki-pona).
 tenpo ni la ona li jo e lipu 197.
 mi kama sona e ni: nasin ni la sina wile toki e ni:
 tenpo ni la ona li jo e lipu luka luka luka luka luka luka luka luka luka

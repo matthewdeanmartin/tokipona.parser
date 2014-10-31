@@ -26,24 +26,24 @@ taso jan moku e soweli tomo kepeken uta nena la ona li ijo sin.
 "mi kama lukin tawa nasin pona mute kepken ala ijo ike. ona li nasin
 lawa kepeken ala ijo nasa, kepeken ala nasin sijelo, kepeken ala moku
 sin anu sona sin anu lon sin. ona li sijelo pona kepeken ala ike
-kepeken ala tempo suno sike kama sijelo ike. mi sona pini e nasin ni
+kepeken ala tenpo suno sike kama sijelo ike. mi sona pini e nasin ni
 taso, mi ken ala kama sona e nasin ni tawa sina kepeken nimi anu toki.
 mi wile mute pi sona kame e nasin ni tawa sina taso... nasin ni li
 toki ala... taso nasin wan. wan! sitelin musi li ona. nasin pi kama
-sona anteli lon ala! tempo mute en tempo ale la o sina lukin e
+sona anteli lon ala! tenpo mute en tenpo ale la o sina lukin e
 sitelin musi mi. tu tu la o sina kepeken e mani tawa lipu nimi mi. o
-sina sona kama pi tempo pini e sitelin musi. pini la o sina kama sona
+sina sona kama pi tenpo pini e sitelin musi. pini la o sina kama sona
 e nimi. o sina li kama e ni: sina sona e sitelin musi 'Sinfest' la
-sina sewili pona tawa jan mute. tempo mute la o sina lukin e ni."
+sina sewili pona tawa jan mute. tenpo mute la o sina lukin e ni."
 
-Simplified Toki Pona
+Simplified toki-pona
 --------------------
 "mi lukin tawa nasin. ona li lawa li ala nasa li ala nasin (?), li ala
 moku li ala sona anu li ala lon. ona li sijelo li ala ike li ala ike.
 mi sona e nasin ni taso, mi ken ala kama sona e nasin ni tawa sina
 kepeken nimi. mi wile mute pi sona kame e nasin tawa sina taso...
 nasin ni li toki ala, taso nasin wan. wan! sitelin. nasin pi kama sona
-li lon ala! tempo mute la o sina lukin e sitelin mi. tu tu la o sina
+li lon ala! tenpo mute la o sina lukin e sitelin mi. tu tu la o sina
 kepeken e mani tawa nimi mi. o sina sona e sitelin. o sina kama sona
 e nimi. o sina li kama e ni: sina sona e sitelen mi la sina li pona
 tawa jan mute. o sina lukin e ni."
@@ -115,7 +115,7 @@ mi tawa,
 
 071007
 4251
-mi pilin e ni: toki Inli ni li ike pali mute, toki pona ni li ike pali lili.
+mi pilin e ni: toki Inli ni li ike pali mute, toki-pona ni li ike pali lili.
 toki Nijon li sitelen kepeken ala kon (without space ... ni li pona ala pona?) .
 sitelen Kanji li kama ala e kalama nimi li kama e ijo toki. ni li sama sitelen
 Icon (facemark, heartmark, etc).
@@ -138,7 +138,7 @@ anpa mi
 071008
 4260
 ni li ken pali tawa jelo en laso en loje. taso ona li toki seme
-kepeken walo en pimeja? ona li wile toki kin e ni: walo uta, tempo
+kepeken walo en pimeja? ona li wile toki kin e ni: walo uta, tenpo
 pimeja en sona sama. tenpo ni la mi mute li jo e nimi ni: wawa en pipi.
 
 this schema could work for hue, but I don't know how add information
@@ -174,8 +174,8 @@ pali ni pi jan sona pi ma Wensa li jo e nimi "Nopele"
 
 *tp list greeting
 toki!
-kama pona lon kulupu pona ni! sina ken sitelen e toki mute pi toki pona lon kulupu ni!
-sina lon kulupu pi toki pona lon ilo kulupu "Yahoo Groups". kulupu pi toki pona li lon ni:
+kama pona lon kulupu pona ni! sina ken sitelen e toki mute pi toki-pona lon kulupu ni!
+sina lon kulupu pi toki-pona lon ilo kulupu "Yahoo Groups". kulupu pi toki-pona li lon ni:
 sina ken toki tawa kulupu kepeken nimi ni:
 sina ken tawa weka tan kulupu kepeken nimi ni:
 sina ken lukin e kulupu ale sina lon ni:
@@ -184,7 +184,7 @@ jan lawa pi kulupu toki ni
 
 071023
 4287
-tenpo ni la jan ala li pali e nimi sin lon lipu wikija pi toki pona. ni li tan seme? sitelen sina
+tenpo ni la jan ala li pali e nimi sin lon lipu wikija pi toki-pona. ni li tan seme? sitelen sina
 li pona. mi wile e ni: sitelen sina pi jan Ali Ko lon lipu pi jan suli. sitelen sina pi kulupu
 Situwatanisa li pona kin.
 *josan
@@ -211,9 +211,9 @@ e nimi lon sin li awen e lipu mi pi nimi lon e lipu mi pi lipu pi pona mi. nimi
 "kali9putra@..." li nimi lon mi sin.
 poka la tenpo pi weka mi la mi lukin e toki pi kulupu ni pi sin ala. mi lukin e
 ni: jan mute li
-pali e lipu sona kepeken toki pona. taso jan pi ala ala li weka e ona. mi pali
+pali e lipu sona kepeken toki-pona. taso jan pi ala ala li weka e ona. mi pali
 e sijelo toki pi
-toki pona. mi wile pini e ona. tan ni la sina awen e toki pi lipu sona weka la o
+toki-pona. mi wile pini e ona. tan ni la sina awen e toki pi lipu sona weka la o
 sina pana e ona
 tawa mi.
 *kipo
@@ -237,11 +237,11 @@ jan nasa mute li lon kulupu ni !
 *kanso
 
 4298
-mun sike tu la mi sona kama pini e toki pona
-Jan Pije li jo e lipu nimi pona pi sona pi toki pona.
-taso kepeken kulupu Jaju la mi kepeken e toki pona. 
+mun sike tu la mi sona kama pini e toki-pona
+Jan Pije li jo e lipu nimi pona pi sona pi toki-pona.
+taso kepeken kulupu Jaju la mi kepeken e toki-pona. 
 o lukin e lipu sona mi Tokipona.NET! mi li pali e ni. mi pilin li sona
-e ni: ona li jo lipu sona ala pi toki pona pi len pi ilo sona.
+e ni: ona li jo lipu sona ala pi toki-pona pi len pi ilo sona.
 mi tawa,
 *matthew
 

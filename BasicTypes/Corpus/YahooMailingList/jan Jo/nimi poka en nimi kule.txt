@@ -24,7 +24,7 @@ taso mi mute li pali e ni la mi mute li ken ala kepeken e sitelen
 "Kana". sitelen "Kana" li jo e nasin sitelen tu. wan li sama sitelen
 "Latin Alphabet". wan li sama ni: sitelen li kama tan poka sewi tawa
 poka anpa li ante e linja tan poka "right" tawa poka "left". mi pilin
-e ni: sitelen "Kana" li pona ala tawa toki pona, sitelen "Latin
+e ni: sitelen "Kana" li pona ala tawa toki-pona, sitelen "Latin
 Alphabet" li pona.
 
 jan mute li toki e ni: kule "brown" li "kule pi telo wawa" la pona.

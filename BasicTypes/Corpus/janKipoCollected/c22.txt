@@ -11,7 +11,7 @@ nimi mi li Susanwanapi.
 jan Susanwanapi li jan pona mi. 
 
 2212
-mi li Kipo tawa jan pi toki pona
+mi li Kipo tawa jan pi toki-pona
 kipo
 
 2230
@@ -37,11 +37,11 @@ jan toki li toki e ni: ken la mi wile.  ona li wile kute e toki musi seme?
 jan Kitopelopin li toki e ni: e toki musi ona.  tan la ona li soweli sama ni. 
 jan toki li toki e ni: a.  mi sona. 
 jan Kitopelopin li toki e ni: sina wile ala wile toki? 
-jan toki li toki e ni: mi toki.  ken la mi toki pona. 
-mi toki.  ken la mi toki pona. 
+jan toki li toki e ni: mi toki.  ken la mi toki-pona. 
+mi toki.  ken la mi toki-pona. 
 
 tenpo wan la tenpo pini mute mute la tenpo sike pini tu la soweli Winipu li lon tomo pi kulupu pi kasi suli.  ona li lon wan.  ona li lon anpa nimi Sante. 
-(jan Kitopelopin li toki e ni: nimi pi "anpa nimi Sante" li wile toki e seme? 
+(jan Kitopelopin li toki e ni: nimi pi 'anpa nimi Sante' li wile toki e seme? 
 jan toki li toki e ni: ona li wile toki e ni: ona li nimi ni pi sitelen jelo suno sewi lupa ona li lon anpa ona.   
 jan Kitopelopin li toki e ni: soweli Winipu li sona pona ala. 
 mi kute e ni tan kalama soweli: tenpo ni la mi sona pona. 
@@ -176,10 +176,10 @@ ona li tawa pi sewi en anpa e lawa.  tenpo lili kama la mi kute ona poka ijo mus
 
 061204
 2234
-mi pilin ala sama sina. ni li sin lon toki pona : toki pona li jo 
+mi pilin ala sama sina. ni li sin lon toki-pona : toki-pona li jo 
 taso e nanpa lili nimi. ni li pona tawa mi.
-kalama nimi pi toki pona li musi. jan Sonja li lukin e ona lon kon 
-pi kasi nasa. nimi pi toki pona li sama nimi pi toki mute pi jan 
+kalama nimi pi toki-pona li musi. jan Sonja li lukin e ona lon kon 
+pi kasi nasa. nimi pi toki-pona li sama nimi pi toki mute pi jan 
 lili. ni li pona kin tawa mi.
 *kanso 
 
@@ -193,7 +193,7 @@ sina ken kama sona e toki Kinkon (Klingon). Toki ni li
 pona tawa jan suli en tawa jan ike a.
 mi jan suli. tenpo mute mute la mi sike e suno. taso
 lon insa lawa mi la mi jan lili li wile musi taso.
-toki pona li ilo musi pona tawa mi.
+toki-pona li ilo musi pona tawa mi.
 sina musi nasin seme ?
 *kanso 
 
@@ -209,21 +209,21 @@ mi sona kin e toki Sinan
 2239
 a. toki sin li pona tawa mi kin. tenpo pini la mi lukin e toki sin
 pi nanpa lili nimi. mi wile e ni : lon tenpo mun wan la jan li ken
-kama sona e toki ni. tan ni la toki pona li pona tawa mi.
+kama sona e toki ni. tan ni la toki-pona li pona tawa mi.
 tenpo ni la mi lukin e toki sin pi nasin ni : jan li lukin e sitelen
 lili pi nimi ijo pi toki ni la jan li ken sona e pilin pi nimi ni 
 sina sona e toki sin pi nasin ni la sina o toki e ni tawa mi !
 *kanso
 
 2240
-toki! mi kama sona e toki pona tan ni: toki pona li pona tawa mi.
-toki li pona tawa mi. toki pona li pona tawa mi tan: ona li sama ala e 
+toki! mi kama sona e toki-pona tan ni: toki-pona li pona tawa mi.
+toki li pona tawa mi. toki-pona li pona tawa mi tan: ona li sama ala e 
 toki sin.
 taso mi ken ala toki e ijo mute. taso mi wile kama sona e ano.
 mi wile ni: wan pi sina mute anu sina mute o lawa e ni tawa mi: mi kama 
-sona e toki pona.
+sona e toki-pona.
 mi ken ala e toki mute. anu mi ken ala lukin e lipu toki mute pi toki 
-lon toki pona en toki Inli
+lon toki-pona en toki Inli
 ni li lon sewe? lon tenpo ni, mi kama sona ni
 http://tokipona. esperanto- jeunes.org/ lesson/lesson11. html.
 ni li pona tawa mi.
@@ -233,9 +233,9 @@ Nimi mi li Alesaner. ni li pona tawa mi: mi kama ken e sina mute.
 2243
 toki jan Jon o.
 ni li pona tawa mi: mi tawa jo e lipu toki ni pi nimi ali tan sina.
-mi toki suli e ni tawa sina: mi kama tan e nimi sin pi toki pona tawa sina.
+mi toki suli e ni tawa sina: mi kama tan e nimi sin pi toki-pona tawa sina.
 kin la mi wile toki e ni: sina wile ala wile toki ni tawa mi: mi sitelen pona ala.
-jan li toki pona pona pona li lon kulupu ni?
+jan li toki-pona pona pona li lon kulupu ni?
 *alesante 
 
 2244
@@ -255,11 +255,11 @@ mi jan Setepo.  mi pona e toki sina sama ni:
 In a message dated 12/6/2006 4:02:36 AM Central Standard Time, ikbenmezelf@... writes:
 
 
-> toki! mi kama sona e toki pona tan ni: toki pona li pona tawa mi.
+> toki! mi kama sona e toki-pona tan ni: toki-pona li pona tawa mi.
 >
 > toki li pona tawa mi. 
 
-toki pona li pona tawa mi tan:
+toki-pona li pona tawa mi tan:
 
 tan *ni*:
 
@@ -283,7 +283,7 @@ mi wile *e* ni:
 
 wan pi sina mute anu sina mute o lawa e ni tawa mi: mi kama
 
-> sona e toki pona.
+> sona e toki-pona.
 >
 > mi ken ala e toki mute. 
 
@@ -295,7 +295,7 @@ anu mi ken ala lukin e lipu toki mute pi toki
 
 anu mi ken ala lukin e lipu toki mute toki
 >
-> lon toki pona en toki Inli.
+> lon toki-pona en toki Inli.
 >
 > ni li lon sewe? 
 
@@ -319,7 +319,7 @@ mi kama sona *e* ni:
 
 
 
-*n*imi mi li Alesante/Alesana/...   toki pona li jo ala e kalama R.  jan li kepeken e kalama L tawa R e kalama ala.  toki pona li kepeken e sitelen lili tawa nimi pi toki pona e sitelen suli tawa nimi nimi.
+*n*imi mi li Alesante/Alesana/...   toki-pona li jo ala e kalama R.  jan li kepeken e kalama L tawa R e kalama ala.  toki-pona li kepeken e sitelen lili tawa nimi pi toki-pona e sitelen suli tawa nimi nimi.
 
 ni li pona tawa mi: mi kama ken e sina mute.
 
@@ -340,7 +340,7 @@ sina sona ala e seme?
 
 061207
 2251
-nimi ali pi toki pona li jo e pilin mute. tan ni la mi pilin e ni: jan li ken toki e ni: mi sona e jan.
+nimi ali pi toki-pona li jo e pilin mute. tan ni la mi pilin e ni: jan li ken toki e ni: mi sona e jan.
 *moku	
 
 2252
@@ -355,15 +355,15 @@ mi lukin pona e ona li kama sona e mute kepeken ona.
 kepeken toki Ano la mi wile toki e ni: ona.
 mi sona e ni tan pona sina pi toki mi: ona pona la mi kepeken mute e 
 nimi E. ona pona lili la mi kepeken lili e nimi E.
-tenpo pini la mi lukin e lipu sona pi toki pona li lukin e ni: jan toki 
-ala sama ni: "toki li sama ala e toki ante".
-jan toki sama ni:"toki li sama ala toki ante".
-mi jo e pilin pona pi ni: lon kulupu ni la mi kama sona pona e toki pona.
+tenpo pini la mi lukin e lipu sona pi toki-pona li lukin e ni: jan toki 
+ala sama ni: 'toki li sama ala e toki ante'.
+jan toki sama ni:'toki li sama ala toki ante'.
+mi jo e pilin pona pi ni: lon kulupu ni la mi kama sona pona e toki-pona.
 nimi pona pi tawa,
 *alesante 
 
 2255
-mi ken pona tawa tomo kulupu pi nimi "saweli". taso mi
+mi ken pona tawa tomo kulupu pi nimi 'saweli'. taso mi
 sona e ijo ala.
 tenpo ni la mi wile lape.
 *kanso 
@@ -374,11 +374,11 @@ tenpo ali la ona li pali pona tawa mi.
 > > >
 > > > http://tech.groups.yahoo.com/group/saweli/
 >
-> mi ken pona tawa tomo kulupu pi nimi "saweli". 
+> mi ken pona tawa tomo kulupu pi nimi 'saweli'. 
 
 
 
-"ken pona tawa" li seme?  sina wile ala wile toki e "ken tawa pona"?  mi sona ala pona.
+'ken pona tawa' li seme?  sina wile ala wile toki e 'ken tawa pona'?  mi sona ala pona.
 
 taso mi
 > sona e ijo ala.
@@ -397,8 +397,8 @@ o lape pona!
 
 061208
 2257
-sina pilin pona. kulupu nimi "ken pona tawa" li pona
-lili taso. kulupu nimi "ken tawa pona" li pona mute.
+sina pilin pona. kulupu nimi 'ken pona tawa' li pona
+lili taso. kulupu nimi 'ken tawa pona' li pona mute.
 *kanso 
 
 2258
@@ -406,44 +406,44 @@ pipi musi en pipi pali li jan pona.
 lon tenpo seli ali la pipi pali li pali mute li pali e tomo.
 lon tenpo sama la pipi musi li musi li toki lon kalama musi.
 tenpo lete li kama. pipi musi li jo ala e tomo li tawa sinpin tomo pi 
-pipi pali li toki e ni : "mi pilin lete. o open e lupa. mi wile awen 
-lon tomo sina." taso pipi pali li toki e ni :
-"lon tenpo seli ali la sina toki lon kalama musi. 
-tenpo ni la o tawa lon kalama musi ! "
+pipi pali li toki e ni : 'mi pilin lete. o open e lupa. mi wile awen 
+lon tomo sina.' taso pipi pali li toki e ni :
+'lon tenpo seli ali la sina toki lon kalama musi. 
+tenpo ni la o tawa lon kalama musi ! '
 *kasnso 
 
 2259
-pona a. musi a. sina ken ala ken weka e nimi "lon" lon kulupu nimi "lon tenpo seli ali la"?
+pona a. musi a. sina ken ala ken weka e nimi 'lon' lon kulupu nimi 'lon tenpo seli ali la'?
 *kipo 
 
 2260
 mi pilin pona tan ni : sina lukin e sitelen toki mi !
-ken la jan li ken weka e nimi "lon". mi sona ala pona.
+ken la jan li ken weka e nimi 'lon'. mi sona ala pona.
 mi wile toki e ni : tenpo ni li awen mute (Esperanto :
 dum la tuta somero ; Fr. : pendant tout l'été ; (in my
 plain) English : during the whole summer)
 danci/danser/ to danse : tawa musi
 taso kanti/chanter/ sing : ?
-kulupu nimi "toki musi" li pona ala tawa mi li ken
+kulupu nimi 'toki musi' li pona ala tawa mi li ken
 toki e pilin ante (déclamer/to recite) kin.
-tan ni la mi sitelen e kulupu nimi "toki lon kalama
-musi" en "tawa lon kalama musi"
+tan ni la mi sitelen e kulupu nimi 'toki lon kalama
+musi' en 'tawa lon kalama musi'
 taso sina jo e pilin ante e pilin pona la o toki e ni
 tawa mi !
 *kanso 
 
 2261
-tenpo mute la mi toki e ni taso: "all summer" anu "all summer long". 
+tenpo mute la mi toki e ni taso: 'all summer' anu 'all summer long'. 
 ni li sama ala sama?
 *setepo 
 
 2262
-nimi ali kin pi toki pona li ken toki e pilin mute! a a a!
-jan mute li pilin e ni:  tan ni la toki pona li toki pona.
+nimi ali kin pi toki-pona li ken toki e pilin mute! a a a!
+jan mute li pilin e ni:  tan ni la toki-pona li toki-pona.
 *setepo 
 
 2263
-jan li ken sona e kulupu nimi pi "toki lon kalama musi" sama ni: 
+jan li ken sona e kulupu nimi pi 'toki lon kalama musi' sama ni: 
 (((toki lon) kalama) musi). 
 kulupu nimi pi nanpa tu li sama.  jan li ken sona e ona sama ni: 
 (((tawa lon) kalama) musi).
@@ -451,30 +451,30 @@ sina wile ala e ni la ona li pona ala.
 *setepo 
 
 2264
-mi pilin e ni: nimi "lon" li pali e kulupu ante li sama e nimi "tawa": kulupu "toki (lon (kalama
-musi" li sama kulupu "pana (tawa (jan moku"
+mi pilin e ni: nimi 'lon' li pali e kulupu ante li sama e nimi 'tawa': kulupu 'toki (lon (kalama
+musi' li sama kulupu 'pana (tawa (jan moku'
 *kipo 
 
 061209
 2265
 ni li lon. toki mi pi jan lili li toki Tosi. jan li
-ken toki e ni lon toki Tosi : "den ganzen Sommer
-lang". tan ni la mi pilin e ni : nasin toki ni li kama
+ken toki e ni lon toki Tosi : 'den ganzen Sommer
+lang'. tan ni la mi pilin e ni : nasin toki ni li kama
 tan toki Tosi li pona ala lon toki Inli.
 *kanso 
 
 2266
 ni li lon kin. taso mi wile kepeken kin e kulupu nimi
-"kalama musi" lon toki ni.
+'kalama musi' lon toki ni.
 *kanso 
 
 2267
-mi sona pona. kin la kulupu nimi "toki lon kalama musi
-" li ken toki e ni : "paroli pri muziko", "talk about
-music" etc.
+mi sona pona. kin la kulupu nimi 'toki lon kalama musi
+' li ken toki e ni : 'paroli pri muziko', 'talk about
+music' etc.
 ken la mi wile ante e pini pi toki mi li sitelen :
-"tenpo seli la sina toki musi. tenpo ni la o tawa musi
-!"
+'tenpo seli la sina toki musi. tenpo ni la o tawa musi
+!'
 mi pana e pilin pona mi tawa sina ali : sina kama e ni
 : mi ken pona e toki mi !
 *kanso 
@@ -485,11 +485,11 @@ pipi musi en pipi pali li jan pona.
 tenpo seli ali la pipi pali li pali mute li pali e
 tomo. tenpo sama la pipi musi li musi li toki musi.
 tenpo lete li kama. pipi musi li jo ala e tomo li tawa
-sinpin tomo pi pipi pali li toki e ni : "mi pilin
-lete. o open e lupa. mi wile awen lon tomo sina." taso
+sinpin tomo pi pipi pali li toki e ni : 'mi pilin
+lete. o open e lupa. mi wile awen lon tomo sina.' taso
 pipi pali li toki e ni :
 tenpo seli ali la sina toki musi. 
-tenpo ni la o tawa musi ! "
+tenpo ni la o tawa musi ! '
 *kanso 1
 
 2269
@@ -519,15 +519,15 @@ mute ! a a a.
 
 061214
 2275
-kulupu pali pi kama sin "BBC" li toki e ni :
+kulupu pali pi kama sin 'BBC' li toki e ni :
 tenpo pini la jan mute li lon ma lon ma tomo lili.
 tenpo suno ni la jan wan pi jan tu li lon ma tomo suli.
 tenpo kama la jan mute li lon ma tomo suli. jan mute lili taso li awen 
 lon ma tomo lili.
 mi pilin e ni : jan pi ma tomo suli li ken ala kute e kalama musi pi 
 waso ali lon ma pi kasi palisa. ni li ike tawa ona. tenpo kama lili la 
-ma tomo suli pi ma ali li lukin sama ma tomo pi sitelen-tawa "Soylent 
-Green" (Richard Fleischer, 1973) anu pi sitelen-tawa "Brazil" (Terry 
+ma tomo suli pi ma ali li lukin sama ma tomo pi sitelen-tawa 'Soylent 
+Green' (Richard Fleischer, 1973) anu pi sitelen-tawa 'Brazil' (Terry 
 Gilliam, 1985).
 ike a.
 *kanso 
@@ -558,7 +558,7 @@ mi pilin e ni: jan pi ma tomo suli li pilin ike tan jan ante. tan ni
 la ona li open ala e lupa tomo.
 tenpo pini la mi kama tawa jan pona tu. mi mute li wile lukin e musi.
 taso jan pona tu li lon ala tomo ona. tan ni la ona li toki tawa mi:
-"o kama tawa tomo mi. lupa li open". mi kama lon insa tomo ona li
+'o kama tawa tomo mi. lupa li open'. mi kama lon insa tomo ona li
 open e ilo pi lukin musi li awen. tenpo kama lili la ona kin li kama.
 ni li pona tawa mi. (mi mute li lon ma tomo pi suli lili, lon ma tomo
 Jetepo lon ma Wensa)
@@ -590,17 +590,17 @@ pakala !
 toki !
 sina lukin e toki ni la sina ken pana mute e kon pona !
 lon ma tomo Paki (Paris) la jan tu li lon tomo-tawa kulupu li awen e 
-tenpo tawa. jan wan li toki e ni : "mi tawa ma Pesije. sina tawa 
-seme ?". jan ante li toki e ni : "mi tawa ma Italija.
-jan wan li toki sin : "nasa a. jan pali pi tomo-tawa kulupu li sona 
-mute. tomo-tawa kulupu ni li ken tawa nasin tu lon tenpo sama !"
+tenpo tawa. jan wan li toki e ni : 'mi tawa ma Pesije. sina tawa 
+seme ?'. jan ante li toki e ni : 'mi tawa ma Italija.
+jan wan li toki sin : 'nasa a. jan pali pi tomo-tawa kulupu li sona 
+mute. tomo-tawa kulupu ni li ken tawa nasin tu lon tenpo sama !'
 a a a.
 *kanso 122206
 
 2282
 toki!
 tenpo kama lili la kama kulupu pi toki Epelanto tu li lon. mi wile
-sona e ni: jan pi toki pona mute li tawa ala tawa?
+sona e ni: jan pi toki-pona mute li tawa ala tawa?
 mi tawa kama kulupu Iso lon ma Tosi. jan Niko li kama kin. mi sona kin
 e ni: jan Male li tawa kama kulupu Aso lon ma Posuka.
 *mila 122206
@@ -611,8 +611,8 @@ toki Epelanto li wan.
 *batlle 122206
 
 2284
-mi pilin e ni: kulupu nimi "kama kulupu pi toki Epelanto tu" li sona e " kulupu kama tu pi toki
-Epelanto" aun "((kk)(pi (tE)))2 li sona ala e "((kk)(pi(t( E2)))"
+mi pilin e ni: kulupu nimi 'kama kulupu pi toki Epelanto tu' li sona e ' kulupu kama tu pi toki
+Epelanto' aun '((kk)(pi (tE)))2 li sona ala e '((kk)(pi(t( E2)))'
 *kipo 122206
 
 2285
@@ -650,7 +650,7 @@ mi sona pona e toki Epelanto.  taso mi kute e toki ni la ni li nasa tawa mi
 
 061223
 2292
-a.ni li ike... toki Epelanto li kalama pi pona en musi tawa mi. taso toki pona li nasa lili e lawa mi e pilin mi... :S taso toki ni li musi kin :) toki pona en toki Epelanto li toki pi pona en musi :)
+a.ni li ike... toki Epelanto li kalama pi pona en musi tawa mi. taso toki-pona li nasa lili e lawa mi e pilin mi... :S taso toki ni li musi kin :) toki-pona en toki Epelanto li toki pi pona en musi :)
 *mimoku 122306
 
 2293
@@ -666,11 +666,11 @@ sina mute li musi mute :)
 *manu 122406
 
 2295
-mi sin e toki pona.  mi ala sona mute, taso mi lukin.  mi toki pona e toki en kama toki Inli tawa lili jan. 
+mi sin e toki-pona.  mi ala sona mute, taso mi lukin.  mi toki-pona e toki en kama toki Inli tawa lili jan. 
 *xen 122406
 
 2296
-toki jan Sen o. nimi ante li lon monsi pi nimi awen. ni li lon: "sona ala" en "jan lili" ken la
+toki jan Sen o. nimi ante li lon monsi pi nimi awen. ni li lon: 'sona ala' en 'jan lili' ken la
 ni li lon: mi toki...li kama toki.
 *kipo 122406
 
@@ -680,24 +680,24 @@ nasin pona li mute
 *xen
 
 2298
-taso nasin pi toki pona li lili :). o lukin pona e nasin pi toki pona. o kama sona pona kin e ni.
+taso nasin pi toki-pona li lili :). o lukin pona e nasin pi toki-pona. o kama sona pona kin e ni.
 tenpo pona pi jan lili Jesu!
 *mimoku 122506
 
 22??
-jan ale pi toki pona o, toki! mi wile e ni: kama lon pi jan Kolisu
+jan ale pi toki-pona o, toki! mi wile e ni: kama lon pi jan Kolisu
 en tenpo sike sin pi nanpa 2007 li pona mute mute tawa sina!
-kama kulupu Ijoko ni lon ma tomo Salajewo la mi toki mute e toki pona
+kama kulupu Ijoko ni lon ma tomo Salajewo la mi toki mute e toki-pona
 tawa jan ante lon tenpo pi nanpa wan. mi pilin pona tan ni:
 jan sin pi pona en sona li kama jan pona mi, jan sin li kama sona
-e toki pona kepeken mi, jan ali li musi.
-ali ni li kama tan toki pona. tan ni la toki pona li pona! a a a! :-)
+e toki-pona kepeken mi, jan ali li musi.
+ali ni li kama tan toki-pona. tan ni la toki-pona li pona! a a a! :-)
 mi wile e ni: mi en sina li kama kulupu lon tenpo kama lili! jan Male
 *male 122406
 
 061227
 2299
-nanpa nasin. jan li kukin e nanpa nasin pi "Toki IO".
+nanpa nasin. jan li kukin e nanpa nasin pi 'Toki IO'.
 *lenadi 122706
 
 2300

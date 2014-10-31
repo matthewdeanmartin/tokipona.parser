@@ -12,16 +12,16 @@ jan Sonja li wile ala e toki ike, ona li ken weka e toki sona tu ni.
 mi sona e ni: jan Sonja li meli.  taso "meli li nasa e mije" li ike.
 mi mije en jan pona meli mi li mute.  meli ni li nasa ala e mi.
 
-mi pilin e ni: jan li ken ala toki ale kepeken toki pona la, ni li
+mi pilin e ni: jan li ken ala toki ale kepeken toki-pona la, ni li
 ike.  "toki sewi pi jan walo" li ike mute tawa mi.  taso seme li
 kama?  ijo li ike tawa jan mute la, jan li ken ala toki e ijo ni?
 
-a, mi sona!  nanpa suli li ike tawa jan mute pi toki pona.  tan ni,
+a, mi sona!  nanpa suli li ike tawa jan mute pi toki-pona.  tan ni,
 jan li ken ala toki e nanpa suli!
 
 taso jan li ken toki e ni: "meli li nasa e mije."
 
-mi pilin e ni: toki pona li pona, taso ni li nasa.
+mi pilin e ni: toki-pona li pona, taso ni li nasa.
 
 jan Sosuwa
 
@@ -117,6 +117,6 @@ ken ala toki pi nasin Kolisu.  utala toki li mute.  tan ni, jan mute
 li wile ala e ni: jan lawa li utala e ken toki.
 
 ijo pi jan Juta lon ma Nijon li ["interesting"--mi sona ala toki e ni
-kepeken toki pona].
+kepeken toki-pona].
 
 jan Sosuwa

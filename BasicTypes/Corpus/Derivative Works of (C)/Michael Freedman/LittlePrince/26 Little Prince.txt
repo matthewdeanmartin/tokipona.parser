@@ -75,7 +75,7 @@ ona li pilin ike li toki: 'o kama ala tan akesi. akesi li ken ike. ken la ona li
 
 'mi weka ala.'
 
-ona toki pona: 'lon. akesi linja li jo ala e telo moli tawa moku lili pi nanpa tu.'
+ona toki-pona: 'lon. akesi linja li jo ala e telo moli tawa moku lili pi nanpa tu.'
 
 tenpo pimeja la mi lape li lukin ala e weka ona. ona li weka kepeken kalama ala. mi tawa e ona. ona li toki: 'a! sina lon.' ona li pilin e luka mi kepeken luka ona.
 

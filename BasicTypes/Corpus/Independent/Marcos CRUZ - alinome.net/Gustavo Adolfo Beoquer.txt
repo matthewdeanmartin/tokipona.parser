@@ -5,7 +5,7 @@ tenpo ni la, jan sewi li lon tawa mi!
 
 
 oko laso sina li lukin tawa mi la,
-sina toki e nimi ni: "toki olin li seme?"
+sina toki e nimi ni: 'toki olin li seme?'
 sina kin li toki e seme? a.
 toki olin li sama sina kin!
 

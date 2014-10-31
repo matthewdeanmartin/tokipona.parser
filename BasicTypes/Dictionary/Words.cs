@@ -3226,10 +3226,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                kapa = new Word("kapa ");
+                kapa = new Word("kapa");
 
-                Dictionary.Add("kapa ", kapa);
-                Glosses.Add("kapa ", glossMap);
+                Dictionary.Add("kapa", kapa);
+                Glosses.Add("kapa", glossMap);
             }
 
 

@@ -29,6 +29,17 @@ namespace BasicTypes
 
         public string Text { get { return word; } }
 
+        [DataMember]
+        protected  bool preComma;
+
+        [DataMember]
+        protected bool postComma;
+
+        [DataMember]
+        protected bool preQuote;
+
+        [DataMember]
+        protected bool postQuote;
 
         internal Token()
         {
@@ -57,6 +68,29 @@ namespace BasicTypes
                 throw new ArgumentNullException("word", "Token can't contain white space-- must use *, - or other punctuation to join words into a single token");
             }
             this.word = word;
+        }
+
+        protected string ProcessPuncuation(string token)
+        {
+            if (token.EndsWith(","))
+            {
+                postComma = true;
+            }
+            if (token.StartsWith(","))
+            {
+                preComma = true;
+            }
+            if (token.EndsWith("»"))
+            {
+                postQuote = true;
+            }
+            if (token.StartsWith("«"))
+            {
+                preQuote = true;
+            }
+
+            token = token.Trim(new char[] { ',', '«', '»' });
+            return token;
         }
 
         //Validates arbitrary Text. 
@@ -181,6 +215,13 @@ namespace BasicTypes
             {
                 return true;
             }
+
+            //Most likely a roman number, eg. nanpa MMLW
+            if (toCheck.All(c => "WTLMA".Contains(c)))
+            {
+                return true;
+            }
+
             return false;
         }
 
@@ -192,6 +233,15 @@ namespace BasicTypes
             }
         }
 
+        public static bool CheckIsConjunction(string prospectiveWord)
+        {
+            if (prospectiveWord.Length < 2)
+            {
+                return false;
+            }
+            
+            return Particles.Conjunctions.Contains(prospectiveWord);
+        }
 
         public bool CheckIsPreposition(string prospectiveWord)
         {
@@ -289,6 +339,10 @@ namespace BasicTypes
         public static bool IsForeign(string s)
         {
             if (s.StartsWith("\"") && s.EndsWith("\"") && !s.Contains(" "))
+            {
+                return true;
+            }
+            if(!s.Contains(" ") && s.Contains("*"))
             {
                 return true;
             }

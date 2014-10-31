@@ -192,6 +192,7 @@ namespace BasicTypes.Parser
                 normalized = NormalizedSinaLi(normalized, "«");
                 normalized = NormalizedSinaLi(normalized, "' ");
                 normalized = NormalizedSinaLi(normalized, "« ");
+                normalized = NormalizedSinaLi(normalized, "taso "); //conjunctions behave like leading punct
 
 
                 foreach (Word possible in Words.Dictionary.Values)
@@ -254,7 +255,10 @@ namespace BasicTypes.Parser
             normalized = Regex.Replace(normalized, @"^\s+|\s+$", ""); //Remove extraneous whitespace
 
             //If it is a sentence fragment, I really can't deal with prep phrase that may or may not be in it.
-            if (normalized.Contains("~") && !normalized.Contains(" li "))
+            if (normalized.Contains("~") 
+                && !normalized.Contains(" li ") //full sentence okay
+                && !normalized.StartsWith("o ") //imperative okay
+                )
             {
                 normalized = normalized.Replace("~", ""); //HACK: This may erase ~ added by user at the start?
             }
@@ -273,11 +277,38 @@ namespace BasicTypes.Parser
             {
                 normalized = normalized.Replace("mi ~tawa", "mi li ~tawa");
             }
+            //"mi li ~tawa lon" -- the other one is a prep
+            if (normalized.Contains("mi li ~tawa lon"))
+            {
+                normalized = normalized.Replace("mi li ~tawa lon", "mi li tawa ~lon");
+            }
 
             //missing li (ha,previously I skiped this on purpose!)
             if (normalized.Contains("taso, sina soweli"))
             {
                 normalized = normalized.Replace("taso, sina soweli", "taso, sina li soweli");
+            }
+            //overnormalized... mama pi mi mute o
+            if (normalized.Contains("mama pi mi li mute o"))
+            {
+                normalized = normalized.Replace("mama pi mi li mute o", "mama pi mi mute o");
+            }
+            //overnorm
+            if (normalized.Contains("sina li ~tawa mi"))
+            {
+                normalized = normalized.Replace("sina li ~tawa mi", "sina ~tawa mi");
+            }
+            if (normalized.Contains("sina li o "))
+            {
+                normalized = normalized.Replace("sina li o ", "sina o ");
+            }
+            
+
+
+            //e mi li mute
+            if (normalized.Contains("e mi li mute"))
+            {
+                normalized = normalized.Replace("e mi li mute", "e mi mute");
             }
 
 
@@ -400,7 +431,10 @@ namespace BasicTypes.Parser
                                                          "li ~tawa suli e", //move something
                                                          "mi ~lon poka e", //place something next to
                                                          "li ~lon poka e", //place something next to
-                                                         "li ~lon poka e"
+                                                         "li ~kepeken sin e", //use again
+                                                         "li ~tawa jo wawa e", //I don't even know what this means
+                                                         "tenpo pi mi ~lon sike", //my life (span)
+                                                         "o ~tawa kon e" // moving stuff around.
                                                     })
             {
                 normalized = normalized.Replace(oneOff, oneOff.Replace("~",""));

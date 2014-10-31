@@ -118,6 +118,7 @@ namespace BasicTypes
             int i = 0;
             foreach (Chain subChain in innerChains)
             {
+                //This seems to work for (..pi...)en(...pi..) phrases
                 i++;
                 if (particle.MiddleOnly && i != 1)
                 {
@@ -125,7 +126,7 @@ namespace BasicTypes
                 }
                 if (!particle.MiddleOnly)
                 {
-                    sb.Add(particle.ToString(format, formatProvider));
+                  sb.Add(particle.ToString(format, formatProvider));
                 }
 
                 //Tracers.Stringify.TraceInformation("At Leaf " + subChain.HeadedPhrases + "  headed phrases (i.e. no particles)");

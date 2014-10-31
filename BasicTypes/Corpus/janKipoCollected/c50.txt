@@ -12,7 +12,7 @@ mi wile sona e ni: sina sona ala sona e tenpo pi kama pini pi toki awen suli?
 
 090611
 5004
-mi lon ma Losa. mi ken ala toki pi toki Inla. mi wile toki pi toki pona. mi sona ala pona e toki pona. mi ken ala ken toki insa tomo toki mi?
+mi lon ma Losa. mi ken ala toki pi toki Inla. mi wile toki pi toki-pona. mi sona ala pona e toki-pona. mi ken ala ken toki insa tomo toki mi?
 *mysolohin
 
 5005
@@ -26,13 +26,13 @@ ken a.
 mi pilin e ni: mi wile pona e utala pi ante toki.
 utala ante li ni:
 lawa utala pana e lipu sitelen toki wan tawa jan utala mute ale.
-toki li toki pona ala: toki li tawa toki ante.
+toki li toki-pona ala: toki li tawa toki ante.
 jan utala mute wile ante e lipu sitelen:
-tenpo kama la, toki li toki pona.
+tenpo kama la, toki li toki-pona.
 lawa utala li lukin e lipu mite pi jan utala ale:
 seme wan li suli?
 jan pi lipu suli li suli.
-Mi pilin e ni: utala pi ante toki li pona tawa sona pi toki pona.
+Mi pilin e ni: utala pi ante toki li pona tawa sona pi toki-pona.
 *rickygenova
 
 5007
@@ -85,7 +85,7 @@ nimi 'pali' li sona e nimi Inli 'try' la sina wile ala e nimi 'tawa':' mi pali s
 
 5020
 jan Bejonse pi kalama Helo. Beyonce's Halo in TP!!!
-mi wile kalama e kalama ni. kalama ni li kalama e toki pona. mi wile e ni: sina lukin e nimi pi kalama ni tan ni: mi wile sona e ni: nimi pi kalama li pona. seme la sina pali e sitelen-tawa pi kulupu Jutubu? ale li pona la sina pali e sitelen-tawa pi toki pona!
+mi wile kalama e kalama ni. kalama ni li kalama e toki-pona. mi wile e ni: sina lukin e nimi pi kalama ni tan ni: mi wile sona e ni: nimi pi kalama li pona. seme la sina pali e sitelen-tawa pi kulupu Jutubu? ale li pona la sina pali e sitelen-tawa pi toki-pona!
 
 nimi pi kalama ni
 
@@ -160,7 +160,7 @@ o pali e ni: sitelen e toki kalama musi tawa tomo toki ni.
 5022
 mi pana e sona lon tomo sona lon ma tomo "Southampton" lon ma Piten.
 
-jan pi kama sona li wile pali e ilo pi toki pona li wile e ni: jan pi toka pona li toki tawa ona.
+jan pi kama sona li wile pali e ilo pi toki-pona li wile e ni: jan pi toka pona li toki tawa ona.
 
 toki en kute li pona mute. taso toki kepeken ilo "MSN" anu ilo "google talk" anu ilo sama li pona kin.
 
@@ -177,7 +177,7 @@ toki ni ali li toki sitelen pi jan lili tan jan Suse e jan Seli Sipesajen
 *kipo
 
 090706
-toki ! mi kama sona e toki pona.
+toki ! mi kama sona e toki-pona.
 sitelen mi li ike la sina pona e nimi mi. pona.
 *Tawita
 

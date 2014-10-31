@@ -18,11 +18,9 @@ namespace BasicTypes.Corpus
             //"*Yves*.txt"
             foreach (FileInfo file in di.EnumerateFiles("*.txt", SearchOption.AllDirectories))
             {
-                if (file.FullName.Contains("janKipoCollected")) continue;
-
-                Console.WriteLine("----------------------------------");
-                Console.WriteLine("----------------------------------");
-                Console.WriteLine("----------------------------------");
+                //if (file.FullName.Contains("janKipoCollected")) continue;
+                //if (file.FullName.Contains("toki sewi kolisu p2.txt")) continue;
+                if(!file.FullName.Contains("jan Mato")) continue;
                 Console.WriteLine("----------------------------------");
                 Console.WriteLine(file.Directory);
                 Console.WriteLine(file.Name);

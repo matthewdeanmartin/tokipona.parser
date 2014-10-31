@@ -73,8 +73,35 @@ namespace BasicTypes.Parser
             normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
             Assert.IsFalse(normalized.Contains("Nanunanuwakawakawawa"));
         }
-        
 
+        [Test]
+        public void DontSplitMiMute()
+        {
+            //ken la mi mute li toki ike 
+            const string s = "ken la mi mute li toki ike.";
+
+            Console.WriteLine("Original  : " + s);
+            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+            Console.WriteLine("Normalized: " + normalized);
+
+            const string expected = "ken la mi mute li toki ike.";
+            Assert.AreEqual(expected, normalized);
+        }
+
+        //"o pali sama mije lili pona anu meli lili pona"
+        [Test]
+        public void DetectSamaInImperative()
+        {
+            //ken la mi mute li toki ike 
+            const string s = "o pali sama mije lili pona anu meli lili pona";
+
+            Console.WriteLine("Original  : " + s);
+            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+            Console.WriteLine("Normalized: " + normalized);
+
+            const string expected = "o pali ~sama mije lili pona anu meli lili pona";
+            Assert.AreEqual(expected, normalized);
+        }
 
         [Test]
         public void Normalize_IntransitiveVerb()
