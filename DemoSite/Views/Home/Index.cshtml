@@ -1,31 +1,79 @@
-﻿@{
+﻿@model DemoSite.Models.SimpleParserViewModel
+@{
     ViewBag.Title = "Home Page";
 }
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h1>toki pona Parser</h1>
+    <p class="lead">A parser is a fundamental tool for doing natural language processing with toki pona.</p>
+    <p><a href="https://github.com/matthewdeanmartin/tokipona.parser" class="btn btn-primary btn-lg">Open Source on GitHub</a></p>
 </div>
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
+    <div class="col-md-6">
+        <h2>Try it out</h2>
+        @using (Html.BeginForm("Parse", "Home"))
+        {
+            <textarea id="SourceText" name="SourceText" rows="5" cols="120" data-ng-style="width:500px"></textarea>
+            <br />
+            <input type="submit" value="Submit" />
+        }
+    </div>
+    <div class="col-md-6">
+        <h2>Bracketed (Partial Diagram*)</h2>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            @Html.Raw(Model.Formatted);
         </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+
+        <h2>English Gloss</h2>
+        <p>
+            @Html.Raw(Model.Glossed)
+        </p>
+        <h2>Gloss + POS</h2>
+        <p>
+            @Html.Raw(Model.FormattedPos)
+        </p>
+        <h2>Repeat Back- Diagnosic</h2>
+        <p>
+            @Html.Raw(Model.Recovered)
+        </p>
+        <h2>Normalized- Add Punct &amp; mi li/sina li</h2>
+        <p>
+            @Html.Raw(Model.Normalized)
+        </p>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    @*<div class="col-md-4">
+            <h2>Repeat Back</h2>
+            <p>
+                @Model.Recovered
+            </p>
+        </div>*@
+
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <h2>Normalization</h2>
+        <p>
+            TP has two design mistakes. First, there is extensive overlap between content and function words. The difference between content and function words is like porn, you know it when you see it. Function words in tp are pi, li, la, e, and the six prepositions. The prepositions can be used as nouns and verbs, the pi, li la, e particles can't. In normalization, I make best guesses at what is being used as a preposition.
+        </p>
+        <p>The other mistake was droping li from mi/sina. It makes parsing more difficult and the language isn't any more concise. So I also normalize by putting back the missing li. People can do this effortlessly, computers do it poorly.</p>
+        <h2>Echo Back</h2>
+        <p>After the text has been converted to an object-oriented data structure, I convert it back to a toki pona string. When the code is bug free, it will be nearly identical. Right now, there are bugs and I lose white space and punctuation when converting back to toki pona.</p>
+        <h2>Glossing</h2>
+        <p>In glossing, I look up words by part of speech and pick one alternative at random. I'm starting with the jan Sonja classic dictionary, which to my surprise is actually missing a lot of entrie. Most content words can be plausibly used in all POS, but are only defined for a few. This used to lead to arguments. Right now it leads to [square bracketed] error messages. </p>
+        <h2>Grammar Checking</h2>
+        <p>I've been processing communit texts and generally I can parse </p>
+        <h2>Punctuating Input</h2>
+        <p>Direct quotes need to be in single quotes (not double!). If you put commas in front of all prepositions, you save me a huge chore that computers do poorly. Foreign text and proper modifiers that are defective TP have to be in double quotes. Compound words should be joined by quotes, especially compound phrases with prepositions iin them, such as tomo-tawa-kon. Also, the status of prepositional phrases as modifiers is undefined and they make things hard to parse right now. So if you have a prepositional phrase modifier, especially in the subject phrase, join it with dashes, e.g. jan lon-ma-mi li jo e mani suli. I can sometimes normalize vocatives correctly, but if you can put period, colon, question or exclamation mark, vocatives will parse better. If sentences don't have terminating punctuation, I assume it is a run on sentence. I can't easily guess that a sentence has ended just because of white space, a blank line, parenthesis or so on. The problem is especially acute with titles, conversational fragments and poetry.  Also, the parser has a hard time dealing with elipses, such as, mi wile e .... --- Which I suppopse could happen in conversation, but the parser thinks the string has terminated early.</p>
+        <h2>Strict vs Lenient</h2>
+        <p>Right now the parser is mostly in strict mode. If I write the parser to accept anything, then when I write bad toki pona and the parser doesn't mind, it is impossible to tell if it is because of leniency or because the parser has a bug. So lenient mode is something for the future.</p>
+        <h2>Edgy toki pona</h2>
+        <p>I like to write edgy toki pona, but the parser can't deal with it. Example include: compound prepositions, transformatives, noun phrases in the verb phrase, intentional and accidental subordinate clasues (I'm going to have to get back with an example), nor "mixed modifiers" that use en to join modifiers, e.g. kule pi laso en pimeja.</p>
+        <h2>Rapidly Changing Issuse (Hopefully)</h2>
+        <p>I represent sentences a series of chains joined by particles. Think beads on a string. Right now, the parser keeps messing up where to put particles-- it adds particles to beginning when it should only be in the middles, and other problems. I haven't modeled modal verbs (ken/wile), serial verbs (kama/tawa), conjunctions other than la (anu/taso). I can't gloss compound phrases yet because I haven't done the data entry for the dictionary. I need to fill in all the entries in the dictionary and I want to support switching between the jan Sonja, jan Kipo and possibly my own glosses.</p>
+        <h2>Really Hard</h2>
+        <p>I'm pessimisitic about ever solving some problems. I can't deal with direct quotes inside of direct quotes. I can deal with hyper dilglosia (e.g. constantly switching between English, German and toki pona and HTML markup). I can't deal with asides, e.g. an entire sentence wrapped in parenthesis either just injected into a sentence or possibly used as a modifer. I can't deal with weird text like table of contents, lists, chat logs, screen plays, and other text that doesn't behave like prose.</p>
+        <h3>Long term goal</h3>
+        <p>I hope to be able to use this as a telephone book chat bot, that will discuss your phone book and try to teach you all the phone numbers.</p>
     </div>
 </div>
