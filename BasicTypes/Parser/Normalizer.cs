@@ -58,10 +58,17 @@ namespace BasicTypes.Parser
             string normalized = text;
             //Normalize prepositions to ~, so that we don't have tokens with embedded spaces (e.g. foo, kepeken => [foo],[, kepeken])
 
+
             bool hasErrors = DetectErrors(normalized, dialect.ThrowOnSyntaxError);
             if (hasErrors)
             {
                 normalized = RepairErrors(normalized);
+            }
+
+            //Hyphenated words. This could cause a problem for compound words that cross lines.
+            if (normalized.Contains("-\n"))
+            {
+                normalized = normalized.Replace("-\n", "");
             }
 
             if (normalized.Contains("\""))

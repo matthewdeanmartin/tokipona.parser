@@ -615,10 +615,6 @@ namespace BasicTypes
 
                     }
                 }
-                else
-                {
-                    Debug.Print("This a prep phrase only thing?");
-                }
 
 
                 string[] prepositions = ArrayExtensions.Tail(ppParts);

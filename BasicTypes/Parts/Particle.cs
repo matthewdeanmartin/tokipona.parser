@@ -236,7 +236,7 @@ namespace BasicTypes
             string lookupForm;
             if (token.Contains(",") || token.Contains("»") || token.Contains("«"))
             {
-                lookupForm = token.Trim(new char[] {',','»','«'});
+                lookupForm = token.Trim(new char[] {',','»','«', ' '});
             }
             else
             {
