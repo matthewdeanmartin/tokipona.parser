@@ -110,7 +110,7 @@ namespace BasicTypes.Glosser
 
                 if (predicate.VerbPhrases != null) //This is possible
                 {
-                    if (predicate.VerbPhrases.Head.ToString(verb).Contains("Error"))
+                    if (predicate.VerbPhrases.Head.ToString(verb,config).Contains("Error"))
                     {
                         foreach (Word modifier in predicate.VerbPhrases.Modifiers)
                         {
@@ -118,7 +118,7 @@ namespace BasicTypes.Glosser
                         }
 
                         //Can't gloss as verb, assume we have a noun phrase
-                        if (predicate.VerbPhrases.Head.ToString(PartOfSpeech.Noun).Contains("Error"))
+                        if (predicate.VerbPhrases.Head.ToString(PartOfSpeech.Noun, config).Contains("Error"))
                         {
                             //Oh, this might be an adjective. jan li laso.
                             gloss.Add(predicate.VerbPhrases.Head.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
