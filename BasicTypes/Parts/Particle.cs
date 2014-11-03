@@ -125,7 +125,7 @@ namespace BasicTypes
 
             if (language == "tp")
             {
-                return Text; //And maybe POS
+                return Text==" "?"":Text; //And maybe POS
             }
             if (includePos)
                 return TryGloss(language, format) + "(" + format + ")";
@@ -229,6 +229,10 @@ namespace BasicTypes
 
         public static bool IsParticle(string token)
         {
+            if (token == null)
+            {
+                throw new ArgumentNullException();
+            }
             string lookupForm;
             if (token.Contains(",") || token.Contains("»") || token.Contains("«"))
             {

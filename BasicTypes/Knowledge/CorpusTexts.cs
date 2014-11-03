@@ -9,6 +9,8 @@ namespace BasicTypes.Knowledge
     class CorpusTexts
     {
         //pineja
+        //sijelo sijelo kiwen kiwen kiwen kiwen 
+
         public static string janPend = @"sona Pisiku tan.
 
 sijelo seli li kama suli.
@@ -17,7 +19,7 @@ ijo kiwen lete li lili, taso ni li ken ala li kama lili lili.
 ijo ko seli li suli, taso ni li ken kama lili lili li ken kama kiwen kiwen.
 ijo kiwen kiwen li wawa, ni li wile kama suli, taso ni li ken ale li kama kiwen kiwen kiwen.
 ijo wawa wawa li ken kama lili lili li ken kama kiwen kiwen kiwen.
-ko suno linja li lon ale, taso ni li ken kama kiwen kiwen kiwen kiwen li kama sijelo
+ko suno linja li lon ale, taso ni li ken kama kiwen kiwen kiwen kiwen li kama sijelo.
 sijelo kiwen kiwen kiwen kiwen li kama pi lupa pimeja. jan ala sona ni: seme li lon pi lupa pimeja insa, la lupa pimeja li pana e suno ala.
 jan pi pilin sijelo tan li sama nasa.";
 
@@ -137,7 +139,7 @@ jan Puta li toki e ni: 'o toki pona o pali pona o mani pona!' ni li sona e ni: '
 
 jan sona pi ma pi kasi suli li toki e ni: 'a! ni li sin ala. nasin ale li toki li pilin e ni. o toki e ijo pi wawa en sona en awen!'
 
-jan Puta li toki e ni: 'o wawa pona o sona pona o awen pona!' ni li sona e ni: 'o awen e monsi sina lon ma o lukin lon insa e lawa insa sama o kama alasa e wawa sina e sona sina e awen wawa sina. tan ni la sina pini lape.'
+jan Puta li toki e ni: 'o wawa pona o sona pona o awen pona!' ni li sona e ni: 'o awen e monsi sina lon ma o lukin lon insa pi lawa sama o kama alasa e wawa sina e sona sina e awen wawa sina. tan ni la sina pini lape.'
 
 jan sona pi ma pi kasi suli li toki e ni: 'sina nasa'
 
@@ -275,7 +277,7 @@ ona tu kama.
 
 tomo lape la jan Oliwa li open weka e len pi jan Malija. taso meli li toki e ni. 'o pini. o mi tu li kepeken e tenpo suli tawa open musi. open la mi weka e len sina. ni pini la sina pali e mi.' meli li open weka e len mije. nanpa wan la meli li weka e len noka anpa pi tu en tu mije. meli li uta e noka mije li pilin suwi e ona. nanpa tu la meli li weka e len sijelo sewi kepeken nasin ni: meli li open e nena len li uta e selo pi lukin sin. meli li pali e ni tawa nena Ali. taso meli li lukin e sike pi loje walo la meli li awen li uta suwi e ona li kama e ni: ona li kama nena. ni pini la meli li awen open sin. jan Malija li pini weka e len sijelo sewi la ona li open weka e len noka sewi. kin la ona li pali ni la palisa mije pi jan Oliwa li kama suli li kama kiwen. tan ni la meli li open e len sijelo sewi la len walo li nena wawa. meli li pilin suwi e ona li a li awen weka e len. meli li pini weka e len mije la jan Oliwa li toki e ni: 'tenpo ni la mi ken weka e len sina. mi musi mute ni.' taso ona li sewi e len meli la jan Malija li len kin e ala e len insa anpa ala e poki pi nena meli ala. jan Malija li lon wawa e selo unpa lon palisa pi jan Oliwa li anpa wawa lon supa lape. 
 
-jan Oliwa li lon e noka sama lon insa pi noka meli. mije li open uta e sike pi loje walo li kama e ni: ona li nena. palisa luka mije li pilin suwi e nena unpa li kama e ni: jan Malija li a li a e kalama ni:'jan Oliwa o, o, o. jan Oli, o unpa e mi! unpa! unpa!'. tenpo ni la meli li jo e palisa mije L lawa e ona tawa lupa meli. palisa pi jan Oliwa li tawa insa. mije li tawa en tan li tawa en tan. tenpo tawa ali la meli li sewi e nena monsi sama li utala e palisa tawa. ona tu li kalama wawa. jan Oliwa li a e ni: 'jan Malija o, o, Mali o, ma, o, mama o.' jan Malija li a wawa li anpa wawa sama lape. tenpo sama la jan Oliwa li a wawa li pana e linja suli pi telo walo mije li anpa wawa tawa sewi meli. tenpo lili pini la jan Malija li weka e selo jo pi telo walo li kama jo e len telo seli. meli li pona e sama kepeken len ni. ni pini la meli li open pona e palisa mije. tenpo ni la ona li suli ala li kiwen ala. 
+jan Oliwa li lon e noka sama lon insa pi noka meli. mije li open uta e sike pi loje walo li kama e ni: ona li nena. palisa luka mije li pilin suwi e nena unpa li kama e ni: jan Malija li a li a e kalama ni:'jan Oliwa o! o! o! jan Oli o unpa e mi! unpa! unpa!'. tenpo ni la meli li jo e palisa mije L lawa e ona tawa lupa meli. palisa pi jan Oliwa li tawa insa. mije li tawa en tan li tawa en tan. tenpo tawa ali la meli li sewi e nena monsi sama li utala e palisa tawa. ona tu li kalama wawa. jan Oliwa li a e ni: 'jan Malija o! o! jan Mali o! mama o! mama o!' jan Malija li a wawa li anpa wawa sama lape. tenpo sama la jan Oliwa li a wawa li pana e linja suli pi telo walo mije li anpa wawa tawa sewi meli. tenpo lili pini la jan Malija li weka e selo jo pi telo walo li kama jo e len telo seli. meli li pona e sama kepeken len ni. ni pini la meli li open pona e palisa mije. tenpo ni la ona li suli ala li kiwen ala. 
 
 taso meli li pona e ona la meli li wile pilin suwi e ona. tan ni la palisa li kama suli li kama kiwen.. jan Malija li lon e ona lon uta sama li pilin suwi e lawa ona kepeken loje uta sama. meli li tawa en tan lon palisa kepeken uta en luka. jan Oliwa li a wawa li sewi e nena monsi mije. jan Malija li kon kepeken uta li tawa en tan wawa mute. jan Oliwa li a wawa mute li pana e linja suli pi telo walo tawa nena meli. meli li pilin sike e telo sama pona selo. meli li anpa lon supa li anpa e noka sama tawa supa anpa. 
 
@@ -288,7 +290,7 @@ jan Oliwa li anpa e sama lon insa pi noka sama li lon e sinpin lawa ona lon insa
         //li toki pi nasin ==> li toki e nasin (usage of pi as particle of last resort, when e would have worked)
         //Line breaks!!!!
         //Aiigh! don't use comma for sentence break.
-        //o toki tawa jan e ni. ==> o toki e ni tawa jan.
+        //o toki tawa jan e ni. ==> o toki e ni tawa jan. (2x)
         public static readonly string Lao = @"jan li ken toki e nasin la
 nasin li ala nasin awen.
 jan li ken nimi e nimi la
@@ -347,7 +349,7 @@ jan mute li jo e tomo tawa e tomo telo. taso jan
 mute li kepeken ala e ni.
 jan mute li jo ilo utala. taso jan mute li pali ala
 kulupu pi jan utala.
-o toki tawa jan mute e ni: 'o kepeken e linja sona.'
+o toki e ni tawa jan mute: 'o kepeken e linja sona.'
 moku pi jan li kama suwi,
 len jan li kama lukin pona,
 tomo jan li kama lon pona,

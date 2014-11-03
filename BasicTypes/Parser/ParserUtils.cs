@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using BasicTypes.Collections;
+using BasicTypes.CollectionsDegenerate;
 using BasicTypes.Exceptions;
 using BasicTypes.Extensions;
 using BasicTypes.Parser;
@@ -141,7 +142,7 @@ namespace BasicTypes
             {
                 throw new InvalidOperationException("Normalizer failed to trim");
             }
-            Console.WriteLine("NORMALIZED: " + sentence);
+            //Console.WriteLine("NORMALIZED: " + sentence);
 
             //Get the final punctuation out or it will mess up parsing later.
             string possiblePunctuation = sentence[sentence.Length - 1].ToString();
@@ -285,8 +286,40 @@ namespace BasicTypes
 
             string[] liParts = Splitters.SplitOnLiOrO(sentence);
 
+            if (Exclamation.IsExclamation(liParts[0]))
+            {
+                //The whole thing is o! (or pakala! or the like)
+                //pona a! a a a! ike a!
+                TokenParserUtils tpu = new TokenParserUtils();
+
+                Word[] tokes = tpu.ValidWords(sentence);
+                WordSet parts = new WordSet( tokes  );
+                bool modifiersAreA = true;
+
+                int i = 0;
+                foreach (Word w in parts )
+                {
+                    if (i != 0)
+                    {
+                        if (w != "a")
+                        {
+                            modifiersAreA = false;
+                        }
+                    }
+                    i++;
+                }
+
+                if (modifiersAreA)
+                {
+                    Exclamation exclamation = new Exclamation(parts);
+                    Sentence s = new Sentence(exclamation, punctuation);
+                    return s;
+                }
+            }
+
+
             //Degenerate sentences.
-            if (liParts[liParts.Length - 1] == "o")
+            if (liParts[liParts.Length - 1].Trim(new char[] { ',', '«', '»','!',' ' }) == "o")
             {
                 //We have a vocative sentence...
                 Vocative vocative = new Vocative(ProcessEnPiChain(liParts[0]));
@@ -493,10 +526,6 @@ namespace BasicTypes
                         verbPhrase = HeadedPhraseParser(ArrayExtensions.Tail(verbPhraseParts));
 
                     }
-                }
-                else
-                {
-                    Debug.Print("This a prep phrase only thing?");
                 }
 
                 string verbsMaybePrepositions = eParts[eParts.Length - 1];

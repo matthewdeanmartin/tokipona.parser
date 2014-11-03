@@ -8,6 +8,10 @@ using BasicTypes.Exceptions;
 
 namespace BasicTypes.Collections
 {
+    //jan o!
+    //differs from jan o moku! (o overlays li, at least for 1st verb)
+    //differs from o jan li moku. (sentence prefixed by o)
+    //differs from o!
     public class Vocative
     {
         [DataMember]
@@ -21,7 +25,7 @@ namespace BasicTypes.Collections
             this.nominal= nominal;
         }
 
-         public Chain Nominal{ get { return nominal; } }
+        public Chain Nominal{ get { return nominal; } }
 
         public List<string> ToTokenList(string format, IFormatProvider formatProvider)
         {

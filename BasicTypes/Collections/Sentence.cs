@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using BasicTypes.Collections;
+using BasicTypes.CollectionsDegenerate;
 using BasicTypes.Exceptions;
 using BasicTypes.Extensions;
 using System.Collections.ObjectModel;
@@ -55,7 +56,11 @@ namespace BasicTypes
         private readonly Particle conjunction;
 
         [DataMember]
-        private readonly Vocative vocative;
+        private readonly Vocative vocative; //Degenerate sentence, maybe should be a subclass?
+
+        [DataMember]
+        private readonly Exclamation exclamation;//Degenerate sentence, maybe should be a subclass?
+
 
         [DataMember]
         private readonly Fragment fragment;
@@ -97,6 +102,15 @@ namespace BasicTypes
                     }
                 }
             }
+            this.original = original;
+            this.normalized = normalized;
+        }
+
+        public Sentence(Exclamation exclamation, Punctuation punctuation, string original = null, string normalized = null)
+        {
+            this.exclamation = exclamation;
+            this.punctuation = punctuation;
+
             this.original = original;
             this.normalized = normalized;
         }
@@ -291,6 +305,10 @@ namespace BasicTypes
             {
                 sb.AddRange(fragment.ToTokenList(format, formatProvider));
             }
+            else if (exclamation!= null)
+            {
+                sb.AddRange(exclamation.ToTokenList(format, formatProvider));
+            }
             else
             {
                 if (LaFragment != null)
@@ -310,7 +328,7 @@ namespace BasicTypes
                     //Should only happen for imperatives
                     sb.Add("[");
                     sb.AddRange(Particles.en,
-                        subjects.Select(x => x == null ? "[NULL]" : x.ToString(format, formatProvider)), format, formatProvider);
+                        subjects.Select(x => x == null ? "[NULL]" : x.ToString(format, formatProvider)), format, formatProvider, false);
                     sb.Add("]");
                 }
                 else

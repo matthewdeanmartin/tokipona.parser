@@ -147,7 +147,18 @@ namespace BasicTypes.Parser
             
 
             //TODO: detect start of sentence & replace mi X and sina Y with 
+            string[] pronounModifiers = new string[]
+            {
+                "mi wan",
+                "mi tu",
+                "mi mute",
+                "mi suli",
 
+                "sina wan",
+                "sina tu",
+                "sina mute",
+                "sina suli",
+            };
             if (normalized.Contains("mi"))
             {
                 if (normalized.Contains("mi wile ala e ma li"))
@@ -175,7 +186,7 @@ namespace BasicTypes.Parser
                                 (enGlosses.ContainsKey("vi")  && enGlosses["vi"].Length > 0))
                             {
                                 string unLied = " " + pronoun + " " + possible + " ";
-                                if (normalized.Contains(unLied))
+                                if (normalized.Contains(unLied) && !pronounModifiers.Contains(unLied.Trim()))
                                 {
                                     normalized = normalized.Replace(unLied, " "+ pronoun +" li " + possible + " ");
                                 }
@@ -210,7 +221,7 @@ namespace BasicTypes.Parser
                                 (enGlosses.ContainsKey("vi") && enGlosses["vi"].Length > 0))
                             {
                                 string unLied = " " + pronoun + " " + possible + " ";
-                                if (normalized.Contains(unLied))
+                                if (normalized.Contains(unLied) && !pronounModifiers.Contains(unLied.Trim()))
                                 {
                                     normalized = normalized.Replace(unLied, " " + pronoun + " li " + possible + " ");
                                 }
@@ -223,28 +234,52 @@ namespace BasicTypes.Parser
 
             if (normalized.Contains("la mi"))
             {
-                normalized = Regex.Replace(normalized, @"\bla mi\b", "la mi li"); //normalize contractions
-
-                //If original was, say, "kin la mi li pali", we get a double li li
-                if (normalized.Contains(" li li "))
+                bool dontTouch = false;
+                foreach (string pronounModifier in pronounModifiers)
                 {
-                    //undo doubling.
-                    normalized = Regex.Replace(normalized, @"\bli li\b", "li"); //normalize contractions
+                    if (normalized.Contains("la " + pronounModifier))
+                    {
+                        dontTouch = true;
+                    }
                 }
+                if (!dontTouch)
+                {
+                    normalized = Regex.Replace(normalized, @"\bla mi\b", "la mi li"); //normalize contractions
+
+                    //If original was, say, "kin la mi li pali", we get a double li li
+                    if (normalized.Contains(" li li "))
+                    {
+                        //undo doubling.
+                        normalized = Regex.Replace(normalized, @"\bli li\b", "li"); //normalize contractions
+                    }
+                }
+                
 
             }
 
 
             if (normalized.Contains("la sina"))
             {
-                normalized = Regex.Replace(normalized, @"\bla sina\b", "la sina li"); //normalize contractions
-
-                //If original was, say, "kin la sina li pali", we get a double li li
-                if (normalized.Contains(" li li "))
+                bool dontTouch = false;
+                foreach (string pronounModifier in pronounModifiers)
                 {
-                    //undo doubling.
-                    normalized = Regex.Replace(normalized, @"\bli li\b", "li"); //normalize contractions
+                    if (normalized.Contains("la " + pronounModifier))
+                    {
+                        dontTouch = true;
+                    }
                 }
+                if (!dontTouch)
+                {
+                    normalized = Regex.Replace(normalized, @"\bla sina\b", "la sina li"); //normalize contractions
+
+                    //If original was, say, "kin la sina li pali", we get a double li li
+                    if (normalized.Contains(" li li "))
+                    {
+                        //undo doubling.
+                        normalized = Regex.Replace(normalized, @"\bli li\b", "li"); //normalize contractions
+                    }
+                }
+                
             }
 
             if (normalized.Contains("~"))
@@ -288,6 +323,12 @@ namespace BasicTypes.Parser
             {
                 normalized = normalized.Replace("taso, sina soweli", "taso, sina li soweli");
             }
+            //overnormalized... mi li ~tawa
+            if (normalized.Contains("e mi li ~tawa"))
+            {
+                normalized = normalized.Replace("e mi li ~tawa", "e mi ~tawa");
+            }
+
             //overnormalized... mama pi mi mute o
             if (normalized.Contains("mama pi mi li mute o"))
             {
@@ -490,10 +531,20 @@ namespace BasicTypes.Parser
                 }
             }
 
+            
             //li ~tawa ala e
             foreach (string prep in preps)
             {
                 string barePrep = " li ~" + prep + " ala e ";
+                if (normalized.Contains(barePrep))
+                {
+                    normalized = normalized.Replace(barePrep, barePrep.Replace("~", ""));
+                }
+            }
+            //o ~kepeken ala e
+            foreach (string prep in preps)
+            {
+                string barePrep = " o ~" + prep + " ala e ";
                 if (normalized.Contains(barePrep))
                 {
                     normalized = normalized.Replace(barePrep, barePrep.Replace("~", ""));
@@ -734,8 +785,7 @@ namespace BasicTypes.Parser
             {
                 bool possibleProunoun = !normalized.StartsWith(punctuation + "sina suli")
                                         && !normalized.StartsWith(punctuation + "sina mute")
-                                        && !normalized.StartsWith(punctuation + "sina tu")
-                                        && !normalized.StartsWith(punctuation + "sina soweli");
+                                        && !normalized.StartsWith(punctuation + "sina tu");
                 //mi mute li suli.
                 //mi toki.
 
@@ -758,8 +808,7 @@ namespace BasicTypes.Parser
                 //modified mi is rare.
                 bool possibleProunoun = !normalized.StartsWith(punctuation + "mi suli")
                                         && !normalized.StartsWith(punctuation + "mi mute")
-                                        && !normalized.StartsWith(punctuation + "mi tu")
-                                        && !normalized.StartsWith(punctuation + "mi soweli");
+                                        && !normalized.StartsWith(punctuation + "mi tu");
                 //mi mute li suli.
                 //mi toki.
 

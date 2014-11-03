@@ -45,7 +45,7 @@
     <h2>To and From Strings</h2>
     <p>The basic types can be converted to human readable format using ToString(). Be careful to not accidentally call the object.ToString() base method.</p>
     <p>The basic types can be converted from human readable format using two methods: Parse(value), TryParse(value) or using the XXXTypeConverter.</p>
-    
+
     <h2>Serialization</h2>
     <p>Types support binary, XML, and JSON serialization. This differs from Parse/ToString because it isn't (very) lossy and the target consumer is a computer.</p>
 
@@ -66,10 +66,9 @@
     <h2>Facts</h2>
     <p>Facts have scope. Within a scope there are bound facts, which have something that is unique to the word. That would be a noun with a proper modifier.</p>
     <p>Scopes can be linked via matching proper modifiers</p>
-    
+
     <pre>
 Things to support in the far future:
-
 Titles as a concept.
 Speaker tag as a concept. (e.g. jan 1: ... jan 2:... jan 1: ...)
 Bullet/Labels. e.g. 1A) 1B)
@@ -79,12 +78,11 @@ Asides (whole sentences stuffed into parens to clarify a word.)
 Automatically detect entire foreign sentences.
 Automatically detect likely misspellings. (all tp letters, but not a word & not proper modifer)
 Automatically fix all upper cased.
-
 Do something with this (p-phrase body has a verb + object in it):
 > mi li pakala li telo e lawa sama e nena kute ~sama [kepeken e telo wawa pi tomo-tawa!]
-
 Deal with foreign tokens with special tokens, e.g. punctuation.
-
 </pre>
+
+
 </body>
 </html>

@@ -11,6 +11,29 @@ namespace BasicTypes.Dictionary
     public class DictionaryTests
     {
         [Test]
+        public void ExclamationsToday()
+        {
+            int count = 0;
+            foreach (Word word in Words.Dictionary.Values)
+            {
+                var map = Words.Glosses[word.Text];
+                
+                var en = map["en"];
+                //foreach (KeyValuePair<string, string[]> pair in en)
+                {
+                    //string pos = pair.Key;
+                    //string[] possibilities = pair.Value;
+
+                    if (en.ContainsKey("interj"))
+                    {
+                        count++;
+                        Console.WriteLine(word);//+ " is interjection"
+                    }
+                }
+            }
+        }
+
+        [Test]
         public void ThatLanuageDoesntHaveAWordFor()
         {
             int count = 0;

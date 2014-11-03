@@ -57,15 +57,15 @@ namespace BasicTypes
             }
             if (word.Contains(" "))
             {
-                throw new ArgumentNullException("word", "Token can't contain white space-- must use *, - or other punctuation to join words into a single token");
+                throw new ArgumentNullException("word", "Token can't contain white space-- must use *, - or other punctuation to join words into a single token : " + word);
             }
             if (word.Contains("\n"))
             {
-                throw new ArgumentNullException("word", "Token can't contain white space-- must use *, - or other punctuation to join words into a single token");
+                throw new ArgumentNullException("word", "Token can't contain white space-- must use *, - or other punctuation to join words into a single token : " + word);
             }
             if (word.Contains("\t"))
             {
-                throw new ArgumentNullException("word", "Token can't contain white space-- must use *, - or other punctuation to join words into a single token");
+                throw new ArgumentNullException("word", "Token can't contain white space-- must use *, - or other punctuation to join words into a single token : " + word);
             }
             this.word = word;
         }

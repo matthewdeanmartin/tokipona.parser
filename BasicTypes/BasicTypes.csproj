@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CollectionsDegenerate\Exclamation.cs" />
     <Compile Include="Collections\Chain.cs" />
     <Compile Include="Collections\ChainByValue.cs" />
     <Compile Include="Collections\ChainParse.cs" />
@@ -70,7 +71,7 @@
     <Compile Include="Collections\CommonBehaviors.cs" />
     <Compile Include="Collections\DirectSpeech.cs" />
     <Compile Include="Collections\Discourse.cs" />
-    <Compile Include="Collections\Fragment.cs" />
+    <Compile Include="CollectionsDegenerate\Fragment.cs" />
     <Compile Include="Collections\HeadedPhrase.cs" />
     <Compile Include="Collections\HeadedPhraseConverter.cs" />
     <Compile Include="Collections\HeadedPhraseEquivallenceGenerator.cs" />
@@ -82,7 +83,7 @@
     <Compile Include="Collections\SentenceByValue.cs" />
     <Compile Include="Collections\SentenceSemeEqual.cs" />
     <Compile Include="Collections\SentenceTypeConverter.cs" />
-    <Compile Include="Collections\Vocative.cs" />
+    <Compile Include="CollectionsDegenerate\Vocative.cs" />
     <Compile Include="Collections\WordSet.cs" />
     <Compile Include="Collections\WordSetByValue.cs" />
     <Compile Include="Collections\SentenceTests.cs" />

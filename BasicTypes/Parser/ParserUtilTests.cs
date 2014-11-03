@@ -118,6 +118,16 @@ namespace BasicTypes.Parser
             //Assert.IsNotNull(sentence.Subjects[0].HeadedPhrases[0].Head.Text,"mi"); //pi chains :-(
         }
 
+        [Test]
+        public void LostPrep()
+        {
+            string s = "o toki pona e mi tawa jan sewi Utu!";
+            Dialect c = Dialect.DialectFactory;
+            ParserUtils pu = new ParserUtils(c);
+            Sentence sentence = pu.ParsedSentenceFactory(s, s);
+            Assert.IsNotNull(sentence.Predicates[0].Prepositionals!=null);
+        }
+
         //
         [Test]
         public void SplitSentenceWithColon_Normalized()
@@ -246,14 +256,29 @@ namespace BasicTypes.Parser
             {
                 foreach (string original in pu.ParseIntoRawSentences(s))
                 {
-                    Console.WriteLine("ORIGINAL  : " + original);
-                    string normalized = Normalizer.NormalizeText(original);
-                    Sentence structured = pu.ParsedSentenceFactory(normalized, original);
-                    Console.WriteLine(structured.ToString("b"));
-                    i++;
+                    Sentence structured=null;
+                    string normalized;
+                    try
+                    {
+                        normalized = Normalizer.NormalizeText(original);
+                        structured = pu.ParsedSentenceFactory(normalized, original);
+                        string diag = structured.ToString("b");
+                        
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("ORIGINAL  : " + original);
+                        if (structured != null)
+                        {
+                            Console.WriteLine(structured.ToString("b"));
+                        }
+                        Console.WriteLine(ex.Message);
+                        i++;
+                    }
+
                 }
             }
-            Console.WriteLine("Sentences normalized: " + i);
+            Console.WriteLine("Failed Sentences: " + i);
         }
 
         [Test]
@@ -327,6 +352,17 @@ namespace BasicTypes.Parser
                 }
             }
 
+        }
+
+        [Test]
+        public void ParseJustO()
+        {
+            //o!
+            string s = "o!";
+            ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
+
+            Sentence parsedSentence = pu.ParsedSentenceFactory(s, s);
+            Console.WriteLine(parsedSentence.ToString());
         }
 
         //nena meli kin li tawa en tan li kama nena pi suli en kiwen.

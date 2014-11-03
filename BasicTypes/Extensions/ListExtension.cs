@@ -21,7 +21,7 @@ namespace BasicTypes.Extensions
             //Can be exact, or match despite extra stuff 
         }
 
-        public static void AddRange(this List<string> list, Particle particle, IEnumerable<string> strings, string format, IFormatProvider formatProvider)
+        public static void AddRange(this List<string> list, Particle particle, IEnumerable<string> strings, string format, IFormatProvider formatProvider, bool hasParent)
         {
             int i = 0;
             foreach (string s in strings)
@@ -29,9 +29,11 @@ namespace BasicTypes.Extensions
                 i++;
                 if (particle.MiddleOnly)
                 {
-                    //if (i > 1)
-                    //{
-                        if (list.Count>0)
+                    //more than 1? must join!
+                    //0? Well, depends on where we are. If we have a parent, must join
+                    if (i > 1 || hasParent)
+                    {
+                        if (list.Count > 0)
                         {
                             string lastWord = list[list.Count - 1];
 
@@ -40,8 +42,7 @@ namespace BasicTypes.Extensions
                                 list.Add(particle.ToString(format, formatProvider));
                             }
                         }
-                
-                    //}
+                    }
                 }
                 else
                 {

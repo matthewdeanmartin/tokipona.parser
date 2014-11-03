@@ -111,6 +111,19 @@ namespace BasicTypes.Collections
         }
 
         [Test]
+        public void ThreePreps()
+        {
+            string value = "ni li ~kepeken ilo suli ~tawa ilo suli ~poka ilo suli";
+            ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
+            Sentence s = pu.ParsedSentenceFactory(value, value);
+            string predicates= s.Predicates.ToString();
+            Console.WriteLine(s.Predicates[0].Prepositionals);
+            Console.WriteLine(predicates);
+            Console.WriteLine(s.ToString());
+            
+        }
+
+        [Test]
         public void SmallestPiChain()
         {
             string value = "tomo pi telo nasa";

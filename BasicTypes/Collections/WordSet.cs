@@ -9,7 +9,7 @@ namespace BasicTypes
 {
     //Unordered words.-- uh oh, this may be same concept as headed phrase.
     [Serializable]
-    public class WordSet : HashSet<Word>, IContainsWord, IToString
+    public class WordSet : HashSet<Word>, IContainsWord, IFormattable, IToString
     {
         public WordSet():base()
         {
@@ -76,8 +76,19 @@ namespace BasicTypes
         }
         public string ToString(string format)
         {
+            return ToString("g", Dialect.DialectFactory);
+        }
+
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
             if (this.Count == 0) return "";
-            return string.Join(" ", this.Select(x => x.Text).ToArray());
+            List<string> tokens = ToTokenList(format, formatProvider);
+            return string.Join(" ", tokens);
+        }
+
+        public List<string> ToTokenList(string format, IFormatProvider formatProvider)
+        {
+            return  this.Select(x => x.Text).ToList();
         }
     }
 

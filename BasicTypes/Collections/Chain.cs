@@ -39,6 +39,8 @@ namespace BasicTypes
         [DataMember(IsRequired = false, EmitDefaultValue = false)]
         readonly Chain[] subChains;
 
+        private Chain parentChain;
+
         public Chain(ChainType type, Particle particle, HeadedPhrase[] headedPhrases)
         {
             if (headedPhrases.Length == 0)
@@ -64,7 +66,8 @@ namespace BasicTypes
                 if (!hasHeadedPhrase && ! hasSubSubChain)
                 {
                     throw new InvalidOperationException("Subchain with no subchains or headed phrases. This would be a bare particle if written as text");
-                }   
+                }
+                subChain.ParentChain = this;
             }
             
             this.chainType = type;
@@ -76,6 +79,9 @@ namespace BasicTypes
         public Particle Particle { get { return particle; } }
         public HeadedPhrase[] HeadedPhrases { get { return headedPhrases; } }
         public Chain[] SubChains { get { return subChains; } }
+        public Chain ParentChain { get { return parentChain; }
+            private set { parentChain = value; }
+        }
 
         public bool Contains(Word word)
         {
@@ -104,7 +110,7 @@ namespace BasicTypes
             }
             else if (HeadedPhrases != null)
             {
-                sb.AddRange(particle, HeadedPhrases.Select(phrase => phrase.ToString(format, formatProvider)), format, formatProvider);
+                sb.AddRange(particle, HeadedPhrases.Select(phrase => phrase.ToString(format, formatProvider)), format, formatProvider,parentChain!=null);
             }
             else
             {
@@ -134,7 +140,7 @@ namespace BasicTypes
                 if (subChain.HeadedPhrases != null)
                 {
                     //LEAF
-                    sb.AddRange(subChain.Particle, subChain.HeadedPhrases.Select(phrase => phrase.ToString(format, formatProvider)), format, formatProvider);
+                    sb.AddRange(subChain.Particle, subChain.HeadedPhrases.Select(phrase => phrase.ToString(format, formatProvider)), format, formatProvider, subChain.ParentChain!=null);
                     //Tracers.Stringify.TraceInformation(sb.SpaceJoin(format) + " ... so far");
                 }
                 else
@@ -143,10 +149,14 @@ namespace BasicTypes
                     {
                         if (inner.headedPhrases != null)
                         {
-                            sb.AddRange(inner.Particle, inner.HeadedPhrases.Select(phrase => phrase.ToString(format, formatProvider)),format, formatProvider);
+                            sb.AddRange(inner.Particle, inner.HeadedPhrases.Select(phrase => phrase.ToString(format, formatProvider)),format, formatProvider, inner.ParentChain!=null);
                         }
                         else
                         {
+                            if (subChain.Particle!=null && Particle.CheckIsPreposition(subChain.Particle.Text))
+                            {
+                                sb.Add(subChain.Particle.Text);
+                            }
                             ProcessSubChain(format,formatProvider, sb, inner.SubChains);    
                         }
                     }
