@@ -38,7 +38,9 @@ namespace BasicTypes.CollectionsDegenerate
             {
                 return new string[]
                 {
-                    "a","ala","ike","jaki","mu","o","pakala","pona","toki"
+                    //Ref: http://www2.hawaii.edu/~chin/661F12/Projects/ztomaszewski.pdf
+                    // a | a a | a a a | ala | ike | jaki | mu | o | pakala | pona | toki
+                      "a",              "ala","ike","jaki","mu","o","pakala","pona","toki"
                 };
             }
         }

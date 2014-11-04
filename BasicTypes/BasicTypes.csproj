@@ -84,6 +84,7 @@
     <Compile Include="Collections\SentenceSemeEqual.cs" />
     <Compile Include="Collections\SentenceTypeConverter.cs" />
     <Compile Include="CollectionsDegenerate\Vocative.cs" />
+    <Compile Include="Collections\VerbPhrase.cs" />
     <Compile Include="Collections\WordSet.cs" />
     <Compile Include="Collections\WordSetByValue.cs" />
     <Compile Include="Collections\SentenceTests.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Diagnostics\Tracers.cs" />
     <Compile Include="Dictionary\CompoundWordDictionary.cs" />
     <Compile Include="Dictionary\DictionaryGenerator.cs" />
+    <Compile Include="Dictionary\DictionaryGeneratorCompounds.cs" />
     <Compile Include="Dictionary\DictionaryTests.cs" />
     <Compile Include="Dictionary\ExtractNewLexemes.cs" />
     <Compile Include="Dictionary\Semantics.cs" />
@@ -180,6 +182,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Dictionary\COMPOUND WORDS SOURCE-tp-eng.xlsx" />
+    <None Include="Dictionary\PreprocessedCompounds.xlsx" />
     <None Include="Dictionary\RawData.xlsx" />
     <None Include="packages.config" />
   </ItemGroup>

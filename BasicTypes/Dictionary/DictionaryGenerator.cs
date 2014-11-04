@@ -23,6 +23,8 @@ namespace BasicTypes.Dictionary
         }
     }
 
+
+
     public class DictionaryGenerator
     {
         public static string DetermineOledBConnectionString(string fullNameOfExcelFile)

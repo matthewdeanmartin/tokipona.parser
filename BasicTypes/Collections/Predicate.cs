@@ -18,7 +18,8 @@ namespace BasicTypes.Collections
         private readonly Particle particle;
 
         [DataMember]
-        private readonly HeadedPhrase verbPhrases;
+        private readonly HeadedPhrase verbPhrases; //Currently assumes verb+ adverbs* 
+
         [DataMember]
         private readonly Chain directs;
         [DataMember]
