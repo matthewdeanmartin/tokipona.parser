@@ -14,47 +14,48 @@ namespace BasicTypes.Glosser
     //Culture aware! TP = InvariantCulture.
     public class GlossMaker
     {
-        public string Gloss(string normalized, string original, string language = "en", bool includePos =false)
+        public string Gloss(string normalized, string original, string language = "en", bool includePos = false)
         {
             Dialect config = Dialect.DialectFactory;
             config.ThrowOnSyntaxError = false;
             config.TargetGloss = "en";
             ParserUtils pu = new ParserUtils(config);
 
-            
+            List<string> gloss = new List<string>();
+            Sentence sentenceTree = pu.ParsedSentenceFactory(normalized, original);
+
+            if (sentenceTree.Preconditions != null)
             {
-                List<string> gloss = new List<string>();
-                Sentence sentenceTree = pu.ParsedSentenceFactory(normalized, original);
+                //At such time as...
+                //If
 
-                //Console.WriteLine(sentence);
-                //Console.WriteLine(sentenceTree.ToString("g"));
-                //Console.WriteLine(sentenceTree.ToString("b"));
-
-                if (sentenceTree.Preconditions != null)
+                foreach (Sentence condition in sentenceTree.Preconditions)
                 {
-                    //At such time as...
-                    //If
-                    
-                    foreach (Sentence condition in sentenceTree.Preconditions)
-                    {
-                        gloss.Add("if");
-                        //Conditions have head sentences, but not conclusions
-                        ProcessSimpleSentence(includePos, condition, gloss, config);    
-                    }
-                    //Then
-                    gloss.Add("then");
-                    
-                   
-                    ProcessSimpleSentence(includePos, sentenceTree.Conclusion, gloss, config);
+                    gloss.Add("if");
+                    //Conditions have head sentences, but not conclusions
+                    ProcessSimpleSentence(includePos, condition, gloss, config);
                 }
-                else
-                {
-                    //Does this work for vocatives? Fragments?
-                    ProcessSimpleSentence(includePos, sentenceTree, gloss, config);
-                }
+                //Then
+                gloss.Add(", then");
 
-                return gloss.SpaceJoin("g");
+
+                ProcessSimpleSentence(includePos, sentenceTree.Conclusion, gloss, config);
             }
+            else
+            {
+                //Does this work for vocatives? Fragments?
+                ProcessSimpleSentence(includePos, sentenceTree, gloss, config);
+            }
+
+            //HACK:
+            string result = gloss.SpaceJoin("g");
+            if (result.Contains("and of of"))
+            {
+                result = result.Replace("and of of", "");
+            }
+
+            return result;
+
         }
 
         private void ProcessSimpleSentence(bool includePos, Sentence s, List<string> gloss, Dialect config)
@@ -66,11 +67,20 @@ namespace BasicTypes.Glosser
                 //Need o?
             }
 
-            if (s.Fragement!= null)
+            //The whole sentence is a fragment, ending in la.
+            if (s.Fragment != null)
             {
                 //Simpler to treat fragments as degenerate, independent things.
-                ProcessOneChain(includePos, gloss, config, s.Fragement.Nominal);
+                ProcessOneChain(includePos, gloss, config, s.Fragment.Nominal);
                 //Need ...?
+            }
+
+            if (s.LaFragment != null && s.LaFragment.Count > 0)
+            {
+                foreach (Chain bit in s.LaFragment )
+                {
+                    ProcessOneChain(includePos, gloss, config, bit);
+                }
             }
 
             //Although if you have predicates, you should always have subjects.
@@ -83,7 +93,7 @@ namespace BasicTypes.Glosser
             {
                 ProcessPredicates(includePos, s, gloss, config);
             }
-            
+
         }
 
         private void ProcessPredicates(bool includePos, Sentence s, List<string> gloss, Dialect config)
@@ -110,7 +120,7 @@ namespace BasicTypes.Glosser
 
                 if (predicate.VerbPhrases != null) //This is possible
                 {
-                    if (predicate.VerbPhrases.Head.ToString(verb,config).Contains("Error"))
+                    if (predicate.VerbPhrases.Head.ToString(verb, config).Contains("Error"))
                     {
                         foreach (Word modifier in predicate.VerbPhrases.Modifiers)
                         {
@@ -229,44 +239,66 @@ namespace BasicTypes.Glosser
                             }
 
                             //deeper levels?
-                            foreach (HeadedPhrase hp in subsub.HeadedPhrases)
-                            {
-                                foreach (Word modifier in hp.Modifiers)
-                                {
-                                    gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
-                                }
-
-                                gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos, config));
-                            }
+                            ProcessSimpleHeadedPhrase(includePos, gloss, config, subsub.HeadedPhrases);
                         }
                     }
                     else
                     {
+                        ProcessSimpleHeadedPhrase(includePos, gloss, config, sub.HeadedPhrases);
                         //deeper levels?
-                        foreach (HeadedPhrase hp in sub.HeadedPhrases)
-                        {
-                            foreach (Word modifier in hp.Modifiers)
-                            {
-                                gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
-                            }
+                        //foreach (HeadedPhrase hp in sub.HeadedPhrases)
+                        //{
+                        //    foreach (Word modifier in hp.Modifiers)
+                        //    {
+                        //        gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
+                        //    }
 
-                            gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos, config));
-                        }
+                        //    gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos, config));
+                        //}
                     }
                 }
             }
-            
+
             if (c.HeadedPhrases != null)
             {
-                foreach (HeadedPhrase hp in c.HeadedPhrases)
-                {
-                    foreach (Word modifier in hp.Modifiers)
-                    {
-                        gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
-                    }
+                ProcessSimpleHeadedPhrase(includePos, gloss, config, c.HeadedPhrases);
+                //foreach (HeadedPhrase hp in c.HeadedPhrases)
+                //{
+                //    foreach (Word modifier in hp.Modifiers)
+                //    {
+                //        gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
+                //    }
+                //
+                //    gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos, config));
+                //}
+            }
+        }
 
-                    gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos, config));
-                }
+        private static void ProcessSimpleHeadedPhrase(bool includePos, List<string> gloss, Dialect config, HeadedPhrase[] phrases)
+        {
+            //BUG: Forgot to deal with particles!
+
+            foreach (HeadedPhrase hp in phrases)
+            {
+                ProcessingleHeadedPhrase(includePos, gloss, config, hp);
+            }
+        }
+
+        private static void ProcessingleHeadedPhrase(bool includePos, List<string> gloss, Dialect config, HeadedPhrase hp)
+        {
+            bool shouldSupressJan = WordByValue.Instance.Equals(hp.Head, Words.jan) && hp.Modifiers.Any(x => x.IsProperModifier);
+
+            foreach (Word modifier in hp.Modifiers)
+            {
+                gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
+            }
+            if (shouldSupressJan)
+            {
+                //skip!
+            }
+            else
+            {
+                gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos, config));
             }
         }
 
@@ -282,7 +314,7 @@ namespace BasicTypes.Glosser
 
                     foreach (Word modifier in hp.Modifiers)
                     {
-                        gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos,formatProvider));
+                        gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, formatProvider));
                     }
                 }
             }
@@ -292,12 +324,12 @@ namespace BasicTypes.Glosser
                 {
                     gloss.Add(subChain.Particle.ToString(PartOfSpeech.Adjective + ":" + includePos, formatProvider));
 
-                    ProcessChain(gloss, subChain, includePos,formatProvider);
+                    ProcessChain(gloss, subChain, includePos, formatProvider);
                 }
             }
 
         }
 
-        public bool ThrowOnSyntaxErrors{ get; set; }
+        public bool ThrowOnSyntaxErrors { get; set; }
     }
 }

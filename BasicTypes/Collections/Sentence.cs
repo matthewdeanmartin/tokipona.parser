@@ -202,7 +202,7 @@ namespace BasicTypes
 
         //Also an odd ball.
         public Vocative Vocative { get { return vocative; } }
-        public Fragment Fragement { get { return fragment; } }
+        public Fragment Fragment { get { return fragment; } }
 
         public Particle Conjunction { get { return conjunction; } } //Anu, taso
         public Chain[] Subjects { get { return subjects; } } //jan 

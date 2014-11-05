@@ -157,6 +157,7 @@
     <Compile Include="Parts\GlossMap.cs" />
     <Compile Include="Parts\Number.cs" />
     <Compile Include="Parts\PartOfSpeech.cs" />
+    <Compile Include="Parts\Pronoun.cs" />
     <Compile Include="Parts\ProperModifier.cs" />
     <Compile Include="Parts\Punctuation.cs" />
     <Compile Include="Parts\TemplatedPhrase.cs" />

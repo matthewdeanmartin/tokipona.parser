@@ -14,6 +14,18 @@ namespace BasicTypes.Glosser
     public class GlossMakerTests
     {
         [Test]
+        public void MissingFragment()
+        {
+            string s = "tan ni la kala akesi li kama , tawa selo pi telo-suli.";
+            GlossMaker gm = new GlossMaker();
+            Console.WriteLine(gm.Gloss(s, s));
+            Console.WriteLine(gm.Gloss(s, s));
+            Console.WriteLine(gm.Gloss(s, s));
+            Console.WriteLine(gm.Gloss(s, s));
+            Console.WriteLine(gm.Gloss(s, s, "en", true));
+        }
+
+        [Test]
         public void TheBiggerTheTheBiggerThe()
         {
             string s = "nena meli li suli la monsi li suli kin.";

@@ -4230,7 +4230,7 @@ BuildIt();
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pona", new[] { "good person", " friend", " positive person", " repairman" });
+                    en.Add("jan-pona", new[] { "friend", "positive person", " repairman" });
                     glossMap.Add("en", en);
                 }
                 JanPona = new CompoundWord("jan-pona");

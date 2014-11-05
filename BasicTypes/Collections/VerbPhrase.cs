@@ -13,8 +13,8 @@ namespace BasicTypes.Collections
     {
         //Modals, pre-verbs, serial verbs
         //jan li wile tawa
-        [DataMember] 
-        private WordSet modals; //ken, kama, tawa, awen, wile
+        [DataMember]
+        private WordSet modals;
 
         //jan li tawa
         [DataMember]

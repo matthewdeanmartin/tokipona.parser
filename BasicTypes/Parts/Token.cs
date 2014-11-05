@@ -356,5 +356,23 @@ namespace BasicTypes
         {
             return value.Trim(new char[] { ',', '«', '»','!',' ' });
         }
+
+        private static string[] modals = new string[]
+        {
+            "ken", "kama", "tawa", "awen", "wile", //jan Sonja
+            "pini" //Community usage
+        };
+        public static string[] Modals
+        {
+            get
+            {
+                return modals;  
+            }
+        }
+
+        public static bool IsModal(string value)
+        {
+            return modals.Contains(value);
+        }
     }
 }
