@@ -11,6 +11,14 @@ namespace BasicTypes.Extensions
 {
     public static class StringExtensions
     {
+
+        public static bool IsFirstUpperCased(this string value)
+        {
+            if (string.IsNullOrWhiteSpace(value)) return false;
+            if (value.Length == 0) return false;
+            return value[0].ToString().ToUpperInvariant() == value[0].ToString();
+        }
+
         public static string RemoveLeadingWholeWord(this string value, string word)
         {
             if (!value.Contains(word)) return value;//short circuit

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BasicTypes.Knowledge
 {
-    class CorpusTexts
+    public class CorpusTexts
     {
         //pineja
         //sijelo sijelo kiwen kiwen kiwen kiwen 

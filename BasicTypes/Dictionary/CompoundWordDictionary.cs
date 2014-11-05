@@ -1694,11 +1694,22 @@ public static CompoundWord MaTomoEnkon;
         static CompoundWords()
         {
 
+
+BuildIt();
+
+        }
+
+        public static void BuildIt()
+        {
+
+            Dictionary = new Dictionary<string, CompoundWord>(1500);
+            Glosses = new Dictionary<string, Dictionary<string, Dictionary<string, string[]>>>(1500);
+
             {
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("akesi-kiwen-tomo", new[] { "turtle" } );
+                    en.Add("akesi-kiwen-tomo", new[] { "turtle" });
                     glossMap.Add("en", en);
                 }
                 AkesiKiwenTomo = new CompoundWord("akesi-kiwen-tomo");
@@ -1712,7 +1723,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("akesi-lili", new[] { "frog" } );
+                    en.Add("akesi-lili", new[] { "frog" });
                     glossMap.Add("en", en);
                 }
                 AkesiLili = new CompoundWord("akesi-lili");
@@ -1726,7 +1737,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("akesi-linja", new[] { "snake"," serpent" } );
+                    en.Add("akesi-linja", new[] { "snake", " serpent" });
                     glossMap.Add("en", en);
                 }
                 AkesiLinja = new CompoundWord("akesi-linja");
@@ -1740,7 +1751,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("akesi-palisa", new[] { "serpent"," snake"," alligator" } );
+                    en.Add("akesi-palisa", new[] { "serpent", " snake", " alligator" });
                     glossMap.Add("en", en);
                 }
                 AkesiPalisa = new CompoundWord("akesi-palisa");
@@ -1754,7 +1765,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("akesi-pi-tomo-kiwen", new[] { "turtle"," tortoise" } );
+                    en.Add("akesi-pi-tomo-kiwen", new[] { "turtle", " tortoise" });
                     glossMap.Add("en", en);
                 }
                 AkesiPiTomoKiwen = new CompoundWord("akesi-pi-tomo-kiwen");
@@ -1768,7 +1779,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("akesi-poka", new[] { "turtle" } );
+                    en.Add("akesi-poka", new[] { "turtle" });
                     glossMap.Add("en", en);
                 }
                 AkesiPoka = new CompoundWord("akesi-poka");
@@ -1782,7 +1793,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("akesi-sike-tomo", new[] { "turtle" } );
+                    en.Add("akesi-sike-tomo", new[] { "turtle" });
                     glossMap.Add("en", en);
                 }
                 AkesiSikeTomo = new CompoundWord("akesi-sike-tomo");
@@ -1796,7 +1807,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("akesi-telo", new[] { "frog"," amphibian" } );
+                    en.Add("akesi-telo", new[] { "frog", " amphibian" });
                     glossMap.Add("en", en);
                 }
                 AkesiTelo = new CompoundWord("akesi-telo");
@@ -1810,7 +1821,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("akesi-tomo", new[] { "lizard"," etc" } );
+                    en.Add("akesi-tomo", new[] { "lizard", " etc" });
                     glossMap.Add("en", en);
                 }
                 AkesiTomo = new CompoundWord("akesi-tomo");
@@ -1824,7 +1835,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("akesi-waso", new[] { "pterodactyl" } );
+                    en.Add("akesi-waso", new[] { "pterodactyl" });
                     glossMap.Add("en", en);
                 }
                 AkesiWaso = new CompoundWord("akesi-waso");
@@ -1838,7 +1849,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ale-ala", new[] { "some"," something"," someone"," not all" } );
+                    en.Add("ale-ala", new[] { "some", " something", " someone", " not all" });
                     glossMap.Add("en", en);
                 }
                 AleAla = new CompoundWord("ale-ala");
@@ -1852,7 +1863,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ken-ala", new[] { "uneducated"," disabled" } );
+                    en.Add("ken-ala", new[] { "uneducated", " disabled" });
                     glossMap.Add("en", en);
                 }
                 KenAla = new CompoundWord("ken-ala");
@@ -1866,7 +1877,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lon-tenpo-pi-pali-ala", new[] { "be taking a sabbatical"," break from work" } );
+                    en.Add("lon-tenpo-pi-pali-ala", new[] { "be taking a sabbatical", " break from work" });
                     glossMap.Add("en", en);
                 }
                 LonTenpoPiPaliAla = new CompoundWord("lon-tenpo-pi-pali-ala");
@@ -1880,7 +1891,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pilin-ala", new[] { "indifferent"," unfeeling"," meditate"," Buddhist meditation"," sense"," concept"," meaning" } );
+                    en.Add("pilin-ala", new[] { "indifferent", " unfeeling", " meditate", " Buddhist meditation", " sense", " concept", " meaning" });
                     glossMap.Add("en", en);
                 }
                 PilinAla = new CompoundWord("pilin-ala");
@@ -1894,7 +1905,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sona-ala", new[] { "uneducated" } );
+                    en.Add("sona-ala", new[] { "uneducated" });
                     glossMap.Add("en", en);
                 }
                 SonaAla = new CompoundWord("sona-ala");
@@ -1908,7 +1919,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-ala", new[] { "never" } );
+                    en.Add("tenpo-ala", new[] { "never" });
                     glossMap.Add("en", en);
                 }
                 TenpoAla = new CompoundWord("tenpo-ala");
@@ -1922,7 +1933,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ale-ma", new[] { "earth's life" } );
+                    en.Add("ale-ma", new[] { "earth's life" });
                     glossMap.Add("en", en);
                 }
                 AleMa = new CompoundWord("ale-ma");
@@ -1936,7 +1947,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ale-pi-sitelen-ala", new[] { "the Unmanifested" } );
+                    en.Add("ale-pi-sitelen-ala", new[] { "the Unmanifested" });
                     glossMap.Add("en", en);
                 }
                 AlePiSitelenAla = new CompoundWord("ale-pi-sitelen-ala");
@@ -1950,7 +1961,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ale-sewi", new[] { "The All (The One"," The Omni-)" } );
+                    en.Add("ale-sewi", new[] { "The All (The One", " The Omni-)" });
                     glossMap.Add("en", en);
                 }
                 AleSewi = new CompoundWord("ale-sewi");
@@ -1964,7 +1975,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-ale", new[] { "always"," all the time" } );
+                    en.Add("tenpo-ale", new[] { "always", " all the time" });
                     glossMap.Add("en", en);
                 }
                 TenpoAle = new CompoundWord("tenpo-ale");
@@ -1978,7 +1989,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("anpa-ala", new[] { "below zero" } );
+                    en.Add("anpa-ala", new[] { "below zero" });
                     glossMap.Add("en", en);
                 }
                 AnpaAla = new CompoundWord("anpa-ala");
@@ -1992,7 +2003,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("anpa-ike", new[] { "fall"," collapse (vi"," n)" } );
+                    en.Add("anpa-ike", new[] { "fall", " collapse (vi", " n)" });
                     glossMap.Add("en", en);
                 }
                 AnpaIke = new CompoundWord("anpa-ike");
@@ -2006,7 +2017,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("anpa-lawa", new[] { "neck"," throat" } );
+                    en.Add("anpa-lawa", new[] { "neck", " throat" });
                     glossMap.Add("en", en);
                 }
                 AnpaLawa = new CompoundWord("anpa-lawa");
@@ -2020,7 +2031,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("anpa-pi-sinpin-lawa", new[] { "chin" } );
+                    en.Add("anpa-pi-sinpin-lawa", new[] { "chin" });
                     glossMap.Add("en", en);
                 }
                 AnpaPiSinpinLawa = new CompoundWord("anpa-pi-sinpin-lawa");
@@ -2034,7 +2045,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kasi-anpa", new[] { "grass" } );
+                    en.Add("kasi-anpa", new[] { "grass" });
                     glossMap.Add("en", en);
                 }
                 KasiAnpa = new CompoundWord("kasi-anpa");
@@ -2048,7 +2059,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lon-anpa", new[] { "below"," under"," beneath"," at the bottom"," down from" } );
+                    en.Add("lon-anpa", new[] { "below", " under", " beneath", " at the bottom", " down from" });
                     glossMap.Add("en", en);
                 }
                 LonAnpa = new CompoundWord("lon-anpa");
@@ -2062,7 +2073,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ante-lon", new[] { "alter (vt)"," speed" } );
+                    en.Add("ante-lon", new[] { "alter (vt)", " speed" });
                     glossMap.Add("en", en);
                 }
                 AnteLon = new CompoundWord("ante-lon");
@@ -2076,7 +2087,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-ma-ante", new[] { "foreigner" } );
+                    en.Add("jan-pi-ma-ante", new[] { "foreigner" });
                     glossMap.Add("en", en);
                 }
                 JanPiMaAnte = new CompoundWord("jan-pi-ma-ante");
@@ -2090,7 +2101,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("awen-lon", new[] { "live in/at"," keep/remain in" } );
+                    en.Add("awen-lon", new[] { "live in/at", " keep/remain in" });
                     glossMap.Add("en", en);
                 }
                 AwenLon = new CompoundWord("awen-lon");
@@ -2104,7 +2115,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("awen-pona", new[] { "keep well"," patient" } );
+                    en.Add("awen-pona", new[] { "keep well", " patient" });
                     glossMap.Add("en", en);
                 }
                 AwenPona = new CompoundWord("awen-pona");
@@ -2118,7 +2129,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("awen-sinpin", new[] { "stand (keep standing)" } );
+                    en.Add("awen-sinpin", new[] { "stand (keep standing)" });
                     glossMap.Add("en", en);
                 }
                 AwenSinpin = new CompoundWord("awen-sinpin");
@@ -2132,7 +2143,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("awen-unpa-pi-nasin-soweli", new[] { "doggy style" } );
+                    en.Add("awen-unpa-pi-nasin-soweli", new[] { "doggy style" });
                     glossMap.Add("en", en);
                 }
                 AwenUnpaPiNasinSoweli = new CompoundWord("awen-unpa-pi-nasin-soweli");
@@ -2146,7 +2157,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-pi-tenpo-awen", new[] { "part-time work" } );
+                    en.Add("pali-pi-tenpo-awen", new[] { "part-time work" });
                     glossMap.Add("en", en);
                 }
                 PaliPiTenpoAwen = new CompoundWord("pali-pi-tenpo-awen");
@@ -2160,7 +2171,8 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-awen", new[] { "text"," literature"," books in libraries"," preserved" } );
+                    //"text", " literature", " dictionary"
+                    en.Add("toki-awen", new[] { "text", " literature", " books in libraries", " preserved", "dictionary" });
                     glossMap.Add("en", en);
                 }
                 TokiAwen = new CompoundWord("toki-awen");
@@ -2174,7 +2186,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-awen-sona", new[] { "lesson"," course of lessons" } );
+                    en.Add("toki-awen-sona", new[] { "lesson", " course of lessons" });
                     glossMap.Add("en", en);
                 }
                 TokiAwenSona = new CompoundWord("toki-awen-sona");
@@ -2188,7 +2200,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-awen", new[] { "prison"," jail" } );
+                    en.Add("tomo-awen", new[] { "prison", " jail" });
                     glossMap.Add("en", en);
                 }
                 TomoAwen = new CompoundWord("tomo-awen");
@@ -2202,7 +2214,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-awen-ike", new[] { "prison"," jail" } );
+                    en.Add("tomo-awen-ike", new[] { "prison", " jail" });
                     glossMap.Add("en", en);
                 }
                 TomoAwenIke = new CompoundWord("tomo-awen-ike");
@@ -2216,7 +2228,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ijo-ante", new[] { "other things"," otherwise" } );
+                    en.Add("ijo-ante", new[] { "other things", " otherwise" });
                     glossMap.Add("en", en);
                 }
                 IjoAnte = new CompoundWord("ijo-ante");
@@ -2230,7 +2242,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ijo-ike", new[] { "problem" } );
+                    en.Add("ijo-ike", new[] { "problem" });
                     glossMap.Add("en", en);
                 }
                 IjoIke = new CompoundWord("ijo-ike");
@@ -2244,7 +2256,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ijo-kiwen-telo", new[] { "brick" } );
+                    en.Add("ijo-kiwen-telo", new[] { "brick" });
                     glossMap.Add("en", en);
                 }
                 IjoKiwenTelo = new CompoundWord("ijo-kiwen-telo");
@@ -2258,7 +2270,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ijo-lawa", new[] { "aim"," goal"," main point" } );
+                    en.Add("ijo-lawa", new[] { "aim", " goal", " main point" });
                     glossMap.Add("en", en);
                 }
                 IjoLawa = new CompoundWord("ijo-lawa");
@@ -2272,7 +2284,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ijo-lon-tawa", new[] { "animal" } );
+                    en.Add("ijo-lon-tawa", new[] { "animal" });
                     glossMap.Add("en", en);
                 }
                 IjoLonTawa = new CompoundWord("ijo-lon-tawa");
@@ -2286,7 +2298,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ijo-lon-tomo", new[] { "household items" } );
+                    en.Add("ijo-lon-tomo", new[] { "household items" });
                     glossMap.Add("en", en);
                 }
                 IjoLonTomo = new CompoundWord("ijo-lon-tomo");
@@ -2300,7 +2312,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ijo-mani", new[] { "merchandise" } );
+                    en.Add("ijo-mani", new[] { "merchandise" });
                     glossMap.Add("en", en);
                 }
                 IjoMani = new CompoundWord("ijo-mani");
@@ -2314,7 +2326,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ijo-musi", new[] { "gift"," trinket" } );
+                    en.Add("ijo-musi", new[] { "gift", " trinket" });
                     glossMap.Add("en", en);
                 }
                 IjoMusi = new CompoundWord("ijo-musi");
@@ -2328,7 +2340,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ijo-nasa-lili", new[] { "bustle" } );
+                    en.Add("ijo-nasa-lili", new[] { "bustle" });
                     glossMap.Add("en", en);
                 }
                 IjoNasaLili = new CompoundWord("ijo-nasa-lili");
@@ -2342,7 +2354,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ijo-pana", new[] { "gift"," sacrifice"," offering"," present (gift)" } );
+                    en.Add("ijo-pana", new[] { "gift", " sacrifice", " offering", " present (gift)" });
                     glossMap.Add("en", en);
                 }
                 IjoPana = new CompoundWord("ijo-pana");
@@ -2356,7 +2368,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ijo-pana-olin", new[] { "love gift" } );
+                    en.Add("ijo-pana-olin", new[] { "love gift" });
                     glossMap.Add("en", en);
                 }
                 IjoPanaOlin = new CompoundWord("ijo-pana-olin");
@@ -2370,7 +2382,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ijo-pana-suno", new[] { "light"," lamp" } );
+                    en.Add("ijo-pana-suno", new[] { "light", " lamp" });
                     glossMap.Add("en", en);
                 }
                 IjoPanaSuno = new CompoundWord("ijo-pana-suno");
@@ -2384,7 +2396,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ijo-pi-pana-mute", new[] { "better thing" } );
+                    en.Add("ijo-pi-pana-mute", new[] { "better thing" });
                     glossMap.Add("en", en);
                 }
                 IjoPiPanaMute = new CompoundWord("ijo-pi-pana-mute");
@@ -2398,7 +2410,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ijo-pi-sama-ala", new[] { "difference" } );
+                    en.Add("ijo-pi-sama-ala", new[] { "difference" });
                     glossMap.Add("en", en);
                 }
                 IjoPiSamaAla = new CompoundWord("ijo-pi-sama-ala");
@@ -2412,7 +2424,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ijo-sin-lon-ilo-pi-sitelen-tawa", new[] { "tv news" } );
+                    en.Add("ijo-sin-lon-ilo-pi-sitelen-tawa", new[] { "tv news" });
                     glossMap.Add("en", en);
                 }
                 IjoSinLonIloPiSitelenTawa = new CompoundWord("ijo-sin-lon-ilo-pi-sitelen-tawa");
@@ -2426,7 +2438,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ijo-sinpin-luka-luka-tu-tu", new[] { "thing with 14 faces" } );
+                    en.Add("ijo-sinpin-luka-luka-tu-tu", new[] { "thing with 14 faces" });
                     glossMap.Add("en", en);
                 }
                 IjoSinpinLukaLukaTuTu = new CompoundWord("ijo-sinpin-luka-luka-tu-tu");
@@ -2440,7 +2452,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ijo-tawa-pi-ken-moli", new[] { "animal" } );
+                    en.Add("ijo-tawa-pi-ken-moli", new[] { "animal" });
                     glossMap.Add("en", en);
                 }
                 IjoTawaPiKenMoli = new CompoundWord("ijo-tawa-pi-ken-moli");
@@ -2454,7 +2466,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ijo-uta-walo", new[] { "teeth" } );
+                    en.Add("ijo-uta-walo", new[] { "teeth" });
                     glossMap.Add("en", en);
                 }
                 IjoUtaWalo = new CompoundWord("ijo-uta-walo");
@@ -2468,7 +2480,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ike-a", new[] { "Oh dear!  That sucks!" } );
+                    en.Add("ike-a", new[] { "Oh dear!  That sucks!" });
                     glossMap.Add("en", en);
                 }
                 IkeA = new CompoundWord("ike-a");
@@ -2482,7 +2494,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ike-lukin", new[] { "ugly" } );
+                    en.Add("ike-lukin", new[] { "ugly" });
                     glossMap.Add("en", en);
                 }
                 IkeLukin = new CompoundWord("ike-lukin");
@@ -2496,7 +2508,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ike-moku", new[] { "nasty" } );
+                    en.Add("ike-moku", new[] { "nasty" });
                     glossMap.Add("en", en);
                 }
                 IkeMoku = new CompoundWord("ike-moku");
@@ -2510,7 +2522,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ike-pali", new[] { "difficult"," hard (to do)" } );
+                    en.Add("ike-pali", new[] { "difficult", " hard (to do)" });
                     glossMap.Add("en", en);
                 }
                 IkePali = new CompoundWord("ike-pali");
@@ -2524,7 +2536,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ike-sijelo", new[] { "sick" } );
+                    en.Add("ike-sijelo", new[] { "sick" });
                     glossMap.Add("en", en);
                 }
                 IkeSijelo = new CompoundWord("ike-sijelo");
@@ -2538,7 +2550,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-ike", new[] { "television" } );
+                    en.Add("ilo-ike", new[] { "television" });
                     glossMap.Add("en", en);
                 }
                 IloIke = new CompoundWord("ilo-ike");
@@ -2552,7 +2564,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-ike", new[] { "bad person"," jerk"," negative person"," enemy" } );
+                    en.Add("jan-ike", new[] { "bad person", " jerk", " negative person", " enemy" });
                     glossMap.Add("en", en);
                 }
                 JanIke = new CompoundWord("jan-ike");
@@ -2566,7 +2578,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pilin-ike", new[] { "feel sad"," afraid"," fear" } );
+                    en.Add("pilin-ike", new[] { "feel sad", " afraid", " fear" });
                     glossMap.Add("en", en);
                 }
                 PilinIke = new CompoundWord("pilin-ike");
@@ -2580,7 +2592,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-jan", new[] { "robot" } );
+                    en.Add("ilo-jan", new[] { "robot" });
                     glossMap.Add("en", en);
                 }
                 IloJan = new CompoundWord("ilo-jan");
@@ -2594,7 +2606,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-kalama-pi-toma-tawa", new[] { "horn (of a car)" } );
+                    en.Add("ilo-kalama-pi-toma-tawa", new[] { "horn (of a car)" });
                     glossMap.Add("en", en);
                 }
                 IloKalamaPiTomaTawa = new CompoundWord("ilo-kalama-pi-toma-tawa");
@@ -2608,7 +2620,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-kiwen-pi-pakala-kasi", new[] { "ax" } );
+                    en.Add("ilo-kiwen-pi-pakala-kasi", new[] { "ax" });
                     glossMap.Add("en", en);
                 }
                 IloKiwenPiPakalaKasi = new CompoundWord("ilo-kiwen-pi-pakala-kasi");
@@ -2622,7 +2634,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-lape", new[] { "sleeping pill" } );
+                    en.Add("ilo-lape", new[] { "sleeping pill" });
                     glossMap.Add("en", en);
                 }
                 IloLape = new CompoundWord("ilo-lape");
@@ -2636,7 +2648,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-lape-soweli", new[] { "animal tranquilizer/anesthetic" } );
+                    en.Add("ilo-lape-soweli", new[] { "animal tranquilizer/anesthetic" });
                     glossMap.Add("en", en);
                 }
                 IloLapeSoweli = new CompoundWord("ilo-lape-soweli");
@@ -2650,7 +2662,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-lukin", new[] { "telescope (astronomical)"," mirror"," x-ray or sonic scanner"," telescope"," microscope"," spectacles" } );
+                    en.Add("ilo-lukin", new[] { "telescope (astronomical)", " mirror", " x-ray or sonic scanner", " telescope", " microscope", " spectacles" });
                     glossMap.Add("en", en);
                 }
                 IloLukin = new CompoundWord("ilo-lukin");
@@ -2664,7 +2676,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-lukin-pi-lipu-sona", new[] { "browser" } );
+                    en.Add("ilo-lukin-pi-lipu-sona", new[] { "browser" });
                     glossMap.Add("en", en);
                 }
                 IloLukinPiLipuSona = new CompoundWord("ilo-lukin-pi-lipu-sona");
@@ -2678,7 +2690,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-lukin-", new[] { "browser" } );
+                    en.Add("ilo-lukin-", new[] { "browser" });
                     glossMap.Add("en", en);
                 }
                 IloLukin = new CompoundWord("ilo-lukin-");
@@ -2692,7 +2704,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-lukin-oko", new[] { "glassess" } );
+                    en.Add("ilo-lukin-oko", new[] { "glassess" });
                     glossMap.Add("en", en);
                 }
                 IloLukinOko = new CompoundWord("ilo-lukin-oko");
@@ -2706,7 +2718,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-lukin-pi-sike-tu", new[] { "glasses" } );
+                    en.Add("ilo-lukin-pi-sike-tu", new[] { "glasses" });
                     glossMap.Add("en", en);
                 }
                 IloLukinPiSikeTu = new CompoundWord("ilo-lukin-pi-sike-tu");
@@ -2720,7 +2732,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-moku", new[] { "eating untensil"," knife" } );
+                    en.Add("ilo-moku", new[] { "eating untensil", " knife" });
                     glossMap.Add("en", en);
                 }
                 IloMoku = new CompoundWord("ilo-moku");
@@ -2734,7 +2746,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-musi", new[] { "toy"," plaything" } );
+                    en.Add("ilo-musi", new[] { "toy", " plaything" });
                     glossMap.Add("en", en);
                 }
                 IloMusi = new CompoundWord("ilo-musi");
@@ -2748,7 +2760,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-nanpa", new[] { "computer"," calculator" } );
+                    en.Add("ilo-nanpa", new[] { "computer", " calculator" });
                     glossMap.Add("en", en);
                 }
                 IloNanpa = new CompoundWord("ilo-nanpa");
@@ -2762,7 +2774,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-nasa", new[] { "drugs"," drug/dope" } );
+                    en.Add("ilo-nasa", new[] { "drugs", " drug/dope" });
                     glossMap.Add("en", en);
                 }
                 IloNasa = new CompoundWord("ilo-nasa");
@@ -2776,7 +2788,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-nasa-wawa", new[] { "energy giving drug" } );
+                    en.Add("ilo-nasa-wawa", new[] { "energy giving drug" });
                     glossMap.Add("en", en);
                 }
                 IloNasaWawa = new CompoundWord("ilo-nasa-wawa");
@@ -2790,7 +2802,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-oko", new[] { "glasses" } );
+                    en.Add("ilo-oko", new[] { "glasses" });
                     glossMap.Add("en", en);
                 }
                 IloOko = new CompoundWord("ilo-oko");
@@ -2804,7 +2816,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-open", new[] { "key" } );
+                    en.Add("ilo-open", new[] { "key" });
                     glossMap.Add("en", en);
                 }
                 IloOpen = new CompoundWord("ilo-open");
@@ -2818,7 +2830,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-pana-pi-lipu-sona", new[] { "web page server"," web page server" } );
+                    en.Add("ilo-pana-pi-lipu-sona", new[] { "web page server", " web page server" });
                     glossMap.Add("en", en);
                 }
                 IloPanaPiLipuSona = new CompoundWord("ilo-pana-pi-lipu-sona");
@@ -2832,7 +2844,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-pi-pana-suno", new[] { "mirror"," reflector" } );
+                    en.Add("ilo-pi-pana-suno", new[] { "mirror", " reflector" });
                     glossMap.Add("en", en);
                 }
                 IloPiPanaSuno = new CompoundWord("ilo-pi-pana-suno");
@@ -2846,7 +2858,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-pi-sike-tu", new[] { "bicycle" } );
+                    en.Add("ilo-pi-sike-tu", new[] { "bicycle" });
                     glossMap.Add("en", en);
                 }
                 IloPiSikeTu = new CompoundWord("ilo-pi-sike-tu");
@@ -2860,7 +2872,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-pi-sitelen-tawa", new[] { "television"," tv" } );
+                    en.Add("ilo-pi-sitelen-tawa", new[] { "television", " tv" });
                     glossMap.Add("en", en);
                 }
                 IloPiSitelenTawa = new CompoundWord("ilo-pi-sitelen-tawa");
@@ -2874,7 +2886,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-pi-sitelen-toki", new[] { "pen. pencil"," etc." } );
+                    en.Add("ilo-pi-sitelen-toki", new[] { "pen. pencil", " etc." });
                     glossMap.Add("en", en);
                 }
                 IloPiSitelenToki = new CompoundWord("ilo-pi-sitelen-toki");
@@ -2888,7 +2900,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-pi-suno-sin", new[] { "mirror" } );
+                    en.Add("ilo-pi-suno-sin", new[] { "mirror" });
                     glossMap.Add("en", en);
                 }
                 IloPiSunoSin = new CompoundWord("ilo-pi-suno-sin");
@@ -2902,7 +2914,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-pi-tawa-kon", new[] { "wings"," wing" } );
+                    en.Add("ilo-pi-tawa-kon", new[] { "wings", " wing" });
                     glossMap.Add("en", en);
                 }
                 IloPiTawaKon = new CompoundWord("ilo-pi-tawa-kon");
@@ -2916,7 +2928,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-pi-tu-ijo", new[] { "cutting tool" } );
+                    en.Add("ilo-pi-tu-ijo", new[] { "cutting tool" });
                     glossMap.Add("en", en);
                 }
                 IloPiTuIjo = new CompoundWord("ilo-pi-tu-ijo");
@@ -2930,7 +2942,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-waso", new[] { "wing" } );
+                    en.Add("ilo-waso", new[] { "wing" });
                     glossMap.Add("en", en);
                 }
                 IloWaso = new CompoundWord("ilo-waso");
@@ -2944,7 +2956,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-sijelo-waso", new[] { "wing" } );
+                    en.Add("ilo-sijelo-waso", new[] { "wing" });
                     glossMap.Add("en", en);
                 }
                 IloSijeloWaso = new CompoundWord("ilo-sijelo-waso");
@@ -2958,7 +2970,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-sitelen", new[] { "bruch"," pen"," pencil"," etc."," typewriter"," keyboard" } );
+                    en.Add("ilo-sitelen", new[] { "bruch", " pen", " pencil", " etc.", " typewriter", " keyboard" });
                     glossMap.Add("en", en);
                 }
                 IloSitelen = new CompoundWord("ilo-sitelen");
@@ -2972,7 +2984,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-sona", new[] { "computer" } );
+                    en.Add("ilo-sona", new[] { "computer" });
                     glossMap.Add("en", en);
                 }
                 IloSona = new CompoundWord("ilo-sona");
@@ -2986,7 +2998,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-sona-tawa", new[] { "laptop computer"," internet"," computer"," laptop" } );
+                    en.Add("ilo-sona-tawa", new[] { "laptop computer", " internet", " computer", " laptop" });
                     glossMap.Add("en", en);
                 }
                 IloSonaTawa = new CompoundWord("ilo-sona-tawa");
@@ -3000,7 +3012,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-suno", new[] { "lamp"," flashlight"," light" } );
+                    en.Add("ilo-suno", new[] { "lamp", " flashlight", " light" });
                     glossMap.Add("en", en);
                 }
                 IloSuno = new CompoundWord("ilo-suno");
@@ -3014,7 +3026,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-tawa", new[] { "means of transportation" } );
+                    en.Add("ilo-tawa", new[] { "means of transportation" });
                     glossMap.Add("en", en);
                 }
                 IloTawa = new CompoundWord("ilo-tawa");
@@ -3028,7 +3040,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-tawa-kon", new[] { "wings" } );
+                    en.Add("ilo-tawa-kon", new[] { "wings" });
                     glossMap.Add("en", en);
                 }
                 IloTawaKon = new CompoundWord("ilo-tawa-kon");
@@ -3042,7 +3054,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-tawa-pi-sike-tu", new[] { "bicycle" } );
+                    en.Add("ilo-tawa-pi-sike-tu", new[] { "bicycle" });
                     glossMap.Add("en", en);
                 }
                 IloTawaPiSikeTu = new CompoundWord("ilo-tawa-pi-sike-tu");
@@ -3056,7 +3068,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-tawa-supa-pi-sike-tu", new[] { "recumbent bicycle" } );
+                    en.Add("ilo-tawa-supa-pi-sike-tu", new[] { "recumbent bicycle" });
                     glossMap.Add("en", en);
                 }
                 IloTawaSupaPiSikeTu = new CompoundWord("ilo-tawa-supa-pi-sike-tu");
@@ -3070,7 +3082,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-tawa-telo", new[] { "boat" } );
+                    en.Add("ilo-tawa-telo", new[] { "boat" });
                     glossMap.Add("en", en);
                 }
                 IloTawaTelo = new CompoundWord("ilo-tawa-telo");
@@ -3084,7 +3096,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-toki-tawa", new[] { "cell phone" } );
+                    en.Add("ilo-toki-tawa", new[] { "cell phone" });
                     glossMap.Add("en", en);
                 }
                 IloTokiTawa = new CompoundWord("ilo-toki-tawa");
@@ -3098,7 +3110,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-tu", new[] { "two tools" } );
+                    en.Add("ilo-tu", new[] { "two tools" });
                     glossMap.Add("en", en);
                 }
                 IloTu = new CompoundWord("ilo-tu");
@@ -3112,7 +3124,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-tu-lili", new[] { "jacknife" } );
+                    en.Add("ilo-tu-lili", new[] { "jacknife" });
                     glossMap.Add("en", en);
                 }
                 IloTuLili = new CompoundWord("ilo-tu-lili");
@@ -3126,7 +3138,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-unpa", new[] { "sex toy" } );
+                    en.Add("ilo-unpa", new[] { "sex toy" });
                     glossMap.Add("en", en);
                 }
                 IloUnpa = new CompoundWord("ilo-unpa");
@@ -3140,7 +3152,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-utala", new[] { "weapon"," sword" } );
+                    en.Add("ilo-utala", new[] { "weapon", " sword" });
                     glossMap.Add("en", en);
                 }
                 IloUtala = new CompoundWord("ilo-utala");
@@ -3154,7 +3166,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-wan-ma", new[] { "internet" } );
+                    en.Add("ilo-wan-ma", new[] { "internet" });
                     glossMap.Add("en", en);
                 }
                 IloWanMa = new CompoundWord("ilo-wan-ma");
@@ -3168,7 +3180,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-waso-lipu", new[] { "kite" } );
+                    en.Add("ilo-waso-lipu", new[] { "kite" });
                     glossMap.Add("en", en);
                 }
                 IloWasoLipu = new CompoundWord("ilo-waso-lipu");
@@ -3182,7 +3194,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("insa-ala", new[] { "outside"," beyond"," outside of" } );
+                    en.Add("insa-ala", new[] { "outside", " beyond", " outside of" });
                     glossMap.Add("en", en);
                 }
                 InsaAla = new CompoundWord("insa-ala");
@@ -3196,7 +3208,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("insa-kon", new[] { "lung" } );
+                    en.Add("insa-kon", new[] { "lung" });
                     glossMap.Add("en", en);
                 }
                 InsaKon = new CompoundWord("insa-kon");
@@ -3210,7 +3222,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("insa-lawa", new[] { "brain" } );
+                    en.Add("insa-lawa", new[] { "brain" });
                     glossMap.Add("en", en);
                 }
                 InsaLawa = new CompoundWord("insa-lawa");
@@ -3224,7 +3236,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("insa-ma", new[] { "on earth" } );
+                    en.Add("insa-ma", new[] { "on earth" });
                     glossMap.Add("en", en);
                 }
                 InsaMa = new CompoundWord("insa-ma");
@@ -3238,7 +3250,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("insa-nasin-utala", new[] { "be enemies" } );
+                    en.Add("insa-nasin-utala", new[] { "be enemies" });
                     glossMap.Add("en", en);
                 }
                 InsaNasinUtala = new CompoundWord("insa-nasin-utala");
@@ -3252,7 +3264,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("insa-pimeja", new[] { "liver" } );
+                    en.Add("insa-pimeja", new[] { "liver" });
                     glossMap.Add("en", en);
                 }
                 InsaPimeja = new CompoundWord("insa-pimeja");
@@ -3266,7 +3278,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lon-insa", new[] { "inside of"," in the middle of"," at the center of"," inside" } );
+                    en.Add("lon-insa", new[] { "inside of", " in the middle of", " at the center of", " inside" });
                     glossMap.Add("en", en);
                 }
                 LonInsa = new CompoundWord("lon-insa");
@@ -3280,7 +3292,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("meli-insa", new[] { "person who identifies as female"," male to female transsexual" } );
+                    en.Add("meli-insa", new[] { "person who identifies as female", " male to female transsexual" });
                     glossMap.Add("en", en);
                 }
                 MeliInsa = new CompoundWord("meli-insa");
@@ -3294,7 +3306,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("mije-insa", new[] { "identifies as male"," female to male transsexual" } );
+                    en.Add("mije-insa", new[] { "identifies as male", " female to male transsexual" });
                     glossMap.Add("en", en);
                 }
                 MijeInsa = new CompoundWord("mije-insa");
@@ -3308,7 +3320,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jaki-ala", new[] { "clean" } );
+                    en.Add("jaki-ala", new[] { "clean" });
                     glossMap.Add("en", en);
                 }
                 JakiAla = new CompoundWord("jaki-ala");
@@ -3322,7 +3334,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ko-jaki", new[] { "shit"," feces"," pooh"," crap"," dung" } );
+                    en.Add("ko-jaki", new[] { "shit", " feces", " pooh", " crap", " dung" });
                     glossMap.Add("en", en);
                 }
                 KoJaki = new CompoundWord("ko-jaki");
@@ -3336,7 +3348,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ko-jaki-lon-nena-sinpin", new[] { "boogers"," snot" } );
+                    en.Add("ko-jaki-lon-nena-sinpin", new[] { "boogers", " snot" });
                     glossMap.Add("en", en);
                 }
                 KoJakiLonNenaSinpin = new CompoundWord("ko-jaki-lon-nena-sinpin");
@@ -3350,7 +3362,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kon-jaki", new[] { "fart"," bad smell" } );
+                    en.Add("kon-jaki", new[] { "fart", " bad smell" });
                     glossMap.Add("en", en);
                 }
                 KonJaki = new CompoundWord("kon-jaki");
@@ -3364,7 +3376,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lupa-jaki", new[] { "anus" } );
+                    en.Add("lupa-jaki", new[] { "anus" });
                     glossMap.Add("en", en);
                 }
                 LupaJaki = new CompoundWord("lupa-jaki");
@@ -3378,7 +3390,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-jaki-lon-nena-sinpin", new[] { "snot" } );
+                    en.Add("telo-jaki-lon-nena-sinpin", new[] { "snot" });
                     glossMap.Add("en", en);
                 }
                 TeloJakiLonNenaSinpin = new CompoundWord("telo-jaki-lon-nena-sinpin");
@@ -3392,7 +3404,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-ijo", new[] { "any man" } );
+                    en.Add("jan-ijo", new[] { "any man" });
                     glossMap.Add("en", en);
                 }
                 JanIjo = new CompoundWord("jan-ijo");
@@ -3406,7 +3418,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-ike-pi-tomo-tawa-telo", new[] { "pirate"," Viklng" } );
+                    en.Add("jan-ike-pi-tomo-tawa-telo", new[] { "pirate", " Viklng" });
                     glossMap.Add("en", en);
                 }
                 JanIkePiTomoTawaTelo = new CompoundWord("jan-ike-pi-tomo-tawa-telo");
@@ -3420,7 +3432,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-kala", new[] { "mermaid" } );
+                    en.Add("jan-kala", new[] { "mermaid" });
                     glossMap.Add("en", en);
                 }
                 JanKala = new CompoundWord("jan-kala");
@@ -3434,7 +3446,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-kolisu", new[] { "Christian" } );
+                    en.Add("jan-kolisu", new[] { "Christian" });
                     glossMap.Add("en", en);
                 }
                 JanKolisu = new CompoundWord("jan-kolisu");
@@ -3448,7 +3460,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-kon", new[] { "spirit"," spiritual being"," " } );
+                    en.Add("jan-kon", new[] { "spirit", " spiritual being", " " });
                     glossMap.Add("en", en);
                 }
                 JanKon = new CompoundWord("jan-kon");
@@ -3462,7 +3474,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-kulupu", new[] { "member of a group"," member" } );
+                    en.Add("jan-kulupu", new[] { "member of a group", " member" });
                     glossMap.Add("en", en);
                 }
                 JanKulupu = new CompoundWord("jan-kulupu");
@@ -3476,7 +3488,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-lawa", new[] { "leader"," boss"," master"," chairperson"," president"," director"," Head of state/President/Mayor/leader" } );
+                    en.Add("jan-lawa", new[] { "leader", " boss", " master", " chairperson", " president", " director", " Head of state/President/Mayor/leader" });
                     glossMap.Add("en", en);
                 }
                 JanLawa = new CompoundWord("jan-lawa");
@@ -3490,7 +3502,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-lawa-ala", new[] { "non-chief" } );
+                    en.Add("jan-lawa-ala", new[] { "non-chief" });
                     glossMap.Add("en", en);
                 }
                 JanLawaAla = new CompoundWord("jan-lawa-ala");
@@ -3504,7 +3516,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-lawa-ma", new[] { "president of country"," governor of state"," premier of province"," leader of country"," minister"," governor" } );
+                    en.Add("jan-lawa-ma", new[] { "president of country", " governor of state", " premier of province", " leader of country", " minister", " governor" });
                     glossMap.Add("en", en);
                 }
                 JanLawaMa = new CompoundWord("jan-lawa-ma");
@@ -3518,7 +3530,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-lawa-pi-jan-utala", new[] { "leader of army"," commander"," general" } );
+                    en.Add("jan-lawa-pi-jan-utala", new[] { "leader of army", " commander", " general" });
                     glossMap.Add("en", en);
                 }
                 JanLawaPiJanUtala = new CompoundWord("jan-lawa-pi-jan-utala");
@@ -3532,7 +3544,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-lawa-pi-ma-tomo", new[] { "mayor" } );
+                    en.Add("jan-lawa-pi-ma-tomo", new[] { "mayor" });
                     glossMap.Add("en", en);
                 }
                 JanLawaPiMaTomo = new CompoundWord("jan-lawa-pi-ma-tomo");
@@ -3546,7 +3558,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-lili", new[] { "child"," daughter"," son; smal"," short"," thin or young person"," son; small" } );
+                    en.Add("jan-lili", new[] { "child", " daughter", " son; smal", " short", " thin or young person", " son; small" });
                     glossMap.Add("en", en);
                 }
                 JanLili = new CompoundWord("jan-lili");
@@ -3560,7 +3572,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-lili-pi-jan-sama-pi-mama", new[] { "cousin" } );
+                    en.Add("jan-lili-pi-jan-sama-pi-mama", new[] { "cousin" });
                     glossMap.Add("en", en);
                 }
                 JanLiliPiJanSamaPiMama = new CompoundWord("jan-lili-pi-jan-sama-pi-mama");
@@ -3574,7 +3586,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-lili-sona", new[] { "student"," pupil" } );
+                    en.Add("jan-lili-sona", new[] { "student", " pupil" });
                     glossMap.Add("en", en);
                 }
                 JanLiliSona = new CompoundWord("jan-lili-sona");
@@ -3588,7 +3600,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-lon", new[] { "the living" } );
+                    en.Add("jan-lon", new[] { "the living" });
                     glossMap.Add("en", en);
                 }
                 JanLon = new CompoundWord("jan-lon");
@@ -3602,7 +3614,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-ma", new[] { "farmer"," someone living in the country" } );
+                    en.Add("jan-ma", new[] { "farmer", " someone living in the country" });
                     glossMap.Add("en", en);
                 }
                 JanMa = new CompoundWord("jan-ma");
@@ -3616,7 +3628,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-meli-lawa", new[] { "queen" } );
+                    en.Add("jan-meli-lawa", new[] { "queen" });
                     glossMap.Add("en", en);
                 }
                 JanMeliLawa = new CompoundWord("jan-meli-lawa");
@@ -3630,7 +3642,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-meli-olin", new[] { "wife" } );
+                    en.Add("jan-meli-olin", new[] { "wife" });
                     glossMap.Add("en", en);
                 }
                 JanMeliOlin = new CompoundWord("jan-meli-olin");
@@ -3644,7 +3656,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-meli-sewi", new[] { "queen"," goddess" } );
+                    en.Add("jan-meli-sewi", new[] { "queen", " goddess" });
                     glossMap.Add("en", en);
                 }
                 JanMeliSewi = new CompoundWord("jan-meli-sewi");
@@ -3658,7 +3670,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-moli", new[] { "the dead" } );
+                    en.Add("jan-moli", new[] { "the dead" });
                     glossMap.Add("en", en);
                 }
                 JanMoli = new CompoundWord("jan-moli");
@@ -3672,7 +3684,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-mu", new[] { "animal in general"," animal" } );
+                    en.Add("jan-mu", new[] { "animal in general", " animal" });
                     glossMap.Add("en", en);
                 }
                 JanMu = new CompoundWord("jan-mu");
@@ -3686,7 +3698,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-musi", new[] { "anyone interesting"," attractive.amusing" } );
+                    en.Add("jan-musi", new[] { "anyone interesting", " attractive.amusing" });
                     glossMap.Add("en", en);
                 }
                 JanMusi = new CompoundWord("jan-musi");
@@ -3700,7 +3712,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-nasa", new[] { "strange"," foolish"," unconventional or crazy person"," idiot"," drunkard" } );
+                    en.Add("jan-nasa", new[] { "strange", " foolish", " unconventional or crazy person", " idiot", " drunkard" });
                     glossMap.Add("en", en);
                 }
                 JanNasa = new CompoundWord("jan-nasa");
@@ -3714,7 +3726,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-nasa-utala", new[] { "fighting fool" } );
+                    en.Add("jan-nasa-utala", new[] { "fighting fool" });
                     glossMap.Add("en", en);
                 }
                 JanNasaUtala = new CompoundWord("jan-nasa-utala");
@@ -3728,7 +3740,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-olin", new[] { "partner"," spouse"," significant other. loved one" } );
+                    en.Add("jan-olin", new[] { "partner", " spouse", " significant other. loved one" });
                     glossMap.Add("en", en);
                 }
                 JanOlin = new CompoundWord("jan-olin");
@@ -3742,7 +3754,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pakala", new[] { "victim"," handicapped person" } );
+                    en.Add("jan-pakala", new[] { "victim", " handicapped person" });
                     glossMap.Add("en", en);
                 }
                 JanPakala = new CompoundWord("jan-pakala");
@@ -3756,7 +3768,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pali", new[] { "worker"," employee" } );
+                    en.Add("jan-pali", new[] { "worker", " employee" });
                     glossMap.Add("en", en);
                 }
                 JanPali = new CompoundWord("jan-pali");
@@ -3770,7 +3782,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pali-ma", new[] { "farmer"," cultivator of land" } );
+                    en.Add("jan-pali-ma", new[] { "farmer", " cultivator of land" });
                     glossMap.Add("en", en);
                 }
                 JanPaliMa = new CompoundWord("jan-pali-ma");
@@ -3784,7 +3796,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pali-pi-kasi-mute", new[] { "forester" } );
+                    en.Add("jan-pali-pi-kasi-mute", new[] { "forester" });
                     glossMap.Add("en", en);
                 }
                 JanPaliPiKasiMute = new CompoundWord("jan-pali-pi-kasi-mute");
@@ -3798,7 +3810,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pali-pi-moku-soweli", new[] { "butcher" } );
+                    en.Add("jan-pali-pi-moku-soweli", new[] { "butcher" });
                     glossMap.Add("en", en);
                 }
                 JanPaliPiMokuSoweli = new CompoundWord("jan-pali-pi-moku-soweli");
@@ -3812,7 +3824,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pali-pi-tomo-pi-moku-soweli", new[] { "butcher" } );
+                    en.Add("jan-pali-pi-tomo-pi-moku-soweli", new[] { "butcher" });
                     glossMap.Add("en", en);
                 }
                 JanPaliPiTomoPiMokuSoweli = new CompoundWord("jan-pali-pi-tomo-pi-moku-soweli");
@@ -3826,7 +3838,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-jan-unpa-mute", new[] { "promiscuous person" } );
+                    en.Add("jan-pi-jan-unpa-mute", new[] { "promiscuous person" });
                     glossMap.Add("en", en);
                 }
                 JanPiJanUnpaMute = new CompoundWord("jan-pi-jan-unpa-mute");
@@ -3840,7 +3852,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-kalama-musi", new[] { "musician" } );
+                    en.Add("jan-pi-kalama-musi", new[] { "musician" });
                     glossMap.Add("en", en);
                 }
                 JanPiKalamaMusi = new CompoundWord("jan-pi-kalama-musi");
@@ -3854,7 +3866,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-kama-sona", new[] { "student" } );
+                    en.Add("jan-pi-kama-sona", new[] { "student" });
                     glossMap.Add("en", en);
                 }
                 JanPiKamaSona = new CompoundWord("jan-pi-kama-sona");
@@ -3868,7 +3880,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-lawa-ala", new[] { "outlaw" } );
+                    en.Add("jan-pi-lawa-ala", new[] { "outlaw" });
                     glossMap.Add("en", en);
                 }
                 JanPiLawaAla = new CompoundWord("jan-pi-lawa-ala");
@@ -3882,7 +3894,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-ma-sama", new[] { "fellow citizen"," countryman" } );
+                    en.Add("jan-pi-ma-sama", new[] { "fellow citizen", " countryman" });
                     glossMap.Add("en", en);
                 }
                 JanPiMaSama = new CompoundWord("jan-pi-ma-sama");
@@ -3896,7 +3908,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-ma-tomo", new[] { "city dweller" } );
+                    en.Add("jan-pi-ma-tomo", new[] { "city dweller" });
                     glossMap.Add("en", en);
                 }
                 JanPiMaTomo = new CompoundWord("jan-pi-ma-tomo");
@@ -3910,7 +3922,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-musi-sijelo", new[] { "athlete" } );
+                    en.Add("jan-pi-musi-sijelo", new[] { "athlete" });
                     glossMap.Add("en", en);
                 }
                 JanPiMusiSijelo = new CompoundWord("jan-pi-musi-sijelo");
@@ -3924,7 +3936,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-nasin-sewi-Kolisu", new[] { "Christian" } );
+                    en.Add("jan-pi-nasin-sewi-Kolisu", new[] { "Christian" });
                     glossMap.Add("en", en);
                 }
                 JanPiNasinSewiKolisu = new CompoundWord("jan-pi-nasin-sewi-Kolisu");
@@ -3938,7 +3950,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-moku", new[] { "chef"," cook" } );
+                    en.Add("jan-moku", new[] { "chef", " cook" });
                     glossMap.Add("en", en);
                 }
                 JanMoku = new CompoundWord("jan-moku");
@@ -3952,7 +3964,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-pali-moku", new[] { "chef"," cook" } );
+                    en.Add("jan-pi-pali-moku", new[] { "chef", " cook" });
                     glossMap.Add("en", en);
                 }
                 JanPiPaliMoku = new CompoundWord("jan-pi-pali-moku");
@@ -3966,7 +3978,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-pali-musi", new[] { "athlete" } );
+                    en.Add("jan-pi-pali-musi", new[] { "athlete" });
                     glossMap.Add("en", en);
                 }
                 JanPiPaliMusi = new CompoundWord("jan-pi-pali-musi");
@@ -3980,7 +3992,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-unpa", new[] { "sex partner"," prostitute" } );
+                    en.Add("jan-unpa", new[] { "sex partner", " prostitute" });
                     glossMap.Add("en", en);
                 }
                 JanUnpa = new CompoundWord("jan-unpa");
@@ -3994,7 +4006,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-pali-unpa", new[] { "sex partner"," prostitute" } );
+                    en.Add("jan-pi-pali-unpa", new[] { "sex partner", " prostitute" });
                     glossMap.Add("en", en);
                 }
                 JanPiPaliUnpa = new CompoundWord("jan-pi-pali-unpa");
@@ -4008,7 +4020,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-pana-sona", new[] { "teacher" } );
+                    en.Add("jan-pi-pana-sona", new[] { "teacher" });
                     glossMap.Add("en", en);
                 }
                 JanPiPanaSona = new CompoundWord("jan-pi-pana-sona");
@@ -4022,7 +4034,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-pona-pilin", new[] { "psychotherapist" } );
+                    en.Add("jan-pi-pona-pilin", new[] { "psychotherapist" });
                     glossMap.Add("en", en);
                 }
                 JanPiPonaPilin = new CompoundWord("jan-pi-pona-pilin");
@@ -4036,7 +4048,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-pona-sijelo", new[] { "doctor"," healer" } );
+                    en.Add("jan-pi-pona-sijelo", new[] { "doctor", " healer" });
                     glossMap.Add("en", en);
                 }
                 JanPiPonaSijelo = new CompoundWord("jan-pi-pona-sijelo");
@@ -4050,7 +4062,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-sona-ali", new[] { "philosopher"," savant" } );
+                    en.Add("jan-pi-sona-ali", new[] { "philosopher", " savant" });
                     glossMap.Add("en", en);
                 }
                 JanPiSonaAli = new CompoundWord("jan-pi-sona-ali");
@@ -4064,7 +4076,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-sona-kasi", new[] { "orchard keeper" } );
+                    en.Add("jan-pi-sona-kasi", new[] { "orchard keeper" });
                     glossMap.Add("en", en);
                 }
                 JanPiSonaKasi = new CompoundWord("jan-pi-sona-kasi");
@@ -4078,7 +4090,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-sona-nanpa", new[] { "mathematician" } );
+                    en.Add("jan-pi-sona-nanpa", new[] { "mathematician" });
                     glossMap.Add("en", en);
                 }
                 JanPiSonaNanpa = new CompoundWord("jan-pi-sona-nanpa");
@@ -4092,7 +4104,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-sona-sin", new[] { "journalist"," reporter" } );
+                    en.Add("jan-pi-sona-sin", new[] { "journalist", " reporter" });
                     glossMap.Add("en", en);
                 }
                 JanPiSonaSin = new CompoundWord("jan-pi-sona-sin");
@@ -4106,7 +4118,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-sona-toki", new[] { "linguist (polyglot)" } );
+                    en.Add("jan-pi-sona-toki", new[] { "linguist (polyglot)" });
                     glossMap.Add("en", en);
                 }
                 JanPiSonaToki = new CompoundWord("jan-pi-sona-toki");
@@ -4120,7 +4132,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-toki-awen", new[] { "writer"," author" } );
+                    en.Add("jan-pi-toki-awen", new[] { "writer", " author" });
                     glossMap.Add("en", en);
                 }
                 JanPiTokiAwen = new CompoundWord("jan-pi-toki-awen");
@@ -4134,7 +4146,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-toki-musi", new[] { "singer" } );
+                    en.Add("jan-pi-toki-musi", new[] { "singer" });
                     glossMap.Add("en", en);
                 }
                 JanPiTokiMusi = new CompoundWord("jan-pi-toki-musi");
@@ -4148,7 +4160,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-tomo-pali", new[] { "office worker" } );
+                    en.Add("jan-pi-tomo-pali", new[] { "office worker" });
                     glossMap.Add("en", en);
                 }
                 JanPiTomoPali = new CompoundWord("jan-pi-tomo-pali");
@@ -4162,7 +4174,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-tomo-sama", new[] { "housemate"," roommate" } );
+                    en.Add("jan-pi-tomo-sama", new[] { "housemate", " roommate" });
                     glossMap.Add("en", en);
                 }
                 JanPiTomoSama = new CompoundWord("jan-pi-tomo-sama");
@@ -4176,7 +4188,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-wile-ala", new[] { "person without desires" } );
+                    en.Add("jan-pi-wile-ala", new[] { "person without desires" });
                     glossMap.Add("en", en);
                 }
                 JanPiWileAla = new CompoundWord("jan-pi-wile-ala");
@@ -4190,7 +4202,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-plai-pona", new[] { "servant"," domestic" } );
+                    en.Add("jan-plai-pona", new[] { "servant", " domestic" });
                     glossMap.Add("en", en);
                 }
                 JanPlaiPona = new CompoundWord("jan-plai-pona");
@@ -4204,7 +4216,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-poka", new[] { "neighbor" } );
+                    en.Add("jan-poka", new[] { "neighbor" });
                     glossMap.Add("en", en);
                 }
                 JanPoka = new CompoundWord("jan-poka");
@@ -4218,7 +4230,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pona", new[] { "good person"," friend"," positive person"," repairman" } );
+                    en.Add("jan-pona", new[] { "good person", " friend", " positive person", " repairman" });
                     glossMap.Add("en", en);
                 }
                 JanPona = new CompoundWord("jan-pona");
@@ -4232,7 +4244,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pona-sewi", new[] { "saint" } );
+                    en.Add("jan-pona-sewi", new[] { "saint" });
                     glossMap.Add("en", en);
                 }
                 JanPonaSewi = new CompoundWord("jan-pona-sewi");
@@ -4246,7 +4258,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-sama", new[] { "sibling"," sister"," brother; similar person"," counterpart"," peer"," person in same situation" } );
+                    en.Add("jan-sama", new[] { "sibling", " sister", " brother; similar person", " counterpart", " peer", " person in same situation" });
                     glossMap.Add("en", en);
                 }
                 JanSama = new CompoundWord("jan-sama");
@@ -4260,7 +4272,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-sama-pi-mama-mi", new[] { "uncle"," aunt" } );
+                    en.Add("jan-sama-pi-mama-mi", new[] { "uncle", " aunt" });
                     glossMap.Add("en", en);
                 }
                 JanSamaPiMamaMi = new CompoundWord("jan-sama-pi-mama-mi");
@@ -4274,7 +4286,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-seme", new[] { "who"," anybody (it doesn't matter who)"," a person" } );
+                    en.Add("jan-seme", new[] { "who", " anybody (it doesn't matter who)", " a person" });
                     glossMap.Add("en", en);
                 }
                 JanSeme = new CompoundWord("jan-seme");
@@ -4288,7 +4300,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-sewi", new[] { "god (personal)"," priest"," God"," the faithful"," god" } );
+                    en.Add("jan-sewi", new[] { "god (personal)", " priest", " God", " the faithful", " god" });
                     glossMap.Add("en", en);
                 }
                 JanSewi = new CompoundWord("jan-sewi");
@@ -4302,7 +4314,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-sewi-meli", new[] { "goddess" } );
+                    en.Add("jan-sewi-meli", new[] { "goddess" });
                     glossMap.Add("en", en);
                 }
                 JanSewiMeli = new CompoundWord("jan-sewi-meli");
@@ -4316,7 +4328,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-sin", new[] { "young person"," youth" } );
+                    en.Add("jan-sin", new[] { "young person", " youth" });
                     glossMap.Add("en", en);
                 }
                 JanSin = new CompoundWord("jan-sin");
@@ -4330,7 +4342,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-son-pi-kulupu-jan", new[] { "sociologists" } );
+                    en.Add("jan-son-pi-kulupu-jan", new[] { "sociologists" });
                     glossMap.Add("en", en);
                 }
                 JanSonPiKulupuJan = new CompoundWord("jan-son-pi-kulupu-jan");
@@ -4344,7 +4356,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-sona", new[] { "knowledgeable person"," wise person"," educated person"," academic"," specialist. Teacher"," scientist"," savant"," expert" } );
+                    en.Add("jan-sona", new[] { "knowledgeable person", " wise person", " educated person", " academic", " specialist. Teacher", " scientist", " savant", " expert" });
                     glossMap.Add("en", en);
                 }
                 JanSona = new CompoundWord("jan-sona");
@@ -4358,7 +4370,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-sona-nanpa", new[] { "mathematician" } );
+                    en.Add("jan-sona-nanpa", new[] { "mathematician" });
                     glossMap.Add("en", en);
                 }
                 JanSonaNanpa = new CompoundWord("jan-sona-nanpa");
@@ -4372,7 +4384,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-sona-pilin", new[] { "psychologist" } );
+                    en.Add("jan-sona-pilin", new[] { "psychologist" });
                     glossMap.Add("en", en);
                 }
                 JanSonaPilin = new CompoundWord("jan-sona-pilin");
@@ -4386,7 +4398,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-sona-sijelo", new[] { "doctor"," physician"," surgeon (plastic)" } );
+                    en.Add("jan-sona-sijelo", new[] { "doctor", " physician", " surgeon (plastic)" });
                     glossMap.Add("en", en);
                 }
                 JanSonaSijelo = new CompoundWord("jan-sona-sijelo");
@@ -4400,7 +4412,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-suli", new[] { "big"," tall or fat person; adult"," giant"," celebrity"," (human) lord"," lord" } );
+                    en.Add("jan-suli", new[] { "big", " tall or fat person; adult", " giant", " celebrity", " (human) lord", " lord" });
                     glossMap.Add("en", en);
                 }
                 JanSuli = new CompoundWord("jan-suli");
@@ -4414,7 +4426,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-toki", new[] { "speaker"," messenger"," person communicating"," prophet"," speakers (of a language)"," herald" } );
+                    en.Add("jan-toki", new[] { "speaker", " messenger", " person communicating", " prophet", " speakers (of a language)", " herald" });
                     glossMap.Add("en", en);
                 }
                 JanToki = new CompoundWord("jan-toki");
@@ -4428,7 +4440,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-utala", new[] { "soldier" } );
+                    en.Add("jan-utala", new[] { "soldier" });
                     glossMap.Add("en", en);
                 }
                 JanUtala = new CompoundWord("jan-utala");
@@ -4442,7 +4454,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-wawa", new[] { "enchanter"," magician"," sorcerer"," medicine man" } );
+                    en.Add("jan-wawa", new[] { "enchanter", " magician", " sorcerer", " medicine man" });
                     glossMap.Add("en", en);
                 }
                 JanWawa = new CompoundWord("jan-wawa");
@@ -4456,7 +4468,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-wile", new[] { "person with desires" } );
+                    en.Add("jan-wile", new[] { "person with desires" });
                     glossMap.Add("en", en);
                 }
                 JanWile = new CompoundWord("jan-wile");
@@ -4470,7 +4482,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-mama-jan", new[] { "human breast milk" } );
+                    en.Add("telo-mama-jan", new[] { "human breast milk" });
                     glossMap.Add("en", en);
                 }
                 TeloMamaJan = new CompoundWord("telo-mama-jan");
@@ -4484,7 +4496,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jelo-laso", new[] { "green" } );
+                    en.Add("jelo-laso", new[] { "green" });
                     glossMap.Add("en", en);
                 }
                 JeloLaso = new CompoundWord("jelo-laso");
@@ -4498,7 +4510,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lupa-pi-telo-jelo", new[] { "urethra" } );
+                    en.Add("lupa-pi-telo-jelo", new[] { "urethra" });
                     glossMap.Add("en", en);
                 }
                 LupaPiTeloJelo = new CompoundWord("lupa-pi-telo-jelo");
@@ -4512,7 +4524,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-jelo", new[] { "urine"," pee"," piss" } );
+                    en.Add("telo-jelo", new[] { "urine", " pee", " piss" });
                     glossMap.Add("en", en);
                 }
                 TeloJelo = new CompoundWord("telo-jelo");
@@ -4526,7 +4538,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jo-ike", new[] { "steal"," rob" } );
+                    en.Add("jo-ike", new[] { "steal", " rob" });
                     glossMap.Add("en", en);
                 }
                 JoIke = new CompoundWord("jo-ike");
@@ -4540,7 +4552,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jo-pi-sike-suno-lili", new[] { "young (age)" } );
+                    en.Add("jo-pi-sike-suno-lili", new[] { "young (age)" });
                     glossMap.Add("en", en);
                 }
                 JoPiSikeSunoLili = new CompoundWord("jo-pi-sike-suno-lili");
@@ -4554,7 +4566,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jo-pi-sike-suno-mute", new[] { "old (aged)" } );
+                    en.Add("jo-pi-sike-suno-mute", new[] { "old (aged)" });
                     glossMap.Add("en", en);
                 }
                 JoPiSikeSunoMute = new CompoundWord("jo-pi-sike-suno-mute");
@@ -4568,7 +4580,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-jo", new[] { "receive"," get"," take"," obtain" } );
+                    en.Add("kama-jo", new[] { "receive", " get", " take", " obtain" });
                     glossMap.Add("en", en);
                 }
                 KamaJo = new CompoundWord("kama-jo");
@@ -4582,7 +4594,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kala-ko", new[] { "jellyfish" } );
+                    en.Add("kala-ko", new[] { "jellyfish" });
                     glossMap.Add("en", en);
                 }
                 KalaKo = new CompoundWord("kala-ko");
@@ -4596,7 +4608,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kala-pi-luka-linja-mute", new[] { "jellyfish" } );
+                    en.Add("kala-pi-luka-linja-mute", new[] { "jellyfish" });
                     glossMap.Add("en", en);
                 }
                 KalaPiLukaLinjaMute = new CompoundWord("kala-pi-luka-linja-mute");
@@ -4610,7 +4622,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kala-pi-luka-palisa", new[] { "squid" } );
+                    en.Add("kala-pi-luka-palisa", new[] { "squid" });
                     glossMap.Add("en", en);
                 }
                 KalaPiLukaPalisa = new CompoundWord("kala-pi-luka-palisa");
@@ -4624,7 +4636,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kala-pi-luka-wawa", new[] { "crab" } );
+                    en.Add("kala-pi-luka-wawa", new[] { "crab" });
                     glossMap.Add("en", en);
                 }
                 KalaPiLukaWawa = new CompoundWord("kala-pi-luka-wawa");
@@ -4638,7 +4650,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kala-pi-pana-pi-telo-pimeja", new[] { "squid" } );
+                    en.Add("kala-pi-pana-pi-telo-pimeja", new[] { "squid" });
                     glossMap.Add("en", en);
                 }
                 KalaPiPanaPiTeloPimeja = new CompoundWord("kala-pi-pana-pi-telo-pimeja");
@@ -4652,7 +4664,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kala-pi-selo-kiwen", new[] { "crab" } );
+                    en.Add("kala-pi-selo-kiwen", new[] { "crab" });
                     glossMap.Add("en", en);
                 }
                 KalaPiSeloKiwen = new CompoundWord("kala-pi-selo-kiwen");
@@ -4666,7 +4678,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kala-pi-tawa-monsi", new[] { "crab" } );
+                    en.Add("kala-pi-tawa-monsi", new[] { "crab" });
                     glossMap.Add("en", en);
                 }
                 KalaPiTawaMonsi = new CompoundWord("kala-pi-tawa-monsi");
@@ -4680,7 +4692,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kala-pi-waso-lili", new[] { "flying fish" } );
+                    en.Add("kala-pi-waso-lili", new[] { "flying fish" });
                     glossMap.Add("en", en);
                 }
                 KalaPiWasoLili = new CompoundWord("kala-pi-waso-lili");
@@ -4694,7 +4706,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kala-sike", new[] { "jellyfish" } );
+                    en.Add("kala-sike", new[] { "jellyfish" });
                     glossMap.Add("en", en);
                 }
                 KalaSike = new CompoundWord("kala-sike");
@@ -4708,7 +4720,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kala-soweli-suli", new[] { "whale" } );
+                    en.Add("kala-soweli-suli", new[] { "whale" });
                     glossMap.Add("en", en);
                 }
                 KalaSoweliSuli = new CompoundWord("kala-soweli-suli");
@@ -4722,7 +4734,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kala-suli-suwi", new[] { "dolphin" } );
+                    en.Add("kala-suli-suwi", new[] { "dolphin" });
                     glossMap.Add("en", en);
                 }
                 KalaSuliSuwi = new CompoundWord("kala-suli-suwi");
@@ -4736,7 +4748,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kala-tomo", new[] { "aquarium fish" } );
+                    en.Add("kala-tomo", new[] { "aquarium fish" });
                     glossMap.Add("en", en);
                 }
                 KalaTomo = new CompoundWord("kala-tomo");
@@ -4750,7 +4762,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kala-waso", new[] { "flying fish" } );
+                    en.Add("kala-waso", new[] { "flying fish" });
                     glossMap.Add("en", en);
                 }
                 KalaWaso = new CompoundWord("kala-waso");
@@ -4764,7 +4776,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kalama-ala", new[] { "silence"," silent" } );
+                    en.Add("kalama-ala", new[] { "silence", " silent" });
                     glossMap.Add("en", en);
                 }
                 KalamaAla = new CompoundWord("kalama-ala");
@@ -4778,7 +4790,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kalama-lili", new[] { "sound"," sound (phoneme)"," phoneme" } );
+                    en.Add("kalama-lili", new[] { "sound", " sound (phoneme)", " phoneme" });
                     glossMap.Add("en", en);
                 }
                 KalamaLili = new CompoundWord("kalama-lili");
@@ -4792,7 +4804,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kalama-lili-awen", new[] { "consonant" } );
+                    en.Add("kalama-lili-awen", new[] { "consonant" });
                     glossMap.Add("en", en);
                 }
                 KalamaLiliAwen = new CompoundWord("kalama-lili-awen");
@@ -4806,7 +4818,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kalama-lili-tawa", new[] { "vowel" } );
+                    en.Add("kalama-lili-tawa", new[] { "vowel" });
                     glossMap.Add("en", en);
                 }
                 KalamaLiliTawa = new CompoundWord("kalama-lili-tawa");
@@ -4820,7 +4832,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kalama-monsi", new[] { "fart"," poot" } );
+                    en.Add("kalama-monsi", new[] { "fart", " poot" });
                     glossMap.Add("en", en);
                 }
                 KalamaMonsi = new CompoundWord("kalama-monsi");
@@ -4834,7 +4846,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kalama-musi", new[] { "song"," music"," sing (without words)" } );
+                    en.Add("kalama-musi", new[] { "song", " music", " sing (without words)" });
                     glossMap.Add("en", en);
                 }
                 KalamaMusi = new CompoundWord("kalama-musi");
@@ -4848,7 +4860,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kalama-musi-uta", new[] { "sing" } );
+                    en.Add("kalama-musi-uta", new[] { "sing" });
                     glossMap.Add("en", en);
                 }
                 KalamaMusiUta = new CompoundWord("kalama-musi-uta");
@@ -4862,7 +4874,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kalama-mute", new[] { "make loud"," emphasize (in speech)" } );
+                    en.Add("kalama-mute", new[] { "make loud", " emphasize (in speech)" });
                     glossMap.Add("en", en);
                 }
                 KalamaMute = new CompoundWord("kalama-mute");
@@ -4876,7 +4888,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kalama-mute-ike", new[] { "noise"," racket" } );
+                    en.Add("kalama-mute-ike", new[] { "noise", " racket" });
                     glossMap.Add("en", en);
                 }
                 KalamaMuteIke = new CompoundWord("kalama-mute-ike");
@@ -4890,7 +4902,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kalama-telo", new[] { "splash" } );
+                    en.Add("kalama-telo", new[] { "splash" });
                     glossMap.Add("en", en);
                 }
                 KalamaTelo = new CompoundWord("kalama-telo");
@@ -4904,7 +4916,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-anpa", new[] { "go down"," descend" } );
+                    en.Add("kama-anpa", new[] { "go down", " descend" });
                     glossMap.Add("en", en);
                 }
                 KamaAnpa = new CompoundWord("kama-anpa");
@@ -4918,7 +4930,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-insa", new[] { "come into"," enter" } );
+                    en.Add("kama-insa", new[] { "come into", " enter" });
                     glossMap.Add("en", en);
                 }
                 KamaInsa = new CompoundWord("kama-insa");
@@ -4932,7 +4944,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-jaki-ala", new[] { "clean up" } );
+                    en.Add("kama-jaki-ala", new[] { "clean up" });
                     glossMap.Add("en", en);
                 }
                 KamaJakiAla = new CompoundWord("kama-jaki-ala");
@@ -4946,7 +4958,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-kepeken-pali", new[] { "goal" } );
+                    en.Add("kama-kepeken-pali", new[] { "goal" });
                     glossMap.Add("en", en);
                 }
                 KamaKepekenPali = new CompoundWord("kama-kepeken-pali");
@@ -4960,7 +4972,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-kulupu", new[] { "group meets/ing"," meeting"," convention"," conference"," come together"," congress"," meet(ing)" } );
+                    en.Add("kama-kulupu", new[] { "group meets/ing", " meeting", " convention", " conference", " come together", " congress", " meet(ing)" });
                     glossMap.Add("en", en);
                 }
                 KamaKulupu = new CompoundWord("kama-kulupu");
@@ -4974,7 +4986,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-lape", new[] { "rest"," go to sleep" } );
+                    en.Add("kama-lape", new[] { "rest", " go to sleep" });
                     glossMap.Add("en", en);
                 }
                 KamaLape = new CompoundWord("kama-lape");
@@ -4988,7 +5000,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-lili", new[] { "diminish"," decrease" } );
+                    en.Add("kama-lili", new[] { "diminish", " decrease" });
                     glossMap.Add("en", en);
                 }
                 KamaLili = new CompoundWord("kama-lili");
@@ -5002,7 +5014,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-lon-tomo", new[] { "came to the house" } );
+                    en.Add("kama-lon-tomo", new[] { "came to the house" });
                     glossMap.Add("en", en);
                 }
                 KamaLonTomo = new CompoundWord("kama-lon-tomo");
@@ -5016,7 +5028,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-lupa-ala", new[] { "close a hole/wound" } );
+                    en.Add("kama-lupa-ala", new[] { "close a hole/wound" });
                     glossMap.Add("en", en);
                 }
                 KamaLupaAla = new CompoundWord("kama-lupa-ala");
@@ -5030,7 +5042,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-pi-lukin-ala", new[] { "hide" } );
+                    en.Add("kama-pi-lukin-ala", new[] { "hide" });
                     glossMap.Add("en", en);
                 }
                 KamaPiLukinAla = new CompoundWord("kama-pi-lukin-ala");
@@ -5044,7 +5056,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-pi-lukin-sin", new[] { "find" } );
+                    en.Add("kama-pi-lukin-sin", new[] { "find" });
                     glossMap.Add("en", en);
                 }
                 KamaPiLukinSin = new CompoundWord("kama-pi-lukin-sin");
@@ -5058,7 +5070,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-pilin-ike", new[] { "get angry" } );
+                    en.Add("kama-pilin-ike", new[] { "get angry" });
                     glossMap.Add("en", en);
                 }
                 KamaPilinIke = new CompoundWord("kama-pilin-ike");
@@ -5072,7 +5084,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-pini", new[] { "attain"," achieve" } );
+                    en.Add("kama-pini", new[] { "attain", " achieve" });
                     glossMap.Add("en", en);
                 }
                 KamaPini = new CompoundWord("kama-pini");
@@ -5086,7 +5098,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-pona", new[] { "Welcome" } );
+                    en.Add("kama-pona", new[] { "Welcome" });
                     glossMap.Add("en", en);
                 }
                 KamaPona = new CompoundWord("kama-pona");
@@ -5100,7 +5112,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-pona-tawa", new[] { "be welcome at" } );
+                    en.Add("kama-pona-tawa", new[] { "be welcome at" });
                     glossMap.Add("en", en);
                 }
                 KamaPonaTawa = new CompoundWord("kama-pona-tawa");
@@ -5114,7 +5126,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-selo-tan", new[] { "come out from" } );
+                    en.Add("kama-selo-tan", new[] { "come out from" });
                     glossMap.Add("en", en);
                 }
                 KamaSeloTan = new CompoundWord("kama-selo-tan");
@@ -5128,7 +5140,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-sewi", new[] { "go up"," ascend" } );
+                    en.Add("kama-sewi", new[] { "go up", " ascend" });
                     glossMap.Add("en", en);
                 }
                 KamaSewi = new CompoundWord("kama-sewi");
@@ -5142,7 +5154,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-sewi-sin", new[] { "revive"," resuscitate","resurrect" } );
+                    en.Add("kama-sewi-sin", new[] { "revive", " resuscitate", "resurrect" });
                     glossMap.Add("en", en);
                 }
                 KamaSewiSin = new CompoundWord("kama-sewi-sin");
@@ -5156,7 +5168,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-sin", new[] { "rebirth"," news" } );
+                    en.Add("kama-sin", new[] { "rebirth", " news" });
                     glossMap.Add("en", en);
                 }
                 KamaSin = new CompoundWord("kama-sin");
@@ -5170,7 +5182,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-sinpin", new[] { "stand up"," stand" } );
+                    en.Add("kama-sinpin", new[] { "stand up", " stand" });
                     glossMap.Add("en", en);
                 }
                 KamaSinpin = new CompoundWord("kama-sinpin");
@@ -5184,7 +5196,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-sona", new[] { "get to know (person)"," learn"," understand"," get it"," encounter" } );
+                    en.Add("kama-sona", new[] { "get to know (person)", " learn", " understand", " get it", " encounter" });
                     glossMap.Add("en", en);
                 }
                 KamaSona = new CompoundWord("kama-sona");
@@ -5198,7 +5210,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-suli", new[] { "augment"," increase" } );
+                    en.Add("kama-suli", new[] { "augment", " increase" });
                     glossMap.Add("en", en);
                 }
                 KamaSuli = new CompoundWord("kama-suli");
@@ -5212,7 +5224,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-supa", new[] { "lie down" } );
+                    en.Add("kama-supa", new[] { "lie down" });
                     glossMap.Add("en", en);
                 }
                 KamaSupa = new CompoundWord("kama-supa");
@@ -5226,7 +5238,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-telo", new[] { "melt" } );
+                    en.Add("kama-telo", new[] { "melt" });
                     glossMap.Add("en", en);
                 }
                 KamaTelo = new CompoundWord("kama-telo");
@@ -5240,7 +5252,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-wan", new[] { "unite"," meet"," come together"," meet up" } );
+                    en.Add("kama-wan", new[] { "unite", " meet", " come together", " meet up" });
                     glossMap.Add("en", en);
                 }
                 KamaWan = new CompoundWord("kama-wan");
@@ -5254,7 +5266,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-wile", new[] { "turned on"," began to lust"," …" } );
+                    en.Add("kama-wile", new[] { "turned on", " began to lust", " …" });
                     glossMap.Add("en", en);
                 }
                 KamaWile = new CompoundWord("kama-wile");
@@ -5268,7 +5280,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-kama-tan-sewi", new[] { "it rains"," it is raining" } );
+                    en.Add("telo-kama-tan-sewi", new[] { "it rains", " it is raining" });
                     glossMap.Add("en", en);
                 }
                 TeloKamaTanSewi = new CompoundWord("telo-kama-tan-sewi");
@@ -5282,7 +5294,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-kama", new[] { "future" } );
+                    en.Add("tenpo-kama", new[] { "future" });
                     glossMap.Add("en", en);
                 }
                 TenpoKama = new CompoundWord("tenpo-kama");
@@ -5296,7 +5308,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wan-pi-kama-sona", new[] { "course"," credit hour" } );
+                    en.Add("wan-pi-kama-sona", new[] { "course", " credit hour" });
                     glossMap.Add("en", en);
                 }
                 WanPiKamaSona = new CompoundWord("wan-pi-kama-sona");
@@ -5310,7 +5322,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kasi-ike", new[] { "weed"," tobacco" } );
+                    en.Add("kasi-ike", new[] { "weed", " tobacco" });
                     glossMap.Add("en", en);
                 }
                 KasiIke = new CompoundWord("kasi-ike");
@@ -5324,7 +5336,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kasi-jaki", new[] { "tobacco" } );
+                    en.Add("kasi-jaki", new[] { "tobacco" });
                     glossMap.Add("en", en);
                 }
                 KasiJaki = new CompoundWord("kasi-jaki");
@@ -5338,7 +5350,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kasi-kule", new[] { "flower" } );
+                    en.Add("kasi-kule", new[] { "flower" });
                     glossMap.Add("en", en);
                 }
                 KasiKule = new CompoundWord("kasi-kule");
@@ -5352,7 +5364,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kasi-lili", new[] { "grass"," plant"," herb"," little weed" } );
+                    en.Add("kasi-lili", new[] { "grass", " plant", " herb", " little weed" });
                     glossMap.Add("en", en);
                 }
                 KasiLili = new CompoundWord("kasi-lili");
@@ -5366,7 +5378,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kasi-moku", new[] { "seed" } );
+                    en.Add("kasi-moku", new[] { "seed" });
                     glossMap.Add("en", en);
                 }
                 KasiMoku = new CompoundWord("kasi-moku");
@@ -5380,7 +5392,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kasi-mute", new[] { "forest" } );
+                    en.Add("kasi-mute", new[] { "forest" });
                     glossMap.Add("en", en);
                 }
                 KasiMute = new CompoundWord("kasi-mute");
@@ -5394,7 +5406,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kasi-nasa", new[] { "marijuana"," intoxicating plant (recreational use)"," herb or some sort"," aphrodisiac"," smoke weed"," includes tobacco" } );
+                    en.Add("kasi-nasa", new[] { "marijuana", " intoxicating plant (recreational use)", " herb or some sort", " aphrodisiac", " smoke weed", " includes tobacco" });
                     glossMap.Add("en", en);
                 }
                 KasiNasa = new CompoundWord("kasi-nasa");
@@ -5408,7 +5420,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kasi-palisa", new[] { "tree" } );
+                    en.Add("kasi-palisa", new[] { "tree" });
                     glossMap.Add("en", en);
                 }
                 KasiPalisa = new CompoundWord("kasi-palisa");
@@ -5422,7 +5434,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kasi-palisa-suli", new[] { "tree" } );
+                    en.Add("kasi-palisa-suli", new[] { "tree" });
                     glossMap.Add("en", en);
                 }
                 KasiPalisaSuli = new CompoundWord("kasi-palisa-suli");
@@ -5436,7 +5448,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kasi-palisa-mute", new[] { "forest" } );
+                    en.Add("kasi-palisa-mute", new[] { "forest" });
                     glossMap.Add("en", en);
                 }
                 KasiPalisaMute = new CompoundWord("kasi-palisa-mute");
@@ -5450,7 +5462,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kasi-pi-telo-ala", new[] { "cactus" } );
+                    en.Add("kasi-pi-telo-ala", new[] { "cactus" });
                     glossMap.Add("en", en);
                 }
                 KasiPiTeloAla = new CompoundWord("kasi-pi-telo-ala");
@@ -5464,7 +5476,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kasi-pi-tenpo-pona-Kolisu", new[] { "Christmas tree" } );
+                    en.Add("kasi-pi-tenpo-pona-Kolisu", new[] { "Christmas tree" });
                     glossMap.Add("en", en);
                 }
                 KasiPiTenpoPonaKolisu = new CompoundWord("kasi-pi-tenpo-pona-Kolisu");
@@ -5478,7 +5490,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kasi-pi-uta-seli", new[] { "spice" } );
+                    en.Add("kasi-pi-uta-seli", new[] { "spice" });
                     glossMap.Add("en", en);
                 }
                 KasiPiUtaSeli = new CompoundWord("kasi-pi-uta-seli");
@@ -5492,7 +5504,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kasi-sona", new[] { "intoxicating plant used in meditation" } );
+                    en.Add("kasi-sona", new[] { "intoxicating plant used in meditation" });
                     glossMap.Add("en", en);
                 }
                 KasiSona = new CompoundWord("kasi-sona");
@@ -5506,7 +5518,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kasi-wawa", new[] { "spice" } );
+                    en.Add("kasi-wawa", new[] { "spice" });
                     glossMap.Add("en", en);
                 }
                 KasiWawa = new CompoundWord("kasi-wawa");
@@ -5520,7 +5532,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ken-jan", new[] { "human rights"," Rights of Man" } );
+                    en.Add("ken-jan", new[] { "human rights", " Rights of Man" });
                     glossMap.Add("en", en);
                 }
                 KenJan = new CompoundWord("ken-jan");
@@ -5534,7 +5546,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ken-lukin", new[] { "transparent" } );
+                    en.Add("ken-lukin", new[] { "transparent" });
                     glossMap.Add("en", en);
                 }
                 KenLukin = new CompoundWord("ken-lukin");
@@ -5548,7 +5560,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ken-pilin", new[] { "smart" } );
+                    en.Add("ken-pilin", new[] { "smart" });
                     glossMap.Add("en", en);
                 }
                 KenPilin = new CompoundWord("ken-pilin");
@@ -5562,7 +5574,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ken-sona", new[] { "reason" } );
+                    en.Add("ken-sona", new[] { "reason" });
                     glossMap.Add("en", en);
                 }
                 KenSona = new CompoundWord("ken-sona");
@@ -5576,7 +5588,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kepeken-nasin-seme", new[] { "how" } );
+                    en.Add("kepeken-nasin-seme", new[] { "how" });
                     glossMap.Add("en", en);
                 }
                 KepekenNasinSeme = new CompoundWord("kepeken-nasin-seme");
@@ -5590,7 +5602,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kepeken-pali-lili", new[] { "easily" } );
+                    en.Add("kepeken-pali-lili", new[] { "easily" });
                     glossMap.Add("en", en);
                 }
                 KepekenPaliLili = new CompoundWord("kepeken-pali-lili");
@@ -5604,7 +5616,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kepeken-pali-mute", new[] { "with difficulty" } );
+                    en.Add("kepeken-pali-mute", new[] { "with difficulty" });
                     glossMap.Add("en", en);
                 }
                 KepekenPaliMute = new CompoundWord("kepeken-pali-mute");
@@ -5618,7 +5630,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pilin-uta", new[] { "kiss" } );
+                    en.Add("pilin-uta", new[] { "kiss" });
                     glossMap.Add("en", en);
                 }
                 PilinUta = new CompoundWord("pilin-uta");
@@ -5632,7 +5644,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kili-jelo", new[] { "pear"," banana" } );
+                    en.Add("kili-jelo", new[] { "pear", " banana" });
                     glossMap.Add("en", en);
                 }
                 KiliJelo = new CompoundWord("kili-jelo");
@@ -5646,7 +5658,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kili-jelo-palisa", new[] { "banana" } );
+                    en.Add("kili-jelo-palisa", new[] { "banana" });
                     glossMap.Add("en", en);
                 }
                 KiliJeloPalisa = new CompoundWord("kili-jelo-palisa");
@@ -5660,7 +5672,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kili-jelo-pi-suwi-ala", new[] { "lemon" } );
+                    en.Add("kili-jelo-pi-suwi-ala", new[] { "lemon" });
                     glossMap.Add("en", en);
                 }
                 KiliJeloPiSuwiAla = new CompoundWord("kili-jelo-pi-suwi-ala");
@@ -5674,7 +5686,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kili-lili-lawa", new[] { "mushroom" } );
+                    en.Add("kili-lili-lawa", new[] { "mushroom" });
                     glossMap.Add("en", en);
                 }
                 KiliLiliLawa = new CompoundWord("kili-lili-lawa");
@@ -5688,7 +5700,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kili-lili-lawa-seli", new[] { "magic mushroom"," hallucinogenic mushrooms" } );
+                    en.Add("kili-lili-lawa-seli", new[] { "magic mushroom", " hallucinogenic mushrooms" });
                     glossMap.Add("en", en);
                 }
                 KiliLiliLawaSeli = new CompoundWord("kili-lili-lawa-seli");
@@ -5702,7 +5714,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kili-loje", new[] { "e.g. tomato"," apple" } );
+                    en.Add("kili-loje", new[] { "e.g. tomato", " apple" });
                     glossMap.Add("en", en);
                 }
                 KiliLoje = new CompoundWord("kili-loje");
@@ -5716,7 +5728,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kili-ma", new[] { "e.g. potato" } );
+                    en.Add("kili-ma", new[] { "e.g. potato" });
                     glossMap.Add("en", en);
                 }
                 KiliMa = new CompoundWord("kili-ma");
@@ -5730,7 +5742,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kili-pi-sike-lili-mute", new[] { "grape"," raisin" } );
+                    en.Add("kili-pi-sike-lili-mute", new[] { "grape", " raisin" });
                     glossMap.Add("en", en);
                 }
                 KiliPiSikeLiliMute = new CompoundWord("kili-pi-sike-lili-mute");
@@ -5744,7 +5756,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kili-sike-Soja", new[] { "soy bean" } );
+                    en.Add("kili-sike-Soja", new[] { "soy bean" });
                     glossMap.Add("en", en);
                 }
                 KiliSikeSoja = new CompoundWord("kili-sike-Soja");
@@ -5758,7 +5770,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kili-sin", new[] { "greens"," fresh vegetables" } );
+                    en.Add("kili-sin", new[] { "greens", " fresh vegetables" });
                     glossMap.Add("en", en);
                 }
                 KiliSin = new CompoundWord("kili-sin");
@@ -5772,7 +5784,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-kili", new[] { "fruit juice" } );
+                    en.Add("telo-kili", new[] { "fruit juice" });
                     glossMap.Add("en", en);
                 }
                 TeloKili = new CompoundWord("telo-kili");
@@ -5786,7 +5798,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kiwen-lili-lili", new[] { "clod"," lump of clay"," dust" } );
+                    en.Add("kiwen-lili-lili", new[] { "clod", " lump of clay", " dust" });
                     glossMap.Add("en", en);
                 }
                 KiwenLiliLili = new CompoundWord("kiwen-lili-lili");
@@ -5800,7 +5812,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kiwen-lili-musi", new[] { "dice" } );
+                    en.Add("kiwen-lili-musi", new[] { "dice" });
                     glossMap.Add("en", en);
                 }
                 KiwenLiliMusi = new CompoundWord("kiwen-lili-musi");
@@ -5814,7 +5826,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kiwen-lukin", new[] { "transparent" } );
+                    en.Add("kiwen-lukin", new[] { "transparent" });
                     glossMap.Add("en", en);
                 }
                 KiwenLukin = new CompoundWord("kiwen-lukin");
@@ -5828,7 +5840,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kiwen-mani-jelo", new[] { "gold" } );
+                    en.Add("kiwen-mani-jelo", new[] { "gold" });
                     glossMap.Add("en", en);
                 }
                 KiwenManiJelo = new CompoundWord("kiwen-mani-jelo");
@@ -5842,7 +5854,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kiwen-mani-walo", new[] { "precious stones (diamonds)" } );
+                    en.Add("kiwen-mani-walo", new[] { "precious stones (diamonds)" });
                     glossMap.Add("en", en);
                 }
                 KiwenManiWalo = new CompoundWord("kiwen-mani-walo");
@@ -5856,7 +5868,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kiwen-pi-kule-ala", new[] { "glass" } );
+                    en.Add("kiwen-pi-kule-ala", new[] { "glass" });
                     glossMap.Add("en", en);
                 }
                 KiwenPiKuleAla = new CompoundWord("kiwen-pi-kule-ala");
@@ -5870,7 +5882,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kiwen-pi-telo-mama", new[] { "cheese" } );
+                    en.Add("kiwen-pi-telo-mama", new[] { "cheese" });
                     glossMap.Add("en", en);
                 }
                 KiwenPiTeloMama = new CompoundWord("kiwen-pi-telo-mama");
@@ -5884,7 +5896,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kiwen-pimeja", new[] { "iron" } );
+                    en.Add("kiwen-pimeja", new[] { "iron" });
                     glossMap.Add("en", en);
                 }
                 KiwenPimeja = new CompoundWord("kiwen-pimeja");
@@ -5898,7 +5910,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kiwen-telo", new[] { "mud" } );
+                    en.Add("kiwen-telo", new[] { "mud" });
                     glossMap.Add("en", en);
                 }
                 KiwenTelo = new CompoundWord("kiwen-telo");
@@ -5912,7 +5924,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ko-kasi", new[] { "pitch" } );
+                    en.Add("ko-kasi", new[] { "pitch" });
                     glossMap.Add("en", en);
                 }
                 KoKasi = new CompoundWord("ko-kasi");
@@ -5926,7 +5938,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ko-lete", new[] { "snow" } );
+                    en.Add("ko-lete", new[] { "snow" });
                     glossMap.Add("en", en);
                 }
                 KoLete = new CompoundWord("ko-lete");
@@ -5940,7 +5952,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ko-moku-pi-telo-mama", new[] { "cheese" } );
+                    en.Add("ko-moku-pi-telo-mama", new[] { "cheese" });
                     glossMap.Add("en", en);
                 }
                 KoMokuPiTeloMama = new CompoundWord("ko-moku-pi-telo-mama");
@@ -5954,7 +5966,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ko-pi-telo-mama", new[] { "cheese" } );
+                    en.Add("ko-pi-telo-mama", new[] { "cheese" });
                     glossMap.Add("en", en);
                 }
                 KoPiTeloMama = new CompoundWord("ko-pi-telo-mama");
@@ -5968,7 +5980,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ko-seli", new[] { "plasma (state of matter)" } );
+                    en.Add("ko-seli", new[] { "plasma (state of matter)" });
                     glossMap.Add("en", en);
                 }
                 KoSeli = new CompoundWord("ko-seli");
@@ -5982,7 +5994,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ko-soweli", new[] { "animal fat" } );
+                    en.Add("ko-soweli", new[] { "animal fat" });
                     glossMap.Add("en", en);
                 }
                 KoSoweli = new CompoundWord("ko-soweli");
@@ -5996,7 +6008,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ko-suno-linja", new[] { "light rays" } );
+                    en.Add("ko-suno-linja", new[] { "light rays" });
                     glossMap.Add("en", en);
                 }
                 KoSunoLinja = new CompoundWord("ko-suno-linja");
@@ -6010,7 +6022,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ko-suwi", new[] { "honey" } );
+                    en.Add("ko-suwi", new[] { "honey" });
                     glossMap.Add("en", en);
                 }
                 KoSuwi = new CompoundWord("ko-suwi");
@@ -6024,7 +6036,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ko-telo-pi-telo-mama", new[] { "yogurt" } );
+                    en.Add("ko-telo-pi-telo-mama", new[] { "yogurt" });
                     glossMap.Add("en", en);
                 }
                 KoTeloPiTeloMama = new CompoundWord("ko-telo-pi-telo-mama");
@@ -6038,7 +6050,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ko-walo-wawa", new[] { "cocaine" } );
+                    en.Add("ko-walo-wawa", new[] { "cocaine" });
                     glossMap.Add("en", en);
                 }
                 KoWaloWawa = new CompoundWord("ko-walo-wawa");
@@ -6052,7 +6064,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ko-wawa", new[] { "cocaine" } );
+                    en.Add("ko-wawa", new[] { "cocaine" });
                     glossMap.Add("en", en);
                 }
                 KoWawa = new CompoundWord("ko-wawa");
@@ -6066,7 +6078,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kon-en-sewi", new[] { "weather" } );
+                    en.Add("kon-en-sewi", new[] { "weather" });
                     glossMap.Add("en", en);
                 }
                 KonEnSewi = new CompoundWord("kon-en-sewi");
@@ -6080,7 +6092,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kon-pi-pilin-pona", new[] { "laughter" } );
+                    en.Add("kon-pi-pilin-pona", new[] { "laughter" });
                     glossMap.Add("en", en);
                 }
                 KonPiPilinPona = new CompoundWord("kon-pi-pilin-pona");
@@ -6094,7 +6106,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kon-seli", new[] { "smoke" } );
+                    en.Add("kon-seli", new[] { "smoke" });
                     glossMap.Add("en", en);
                 }
                 KonSeli = new CompoundWord("kon-seli");
@@ -6108,7 +6120,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kon-sewi", new[] { "Heaven" } );
+                    en.Add("kon-sewi", new[] { "Heaven" });
                     glossMap.Add("en", en);
                 }
                 KonSewi = new CompoundWord("kon-sewi");
@@ -6122,7 +6134,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kon-tawa", new[] { "wind" } );
+                    en.Add("kon-tawa", new[] { "wind" });
                     glossMap.Add("en", en);
                 }
                 KonTawa = new CompoundWord("kon-tawa");
@@ -6136,7 +6148,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kon-telo", new[] { "rain" } );
+                    en.Add("kon-telo", new[] { "rain" });
                     glossMap.Add("en", en);
                 }
                 KonTelo = new CompoundWord("kon-telo");
@@ -6150,7 +6162,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kon-telo-walo", new[] { "snow"," fog" } );
+                    en.Add("kon-telo-walo", new[] { "snow", " fog" });
                     glossMap.Add("en", en);
                 }
                 KonTeloWalo = new CompoundWord("kon-telo-walo");
@@ -6164,7 +6176,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kon-wawa", new[] { "soul"," spirit" } );
+                    en.Add("kon-wawa", new[] { "soul", " spirit" });
                     glossMap.Add("en", en);
                 }
                 KonWawa = new CompoundWord("kon-wawa");
@@ -6178,7 +6190,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-tawa-kon", new[] { "airplane" } );
+                    en.Add("tomo-tawa-kon", new[] { "airplane" });
                     glossMap.Add("en", en);
                 }
                 TomoTawaKon = new CompoundWord("tomo-tawa-kon");
@@ -6192,7 +6204,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kule-ala", new[] { "transparent" } );
+                    en.Add("kule-ala", new[] { "transparent" });
                     glossMap.Add("en", en);
                 }
                 KuleAla = new CompoundWord("kule-ala");
@@ -6206,7 +6218,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kule-ala-walo-ala", new[] { "transparent" } );
+                    en.Add("kule-ala-walo-ala", new[] { "transparent" });
                     glossMap.Add("en", en);
                 }
                 KuleAlaWaloAla = new CompoundWord("kule-ala-walo-ala");
@@ -6220,7 +6232,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kule-jaki", new[] { "brown" } );
+                    en.Add("kule-jaki", new[] { "brown" });
                     glossMap.Add("en", en);
                 }
                 KuleJaki = new CompoundWord("kule-jaki");
@@ -6234,7 +6246,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kule-lon-palisa-luka", new[] { "nail polish" } );
+                    en.Add("kule-lon-palisa-luka", new[] { "nail polish" });
                     glossMap.Add("en", en);
                 }
                 KuleLonPalisaLuka = new CompoundWord("kule-lon-palisa-luka");
@@ -6248,7 +6260,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kule-moku", new[] { "taste" } );
+                    en.Add("kule-moku", new[] { "taste" });
                     glossMap.Add("en", en);
                 }
                 KuleMoku = new CompoundWord("kule-moku");
@@ -6262,7 +6274,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kule-pi-telo-wawa", new[] { "brown" } );
+                    en.Add("kule-pi-telo-wawa", new[] { "brown" });
                     glossMap.Add("en", en);
                 }
                 KulePiTeloWawa = new CompoundWord("kule-pi-telo-wawa");
@@ -6276,7 +6288,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kule-sewi", new[] { "rainbow" } );
+                    en.Add("kule-sewi", new[] { "rainbow" });
                     glossMap.Add("en", en);
                 }
                 KuleSewi = new CompoundWord("kule-sewi");
@@ -6290,7 +6302,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-jan", new[] { "race"," team"," society" } );
+                    en.Add("kulupu-jan", new[] { "race", " team", " society" });
                     glossMap.Add("en", en);
                 }
                 KulupuJan = new CompoundWord("kulupu-jan");
@@ -6304,7 +6316,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-kasi", new[] { "clubs" } );
+                    en.Add("kulupu-kasi", new[] { "clubs" });
                     glossMap.Add("en", en);
                 }
                 KulupuKasi = new CompoundWord("kulupu-kasi");
@@ -6318,7 +6330,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-kiwen", new[] { "diamonds" } );
+                    en.Add("kulupu-kiwen", new[] { "diamonds" });
                     glossMap.Add("en", en);
                 }
                 KulupuKiwen = new CompoundWord("kulupu-kiwen");
@@ -6332,7 +6344,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-lawa", new[] { "government"," governement" } );
+                    en.Add("kulupu-lawa", new[] { "government", " governement" });
                     glossMap.Add("en", en);
                 }
                 KulupuLawa = new CompoundWord("kulupu-lawa");
@@ -6346,7 +6358,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-lili", new[] { "subgroup"," branch" } );
+                    en.Add("kulupu-lili", new[] { "subgroup", " branch" });
                     glossMap.Add("en", en);
                 }
                 KulupuLili = new CompoundWord("kulupu-lili");
@@ -6360,7 +6372,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-lipu", new[] { "catregory"," class"," type"," division"," file (computer)"," text file of seveal pages" } );
+                    en.Add("kulupu-lipu", new[] { "catregory", " class", " type", " division", " file (computer)", " text file of seveal pages" });
                     glossMap.Add("en", en);
                 }
                 KulupuLipu = new CompoundWord("kulupu-lipu");
@@ -6374,7 +6386,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-mama", new[] { "family"," humanity" } );
+                    en.Add("kulupu-mama", new[] { "family", " humanity" });
                     glossMap.Add("en", en);
                 }
                 KulupuMama = new CompoundWord("kulupu-mama");
@@ -6388,7 +6400,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-mani", new[] { "diamonds"," company"," corporation" } );
+                    en.Add("kulupu-mani", new[] { "diamonds", " company", " corporation" });
                     glossMap.Add("en", en);
                 }
                 KulupuMani = new CompoundWord("kulupu-mani");
@@ -6402,7 +6414,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-musi", new[] { "circus" } );
+                    en.Add("kulupu-musi", new[] { "circus" });
                     glossMap.Add("en", en);
                 }
                 KulupuMusi = new CompoundWord("kulupu-musi");
@@ -6416,7 +6428,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-nimi", new[] { "phrase"," clause"," sentence"," expression" } );
+                    en.Add("kulupu-nimi", new[] { "phrase", " clause", " sentence", " expression" });
                     glossMap.Add("en", en);
                 }
                 KulupuNimi = new CompoundWord("kulupu-nimi");
@@ -6430,7 +6442,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-nimi-ala", new[] { "negative phrase" } );
+                    en.Add("kulupu-nimi-ala", new[] { "negative phrase" });
                     glossMap.Add("en", en);
                 }
                 KulupuNimiAla = new CompoundWord("kulupu-nimi-ala");
@@ -6444,7 +6456,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-nimi-ante", new[] { "condition phrase, la-phrase" } );
+                    en.Add("kulupu-nimi-ante", new[] { "condition phrase, la-phrase" });
                     glossMap.Add("en", en);
                 }
                 KulupuNimiAnte = new CompoundWord("kulupu-nimi-ante");
@@ -6458,7 +6470,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-nimi-ijo", new[] { "noun phrase" } );
+                    en.Add("kulupu-nimi-ijo", new[] { "noun phrase" });
                     glossMap.Add("en", en);
                 }
                 KulupuNimiIjo = new CompoundWord("kulupu-nimi-ijo");
@@ -6472,7 +6484,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-nimi-pali", new[] { "verb phrase" } );
+                    en.Add("kulupu-nimi-pali", new[] { "verb phrase" });
                     glossMap.Add("en", en);
                 }
                 KulupuNimiPali = new CompoundWord("kulupu-nimi-pali");
@@ -6486,7 +6498,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-nimi-pi-kama-jo", new[] { "grocery (etc.) list"," shopping list" } );
+                    en.Add("kulupu-nimi-pi-kama-jo", new[] { "grocery (etc.) list", " shopping list" });
                     glossMap.Add("en", en);
                 }
                 KulupuNimiPiKamaJo = new CompoundWord("kulupu-nimi-pi-kama-jo");
@@ -6500,7 +6512,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-nimi-pini", new[] { "sentence" } );
+                    en.Add("kulupu-nimi-pini", new[] { "sentence" });
                     glossMap.Add("en", en);
                 }
                 KulupuNimiPini = new CompoundWord("kulupu-nimi-pini");
@@ -6514,7 +6526,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-nimi-seme", new[] { "interrogative phrase"," question" } );
+                    en.Add("kulupu-nimi-seme", new[] { "interrogative phrase", " question" });
                     glossMap.Add("en", en);
                 }
                 KulupuNimiSeme = new CompoundWord("kulupu-nimi-seme");
@@ -6528,7 +6540,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-olin", new[] { "hearts" } );
+                    en.Add("kulupu-olin", new[] { "hearts" });
                     glossMap.Add("en", en);
                 }
                 KulupuOlin = new CompoundWord("kulupu-olin");
@@ -6542,7 +6554,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-pi-lipu-sona", new[] { "web site (collection of pages)" } );
+                    en.Add("kulupu-pi-lipu-sona", new[] { "web site (collection of pages)" });
                     glossMap.Add("en", en);
                 }
                 KulupuPiLipuSona = new CompoundWord("kulupu-pi-lipu-sona");
@@ -6556,7 +6568,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-pi-pali-toki", new[] { "language creaation society" } );
+                    en.Add("kulupu-pi-pali-toki", new[] { "language creaation society" });
                     glossMap.Add("en", en);
                 }
                 KulupuPiPaliToki = new CompoundWord("kulupu-pi-pali-toki");
@@ -6570,7 +6582,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-pi-pona-sijelo", new[] { "group of doctors (health professionals)" } );
+                    en.Add("kulupu-pi-pona-sijelo", new[] { "group of doctors (health professionals)" });
                     glossMap.Add("en", en);
                 }
                 KulupuPiPonaSijelo = new CompoundWord("kulupu-pi-pona-sijelo");
@@ -6584,7 +6596,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-sike", new[] { "circus" } );
+                    en.Add("kulupu-sike", new[] { "circus" });
                     glossMap.Add("en", en);
                 }
                 KulupuSike = new CompoundWord("kulupu-sike");
@@ -6598,7 +6610,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-sitelen", new[] { "alphabet (writing system)" } );
+                    en.Add("kulupu-sitelen", new[] { "alphabet (writing system)" });
                     glossMap.Add("en", en);
                 }
                 KulupuSitelen = new CompoundWord("kulupu-sitelen");
@@ -6612,7 +6624,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-toki", new[] { "forum" } );
+                    en.Add("kulupu-toki", new[] { "forum" });
                     glossMap.Add("en", en);
                 }
                 KulupuToki = new CompoundWord("kulupu-toki");
@@ -6626,7 +6638,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-toki-Jaju", new[] { "list group Yahoo" } );
+                    en.Add("kulupu-toki-Jaju", new[] { "list group Yahoo" });
                     glossMap.Add("en", en);
                 }
                 KulupuTokiJaju = new CompoundWord("kulupu-toki-Jaju");
@@ -6640,7 +6652,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-utala", new[] { "military"," army"," spades"," nelanties" } );
+                    en.Add("kulupu-utala", new[] { "military", " army", " spades", " nelanties" });
                     glossMap.Add("en", en);
                 }
                 KulupuUtala = new CompoundWord("kulupu-utala");
@@ -6654,7 +6666,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lupa-kute", new[] { "ear" } );
+                    en.Add("lupa-kute", new[] { "ear" });
                     glossMap.Add("en", en);
                 }
                 LupaKute = new CompoundWord("lupa-kute");
@@ -6668,7 +6680,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kute-sona", new[] { "understand (when hearing)" } );
+                    en.Add("kute-sona", new[] { "understand (when hearing)" });
                     glossMap.Add("en", en);
                 }
                 KuteSona = new CompoundWord("kute-sona");
@@ -6682,7 +6694,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kute-tawa", new[] { "listen to" } );
+                    en.Add("kute-tawa", new[] { "listen to" });
                     glossMap.Add("en", en);
                 }
                 KuteTawa = new CompoundWord("kute-tawa");
@@ -6696,7 +6708,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lape-pona", new[] { "Sleep well!" } );
+                    en.Add("lape-pona", new[] { "Sleep well!" });
                     glossMap.Add("en", en);
                 }
                 LapePona = new CompoundWord("lape-pona");
@@ -6710,7 +6722,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("supa-lape", new[] { "bed" } );
+                    en.Add("supa-lape", new[] { "bed" });
                     glossMap.Add("en", en);
                 }
                 SupaLape = new CompoundWord("supa-lape");
@@ -6724,7 +6736,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wile-lape", new[] { "tired"," sleepy" } );
+                    en.Add("wile-lape", new[] { "tired", " sleepy" });
                     glossMap.Add("en", en);
                 }
                 WileLape = new CompoundWord("wile-lape");
@@ -6738,7 +6750,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("laso-jelo", new[] { "green" } );
+                    en.Add("laso-jelo", new[] { "green" });
                     glossMap.Add("en", en);
                 }
                 LasoJelo = new CompoundWord("laso-jelo");
@@ -6752,7 +6764,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("laso-loje", new[] { "purple" } );
+                    en.Add("laso-loje", new[] { "purple" });
                     glossMap.Add("en", en);
                 }
                 LasoLoje = new CompoundWord("laso-loje");
@@ -6766,7 +6778,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("laso-pimeja", new[] { "dark blue" } );
+                    en.Add("laso-pimeja", new[] { "dark blue" });
                     glossMap.Add("en", en);
                 }
                 LasoPimeja = new CompoundWord("laso-pimeja");
@@ -6780,7 +6792,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("loje-laso", new[] { "(dark) blueish red"," purple" } );
+                    en.Add("loje-laso", new[] { "(dark) blueish red", " purple" });
                     glossMap.Add("en", en);
                 }
                 LojeLaso = new CompoundWord("loje-laso");
@@ -6794,7 +6806,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("loje-laso-pimeja", new[] { "(dark) blueish red"," purple" } );
+                    en.Add("loje-laso-pimeja", new[] { "(dark) blueish red", " purple" });
                     glossMap.Add("en", en);
                 }
                 LojeLasoPimeja = new CompoundWord("loje-laso-pimeja");
@@ -6808,7 +6820,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pimeja-laso", new[] { "bluish black" } );
+                    en.Add("pimeja-laso", new[] { "bluish black" });
                     glossMap.Add("en", en);
                 }
                 PimejaLaso = new CompoundWord("pimeja-laso");
@@ -6822,7 +6834,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lawa-lukin", new[] { "expression"," mien"," look" } );
+                    en.Add("lawa-lukin", new[] { "expression", " mien", " look" });
                     glossMap.Add("en", en);
                 }
                 LawaLukin = new CompoundWord("lawa-lukin");
@@ -6836,7 +6848,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lawa-ma", new[] { "government"," govern" } );
+                    en.Add("lawa-ma", new[] { "government", " govern" });
                     glossMap.Add("en", en);
                 }
                 LawaMa = new CompoundWord("lawa-ma");
@@ -6850,7 +6862,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lawa-sewi", new[] { "haunting"," magical"," hallucinatory" } );
+                    en.Add("lawa-sewi", new[] { "haunting", " magical", " hallucinatory" });
                     glossMap.Add("en", en);
                 }
                 LawaSewi = new CompoundWord("lawa-sewi");
@@ -6864,7 +6876,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("len-lawa", new[] { "hat"," cap"," hood"," mask"," veil" } );
+                    en.Add("len-lawa", new[] { "hat", " cap", " hood", " mask", " veil" });
                     glossMap.Add("en", en);
                 }
                 LenLawa = new CompoundWord("len-lawa");
@@ -6878,7 +6890,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-lawa", new[] { "commandment"," command"," order"," bar (lawyer)" } );
+                    en.Add("toki-lawa", new[] { "commandment", " command", " order", " bar (lawyer)" });
                     glossMap.Add("en", en);
                 }
                 TokiLawa = new CompoundWord("toki-lawa");
@@ -6892,7 +6904,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("len-anpa", new[] { "trousers"," underwear" } );
+                    en.Add("len-anpa", new[] { "trousers", " underwear" });
                     glossMap.Add("en", en);
                 }
                 LenAnpa = new CompoundWord("len-anpa");
@@ -6906,7 +6918,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("len-lipu", new[] { "flag" } );
+                    en.Add("len-lipu", new[] { "flag" });
                     glossMap.Add("en", en);
                 }
                 LenLipu = new CompoundWord("len-lipu");
@@ -6920,7 +6932,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("len-luka", new[] { "gloves"," mittens" } );
+                    en.Add("len-luka", new[] { "gloves", " mittens" });
                     glossMap.Add("en", en);
                 }
                 LenLuka = new CompoundWord("len-luka");
@@ -6934,7 +6946,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("len-lupa", new[] { "curtains"," screen" } );
+                    en.Add("len-lupa", new[] { "curtains", " screen" });
                     glossMap.Add("en", en);
                 }
                 LenLupa = new CompoundWord("len-lupa");
@@ -6948,7 +6960,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("len-noka", new[] { "shoes"," socks"," pants" } );
+                    en.Add("len-noka", new[] { "shoes", " socks", " pants" });
                     glossMap.Add("en", en);
                 }
                 LenNoka = new CompoundWord("len-noka");
@@ -6962,7 +6974,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("len-noka-palisa", new[] { "trousers" } );
+                    en.Add("len-noka-palisa", new[] { "trousers" });
                     glossMap.Add("en", en);
                 }
                 LenNokaPalisa = new CompoundWord("len-noka-palisa");
@@ -6976,7 +6988,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("len-sinpin", new[] { "jacket" } );
+                    en.Add("len-sinpin", new[] { "jacket" });
                     glossMap.Add("en", en);
                 }
                 LenSinpin = new CompoundWord("len-sinpin");
@@ -6990,7 +7002,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lete-lili", new[] { "cool" } );
+                    en.Add("lete-lili", new[] { "cool" });
                     glossMap.Add("en", en);
                 }
                 LeteLili = new CompoundWord("lete-lili");
@@ -7004,7 +7016,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("poki-lete", new[] { "refrigerator" } );
+                    en.Add("poki-lete", new[] { "refrigerator" });
                     glossMap.Add("en", en);
                 }
                 PokiLete = new CompoundWord("poki-lete");
@@ -7018,7 +7030,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-lete", new[] { "winter"," the cool of the day"," Winter" } );
+                    en.Add("tenpo-lete", new[] { "winter", " the cool of the day", " Winter" });
                     glossMap.Add("en", en);
                 }
                 TenpoLete = new CompoundWord("tenpo-lete");
@@ -7032,7 +7044,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lili-ala", new[] { "old"," not young" } );
+                    en.Add("lili-ala", new[] { "old", " not young" });
                     glossMap.Add("en", en);
                 }
                 LiliAla = new CompoundWord("lili-ala");
@@ -7046,7 +7058,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lili-mute", new[] { "very few" } );
+                    en.Add("lili-mute", new[] { "very few" });
                     glossMap.Add("en", en);
                 }
                 LiliMute = new CompoundWord("lili-mute");
@@ -7060,7 +7072,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lili-taso", new[] { "only a little" } );
+                    en.Add("lili-taso", new[] { "only a little" });
                     glossMap.Add("en", en);
                 }
                 LiliTaso = new CompoundWord("lili-taso");
@@ -7074,7 +7086,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("linja-lili-oko", new[] { "eyebrows"," eyelashes" } );
+                    en.Add("linja-lili-oko", new[] { "eyebrows", " eyelashes" });
                     glossMap.Add("en", en);
                 }
                 LinjaLiliOko = new CompoundWord("linja-lili-oko");
@@ -7088,7 +7100,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("linja-lili-pi-insa-lawa", new[] { "nerve cell" } );
+                    en.Add("linja-lili-pi-insa-lawa", new[] { "nerve cell" });
                     glossMap.Add("en", en);
                 }
                 LinjaLiliPiInsaLawa = new CompoundWord("linja-lili-pi-insa-lawa");
@@ -7102,7 +7114,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-lili", new[] { "state"," province"," county"," departement","…" } );
+                    en.Add("ma-lili", new[] { "state", " province", " county", " departement", "…" });
                     glossMap.Add("en", en);
                 }
                 MaLili = new CompoundWord("ma-lili");
@@ -7116,7 +7128,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("meli-lili", new[] { "daughter"," girl" } );
+                    en.Add("meli-lili", new[] { "daughter", " girl" });
                     glossMap.Add("en", en);
                 }
                 MeliLili = new CompoundWord("meli-lili");
@@ -7130,7 +7142,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("mije-lili", new[] { "son"," boy" } );
+                    en.Add("mije-lili", new[] { "son", " boy" });
                     glossMap.Add("en", en);
                 }
                 MijeLili = new CompoundWord("mije-lili");
@@ -7144,7 +7156,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("moku-lili", new[] { "pill" } );
+                    en.Add("moku-lili", new[] { "pill" });
                     glossMap.Add("en", en);
                 }
                 MokuLili = new CompoundWord("moku-lili");
@@ -7158,7 +7170,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("moku-lili-pi-pilin-pona-mute", new[] { "strong euphoric drug taken orally" } );
+                    en.Add("moku-lili-pi-pilin-pona-mute", new[] { "strong euphoric drug taken orally" });
                     glossMap.Add("en", en);
                 }
                 MokuLiliPiPilinPonaMute = new CompoundWord("moku-lili-pi-pilin-pona-mute");
@@ -7172,7 +7184,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("mute-lili", new[] { "some"," few"," not a lot"," some (a small number)"," a few"," a small number" } );
+                    en.Add("mute-lili", new[] { "some", " few", " not a lot", " some (a small number)", " a few", " a small number" });
                     glossMap.Add("en", en);
                 }
                 MuteLili = new CompoundWord("mute-lili");
@@ -7186,7 +7198,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nena-lili-meli", new[] { "clitoris" } );
+                    en.Add("nena-lili-meli", new[] { "clitoris" });
                     glossMap.Add("en", en);
                 }
                 NenaLiliMeli = new CompoundWord("nena-lili-meli");
@@ -7200,7 +7212,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nena-lili-unpa-meli", new[] { "clitoris" } );
+                    en.Add("nena-lili-unpa-meli", new[] { "clitoris" });
                     glossMap.Add("en", en);
                 }
                 NenaLiliUnpaMeli = new CompoundWord("nena-lili-unpa-meli");
@@ -7214,7 +7226,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nena-lili-pi-nena-mama", new[] { "nipples" } );
+                    en.Add("nena-lili-pi-nena-mama", new[] { "nipples" });
                     glossMap.Add("en", en);
                 }
                 NenaLiliPiNenaMama = new CompoundWord("nena-lili-pi-nena-mama");
@@ -7228,7 +7240,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("palisa-lili-noka", new[] { "toes" } );
+                    en.Add("palisa-lili-noka", new[] { "toes" });
                     glossMap.Add("en", en);
                 }
                 PalisaLiliNoka = new CompoundWord("palisa-lili-noka");
@@ -7242,7 +7254,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-lili", new[] { "soon"," moment"," briefly"," hour" } );
+                    en.Add("tenpo-lili", new[] { "soon", " moment", " briefly", " hour" });
                     glossMap.Add("en", en);
                 }
                 TenpoLili = new CompoundWord("tenpo-lili");
@@ -7256,7 +7268,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("linja-awen", new[] { "length" } );
+                    en.Add("linja-awen", new[] { "length" });
                     glossMap.Add("en", en);
                 }
                 LinjaAwen = new CompoundWord("linja-awen");
@@ -7270,7 +7282,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("linja-lawa", new[] { "hair" } );
+                    en.Add("linja-lawa", new[] { "hair" });
                     glossMap.Add("en", en);
                 }
                 LinjaLawa = new CompoundWord("linja-lawa");
@@ -7284,7 +7296,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("linja-luka", new[] { "width" } );
+                    en.Add("linja-luka", new[] { "width" });
                     glossMap.Add("en", en);
                 }
                 LinjaLuka = new CompoundWord("linja-luka");
@@ -7298,7 +7310,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("linja-sewi", new[] { "heigth" } );
+                    en.Add("linja-sewi", new[] { "heigth" });
                     glossMap.Add("en", en);
                 }
                 LinjaSewi = new CompoundWord("linja-sewi");
@@ -7312,7 +7324,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("linja-sinpin", new[] { "beard"," facial hair" } );
+                    en.Add("linja-sinpin", new[] { "beard", " facial hair" });
                     glossMap.Add("en", en);
                 }
                 LinjaSinpin = new CompoundWord("linja-sinpin");
@@ -7326,7 +7338,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("linja-toki", new[] { "sentence" } );
+                    en.Add("linja-toki", new[] { "sentence" });
                     glossMap.Add("en", en);
                 }
                 LinjaToki = new CompoundWord("linja-toki");
@@ -7340,7 +7352,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("linja-uta", new[] { "whiskers"," moustache" } );
+                    en.Add("linja-uta", new[] { "whiskers", " moustache" });
                     glossMap.Add("en", en);
                 }
                 LinjaUta = new CompoundWord("linja-uta");
@@ -7354,7 +7366,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("poka-telo-linja", new[] { "river bank" } );
+                    en.Add("poka-telo-linja", new[] { "river bank" });
                     glossMap.Add("en", en);
                 }
                 PokaTeloLinja = new CompoundWord("poka-telo-linja");
@@ -7368,7 +7380,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-pi-nena-linja", new[] { "elephant" } );
+                    en.Add("soweli-pi-nena-linja", new[] { "elephant" });
                     glossMap.Add("en", en);
                 }
                 SoweliPiNenaLinja = new CompoundWord("soweli-pi-nena-linja");
@@ -7382,7 +7394,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-linja", new[] { "river"," stream" } );
+                    en.Add("telo-linja", new[] { "river", " stream" });
                     glossMap.Add("en", en);
                 }
                 TeloLinja = new CompoundWord("telo-linja");
@@ -7396,7 +7408,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-awen", new[] { "lesson"," text" } );
+                    en.Add("lipu-awen", new[] { "lesson", " text" });
                     glossMap.Add("en", en);
                 }
                 LipuAwen = new CompoundWord("lipu-awen");
@@ -7410,7 +7422,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-ijo", new[] { "mirror" } );
+                    en.Add("lipu-ijo", new[] { "mirror" });
                     glossMap.Add("en", en);
                 }
                 LipuIjo = new CompoundWord("lipu-ijo");
@@ -7424,7 +7436,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-ilo-toki-poki", new[] { "e-mail"," email" } );
+                    en.Add("lipu-ilo-toki-poki", new[] { "e-mail", " email" });
                     glossMap.Add("en", en);
                 }
                 LipuIloTokiPoki = new CompoundWord("lipu-ilo-toki-poki");
@@ -7438,7 +7450,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-kasi", new[] { "leaf (of tree)" } );
+                    en.Add("lipu-kasi", new[] { "leaf (of tree)" });
                     glossMap.Add("en", en);
                 }
                 LipuKasi = new CompoundWord("lipu-kasi");
@@ -7452,7 +7464,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-kili", new[] { "leaf" } );
+                    en.Add("lipu-kili", new[] { "leaf" });
                     glossMap.Add("en", en);
                 }
                 LipuKili = new CompoundWord("lipu-kili");
@@ -7466,7 +7478,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-kiwen-pi-telo-mama", new[] { "cheese slice" } );
+                    en.Add("lipu-kiwen-pi-telo-mama", new[] { "cheese slice" });
                     glossMap.Add("en", en);
                 }
                 LipuKiwenPiTeloMama = new CompoundWord("lipu-kiwen-pi-telo-mama");
@@ -7480,7 +7492,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-lawa", new[] { "trumps" } );
+                    en.Add("lipu-lawa", new[] { "trumps" });
                     glossMap.Add("en", en);
                 }
                 LipuLawa = new CompoundWord("lipu-lawa");
@@ -7494,7 +7506,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-mani", new[] { "(bank) check" } );
+                    en.Add("lipu-mani", new[] { "(bank) check" });
                     glossMap.Add("en", en);
                 }
                 LipuMani = new CompoundWord("lipu-mani");
@@ -7508,7 +7520,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-musi", new[] { "cards" } );
+                    en.Add("lipu-musi", new[] { "cards" });
                     glossMap.Add("en", en);
                 }
                 LipuMusi = new CompoundWord("lipu-musi");
@@ -7522,7 +7534,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-musi-mani", new[] { "poker (other gambling games)" } );
+                    en.Add("lipu-musi-mani", new[] { "poker (other gambling games)" });
                     glossMap.Add("en", en);
                 }
                 LipuMusiMani = new CompoundWord("lipu-musi-mani");
@@ -7536,7 +7548,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-musi-nasa", new[] { "card tricks"," cartomagy" } );
+                    en.Add("lipu-musi-nasa", new[] { "card tricks", " cartomagy" });
                     glossMap.Add("en", en);
                 }
                 LipuMusiNasa = new CompoundWord("lipu-musi-nasa");
@@ -7550,7 +7562,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-musi-pona", new[] { "play cards in the family" } );
+                    en.Add("lipu-musi-pona", new[] { "play cards in the family" });
                     glossMap.Add("en", en);
                 }
                 LipuMusiPona = new CompoundWord("lipu-musi-pona");
@@ -7564,7 +7576,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-mute", new[] { "book" } );
+                    en.Add("lipu-mute", new[] { "book" });
                     glossMap.Add("en", en);
                 }
                 LipuMute = new CompoundWord("lipu-mute");
@@ -7578,7 +7590,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-nasin", new[] { "web page"," instructional diagram" } );
+                    en.Add("lipu-nasin", new[] { "web page", " instructional diagram" });
                     glossMap.Add("en", en);
                 }
                 LipuNasin = new CompoundWord("lipu-nasin");
@@ -7592,7 +7604,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-Open", new[] { "Genesis" } );
+                    en.Add("lipu-Open", new[] { "Genesis" });
                     glossMap.Add("en", en);
                 }
                 LipuOpen = new CompoundWord("lipu-Open");
@@ -7606,7 +7618,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-pali", new[] { "homework"," test"," workbooks homework"," web site"," home work"," work sheets" } );
+                    en.Add("lipu-pali", new[] { "homework", " test", " workbooks homework", " web site", " home work", " work sheets" });
                     glossMap.Add("en", en);
                 }
                 LipuPali = new CompoundWord("lipu-pali");
@@ -7620,7 +7632,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-pi-jan-lawa", new[] { "king" } );
+                    en.Add("lipu-pi-jan-lawa", new[] { "king" });
                     glossMap.Add("en", en);
                 }
                 LipuPiJanLawa = new CompoundWord("lipu-pi-jan-lawa");
@@ -7634,7 +7646,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-pi-jan-meli", new[] { "queen" } );
+                    en.Add("lipu-pi-jan-meli", new[] { "queen" });
                     glossMap.Add("en", en);
                 }
                 LipuPiJanMeli = new CompoundWord("lipu-pi-jan-meli");
@@ -7648,7 +7660,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-pi-jan-pali", new[] { "jack" } );
+                    en.Add("lipu-pi-jan-pali", new[] { "jack" });
                     glossMap.Add("en", en);
                 }
                 LipuPiJanPali = new CompoundWord("lipu-pi-jan-pali");
@@ -7662,7 +7674,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-pi-lawa-meli", new[] { "queen" } );
+                    en.Add("lipu-pi-lawa-meli", new[] { "queen" });
                     glossMap.Add("en", en);
                 }
                 LipuPiLawaMeli = new CompoundWord("lipu-pi-lawa-meli");
@@ -7676,7 +7688,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-pi-mani-musi", new[] { "poker" } );
+                    en.Add("lipu-pi-mani-musi", new[] { "poker" });
                     glossMap.Add("en", en);
                 }
                 LipuPiManiMusi = new CompoundWord("lipu-pi-mani-musi");
@@ -7690,7 +7702,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-pi-nasa-musi", new[] { "card tricks" } );
+                    en.Add("lipu-pi-nasa-musi", new[] { "card tricks" });
                     glossMap.Add("en", en);
                 }
                 LipuPiNasaMusi = new CompoundWord("lipu-pi-nasa-musi");
@@ -7704,7 +7716,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-pi-sitelen-lon", new[] { "mirror" } );
+                    en.Add("lipu-pi-sitelen-lon", new[] { "mirror" });
                     glossMap.Add("en", en);
                 }
                 LipuPiSitelenLon = new CompoundWord("lipu-pi-sitelen-lon");
@@ -7718,7 +7730,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-pi-tawa-kon", new[] { "wing -- natural" } );
+                    en.Add("lipu-pi-tawa-kon", new[] { "wing -- natural" });
                     glossMap.Add("en", en);
                 }
                 LipuPiTawaKon = new CompoundWord("lipu-pi-tawa-kon");
@@ -7732,7 +7744,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-pi-tenpo-suno", new[] { "diary web page" } );
+                    en.Add("lipu-pi-tenpo-suno", new[] { "diary web page" });
                     glossMap.Add("en", en);
                 }
                 LipuPiTenpoSuno = new CompoundWord("lipu-pi-tenpo-suno");
@@ -7746,7 +7758,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-sewi", new[] { "holy book" } );
+                    en.Add("lipu-sewi", new[] { "holy book" });
                     glossMap.Add("en", en);
                 }
                 LipuSewi = new CompoundWord("lipu-sewi");
@@ -7760,7 +7772,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-sewi-Pipija", new[] { "Bible" } );
+                    en.Add("lipu-sewi-Pipija", new[] { "Bible" });
                     glossMap.Add("en", en);
                 }
                 LipuSewiPipija = new CompoundWord("lipu-sewi-Pipija");
@@ -7774,7 +7786,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-sona", new[] { "encyclopedia"," lesson" } );
+                    en.Add("lipu-sona", new[] { "encyclopedia", " lesson" });
                     glossMap.Add("en", en);
                 }
                 LipuSona = new CompoundWord("lipu-sona");
@@ -7788,7 +7800,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-toki", new[] { "book"," document" } );
+                    en.Add("lipu-toki", new[] { "book", " document" });
                     glossMap.Add("en", en);
                 }
                 LipuToki = new CompoundWord("lipu-toki");
@@ -7802,7 +7814,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-toki-sin", new[] { "translation" } );
+                    en.Add("lipu-toki-sin", new[] { "translation" });
                     glossMap.Add("en", en);
                 }
                 LipuTokiSin = new CompoundWord("lipu-toki-sin");
@@ -7816,7 +7828,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-Weka", new[] { "Exodus" } );
+                    en.Add("lipu-Weka", new[] { "Exodus" });
                     glossMap.Add("en", en);
                 }
                 LipuWeka = new CompoundWord("lipu-Weka");
@@ -7826,25 +7838,25 @@ public static CompoundWord MaTomoEnkon;
             }
 
 
+            //{
+            //    var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+            //    {
+            //        var en = new Dictionary<string, string[]>();
+            //        en.Add("loje-laso", new[] { "purple" });
+            //        glossMap.Add("en", en);
+            //    }
+            //    LojeLaso = new CompoundWord("loje-laso");
+
+            //    Dictionary.Add("loje-laso", LojeLaso);
+            //    Glosses.Add("loje-laso", glossMap);
+            //}
+
+
             {
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("loje-laso", new[] { "purple" } );
-                    glossMap.Add("en", en);
-                }
-                LojeLaso = new CompoundWord("loje-laso");
-
-                Dictionary.Add("loje-laso", LojeLaso);
-                Glosses.Add("loje-laso", glossMap);
-            }
-
-
-            {
-                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
-                {
-                    var en = new Dictionary<string, string[]>();
-                    en.Add("loje-walo", new[] { "light red"," pink" } );
+                    en.Add("loje-walo", new[] { "light red", " pink" });
                     glossMap.Add("en", en);
                 }
                 LojeWalo = new CompoundWord("loje-walo");
@@ -7858,7 +7870,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-loje-mun", new[] { "menses" } );
+                    en.Add("telo-loje-mun", new[] { "menses" });
                     glossMap.Add("en", en);
                 }
                 TeloLojeMun = new CompoundWord("telo-loje-mun");
@@ -7872,7 +7884,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-mun", new[] { "menses" } );
+                    en.Add("telo-mun", new[] { "menses" });
                     glossMap.Add("en", en);
                 }
                 TeloMun = new CompoundWord("telo-mun");
@@ -7886,7 +7898,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-loje", new[] { "blood" } );
+                    en.Add("telo-loje", new[] { "blood" });
                     glossMap.Add("en", en);
                 }
                 TeloLoje = new CompoundWord("telo-loje");
@@ -7900,7 +7912,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lon-ala", new[] { "no"," false"," falsehood"," lie" } );
+                    en.Add("lon-ala", new[] { "no", " false", " falsehood", " lie" });
                     glossMap.Add("en", en);
                 }
                 LonAla = new CompoundWord("lon-ala");
@@ -7914,7 +7926,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lon-ali-ma", new[] { "all terrestrial life" } );
+                    en.Add("lon-ali-ma", new[] { "all terrestrial life" });
                     glossMap.Add("en", en);
                 }
                 LonAliMa = new CompoundWord("lon-ali-ma");
@@ -7928,7 +7940,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lon-anpa-mani", new[] { "under money:  ruled by it" } );
+                    en.Add("lon-anpa-mani", new[] { "under money:  ruled by it" });
                     glossMap.Add("en", en);
                 }
                 LonAnpaMani = new CompoundWord("lon-anpa-mani");
@@ -7942,7 +7954,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lon-kulupu-sama", new[] { "kind of" } );
+                    en.Add("lon-kulupu-sama", new[] { "kind of" });
                     glossMap.Add("en", en);
                 }
                 LonKulupuSama = new CompoundWord("lon-kulupu-sama");
@@ -7956,7 +7968,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lon-luka-wan", new[] { "on the one hand" } );
+                    en.Add("lon-luka-wan", new[] { "on the one hand" });
                     glossMap.Add("en", en);
                 }
                 LonLukaWan = new CompoundWord("lon-luka-wan");
@@ -7970,7 +7982,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lon-luka-ante", new[] { "on the other hand" } );
+                    en.Add("lon-luka-ante", new[] { "on the other hand" });
                     glossMap.Add("en", en);
                 }
                 LonLukaAnte = new CompoundWord("lon-luka-ante");
@@ -7984,7 +7996,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lon-monsi", new[] { "after (time)"," behind"," in back of" } );
+                    en.Add("lon-monsi", new[] { "after (time)", " behind", " in back of" });
                     glossMap.Add("en", en);
                 }
                 LonMonsi = new CompoundWord("lon-monsi");
@@ -7998,7 +8010,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lon-ni", new[] { "Here" } );
+                    en.Add("lon-ni", new[] { "Here" });
                     glossMap.Add("en", en);
                 }
                 LonNi = new CompoundWord("lon-ni");
@@ -8012,7 +8024,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lon-poka", new[] { "beside"," to the side of"," at…'s side" } );
+                    en.Add("lon-poka", new[] { "beside", " to the side of", " at…'s side" });
                     glossMap.Add("en", en);
                 }
                 LonPoka = new CompoundWord("lon-poka");
@@ -8026,7 +8038,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lon-poka-pi-nanpa-tu", new[] { "to the right of"," on the right side of" } );
+                    en.Add("lon-poka-pi-nanpa-tu", new[] { "to the right of", " on the right side of" });
                     glossMap.Add("en", en);
                 }
                 LonPokaPiNanpaTu = new CompoundWord("lon-poka-pi-nanpa-tu");
@@ -8040,7 +8052,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lon-poka-pi-nanpa-wan", new[] { "to the left of"," on the left side of" } );
+                    en.Add("lon-poka-pi-nanpa-wan", new[] { "to the left of", " on the left side of" });
                     glossMap.Add("en", en);
                 }
                 LonPokaPiNanpaWan = new CompoundWord("lon-poka-pi-nanpa-wan");
@@ -8054,7 +8066,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lon-poka-sinpin", new[] { "in front of" } );
+                    en.Add("lon-poka-sinpin", new[] { "in front of" });
                     glossMap.Add("en", en);
                 }
                 LonPokaSinpin = new CompoundWord("lon-poka-sinpin");
@@ -8068,7 +8080,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lon-selo", new[] { "on the outside of" } );
+                    en.Add("lon-selo", new[] { "on the outside of" });
                     glossMap.Add("en", en);
                 }
                 LonSelo = new CompoundWord("lon-selo");
@@ -8082,7 +8094,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lon-sewi", new[] { "above"," over"," on top of" } );
+                    en.Add("lon-sewi", new[] { "above", " over", " on top of" });
                     glossMap.Add("en", en);
                 }
                 LonSewi = new CompoundWord("lon-sewi");
@@ -8096,7 +8108,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lon-sewi-mani", new[] { "above money" } );
+                    en.Add("lon-sewi-mani", new[] { "above money" });
                     glossMap.Add("en", en);
                 }
                 LonSewiMani = new CompoundWord("lon-sewi-mani");
@@ -8110,7 +8122,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lon-sinpin", new[] { "before"," in front of" } );
+                    en.Add("lon-sinpin", new[] { "before", " in front of" });
                     glossMap.Add("en", en);
                 }
                 LonSinpin = new CompoundWord("lon-sinpin");
@@ -8124,7 +8136,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lon-tempo-kama-tan", new[] { "after" } );
+                    en.Add("lon-tempo-kama-tan", new[] { "after" });
                     glossMap.Add("en", en);
                 }
                 LonTempoKamaTan = new CompoundWord("lon-tempo-kama-tan");
@@ -8138,7 +8150,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lon-tenpo-pini-tan", new[] { "before" } );
+                    en.Add("lon-tenpo-pini-tan", new[] { "before" });
                     glossMap.Add("en", en);
                 }
                 LonTenpoPiniTan = new CompoundWord("lon-tenpo-pini-tan");
@@ -8152,7 +8164,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sina-lon-ma-seme", new[] { "Where (what country) are you from" } );
+                    en.Add("sina-lon-ma-seme", new[] { "Where (what country) are you from" });
                     glossMap.Add("en", en);
                 }
                 SinaLonMaSeme = new CompoundWord("sina-lon-ma-seme");
@@ -8166,7 +8178,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("luka-pi-nanpa-tu", new[] { "right  side" } );
+                    en.Add("luka-pi-nanpa-tu", new[] { "right  side" });
                     glossMap.Add("en", en);
                 }
                 LukaPiNanpaTu = new CompoundWord("luka-pi-nanpa-tu");
@@ -8180,7 +8192,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("luka-pi-nanpa-wan", new[] { "left  side" } );
+                    en.Add("luka-pi-nanpa-wan", new[] { "left  side" });
                     glossMap.Add("en", en);
                 }
                 LukaPiNanpaWan = new CompoundWord("luka-pi-nanpa-wan");
@@ -8194,7 +8206,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("luka-linja", new[] { "cubit" } );
+                    en.Add("luka-linja", new[] { "cubit" });
                     glossMap.Add("en", en);
                 }
                 LukaLinja = new CompoundWord("luka-linja");
@@ -8208,7 +8220,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("luka-lipu", new[] { "wing (bird"," insect)"," (insect) wings" } );
+                    en.Add("luka-lipu", new[] { "wing (bird", " insect)", " (insect) wings" });
                     glossMap.Add("en", en);
                 }
                 LukaLipu = new CompoundWord("luka-lipu");
@@ -8222,7 +8234,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("luka-open", new[] { "right hand" } );
+                    en.Add("luka-open", new[] { "right hand" });
                     glossMap.Add("en", en);
                 }
                 LukaOpen = new CompoundWord("luka-open");
@@ -8236,7 +8248,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("luka-pi-luka-pi-luka-pi-nimi", new[] { "125 words" } );
+                    en.Add("luka-pi-luka-pi-luka-pi-nimi", new[] { "125 words" });
                     glossMap.Add("en", en);
                 }
                 LukaPiLukaPiLukaPiNimi = new CompoundWord("luka-pi-luka-pi-luka-pi-nimi");
@@ -8250,7 +8262,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("luka-pini", new[] { "left hand" } );
+                    en.Add("luka-pini", new[] { "left hand" });
                     glossMap.Add("en", en);
                 }
                 LukaPini = new CompoundWord("luka-pini");
@@ -8264,7 +8276,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("luka-tu-anu-lili", new[] { "seven or less" } );
+                    en.Add("luka-tu-anu-lili", new[] { "seven or less" });
                     glossMap.Add("en", en);
                 }
                 LukaTuAnuLili = new CompoundWord("luka-tu-anu-lili");
@@ -8278,7 +8290,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("luka-wawa", new[] { "behind"," right hand" } );
+                    en.Add("luka-wawa", new[] { "behind", " right hand" });
                     glossMap.Add("en", en);
                 }
                 LukaWawa = new CompoundWord("luka-wawa");
@@ -8292,7 +8304,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("luka-wawa-ala", new[] { "in front"," left hand" } );
+                    en.Add("luka-wawa-ala", new[] { "in front", " left hand" });
                     glossMap.Add("en", en);
                 }
                 LukaWawaAla = new CompoundWord("luka-wawa-ala");
@@ -8306,7 +8318,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("palisa-luka", new[] { "fingers"," finger/ arm" } );
+                    en.Add("palisa-luka", new[] { "fingers", " finger/ arm" });
                     glossMap.Add("en", en);
                 }
                 PalisaLuka = new CompoundWord("palisa-luka");
@@ -8320,7 +8332,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lukin-pona", new[] { "see well" } );
+                    en.Add("lukin-pona", new[] { "see well" });
                     glossMap.Add("en", en);
                 }
                 LukinPona = new CompoundWord("lukin-pona");
@@ -8334,7 +8346,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lukin-sama", new[] { "resemble"," look like" } );
+                    en.Add("lukin-sama", new[] { "resemble", " look like" });
                     glossMap.Add("en", en);
                 }
                 LukinSama = new CompoundWord("lukin-sama");
@@ -8348,7 +8360,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lukin-sona", new[] { "study"," test (of knowledge) exam"," see in your mind"," picture to yourself"," imagine" } );
+                    en.Add("lukin-sona", new[] { "study", " test (of knowledge) exam", " see in your mind", " picture to yourself", " imagine" });
                     glossMap.Add("en", en);
                 }
                 LukinSona = new CompoundWord("lukin-sona");
@@ -8362,7 +8374,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lukin-tawa", new[] { "look at" } );
+                    en.Add("lukin-tawa", new[] { "look at" });
                     glossMap.Add("en", en);
                 }
                 LukinTawa = new CompoundWord("lukin-tawa");
@@ -8376,7 +8388,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lukin-tu", new[] { "meet" } );
+                    en.Add("lukin-tu", new[] { "meet" });
                     glossMap.Add("en", en);
                 }
                 LukinTu = new CompoundWord("lukin-tu");
@@ -8390,7 +8402,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lukin-wawa", new[] { "examine"," stare at" } );
+                    en.Add("lukin-wawa", new[] { "examine", " stare at" });
                     glossMap.Add("en", en);
                 }
                 LukinWawa = new CompoundWord("lukin-wawa");
@@ -8404,7 +8416,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasa-lukin", new[] { "funny-looking" } );
+                    en.Add("nasa-lukin", new[] { "funny-looking" });
                     glossMap.Add("en", en);
                 }
                 NasaLukin = new CompoundWord("nasa-lukin");
@@ -8418,7 +8430,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pona-lukin", new[] { "beautiful"," good looking"," pretty"," handsome" } );
+                    en.Add("pona-lukin", new[] { "beautiful", " good looking", " pretty", " handsome" });
                     glossMap.Add("en", en);
                 }
                 PonaLukin = new CompoundWord("pona-lukin");
@@ -8432,7 +8444,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("suwi-lukin", new[] { "cute" } );
+                    en.Add("suwi-lukin", new[] { "cute" });
                     glossMap.Add("en", en);
                 }
                 SuwiLukin = new CompoundWord("suwi-lukin");
@@ -8446,7 +8458,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lupa-lon", new[] { "gates of/to" } );
+                    en.Add("lupa-lon", new[] { "gates of/to" });
                     glossMap.Add("en", en);
                 }
                 LupaLon = new CompoundWord("lupa-lon");
@@ -8460,7 +8472,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lupa-meli", new[] { "vagina"," pussy" } );
+                    en.Add("lupa-meli", new[] { "vagina", " pussy" });
                     glossMap.Add("en", en);
                 }
                 LupaMeli = new CompoundWord("lupa-meli");
@@ -8474,7 +8486,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lupa-monsi", new[] { "anus" } );
+                    en.Add("lupa-monsi", new[] { "anus" });
                     glossMap.Add("en", en);
                 }
                 LupaMonsi = new CompoundWord("lupa-monsi");
@@ -8488,7 +8500,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lupa-nena", new[] { "nostrils" } );
+                    en.Add("lupa-nena", new[] { "nostrils" });
                     glossMap.Add("en", en);
                 }
                 LupaNena = new CompoundWord("lupa-nena");
@@ -8502,7 +8514,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lupa-palisa-monsi", new[] { "tailpipe" } );
+                    en.Add("lupa-palisa-monsi", new[] { "tailpipe" });
                     glossMap.Add("en", en);
                 }
                 LupaPalisaMonsi = new CompoundWord("lupa-palisa-monsi");
@@ -8516,7 +8528,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lupa-pi-ko-jaki", new[] { "asshole" } );
+                    en.Add("lupa-pi-ko-jaki", new[] { "asshole" });
                     glossMap.Add("en", en);
                 }
                 LupaPiKoJaki = new CompoundWord("lupa-pi-ko-jaki");
@@ -8530,7 +8542,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lupa-pi-nena", new[] { "pass" } );
+                    en.Add("lupa-pi-nena", new[] { "pass" });
                     glossMap.Add("en", en);
                 }
                 LupaPiNena = new CompoundWord("lupa-pi-nena");
@@ -8544,7 +8556,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lupa-sijelo-monsi", new[] { "anus" } );
+                    en.Add("lupa-sijelo-monsi", new[] { "anus" });
                     glossMap.Add("en", en);
                 }
                 LupaSijeloMonsi = new CompoundWord("lupa-sijelo-monsi");
@@ -8558,7 +8570,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lupa-sinpin", new[] { "front door" } );
+                    en.Add("lupa-sinpin", new[] { "front door" });
                     glossMap.Add("en", en);
                 }
                 LupaSinpin = new CompoundWord("lupa-sinpin");
@@ -8572,7 +8584,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lupa-tomo-monsi", new[] { "back door" } );
+                    en.Add("lupa-tomo-monsi", new[] { "back door" });
                     glossMap.Add("en", en);
                 }
                 LupaTomoMonsi = new CompoundWord("lupa-tomo-monsi");
@@ -8586,7 +8598,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pana-uta-lon-lupa", new[] { "perform cunnilingus"," perform cunnilinus" } );
+                    en.Add("pana-uta-lon-lupa", new[] { "perform cunnilingus", " perform cunnilinus" });
                     glossMap.Add("en", en);
                 }
                 PanaUtaLonLupa = new CompoundWord("pana-uta-lon-lupa");
@@ -8600,7 +8612,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pana-uta-lon-lupa-meli", new[] { "perform cunnilingus"," perform cunnilinus" } );
+                    en.Add("pana-uta-lon-lupa-meli", new[] { "perform cunnilingus", " perform cunnilinus" });
                     glossMap.Add("en", en);
                 }
                 PanaUtaLonLupaMeli = new CompoundWord("pana-uta-lon-lupa-meli");
@@ -8614,7 +8626,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Ekato", new[] { "Ecuador" } );
+                    en.Add("ma-Ekato", new[] { "Ecuador" });
                     glossMap.Add("en", en);
                 }
                 MaEkato = new CompoundWord("ma-Ekato");
@@ -8628,7 +8640,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Elena", new[] { "Greece" } );
+                    en.Add("ma-Elena", new[] { "Greece" });
                     glossMap.Add("en", en);
                 }
                 MaElena = new CompoundWord("ma-Elena");
@@ -8642,7 +8654,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Eliteja", new[] { "Eritrea" } );
+                    en.Add("ma-Eliteja", new[] { "Eritrea" });
                     glossMap.Add("en", en);
                 }
                 MaEliteja = new CompoundWord("ma-Eliteja");
@@ -8656,7 +8668,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Epanja", new[] { "Spain" } );
+                    en.Add("ma-Epanja", new[] { "Spain" });
                     glossMap.Add("en", en);
                 }
                 MaEpanja = new CompoundWord("ma-Epanja");
@@ -8670,7 +8682,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Esalasi", new[] { "Austria" } );
+                    en.Add("ma-Esalasi", new[] { "Austria" });
                     glossMap.Add("en", en);
                 }
                 MaEsalasi = new CompoundWord("ma-Esalasi");
@@ -8684,7 +8696,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Esi", new[] { "Estonia" } );
+                    en.Add("ma-Esi", new[] { "Estonia" });
                     glossMap.Add("en", en);
                 }
                 MaEsi = new CompoundWord("ma-Esi");
@@ -8698,7 +8710,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Esuka", new[] { "Basque country" } );
+                    en.Add("ma-Esuka", new[] { "Basque country" });
                     glossMap.Add("en", en);
                 }
                 MaEsuka = new CompoundWord("ma-Esuka");
@@ -8712,7 +8724,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Ilakija", new[] { "Iraq" } );
+                    en.Add("ma-Ilakija", new[] { "Iraq" });
                     glossMap.Add("en", en);
                 }
                 MaIlakija = new CompoundWord("ma-Ilakija");
@@ -8726,7 +8738,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Ilan", new[] { "Iran" } );
+                    en.Add("ma-Ilan", new[] { "Iran" });
                     glossMap.Add("en", en);
                 }
                 MaIlan = new CompoundWord("ma-Ilan");
@@ -8740,7 +8752,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Inli", new[] { "England" } );
+                    en.Add("ma-Inli", new[] { "England" });
                     glossMap.Add("en", en);
                 }
                 MaInli = new CompoundWord("ma-Inli");
@@ -8754,7 +8766,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Intonesija", new[] { "Indonesia" } );
+                    en.Add("ma-Intonesija", new[] { "Indonesia" });
                     glossMap.Add("en", en);
                 }
                 MaIntonesija = new CompoundWord("ma-Intonesija");
@@ -8768,7 +8780,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Isale", new[] { "Israel" } );
+                    en.Add("ma-Isale", new[] { "Israel" });
                     glossMap.Add("en", en);
                 }
                 MaIsale = new CompoundWord("ma-Isale");
@@ -8782,7 +8794,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Isijopija", new[] { "Ethiopia" } );
+                    en.Add("ma-Isijopija", new[] { "Ethiopia" });
                     glossMap.Add("en", en);
                 }
                 MaIsijopija = new CompoundWord("ma-Isijopija");
@@ -8796,7 +8808,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Isilan", new[] { "Iceland" } );
+                    en.Add("ma-Isilan", new[] { "Iceland" });
                     glossMap.Add("en", en);
                 }
                 MaIsilan = new CompoundWord("ma-Isilan");
@@ -8810,7 +8822,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Italija", new[] { "Italy" } );
+                    en.Add("ma-Italija", new[] { "Italy" });
                     glossMap.Add("en", en);
                 }
                 MaItalija = new CompoundWord("ma-Italija");
@@ -8824,7 +8836,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Jamanija", new[] { "Yemen" } );
+                    en.Add("ma-Jamanija", new[] { "Yemen" });
                     glossMap.Add("en", en);
                 }
                 MaJamanija = new CompoundWord("ma-Jamanija");
@@ -8838,7 +8850,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Kalalinuna", new[] { "Greenland" } );
+                    en.Add("ma-Kalalinuna", new[] { "Greenland" });
                     glossMap.Add("en", en);
                 }
                 MaKalalinuna = new CompoundWord("ma-Kalalinuna");
@@ -8852,7 +8864,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Kamelun", new[] { "Cameroon" } );
+                    en.Add("ma-Kamelun", new[] { "Cameroon" });
                     glossMap.Add("en", en);
                 }
                 MaKamelun = new CompoundWord("ma-Kamelun");
@@ -8866,7 +8878,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Kampija", new[] { "Gambia" } );
+                    en.Add("ma-Kampija", new[] { "Gambia" });
                     glossMap.Add("en", en);
                 }
                 MaKampija = new CompoundWord("ma-Kampija");
@@ -8880,7 +8892,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Kana", new[] { "Ghana" } );
+                    en.Add("ma-Kana", new[] { "Ghana" });
                     glossMap.Add("en", en);
                 }
                 MaKana = new CompoundWord("ma-Kana");
@@ -8894,7 +8906,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Kanata", new[] { "Canada" } );
+                    en.Add("ma-Kanata", new[] { "Canada" });
                     glossMap.Add("en", en);
                 }
                 MaKanata = new CompoundWord("ma-Kanata");
@@ -8908,7 +8920,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Kanpusi", new[] { "Cambodia" } );
+                    en.Add("ma-Kanpusi", new[] { "Cambodia" });
                     glossMap.Add("en", en);
                 }
                 MaKanpusi = new CompoundWord("ma-Kanpusi");
@@ -8922,7 +8934,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Kanse", new[] { "France" } );
+                    en.Add("ma-Kanse", new[] { "France" });
                     glossMap.Add("en", en);
                 }
                 MaKanse = new CompoundWord("ma-Kanse");
@@ -8936,7 +8948,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Kapon", new[] { "Gabon" } );
+                    en.Add("ma-Kapon", new[] { "Gabon" });
                     glossMap.Add("en", en);
                 }
                 MaKapon = new CompoundWord("ma-Kapon");
@@ -8950,7 +8962,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Katala", new[] { "Catalan country" } );
+                    en.Add("ma-Katala", new[] { "Catalan country" });
                     glossMap.Add("en", en);
                 }
                 MaKatala = new CompoundWord("ma-Katala");
@@ -8964,7 +8976,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Katelo", new[] { "Georgia" } );
+                    en.Add("ma-Katelo", new[] { "Georgia" });
                     glossMap.Add("en", en);
                 }
                 MaKatelo = new CompoundWord("ma-Katelo");
@@ -8978,7 +8990,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Katemala", new[] { "Guatemala" } );
+                    en.Add("ma-Katemala", new[] { "Guatemala" });
                     glossMap.Add("en", en);
                 }
                 MaKatemala = new CompoundWord("ma-Katemala");
@@ -8992,7 +9004,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Kenata", new[] { "Grenada" } );
+                    en.Add("ma-Kenata", new[] { "Grenada" });
                     glossMap.Add("en", en);
                 }
                 MaKenata = new CompoundWord("ma-Kenata");
@@ -9006,7 +9018,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Kenja", new[] { "Kenya" } );
+                    en.Add("ma-Kenja", new[] { "Kenya" });
                     glossMap.Add("en", en);
                 }
                 MaKenja = new CompoundWord("ma-Kenja");
@@ -9020,7 +9032,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Keposi", new[] { "Cyprus" } );
+                    en.Add("ma-Keposi", new[] { "Cyprus" });
                     glossMap.Add("en", en);
                 }
                 MaKeposi = new CompoundWord("ma-Keposi");
@@ -9034,7 +9046,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Kilipasi", new[] { "Kiribati" } );
+                    en.Add("ma-Kilipasi", new[] { "Kiribati" });
                     glossMap.Add("en", en);
                 }
                 MaKilipasi = new CompoundWord("ma-Kilipasi");
@@ -9048,7 +9060,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Kine", new[] { "Guinea" } );
+                    en.Add("ma-Kine", new[] { "Guinea" });
                     glossMap.Add("en", en);
                 }
                 MaKine = new CompoundWord("ma-Kine");
@@ -9062,7 +9074,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Kinejekatolija", new[] { "Equitorial Guinea" } );
+                    en.Add("ma-Kinejekatolija", new[] { "Equitorial Guinea" });
                     glossMap.Add("en", en);
                 }
                 MaKinejekatolija = new CompoundWord("ma-Kinejekatolija");
@@ -9076,7 +9088,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Kinepisa", new[] { "Guinea-Bissau" } );
+                    en.Add("ma-Kinepisa", new[] { "Guinea-Bissau" });
                     glossMap.Add("en", en);
                 }
                 MaKinepisa = new CompoundWord("ma-Kinepisa");
@@ -9090,7 +9102,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Kinla", new[] { "Wales" } );
+                    en.Add("ma-Kinla", new[] { "Wales" });
                     glossMap.Add("en", en);
                 }
                 MaKinla = new CompoundWord("ma-Kinla");
@@ -9104,7 +9116,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Komo", new[] { "Comoros" } );
+                    en.Add("ma-Komo", new[] { "Comoros" });
                     glossMap.Add("en", en);
                 }
                 MaKomo = new CompoundWord("ma-Komo");
@@ -9118,7 +9130,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Konko", new[] { "Congo" } );
+                    en.Add("ma-Konko", new[] { "Congo" });
                     glossMap.Add("en", en);
                 }
                 MaKonko = new CompoundWord("ma-Konko");
@@ -9132,7 +9144,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Kosalika", new[] { "Costa Rica" } );
+                    en.Add("ma-Kosalika", new[] { "Costa Rica" });
                     glossMap.Add("en", en);
                 }
                 MaKosalika = new CompoundWord("ma-Kosalika");
@@ -9146,7 +9158,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Kosiwa", new[] { "Cote d'Ivoire" } );
+                    en.Add("ma-Kosiwa", new[] { "Cote d'Ivoire" });
                     glossMap.Add("en", en);
                 }
                 MaKosiwa = new CompoundWord("ma-Kosiwa");
@@ -9160,7 +9172,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Kuli", new[] { "Kurdistan" } );
+                    en.Add("ma-Kuli", new[] { "Kurdistan" });
                     glossMap.Add("en", en);
                 }
                 MaKuli = new CompoundWord("ma-Kuli");
@@ -9174,7 +9186,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Kupa", new[] { "Cuba" } );
+                    en.Add("ma-Kupa", new[] { "Cuba" });
                     glossMap.Add("en", en);
                 }
                 MaKupa = new CompoundWord("ma-Kupa");
@@ -9188,7 +9200,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Kusala", new[] { "Gujarat" } );
+                    en.Add("ma-Kusala", new[] { "Gujarat" });
                     glossMap.Add("en", en);
                 }
                 MaKusala = new CompoundWord("ma-Kusala");
@@ -9202,7 +9214,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Kusawasi", new[] { "Kuwait" } );
+                    en.Add("ma-Kusawasi", new[] { "Kuwait" });
                     glossMap.Add("en", en);
                 }
                 MaKusawasi = new CompoundWord("ma-Kusawasi");
@@ -9216,7 +9228,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Lanka", new[] { "Sri Lanka" } );
+                    en.Add("ma-Lanka", new[] { "Sri Lanka" });
                     glossMap.Add("en", en);
                 }
                 MaLanka = new CompoundWord("ma-Lanka");
@@ -9230,7 +9242,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Lapewija", new[] { "Liberia" } );
+                    en.Add("ma-Lapewija", new[] { "Liberia" });
                     glossMap.Add("en", en);
                 }
                 MaLapewija = new CompoundWord("ma-Lapewija");
@@ -9244,7 +9256,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Lawi", new[] { "Latvia" } );
+                    en.Add("ma-Lawi", new[] { "Latvia" });
                     glossMap.Add("en", en);
                 }
                 MaLawi = new CompoundWord("ma-Lawi");
@@ -9258,7 +9270,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Lesoto", new[] { "Lesotho" } );
+                    en.Add("ma-Lesoto", new[] { "Lesotho" });
                     glossMap.Add("en", en);
                 }
                 MaLesoto = new CompoundWord("ma-Lesoto");
@@ -9272,7 +9284,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Lijatuwa", new[] { "Lithuania" } );
+                    en.Add("ma-Lijatuwa", new[] { "Lithuania" });
                     glossMap.Add("en", en);
                 }
                 MaLijatuwa = new CompoundWord("ma-Lijatuwa");
@@ -9286,7 +9298,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Lipija", new[] { "Libya" } );
+                    en.Add("ma-Lipija", new[] { "Libya" });
                     glossMap.Add("en", en);
                 }
                 MaLipija = new CompoundWord("ma-Lipija");
@@ -9300,7 +9312,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Lisensan", new[] { "Liechtenstein" } );
+                    en.Add("ma-Lisensan", new[] { "Liechtenstein" });
                     glossMap.Add("en", en);
                 }
                 MaLisensan = new CompoundWord("ma-Lisensan");
@@ -9314,7 +9326,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Lomani", new[] { "Romania" } );
+                    en.Add("ma-Lomani", new[] { "Romania" });
                     glossMap.Add("en", en);
                 }
                 MaLomani = new CompoundWord("ma-Lomani");
@@ -9328,7 +9340,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Losi", new[] { "Russia" } );
+                    en.Add("ma-Losi", new[] { "Russia" });
                     glossMap.Add("en", en);
                 }
                 MaLosi = new CompoundWord("ma-Losi");
@@ -9342,7 +9354,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Lowasi", new[] { "Croation" } );
+                    en.Add("ma-Lowasi", new[] { "Croation" });
                     glossMap.Add("en", en);
                 }
                 MaLowasi = new CompoundWord("ma-Lowasi");
@@ -9356,7 +9368,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Lowenki", new[] { "Slovakia" } );
+                    en.Add("ma-Lowenki", new[] { "Slovakia" });
                     glossMap.Add("en", en);
                 }
                 MaLowenki = new CompoundWord("ma-Lowenki");
@@ -9370,7 +9382,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Lowensina", new[] { "Slovenia" } );
+                    en.Add("ma-Lowensina", new[] { "Slovenia" });
                     glossMap.Add("en", en);
                 }
                 MaLowensina = new CompoundWord("ma-Lowensina");
@@ -9384,7 +9396,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Lunpan", new[] { "Lebanon" } );
+                    en.Add("ma-Lunpan", new[] { "Lebanon" });
                     glossMap.Add("en", en);
                 }
                 MaLunpan = new CompoundWord("ma-Lunpan");
@@ -9398,7 +9410,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Lusepu", new[] { "Luxembourg" } );
+                    en.Add("ma-Lusepu", new[] { "Luxembourg" });
                     glossMap.Add("en", en);
                 }
                 MaLusepu = new CompoundWord("ma-Lusepu");
@@ -9412,7 +9424,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Luwanta", new[] { "Rwanda" } );
+                    en.Add("ma-Luwanta", new[] { "Rwanda" });
                     glossMap.Add("en", en);
                 }
                 MaLuwanta = new CompoundWord("ma-Luwanta");
@@ -9426,7 +9438,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Maketonija", new[] { "Macedonia" } );
+                    en.Add("ma-Maketonija", new[] { "Macedonia" });
                     glossMap.Add("en", en);
                 }
                 MaMaketonija = new CompoundWord("ma-Maketonija");
@@ -9440,7 +9452,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Malakasi", new[] { "Madagascar" } );
+                    en.Add("ma-Malakasi", new[] { "Madagascar" });
                     glossMap.Add("en", en);
                 }
                 MaMalakasi = new CompoundWord("ma-Malakasi");
@@ -9454,7 +9466,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Malasija", new[] { "Malaysia" } );
+                    en.Add("ma-Malasija", new[] { "Malaysia" });
                     glossMap.Add("en", en);
                 }
                 MaMalasija = new CompoundWord("ma-Malasija");
@@ -9468,7 +9480,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Malawi", new[] { "Malawi" } );
+                    en.Add("ma-Malawi", new[] { "Malawi" });
                     glossMap.Add("en", en);
                 }
                 MaMalawi = new CompoundWord("ma-Malawi");
@@ -9482,7 +9494,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Mali", new[] { "Mali" } );
+                    en.Add("ma-Mali", new[] { "Mali" });
                     glossMap.Add("en", en);
                 }
                 MaMali = new CompoundWord("ma-Mali");
@@ -9496,7 +9508,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Malipe", new[] { "Morocco" } );
+                    en.Add("ma-Malipe", new[] { "Morocco" });
                     glossMap.Add("en", en);
                 }
                 MaMalipe = new CompoundWord("ma-Malipe");
@@ -9510,7 +9522,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Masu", new[] { "Egypt" } );
+                    en.Add("ma-Masu", new[] { "Egypt" });
                     glossMap.Add("en", en);
                 }
                 MaMasu = new CompoundWord("ma-Masu");
@@ -9524,7 +9536,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Mesiko", new[] { "Mexico" } );
+                    en.Add("ma-Mesiko", new[] { "Mexico" });
                     glossMap.Add("en", en);
                 }
                 MaMesiko = new CompoundWord("ma-Mesiko");
@@ -9538,7 +9550,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Mewika", new[] { "United States" } );
+                    en.Add("ma-Mewika", new[] { "United States" });
                     glossMap.Add("en", en);
                 }
                 MaMewika = new CompoundWord("ma-Mewika");
@@ -9552,7 +9564,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Mijanma", new[] { "Myanmar (Burma)" } );
+                    en.Add("ma-Mijanma", new[] { "Myanmar (Burma)" });
                     glossMap.Add("en", en);
                 }
                 MaMijanma = new CompoundWord("ma-Mijanma");
@@ -9566,7 +9578,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Mosanpi", new[] { "Mozambique" } );
+                    en.Add("ma-Mosanpi", new[] { "Mozambique" });
                     glossMap.Add("en", en);
                 }
                 MaMosanpi = new CompoundWord("ma-Mosanpi");
@@ -9580,7 +9592,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Mosijo", new[] { "Hungary" } );
+                    en.Add("ma-Mosijo", new[] { "Hungary" });
                     glossMap.Add("en", en);
                 }
                 MaMosijo = new CompoundWord("ma-Mosijo");
@@ -9594,7 +9606,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Motowa", new[] { "Moldava" } );
+                    en.Add("ma-Motowa", new[] { "Moldava" });
                     glossMap.Add("en", en);
                 }
                 MaMotowa = new CompoundWord("ma-Motowa");
@@ -9608,7 +9620,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Mowisi", new[] { "Mauritius" } );
+                    en.Add("ma-Mowisi", new[] { "Mauritius" });
                     glossMap.Add("en", en);
                 }
                 MaMowisi = new CompoundWord("ma-Mowisi");
@@ -9622,7 +9634,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Mulitanija", new[] { "Mauritania" } );
+                    en.Add("ma-Mulitanija", new[] { "Mauritania" });
                     glossMap.Add("en", en);
                 }
                 MaMulitanija = new CompoundWord("ma-Mulitanija");
@@ -9636,7 +9648,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Namipija", new[] { "Namibia" } );
+                    en.Add("ma-Namipija", new[] { "Namibia" });
                     glossMap.Add("en", en);
                 }
                 MaNamipija = new CompoundWord("ma-Namipija");
@@ -9650,7 +9662,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Naselija", new[] { "Nigeria" } );
+                    en.Add("ma-Naselija", new[] { "Nigeria" });
                     glossMap.Add("en", en);
                 }
                 MaNaselija = new CompoundWord("ma-Naselija");
@@ -9664,7 +9676,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Netelan", new[] { "Netherlands" } );
+                    en.Add("ma-Netelan", new[] { "Netherlands" });
                     glossMap.Add("en", en);
                 }
                 MaNetelan = new CompoundWord("ma-Netelan");
@@ -9678,7 +9690,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Nikalala", new[] { "Nicaragua" } );
+                    en.Add("ma-Nikalala", new[] { "Nicaragua" });
                     glossMap.Add("en", en);
                 }
                 MaNikalala = new CompoundWord("ma-Nikalala");
@@ -9692,7 +9704,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Nijon", new[] { "Japan" } );
+                    en.Add("ma-Nijon", new[] { "Japan" });
                     glossMap.Add("en", en);
                 }
                 MaNijon = new CompoundWord("ma-Nijon");
@@ -9706,7 +9718,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Nise", new[] { "Niger" } );
+                    en.Add("ma-Nise", new[] { "Niger" });
                     glossMap.Add("en", en);
                 }
                 MaNise = new CompoundWord("ma-Nise");
@@ -9720,7 +9732,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Nosiki", new[] { "Norway" } );
+                    en.Add("ma-Nosiki", new[] { "Norway" });
                     glossMap.Add("en", en);
                 }
                 MaNosiki = new CompoundWord("ma-Nosiki");
@@ -9734,7 +9746,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Nusilan", new[] { "New Zealand" } );
+                    en.Add("ma-Nusilan", new[] { "New Zealand" });
                     glossMap.Add("en", en);
                 }
                 MaNusilan = new CompoundWord("ma-Nusilan");
@@ -9748,7 +9760,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Ontula", new[] { "Honduras" } );
+                    en.Add("ma-Ontula", new[] { "Honduras" });
                     glossMap.Add("en", en);
                 }
                 MaOntula = new CompoundWord("ma-Ontula");
@@ -9762,7 +9774,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Oselija", new[] { "Australia" } );
+                    en.Add("ma-Oselija", new[] { "Australia" });
                     glossMap.Add("en", en);
                 }
                 MaOselija = new CompoundWord("ma-Oselija");
@@ -9776,7 +9788,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Pakisan", new[] { "Pakistan" } );
+                    en.Add("ma-Pakisan", new[] { "Pakistan" });
                     glossMap.Add("en", en);
                 }
                 MaPakisan = new CompoundWord("ma-Pakisan");
@@ -9790,7 +9802,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Palakawi", new[] { "Paraguay" } );
+                    en.Add("ma-Palakawi", new[] { "Paraguay" });
                     glossMap.Add("en", en);
                 }
                 MaPalakawi = new CompoundWord("ma-Palakawi");
@@ -9804,7 +9816,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Palani", new[] { "Bahrein" } );
+                    en.Add("ma-Palani", new[] { "Bahrein" });
                     glossMap.Add("en", en);
                 }
                 MaPalani = new CompoundWord("ma-Palani");
@@ -9818,7 +9830,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Palata", new[] { "India" } );
+                    en.Add("ma-Palata", new[] { "India" });
                     glossMap.Add("en", en);
                 }
                 MaPalata = new CompoundWord("ma-Palata");
@@ -9832,7 +9844,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Panama", new[] { "Panama" } );
+                    en.Add("ma-Panama", new[] { "Panama" });
                     glossMap.Add("en", en);
                 }
                 MaPanama = new CompoundWord("ma-Panama");
@@ -9846,7 +9858,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Panla", new[] { "Bangladesh" } );
+                    en.Add("ma-Panla", new[] { "Bangladesh" });
                     glossMap.Add("en", en);
                 }
                 MaPanla = new CompoundWord("ma-Panla");
@@ -9860,7 +9872,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Papeto", new[] { "Barbados" } );
+                    en.Add("ma-Papeto", new[] { "Barbados" });
                     glossMap.Add("en", en);
                 }
                 MaPapeto = new CompoundWord("ma-Papeto");
@@ -9874,7 +9886,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Papuwanijukini", new[] { "Papua New Guinea" } );
+                    en.Add("ma-Papuwanijukini", new[] { "Papua New Guinea" });
                     glossMap.Add("en", en);
                 }
                 MaPapuwanijukini = new CompoundWord("ma-Papuwanijukini");
@@ -9888,7 +9900,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Pasila", new[] { "Brazil" } );
+                    en.Add("ma-Pasila", new[] { "Brazil" });
                     glossMap.Add("en", en);
                 }
                 MaPasila = new CompoundWord("ma-Pasila");
@@ -9902,7 +9914,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Pawama", new[] { "Bahamas" } );
+                    en.Add("ma-Pawama", new[] { "Bahamas" });
                     glossMap.Add("en", en);
                 }
                 MaPawama = new CompoundWord("ma-Pawama");
@@ -9916,7 +9928,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Pelelusi", new[] { "Belarus" } );
+                    en.Add("ma-Pelelusi", new[] { "Belarus" });
                     glossMap.Add("en", en);
                 }
                 MaPelelusi = new CompoundWord("ma-Pelelusi");
@@ -9930,7 +9942,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Pelu", new[] { "Peru" } );
+                    en.Add("ma-Pelu", new[] { "Peru" });
                     glossMap.Add("en", en);
                 }
                 MaPelu = new CompoundWord("ma-Pelu");
@@ -9944,7 +9956,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Peluta", new[] { "Bermuda" } );
+                    en.Add("ma-Peluta", new[] { "Bermuda" });
                     glossMap.Add("en", en);
                 }
                 MaPeluta = new CompoundWord("ma-Peluta");
@@ -9958,7 +9970,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Penen", new[] { "Benin" } );
+                    en.Add("ma-Penen", new[] { "Benin" });
                     glossMap.Add("en", en);
                 }
                 MaPenen = new CompoundWord("ma-Penen");
@@ -9972,7 +9984,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Penesuwela", new[] { "Venezuela" } );
+                    en.Add("ma-Penesuwela", new[] { "Venezuela" });
                     glossMap.Add("en", en);
                 }
                 MaPenesuwela = new CompoundWord("ma-Penesuwela");
@@ -9986,7 +9998,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Pesije", new[] { "Belgium" } );
+                    en.Add("ma-Pesije", new[] { "Belgium" });
                     glossMap.Add("en", en);
                 }
                 MaPesije = new CompoundWord("ma-Pesije");
@@ -10000,7 +10012,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Pilipina", new[] { "Philipines" } );
+                    en.Add("ma-Pilipina", new[] { "Philipines" });
                     glossMap.Add("en", en);
                 }
                 MaPilipina = new CompoundWord("ma-Pilipina");
@@ -10014,7 +10026,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Pilisin", new[] { "Palestine" } );
+                    en.Add("ma-Pilisin", new[] { "Palestine" });
                     glossMap.Add("en", en);
                 }
                 MaPilisin = new CompoundWord("ma-Pilisin");
@@ -10028,7 +10040,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Pisi", new[] { "Fiji" } );
+                    en.Add("ma-Pisi", new[] { "Fiji" });
                     glossMap.Add("en", en);
                 }
                 MaPisi = new CompoundWord("ma-Pisi");
@@ -10042,7 +10054,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Piten", new[] { "United Kingdom (Great Britain)" } );
+                    en.Add("ma-Piten", new[] { "United Kingdom (Great Britain)" });
                     glossMap.Add("en", en);
                 }
                 MaPiten = new CompoundWord("ma-Piten");
@@ -10056,7 +10068,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Pokasi", new[] { "Bulgaria" } );
+                    en.Add("ma-Pokasi", new[] { "Bulgaria" });
                     glossMap.Add("en", en);
                 }
                 MaPokasi = new CompoundWord("ma-Pokasi");
@@ -10070,7 +10082,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Posan", new[] { "Bosnia and Herzegovina" } );
+                    en.Add("ma-Posan", new[] { "Bosnia and Herzegovina" });
                     glossMap.Add("en", en);
                 }
                 MaPosan = new CompoundWord("ma-Posan");
@@ -10084,7 +10096,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Posuka", new[] { "Poland" } );
+                    en.Add("ma-Posuka", new[] { "Poland" });
                     glossMap.Add("en", en);
                 }
                 MaPosuka = new CompoundWord("ma-Posuka");
@@ -10098,7 +10110,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Posuwana", new[] { "Botswana" } );
+                    en.Add("ma-Posuwana", new[] { "Botswana" });
                     glossMap.Add("en", en);
                 }
                 MaPosuwana = new CompoundWord("ma-Posuwana");
@@ -10112,7 +10124,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Potuke", new[] { "Portugal" } );
+                    en.Add("ma-Potuke", new[] { "Portugal" });
                     glossMap.Add("en", en);
                 }
                 MaPotuke = new CompoundWord("ma-Potuke");
@@ -10126,7 +10138,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Pukinapaso", new[] { "Burkina Faso" } );
+                    en.Add("ma-Pukinapaso", new[] { "Burkina Faso" });
                     glossMap.Add("en", en);
                 }
                 MaPukinapaso = new CompoundWord("ma-Pukinapaso");
@@ -10140,7 +10152,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Samalino", new[] { "San Marino" } );
+                    en.Add("ma-Samalino", new[] { "San Marino" });
                     glossMap.Add("en", en);
                 }
                 MaSamalino = new CompoundWord("ma-Samalino");
@@ -10154,7 +10166,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Sameka", new[] { "Jamaica" } );
+                    en.Add("ma-Sameka", new[] { "Jamaica" });
                     glossMap.Add("en", en);
                 }
                 MaSameka = new CompoundWord("ma-Sameka");
@@ -10168,7 +10180,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Samowa", new[] { "Samoa" } );
+                    en.Add("ma-Samowa", new[] { "Samoa" });
                     glossMap.Add("en", en);
                 }
                 MaSamowa = new CompoundWord("ma-Samowa");
@@ -10182,7 +10194,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Sanpija", new[] { "Zambia" } );
+                    en.Add("ma-Sanpija", new[] { "Zambia" });
                     glossMap.Add("en", en);
                 }
                 MaSanpija = new CompoundWord("ma-Sanpija");
@@ -10196,7 +10208,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Santapiken", new[] { "Central African Republic" } );
+                    en.Add("ma-Santapiken", new[] { "Central African Republic" });
                     glossMap.Add("en", en);
                 }
                 MaSantapiken = new CompoundWord("ma-Santapiken");
@@ -10210,7 +10222,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Sasali", new[] { "Algeria" } );
+                    en.Add("ma-Sasali", new[] { "Algeria" });
                     glossMap.Add("en", en);
                 }
                 MaSasali = new CompoundWord("ma-Sasali");
@@ -10224,7 +10236,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Sate", new[] { "Chad" } );
+                    en.Add("ma-Sate", new[] { "Chad" });
                     glossMap.Add("en", en);
                 }
                 MaSate = new CompoundWord("ma-Sate");
@@ -10238,7 +10250,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Sawasi", new[] { "Swaziland" } );
+                    en.Add("ma-Sawasi", new[] { "Swaziland" });
                     glossMap.Add("en", en);
                 }
                 MaSawasi = new CompoundWord("ma-Sawasi");
@@ -10252,7 +10264,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Seki", new[] { "Czech Republic" } );
+                    en.Add("ma-Seki", new[] { "Czech Republic" });
                     glossMap.Add("en", en);
                 }
                 MaSeki = new CompoundWord("ma-Seki");
@@ -10266,7 +10278,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Seneka", new[] { "Senegal" } );
+                    en.Add("ma-Seneka", new[] { "Senegal" });
                     glossMap.Add("en", en);
                 }
                 MaSeneka = new CompoundWord("ma-Seneka");
@@ -10280,7 +10292,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Setapika", new[] { "South Africa" } );
+                    en.Add("ma-Setapika", new[] { "South Africa" });
                     glossMap.Add("en", en);
                 }
                 MaSetapika = new CompoundWord("ma-Setapika");
@@ -10294,7 +10306,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Sibeta", new[] { "Tibet" } );
+                    en.Add("ma-Sibeta", new[] { "Tibet" });
                     glossMap.Add("en", en);
                 }
                 MaSibeta = new CompoundWord("ma-Sibeta");
@@ -10308,7 +10320,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Sijelalijon", new[] { "Sierra leone" } );
+                    en.Add("ma-Sijelalijon", new[] { "Sierra leone" });
                     glossMap.Add("en", en);
                 }
                 MaSijelalijon = new CompoundWord("ma-Sijelalijon");
@@ -10322,7 +10334,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Sile", new[] { "Chile" } );
+                    en.Add("ma-Sile", new[] { "Chile" });
                     glossMap.Add("en", en);
                 }
                 MaSile = new CompoundWord("ma-Sile");
@@ -10336,7 +10348,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Sinita", new[] { "Trinidad and Tobago" } );
+                    en.Add("ma-Sinita", new[] { "Trinidad and Tobago" });
                     glossMap.Add("en", en);
                 }
                 MaSinita = new CompoundWord("ma-Sinita");
@@ -10350,7 +10362,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Sinpapuwe", new[] { "Zimbabwe" } );
+                    en.Add("ma-Sinpapuwe", new[] { "Zimbabwe" });
                     glossMap.Add("en", en);
                 }
                 MaSinpapuwe = new CompoundWord("ma-Sinpapuwe");
@@ -10364,7 +10376,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-sipe", new[] { "Albania" } );
+                    en.Add("ma-sipe", new[] { "Albania" });
                     glossMap.Add("en", en);
                 }
                 MaSipe = new CompoundWord("ma-sipe");
@@ -10378,7 +10390,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Sipusi", new[] { "Djibouti" } );
+                    en.Add("ma-Sipusi", new[] { "Djibouti" });
                     glossMap.Add("en", en);
                 }
                 MaSipusi = new CompoundWord("ma-Sipusi");
@@ -10392,7 +10404,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Somalija", new[] { "Somalia" } );
+                    en.Add("ma-Somalija", new[] { "Somalia" });
                     glossMap.Add("en", en);
                 }
                 MaSomalija = new CompoundWord("ma-Somalija");
@@ -10406,7 +10418,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Sonko", new[] { "China" } );
+                    en.Add("ma-Sonko", new[] { "China" });
                     glossMap.Add("en", en);
                 }
                 MaSonko = new CompoundWord("ma-Sonko");
@@ -10420,7 +10432,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Sopisi", new[] { "Serbia and Montenegro" } );
+                    en.Add("ma-Sopisi", new[] { "Serbia and Montenegro" });
                     glossMap.Add("en", en);
                 }
                 MaSopisi = new CompoundWord("ma-Sopisi");
@@ -10434,7 +10446,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Sukosi", new[] { "Scotland" } );
+                    en.Add("ma-Sukosi", new[] { "Scotland" });
                     glossMap.Add("en", en);
                 }
                 MaSukosi = new CompoundWord("ma-Sukosi");
@@ -10448,7 +10460,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Sulija", new[] { "Syria" } );
+                    en.Add("ma-Sulija", new[] { "Syria" });
                     glossMap.Add("en", en);
                 }
                 MaSulija = new CompoundWord("ma-Sulija");
@@ -10462,7 +10474,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Sumi", new[] { "Finland" } );
+                    en.Add("ma-Sumi", new[] { "Finland" });
                     glossMap.Add("en", en);
                 }
                 MaSumi = new CompoundWord("ma-Sumi");
@@ -10476,7 +10488,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Sutan", new[] { "Sudan" } );
+                    en.Add("ma-Sutan", new[] { "Sudan" });
                     glossMap.Add("en", en);
                 }
                 MaSutan = new CompoundWord("ma-Sutan");
@@ -10490,7 +10502,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Suwasi", new[] { "Switzerland" } );
+                    en.Add("ma-Suwasi", new[] { "Switzerland" });
                     glossMap.Add("en", en);
                 }
                 MaSuwasi = new CompoundWord("ma-Suwasi");
@@ -10504,7 +10516,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Tansanija", new[] { "Tanzania" } );
+                    en.Add("ma-Tansanija", new[] { "Tanzania" });
                     glossMap.Add("en", en);
                 }
                 MaTansanija = new CompoundWord("ma-Tansanija");
@@ -10518,7 +10530,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Tansi", new[] { "Denmark" } );
+                    en.Add("ma-Tansi", new[] { "Denmark" });
                     glossMap.Add("en", en);
                 }
                 MaTansi = new CompoundWord("ma-Tansi");
@@ -10532,7 +10544,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Tawi", new[] { "Thailand" } );
+                    en.Add("ma-Tawi", new[] { "Thailand" });
                     glossMap.Add("en", en);
                 }
                 MaTawi = new CompoundWord("ma-Tawi");
@@ -10546,7 +10558,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-toko", new[] { "Togo" } );
+                    en.Add("ma-toko", new[] { "Togo" });
                     glossMap.Add("en", en);
                 }
                 MaToko = new CompoundWord("ma-toko");
@@ -10560,7 +10572,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Tominika", new[] { "Dominican Republic" } );
+                    en.Add("ma-Tominika", new[] { "Dominican Republic" });
                     glossMap.Add("en", en);
                 }
                 MaTominika = new CompoundWord("ma-Tominika");
@@ -10574,7 +10586,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Tona", new[] { "Tonga" } );
+                    en.Add("ma-Tona", new[] { "Tonga" });
                     glossMap.Add("en", en);
                 }
                 MaTona = new CompoundWord("ma-Tona");
@@ -10588,7 +10600,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Tosi", new[] { "Germany" } );
+                    en.Add("ma-Tosi", new[] { "Germany" });
                     glossMap.Add("en", en);
                 }
                 MaTosi = new CompoundWord("ma-Tosi");
@@ -10602,7 +10614,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Tuki", new[] { "Turkey" } );
+                    en.Add("ma-Tuki", new[] { "Turkey" });
                     glossMap.Add("en", en);
                 }
                 MaTuki = new CompoundWord("ma-Tuki");
@@ -10616,7 +10628,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Tunisi", new[] { "Tunisia" } );
+                    en.Add("ma-Tunisi", new[] { "Tunisia" });
                     glossMap.Add("en", en);
                 }
                 MaTunisi = new CompoundWord("ma-Tunisi");
@@ -10630,7 +10642,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Tuwalu", new[] { "Tuvalu" } );
+                    en.Add("ma-Tuwalu", new[] { "Tuvalu" });
                     glossMap.Add("en", en);
                 }
                 MaTuwalu = new CompoundWord("ma-Tuwalu");
@@ -10644,7 +10656,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Ukanta", new[] { "Uganda" } );
+                    en.Add("ma-Ukanta", new[] { "Uganda" });
                     glossMap.Add("en", en);
                 }
                 MaUkanta = new CompoundWord("ma-Ukanta");
@@ -10658,7 +10670,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Ukawina", new[] { "Ukraine" } );
+                    en.Add("ma-Ukawina", new[] { "Ukraine" });
                     glossMap.Add("en", en);
                 }
                 MaUkawina = new CompoundWord("ma-Ukawina");
@@ -10672,7 +10684,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Ulukawi", new[] { "Uruguay" } );
+                    en.Add("ma-Ulukawi", new[] { "Uruguay" });
                     glossMap.Add("en", en);
                 }
                 MaUlukawi = new CompoundWord("ma-Ulukawi");
@@ -10686,7 +10698,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Uman", new[] { "Oman" } );
+                    en.Add("ma-Uman", new[] { "Oman" });
                     glossMap.Add("en", en);
                 }
                 MaUman = new CompoundWord("ma-Uman");
@@ -10700,7 +10712,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Utan", new[] { "Jordan" } );
+                    en.Add("ma-Utan", new[] { "Jordan" });
                     glossMap.Add("en", en);
                 }
                 MaUtan = new CompoundWord("ma-Utan");
@@ -10714,7 +10726,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Wanawatu", new[] { "Vanuatu" } );
+                    en.Add("ma-Wanawatu", new[] { "Vanuatu" });
                     glossMap.Add("en", en);
                 }
                 MaWanawatu = new CompoundWord("ma-Wanawatu");
@@ -10728,7 +10740,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Wasikano", new[] { "Vatican" } );
+                    en.Add("ma-Wasikano", new[] { "Vatican" });
                     glossMap.Add("en", en);
                 }
                 MaWasikano = new CompoundWord("ma-Wasikano");
@@ -10742,7 +10754,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Watemala", new[] { "Guatemala" } );
+                    en.Add("ma-Watemala", new[] { "Guatemala" });
                     glossMap.Add("en", en);
                 }
                 MaWatemala = new CompoundWord("ma-Watemala");
@@ -10756,7 +10768,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Wensa", new[] { "Sweden" } );
+                    en.Add("ma-Wensa", new[] { "Sweden" });
                     glossMap.Add("en", en);
                 }
                 MaWensa = new CompoundWord("ma-Wensa");
@@ -10770,7 +10782,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Wije", new[] { "Viet Nam" } );
+                    en.Add("ma-Wije", new[] { "Viet Nam" });
                     glossMap.Add("en", en);
                 }
                 MaWije = new CompoundWord("ma-Wije");
@@ -10784,7 +10796,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Ele", new[] { "Las Angeles" } );
+                    en.Add("ma-tomo-Ele", new[] { "Las Angeles" });
                     glossMap.Add("en", en);
                 }
                 MaTomoEle = new CompoundWord("ma-tomo-Ele");
@@ -10798,7 +10810,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Esupo", new[] { "Espoo" } );
+                    en.Add("ma-tomo-Esupo", new[] { "Espoo" });
                     glossMap.Add("en", en);
                 }
                 MaTomoEsupo = new CompoundWord("ma-tomo-Esupo");
@@ -10812,7 +10824,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Iwesun", new[] { "Hilversum" } );
+                    en.Add("ma-tomo-Iwesun", new[] { "Hilversum" });
                     glossMap.Add("en", en);
                 }
                 MaTomoIwesun = new CompoundWord("ma-tomo-Iwesun");
@@ -10826,7 +10838,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Kakawi", new[] { "Calgary" } );
+                    en.Add("ma-tomo-Kakawi", new[] { "Calgary" });
                     glossMap.Add("en", en);
                 }
                 MaTomoKakawi = new CompoundWord("ma-tomo-Kakawi");
@@ -10840,7 +10852,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Kenpisi", new[] { "Cambridge" } );
+                    en.Add("ma-tomo-Kenpisi", new[] { "Cambridge" });
                     glossMap.Add("en", en);
                 }
                 MaTomoKenpisi = new CompoundWord("ma-tomo-Kenpisi");
@@ -10854,7 +10866,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Kinsasa", new[] { "Kinshasa" } );
+                    en.Add("ma-tomo-Kinsasa", new[] { "Kinshasa" });
                     glossMap.Add("en", en);
                 }
                 MaTomoKinsasa = new CompoundWord("ma-tomo-Kinsasa");
@@ -10868,7 +10880,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Kunte", new[] { "Bangkok" } );
+                    en.Add("ma-tomo-Kunte", new[] { "Bangkok" });
                     glossMap.Add("en", en);
                 }
                 MaTomoKunte = new CompoundWord("ma-tomo-Kunte");
@@ -10882,7 +10894,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Lanten", new[] { "London" } );
+                    en.Add("ma-tomo-Lanten", new[] { "London" });
                     glossMap.Add("en", en);
                 }
                 MaTomoLanten = new CompoundWord("ma-tomo-Lanten");
@@ -10896,7 +10908,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Lesinki", new[] { "Helsinki" } );
+                    en.Add("ma-tomo-Lesinki", new[] { "Helsinki" });
                     glossMap.Add("en", en);
                 }
                 MaTomoLesinki = new CompoundWord("ma-tomo-Lesinki");
@@ -10910,7 +10922,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Loma", new[] { "Rome" } );
+                    en.Add("ma-tomo-Loma", new[] { "Rome" });
                     glossMap.Add("en", en);
                 }
                 MaTomoLoma = new CompoundWord("ma-tomo-Loma");
@@ -10924,7 +10936,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Mansasa", new[] { "Mount shasta" } );
+                    en.Add("ma-tomo-Mansasa", new[] { "Mount shasta" });
                     glossMap.Add("en", en);
                 }
                 MaTomoMansasa = new CompoundWord("ma-tomo-Mansasa");
@@ -10938,7 +10950,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Manten", new[] { "Moncton" } );
+                    en.Add("ma-tomo-Manten", new[] { "Moncton" });
                     glossMap.Add("en", en);
                 }
                 MaTomoManten = new CompoundWord("ma-tomo-Manten");
@@ -10952,7 +10964,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Mesiko", new[] { "Mexico City" } );
+                    en.Add("ma-tomo-Mesiko", new[] { "Mexico City" });
                     glossMap.Add("en", en);
                 }
                 MaTomoMesiko = new CompoundWord("ma-tomo-Mesiko");
@@ -10966,7 +10978,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Minsen", new[] { "Munich" } );
+                    en.Add("ma-tomo-Minsen", new[] { "Munich" });
                     glossMap.Add("en", en);
                 }
                 MaTomoMinsen = new CompoundWord("ma-tomo-Minsen");
@@ -10980,7 +10992,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Monkela", new[] { "Montreal" } );
+                    en.Add("ma-tomo-Monkela", new[] { "Montreal" });
                     glossMap.Add("en", en);
                 }
                 MaTomoMonkela = new CompoundWord("ma-tomo-Monkela");
@@ -10994,7 +11006,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Munpa", new[] { "Mumbai (Bombay)" } );
+                    en.Add("ma-tomo-Munpa", new[] { "Mumbai (Bombay)" });
                     glossMap.Add("en", en);
                 }
                 MaTomoMunpa = new CompoundWord("ma-tomo-Munpa");
@@ -11008,7 +11020,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Napoli", new[] { "Naples" } );
+                    en.Add("ma-tomo-Napoli", new[] { "Naples" });
                     glossMap.Add("en", en);
                 }
                 MaTomoNapoli = new CompoundWord("ma-tomo-Napoli");
@@ -11022,7 +11034,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Nujoka", new[] { "New York city" } );
+                    en.Add("ma-tomo-Nujoka", new[] { "New York city" });
                     glossMap.Add("en", en);
                 }
                 MaTomoNujoka = new CompoundWord("ma-tomo-Nujoka");
@@ -11036,7 +11048,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Nuwewen", new[] { "New Haven" } );
+                    en.Add("ma-tomo-Nuwewen", new[] { "New Haven" });
                     glossMap.Add("en", en);
                 }
                 MaTomoNuwewen = new CompoundWord("ma-tomo-Nuwewen");
@@ -11050,7 +11062,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Olanto", new[] { "Orlando" } );
+                    en.Add("ma-tomo-Olanto", new[] { "Orlando" });
                     glossMap.Add("en", en);
                 }
                 MaTomoOlanto = new CompoundWord("ma-tomo-Olanto");
@@ -11064,7 +11076,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Osaka", new[] { "Osaka" } );
+                    en.Add("ma-tomo-Osaka", new[] { "Osaka" });
                     glossMap.Add("en", en);
                 }
                 MaTomoOsaka = new CompoundWord("ma-tomo-Osaka");
@@ -11078,7 +11090,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Pasen", new[] { "Boston" } );
+                    en.Add("ma-tomo-Pasen", new[] { "Boston" });
                     glossMap.Add("en", en);
                 }
                 MaTomoPasen = new CompoundWord("ma-tomo-Pasen");
@@ -11092,7 +11104,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Pelin", new[] { "Berlin" } );
+                    en.Add("ma-tomo-Pelin", new[] { "Berlin" });
                     glossMap.Add("en", en);
                 }
                 MaTomoPelin = new CompoundWord("ma-tomo-Pelin");
@@ -11106,7 +11118,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Peminan", new[] { "Birmingham" } );
+                    en.Add("ma-tomo-Peminan", new[] { "Birmingham" });
                     glossMap.Add("en", en);
                 }
                 MaTomoPeminan = new CompoundWord("ma-tomo-Peminan");
@@ -11120,7 +11132,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Pankalo", new[] { "Bangalore" } );
+                    en.Add("ma-tomo-Pankalo", new[] { "Bangalore" });
                     glossMap.Add("en", en);
                 }
                 MaTomoPankalo = new CompoundWord("ma-tomo-Pankalo");
@@ -11134,7 +11146,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Pesin", new[] { "Beijing" } );
+                    en.Add("ma-tomo-Pesin", new[] { "Beijing" });
                     glossMap.Add("en", en);
                 }
                 MaTomoPesin = new CompoundWord("ma-tomo-Pesin");
@@ -11148,7 +11160,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Petepuko", new[] { "St. Petersburg" } );
+                    en.Add("ma-tomo-Petepuko", new[] { "St. Petersburg" });
                     glossMap.Add("en", en);
                 }
                 MaTomoPetepuko = new CompoundWord("ma-tomo-Petepuko");
@@ -11162,7 +11174,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Pilense", new[] { "Florence" } );
+                    en.Add("ma-tomo-Pilense", new[] { "Florence" });
                     glossMap.Add("en", en);
                 }
                 MaTomoPilense = new CompoundWord("ma-tomo-Pilense");
@@ -11176,7 +11188,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Pisawi", new[] { "Brazaville" } );
+                    en.Add("ma-tomo-Pisawi", new[] { "Brazaville" });
                     glossMap.Add("en", en);
                 }
                 MaTomoPisawi = new CompoundWord("ma-tomo-Pisawi");
@@ -11190,7 +11202,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Polan", new[] { "Portland" } );
+                    en.Add("ma-tomo-Polan", new[] { "Portland" });
                     glossMap.Add("en", en);
                 }
                 MaTomoPolan = new CompoundWord("ma-tomo-Polan");
@@ -11204,7 +11216,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Putapesi", new[] { "Budapest" } );
+                    en.Add("ma-tomo-Putapesi", new[] { "Budapest" });
                     glossMap.Add("en", en);
                 }
                 MaTomoPutapesi = new CompoundWord("ma-tomo-Putapesi");
@@ -11218,7 +11230,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Sakata", new[] { "Jakarta" } );
+                    en.Add("ma-tomo-Sakata", new[] { "Jakarta" });
                     glossMap.Add("en", en);
                 }
                 MaTomoSakata = new CompoundWord("ma-tomo-Sakata");
@@ -11232,7 +11244,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Salajewo", new[] { "Sarajevo" } );
+                    en.Add("ma-tomo-Salajewo", new[] { "Sarajevo" });
                     glossMap.Add("en", en);
                 }
                 MaTomoSalajewo = new CompoundWord("ma-tomo-Salajewo");
@@ -11246,7 +11258,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Sanpansiko", new[] { "San Francisco" } );
+                    en.Add("ma-tomo-Sanpansiko", new[] { "San Francisco" });
                     glossMap.Add("en", en);
                 }
                 MaTomoSanpansiko = new CompoundWord("ma-tomo-Sanpansiko");
@@ -11260,7 +11272,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Satupu", new[] { "Strasbourg" } );
+                    en.Add("ma-tomo-Satupu", new[] { "Strasbourg" });
                     glossMap.Add("en", en);
                 }
                 MaTomoSatupu = new CompoundWord("ma-tomo-Satupu");
@@ -11274,7 +11286,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Sawi", new[] { "Sackville" } );
+                    en.Add("ma-tomo-Sawi", new[] { "Sackville" });
                     glossMap.Add("en", en);
                 }
                 MaTomoSawi = new CompoundWord("ma-tomo-Sawi");
@@ -11288,7 +11300,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Sene", new[] { "Geneva" } );
+                    en.Add("ma-tomo-Sene", new[] { "Geneva" });
                     glossMap.Add("en", en);
                 }
                 MaTomoSene = new CompoundWord("ma-tomo-Sene");
@@ -11302,7 +11314,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Sensan", new[] { "St. John's" } );
+                    en.Add("ma-tomo-Sensan", new[] { "St. John's" });
                     glossMap.Add("en", en);
                 }
                 MaTomoSensan = new CompoundWord("ma-tomo-Sensan");
@@ -11316,7 +11328,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Sesija", new[] { "Shediac" } );
+                    en.Add("ma-tomo-Sesija", new[] { "Shediac" });
                     glossMap.Add("en", en);
                 }
                 MaTomoSesija = new CompoundWord("ma-tomo-Sesija");
@@ -11330,7 +11342,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Sije", new[] { "Dieppe" } );
+                    en.Add("ma-tomo-Sije", new[] { "Dieppe" });
                     glossMap.Add("en", en);
                 }
                 MaTomoSije = new CompoundWord("ma-tomo-Sije");
@@ -11344,7 +11356,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Solu", new[] { "Seoul" } );
+                    en.Add("ma-tomo-Solu", new[] { "Seoul" });
                     glossMap.Add("en", en);
                 }
                 MaTomoSolu = new CompoundWord("ma-tomo-Solu");
@@ -11358,7 +11370,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Tamen", new[] { "Drammen" } );
+                    en.Add("ma-tomo-Tamen", new[] { "Drammen" });
                     glossMap.Add("en", en);
                 }
                 MaTomoTamen = new CompoundWord("ma-tomo-Tamen");
@@ -11372,7 +11384,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Tanpele", new[] { "Tampere" } );
+                    en.Add("ma-tomo-Tanpele", new[] { "Tampere" });
                     glossMap.Add("en", en);
                 }
                 MaTomoTanpele = new CompoundWord("ma-tomo-Tanpele");
@@ -11386,7 +11398,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Telawi", new[] { "Tel Aviv" } );
+                    en.Add("ma-tomo-Telawi", new[] { "Tel Aviv" });
                     glossMap.Add("en", en);
                 }
                 MaTomoTelawi = new CompoundWord("ma-tomo-Telawi");
@@ -11400,7 +11412,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Tokijo", new[] { "Tokyo" } );
+                    en.Add("ma-tomo-Tokijo", new[] { "Tokyo" });
                     glossMap.Add("en", en);
                 }
                 MaTomoTokijo = new CompoundWord("ma-tomo-Tokijo");
@@ -11414,7 +11426,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Towano", new[] { "Toronto" } );
+                    en.Add("ma-tomo-Towano", new[] { "Toronto" });
                     glossMap.Add("en", en);
                 }
                 MaTomoTowano = new CompoundWord("ma-tomo-Towano");
@@ -11428,7 +11440,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Tuku", new[] { "Turku" } );
+                    en.Add("ma-tomo-Tuku", new[] { "Turku" });
                     glossMap.Add("en", en);
                 }
                 MaTomoTuku = new CompoundWord("ma-tomo-Tuku");
@@ -11442,7 +11454,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Wankuwa", new[] { "Vancouver" } );
+                    en.Add("ma-tomo-Wankuwa", new[] { "Vancouver" });
                     glossMap.Add("en", en);
                 }
                 MaTomoWankuwa = new CompoundWord("ma-tomo-Wankuwa");
@@ -11456,7 +11468,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Wenesija", new[] { "Venice" } );
+                    en.Add("ma-tomo-Wenesija", new[] { "Venice" });
                     glossMap.Add("en", en);
                 }
                 MaTomoWenesija = new CompoundWord("ma-tomo-Wenesija");
@@ -11470,7 +11482,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Pasiki", new[] { "fyksland" } );
+                    en.Add("ma-Pasiki", new[] { "fyksland" });
                     glossMap.Add("en", en);
                 }
                 MaPasiki = new CompoundWord("ma-Pasiki");
@@ -11484,7 +11496,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Palisija", new[] { "Galicia" } );
+                    en.Add("ma-Palisija", new[] { "Galicia" });
                     glossMap.Add("en", en);
                 }
                 MaPalisija = new CompoundWord("ma-Palisija");
@@ -11498,7 +11510,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Pontepeta", new[] { "Pontevedra" } );
+                    en.Add("ma-tomo-Pontepeta", new[] { "Pontevedra" });
                     glossMap.Add("en", en);
                 }
                 MaTomoPontepeta = new CompoundWord("ma-tomo-Pontepeta");
@@ -11512,7 +11524,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Mapi", new[] { "Madrid" } );
+                    en.Add("ma-tomo-Mapi", new[] { "Madrid" });
                     glossMap.Add("en", en);
                 }
                 MaTomoMapi = new CompoundWord("ma-tomo-Mapi");
@@ -11526,7 +11538,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Kapulu", new[] { "Kabul" } );
+                    en.Add("ma-tomo-Kapulu", new[] { "Kabul" });
                     glossMap.Add("en", en);
                 }
                 MaTomoKapulu = new CompoundWord("ma-tomo-Kapulu");
@@ -11540,7 +11552,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Katepu", new[] { "Cardiff" } );
+                    en.Add("ma-tomo-Katepu", new[] { "Cardiff" });
                     glossMap.Add("en", en);
                 }
                 MaTomoKatepu = new CompoundWord("ma-tomo-Katepu");
@@ -11554,7 +11566,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Ofo", new[] { "Oxford" } );
+                    en.Add("ma-tomo-Ofo", new[] { "Oxford" });
                     glossMap.Add("en", en);
                 }
                 MaTomoOfo = new CompoundWord("ma-tomo-Ofo");
@@ -11564,39 +11576,39 @@ public static CompoundWord MaTomoEnkon;
             }
 
 
+            //{
+            //    var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+            //    {
+            //        var en = new Dictionary<string, string[]>();
+            //        en.Add("Mila", new[] { "Mira Anonen" });
+            //        glossMap.Add("en", en);
+            //    }
+            //    Mila = new CompoundWord("Mila");
+
+            //    Dictionary.Add("Mila", Mila);
+            //    Glosses.Add("Mila", glossMap);
+            //}
+
+
+            //{
+            //    var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+            //    {
+            //        var en = new Dictionary<string, string[]>();
+            //        en.Add("Tulo", new[] { "Tulio Flores" });
+            //        glossMap.Add("en", en);
+            //    }
+            //    Tulo = new CompoundWord("Tulo");
+
+            //    Dictionary.Add("Tulo", Tulo);
+            //    Glosses.Add("Tulo", glossMap);
+            //}
+
+
             {
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("Mila", new[] { "Mira Anonen" } );
-                    glossMap.Add("en", en);
-                }
-                Mila = new CompoundWord("Mila");
-
-                Dictionary.Add("Mila", Mila);
-                Glosses.Add("Mila", glossMap);
-            }
-
-
-            {
-                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
-                {
-                    var en = new Dictionary<string, string[]>();
-                    en.Add("Tulo", new[] { "Tulio Flores" } );
-                    glossMap.Add("en", en);
-                }
-                Tulo = new CompoundWord("Tulo");
-
-                Dictionary.Add("Tulo", Tulo);
-                Glosses.Add("Tulo", glossMap);
-            }
-
-
-            {
-                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
-                {
-                    var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-Tatesen", new[] { "Dao De Jing" } );
+                    en.Add("lipu-Tatesen", new[] { "Dao De Jing" });
                     glossMap.Add("en", en);
                 }
                 LipuTatesen = new CompoundWord("lipu-Tatesen");
@@ -11610,7 +11622,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-Pipija", new[] { "Bible" } );
+                    en.Add("lipu-Pipija", new[] { "Bible" });
                     glossMap.Add("en", en);
                 }
                 LipuPipija = new CompoundWord("lipu-Pipija");
@@ -11624,7 +11636,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-Pakawakita", new[] { "Bhagavadgita" } );
+                    en.Add("lipu-Pakawakita", new[] { "Bhagavadgita" });
                     glossMap.Add("en", en);
                 }
                 LipuPakawakita = new CompoundWord("lipu-Pakawakita");
@@ -11638,7 +11650,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-sewi-Jawe", new[] { "Jehovah" } );
+                    en.Add("jan-sewi-Jawe", new[] { "Jehovah" });
                     glossMap.Add("en", en);
                 }
                 JanSewiJawe = new CompoundWord("jan-sewi-Jawe");
@@ -11652,7 +11664,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("mama-Mewi", new[] { "Mary" } );
+                    en.Add("mama-Mewi", new[] { "Mary" });
                     glossMap.Add("en", en);
                 }
                 MamaMewi = new CompoundWord("mama-Mewi");
@@ -11666,7 +11678,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-Pison", new[] { "River Pishon" } );
+                    en.Add("telo-Pison", new[] { "River Pishon" });
                     glossMap.Add("en", en);
                 }
                 TeloPison = new CompoundWord("telo-Pison");
@@ -11680,7 +11692,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Kevilatu", new[] { "Havilah" } );
+                    en.Add("ma-Kevilatu", new[] { "Havilah" });
                     glossMap.Add("en", en);
                 }
                 MaKevilatu = new CompoundWord("ma-Kevilatu");
@@ -11694,7 +11706,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-Kekon", new[] { "Gihon" } );
+                    en.Add("telo-Kekon", new[] { "Gihon" });
                     glossMap.Add("en", en);
                 }
                 TeloKekon = new CompoundWord("telo-Kekon");
@@ -11708,7 +11720,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-Tikisu", new[] { "Tigris" } );
+                    en.Add("telo-Tikisu", new[] { "Tigris" });
                     glossMap.Add("en", en);
                 }
                 TeloTikisu = new CompoundWord("telo-Tikisu");
@@ -11722,7 +11734,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-Elupatu", new[] { "Euphrates" } );
+                    en.Add("telo-Elupatu", new[] { "Euphrates" });
                     glossMap.Add("en", en);
                 }
                 TeloElupatu = new CompoundWord("telo-Elupatu");
@@ -11736,7 +11748,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-Son", new[] { "Psalms" } );
+                    en.Add("lipu-Son", new[] { "Psalms" });
                     glossMap.Add("en", en);
                 }
                 LipuSon = new CompoundWord("lipu-Son");
@@ -11750,7 +11762,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-Pajaje", new[] { "Baha'i" } );
+                    en.Add("nasin-Pajaje", new[] { "Baha'i" });
                     glossMap.Add("en", en);
                 }
                 NasinPajaje = new CompoundWord("nasin-Pajaje");
@@ -11764,7 +11776,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Losupan", new[] { "Lojban" } );
+                    en.Add("toki-Losupan", new[] { "Lojban" });
                     glossMap.Add("en", en);
                 }
                 TokiLosupan = new CompoundWord("toki-Losupan");
@@ -11778,7 +11790,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nena-kiwen-Pilene", new[] { "Pyrenese" } );
+                    en.Add("nena-kiwen-Pilene", new[] { "Pyrenese" });
                     glossMap.Add("en", en);
                 }
                 NenaKiwenPilene = new CompoundWord("nena-kiwen-Pilene");
@@ -11792,7 +11804,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nanpa-lili", new[] { "very few" } );
+                    en.Add("nanpa-lili", new[] { "very few" });
                     glossMap.Add("en", en);
                 }
                 NanpaLili = new CompoundWord("nanpa-lili");
@@ -11806,7 +11818,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nanpa-seme", new[] { "How many times" } );
+                    en.Add("nanpa-seme", new[] { "How many times" });
                     glossMap.Add("en", en);
                 }
                 NanpaSeme = new CompoundWord("nanpa-seme");
@@ -11820,7 +11832,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nanpa-weka", new[] { "zero" } );
+                    en.Add("nanpa-weka", new[] { "zero" });
                     glossMap.Add("en", en);
                 }
                 NanpaWeka = new CompoundWord("nanpa-weka");
@@ -11834,7 +11846,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nanpa-wile", new[] { "sufficient"," enough" } );
+                    en.Add("nanpa-wile", new[] { "sufficient", " enough" });
                     glossMap.Add("en", en);
                 }
                 NanpaWile = new CompoundWord("nanpa-wile");
@@ -11848,7 +11860,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-pi-nanpa-wan", new[] { "the first time"," first" } );
+                    en.Add("tenpo-pi-nanpa-wan", new[] { "the first time", " first" });
                     glossMap.Add("en", en);
                 }
                 TenpoPiNanpaWan = new CompoundWord("tenpo-pi-nanpa-wan");
@@ -11862,7 +11874,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasa-ike", new[] { "raving mad"," demented" } );
+                    en.Add("nasa-ike", new[] { "raving mad", " demented" });
                     glossMap.Add("en", en);
                 }
                 NasaIke = new CompoundWord("nasa-ike");
@@ -11876,7 +11888,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasa-nanpa", new[] { "complexity" } );
+                    en.Add("nasa-nanpa", new[] { "complexity" });
                     glossMap.Add("en", en);
                 }
                 NasaNanpa = new CompoundWord("nasa-nanpa");
@@ -11890,7 +11902,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasa-pona", new[] { "Party on!" } );
+                    en.Add("nasa-pona", new[] { "Party on!" });
                     glossMap.Add("en", en);
                 }
                 NasaPona = new CompoundWord("nasa-pona");
@@ -11904,7 +11916,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pilin-nasa", new[] { "drunk"," high" } );
+                    en.Add("pilin-nasa", new[] { "drunk", " high" });
                     glossMap.Add("en", en);
                 }
                 PilinNasa = new CompoundWord("pilin-nasa");
@@ -11918,7 +11930,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-nasa", new[] { "alcohol"," alcoholic beverage" } );
+                    en.Add("telo-nasa", new[] { "alcohol", " alcoholic beverage" });
                     glossMap.Add("en", en);
                 }
                 TeloNasa = new CompoundWord("telo-nasa");
@@ -11932,7 +11944,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("unpa-nasa", new[] { "kinky sex" } );
+                    en.Add("unpa-nasa", new[] { "kinky sex" });
                     glossMap.Add("en", en);
                 }
                 UnpaNasa = new CompoundWord("unpa-nasa");
@@ -11946,7 +11958,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-kama", new[] { "means of travel"," right (side)" } );
+                    en.Add("nasin-kama", new[] { "means of travel", " right (side)" });
                     glossMap.Add("en", en);
                 }
                 NasinKama = new CompoundWord("nasin-kama");
@@ -11960,7 +11972,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-kama-pi-tawa-suno", new[] { "north" } );
+                    en.Add("nasin-kama-pi-tawa-suno", new[] { "north" });
                     glossMap.Add("en", en);
                 }
                 NasinKamaPiTawaSuno = new CompoundWord("nasin-kama-pi-tawa-suno");
@@ -11974,7 +11986,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-Katolike", new[] { "Catholicism" } );
+                    en.Add("nasin-Katolike", new[] { "Catholicism" });
                     glossMap.Add("en", en);
                 }
                 NasinKatolike = new CompoundWord("nasin-Katolike");
@@ -11988,7 +12000,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-kulupu", new[] { "rules"," customs"," discipline" } );
+                    en.Add("nasin-kulupu", new[] { "rules", " customs", " discipline" });
                     glossMap.Add("en", en);
                 }
                 NasinKulupu = new CompoundWord("nasin-kulupu");
@@ -12002,7 +12014,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-lawa", new[] { "rights"," law"," legislation"," law enforecemnt" } );
+                    en.Add("nasin-lawa", new[] { "rights", " law", " legislation", " law enforecemnt" });
                     glossMap.Add("en", en);
                 }
                 NasinLawa = new CompoundWord("nasin-lawa");
@@ -12016,7 +12028,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-lukin", new[] { "shape"," ways of looking/seeing"," stairway" } );
+                    en.Add("nasin-lukin", new[] { "shape", " ways of looking/seeing", " stairway" });
                     glossMap.Add("en", en);
                 }
                 NasinLukin = new CompoundWord("nasin-lukin");
@@ -12030,7 +12042,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-lukin-pi-lipu-sona", new[] { "browser (the program)" } );
+                    en.Add("nasin-lukin-pi-lipu-sona", new[] { "browser (the program)" });
                     glossMap.Add("en", en);
                 }
                 NasinLukinPiLipuSona = new CompoundWord("nasin-lukin-pi-lipu-sona");
@@ -12044,7 +12056,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-ma", new[] { "national agenda"," national habits" } );
+                    en.Add("nasin-ma", new[] { "national agenda", " national habits" });
                     glossMap.Add("en", en);
                 }
                 NasinMa = new CompoundWord("nasin-ma");
@@ -12058,7 +12070,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-mani", new[] { "Capitalism"," capitalism" } );
+                    en.Add("nasin-mani", new[] { "Capitalism", " capitalism" });
                     glossMap.Add("en", en);
                 }
                 NasinMani = new CompoundWord("nasin-mani");
@@ -12072,7 +12084,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-musi", new[] { "hedonism" } );
+                    en.Add("nasin-musi", new[] { "hedonism" });
                     glossMap.Add("en", en);
                 }
                 NasinMusi = new CompoundWord("nasin-musi");
@@ -12086,7 +12098,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-pali", new[] { "Communism"," Creativity" } );
+                    en.Add("nasin-pali", new[] { "Communism", " Creativity" });
                     glossMap.Add("en", en);
                 }
                 NasinPali = new CompoundWord("nasin-pali");
@@ -12100,7 +12112,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-pi-jan-Nijon-sama-nasin-pi-jan-ali", new[] { "Japanese ways are the same as those of everybody" } );
+                    en.Add("nasin-pi-jan-Nijon-sama-nasin-pi-jan-ali", new[] { "Japanese ways are the same as those of everybody" });
                     glossMap.Add("en", en);
                 }
                 NasinPiJanNijonSamaNasinPiJanAli = new CompoundWord("nasin-pi-jan-Nijon-sama-nasin-pi-jan-ali");
@@ -12114,7 +12126,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-pi-jan-sewi-ala", new[] { "atheism" } );
+                    en.Add("nasin-pi-jan-sewi-ala", new[] { "atheism" });
                     glossMap.Add("en", en);
                 }
                 NasinPiJanSewiAla = new CompoundWord("nasin-pi-jan-sewi-ala");
@@ -12128,7 +12140,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-pi-kama-suno", new[] { "east" } );
+                    en.Add("nasin-pi-kama-suno", new[] { "east" });
                     glossMap.Add("en", en);
                 }
                 NasinPiKamaSuno = new CompoundWord("nasin-pi-kama-suno");
@@ -12142,7 +12154,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-pi-lawa-ala", new[] { "Anarchhism" } );
+                    en.Add("nasin-pi-lawa-ala", new[] { "Anarchhism" });
                     glossMap.Add("en", en);
                 }
                 NasinPiLawaAla = new CompoundWord("nasin-pi-lawa-ala");
@@ -12156,7 +12168,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-pini", new[] { "left (side)" } );
+                    en.Add("nasin-pini", new[] { "left (side)" });
                     glossMap.Add("en", en);
                 }
                 NasinPini = new CompoundWord("nasin-pini");
@@ -12170,7 +12182,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-pini-pi-tawa-suno", new[] { "south" } );
+                    en.Add("nasin-pini-pi-tawa-suno", new[] { "south" });
                     glossMap.Add("en", en);
                 }
                 NasinPiniPiTawaSuno = new CompoundWord("nasin-pini-pi-tawa-suno");
@@ -12184,7 +12196,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-pona", new[] { "Tao"," Dao; simple or good path"," suitable means"," taoism" } );
+                    en.Add("nasin-pona", new[] { "Tao", " Dao; simple or good path", " suitable means", " taoism" });
                     glossMap.Add("en", en);
                 }
                 NasinPona = new CompoundWord("nasin-pona");
@@ -12198,7 +12210,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-pona-Juju", new[] { "Unitarian Universalism" } );
+                    en.Add("nasin-pona-Juju", new[] { "Unitarian Universalism" });
                     glossMap.Add("en", en);
                 }
                 NasinPonaJuju = new CompoundWord("nasin-pona-Juju");
@@ -12212,7 +12224,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-pona-Lasapali", new[] { "Rastafarianism" } );
+                    en.Add("nasin-pona-Lasapali", new[] { "Rastafarianism" });
                     glossMap.Add("en", en);
                 }
                 NasinPonaLasapali = new CompoundWord("nasin-pona-Lasapali");
@@ -12226,7 +12238,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-pona-pi-ilo-len", new[] { "good way …" } );
+                    en.Add("nasin-pona-pi-ilo-len", new[] { "good way …" });
                     glossMap.Add("en", en);
                 }
                 NasinPonaPiIloLen = new CompoundWord("nasin-pona-pi-ilo-len");
@@ -12240,7 +12252,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-sewi", new[] { "religion"," spiritual path"," relgion"," path of righteousness" } );
+                    en.Add("nasin-sewi", new[] { "religion", " spiritual path", " relgion", " path of righteousness" });
                     glossMap.Add("en", en);
                 }
                 NasinSewi = new CompoundWord("nasin-sewi");
@@ -12254,7 +12266,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-sewi-Jawatu", new[] { "Judaism" } );
+                    en.Add("nasin-sewi-Jawatu", new[] { "Judaism" });
                     glossMap.Add("en", en);
                 }
                 NasinSewiJawatu = new CompoundWord("nasin-sewi-Jawatu");
@@ -12268,7 +12280,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-sewi-Kolisu", new[] { "Christianity" } );
+                    en.Add("nasin-sewi-Kolisu", new[] { "Christianity" });
                     glossMap.Add("en", en);
                 }
                 NasinSewiKolisu = new CompoundWord("nasin-sewi-Kolisu");
@@ -12282,7 +12294,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-sewi-ma", new[] { "Earth religions"," Native American religion" } );
+                    en.Add("nasin-sewi-ma", new[] { "Earth religions", " Native American religion" });
                     glossMap.Add("en", en);
                 }
                 NasinSewiMa = new CompoundWord("nasin-sewi-ma");
@@ -12296,7 +12308,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-sewi-Puta", new[] { "Buddhism" } );
+                    en.Add("nasin-sewi-Puta", new[] { "Buddhism" });
                     glossMap.Add("en", en);
                 }
                 NasinSewiPuta = new CompoundWord("nasin-sewi-Puta");
@@ -12310,7 +12322,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-sewi-Silami", new[] { "Islam" } );
+                    en.Add("nasin-sewi-Silami", new[] { "Islam" });
                     glossMap.Add("en", en);
                 }
                 NasinSewiSilami = new CompoundWord("nasin-sewi-Silami");
@@ -12324,7 +12336,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-sinpin", new[] { "vertical" } );
+                    en.Add("nasin-sinpin", new[] { "vertical" });
                     glossMap.Add("en", en);
                 }
                 NasinSinpin = new CompoundWord("nasin-sinpin");
@@ -12338,7 +12350,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-sitelen", new[] { "(hand) writing (result not act)"," writing system (alphabet"," etc.)" } );
+                    en.Add("nasin-sitelen", new[] { "(hand) writing (result not act)", " writing system (alphabet", " etc.)" });
                     glossMap.Add("en", en);
                 }
                 NasinSitelen = new CompoundWord("nasin-sitelen");
@@ -12352,7 +12364,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-suli", new[] { "street"," avenue"," boulevard"," Highway" } );
+                    en.Add("nasin-suli", new[] { "street", " avenue", " boulevard", " Highway" });
                     glossMap.Add("en", en);
                 }
                 NasinSuli = new CompoundWord("nasin-suli");
@@ -12366,7 +12378,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-supa", new[] { "horizontal" } );
+                    en.Add("nasin-supa", new[] { "horizontal" });
                     glossMap.Add("en", en);
                 }
                 NasinSupa = new CompoundWord("nasin-supa");
@@ -12380,7 +12392,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-tawa", new[] { "reoa travelled" } );
+                    en.Add("nasin-tawa", new[] { "reoa travelled" });
                     glossMap.Add("en", en);
                 }
                 NasinTawa = new CompoundWord("nasin-tawa");
@@ -12394,7 +12406,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-toki", new[] { "system of language"," grammar (phrase structure)"," idiom" } );
+                    en.Add("nasin-toki", new[] { "system of language", " grammar (phrase structure)", " idiom" });
                     glossMap.Add("en", en);
                 }
                 NasinToki = new CompoundWord("nasin-toki");
@@ -12408,7 +12420,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-wawa", new[] { "Shamanism"," White magic" } );
+                    en.Add("nasin-wawa", new[] { "Shamanism", " White magic" });
                     glossMap.Add("en", en);
                 }
                 NasinWawa = new CompoundWord("nasin-wawa");
@@ -12422,7 +12434,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-weka", new[] { "straight"," direct path","road" } );
+                    en.Add("nasin-weka", new[] { "straight", " direct path", "road" });
                     glossMap.Add("en", en);
                 }
                 NasinWeka = new CompoundWord("nasin-weka");
@@ -12436,7 +12448,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-weka-linja", new[] { "straight"," direct path","road" } );
+                    en.Add("nasin-weka-linja", new[] { "straight", " direct path", "road" });
                     glossMap.Add("en", en);
                 }
                 NasinWekaLinja = new CompoundWord("nasin-weka-linja");
@@ -12450,7 +12462,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-pi-nasin-sewi", new[] { "church"," mosque"," temple"," etc." } );
+                    en.Add("tomo-pi-nasin-sewi", new[] { "church", " mosque", " temple", " etc." });
                     glossMap.Add("en", en);
                 }
                 TomoPiNasinSewi = new CompoundWord("tomo-pi-nasin-sewi");
@@ -12464,7 +12476,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nena-lawa", new[] { "nose" } );
+                    en.Add("nena-lawa", new[] { "nose" });
                     glossMap.Add("en", en);
                 }
                 NenaLawa = new CompoundWord("nena-lawa");
@@ -12478,7 +12490,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-nena", new[] { "mountainous area"," the mountains" } );
+                    en.Add("ma-nena", new[] { "mountainous area", " the mountains" });
                     glossMap.Add("en", en);
                 }
                 MaNena = new CompoundWord("ma-nena");
@@ -12492,7 +12504,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nena-kute", new[] { "ear" } );
+                    en.Add("nena-kute", new[] { "ear" });
                     glossMap.Add("en", en);
                 }
                 NenaKute = new CompoundWord("nena-kute");
@@ -12506,7 +12518,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nena-mama", new[] { "breasts" } );
+                    en.Add("nena-mama", new[] { "breasts" });
                     glossMap.Add("en", en);
                 }
                 NenaMama = new CompoundWord("nena-mama");
@@ -12520,7 +12532,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nena-meli", new[] { "breasts" } );
+                    en.Add("nena-meli", new[] { "breasts" });
                     glossMap.Add("en", en);
                 }
                 NenaMeli = new CompoundWord("nena-meli");
@@ -12534,7 +12546,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nena-palisa", new[] { "trunk (of elephant)" } );
+                    en.Add("nena-palisa", new[] { "trunk (of elephant)" });
                     glossMap.Add("en", en);
                 }
                 NenaPalisa = new CompoundWord("nena-palisa");
@@ -12548,7 +12560,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nena-unpa-meli", new[] { "clitoris" } );
+                    en.Add("nena-unpa-meli", new[] { "clitoris" });
                     glossMap.Add("en", en);
                 }
                 NenaUnpaMeli = new CompoundWord("nena-unpa-meli");
@@ -12562,7 +12574,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pini-pi-nena-mama", new[] { "nipple" } );
+                    en.Add("pini-pi-nena-mama", new[] { "nipple" });
                     glossMap.Add("en", en);
                 }
                 PiniPiNenaMama = new CompoundWord("pini-pi-nena-mama");
@@ -12576,7 +12588,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ni-ali", new[] { "all these here" } );
+                    en.Add("ni-ali", new[] { "all these here" });
                     glossMap.Add("en", en);
                 }
                 NiAli = new CompoundWord("ni-ali");
@@ -12590,7 +12602,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-ni", new[] { "now"," the present"," at that time (indicated by previous sentence)" } );
+                    en.Add("tenpo-ni", new[] { "now", " the present", " at that time (indicated by previous sentence)" });
                     glossMap.Add("en", en);
                 }
                 TenpoNi = new CompoundWord("tenpo-ni");
@@ -12604,7 +12616,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-pimeja-ni", new[] { "tonight" } );
+                    en.Add("tenpo-pimeja-ni", new[] { "tonight" });
                     glossMap.Add("en", en);
                 }
                 TenpoPimejaNi = new CompoundWord("tenpo-pimeja-ni");
@@ -12618,7 +12630,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-ante", new[] { "modifier"," adjective" } );
+                    en.Add("nimi-ante", new[] { "modifier", " adjective" });
                     glossMap.Add("en", en);
                 }
                 NimiAnte = new CompoundWord("nimi-ante");
@@ -12632,7 +12644,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-ante-sinpin", new[] { "pseudo preposition" } );
+                    en.Add("nimi-ante-sinpin", new[] { "pseudo preposition" });
                     glossMap.Add("en", en);
                 }
                 NimiAnteSinpin = new CompoundWord("nimi-ante-sinpin");
@@ -12646,7 +12658,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-jan", new[] { "first name" } );
+                    en.Add("nimi-jan", new[] { "first name" });
                     glossMap.Add("en", en);
                 }
                 NimiJan = new CompoundWord("nimi-jan");
@@ -12660,7 +12672,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-lili", new[] { "preposition" } );
+                    en.Add("nimi-lili", new[] { "preposition" });
                     glossMap.Add("en", en);
                 }
                 NimiLili = new CompoundWord("nimi-lili");
@@ -12674,7 +12686,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-pali", new[] { "verb" } );
+                    en.Add("nimi-pali", new[] { "verb" });
                     glossMap.Add("en", en);
                 }
                 NimiPali = new CompoundWord("nimi-pali");
@@ -12688,7 +12700,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-pali-ante", new[] { "transitive verb" } );
+                    en.Add("nimi-pali-ante", new[] { "transitive verb" });
                     glossMap.Add("en", en);
                 }
                 NimiPaliAnte = new CompoundWord("nimi-pali-ante");
@@ -12702,7 +12714,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-pali-pi-ante-ala", new[] { "intransitive verb" } );
+                    en.Add("nimi-pali-pi-ante-ala", new[] { "intransitive verb" });
                     glossMap.Add("en", en);
                 }
                 NimiPaliPiAnteAla = new CompoundWord("nimi-pali-pi-ante-ala");
@@ -12716,7 +12728,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-pi-pali-ala", new[] { "non verb"," other kind of word" } );
+                    en.Add("nimi-pi-pali-ala", new[] { "non verb", " other kind of word" });
                     glossMap.Add("en", en);
                 }
                 NimiPiPaliAla = new CompoundWord("nimi-pi-pali-ala");
@@ -12730,7 +12742,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-sina-o-sewi", new[] { "Hallowed be your name" } );
+                    en.Add("nimi-sina-o-sewi", new[] { "Hallowed be your name" });
                     glossMap.Add("en", en);
                 }
                 NimiSinaOSewi = new CompoundWord("nimi-sina-o-sewi");
@@ -12744,7 +12756,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-sinpin", new[] { "preposition"," neologism" } );
+                    en.Add("nimi-sinpin", new[] { "preposition", " neologism" });
                     glossMap.Add("en", en);
                 }
                 NimiSinpin = new CompoundWord("nimi-sinpin");
@@ -12758,7 +12770,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-suli", new[] { "proper name" } );
+                    en.Add("nimi-suli", new[] { "proper name" });
                     glossMap.Add("en", en);
                 }
                 NimiSuli = new CompoundWord("nimi-suli");
@@ -12772,7 +12784,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-toki", new[] { "word spoken" } );
+                    en.Add("nimi-toki", new[] { "word spoken" });
                     glossMap.Add("en", en);
                 }
                 NimiToki = new CompoundWord("nimi-toki");
@@ -12786,7 +12798,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("meli-olin", new[] { "wife"," girlfriend" } );
+                    en.Add("meli-olin", new[] { "wife", " girlfriend" });
                     glossMap.Add("en", en);
                 }
                 MeliOlin = new CompoundWord("meli-olin");
@@ -12800,7 +12812,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("mije-olin", new[] { "husband"," boyfriend" } );
+                    en.Add("mije-olin", new[] { "husband", " boyfriend" });
                     glossMap.Add("en", en);
                 }
                 MijeOlin = new CompoundWord("mije-olin");
@@ -12814,7 +12826,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("olin-suli", new[] { "perpetual devotion" } );
+                    en.Add("olin-suli", new[] { "perpetual devotion" });
                     glossMap.Add("en", en);
                 }
                 OlinSuli = new CompoundWord("olin-suli");
@@ -12828,7 +12840,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-olin", new[] { "adore"," be devoted to"," devotion" } );
+                    en.Add("pali-olin", new[] { "adore", " be devoted to", " devotion" });
                     glossMap.Add("en", en);
                 }
                 PaliOlin = new CompoundWord("pali-olin");
@@ -12842,7 +12854,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("open-ala", new[] { "close"," seal"," close (vt)" } );
+                    en.Add("open-ala", new[] { "close", " seal", " close (vt)" });
                     glossMap.Add("en", en);
                 }
                 OpenAla = new CompoundWord("open-ala");
@@ -12856,7 +12868,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("open-pi-sike-suno-sin", new[] { "birthday" } );
+                    en.Add("open-pi-sike-suno-sin", new[] { "birthday" });
                     glossMap.Add("en", en);
                 }
                 OpenPiSikeSunoSin = new CompoundWord("open-pi-sike-suno-sin");
@@ -12870,7 +12882,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("open-sinpin", new[] { "door in the side" } );
+                    en.Add("open-sinpin", new[] { "door in the side" });
                     glossMap.Add("en", en);
                 }
                 OpenSinpin = new CompoundWord("open-sinpin");
@@ -12884,7 +12896,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("open-suno", new[] { "sunrise"," dawn daybreak; east; right" } );
+                    en.Add("open-suno", new[] { "sunrise", " dawn daybreak; east; right" });
                     glossMap.Add("en", en);
                 }
                 OpenSuno = new CompoundWord("open-suno");
@@ -12898,7 +12910,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pakala-ala", new[] { "help"," assistance" } );
+                    en.Add("pakala-ala", new[] { "help", " assistance" });
                     glossMap.Add("en", en);
                 }
                 PakalaAla = new CompoundWord("pakala-ala");
@@ -12912,7 +12924,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("palaka-seli", new[] { "burn up (or down)" } );
+                    en.Add("palaka-seli", new[] { "burn up (or down)" });
                     glossMap.Add("en", en);
                 }
                 PalakaSeli = new CompoundWord("palaka-seli");
@@ -12926,7 +12938,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-awen", new[] { "job"," employment" } );
+                    en.Add("pali-awen", new[] { "job", " employment" });
                     glossMap.Add("en", en);
                 }
                 PaliAwen = new CompoundWord("pali-awen");
@@ -12940,7 +12952,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-e-ijo-tawa", new[] { "help" } );
+                    en.Add("pali-e-ijo-tawa", new[] { "help" });
                     glossMap.Add("en", en);
                 }
                 PaliEIjoTawa = new CompoundWord("pali-e-ijo-tawa");
@@ -12954,7 +12966,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-e-moku", new[] { "do the cooking" } );
+                    en.Add("pali-e-moku", new[] { "do the cooking" });
                     glossMap.Add("en", en);
                 }
                 PaliEMoku = new CompoundWord("pali-e-moku");
@@ -12968,7 +12980,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-e-sike-mama", new[] { "lay an egg" } );
+                    en.Add("pali-e-sike-mama", new[] { "lay an egg" });
                     glossMap.Add("en", en);
                 }
                 PaliESikeMama = new CompoundWord("pali-e-sike-mama");
@@ -12982,7 +12994,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-e-soweli", new[] { "tend flocks" } );
+                    en.Add("pali-e-soweli", new[] { "tend flocks" });
                     glossMap.Add("en", en);
                 }
                 PaliESoweli = new CompoundWord("pali-e-soweli");
@@ -12996,7 +13008,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-e-toki-linja", new[] { "spin a yarn. Tell a tale" } );
+                    en.Add("pali-e-toki-linja", new[] { "spin a yarn. Tell a tale" });
                     glossMap.Add("en", en);
                 }
                 PaliETokiLinja = new CompoundWord("pali-e-toki-linja");
@@ -13010,7 +13022,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-e-uta-suwi", new[] { "smile" } );
+                    en.Add("pali-e-uta-suwi", new[] { "smile" });
                     glossMap.Add("en", en);
                 }
                 PaliEUtaSuwi = new CompoundWord("pali-e-uta-suwi");
@@ -13024,7 +13036,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-ike", new[] { "sin"," bad act" } );
+                    en.Add("pali-ike", new[] { "sin", " bad act" });
                     glossMap.Add("en", en);
                 }
                 PaliIke = new CompoundWord("pali-ike");
@@ -13038,7 +13050,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-insa-ma", new[] { "work the land" } );
+                    en.Add("pali-insa-ma", new[] { "work the land" });
                     glossMap.Add("en", en);
                 }
                 PaliInsaMa = new CompoundWord("pali-insa-ma");
@@ -13052,7 +13064,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-kalama-musi", new[] { "make music" } );
+                    en.Add("pali-kalama-musi", new[] { "make music" });
                     glossMap.Add("en", en);
                 }
                 PaliKalamaMusi = new CompoundWord("pali-kalama-musi");
@@ -13066,7 +13078,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-musi", new[] { "sports"," athletics"," work of art" } );
+                    en.Add("pali-musi", new[] { "sports", " athletics", " work of art" });
                     glossMap.Add("en", en);
                 }
                 PaliMusi = new CompoundWord("pali-musi");
@@ -13080,7 +13092,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-mute", new[] { "multiply"," increase"," karma" } );
+                    en.Add("pali-mute", new[] { "multiply", " increase", " karma" });
                     glossMap.Add("en", en);
                 }
                 PaliMute = new CompoundWord("pali-mute");
@@ -13094,7 +13106,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-mute-nanpa", new[] { "multiplication"," multiplier" } );
+                    en.Add("pali-mute-nanpa", new[] { "multiplication", " multiplier" });
                     glossMap.Add("en", en);
                 }
                 PaliMuteNanpa = new CompoundWord("pali-mute-nanpa");
@@ -13108,7 +13120,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-nanpa", new[] { "mathematical operation"," aritmetical operations"," formulae" } );
+                    en.Add("pali-nanpa", new[] { "mathematical operation", " aritmetical operations", " formulae" });
                     glossMap.Add("en", en);
                 }
                 PaliNanpa = new CompoundWord("pali-nanpa");
@@ -13122,7 +13134,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-nanpa-poka", new[] { "addition " } );
+                    en.Add("pali-nanpa-poka", new[] { "addition " });
                     glossMap.Add("en", en);
                 }
                 PaliNanpaPoka = new CompoundWord("pali-nanpa-poka");
@@ -13136,7 +13148,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-nanpa-tenpo", new[] { "multiplication " } );
+                    en.Add("pali-nanpa-tenpo", new[] { "multiplication " });
                     glossMap.Add("en", en);
                 }
                 PaliNanpaTenpo = new CompoundWord("pali-nanpa-tenpo");
@@ -13150,7 +13162,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-olin-tawa", new[] { "be devoted to" } );
+                    en.Add("pali-olin-tawa", new[] { "be devoted to" });
                     glossMap.Add("en", en);
                 }
                 PaliOlinTawa = new CompoundWord("pali-olin-tawa");
@@ -13164,7 +13176,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-pi-ilo-nanpa", new[] { "computer work" } );
+                    en.Add("pali-pi-ilo-nanpa", new[] { "computer work" });
                     glossMap.Add("en", en);
                 }
                 PaliPiIloNanpa = new CompoundWord("pali-pi-ilo-nanpa");
@@ -13178,7 +13190,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-pi-tomo-pi-telo-nasa", new[] { "bartender" } );
+                    en.Add("pali-pi-tomo-pi-telo-nasa", new[] { "bartender" });
                     glossMap.Add("en", en);
                 }
                 PaliPiTomoPiTeloNasa = new CompoundWord("pali-pi-tomo-pi-telo-nasa");
@@ -13192,7 +13204,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-pona-a", new[] { "nicely done!" } );
+                    en.Add("pali-pona-a", new[] { "nicely done!" });
                     glossMap.Add("en", en);
                 }
                 PaliPonaA = new CompoundWord("pali-pona-a");
@@ -13206,7 +13218,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-sewi", new[] { "worship" } );
+                    en.Add("pali-sewi", new[] { "worship" });
                     glossMap.Add("en", en);
                 }
                 PaliSewi = new CompoundWord("pali-sewi");
@@ -13220,7 +13232,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-sewi-tawa", new[] { "worship" } );
+                    en.Add("pali-sewi-tawa", new[] { "worship" });
                     glossMap.Add("en", en);
                 }
                 PaliSewiTawa = new CompoundWord("pali-sewi-tawa");
@@ -13234,7 +13246,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-sitelen", new[] { "try to write" } );
+                    en.Add("pali-sitelen", new[] { "try to write" });
                     glossMap.Add("en", en);
                 }
                 PaliSitelen = new CompoundWord("pali-sitelen");
@@ -13248,7 +13260,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("paliI-e-toki-pi-jan-sewi", new[] { "did what the Lord said" } );
+                    en.Add("paliI-e-toki-pi-jan-sewi", new[] { "did what the Lord said" });
                     glossMap.Add("en", en);
                 }
                 PaliiETokiPiJanSewi = new CompoundWord("paliI-e-toki-pi-jan-sewi");
@@ -13262,7 +13274,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pi-pali-lili", new[] { "easy" } );
+                    en.Add("pi-pali-lili", new[] { "easy" });
                     glossMap.Add("en", en);
                 }
                 PiPaliLili = new CompoundWord("pi-pali-lili");
@@ -13276,7 +13288,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pi-pali-mute", new[] { "difficult" } );
+                    en.Add("pi-pali-mute", new[] { "difficult" });
                     glossMap.Add("en", en);
                 }
                 PiPaliMute = new CompoundWord("pi-pali-mute");
@@ -13290,7 +13302,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pona-pali", new[] { "easy"," easy (to do)" } );
+                    en.Add("pona-pali", new[] { "easy", " easy (to do)" });
                     glossMap.Add("en", en);
                 }
                 PonaPali = new CompoundWord("pona-pali");
@@ -13304,7 +13316,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-pali", new[] { "work(place)"," office"," factory ..." } );
+                    en.Add("tomo-pali", new[] { "work(place)", " office", " factory ..." });
                     glossMap.Add("en", en);
                 }
                 TomoPali = new CompoundWord("tomo-pali");
@@ -13318,7 +13330,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("palisa-kasi", new[] { "cigarette" } );
+                    en.Add("palisa-kasi", new[] { "cigarette" });
                     glossMap.Add("en", en);
                 }
                 PalisaKasi = new CompoundWord("palisa-kasi");
@@ -13328,25 +13340,25 @@ public static CompoundWord MaTomoEnkon;
             }
 
 
+            //{
+            //    var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+            //    {
+            //        var en = new Dictionary<string, string[]>();
+            //        en.Add("palisa-mije", new[] { "penis" });
+            //        glossMap.Add("en", en);
+            //    }
+            //    PalisaMije = new CompoundWord("palisa-mije");
+
+            //    Dictionary.Add("palisa-mije", PalisaMije);
+            //    Glosses.Add("palisa-mije", glossMap);
+            //}
+
+
             {
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("palisa-mije", new[] { "penis" } );
-                    glossMap.Add("en", en);
-                }
-                PalisaMije = new CompoundWord("palisa-mije");
-
-                Dictionary.Add("palisa-mije", PalisaMije);
-                Glosses.Add("palisa-mije", glossMap);
-            }
-
-
-            {
-                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
-                {
-                    var en = new Dictionary<string, string[]>();
-                    en.Add("palisa-kiwen-walo", new[] { "(rib)bone" } );
+                    en.Add("palisa-kiwen-walo", new[] { "(rib)bone" });
                     glossMap.Add("en", en);
                 }
                 PalisaKiwenWalo = new CompoundWord("palisa-kiwen-walo");
@@ -13360,7 +13372,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("palisa-lawa", new[] { "shepherd's crook"," crozier" } );
+                    en.Add("palisa-lawa", new[] { "shepherd's crook", " crozier" });
                     glossMap.Add("en", en);
                 }
                 PalisaLawa = new CompoundWord("palisa-lawa");
@@ -13374,7 +13386,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("palisa-moli", new[] { "arrow" } );
+                    en.Add("palisa-moli", new[] { "arrow" });
                     glossMap.Add("en", en);
                 }
                 PalisaMoli = new CompoundWord("palisa-moli");
@@ -13388,7 +13400,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("palisa-moli-lili", new[] { "coffin" } );
+                    en.Add("palisa-moli-lili", new[] { "coffin" });
                     glossMap.Add("en", en);
                 }
                 PalisaMoliLili = new CompoundWord("palisa-moli-lili");
@@ -13402,7 +13414,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("palisa-pi-kama-jo-kala", new[] { "fishing pole" } );
+                    en.Add("palisa-pi-kama-jo-kala", new[] { "fishing pole" });
                     glossMap.Add("en", en);
                 }
                 PalisaPiKamaJoKala = new CompoundWord("palisa-pi-kama-jo-kala");
@@ -13416,7 +13428,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("palisa-seli", new[] { "flaming sword" } );
+                    en.Add("palisa-seli", new[] { "flaming sword" });
                     glossMap.Add("en", en);
                 }
                 PalisaSeli = new CompoundWord("palisa-seli");
@@ -13430,7 +13442,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("palisa-suli-utala", new[] { "spear" } );
+                    en.Add("palisa-suli-utala", new[] { "spear" });
                     glossMap.Add("en", en);
                 }
                 PalisaSuliUtala = new CompoundWord("palisa-suli-utala");
@@ -13444,7 +13456,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("palisa-tawa", new[] { "vibrating dildo"," arrow" } );
+                    en.Add("palisa-tawa", new[] { "vibrating dildo", " arrow" });
                     glossMap.Add("en", en);
                 }
                 PalisaTawa = new CompoundWord("palisa-tawa");
@@ -13458,7 +13470,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("palisa-uta", new[] { "tongue" } );
+                    en.Add("palisa-uta", new[] { "tongue" });
                     glossMap.Add("en", en);
                 }
                 PalisaUta = new CompoundWord("palisa-uta");
@@ -13472,7 +13484,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pana-e-palisa-uta-lon", new[] { "lick" } );
+                    en.Add("pana-e-palisa-uta-lon", new[] { "lick" });
                     glossMap.Add("en", en);
                 }
                 PanaEPalisaUtaLon = new CompoundWord("pana-e-palisa-uta-lon");
@@ -13486,7 +13498,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pana-uta-lon-palisa", new[] { "fellate" } );
+                    en.Add("pana-uta-lon-palisa", new[] { "fellate" });
                     glossMap.Add("en", en);
                 }
                 PanaUtaLonPalisa = new CompoundWord("pana-uta-lon-palisa");
@@ -13500,7 +13512,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pini-palisa", new[] { "glans"," head of penis" } );
+                    en.Add("pini-palisa", new[] { "glans", " head of penis" });
                     glossMap.Add("en", en);
                 }
                 PiniPalisa = new CompoundWord("pini-palisa");
@@ -13514,7 +13526,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("selo-lon-pini-palisa", new[] { "foreskin" } );
+                    en.Add("selo-lon-pini-palisa", new[] { "foreskin" });
                     glossMap.Add("en", en);
                 }
                 SeloLonPiniPalisa = new CompoundWord("selo-lon-pini-palisa");
@@ -13528,7 +13540,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pana-awen", new[] { "attach"," tie"," bind"," affix" } );
+                    en.Add("pana-awen", new[] { "attach", " tie", " bind", " affix" });
                     glossMap.Add("en", en);
                 }
                 PanaAwen = new CompoundWord("pana-awen");
@@ -13542,7 +13554,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pana-lon", new[] { "rescue" } );
+                    en.Add("pana-lon", new[] { "rescue" });
                     glossMap.Add("en", en);
                 }
                 PanaLon = new CompoundWord("pana-lon");
@@ -13556,7 +13568,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pana-lukin", new[] { "touch" } );
+                    en.Add("pana-lukin", new[] { "touch" });
                     glossMap.Add("en", en);
                 }
                 PanaLukin = new CompoundWord("pana-lukin");
@@ -13570,7 +13582,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pana-nasin-pona-tawa", new[] { "bless" } );
+                    en.Add("pana-nasin-pona-tawa", new[] { "bless" });
                     glossMap.Add("en", en);
                 }
                 PanaNasinPonaTawa = new CompoundWord("pana-nasin-pona-tawa");
@@ -13584,7 +13596,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pana-pi-toki-sewi", new[] { "praying Preachingprophesying" } );
+                    en.Add("pana-pi-toki-sewi", new[] { "praying, Preaching, prophesying" });
                     glossMap.Add("en", en);
                 }
                 PanaPiTokiSewi = new CompoundWord("pana-pi-toki-sewi");
@@ -13598,7 +13610,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pana-poka", new[] { "bring together" } );
+                    en.Add("pana-poka", new[] { "bring together" });
                     glossMap.Add("en", en);
                 }
                 PanaPoka = new CompoundWord("pana-poka");
@@ -13612,7 +13624,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pana-sewi", new[] { "cleaning" } );
+                    en.Add("pana-sewi", new[] { "cleaning" });
                     glossMap.Add("en", en);
                 }
                 PanaSewi = new CompoundWord("pana-sewi");
@@ -13626,7 +13638,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pana-sina", new[] { "take" } );
+                    en.Add("pana-sina", new[] { "take" });
                     glossMap.Add("en", en);
                 }
                 PanaSina = new CompoundWord("pana-sina");
@@ -13640,7 +13652,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pana-tawa", new[] { "allot"," bring" } );
+                    en.Add("pana-tawa", new[] { "allot", " bring" });
                     glossMap.Add("en", en);
                 }
                 PanaTawa = new CompoundWord("pana-tawa");
@@ -13654,7 +13666,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pana-toki", new[] { "translate"," translation" } );
+                    en.Add("pana-toki", new[] { "translate", " translation" });
                     glossMap.Add("en", en);
                 }
                 PanaToki = new CompoundWord("pana-toki");
@@ -13668,7 +13680,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pana-wawa", new[] { "sadomasochism" } );
+                    en.Add("pana-wawa", new[] { "sadomasochism" });
                     glossMap.Add("en", en);
                 }
                 PanaWawa = new CompoundWord("pana-wawa");
@@ -13682,7 +13694,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pi-lukin-ala", new[] { "invisible" } );
+                    en.Add("pi-lukin-ala", new[] { "invisible" });
                     glossMap.Add("en", en);
                 }
                 PiLukinAla = new CompoundWord("pi-lukin-ala");
@@ -13696,7 +13708,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pi-mute-seme", new[] { "How much" } );
+                    en.Add("pi-mute-seme", new[] { "How much" });
                     glossMap.Add("en", en);
                 }
                 PiMuteSeme = new CompoundWord("pi-mute-seme");
@@ -13710,7 +13722,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pi-pona-mute", new[] { "better" } );
+                    en.Add("pi-pona-mute", new[] { "better" });
                     glossMap.Add("en", en);
                 }
                 PiPonaMute = new CompoundWord("pi-pona-mute");
@@ -13724,7 +13736,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pilin-ala-lon-ale", new[] { "subdue all senses" } );
+                    en.Add("pilin-ala-lon-ale", new[] { "subdue all senses" });
                     glossMap.Add("en", en);
                 }
                 PilinAlaLonAle = new CompoundWord("pilin-ala-lon-ale");
@@ -13738,7 +13750,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pilin-ale", new[] { "heart"," mind"," spirit"," feelings" } );
+                    en.Add("pilin-ale", new[] { "heart", " mind", " spirit", " feelings", "sense", " concept" });
                     glossMap.Add("en", en);
                 }
                 PilinAle = new CompoundWord("pilin-ale");
@@ -13752,7 +13764,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pilin-ali", new[] { "heart"," mind"," spirit"," feelings" } );
+                    en.Add("pilin-ali", new[] { "heart", " mind", " spirit", " feelings" });
                     glossMap.Add("en", en);
                 }
                 PilinAli = new CompoundWord("pilin-ali");
@@ -13766,7 +13778,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pilin-ante", new[] { "magical" } );
+                    en.Add("pilin-ante", new[] { "magical" });
                     glossMap.Add("en", en);
                 }
                 PilinAnte = new CompoundWord("pilin-ante");
@@ -13780,7 +13792,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pilin-ike-lon-kulupu", new[] { "be timid/shy. timidity" } );
+                    en.Add("pilin-ike-lon-kulupu", new[] { "be timid/shy. timidity" });
                     glossMap.Add("en", en);
                 }
                 PilinIkeLonKulupu = new CompoundWord("pilin-ike-lon-kulupu");
@@ -13794,7 +13806,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pilin-ike-mute", new[] { "be seriously ill" } );
+                    en.Add("pilin-ike-mute", new[] { "be seriously ill" });
                     glossMap.Add("en", en);
                 }
                 PilinIkeMute = new CompoundWord("pilin-ike-mute");
@@ -13808,7 +13820,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pilin-ike-nanpa-luka-tu", new[] { "feel bad 7 times over (be punished…)" } );
+                    en.Add("pilin-ike-nanpa-luka-tu", new[] { "feel bad 7 times over (be punished…)" });
                     glossMap.Add("en", en);
                 }
                 PilinIkeNanpaLukaTu = new CompoundWord("pilin-ike-nanpa-luka-tu");
@@ -13822,7 +13834,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pilin-ike-tan", new[] { "fear" } );
+                    en.Add("pilin-ike-tan", new[] { "fear" });
                     glossMap.Add("en", en);
                 }
                 PilinIkeTan = new CompoundWord("pilin-ike-tan");
@@ -13836,7 +13848,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pilin-lon", new[] { "think about" } );
+                    en.Add("pilin-lon", new[] { "think about" });
                     glossMap.Add("en", en);
                 }
                 PilinLon = new CompoundWord("pilin-lon");
@@ -13850,7 +13862,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pilin-nasa-lawa", new[] { "be confuswed" } );
+                    en.Add("pilin-nasa-lawa", new[] { "be confuswed" });
                     glossMap.Add("en", en);
                 }
                 PilinNasaLawa = new CompoundWord("pilin-nasa-lawa");
@@ -13864,7 +13876,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pilin-pi-pali-pini-pakala", new[] { "regret" } );
+                    en.Add("pilin-pi-pali-pini-pakala", new[] { "regret", "regrets" });
                     glossMap.Add("en", en);
                 }
                 PilinPiPaliPiniPakala = new CompoundWord("pilin-pi-pali-pini-pakala");
@@ -13874,25 +13886,25 @@ public static CompoundWord MaTomoEnkon;
             }
 
 
+            //{
+            //    var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+            //    {
+            //        var en = new Dictionary<string, string[]>();
+            //        en.Add("pilin-pi-pali-pini-pakala", new[] { "regrets" });
+            //        glossMap.Add("en", en);
+            //    }
+            //    PilinPiPaliPiniPakala = new CompoundWord("pilin-pi-pali-pini-pakala");
+
+            //    Dictionary.Add("pilin-pi-pali-pini-pakala", PilinPiPaliPiniPakala);
+            //    Glosses.Add("pilin-pi-pali-pini-pakala", glossMap);
+            //}
+
+
             {
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pilin-pi-pali-pini-pakala", new[] { "regrets" } );
-                    glossMap.Add("en", en);
-                }
-                PilinPiPaliPiniPakala = new CompoundWord("pilin-pi-pali-pini-pakala");
-
-                Dictionary.Add("pilin-pi-pali-pini-pakala", PilinPiPaliPiniPakala);
-                Glosses.Add("pilin-pi-pali-pini-pakala", glossMap);
-            }
-
-
-            {
-                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
-                {
-                    var en = new Dictionary<string, string[]>();
-                    en.Add("pilin-pona", new[] { "feel glad"," happy"," freedom"," pleasure"," fidelity"," trustworthiness" } );
+                    en.Add("pilin-pona", new[] { "feel glad", " happy", " freedom", " pleasure", " fidelity", " trustworthiness" });
                     glossMap.Add("en", en);
                 }
                 PilinPona = new CompoundWord("pilin-pona");
@@ -13906,7 +13918,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pilin-sama", new[] { "agree" } );
+                    en.Add("pilin-sama", new[] { "agree" });
                     glossMap.Add("en", en);
                 }
                 PilinSama = new CompoundWord("pilin-sama");
@@ -13920,7 +13932,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pilin-sitelen", new[] { "literalist" } );
+                    en.Add("pilin-sitelen", new[] { "literalist" });
                     glossMap.Add("en", en);
                 }
                 PilinSitelen = new CompoundWord("pilin-sitelen");
@@ -13934,7 +13946,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pilin-wawa", new[] { "feel proud"," excited" } );
+                    en.Add("pilin-wawa", new[] { "feel proud", " excited" });
                     glossMap.Add("en", en);
                 }
                 PilinWawa = new CompoundWord("pilin-wawa");
@@ -13948,7 +13960,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sina-pilin-seme", new[] { "How are you  How are you feeling" } );
+                    en.Add("sina-pilin-seme", new[] { "How are you  How are you feeling" });
                     glossMap.Add("en", en);
                 }
                 SinaPilinSeme = new CompoundWord("sina-pilin-seme");
@@ -13962,7 +13974,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pimeja-loje", new[] { "brown" } );
+                    en.Add("pimeja-loje", new[] { "brown" });
                     glossMap.Add("en", en);
                 }
                 PimejaLoje = new CompoundWord("pimeja-loje");
@@ -13976,7 +13988,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pimeja-seli", new[] { "shadow" } );
+                    en.Add("pimeja-seli", new[] { "shadow" });
                     glossMap.Add("en", en);
                 }
                 PimejaSeli = new CompoundWord("pimeja-seli");
@@ -13990,7 +14002,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-pimeja-wawa-pi-tomo-tawa", new[] { "gasoline" } );
+                    en.Add("telo-pimeja-wawa-pi-tomo-tawa", new[] { "gasoline" });
                     glossMap.Add("en", en);
                 }
                 TeloPimejaWawaPiTomoTawa = new CompoundWord("telo-pimeja-wawa-pi-tomo-tawa");
@@ -14004,7 +14016,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-wawa-pi-tomo-tawa", new[] { "gasoline" } );
+                    en.Add("telo-wawa-pi-tomo-tawa", new[] { "gasoline" });
                     glossMap.Add("en", en);
                 }
                 TeloWawaPiTomoTawa = new CompoundWord("telo-wawa-pi-tomo-tawa");
@@ -14018,7 +14030,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-pimeja", new[] { "night" } );
+                    en.Add("tenpo-pimeja", new[] { "night" });
                     glossMap.Add("en", en);
                 }
                 TenpoPimeja = new CompoundWord("tenpo-pimeja");
@@ -14032,7 +14044,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-pimeja-pini", new[] { "last night" } );
+                    en.Add("tenpo-pimeja-pini", new[] { "last night" });
                     glossMap.Add("en", en);
                 }
                 TenpoPimejaPini = new CompoundWord("tenpo-pimeja-pini");
@@ -14046,7 +14058,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pini-ni", new[] { "after that" } );
+                    en.Add("pini-ni", new[] { "after that" });
                     glossMap.Add("en", en);
                 }
                 PiniNi = new CompoundWord("pini-ni");
@@ -14060,7 +14072,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pini-suno", new[] { "sunset"," dusk"," evening; west"," left" } );
+                    en.Add("pini-suno", new[] { "sunset", " dusk", " evening; west", " left" });
                     glossMap.Add("en", en);
                 }
                 PiniSuno = new CompoundWord("pini-suno");
@@ -14074,7 +14086,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-pini", new[] { "past"," history"," the past" } );
+                    en.Add("tenpo-pini", new[] { "past", " history", " the past" });
                     glossMap.Add("en", en);
                 }
                 TenpoPini = new CompoundWord("tenpo-pini");
@@ -14088,7 +14100,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pipi-kule", new[] { "butterflly"," butterfly" } );
+                    en.Add("pipi-kule", new[] { "butterflly", " butterfly" });
                     glossMap.Add("en", en);
                 }
                 PipiKule = new CompoundWord("pipi-kule");
@@ -14102,7 +14114,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pipi-loje", new[] { "cockroach" } );
+                    en.Add("pipi-loje", new[] { "cockroach" });
                     glossMap.Add("en", en);
                 }
                 PipiLoje = new CompoundWord("pipi-loje");
@@ -14116,7 +14128,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pipi-lon-kasi", new[] { "grasshopper"," locust" } );
+                    en.Add("pipi-lon-kasi", new[] { "grasshopper", " locust" });
                     glossMap.Add("en", en);
                 }
                 PipiLonKasi = new CompoundWord("pipi-lon-kasi");
@@ -14130,7 +14142,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pipi-mute", new[] { "ant" } );
+                    en.Add("pipi-mute", new[] { "ant" });
                     glossMap.Add("en", en);
                 }
                 PipiMute = new CompoundWord("pipi-mute");
@@ -14144,7 +14156,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pipi-pimeja-en-loje", new[] { "ladybird.bug" } );
+                    en.Add("pipi-pimeja-en-loje", new[] { "ladybird.bug" });
                     glossMap.Add("en", en);
                 }
                 PipiPimejaEnLoje = new CompoundWord("pipi-pimeja-en-loje");
@@ -14158,7 +14170,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pipi-suwi", new[] { "grasshopper" } );
+                    en.Add("pipi-suwi", new[] { "grasshopper" });
                     glossMap.Add("en", en);
                 }
                 PipiSuwi = new CompoundWord("pipi-suwi");
@@ -14172,7 +14184,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("poka-ala", new[] { "without"," far"," not with" } );
+                    en.Add("poka-ala", new[] { "without", " far", " not with" });
                     glossMap.Add("en", en);
                 }
                 PokaAla = new CompoundWord("poka-ala");
@@ -14186,7 +14198,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("poka-pi-nanpa-tu", new[] { "right side" } );
+                    en.Add("poka-pi-nanpa-tu", new[] { "right side" });
                     glossMap.Add("en", en);
                 }
                 PokaPiNanpaTu = new CompoundWord("poka-pi-nanpa-tu");
@@ -14200,7 +14212,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("poka-pi-nanpa-wan", new[] { "left side" } );
+                    en.Add("poka-pi-nanpa-wan", new[] { "left side" });
                     glossMap.Add("en", en);
                 }
                 PokaPiNanpaWan = new CompoundWord("poka-pi-nanpa-wan");
@@ -14214,7 +14226,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("poka-pi-suno-kama", new[] { "right (side)" } );
+                    en.Add("poka-pi-suno-kama", new[] { "right (side)" });
                     glossMap.Add("en", en);
                 }
                 PokaPiSunoKama = new CompoundWord("poka-pi-suno-kama");
@@ -14228,7 +14240,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("poka-pi-suno-weka", new[] { "left (side)" } );
+                    en.Add("poka-pi-suno-weka", new[] { "left (side)" });
                     glossMap.Add("en", en);
                 }
                 PokaPiSunoWeka = new CompoundWord("poka-pi-suno-weka");
@@ -14242,7 +14254,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("poka-pilin", new[] { "left" } );
+                    en.Add("poka-pilin", new[] { "left" });
                     glossMap.Add("en", en);
                 }
                 PokaPilin = new CompoundWord("poka-pilin");
@@ -14256,7 +14268,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("poka-pilin-ala", new[] { "right" } );
+                    en.Add("poka-pilin-ala", new[] { "right" });
                     glossMap.Add("en", en);
                 }
                 PokaPilinAla = new CompoundWord("poka-pilin-ala");
@@ -14270,7 +14282,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("poka-tawa", new[] { "near" } );
+                    en.Add("poka-tawa", new[] { "near" });
                     glossMap.Add("en", en);
                 }
                 PokaTawa = new CompoundWord("poka-tawa");
@@ -14284,7 +14296,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("poka-telo", new[] { "beach"," seashore" } );
+                    en.Add("poka-telo", new[] { "beach", " seashore" });
                     glossMap.Add("en", en);
                 }
                 PokaTelo = new CompoundWord("poka-telo");
@@ -14298,7 +14310,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("poki-kiwen-suli", new[] { "ark" } );
+                    en.Add("poki-kiwen-suli", new[] { "ark" });
                     glossMap.Add("en", en);
                 }
                 PokiKiwenSuli = new CompoundWord("poki-kiwen-suli");
@@ -14312,7 +14324,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("poki-pi-telo-seli", new[] { "bathtub"," bath tub" } );
+                    en.Add("poki-pi-telo-seli", new[] { "bathtub", " bath tub" });
                     glossMap.Add("en", en);
                 }
                 PokiPiTeloSeli = new CompoundWord("poki-pi-telo-seli");
@@ -14326,7 +14338,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("poki-sama-lipu", new[] { "plate (dining)" } );
+                    en.Add("poki-sama-lipu", new[] { "plate (dining)" });
                     glossMap.Add("en", en);
                 }
                 PokiSamaLipu = new CompoundWord("poki-sama-lipu");
@@ -14340,7 +14352,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("moku-pona", new[] { "Enjoy your meal"," bon appe'tit" } );
+                    en.Add("moku-pona", new[] { "Enjoy your meal", " bon appe'tit" });
                     glossMap.Add("en", en);
                 }
                 MokuPona = new CompoundWord("moku-pona");
@@ -14354,13 +14366,13 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pona-a!", new[] { "Good!"," Super!" } );
+                    en.Add("pona-a", new[] { "Good!", " Super!" });
                     glossMap.Add("en", en);
                 }
-                PonaA = new CompoundWord("pona-a!");
+                PonaA = new CompoundWord("pona-a");
 
-                Dictionary.Add("pona-a!", PonaA);
-                Glosses.Add("pona-a!", glossMap);
+                Dictionary.Add("pona-a", PonaA);
+                Glosses.Add("pona-a", glossMap);
             }
 
 
@@ -14368,7 +14380,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pona-ala", new[] { "difficult" } );
+                    en.Add("pona-ala", new[] { "difficult" });
                     glossMap.Add("en", en);
                 }
                 PonaAla = new CompoundWord("pona-ala");
@@ -14382,7 +14394,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pona-moku", new[] { "tasty"," delicious" } );
+                    en.Add("pona-moku", new[] { "tasty", " delicious" });
                     glossMap.Add("en", en);
                 }
                 PonaMoku = new CompoundWord("pona-moku");
@@ -14396,7 +14408,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pona-mute", new[] { "very simple"," favor" } );
+                    en.Add("pona-mute", new[] { "very simple", " favor" });
                     glossMap.Add("en", en);
                 }
                 PonaMute = new CompoundWord("pona-mute");
@@ -14410,7 +14422,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pona-nasa", new[] { "magical"," strangely different" } );
+                    en.Add("pona-nasa", new[] { "magical", " strangely different" });
                     glossMap.Add("en", en);
                 }
                 PonaNasa = new CompoundWord("pona-nasa");
@@ -14424,7 +14436,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pona-pilin", new[] { "sweet"," pleasant"," agreeable" } );
+                    en.Add("pona-pilin", new[] { "sweet", " pleasant", " agreeable" });
                     glossMap.Add("en", en);
                 }
                 PonaPilin = new CompoundWord("pona-pilin");
@@ -14438,7 +14450,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pona-tawa-ala", new[] { "superfluous " } );
+                    en.Add("pona-tawa-ala", new[] { "superfluous " });
                     glossMap.Add("en", en);
                 }
                 PonaTawaAla = new CompoundWord("pona-tawa-ala");
@@ -14452,7 +14464,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pona-tawa-sina", new[] { "Thank you" } );
+                    en.Add("pona-tawa-sina", new[] { "Thank you" });
                     glossMap.Add("en", en);
                 }
                 PonaTawaSina = new CompoundWord("pona-tawa-sina");
@@ -14466,7 +14478,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pona-unpa", new[] { "sexy"," good in bed"," good lay" } );
+                    en.Add("pona-unpa", new[] { "sexy", " good in bed", " good lay" });
                     glossMap.Add("en", en);
                 }
                 PonaUnpa = new CompoundWord("pona-unpa");
@@ -14480,7 +14492,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tawa-pona", new[] { "Good bye!" } );
+                    en.Add("tawa-pona", new[] { "Good bye!" });
                     glossMap.Add("en", en);
                 }
                 TawaPona = new CompoundWord("tawa-pona");
@@ -14494,7 +14506,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("meli-sama", new[] { "sister" } );
+                    en.Add("meli-sama", new[] { "sister" });
                     glossMap.Add("en", en);
                 }
                 MeliSama = new CompoundWord("meli-sama");
@@ -14508,7 +14520,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("mije-sama", new[] { "brother" } );
+                    en.Add("mije-sama", new[] { "brother" });
                     glossMap.Add("en", en);
                 }
                 MijeSama = new CompoundWord("mije-sama");
@@ -14522,7 +14534,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sama-ala", new[] { "different"," not same" } );
+                    en.Add("sama-ala", new[] { "different", " not same" });
                     glossMap.Add("en", en);
                 }
                 SamaAla = new CompoundWord("sama-ala");
@@ -14536,7 +14548,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sama-poka-kalama-musi", new[] { "keep/be in time with the music" } );
+                    en.Add("sama-poka-kalama-musi", new[] { "keep/be in time with the music" });
                     glossMap.Add("en", en);
                 }
                 SamaPokaKalamaMusi = new CompoundWord("sama-poka-kalama-musi");
@@ -14550,7 +14562,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("unpa-sama-soweli", new[] { "doggy style" } );
+                    en.Add("unpa-sama-soweli", new[] { "doggy style" });
                     glossMap.Add("en", en);
                 }
                 UnpaSamaSoweli = new CompoundWord("unpa-sama-soweli");
@@ -14564,7 +14576,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("seli-lili", new[] { "warm" } );
+                    en.Add("seli-lili", new[] { "warm" });
                     glossMap.Add("en", en);
                 }
                 SeliLili = new CompoundWord("seli-lili");
@@ -14578,7 +14590,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-seli-wawa", new[] { "coffee" } );
+                    en.Add("telo-seli-wawa", new[] { "coffee" });
                     glossMap.Add("en", en);
                 }
                 TeloSeliWawa = new CompoundWord("telo-seli-wawa");
@@ -14592,7 +14604,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-seli", new[] { "summer"," Summer" } );
+                    en.Add("tenpo-seli", new[] { "summer", " Summer" });
                     glossMap.Add("en", en);
                 }
                 TenpoSeli = new CompoundWord("tenpo-seli");
@@ -14606,7 +14618,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-seme", new[] { "when" } );
+                    en.Add("tenpo-seme", new[] { "when" });
                     glossMap.Add("en", en);
                 }
                 TenpoSeme = new CompoundWord("tenpo-seme");
@@ -14620,7 +14632,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sewi-kon", new[] { "the heavens"," sky (heavens)"," heavens"," Heaven" } );
+                    en.Add("sewi-kon", new[] { "the heavens", " sky (heavens)", " heavens", " Heaven" });
                     glossMap.Add("en", en);
                 }
                 SewiKon = new CompoundWord("sewi-kon");
@@ -14634,7 +14646,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sewi-monsi", new[] { "upper back"," shoulders" } );
+                    en.Add("sewi-monsi", new[] { "upper back", " shoulders" });
                     glossMap.Add("en", en);
                 }
                 SewiMonsi = new CompoundWord("sewi-monsi");
@@ -14648,7 +14660,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sewi-pona", new[] { "heaven" } );
+                    en.Add("sewi-pona", new[] { "heaven" });
                     glossMap.Add("en", en);
                 }
                 SewiPona = new CompoundWord("sewi-pona");
@@ -14662,7 +14674,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sewi-sijelo", new[] { "top of the body" } );
+                    en.Add("sewi-sijelo", new[] { "top of the body" });
                     glossMap.Add("en", en);
                 }
                 SewiSijelo = new CompoundWord("sewi-sijelo");
@@ -14676,7 +14688,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sewi-tomo", new[] { "roof" } );
+                    en.Add("sewi-tomo", new[] { "roof" });
                     glossMap.Add("en", en);
                 }
                 SewiTomo = new CompoundWord("sewi-tomo");
@@ -14690,7 +14702,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wawa-sewi", new[] { "god (Higher Power)" } );
+                    en.Add("wawa-sewi", new[] { "god (Higher Power)" });
                     glossMap.Add("en", en);
                 }
                 WawaSewi = new CompoundWord("wawa-sewi");
@@ -14704,7 +14716,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sijelo-ali-insa-ma", new[] { "everybody in the world" } );
+                    en.Add("sijelo-ali-insa-ma", new[] { "everybody in the world" });
                     glossMap.Add("en", en);
                 }
                 SijeloAliInsaMa = new CompoundWord("sijelo-ali-insa-ma");
@@ -14718,7 +14730,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sijelo-pona", new[] { "healthy" } );
+                    en.Add("sijelo-pona", new[] { "healthy" });
                     glossMap.Add("en", en);
                 }
                 SijeloPona = new CompoundWord("sijelo-pona");
@@ -14732,7 +14744,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sijelo-toki", new[] { "corpus" } );
+                    en.Add("sijelo-toki", new[] { "corpus" });
                     glossMap.Add("en", en);
                 }
                 SijeloToki = new CompoundWord("sijelo-toki");
@@ -14746,7 +14758,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wan-sijelo", new[] { "body part" } );
+                    en.Add("wan-sijelo", new[] { "body part" });
                     glossMap.Add("en", en);
                 }
                 WanSijelo = new CompoundWord("wan-sijelo");
@@ -14760,7 +14772,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sike-jan", new[] { "society"," company"," gathering" } );
+                    en.Add("sike-jan", new[] { "society", " company", " gathering" });
                     glossMap.Add("en", en);
                 }
                 SikeJan = new CompoundWord("sike-jan");
@@ -14774,7 +14786,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sike-kili", new[] { "coconut" } );
+                    en.Add("sike-kili", new[] { "coconut" });
                     glossMap.Add("en", en);
                 }
                 SikeKili = new CompoundWord("sike-kili");
@@ -14788,7 +14800,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sike-kiwen-mani", new[] { "coin" } );
+                    en.Add("sike-kiwen-mani", new[] { "coin" });
                     glossMap.Add("en", en);
                 }
                 SikeKiwenMani = new CompoundWord("sike-kiwen-mani");
@@ -14802,7 +14814,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sike-kon-suli", new[] { "sun"," sunshine" } );
+                    en.Add("sike-kon-suli", new[] { "sun", " sunshine" });
                     glossMap.Add("en", en);
                 }
                 SikeKonSuli = new CompoundWord("sike-kon-suli");
@@ -14816,7 +14828,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sike-mama", new[] { "egg" } );
+                    en.Add("sike-mama", new[] { "egg" });
                     glossMap.Add("en", en);
                 }
                 SikeMama = new CompoundWord("sike-mama");
@@ -14830,7 +14842,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sike-mije", new[] { "testicles"," balls" } );
+                    en.Add("sike-mije", new[] { "testicles", " balls" });
                     glossMap.Add("en", en);
                 }
                 SikeMije = new CompoundWord("sike-mije");
@@ -14844,7 +14856,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sike-mije-tu", new[] { "testicles"," balls" } );
+                    en.Add("sike-mije-tu", new[] { "testicles", " balls" });
                     glossMap.Add("en", en);
                 }
                 SikeMijeTu = new CompoundWord("sike-mije-tu");
@@ -14858,7 +14870,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sike-moli-wawa", new[] { "grenade"," bomb" } );
+                    en.Add("sike-moli-wawa", new[] { "grenade", " bomb" });
                     glossMap.Add("en", en);
                 }
                 SikeMoliWawa = new CompoundWord("sike-moli-wawa");
@@ -14872,7 +14884,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sike-nena", new[] { "crown" } );
+                    en.Add("sike-nena", new[] { "crown" });
                     glossMap.Add("en", en);
                 }
                 SikeNena = new CompoundWord("sike-nena");
@@ -14886,7 +14898,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sike-noka", new[] { "football (ball itself)"," football (i.e. soccer)" } );
+                    en.Add("sike-noka", new[] { "football (ball itself)", " football (i.e. soccer)" });
                     glossMap.Add("en", en);
                 }
                 SikeNoka = new CompoundWord("sike-noka");
@@ -14900,7 +14912,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sike-selo", new[] { "football" } );
+                    en.Add("sike-selo", new[] { "football" });
                     glossMap.Add("en", en);
                 }
                 SikeSelo = new CompoundWord("sike-selo");
@@ -14914,7 +14926,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sike-sewi-laso", new[] { "sky"," firmament" } );
+                    en.Add("sike-sewi-laso", new[] { "sky", " firmament" });
                     glossMap.Add("en", en);
                 }
                 SikeSewiLaso = new CompoundWord("sike-sewi-laso");
@@ -14928,7 +14940,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sike-suno-mute", new[] { "era"," epoch"," century" } );
+                    en.Add("sike-suno-mute", new[] { "era", " epoch", " century" });
                     glossMap.Add("en", en);
                 }
                 SikeSunoMute = new CompoundWord("sike-suno-mute");
@@ -14942,7 +14954,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sike-tu", new[] { "bicycle" } );
+                    en.Add("sike-tu", new[] { "bicycle" });
                     glossMap.Add("en", en);
                 }
                 SikeTu = new CompoundWord("sike-tu");
@@ -14956,7 +14968,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sike-tu-supa", new[] { "recumbent bicyvle" } );
+                    en.Add("sike-tu-supa", new[] { "recumbent bicyvle" });
                     glossMap.Add("en", en);
                 }
                 SikeTuSupa = new CompoundWord("sike-tu-supa");
@@ -14970,7 +14982,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-sike", new[] { "year" } );
+                    en.Add("tenpo-sike", new[] { "year" });
                     glossMap.Add("en", en);
                 }
                 TenpoSike = new CompoundWord("tenpo-sike");
@@ -14984,7 +14996,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sin-ala", new[] { "old"," out of date"," old-fashioned"," not new" } );
+                    en.Add("sin-ala", new[] { "old", " out of date", " old-fashioned", " not new" });
                     glossMap.Add("en", en);
                 }
                 SinAla = new CompoundWord("sin-ala");
@@ -14998,7 +15010,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sin-pona", new[] { "good news" } );
+                    en.Add("sin-pona", new[] { "good news" });
                     glossMap.Add("en", en);
                 }
                 SinPona = new CompoundWord("sin-pona");
@@ -15012,7 +15024,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-sin", new[] { "again"," then (later)" } );
+                    en.Add("tenpo-sin", new[] { "again", " then (later)" });
                     glossMap.Add("en", en);
                 }
                 TenpoSin = new CompoundWord("tenpo-sin");
@@ -15026,7 +15038,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sinpin-lawa", new[] { "face" } );
+                    en.Add("sinpin-lawa", new[] { "face" });
                     glossMap.Add("en", en);
                 }
                 SinpinLawa = new CompoundWord("sinpin-lawa");
@@ -15040,7 +15052,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sinpin-sike", new[] { "shield" } );
+                    en.Add("sinpin-sike", new[] { "shield" });
                     glossMap.Add("en", en);
                 }
                 SinpinSike = new CompoundWord("sinpin-sike");
@@ -15054,7 +15066,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sinpin-suli", new[] { "wall" } );
+                    en.Add("sinpin-suli", new[] { "wall" });
                     glossMap.Add("en", en);
                 }
                 SinpinSuli = new CompoundWord("sinpin-suli");
@@ -15068,7 +15080,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-kalama", new[] { "letter of the alphabet"," writing with connection to pronunciation" } );
+                    en.Add("sitelen-kalama", new[] { "letter of the alphabet", " writing with connection to pronunciation" });
                     glossMap.Add("en", en);
                 }
                 SitelenKalama = new CompoundWord("sitelen-kalama");
@@ -15082,7 +15094,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-lili", new[] { "letter"," punctuation mark"," letter of alphabet"," character"," glyph" } );
+                    en.Add("sitelen-lili", new[] { "letter", " punctuation mark", " letter of alphabet", " character", " glyph" });
                     glossMap.Add("en", en);
                 }
                 SitelenLili = new CompoundWord("sitelen-lili");
@@ -15096,7 +15108,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-ma", new[] { "map" } );
+                    en.Add("sitelen-ma", new[] { "map" });
                     glossMap.Add("en", en);
                 }
                 SitelenMa = new CompoundWord("sitelen-ma");
@@ -15110,7 +15122,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-sama-lipu-sona", new[] { "web page" } );
+                    en.Add("sitelen-sama-lipu-sona", new[] { "web page" });
                     glossMap.Add("en", en);
                 }
                 SitelenSamaLipuSona = new CompoundWord("sitelen-sama-lipu-sona");
@@ -15124,7 +15136,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-selo", new[] { "political meeting"," manifesto"," (ad)sign" } );
+                    en.Add("sitelen-selo", new[] { "political meeting", " manifesto", " (ad)sign" });
                     glossMap.Add("en", en);
                 }
                 SitelenSelo = new CompoundWord("sitelen-selo");
@@ -15138,7 +15150,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-suli", new[] { "capital (upper case) letter" } );
+                    en.Add("sitelen-suli", new[] { "capital (upper case) letter" });
                     glossMap.Add("en", en);
                 }
                 SitelenSuli = new CompoundWord("sitelen-suli");
@@ -15152,7 +15164,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-tawa", new[] { "cartoon"," movie"," television show" } );
+                    en.Add("sitelen-tawa", new[] { "cartoon", " movie", " television show" });
                     glossMap.Add("en", en);
                 }
                 SitelenTawa = new CompoundWord("sitelen-tawa");
@@ -15166,7 +15178,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-toki", new[] { "writing"," transcription"," written message"," writings"," text"," ideography"," picture books"," hiieroglyphics"," cave drawings"," writing system"," letter"," e-mail message"," etc." } );
+                    en.Add("sitelen-toki", new[] { "writing", " transcription", " written message", " writings", " text", " ideography", " picture books", " hiieroglyphics", " cave drawings", " writing system", " letter", " e-mail message", " etc." });
                     glossMap.Add("en", en);
                 }
                 SitelenToki = new CompoundWord("sitelen-toki");
@@ -15180,7 +15192,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-tomo", new[] { "structure (how fit together)" } );
+                    en.Add("sitelen-tomo", new[] { "structure (how fit together)" });
                     glossMap.Add("en", en);
                 }
                 SitelenTomo = new CompoundWord("sitelen-tomo");
@@ -15194,7 +15206,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-unpa", new[] { "visual erotica"," porn" } );
+                    en.Add("sitelen-unpa", new[] { "visual erotica", " porn" });
                     glossMap.Add("en", en);
                 }
                 SitelenUnpa = new CompoundWord("sitelen-unpa");
@@ -15208,7 +15220,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sona-ale", new[] { "know completely" } );
+                    en.Add("sona-ale", new[] { "know completely" });
                     glossMap.Add("en", en);
                 }
                 SonaAle = new CompoundWord("sona-ale");
@@ -15222,7 +15234,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sona-ilo", new[] { "technology" } );
+                    en.Add("sona-ilo", new[] { "technology" });
                     glossMap.Add("en", en);
                 }
                 SonaIlo = new CompoundWord("sona-ilo");
@@ -15236,7 +15248,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sona-lukin", new[] { "know by view"," picture to yourself"," imagine" } );
+                    en.Add("sona-lukin", new[] { "know by view", " picture to yourself", " imagine" });
                     glossMap.Add("en", en);
                 }
                 SonaLukin = new CompoundWord("sona-lukin");
@@ -15250,7 +15262,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sona-mute", new[] { "smart"," intelligent. Wise" } );
+                    en.Add("sona-mute", new[] { "smart", " intelligent. Wise" });
                     glossMap.Add("en", en);
                 }
                 SonaMute = new CompoundWord("sona-mute");
@@ -15264,7 +15276,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sona-nanpa", new[] { "mathematics" } );
+                    en.Add("sona-nanpa", new[] { "mathematics" });
                     glossMap.Add("en", en);
                 }
                 SonaNanpa = new CompoundWord("sona-nanpa");
@@ -15278,7 +15290,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sona-nimi", new[] { "means" } );
+                    en.Add("sona-nimi", new[] { "means" });
                     glossMap.Add("en", en);
                 }
                 SonaNimi = new CompoundWord("sona-nimi");
@@ -15292,7 +15304,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sona-pi-kalama-toki", new[] { "phonology"," phonetics" } );
+                    en.Add("sona-pi-kalama-toki", new[] { "phonology", " phonetics" });
                     glossMap.Add("en", en);
                 }
                 SonaPiKalamaToki = new CompoundWord("sona-pi-kalama-toki");
@@ -15306,7 +15318,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sona-pi-lukin-ala", new[] { "cryptology" } );
+                    en.Add("sona-pi-lukin-ala", new[] { "cryptology" });
                     glossMap.Add("en", en);
                 }
                 SonaPiLukinAla = new CompoundWord("sona-pi-lukin-ala");
@@ -15320,7 +15332,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sona-pi-nasin-pona-en-ike", new[] { "knowledge of good and evil" } );
+                    en.Add("sona-pi-nasin-pona-en-ike", new[] { "knowledge of good and evil" });
                     glossMap.Add("en", en);
                 }
                 SonaPiNasinPonaEnIke = new CompoundWord("sona-pi-nasin-pona-en-ike");
@@ -15334,7 +15346,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sona-pona", new[] { "explain"," conscience"," useful information" } );
+                    en.Add("sona-pona", new[] { "explain", " conscience", " useful information" });
                     glossMap.Add("en", en);
                 }
                 SonaPona = new CompoundWord("sona-pona");
@@ -15348,7 +15360,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sona-toki", new[] { "linguistics" } );
+                    en.Add("sona-toki", new[] { "linguistics" });
                     glossMap.Add("en", en);
                 }
                 SonaToki = new CompoundWord("sona-toki");
@@ -15362,7 +15374,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-sona", new[] { "school"," college"," university" } );
+                    en.Add("tomo-sona", new[] { "school", " college", " university" });
                     glossMap.Add("en", en);
                 }
                 TomoSona = new CompoundWord("tomo-sona");
@@ -15376,7 +15388,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-sona-suli", new[] { "college"," university" } );
+                    en.Add("tomo-sona-suli", new[] { "college", " university" });
                     glossMap.Add("en", en);
                 }
                 TomoSonaSuli = new CompoundWord("tomo-sona-suli");
@@ -15390,7 +15402,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wan-pi-tomo-sona", new[] { "faculty of school (either sense)" } );
+                    en.Add("wan-pi-tomo-sona", new[] { "faculty of school (either sense)" });
                     glossMap.Add("en", en);
                 }
                 WanPiTomoSona = new CompoundWord("wan-pi-tomo-sona");
@@ -15404,7 +15416,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-jaki", new[] { "pig"," some wild beast: rat"," wolf"," fox"," etc." } );
+                    en.Add("soweli-jaki", new[] { "pig", " some wild beast: rat", " wolf", " fox", " etc." });
                     glossMap.Add("en", en);
                 }
                 SoweliJaki = new CompoundWord("soweli-jaki");
@@ -15418,7 +15430,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-jaki-pi-ma-kasi", new[] { "wild boar" } );
+                    en.Add("soweli-jaki-pi-ma-kasi", new[] { "wild boar" });
                     glossMap.Add("en", en);
                 }
                 SoweliJakiPiMaKasi = new CompoundWord("soweli-jaki-pi-ma-kasi");
@@ -15432,7 +15444,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-jan", new[] { "monkey"," ape" } );
+                    en.Add("soweli-jan", new[] { "monkey", " ape" });
                     glossMap.Add("en", en);
                 }
                 SoweliJan = new CompoundWord("soweli-jan");
@@ -15446,7 +15458,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-kala-suli", new[] { "whale" } );
+                    en.Add("soweli-kala-suli", new[] { "whale" });
                     glossMap.Add("en", en);
                 }
                 SoweliKalaSuli = new CompoundWord("soweli-kala-suli");
@@ -15460,7 +15472,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-lili-jaki", new[] { "rat" } );
+                    en.Add("soweli-lili-jaki", new[] { "rat" });
                     glossMap.Add("en", en);
                 }
                 SoweliLiliJaki = new CompoundWord("soweli-lili-jaki");
@@ -15474,7 +15486,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-lili-pi-linja-kiwen", new[] { "hedgehog"," porcupine" } );
+                    en.Add("soweli-lili-pi-linja-kiwen", new[] { "hedgehog", " porcupine" });
                     glossMap.Add("en", en);
                 }
                 SoweliLiliPiLinjaKiwen = new CompoundWord("soweli-lili-pi-linja-kiwen");
@@ -15488,7 +15500,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-lili-tomo", new[] { "hamster"," gerbil"," rat"," mouse"," etc." } );
+                    en.Add("soweli-lili-tomo", new[] { "hamster", " gerbil", " rat", " mouse", " etc." });
                     glossMap.Add("en", en);
                 }
                 SoweliLiliTomo = new CompoundWord("soweli-lili-tomo");
@@ -15502,7 +15514,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-loje-walo", new[] { "pig" } );
+                    en.Add("soweli-loje-walo", new[] { "pig" });
                     glossMap.Add("en", en);
                 }
                 SoweliLojeWalo = new CompoundWord("soweli-loje-walo");
@@ -15516,7 +15528,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-loje-walo-lon-ma", new[] { "wild boar" } );
+                    en.Add("soweli-loje-walo-lon-ma", new[] { "wild boar" });
                     glossMap.Add("en", en);
                 }
                 SoweliLojeWaloLonMa = new CompoundWord("soweli-loje-walo-lon-ma");
@@ -15530,7 +15542,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-loje-walo-seli", new[] { "roast pig" } );
+                    en.Add("soweli-loje-walo-seli", new[] { "roast pig" });
                     glossMap.Add("en", en);
                 }
                 SoweliLojeWaloSeli = new CompoundWord("soweli-loje-walo-seli");
@@ -15544,7 +15556,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-lukin-sama-jan", new[] { "monkey"," ape" } );
+                    en.Add("soweli-lukin-sama-jan", new[] { "monkey", " ape" });
                     glossMap.Add("en", en);
                 }
                 SoweliLukinSamaJan = new CompoundWord("soweli-lukin-sama-jan");
@@ -15558,7 +15570,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-mani", new[] { "animal symbolizing wealth" } );
+                    en.Add("soweli-mani", new[] { "animal symbolizing wealth" });
                     glossMap.Add("en", en);
                 }
                 SoweliMani = new CompoundWord("soweli-mani");
@@ -15572,7 +15584,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-meli", new[] { "cow" } );
+                    en.Add("soweli-meli", new[] { "cow" });
                     glossMap.Add("en", en);
                 }
                 SoweliMeli = new CompoundWord("soweli-meli");
@@ -15586,7 +15598,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-mu", new[] { "cow"," cattle" } );
+                    en.Add("soweli-mu", new[] { "cow", " cattle" });
                     glossMap.Add("en", en);
                 }
                 SoweliMu = new CompoundWord("soweli-mu");
@@ -15600,7 +15612,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-musi", new[] { "cat" } );
+                    en.Add("soweli-musi", new[] { "cat" });
                     glossMap.Add("en", en);
                 }
                 SoweliMusi = new CompoundWord("soweli-musi");
@@ -15614,7 +15626,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-nasa", new[] { "orangutan" } );
+                    en.Add("soweli-nasa", new[] { "orangutan" });
                     glossMap.Add("en", en);
                 }
                 SoweliNasa = new CompoundWord("soweli-nasa");
@@ -15628,7 +15640,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-pi-awen-tomo", new[] { "dog" } );
+                    en.Add("soweli-pi-awen-tomo", new[] { "dog" });
                     glossMap.Add("en", en);
                 }
                 SoweliPiAwenTomo = new CompoundWord("soweli-pi-awen-tomo");
@@ -15642,7 +15654,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-pi-moku-pipi", new[] { "anteater" } );
+                    en.Add("soweli-pi-moku-pipi", new[] { "anteater" });
                     glossMap.Add("en", en);
                 }
                 SoweliPiMokuPipi = new CompoundWord("soweli-pi-moku-pipi");
@@ -15656,7 +15668,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-pi-palisa-lawa", new[] { "elepphant" } );
+                    en.Add("soweli-pi-palisa-lawa", new[] { "elepphant" });
                     glossMap.Add("en", en);
                 }
                 SoweliPiPalisaLawa = new CompoundWord("soweli-pi-palisa-lawa");
@@ -15670,7 +15682,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-pi-tawa-lon-tu", new[] { "bipedal" } );
+                    en.Add("soweli-pi-tawa-lon-tu", new[] { "bipedal" });
                     glossMap.Add("en", en);
                 }
                 SoweliPiTawaLonTu = new CompoundWord("soweli-pi-tawa-lon-tu");
@@ -15684,7 +15696,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-suli", new[] { "elephant"," dog" } );
+                    en.Add("soweli-suli", new[] { "elephant", " dog" });
                     glossMap.Add("en", en);
                 }
                 SoweliSuli = new CompoundWord("soweli-suli");
@@ -15698,7 +15710,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-suli-ike", new[] { "bear" } );
+                    en.Add("soweli-suli-ike", new[] { "bear" });
                     glossMap.Add("en", en);
                 }
                 SoweliSuliIke = new CompoundWord("soweli-suli-ike");
@@ -15712,7 +15724,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-suli-lape-pi-kasi-suli", new[] { "koala" } );
+                    en.Add("soweli-suli-lape-pi-kasi-suli", new[] { "koala" });
                     glossMap.Add("en", en);
                 }
                 SoweliSuliLapePiKasiSuli = new CompoundWord("soweli-suli-lape-pi-kasi-suli");
@@ -15726,7 +15738,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-suli-palisa", new[] { "giraffe" } );
+                    en.Add("soweli-suli-palisa", new[] { "giraffe" });
                     glossMap.Add("en", en);
                 }
                 SoweliSuliPalisa = new CompoundWord("soweli-suli-palisa");
@@ -15740,7 +15752,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-suli-pi-nena-tu", new[] { "dromedary" } );
+                    en.Add("soweli-suli-pi-nena-tu", new[] { "dromedary" });
                     glossMap.Add("en", en);
                 }
                 SoweliSuliPiNenaTu = new CompoundWord("soweli-suli-pi-nena-tu");
@@ -15754,7 +15766,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-suli-pi-nene-wan", new[] { "camel" } );
+                    en.Add("soweli-suli-pi-nene-wan", new[] { "camel" });
                     glossMap.Add("en", en);
                 }
                 SoweliSuliPiNeneWan = new CompoundWord("soweli-suli-pi-nene-wan");
@@ -15768,7 +15780,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-suli-walo-en-pimeja", new[] { "big gray wolf" } );
+                    en.Add("soweli-suli-walo-en-pimeja", new[] { "big gray wolf" });
                     glossMap.Add("en", en);
                 }
                 SoweliSuliWaloEnPimeja = new CompoundWord("soweli-suli-walo-en-pimeja");
@@ -15782,7 +15794,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-suwi", new[] { "Rabbit"," pet" } );
+                    en.Add("soweli-suwi", new[] { "Rabbit", " pet" });
                     glossMap.Add("en", en);
                 }
                 SoweliSuwi = new CompoundWord("soweli-suwi");
@@ -15796,7 +15808,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-suwi-tomo", new[] { "cat" } );
+                    en.Add("soweli-suwi-tomo", new[] { "cat" });
                     glossMap.Add("en", en);
                 }
                 SoweliSuwiTomo = new CompoundWord("soweli-suwi-tomo");
@@ -15810,7 +15822,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-tawa", new[] { "horse" } );
+                    en.Add("soweli-tawa", new[] { "horse" });
                     glossMap.Add("en", en);
                 }
                 SoweliTawa = new CompoundWord("soweli-tawa");
@@ -15824,7 +15836,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-tawa-pimeja-en-walo", new[] { "zebra" } );
+                    en.Add("soweli-tawa-pimeja-en-walo", new[] { "zebra" });
                     glossMap.Add("en", en);
                 }
                 SoweliTawaPimejaEnWalo = new CompoundWord("soweli-tawa-pimeja-en-walo");
@@ -15838,7 +15850,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-tomo-pi-linja-uta", new[] { "cat" } );
+                    en.Add("soweli-tomo-pi-linja-uta", new[] { "cat" });
                     glossMap.Add("en", en);
                 }
                 SoweliTomoPiLinjaUta = new CompoundWord("soweli-tomo-pi-linja-uta");
@@ -15852,7 +15864,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-waso", new[] { "bat" } );
+                    en.Add("soweli-waso", new[] { "bat" });
                     glossMap.Add("en", en);
                 }
                 SoweliWaso = new CompoundWord("soweli-waso");
@@ -15866,7 +15878,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-wawa", new[] { "dog" } );
+                    en.Add("soweli-wawa", new[] { "dog" });
                     glossMap.Add("en", en);
                 }
                 SoweliWawa = new CompoundWord("soweli-wawa");
@@ -15880,7 +15892,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-wawa-pimeja", new[] { "brown bear"," black bear" } );
+                    en.Add("soweli-wawa-pimeja", new[] { "brown bear", " black bear" });
                     glossMap.Add("en", en);
                 }
                 SoweliWawaPimeja = new CompoundWord("soweli-wawa-pimeja");
@@ -15894,7 +15906,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-wawa-tomo", new[] { "dog" } );
+                    en.Add("soweli-wawa-tomo", new[] { "dog" });
                     glossMap.Add("en", en);
                 }
                 SoweliWawaTomo = new CompoundWord("soweli-wawa-tomo");
@@ -15908,7 +15920,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-mama-soweli", new[] { "dairy milk from cows (goats)" } );
+                    en.Add("telo-mama-soweli", new[] { "dairy milk from cows (goats)" });
                     glossMap.Add("en", en);
                 }
                 TeloMamaSoweli = new CompoundWord("telo-mama-soweli");
@@ -15922,7 +15934,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-suli", new[] { "continent" } );
+                    en.Add("ma-suli", new[] { "continent" });
                     glossMap.Add("en", en);
                 }
                 MaSuli = new CompoundWord("ma-suli");
@@ -15936,7 +15948,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("suli-pi-nanpa-wan", new[] { "first in size" } );
+                    en.Add("suli-pi-nanpa-wan", new[] { "first in size" });
                     glossMap.Add("en", en);
                 }
                 SuliPiNanpaWan = new CompoundWord("suli-pi-nanpa-wan");
@@ -15950,7 +15962,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-suli", new[] { "ocean"," sea"," lake"," oean"," flood"," oil" } );
+                    en.Add("telo-suli", new[] { "ocean", " sea", " lake", " oean", " flood", " oil" });
                     glossMap.Add("en", en);
                 }
                 TeloSuli = new CompoundWord("telo-suli");
@@ -15964,7 +15976,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-suli", new[] { "long time" } );
+                    en.Add("tenpo-suli", new[] { "long time" });
                     glossMap.Add("en", en);
                 }
                 TenpoSuli = new CompoundWord("tenpo-suli");
@@ -15978,7 +15990,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("suno-kama-ni", new[] { "tomorrow" } );
+                    en.Add("suno-kama-ni", new[] { "tomorrow" });
                     glossMap.Add("en", en);
                 }
                 SunoKamaNi = new CompoundWord("suno-kama-ni");
@@ -15992,7 +16004,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-suno", new[] { "day"," day (both senses)" } );
+                    en.Add("tenpo-suno", new[] { "day", " day (both senses)" });
                     glossMap.Add("en", en);
                 }
                 TenpoSuno = new CompoundWord("tenpo-suno");
@@ -16006,7 +16018,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-suno-kama", new[] { "tomorrow" } );
+                    en.Add("tenpo-suno-kama", new[] { "tomorrow" });
                     glossMap.Add("en", en);
                 }
                 TenpoSunoKama = new CompoundWord("tenpo-suno-kama");
@@ -16020,7 +16032,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-suno-ni", new[] { "today" } );
+                    en.Add("tenpo-suno-ni", new[] { "today" });
                     glossMap.Add("en", en);
                 }
                 TenpoSunoNi = new CompoundWord("tenpo-suno-ni");
@@ -16034,7 +16046,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-suno-pini", new[] { "yesterday" } );
+                    en.Add("tenpo-suno-pini", new[] { "yesterday" });
                     glossMap.Add("en", en);
                 }
                 TenpoSunoPini = new CompoundWord("tenpo-suno-pini");
@@ -16048,7 +16060,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("supa-moku", new[] { "dining table" } );
+                    en.Add("supa-moku", new[] { "dining table" });
                     glossMap.Add("en", en);
                 }
                 SupaMoku = new CompoundWord("supa-moku");
@@ -16062,7 +16074,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("supa-monsi", new[] { "chair"," seat" } );
+                    en.Add("supa-monsi", new[] { "chair", " seat" });
                     glossMap.Add("en", en);
                 }
                 SupaMonsi = new CompoundWord("supa-monsi");
@@ -16076,7 +16088,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("supa-pali", new[] { "work table/bench" } );
+                    en.Add("supa-pali", new[] { "work table/bench" });
                     glossMap.Add("en", en);
                 }
                 SupaPali = new CompoundWord("supa-pali");
@@ -16090,7 +16102,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-suwi", new[] { "soft drink"," uncaffinated" } );
+                    en.Add("telo-suwi", new[] { "soft drink", " uncaffinated" });
                     glossMap.Add("en", en);
                 }
                 TeloSuwi = new CompoundWord("telo-suwi");
@@ -16104,7 +16116,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-wawa-suwi", new[] { "caffenated soft drink" } );
+                    en.Add("telo-wawa-suwi", new[] { "caffenated soft drink" });
                     glossMap.Add("en", en);
                 }
                 TeloWawaSuwi = new CompoundWord("telo-wawa-suwi");
@@ -16118,7 +16130,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tan-ali", new[] { "general purpose"," general prupose" } );
+                    en.Add("tan-ali", new[] { "general purpose", " general prupose" });
                     glossMap.Add("en", en);
                 }
                 TanAli = new CompoundWord("tan-ali");
@@ -16132,7 +16144,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tan-seme", new[] { "why" } );
+                    en.Add("tan-seme", new[] { "why" });
                     glossMap.Add("en", en);
                 }
                 TanSeme = new CompoundWord("tan-seme");
@@ -16146,7 +16158,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tan-sijelo", new[] { "origin of matter"," origina of matter" } );
+                    en.Add("tan-sijelo", new[] { "origin of matter", " origina of matter" });
                     glossMap.Add("en", en);
                 }
                 TanSijelo = new CompoundWord("tan-sijelo");
@@ -16160,7 +16172,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("mi-tawa", new[] { "Good Bye!" } );
+                    en.Add("mi-tawa", new[] { "Good Bye!" });
                     glossMap.Add("en", en);
                 }
                 MiTawa = new CompoundWord("mi-tawa");
@@ -16174,7 +16186,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tawa-anpa", new[] { "drop"," fall" } );
+                    en.Add("tawa-anpa", new[] { "drop", " fall" });
                     glossMap.Add("en", en);
                 }
                 TawaAnpa = new CompoundWord("tawa-anpa");
@@ -16188,7 +16200,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tawa-anpa-telo", new[] { "sink" } );
+                    en.Add("tawa-anpa-telo", new[] { "sink" });
                     glossMap.Add("en", en);
                 }
                 TawaAnpaTelo = new CompoundWord("tawa-anpa-telo");
@@ -16202,7 +16214,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tawa-insa", new[] { "fill"," move into" } );
+                    en.Add("tawa-insa", new[] { "fill", " move into" });
                     glossMap.Add("en", en);
                 }
                 TawaInsa = new CompoundWord("tawa-insa");
@@ -16216,7 +16228,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tawa-insa-kon", new[] { "inhale" } );
+                    en.Add("tawa-insa-kon", new[] { "inhale" });
                     glossMap.Add("en", en);
                 }
                 TawaInsaKon = new CompoundWord("tawa-insa-kon");
@@ -16230,7 +16242,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tawa-jo", new[] { "find" } );
+                    en.Add("tawa-jo", new[] { "find" });
                     glossMap.Add("en", en);
                 }
                 TawaJo = new CompoundWord("tawa-jo");
@@ -16244,7 +16256,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tawa-kon", new[] { "fly" } );
+                    en.Add("tawa-kon", new[] { "fly" });
                     glossMap.Add("en", en);
                 }
                 TawaKon = new CompoundWord("tawa-kon");
@@ -16258,7 +16270,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tawa-lon-kon", new[] { "fly" } );
+                    en.Add("tawa-lon-kon", new[] { "fly" });
                     glossMap.Add("en", en);
                 }
                 TawaLonKon = new CompoundWord("tawa-lon-kon");
@@ -16272,7 +16284,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tawa-lon-luka-pona", new[] { "move right" } );
+                    en.Add("tawa-lon-luka-pona", new[] { "move right" });
                     glossMap.Add("en", en);
                 }
                 TawaLonLukaPona = new CompoundWord("tawa-lon-luka-pona");
@@ -16286,7 +16298,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tawa-lon-luka-ike", new[] { "move left" } );
+                    en.Add("tawa-lon-luka-ike", new[] { "move left" });
                     glossMap.Add("en", en);
                 }
                 TawaLonLukaIke = new CompoundWord("tawa-lon-luka-ike");
@@ -16300,7 +16312,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tawa-moli", new[] { "dying"," moving toward death"," happen" } );
+                    en.Add("tawa-moli", new[] { "dying", " moving toward death", " happen" });
                     glossMap.Add("en", en);
                 }
                 TawaMoli = new CompoundWord("tawa-moli");
@@ -16314,7 +16326,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tawa-musi", new[] { "dance" } );
+                    en.Add("tawa-musi", new[] { "dance" });
                     glossMap.Add("en", en);
                 }
                 TawaMusi = new CompoundWord("tawa-musi");
@@ -16328,7 +16340,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tawa-mute", new[] { "run"," fast" } );
+                    en.Add("tawa-mute", new[] { "run", " fast" });
                     glossMap.Add("en", en);
                 }
                 TawaMute = new CompoundWord("tawa-mute");
@@ -16342,7 +16354,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tawa-mute-lon-tempo-lili", new[] { "go rapidly" } );
+                    en.Add("tawa-mute-lon-tempo-lili", new[] { "go rapidly" });
                     glossMap.Add("en", en);
                 }
                 TawaMuteLonTempoLili = new CompoundWord("tawa-mute-lon-tempo-lili");
@@ -16356,7 +16368,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tawa-noka", new[] { "walk" } );
+                    en.Add("tawa-noka", new[] { "walk" });
                     glossMap.Add("en", en);
                 }
                 TawaNoka = new CompoundWord("tawa-noka");
@@ -16370,7 +16382,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tawa-noka-wawa", new[] { "run" } );
+                    en.Add("tawa-noka-wawa", new[] { "run" });
                     glossMap.Add("en", en);
                 }
                 TawaNokaWawa = new CompoundWord("tawa-noka-wawa");
@@ -16384,7 +16396,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tawa-poka-ante", new[] { "traverse"," go over" } );
+                    en.Add("tawa-poka-ante", new[] { "traverse", " go over" });
                     glossMap.Add("en", en);
                 }
                 TawaPokaAnte = new CompoundWord("tawa-poka-ante");
@@ -16398,7 +16410,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tawa-selo-kon", new[] { "exhale" } );
+                    en.Add("tawa-selo-kon", new[] { "exhale" });
                     glossMap.Add("en", en);
                 }
                 TawaSeloKon = new CompoundWord("tawa-selo-kon");
@@ -16412,7 +16424,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tawa-sewi", new[] { "resurrection Ascension" } );
+                    en.Add("tawa-sewi", new[] { "resurrection Ascension" });
                     glossMap.Add("en", en);
                 }
                 TawaSewi = new CompoundWord("tawa-sewi");
@@ -16426,7 +16438,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tawa-sike-lon", new[] { "circle" } );
+                    en.Add("tawa-sike-lon", new[] { "circle" });
                     glossMap.Add("en", en);
                 }
                 TawaSikeLon = new CompoundWord("tawa-sike-lon");
@@ -16440,7 +16452,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tawa-wawa", new[] { "speed (vi)" } );
+                    en.Add("tawa-wawa", new[] { "speed (vi)" });
                     glossMap.Add("en", en);
                 }
                 TawaWawa = new CompoundWord("tawa-wawa");
@@ -16454,7 +16466,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tawa-wawa-noka", new[] { "run" } );
+                    en.Add("tawa-wawa-noka", new[] { "run" });
                     glossMap.Add("en", en);
                 }
                 TawaWawaNoka = new CompoundWord("tawa-wawa-noka");
@@ -16468,7 +16480,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-tawa", new[] { "vehicle"," automobile" } );
+                    en.Add("tomo-tawa", new[] { "vehicle", " automobile" });
                     glossMap.Add("en", en);
                 }
                 TomoTawa = new CompoundWord("tomo-tawa");
@@ -16482,7 +16494,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-tawa-telo", new[] { "boat"," ship" } );
+                    en.Add("tomo-tawa-telo", new[] { "boat", " ship" });
                     glossMap.Add("en", en);
                 }
                 TomoTawaTelo = new CompoundWord("tomo-tawa-telo");
@@ -16496,7 +16508,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-tawa-telo-anpa", new[] { "submarine" } );
+                    en.Add("tomo-tawa-telo-anpa", new[] { "submarine" });
                     glossMap.Add("en", en);
                 }
                 TomoTawaTeloAnpa = new CompoundWord("tomo-tawa-telo-anpa");
@@ -16510,7 +16522,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("moku-telo", new[] { "soup" } );
+                    en.Add("moku-telo", new[] { "soup" });
                     glossMap.Add("en", en);
                 }
                 MokuTelo = new CompoundWord("moku-telo");
@@ -16524,7 +16536,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-insa", new[] { "pond" } );
+                    en.Add("telo-insa", new[] { "pond" });
                     glossMap.Add("en", en);
                 }
                 TeloInsa = new CompoundWord("telo-insa");
@@ -16538,7 +16550,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-moku", new[] { "tea"," wet" } );
+                    en.Add("telo-moku", new[] { "tea", " wet" });
                     glossMap.Add("en", en);
                 }
                 TeloMoku = new CompoundWord("telo-moku");
@@ -16552,7 +16564,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-moli", new[] { "poison"," venom" } );
+                    en.Add("telo-moli", new[] { "poison", " venom" });
                     glossMap.Add("en", en);
                 }
                 TeloMoli = new CompoundWord("telo-moli");
@@ -16566,7 +16578,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-nasa-kasi", new[] { "beer (etc. - grain alcohol)" } );
+                    en.Add("telo-nasa-kasi", new[] { "beer (etc. - grain alcohol)" });
                     glossMap.Add("en", en);
                 }
                 TeloNasaKasi = new CompoundWord("telo-nasa-kasi");
@@ -16580,7 +16592,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-nasa-kili", new[] { "wine" } );
+                    en.Add("telo-nasa-kili", new[] { "wine" });
                     glossMap.Add("en", en);
                 }
                 TeloNasaKili = new CompoundWord("telo-nasa-kili");
@@ -16594,7 +16606,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-nasa-pona", new[] { "[generic toast]" } );
+                    en.Add("telo-nasa-pona", new[] { "[generic toast]" });
                     glossMap.Add("en", en);
                 }
                 TeloNasaPona = new CompoundWord("telo-nasa-pona");
@@ -16608,7 +16620,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-pi-kon-suwi", new[] { "perfume" } );
+                    en.Add("telo-pi-kon-suwi", new[] { "perfume" });
                     glossMap.Add("en", en);
                 }
                 TeloPiKonSuwi = new CompoundWord("telo-pi-kon-suwi");
@@ -16622,7 +16634,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-pimeja-seli", new[] { "gasoline" } );
+                    en.Add("telo-pimeja-seli", new[] { "gasoline" });
                     glossMap.Add("en", en);
                 }
                 TeloPimejaSeli = new CompoundWord("telo-pimeja-seli");
@@ -16636,7 +16648,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-seli", new[] { "soup" } );
+                    en.Add("telo-seli", new[] { "soup" });
                     glossMap.Add("en", en);
                 }
                 TeloSeli = new CompoundWord("telo-seli");
@@ -16650,7 +16662,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-selo", new[] { "sweat" } );
+                    en.Add("telo-selo", new[] { "sweat" });
                     glossMap.Add("en", en);
                 }
                 TeloSelo = new CompoundWord("telo-selo");
@@ -16664,7 +16676,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-sewi", new[] { "holy water"," annointing oil"," rain"," ritual bath" } );
+                    en.Add("telo-sewi", new[] { "holy water", " annointing oil", " rain", " ritual bath" });
                     glossMap.Add("en", en);
                 }
                 TeloSewi = new CompoundWord("telo-sewi");
@@ -16678,7 +16690,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-sijelo", new[] { "sweat"," urine" } );
+                    en.Add("telo-sijelo", new[] { "sweat", " urine" });
                     glossMap.Add("en", en);
                 }
                 TeloSijelo = new CompoundWord("telo-sijelo");
@@ -16692,7 +16704,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-suno", new[] { "oil for anointing" } );
+                    en.Add("telo-suno", new[] { "oil for anointing" });
                     glossMap.Add("en", en);
                 }
                 TeloSuno = new CompoundWord("telo-suno");
@@ -16706,7 +16718,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-tawa", new[] { "river"," stream"," running water"," brook" } );
+                    en.Add("telo-tawa", new[] { "river", " stream", " running water", " brook" });
                     glossMap.Add("en", en);
                 }
                 TeloTawa = new CompoundWord("telo-tawa");
@@ -16720,7 +16732,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-walo", new[] { "milk" } );
+                    en.Add("telo-walo", new[] { "milk" });
                     glossMap.Add("en", en);
                 }
                 TeloWalo = new CompoundWord("telo-walo");
@@ -16734,7 +16746,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-walo-mama", new[] { "milk" } );
+                    en.Add("telo-walo-mama", new[] { "milk" });
                     glossMap.Add("en", en);
                 }
                 TeloWaloMama = new CompoundWord("telo-walo-mama");
@@ -16748,7 +16760,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-mije", new[] { "semen"," sperm"," come" } );
+                    en.Add("telo-mije", new[] { "semen", " sperm", " come" });
                     glossMap.Add("en", en);
                 }
                 TeloMije = new CompoundWord("telo-mije");
@@ -16762,7 +16774,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-walo-mije", new[] { "semen"," sperm"," come" } );
+                    en.Add("telo-walo-mije", new[] { "semen", " sperm", " come" });
                     glossMap.Add("en", en);
                 }
                 TeloWaloMije = new CompoundWord("telo-walo-mije");
@@ -16776,7 +16788,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-wawa", new[] { "energy drink"," caffenated" } );
+                    en.Add("telo-wawa", new[] { "energy drink", " caffenated" });
                     glossMap.Add("en", en);
                 }
                 TeloWawa = new CompoundWord("telo-wawa");
@@ -16790,7 +16802,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-telo", new[] { "rainy season" } );
+                    en.Add("tenpo-telo", new[] { "rainy season" });
                     glossMap.Add("en", en);
                 }
                 TenpoTelo = new CompoundWord("tenpo-telo");
@@ -16804,7 +16816,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-telo", new[] { "bathroom"," washroom"," toilet" } );
+                    en.Add("tomo-telo", new[] { "bathroom", " washroom", " toilet" });
                     glossMap.Add("en", en);
                 }
                 TomoTelo = new CompoundWord("tomo-telo");
@@ -16818,7 +16830,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-ale-ala", new[] { "sometimes" } );
+                    en.Add("tenpo-ale-ala", new[] { "sometimes" });
                     glossMap.Add("en", en);
                 }
                 TenpoAleAla = new CompoundWord("tenpo-ale-ala");
@@ -16832,7 +16844,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-ijo", new[] { "At some time"," Once upon a time"," at some time"," sometime(s)"," some (quantity of) time" } );
+                    en.Add("tenpo-ijo", new[] { "At some time", " Once upon a time", " at some time", " sometime(s)", " some (quantity of) time" });
                     glossMap.Add("en", en);
                 }
                 TenpoIjo = new CompoundWord("tenpo-ijo");
@@ -16846,7 +16858,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-mun", new[] { "month" } );
+                    en.Add("tenpo-mun", new[] { "month" });
                     glossMap.Add("en", en);
                 }
                 TenpoMun = new CompoundWord("tenpo-mun");
@@ -16860,7 +16872,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-mute", new[] { "often"," many times"," era"," the times" } );
+                    en.Add("tenpo-mute", new[] { "often", " many times", " era", " the times" });
                     glossMap.Add("en", en);
                 }
                 TenpoMute = new CompoundWord("tenpo-mute");
@@ -16874,7 +16886,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-mute-lili", new[] { "sometimes" } );
+                    en.Add("tenpo-mute-lili", new[] { "sometimes" });
                     glossMap.Add("en", en);
                 }
                 TenpoMuteLili = new CompoundWord("tenpo-mute-lili");
@@ -16888,7 +16900,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-nasa", new[] { "party" } );
+                    en.Add("tenpo-nasa", new[] { "party" });
                     glossMap.Add("en", en);
                 }
                 TenpoNasa = new CompoundWord("tenpo-nasa");
@@ -16902,7 +16914,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-open", new[] { "in the beginning" } );
+                    en.Add("tenpo-open", new[] { "in the beginning" });
                     glossMap.Add("en", en);
                 }
                 TenpoOpen = new CompoundWord("tenpo-open");
@@ -16916,7 +16928,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-pi-kama-seli", new[] { "spring"," Spring" } );
+                    en.Add("tenpo-pi-kama-seli", new[] { "spring", " Spring" });
                     glossMap.Add("en", en);
                 }
                 TenpoPiKamaSeli = new CompoundWord("tenpo-pi-kama-seli");
@@ -16930,7 +16942,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-pi-lete-lili", new[] { "Autumn"," Fall" } );
+                    en.Add("tenpo-pi-lete-lili", new[] { "Autumn", " Fall" });
                     glossMap.Add("en", en);
                 }
                 TenpoPiLeteLili = new CompoundWord("tenpo-pi-lete-lili");
@@ -16944,7 +16956,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-pi-lete-mute", new[] { "Winter" } );
+                    en.Add("tenpo-pi-lete-mute", new[] { "Winter" });
                     glossMap.Add("en", en);
                 }
                 TenpoPiLeteMute = new CompoundWord("tenpo-pi-lete-mute");
@@ -16958,7 +16970,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-pi-seli-lili", new[] { "Spring" } );
+                    en.Add("tenpo-pi-seli-lili", new[] { "Spring" });
                     glossMap.Add("en", en);
                 }
                 TenpoPiSeliLili = new CompoundWord("tenpo-pi-seli-lili");
@@ -16972,7 +16984,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-pi-seli-mute", new[] { "Summer" } );
+                    en.Add("tenpo-pi-seli-mute", new[] { "Summer" });
                     glossMap.Add("en", en);
                 }
                 TenpoPiSeliMute = new CompoundWord("tenpo-pi-seli-mute");
@@ -16986,7 +16998,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-pini-pi-kulupu-mama", new[] { "genealogy" } );
+                    en.Add("tenpo-pini-pi-kulupu-mama", new[] { "genealogy" });
                     glossMap.Add("en", en);
                 }
                 TenpoPiniPiKulupuMama = new CompoundWord("tenpo-pini-pi-kulupu-mama");
@@ -17000,7 +17012,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-sike-lili", new[] { "Spring" } );
+                    en.Add("tenpo-sike-lili", new[] { "Spring" });
                     glossMap.Add("en", en);
                 }
                 TenpoSikeLili = new CompoundWord("tenpo-sike-lili");
@@ -17014,7 +17026,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-sinpin", new[] { "after that" } );
+                    en.Add("tenpo-sinpin", new[] { "after that" });
                     glossMap.Add("en", en);
                 }
                 TenpoSinpin = new CompoundWord("tenpo-sinpin");
@@ -17028,7 +17040,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-sinpin-ni", new[] { "after that" } );
+                    en.Add("tenpo-sinpin-ni", new[] { "after that" });
                     glossMap.Add("en", en);
                 }
                 TenpoSinpinNi = new CompoundWord("tenpo-sinpin-ni");
@@ -17042,7 +17054,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-suli-monsi", new[] { "long ago" } );
+                    en.Add("tenpo-suli-monsi", new[] { "long ago" });
                     glossMap.Add("en", en);
                 }
                 TenpoSuliMonsi = new CompoundWord("tenpo-suli-monsi");
@@ -17056,7 +17068,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-suno-pi-luka-tu", new[] { "week" } );
+                    en.Add("tenpo-suno-pi-luka-tu", new[] { "week" });
                     glossMap.Add("en", en);
                 }
                 TenpoSunoPiLukaTu = new CompoundWord("tenpo-suno-pi-luka-tu");
@@ -17070,7 +17082,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-suno-pi-moku-mute", new[] { "Christmas" } );
+                    en.Add("tenpo-suno-pi-moku-mute", new[] { "Christmas" });
                     glossMap.Add("en", en);
                 }
                 TenpoSunoPiMokuMute = new CompoundWord("tenpo-suno-pi-moku-mute");
@@ -17084,7 +17096,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-suno-sewi", new[] { "Sunday" } );
+                    en.Add("tenpo-suno-sewi", new[] { "Sunday" });
                     glossMap.Add("en", en);
                 }
                 TenpoSunoSewi = new CompoundWord("tenpo-suno-sewi");
@@ -17098,7 +17110,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-suno-sike", new[] { "year" } );
+                    en.Add("tenpo-suno-sike", new[] { "year" });
                     glossMap.Add("en", en);
                 }
                 TenpoSunoSike = new CompoundWord("tenpo-suno-sike");
@@ -17112,7 +17124,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-ala", new[] { "Not at all"," think nothing of it (reply)" } );
+                    en.Add("toki-ala", new[] { "Not at all", " think nothing of it (reply)" });
                     glossMap.Add("en", en);
                 }
                 TokiAla = new CompoundWord("toki-ala");
@@ -17126,7 +17138,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-akesi", new[] { "talking to Esperanto speakers in other than Esperanto (all this English about tp)  What is the Esperanto for this" } );
+                    en.Add("toki-akesi", new[] { "talking to Esperanto speakers in other than Esperanto (all this English about tp)  What is the Esperanto for this" });
                     glossMap.Add("en", en);
                 }
                 TokiAkesi = new CompoundWord("toki-akesi");
@@ -17140,7 +17152,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-ante", new[] { "translation"," translate" } );
+                    en.Add("toki-ante", new[] { "translation", " translate" });
                     glossMap.Add("en", en);
                 }
                 TokiAnte = new CompoundWord("toki-ante");
@@ -17154,7 +17166,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-e-toki-pona", new[] { "speak toki pona" } );
+                    en.Add("toki-e-toki-pona", new[] { "speak toki pona" });
                     glossMap.Add("en", en);
                 }
                 TokiETokiPona = new CompoundWord("toki-e-toki-pona");
@@ -17168,7 +17180,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-ilo", new[] { "computer language" } );
+                    en.Add("toki-ilo", new[] { "computer language" });
                     glossMap.Add("en", en);
                 }
                 TokiIlo = new CompoundWord("toki-ilo");
@@ -17182,7 +17194,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-kepeken", new[] { "speak (a language)" } );
+                    en.Add("toki-kepeken", new[] { "speak (a language)" });
                     glossMap.Add("en", en);
                 }
                 TokiKepeken = new CompoundWord("toki-kepeken");
@@ -17196,7 +17208,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-kepeken-uta", new[] { "orally (talking"," rather than writing)" } );
+                    en.Add("toki-kepeken-uta", new[] { "orally (talking", " rather than writing)" });
                     glossMap.Add("en", en);
                 }
                 TokiKepekenUta = new CompoundWord("toki-kepeken-uta");
@@ -17210,7 +17222,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-lon", new[] { "talk about" } );
+                    en.Add("toki-lon", new[] { "talk about" });
                     glossMap.Add("en", en);
                 }
                 TokiLon = new CompoundWord("toki-lon");
@@ -17224,7 +17236,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-musi", new[] { "sing"," song"," poem"," joke"," sing (with words)"," lyrics" } );
+                    en.Add("toki-musi", new[] { "sing", " song", " poem", " joke", " sing (with words)", " lyrics" });
                     glossMap.Add("en", en);
                 }
                 TokiMusi = new CompoundWord("toki-musi");
@@ -17238,7 +17250,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-olin", new[] { "poetry"," poesy" } );
+                    en.Add("toki-olin", new[] { "poetry", " poesy" });
                     glossMap.Add("en", en);
                 }
                 TokiOlin = new CompoundWord("toki-olin");
@@ -17252,7 +17264,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-pali", new[] { "program"," plan"," "," constructd language" } );
+                    en.Add("toki-pali", new[] { "program", " plan", " ", " constructd language" });
                     glossMap.Add("en", en);
                 }
                 TokiPali = new CompoundWord("toki-pali");
@@ -17266,7 +17278,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-pi-kalama-musi", new[] { "poetry"," poesy"," lyrics" } );
+                    en.Add("toki-pi-kalama-musi", new[] { "poetry", " poesy", " lyrics" });
                     glossMap.Add("en", en);
                 }
                 TokiPiKalamaMusi = new CompoundWord("toki-pi-kalama-musi");
@@ -17280,7 +17292,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-pi-nimi-sama", new[] { "oratio recta" } );
+                    en.Add("toki-pi-nimi-sama", new[] { "oratio recta" });
                     glossMap.Add("en", en);
                 }
                 TokiPiNimiSama = new CompoundWord("toki-pi-nimi-sama");
@@ -17294,7 +17306,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-pi-pilin-sama", new[] { "oratio obliqua" } );
+                    en.Add("toki-pi-pilin-sama", new[] { "oratio obliqua" });
                     glossMap.Add("en", en);
                 }
                 TokiPiPilinSama = new CompoundWord("toki-pi-pilin-sama");
@@ -17308,7 +17320,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-pi-tenpo-mute", new[] { "current expressions"," popular expressions" } );
+                    en.Add("toki-pi-tenpo-mute", new[] { "current expressions", " popular expressions" });
                     glossMap.Add("en", en);
                 }
                 TokiPiTenpoMute = new CompoundWord("toki-pi-tenpo-mute");
@@ -17322,7 +17334,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-pi-tenpo-suno", new[] { "diary" } );
+                    en.Add("toki-pi-tenpo-suno", new[] { "diary" });
                     glossMap.Add("en", en);
                 }
                 TokiPiTenpoSuno = new CompoundWord("toki-pi-tenpo-suno");
@@ -17336,7 +17348,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-pilin", new[] { "suggest" } );
+                    en.Add("toki-pilin", new[] { "suggest" });
                     glossMap.Add("en", en);
                 }
                 TokiPilin = new CompoundWord("toki-pilin");
@@ -17346,25 +17358,25 @@ public static CompoundWord MaTomoEnkon;
             }
 
 
+            //{
+            //    var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+            //    {
+            //        var en = new Dictionary<string, string[]>();
+            //        en.Add("toki-awen", new[] { "text", " literature", " dictionary" });
+            //        glossMap.Add("en", en);
+            //    }
+            //    TokiAwen = new CompoundWord("toki-awen");
+
+            //    Dictionary.Add("toki-awen", TokiAwen);
+            //    Glosses.Add("toki-awen", glossMap);
+            //}
+
+
             {
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-awen", new[] { "text"," literature"," dictionary" } );
-                    glossMap.Add("en", en);
-                }
-                TokiAwen = new CompoundWord("toki-awen");
-
-                Dictionary.Add("toki-awen", TokiAwen);
-                Glosses.Add("toki-awen", glossMap);
-            }
-
-
-            {
-                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
-                {
-                    var en = new Dictionary<string, string[]>();
-                    en.Add("toki-sewi", new[] { "prayer"," pray"," prayer Religious teachings" } );
+                    en.Add("toki-sewi", new[] { "prayer", " pray", " prayer Religious teachings" });
                     glossMap.Add("en", en);
                 }
                 TokiSewi = new CompoundWord("toki-sewi");
@@ -17378,7 +17390,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-sike", new[] { " hoax"," nonsense " } );
+                    en.Add("toki-sike", new[] { " hoax", " nonsense " });
                     glossMap.Add("en", en);
                 }
                 TokiSike = new CompoundWord("toki-sike");
@@ -17392,7 +17404,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-sona", new[] { "proverb"," teaching"," saying"," "," moral (of story)"," fable" } );
+                    en.Add("toki-sona", new[] { "proverb", " teaching", " saying", " ", " moral (of story)", " fable" });
                     glossMap.Add("en", en);
                 }
                 TokiSona = new CompoundWord("toki-sona");
@@ -17406,7 +17418,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-tawa", new[] { "question"," request"," talk to" } );
+                    en.Add("toki-tawa", new[] { "question", " request", " talk to" });
                     glossMap.Add("en", en);
                 }
                 TokiTawa = new CompoundWord("toki-tawa");
@@ -17420,7 +17432,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-utala", new[] { "argue/debate" } );
+                    en.Add("toki-utala", new[] { "argue/debate" });
                     glossMap.Add("en", en);
                 }
                 TokiUtala = new CompoundWord("toki-utala");
@@ -17434,7 +17446,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-utala-lon", new[] { "argue about" } );
+                    en.Add("toki-utala-lon", new[] { "argue about" });
                     glossMap.Add("en", en);
                 }
                 TokiUtalaLon = new CompoundWord("toki-utala-lon");
@@ -17448,7 +17460,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-wawa", new[] { "protest"," proclaim"," announce"," shout" } );
+                    en.Add("toki-wawa", new[] { "protest", " proclaim", " announce", " shout" });
                     glossMap.Add("en", en);
                 }
                 TokiWawa = new CompoundWord("toki-wawa");
@@ -17462,7 +17474,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo", new[] { "city"," town"," etc." } );
+                    en.Add("ma-tomo", new[] { "city", " town", " etc." });
                     glossMap.Add("en", en);
                 }
                 MaTomo = new CompoundWord("ma-tomo");
@@ -17476,7 +17488,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-len", new[] { "tent" } );
+                    en.Add("tomo-len", new[] { "tent" });
                     glossMap.Add("en", en);
                 }
                 TomoLen = new CompoundWord("tomo-len");
@@ -17490,7 +17502,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-mani", new[] { "bank" } );
+                    en.Add("tomo-mani", new[] { "bank" });
                     glossMap.Add("en", en);
                 }
                 TomoMani = new CompoundWord("tomo-mani");
@@ -17504,7 +17516,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-moku", new[] { "grocery store"," restaurant"," kitchen" } );
+                    en.Add("tomo-moku", new[] { "grocery store", " restaurant", " kitchen" });
                     glossMap.Add("en", en);
                 }
                 TomoMoku = new CompoundWord("tomo-moku");
@@ -17518,7 +17530,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-nasa", new[] { "asylum" } );
+                    en.Add("tomo-nasa", new[] { "asylum" });
                     glossMap.Add("en", en);
                 }
                 TomoNasa = new CompoundWord("tomo-nasa");
@@ -17532,7 +17544,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-palisa", new[] { "tower" } );
+                    en.Add("tomo-palisa", new[] { "tower" });
                     glossMap.Add("en", en);
                 }
                 TomoPalisa = new CompoundWord("tomo-palisa");
@@ -17546,7 +17558,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-pi-ijo-mani-mute", new[] { "store"," shop" } );
+                    en.Add("tomo-pi-ijo-mani-mute", new[] { "store", " shop" });
                     glossMap.Add("en", en);
                 }
                 TomoPiIjoManiMute = new CompoundWord("tomo-pi-ijo-mani-mute");
@@ -17560,7 +17572,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-pi-ka-jo-ijo-mute", new[] { "convenience store" } );
+                    en.Add("tomo-pi-ka-jo-ijo-mute", new[] { "convenience store" });
                     glossMap.Add("en", en);
                 }
                 TomoPiKaJoIjoMute = new CompoundWord("tomo-pi-ka-jo-ijo-mute");
@@ -17574,7 +17586,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-pi-kama-sona", new[] { "school" } );
+                    en.Add("tomo-pi-kama-sona", new[] { "school" });
                     glossMap.Add("en", en);
                 }
                 TomoPiKamaSona = new CompoundWord("tomo-pi-kama-sona");
@@ -17588,7 +17600,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-pi-kili-moku", new[] { "greengrocer"," produce stand" } );
+                    en.Add("tomo-pi-kili-moku", new[] { "greengrocer", " produce stand" });
                     glossMap.Add("en", en);
                 }
                 TomoPiKiliMoku = new CompoundWord("tomo-pi-kili-moku");
@@ -17602,7 +17614,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-pi-moku-kili", new[] { "greengrocer"," produce stand" } );
+                    en.Add("tomo-pi-moku-kili", new[] { "greengrocer", " produce stand" });
                     glossMap.Add("en", en);
                 }
                 TomoPiMokuKili = new CompoundWord("tomo-pi-moku-kili");
@@ -17616,7 +17628,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-pi-moku-soweli", new[] { "butchery" } );
+                    en.Add("tomo-pi-moku-soweli", new[] { "butchery" });
                     glossMap.Add("en", en);
                 }
                 TomoPiMokuSoweli = new CompoundWord("tomo-pi-moku-soweli");
@@ -17630,7 +17642,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-pi-moku-suwi", new[] { "bakery"," pastry shop"," confectioner"," …" } );
+                    en.Add("tomo-pi-moku-suwi", new[] { "bakery", " pastry shop", " confectioner", " …" });
                     glossMap.Add("en", en);
                 }
                 TomoPiMokuSuwi = new CompoundWord("tomo-pi-moku-suwi");
@@ -17644,7 +17656,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-pi-pona-sijelo", new[] { "hospital" } );
+                    en.Add("tomo-pi-pona-sijelo", new[] { "hospital" });
                     glossMap.Add("en", en);
                 }
                 TomoPiPonaSijelo = new CompoundWord("tomo-pi-pona-sijelo");
@@ -17658,7 +17670,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-pi-soweli-mu-moku", new[] { "butchery" } );
+                    en.Add("tomo-pi-soweli-mu-moku", new[] { "butchery" });
                     glossMap.Add("en", en);
                 }
                 TomoPiSoweliMuMoku = new CompoundWord("tomo-pi-soweli-mu-moku");
@@ -17672,7 +17684,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-pi-suwi-moku", new[] { "bakery"," pastry shop"," confectioner"," …" } );
+                    en.Add("tomo-pi-suwi-moku", new[] { "bakery", " pastry shop", " confectioner", " …" });
                     glossMap.Add("en", en);
                 }
                 TomoPiSuwiMoku = new CompoundWord("tomo-pi-suwi-moku");
@@ -17686,7 +17698,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-pi-telo-nasa", new[] { "bar"," saloon" } );
+                    en.Add("tomo-pi-telo-nasa", new[] { "bar", " saloon" });
                     glossMap.Add("en", en);
                 }
                 TomoPiTeloNasa = new CompoundWord("tomo-pi-telo-nasa");
@@ -17700,7 +17712,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-seme", new[] { "where" } );
+                    en.Add("tomo-seme", new[] { "where" });
                     glossMap.Add("en", en);
                 }
                 TomoSeme = new CompoundWord("tomo-seme");
@@ -17714,7 +17726,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-sewi", new[] { "church. Religious house"," skyscraper" } );
+                    en.Add("tomo-sewi", new[] { "church. Religious house", " skyscraper" });
                     glossMap.Add("en", en);
                 }
                 TomoSewi = new CompoundWord("tomo-sewi");
@@ -17728,7 +17740,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-suli-pi-kama-jo-ijo-mute", new[] { "castle"," palace"," department store" } );
+                    en.Add("tomo-suli-pi-kama-jo-ijo-mute", new[] { "castle", " palace", " department store" });
                     glossMap.Add("en", en);
                 }
                 TomoSuliPiKamaJoIjoMute = new CompoundWord("tomo-suli-pi-kama-jo-ijo-mute");
@@ -17742,7 +17754,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-tawa-kulupu-pi-anpa-ma", new[] { "subway" } );
+                    en.Add("tomo-tawa-kulupu-pi-anpa-ma", new[] { "subway" });
                     glossMap.Add("en", en);
                 }
                 TomoTawaKulupuPiAnpaMa = new CompoundWord("tomo-tawa-kulupu-pi-anpa-ma");
@@ -17756,7 +17768,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-tawa-kulupu-pi-sike-mute", new[] { "train" } );
+                    en.Add("tomo-tawa-kulupu-pi-sike-mute", new[] { "train" });
                     glossMap.Add("en", en);
                 }
                 TomoTawaKulupuPiSikeMute = new CompoundWord("tomo-tawa-kulupu-pi-sike-mute");
@@ -17770,7 +17782,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-tawa-kulupu-pi-sike-tu-tu", new[] { "bus"," auto bus"," pullman"," …" } );
+                    en.Add("tomo-tawa-kulupu-pi-sike-tu-tu", new[] { "bus", " auto bus", " pullman", " …" });
                     glossMap.Add("en", en);
                 }
                 TomoTawaKulupuPiSikeTuTu = new CompoundWord("tomo-tawa-kulupu-pi-sike-tu-tu");
@@ -17784,7 +17796,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-tawa-pi-jan-mute", new[] { "public transit"," public transportation"," bus" } );
+                    en.Add("tomo-tawa-pi-jan-mute", new[] { "public transit", " public transportation", " bus" });
                     glossMap.Add("en", en);
                 }
                 TomoTawaPiJanMute = new CompoundWord("tomo-tawa-pi-jan-mute");
@@ -17798,7 +17810,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-tawa-pi-kulupu-jan", new[] { "public transportation" } );
+                    en.Add("tomo-tawa-pi-kulupu-jan", new[] { "public transportation" });
                     glossMap.Add("en", en);
                 }
                 TomoTawaPiKulupuJan = new CompoundWord("tomo-tawa-pi-kulupu-jan");
@@ -17812,7 +17824,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-toki", new[] { "chat room"," IRC" } );
+                    en.Add("tomo-toki", new[] { "chat room", " IRC" });
                     glossMap.Add("en", en);
                 }
                 TomoToki = new CompoundWord("tomo-toki");
@@ -17826,7 +17838,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-unpa", new[] { "brothel"," sex house"," bedroom"," place for sex" } );
+                    en.Add("tomo-unpa", new[] { "brothel", " sex house", " bedroom", " place for sex" });
                     glossMap.Add("en", en);
                 }
                 TomoUnpa = new CompoundWord("tomo-unpa");
@@ -17840,7 +17852,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-utala", new[] { "fortress" } );
+                    en.Add("tomo-utala", new[] { "fortress" });
                     glossMap.Add("en", en);
                 }
                 TomoUtala = new CompoundWord("tomo-utala");
@@ -17854,7 +17866,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Elena", new[] { "Greek" } );
+                    en.Add("toki-Elena", new[] { "Greek" });
                     glossMap.Add("en", en);
                 }
                 TokiElena = new CompoundWord("toki-Elena");
@@ -17868,7 +17880,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Epanja", new[] { "Spanish" } );
+                    en.Add("toki-Epanja", new[] { "Spanish" });
                     glossMap.Add("en", en);
                 }
                 TokiEpanja = new CompoundWord("toki-Epanja");
@@ -17882,7 +17894,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Epelanto", new[] { "Esperanto" } );
+                    en.Add("toki-Epelanto", new[] { "Esperanto" });
                     glossMap.Add("en", en);
                 }
                 TokiEpelanto = new CompoundWord("toki-Epelanto");
@@ -17896,7 +17908,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Esi", new[] { "Estonian" } );
+                    en.Add("toki-Esi", new[] { "Estonian" });
                     glossMap.Add("en", en);
                 }
                 TokiEsi = new CompoundWord("toki-Esi");
@@ -17910,7 +17922,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Esuka", new[] { "Basque" } );
+                    en.Add("toki-Esuka", new[] { "Basque" });
                     glossMap.Add("en", en);
                 }
                 TokiEsuka = new CompoundWord("toki-Esuka");
@@ -17924,7 +17936,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Ilan", new[] { "Iranian"," Irish (Gaelge)" } );
+                    en.Add("toki-Ilan", new[] { "Iranian", " Irish (Gaelge)" });
                     glossMap.Add("en", en);
                 }
                 TokiIlan = new CompoundWord("toki-Ilan");
@@ -17938,7 +17950,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Ingilisi", new[] { "English" } );
+                    en.Add("toki-Ingilisi", new[] { "English" });
                     glossMap.Add("en", en);
                 }
                 TokiIngilisi = new CompoundWord("toki-Ingilisi");
@@ -17952,7 +17964,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Intelinka", new[] { "Interlingua" } );
+                    en.Add("toki-Intelinka", new[] { "Interlingua" });
                     glossMap.Add("en", en);
                 }
                 TokiIntelinka = new CompoundWord("toki-Intelinka");
@@ -17966,7 +17978,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Intonesija", new[] { "Indonesian" } );
+                    en.Add("toki-Intonesija", new[] { "Indonesian" });
                     glossMap.Add("en", en);
                 }
                 TokiIntonesija = new CompoundWord("toki-Intonesija");
@@ -17980,7 +17992,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Isilan", new[] { "Icelandic" } );
+                    en.Add("toki-Isilan", new[] { "Icelandic" });
                     glossMap.Add("en", en);
                 }
                 TokiIsilan = new CompoundWord("toki-Isilan");
@@ -17994,7 +18006,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Italija", new[] { "Italian" } );
+                    en.Add("toki-Italija", new[] { "Italian" });
                     glossMap.Add("en", en);
                 }
                 TokiItalija = new CompoundWord("toki-Italija");
@@ -18008,7 +18020,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Ito", new[] { "Ido" } );
+                    en.Add("toki-Ito", new[] { "Ido" });
                     glossMap.Add("en", en);
                 }
                 TokiIto = new CompoundWord("toki-Ito");
@@ -18022,7 +18034,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Iwisi", new[] { "Hebrew" } );
+                    en.Add("toki-Iwisi", new[] { "Hebrew" });
                     glossMap.Add("en", en);
                 }
                 TokiIwisi = new CompoundWord("toki-Iwisi");
@@ -18036,7 +18048,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Kalika", new[] { "Scots" } );
+                    en.Add("toki-Kalika", new[] { "Scots" });
                     glossMap.Add("en", en);
                 }
                 TokiKalika = new CompoundWord("toki-Kalika");
@@ -18050,7 +18062,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Kanse", new[] { "French" } );
+                    en.Add("toki-Kanse", new[] { "French" });
                     glossMap.Add("en", en);
                 }
                 TokiKanse = new CompoundWord("toki-Kanse");
@@ -18064,7 +18076,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Katala", new[] { "Catalan" } );
+                    en.Add("toki-Katala", new[] { "Catalan" });
                     glossMap.Add("en", en);
                 }
                 TokiKatala = new CompoundWord("toki-Katala");
@@ -18078,7 +18090,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Katelo", new[] { "Georgian" } );
+                    en.Add("toki-Katelo", new[] { "Georgian" });
                     glossMap.Add("en", en);
                 }
                 TokiKatelo = new CompoundWord("toki-Katelo");
@@ -18092,7 +18104,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Kinla", new[] { "Welsh" } );
+                    en.Add("toki-Kinla", new[] { "Welsh" });
                     glossMap.Add("en", en);
                 }
                 TokiKinla = new CompoundWord("toki-Kinla");
@@ -18106,7 +18118,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Kuli", new[] { "Kurdish" } );
+                    en.Add("toki-Kuli", new[] { "Kurdish" });
                     glossMap.Add("en", en);
                 }
                 TokiKuli = new CompoundWord("toki-Kuli");
@@ -18120,7 +18132,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Lasina", new[] { "Latin" } );
+                    en.Add("toki-Lasina", new[] { "Latin" });
                     glossMap.Add("en", en);
                 }
                 TokiLasina = new CompoundWord("toki-Lasina");
@@ -18134,7 +18146,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Lawi", new[] { "Latvian" } );
+                    en.Add("toki-Lawi", new[] { "Latvian" });
                     glossMap.Add("en", en);
                 }
                 TokiLawi = new CompoundWord("toki-Lawi");
@@ -18148,7 +18160,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Lijatuwa", new[] { "Lithuanian" } );
+                    en.Add("toki-Lijatuwa", new[] { "Lithuanian" });
                     glossMap.Add("en", en);
                 }
                 TokiLijatuwa = new CompoundWord("toki-Lijatuwa");
@@ -18162,7 +18174,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Lomani", new[] { "Romanian" } );
+                    en.Add("toki-Lomani", new[] { "Romanian" });
                     glossMap.Add("en", en);
                 }
                 TokiLomani = new CompoundWord("toki-Lomani");
@@ -18176,7 +18188,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Losi", new[] { "Russian" } );
+                    en.Add("toki-Losi", new[] { "Russian" });
                     glossMap.Add("en", en);
                 }
                 TokiLosi = new CompoundWord("toki-Losi");
@@ -18190,7 +18202,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Lowasi", new[] { "Croatian" } );
+                    en.Add("toki-Lowasi", new[] { "Croatian" });
                     glossMap.Add("en", en);
                 }
                 TokiLowasi = new CompoundWord("toki-Lowasi");
@@ -18204,7 +18216,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Lowenki", new[] { "Slovakian" } );
+                    en.Add("toki-Lowenki", new[] { "Slovakian" });
                     glossMap.Add("en", en);
                 }
                 TokiLowenki = new CompoundWord("toki-Lowenki");
@@ -18218,7 +18230,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Lowensina", new[] { "Slovenian" } );
+                    en.Add("toki-Lowensina", new[] { "Slovenian" });
                     glossMap.Add("en", en);
                 }
                 TokiLowensina = new CompoundWord("toki-Lowensina");
@@ -18232,7 +18244,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Malasi", new[] { "Marathi" } );
+                    en.Add("toki-Malasi", new[] { "Marathi" });
                     glossMap.Add("en", en);
                 }
                 TokiMalasi = new CompoundWord("toki-Malasi");
@@ -18246,7 +18258,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Malasija", new[] { "Malaysian" } );
+                    en.Add("toki-Malasija", new[] { "Malaysian" });
                     glossMap.Add("en", en);
                 }
                 TokiMalasija = new CompoundWord("toki-Malasija");
@@ -18260,7 +18272,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Mosijo", new[] { "Hungarian" } );
+                    en.Add("toki-Mosijo", new[] { "Hungarian" });
                     glossMap.Add("en", en);
                 }
                 TokiMosijo = new CompoundWord("toki-Mosijo");
@@ -18274,7 +18286,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Netelan", new[] { "Dutch" } );
+                    en.Add("toki-Netelan", new[] { "Dutch" });
                     glossMap.Add("en", en);
                 }
                 TokiNetelan = new CompoundWord("toki-Netelan");
@@ -18288,7 +18300,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Nijon", new[] { "Japanese" } );
+                    en.Add("toki-Nijon", new[] { "Japanese" });
                     glossMap.Add("en", en);
                 }
                 TokiNijon = new CompoundWord("toki-Nijon");
@@ -18302,7 +18314,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Nosiki", new[] { "Norwegian" } );
+                    en.Add("toki-Nosiki", new[] { "Norwegian" });
                     glossMap.Add("en", en);
                 }
                 TokiNosiki = new CompoundWord("toki-Nosiki");
@@ -18316,7 +18328,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Nosiki-sin", new[] { "Nynorsk" } );
+                    en.Add("toki-Nosiki-sin", new[] { "Nynorsk" });
                     glossMap.Add("en", en);
                 }
                 TokiNosikiSin = new CompoundWord("toki-Nosiki-sin");
@@ -18330,7 +18342,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Palata-elopa", new[] { "Indo-European" } );
+                    en.Add("toki-Palata-elopa", new[] { "Indo-European" });
                     glossMap.Add("en", en);
                 }
                 TokiPalataElopa = new CompoundWord("toki-Palata-elopa");
@@ -18344,7 +18356,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Pelalusi", new[] { "Belarusian" } );
+                    en.Add("toki-Pelalusi", new[] { "Belarusian" });
                     glossMap.Add("en", en);
                 }
                 TokiPelalusi = new CompoundWord("toki-Pelalusi");
@@ -18358,7 +18370,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Pilipina", new[] { "Tagalog" } );
+                    en.Add("toki-Pilipina", new[] { "Tagalog" });
                     glossMap.Add("en", en);
                 }
                 TokiPilipina = new CompoundWord("toki-Pilipina");
@@ -18372,7 +18384,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Pokasi", new[] { "Bulgarian" } );
+                    en.Add("toki-Pokasi", new[] { "Bulgarian" });
                     glossMap.Add("en", en);
                 }
                 TokiPokasi = new CompoundWord("toki-Pokasi");
@@ -18386,7 +18398,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Posan", new[] { "Bosnia" } );
+                    en.Add("toki-Posan", new[] { "Bosnia" });
                     glossMap.Add("en", en);
                 }
                 TokiPosan = new CompoundWord("toki-Posan");
@@ -18400,7 +18412,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Posuka", new[] { "Polish" } );
+                    en.Add("toki-Posuka", new[] { "Polish" });
                     glossMap.Add("en", en);
                 }
                 TokiPosuka = new CompoundWord("toki-Posuka");
@@ -18414,7 +18426,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Potuka", new[] { "Portugese" } );
+                    en.Add("toki-Potuka", new[] { "Portugese" });
                     glossMap.Add("en", en);
                 }
                 TokiPotuka = new CompoundWord("toki-Potuka");
@@ -18428,7 +18440,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Sankitu", new[] { "Sanskrit" } );
+                    en.Add("toki-Sankitu", new[] { "Sanskrit" });
                     glossMap.Add("en", en);
                 }
                 TokiSankitu = new CompoundWord("toki-Sankitu");
@@ -18442,7 +18454,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Sanko", new[] { "Chinese" } );
+                    en.Add("toki-Sanko", new[] { "Chinese" });
                     glossMap.Add("en", en);
                 }
                 TokiSanko = new CompoundWord("toki-Sanko");
@@ -18456,7 +18468,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Sawa", new[] { "Javanese" } );
+                    en.Add("toki-Sawa", new[] { "Javanese" });
                     glossMap.Add("en", en);
                 }
                 TokiSawa = new CompoundWord("toki-Sawa");
@@ -18470,7 +18482,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Seki", new[] { "Czech" } );
+                    en.Add("toki-Seki", new[] { "Czech" });
                     glossMap.Add("en", en);
                 }
                 TokiSeki = new CompoundWord("toki-Seki");
@@ -18484,7 +18496,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Sinan", new[] { "Klingon" } );
+                    en.Add("toki-Sinan", new[] { "Klingon" });
                     glossMap.Add("en", en);
                 }
                 TokiSinan = new CompoundWord("toki-Sinan");
@@ -18498,7 +18510,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Sipe", new[] { "Albanian" } );
+                    en.Add("toki-Sipe", new[] { "Albanian" });
                     glossMap.Add("en", en);
                 }
                 TokiSipe = new CompoundWord("toki-Sipe");
@@ -18512,7 +18524,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-sonwen", new[] { "Chinese`" } );
+                    en.Add("toki-sonwen", new[] { "Chinese`" });
                     glossMap.Add("en", en);
                 }
                 TokiSonwen = new CompoundWord("toki-sonwen");
@@ -18526,7 +18538,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Sopisi", new[] { "Sebian" } );
+                    en.Add("toki-Sopisi", new[] { "Sebian" });
                     glossMap.Add("en", en);
                 }
                 TokiSopisi = new CompoundWord("toki-Sopisi");
@@ -18540,7 +18552,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Sumi", new[] { "Finnish" } );
+                    en.Add("toki-Sumi", new[] { "Finnish" });
                     glossMap.Add("en", en);
                 }
                 TokiSumi = new CompoundWord("toki-Sumi");
@@ -18554,7 +18566,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Tansi", new[] { "Danish" } );
+                    en.Add("toki-Tansi", new[] { "Danish" });
                     glossMap.Add("en", en);
                 }
                 TokiTansi = new CompoundWord("toki-Tansi");
@@ -18568,7 +18580,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Tawi", new[] { "Thai" } );
+                    en.Add("toki-Tawi", new[] { "Thai" });
                     glossMap.Add("en", en);
                 }
                 TokiTawi = new CompoundWord("toki-Tawi");
@@ -18582,7 +18594,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Tosi", new[] { "German" } );
+                    en.Add("toki-Tosi", new[] { "German" });
                     glossMap.Add("en", en);
                 }
                 TokiTosi = new CompoundWord("toki-Tosi");
@@ -18596,7 +18608,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Tuku", new[] { "Turkish" } );
+                    en.Add("toki-Tuku", new[] { "Turkish" });
                     glossMap.Add("en", en);
                 }
                 TokiTuku = new CompoundWord("toki-Tuku");
@@ -18610,7 +18622,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Ukawina", new[] { "Ukrainian" } );
+                    en.Add("toki-Ukawina", new[] { "Ukrainian" });
                     glossMap.Add("en", en);
                 }
                 TokiUkawina = new CompoundWord("toki-Ukawina");
@@ -18624,7 +18636,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Wensa", new[] { "Swedish" } );
+                    en.Add("toki-Wensa", new[] { "Swedish" });
                     glossMap.Add("en", en);
                 }
                 TokiWensa = new CompoundWord("toki-Wensa");
@@ -18638,7 +18650,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-Wije", new[] { "Vietnamese" } );
+                    en.Add("toki-Wije", new[] { "Vietnamese" });
                     glossMap.Add("en", en);
                 }
                 TokiWije = new CompoundWord("toki-Wije");
@@ -18652,7 +18664,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("meli-unpa", new[] { "female sexual partner" } );
+                    en.Add("meli-unpa", new[] { "female sexual partner" });
                     glossMap.Add("en", en);
                 }
                 MeliUnpa = new CompoundWord("meli-unpa");
@@ -18666,7 +18678,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("mije-unpa", new[] { "male sexual partner" } );
+                    en.Add("mije-unpa", new[] { "male sexual partner" });
                     glossMap.Add("en", en);
                 }
                 MijeUnpa = new CompoundWord("mije-unpa");
@@ -18680,7 +18692,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("unpa-pilin", new[] { "sexy" } );
+                    en.Add("unpa-pilin", new[] { "sexy" });
                     glossMap.Add("en", en);
                 }
                 UnpaPilin = new CompoundWord("unpa-pilin");
@@ -18694,7 +18706,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("unpa-uta", new[] { "oral sex"," fellatio" } );
+                    en.Add("unpa-uta", new[] { "oral sex", " fellatio" });
                     glossMap.Add("en", en);
                 }
                 UnpaUta = new CompoundWord("unpa-uta");
@@ -18708,7 +18720,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wile-unpa", new[] { "horny" } );
+                    en.Add("wile-unpa", new[] { "horny" });
                     glossMap.Add("en", en);
                 }
                 WileUnpa = new CompoundWord("wile-unpa");
@@ -18722,7 +18734,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("utala-ala", new[] { "peace"," ahimsa" } );
+                    en.Add("utala-ala", new[] { "peace", " ahimsa" });
                     glossMap.Add("en", en);
                 }
                 UtalaAla = new CompoundWord("utala-ala");
@@ -18736,7 +18748,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("utala-musi", new[] { "game"," competition"," match" } );
+                    en.Add("utala-musi", new[] { "game", " competition", " match" });
                     glossMap.Add("en", en);
                 }
                 UtalaMusi = new CompoundWord("utala-musi");
@@ -18750,7 +18762,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("utala-sewi", new[] { "Holy War" } );
+                    en.Add("utala-sewi", new[] { "Holy War" });
                     glossMap.Add("en", en);
                 }
                 UtalaSewi = new CompoundWord("utala-sewi");
@@ -18764,7 +18776,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("utala-suli", new[] { "World War" } );
+                    en.Add("utala-suli", new[] { "World War" });
                     glossMap.Add("en", en);
                 }
                 UtalaSuli = new CompoundWord("utala-suli");
@@ -18778,7 +18790,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("utala-toki", new[] { "argue" } );
+                    en.Add("utala-toki", new[] { "argue" });
                     glossMap.Add("en", en);
                 }
                 UtalaToki = new CompoundWord("utala-toki");
@@ -18792,7 +18804,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("walo-en-pimeja", new[] { "gray" } );
+                    en.Add("walo-en-pimeja", new[] { "gray" });
                     glossMap.Add("en", en);
                 }
                 WaloEnPimeja = new CompoundWord("walo-en-pimeja");
@@ -18806,7 +18818,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("walo-uta", new[] { "teeth" } );
+                    en.Add("walo-uta", new[] { "teeth" });
                     glossMap.Add("en", en);
                 }
                 WaloUta = new CompoundWord("walo-uta");
@@ -18820,7 +18832,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wan-nimi", new[] { "syllable" } );
+                    en.Add("wan-nimi", new[] { "syllable" });
                     glossMap.Add("en", en);
                 }
                 WanNimi = new CompoundWord("wan-nimi");
@@ -18834,7 +18846,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wan-pali-pi-kulupu-nimi-pini", new[] { "predicate" } );
+                    en.Add("wan-pali-pi-kulupu-nimi-pini", new[] { "predicate" });
                     glossMap.Add("en", en);
                 }
                 WanPaliPiKulupuNimiPini = new CompoundWord("wan-pali-pi-kulupu-nimi-pini");
@@ -18848,7 +18860,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wan-pi-nanpa-tu-pi-kulupu-nimi-pini", new[] { "predicate" } );
+                    en.Add("wan-pi-nanpa-tu-pi-kulupu-nimi-pini", new[] { "predicate" });
                     glossMap.Add("en", en);
                 }
                 WanPiNanpaTuPiKulupuNimiPini = new CompoundWord("wan-pi-nanpa-tu-pi-kulupu-nimi-pini");
@@ -18862,7 +18874,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wan-pi-nanpa-wan-pi-kulupu-nimi-pini", new[] { "subject" } );
+                    en.Add("wan-pi-nanpa-wan-pi-kulupu-nimi-pini", new[] { "subject" });
                     glossMap.Add("en", en);
                 }
                 WanPiNanpaWanPiKulupuNimiPini = new CompoundWord("wan-pi-nanpa-wan-pi-kulupu-nimi-pini");
@@ -18876,7 +18888,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wan-pi-pali-ala-pi-kulupu-nimi-pini", new[] { "subject" } );
+                    en.Add("wan-pi-pali-ala-pi-kulupu-nimi-pini", new[] { "subject" });
                     glossMap.Add("en", en);
                 }
                 WanPiPaliAlaPiKulupuNimiPini = new CompoundWord("wan-pi-pali-ala-pi-kulupu-nimi-pini");
@@ -18890,7 +18902,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wan-pi-tenpo-sike", new[] { "season of the year" } );
+                    en.Add("wan-pi-tenpo-sike", new[] { "season of the year" });
                     glossMap.Add("en", en);
                 }
                 WanPiTenpoSike = new CompoundWord("wan-pi-tenpo-sike");
@@ -18904,7 +18916,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wan-pi-wan-nimi", new[] { "letter"," letter (of alphabet)" } );
+                    en.Add("wan-pi-wan-nimi", new[] { "letter", " letter (of alphabet)" });
                     glossMap.Add("en", en);
                 }
                 WanPiWanNimi = new CompoundWord("wan-pi-wan-nimi");
@@ -18918,7 +18930,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wan-poka", new[] { "married to" } );
+                    en.Add("wan-poka", new[] { "married to" });
                     glossMap.Add("en", en);
                 }
                 WanPoka = new CompoundWord("wan-poka");
@@ -18932,7 +18944,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wan-suli", new[] { "important part Large part"," big/important part (of everything)" } );
+                    en.Add("wan-suli", new[] { "important part Large part", " big/important part (of everything)" });
                     glossMap.Add("en", en);
                 }
                 WanSuli = new CompoundWord("wan-suli");
@@ -18946,7 +18958,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("waso-akesi", new[] { "pterodactyl" } );
+                    en.Add("waso-akesi", new[] { "pterodactyl" });
                     glossMap.Add("en", en);
                 }
                 WasoAkesi = new CompoundWord("waso-akesi");
@@ -18960,7 +18972,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("waso-kule-toki", new[] { "parrot" } );
+                    en.Add("waso-kule-toki", new[] { "parrot" });
                     glossMap.Add("en", en);
                 }
                 WasoKuleToki = new CompoundWord("waso-kule-toki");
@@ -18974,7 +18986,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("waso-ma", new[] { "ostrich" } );
+                    en.Add("waso-ma", new[] { "ostrich" });
                     glossMap.Add("en", en);
                 }
                 WasoMa = new CompoundWord("waso-ma");
@@ -18988,7 +19000,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("waso-ma-pi-tawa-mute", new[] { "ostrich" } );
+                    en.Add("waso-ma-pi-tawa-mute", new[] { "ostrich" });
                     glossMap.Add("en", en);
                 }
                 WasoMaPiTawaMute = new CompoundWord("waso-ma-pi-tawa-mute");
@@ -19002,7 +19014,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("waso-pi-ma-lete", new[] { "penguin" } );
+                    en.Add("waso-pi-ma-lete", new[] { "penguin" });
                     glossMap.Add("en", en);
                 }
                 WasoPiMaLete = new CompoundWord("waso-pi-ma-lete");
@@ -19016,7 +19028,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("waso-soweli", new[] { "bat" } );
+                    en.Add("waso-soweli", new[] { "bat" });
                     glossMap.Add("en", en);
                 }
                 WasoSoweli = new CompoundWord("waso-soweli");
@@ -19030,7 +19042,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("waso-walo-telo", new[] { "seagull" } );
+                    en.Add("waso-walo-telo", new[] { "seagull" });
                     glossMap.Add("en", en);
                 }
                 WasoWaloTelo = new CompoundWord("waso-walo-telo");
@@ -19044,7 +19056,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wawa--sin", new[] { "stronger" } );
+                    en.Add("wawa--sin", new[] { "stronger" });
                     glossMap.Add("en", en);
                 }
                 WawaSin = new CompoundWord("wawa--sin");
@@ -19058,7 +19070,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wawa-ala", new[] { "weak"," weak(ly)" } );
+                    en.Add("wawa-ala", new[] { "weak", " weak(ly)" });
                     glossMap.Add("en", en);
                 }
                 WawaAla = new CompoundWord("wawa-ala");
@@ -19072,7 +19084,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wawa-ala-sin", new[] { "weaker" } );
+                    en.Add("wawa-ala-sin", new[] { "weaker" });
                     glossMap.Add("en", en);
                 }
                 WawaAlaSin = new CompoundWord("wawa-ala-sin");
@@ -19086,7 +19098,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wawa-lili", new[] { "impotent" } );
+                    en.Add("wawa-lili", new[] { "impotent" });
                     glossMap.Add("en", en);
                 }
                 WawaLili = new CompoundWord("wawa-lili");
@@ -19100,7 +19112,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("weka-e-lipu-tan-kulupu-lipu", new[] { "remove a card" } );
+                    en.Add("weka-e-lipu-tan-kulupu-lipu", new[] { "remove a card" });
                     glossMap.Add("en", en);
                 }
                 WekaELipuTanKulupuLipu = new CompoundWord("weka-e-lipu-tan-kulupu-lipu");
@@ -19114,7 +19126,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("weka-lon", new[] { "throw/stay out" } );
+                    en.Add("weka-lon", new[] { "throw/stay out" });
                     glossMap.Add("en", en);
                 }
                 WekaLon = new CompoundWord("weka-lon");
@@ -19128,7 +19140,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("weka-tan", new[] { "far from"," far" } );
+                    en.Add("weka-tan", new[] { "far from", " far" });
                     glossMap.Add("en", en);
                 }
                 WekaTan = new CompoundWord("weka-tan");
@@ -19142,7 +19154,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wile-pona", new[] { "hope" } );
+                    en.Add("wile-pona", new[] { "hope" });
                     glossMap.Add("en", en);
                 }
                 WilePona = new CompoundWord("wile-pona");
@@ -19156,7 +19168,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wile-e-sona", new[] { "wonder" } );
+                    en.Add("wile-e-sona", new[] { "wonder" });
                     glossMap.Add("en", en);
                 }
                 WileESona = new CompoundWord("wile-e-sona");
@@ -19170,7 +19182,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wile-moku", new[] { "hungry" } );
+                    en.Add("wile-moku", new[] { "hungry" });
                     glossMap.Add("en", en);
                 }
                 WileMoku = new CompoundWord("wile-moku");
@@ -19184,7 +19196,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wile-pali", new[] { "try" } );
+                    en.Add("wile-pali", new[] { "try" });
                     glossMap.Add("en", en);
                 }
                 WilePali = new CompoundWord("wile-pali");
@@ -19198,7 +19210,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wile-sona", new[] { "curiosity"," question" } );
+                    en.Add("wile-sona", new[] { "curiosity", " question" });
                     glossMap.Add("en", en);
                 }
                 WileSona = new CompoundWord("wile-sona");
@@ -19212,7 +19224,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wile-soweli", new[] { "instinct" } );
+                    en.Add("wile-soweli", new[] { "instinct" });
                     glossMap.Add("en", en);
                 }
                 WileSoweli = new CompoundWord("wile-soweli");
@@ -19226,7 +19238,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kan-ala", new[] { "with out (not accompanying)" } );
+                    en.Add("kan-ala", new[] { "with out (not accompanying)" });
                     glossMap.Add("en", en);
                 }
                 KanAla = new CompoundWord("kan-ala");
@@ -19240,7 +19252,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ali-ala", new[] { "some (not all)" } );
+                    en.Add("ali-ala", new[] { "some (not all)" });
                     glossMap.Add("en", en);
                 }
                 AliAla = new CompoundWord("ali-ala");
@@ -19254,7 +19266,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kiwen-unpa", new[] { "seeds" } );
+                    en.Add("kiwen-unpa", new[] { "seeds" });
                     glossMap.Add("en", en);
                 }
                 KiwenUnpa = new CompoundWord("kiwen-unpa");
@@ -19268,7 +19280,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-ali", new[] { "the earth"," the world" } );
+                    en.Add("ma-ali", new[] { "the earth", " the world" });
                     glossMap.Add("en", en);
                 }
                 MaAli = new CompoundWord("ma-ali");
@@ -19282,7 +19294,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-kasi", new[] { "garden"," forest"," park"," meadow"," field" } );
+                    en.Add("ma-kasi", new[] { "garden", " forest", " park", " meadow", " field" });
                     glossMap.Add("en", en);
                 }
                 MaKasi = new CompoundWord("ma-kasi");
@@ -19296,7 +19308,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Kina", new[] { "China" } );
+                    en.Add("ma-Kina", new[] { "China" });
                     glossMap.Add("en", en);
                 }
                 MaKina = new CompoundWord("ma-Kina");
@@ -19310,7 +19322,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Pelija", new[] { "Belize" } );
+                    en.Add("ma-Pelija", new[] { "Belize" });
                     glossMap.Add("en", en);
                 }
                 MaPelija = new CompoundWord("ma-Pelija");
@@ -19324,7 +19336,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-pi-ike-ale", new[] { "hell" } );
+                    en.Add("ma-pi-ike-ale", new[] { "hell" });
                     glossMap.Add("en", en);
                 }
                 MaPiIkeAle = new CompoundWord("ma-pi-ike-ale");
@@ -19338,7 +19350,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-pi-kama-jo-ijo-mute", new[] { "market" } );
+                    en.Add("ma-pi-kama-jo-ijo-mute", new[] { "market" });
                     glossMap.Add("en", en);
                 }
                 MaPiKamaJoIjoMute = new CompoundWord("ma-pi-kama-jo-ijo-mute");
@@ -19352,7 +19364,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-pi-kasi-moku", new[] { "orchard" } );
+                    en.Add("ma-pi-kasi-moku", new[] { "orchard" });
                     glossMap.Add("en", en);
                 }
                 MaPiKasiMoku = new CompoundWord("ma-pi-kasi-moku");
@@ -19366,7 +19378,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-pi-pona-ale", new[] { "heaven" } );
+                    en.Add("ma-pi-pona-ale", new[] { "heaven" });
                     glossMap.Add("en", en);
                 }
                 MaPiPonaAle = new CompoundWord("ma-pi-pona-ale");
@@ -19380,7 +19392,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-pi-sona-tawa", new[] { "internet" } );
+                    en.Add("ma-pi-sona-tawa", new[] { "internet" });
                     glossMap.Add("en", en);
                 }
                 MaPiSonaTawa = new CompoundWord("ma-pi-sona-tawa");
@@ -19394,7 +19406,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-sewi", new[] { "Heaven" } );
+                    en.Add("ma-sewi", new[] { "Heaven" });
                     glossMap.Add("en", en);
                 }
                 MaSewi = new CompoundWord("ma-sewi");
@@ -19408,7 +19420,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-supa", new[] { "plains" } );
+                    en.Add("ma-supa", new[] { "plains" });
                     glossMap.Add("en", en);
                 }
                 MaSupa = new CompoundWord("ma-supa");
@@ -19422,7 +19434,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-telo", new[] { "swamp tar" } );
+                    en.Add("ma-telo", new[] { "swamp tar" });
                     glossMap.Add("en", en);
                 }
                 MaTelo = new CompoundWord("ma-telo");
@@ -19436,7 +19448,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-telo-jaki", new[] { "mud"," slops" } );
+                    en.Add("ma-telo-jaki", new[] { "mud", " slops" });
                     glossMap.Add("en", en);
                 }
                 MaTeloJaki = new CompoundWord("ma-telo-jaki");
@@ -19450,7 +19462,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-telo", new[] { "harbor"," port" } );
+                    en.Add("ma-tomo-telo", new[] { "harbor", " port" });
                     glossMap.Add("en", en);
                 }
                 MaTomoTelo = new CompoundWord("ma-tomo-telo");
@@ -19464,7 +19476,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("mama-ma", new[] { "Nature (personified)" } );
+                    en.Add("mama-ma", new[] { "Nature (personified)" });
                     glossMap.Add("en", en);
                 }
                 MamaMa = new CompoundWord("mama-ma");
@@ -19478,7 +19490,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("meli-suwi", new[] { "dear lady" } );
+                    en.Add("meli-suwi", new[] { "dear lady" });
                     glossMap.Add("en", en);
                 }
                 MeliSuwi = new CompoundWord("meli-suwi");
@@ -19492,7 +19504,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("moku-pi-telo-mama", new[] { "cheese" } );
+                    en.Add("moku-pi-telo-mama", new[] { "cheese" });
                     glossMap.Add("en", en);
                 }
                 MokuPiTeloMama = new CompoundWord("moku-pi-telo-mama");
@@ -19506,7 +19518,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("moku-kiwen-pi-telo-mama", new[] { "cheese" } );
+                    en.Add("moku-kiwen-pi-telo-mama", new[] { "cheese" });
                     glossMap.Add("en", en);
                 }
                 MokuKiwenPiTeloMama = new CompoundWord("moku-kiwen-pi-telo-mama");
@@ -19520,7 +19532,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("moku-kiwen", new[] { "bread" } );
+                    en.Add("moku-kiwen", new[] { "bread" });
                     glossMap.Add("en", en);
                 }
                 MokuKiwen = new CompoundWord("moku-kiwen");
@@ -19534,7 +19546,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("moku-lete-suwi", new[] { "ice cream (etc.)" } );
+                    en.Add("moku-lete-suwi", new[] { "ice cream (etc.)" });
                     glossMap.Add("en", en);
                 }
                 MokuLeteSuwi = new CompoundWord("moku-lete-suwi");
@@ -19548,7 +19560,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("moku-linja", new[] { "noodles" } );
+                    en.Add("moku-linja", new[] { "noodles" });
                     glossMap.Add("en", en);
                 }
                 MokuLinja = new CompoundWord("moku-linja");
@@ -19562,7 +19574,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("moku-pimeja-suwi", new[] { "chocolate" } );
+                    en.Add("moku-pimeja-suwi", new[] { "chocolate" });
                     glossMap.Add("en", en);
                 }
                 MokuPimejaSuwi = new CompoundWord("moku-pimeja-suwi");
@@ -19576,7 +19588,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("moli-ala", new[] { "life" } );
+                    en.Add("moli-ala", new[] { "life" });
                     glossMap.Add("en", en);
                 }
                 MoliAla = new CompoundWord("moli-ala");
@@ -19590,7 +19602,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("musi-ike", new[] { "cheat" } );
+                    en.Add("musi-ike", new[] { "cheat" });
                     glossMap.Add("en", en);
                 }
                 MusiIke = new CompoundWord("musi-ike");
@@ -19604,7 +19616,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("musi-pona", new[] { "game"," hobby"," " } );
+                    en.Add("musi-pona", new[] { "game", " hobby", " " });
                     glossMap.Add("en", en);
                 }
                 MusiPona = new CompoundWord("musi-pona");
@@ -19618,7 +19630,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("musi-toki", new[] { "joke" } );
+                    en.Add("musi-toki", new[] { "joke" });
                     glossMap.Add("en", en);
                 }
                 MusiToki = new CompoundWord("musi-toki");
@@ -19632,7 +19644,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("mute-lili-lili", new[] { "very few" } );
+                    en.Add("mute-lili-lili", new[] { "very few" });
                     glossMap.Add("en", en);
                 }
                 MuteLiliLili = new CompoundWord("mute-lili-lili");
@@ -19646,7 +19658,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("mute-pona", new[] { "sufficient"," enough" } );
+                    en.Add("mute-pona", new[] { "sufficient", " enough" });
                     glossMap.Add("en", en);
                 }
                 MutePona = new CompoundWord("mute-pona");
@@ -19660,7 +19672,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("mute-seme", new[] { "how many" } );
+                    en.Add("mute-seme", new[] { "how many" });
                     glossMap.Add("en", en);
                 }
                 MuteSeme = new CompoundWord("mute-seme");
@@ -19674,7 +19686,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo--toki", new[] { " some communication device" } );
+                    en.Add("tomo--toki", new[] { " some communication device" });
                     glossMap.Add("en", en);
                 }
                 TomoToki = new CompoundWord("tomo--toki");
@@ -19688,7 +19700,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wike-e-sona", new[] { "wonder" } );
+                    en.Add("wike-e-sona", new[] { "wonder" });
                     glossMap.Add("en", en);
                 }
                 WikeESona = new CompoundWord("wike-e-sona");
@@ -19702,7 +19714,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sike-nasa", new[] { "drug pills" } );
+                    en.Add("sike-nasa", new[] { "drug pills" });
                     glossMap.Add("en", en);
                 }
                 SikeNasa = new CompoundWord("sike-nasa");
@@ -19716,7 +19728,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("moku-sike-nasa", new[] { "drug pills" } );
+                    en.Add("moku-sike-nasa", new[] { "drug pills" });
                     glossMap.Add("en", en);
                 }
                 MokuSikeNasa = new CompoundWord("moku-sike-nasa");
@@ -19730,7 +19742,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-kiwen-pi-jan-sewi", new[] { "statue of a god" } );
+                    en.Add("sitelen-kiwen-pi-jan-sewi", new[] { "statue of a god" });
                     glossMap.Add("en", en);
                 }
                 SitelenKiwenPiJanSewi = new CompoundWord("sitelen-kiwen-pi-jan-sewi");
@@ -19744,7 +19756,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kiwen-pi-jan-sewi", new[] { "statue of a god" } );
+                    en.Add("kiwen-pi-jan-sewi", new[] { "statue of a god" });
                     glossMap.Add("en", en);
                 }
                 KiwenPiJanSewi = new CompoundWord("kiwen-pi-jan-sewi");
@@ -19758,7 +19770,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("a-soweli", new[] { "yelp" } );
+                    en.Add("a-soweli", new[] { "yelp" });
                     glossMap.Add("en", en);
                 }
                 ASoweli = new CompoundWord("a-soweli");
@@ -19772,7 +19784,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("akesi-pi-uta-suli", new[] { "alligator" } );
+                    en.Add("akesi-pi-uta-suli", new[] { "alligator" });
                     glossMap.Add("en", en);
                 }
                 AkesiPiUtaSuli = new CompoundWord("akesi-pi-uta-suli");
@@ -19786,7 +19798,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("akesi-telo-wawa", new[] { "alligator" } );
+                    en.Add("akesi-telo-wawa", new[] { "alligator" });
                     glossMap.Add("en", en);
                 }
                 AkesiTeloWawa = new CompoundWord("akesi-telo-wawa");
@@ -19800,7 +19812,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("awen-tawa", new[] { "keep on going"," stop going" } );
+                    en.Add("awen-tawa", new[] { "keep on going", " stop going" });
                     glossMap.Add("en", en);
                 }
                 AwenTawa = new CompoundWord("awen-tawa");
@@ -19814,7 +19826,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("awen-weka", new[] { "keep away"," delay" } );
+                    en.Add("awen-weka", new[] { "keep away", " delay" });
                     glossMap.Add("en", en);
                 }
                 AwenWeka = new CompoundWord("awen-weka");
@@ -19828,7 +19840,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("en-tenpo-suno-en-tenpo-pimeja", new[] { "day and night" } );
+                    en.Add("en-tenpo-suno-en-tenpo-pimeja", new[] { "day and night" });
                     glossMap.Add("en", en);
                 }
                 EnTenpoSunoEnTenpoPimeja = new CompoundWord("en-tenpo-suno-en-tenpo-pimeja");
@@ -19842,7 +19854,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ijo-nanpa-wan", new[] { "first thing" } );
+                    en.Add("ijo-nanpa-wan", new[] { "first thing" });
                     glossMap.Add("en", en);
                 }
                 IjoNanpaWan = new CompoundWord("ijo-nanpa-wan");
@@ -19856,7 +19868,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ijo-pi-anpa-selo", new[] { "hidden thing" } );
+                    en.Add("ijo-pi-anpa-selo", new[] { "hidden thing" });
                     glossMap.Add("en", en);
                 }
                 IjoPiAnpaSelo = new CompoundWord("ijo-pi-anpa-selo");
@@ -19870,7 +19882,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ijo-pi-awen-ijo", new[] { "file (computer)" } );
+                    en.Add("ijo-pi-awen-ijo", new[] { "file (computer)" });
                     glossMap.Add("en", en);
                 }
                 IjoPiAwenIjo = new CompoundWord("ijo-pi-awen-ijo");
@@ -19884,7 +19896,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ijo-pi-lukin-ala", new[] { "invisble3 thing" } );
+                    en.Add("ijo-pi-lukin-ala", new[] { "invisble3 thing" });
                     glossMap.Add("en", en);
                 }
                 IjoPiLukinAla = new CompoundWord("ijo-pi-lukin-ala");
@@ -19898,7 +19910,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ijo-selo", new[] { "concealed thing" } );
+                    en.Add("ijo-selo", new[] { "concealed thing" });
                     glossMap.Add("en", en);
                 }
                 IjoSelo = new CompoundWord("ijo-selo");
@@ -19912,7 +19924,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ijo-tawa-jan-sewi", new[] { "sacrifice"," offering" } );
+                    en.Add("ijo-tawa-jan-sewi", new[] { "sacrifice", " offering" });
                     glossMap.Add("en", en);
                 }
                 IjoTawaJanSewi = new CompoundWord("ijo-tawa-jan-sewi");
@@ -19926,7 +19938,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-len", new[] { "washing machine"," loom" } );
+                    en.Add("ilo-len", new[] { "washing machine", " loom" });
                     glossMap.Add("en", en);
                 }
                 IloLen = new CompoundWord("ilo-len");
@@ -19940,7 +19952,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-pi-kalama-sewi", new[] { "ritual horn (conch"," ram"," etc.)" } );
+                    en.Add("ilo-pi-kalama-sewi", new[] { "ritual horn (conch", " ram", " etc.)" });
                     glossMap.Add("en", en);
                 }
                 IloPiKalamaSewi = new CompoundWord("ilo-pi-kalama-sewi");
@@ -19954,7 +19966,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-pi-tawa-pi-telo-loje", new[] { "heart (organ)" } );
+                    en.Add("ilo-pi-tawa-pi-telo-loje", new[] { "heart (organ)" });
                     glossMap.Add("en", en);
                 }
                 IloPiTawaPiTeloLoje = new CompoundWord("ilo-pi-tawa-pi-telo-loje");
@@ -19968,7 +19980,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-pi-toki-suli", new[] { "microphone"," loudspeaker" } );
+                    en.Add("ilo-pi-toki-suli", new[] { "microphone", " loudspeaker" });
                     glossMap.Add("en", en);
                 }
                 IloPiTokiSuli = new CompoundWord("ilo-pi-toki-suli");
@@ -19982,7 +19994,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-sewi", new[] { "ritual device"," spec.mala"," rosary" } );
+                    en.Add("ilo-sewi", new[] { "ritual device", " spec.mala", " rosary" });
                     glossMap.Add("en", en);
                 }
                 IloSewi = new CompoundWord("ilo-sewi");
@@ -19996,7 +20008,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-utala-palisa-kasi", new[] { "bow and arrow" } );
+                    en.Add("ilo-utala-palisa-kasi", new[] { "bow and arrow" });
                     glossMap.Add("en", en);
                 }
                 IloUtalaPalisaKasi = new CompoundWord("ilo-utala-palisa-kasi");
@@ -20010,7 +20022,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("insa-loje", new[] { "liver" } );
+                    en.Add("insa-loje", new[] { "liver" });
                     glossMap.Add("en", en);
                 }
                 InsaLoje = new CompoundWord("insa-loje");
@@ -20024,7 +20036,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-mi", new[] { "atman"," self" } );
+                    en.Add("jan-mi", new[] { "atman", " self" });
                     glossMap.Add("en", en);
                 }
                 JanMi = new CompoundWord("jan-mi");
@@ -20038,7 +20050,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-ilo", new[] { "robot" } );
+                    en.Add("jan-ilo", new[] { "robot" });
                     glossMap.Add("en", en);
                 }
                 JanIlo = new CompoundWord("jan-ilo");
@@ -20052,7 +20064,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-jaki", new[] { "infected person (plague)" } );
+                    en.Add("jan-jaki", new[] { "infected person (plague)" });
                     glossMap.Add("en", en);
                 }
                 JanJaki = new CompoundWord("jan-jaki");
@@ -20066,7 +20078,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-kiwen", new[] { "statue (of a person)" } );
+                    en.Add("jan-kiwen", new[] { "statue (of a person)" });
                     glossMap.Add("en", en);
                 }
                 JanKiwen = new CompoundWord("jan-kiwen");
@@ -20080,7 +20092,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-lawa-sewi", new[] { "priest"," shaman"," Pope" } );
+                    en.Add("jan-lawa-sewi", new[] { "priest", " shaman", " Pope" });
                     glossMap.Add("en", en);
                 }
                 JanLawaSewi = new CompoundWord("jan-lawa-sewi");
@@ -20094,7 +20106,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pali-pi-ko-ma", new[] { "potter" } );
+                    en.Add("jan-pali-pi-ko-ma", new[] { "potter" });
                     glossMap.Add("en", en);
                 }
                 JanPaliPiKoMa = new CompoundWord("jan-pali-pi-ko-ma");
@@ -20108,7 +20120,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-pona-ijo", new[] { "repairman" } );
+                    en.Add("jan-pi-pona-ijo", new[] { "repairman" });
                     glossMap.Add("en", en);
                 }
                 JanPiPonaIjo = new CompoundWord("jan-pi-pona-ijo");
@@ -20122,7 +20134,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-pona-ike", new[] { "repairman" } );
+                    en.Add("jan-pi-pona-ike", new[] { "repairman" });
                     glossMap.Add("en", en);
                 }
                 JanPiPonaIke = new CompoundWord("jan-pi-pona-ike");
@@ -20136,7 +20148,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-tenpo-kama", new[] { "posterity" } );
+                    en.Add("jan-pi-tenpo-kama", new[] { "posterity" });
                     glossMap.Add("en", en);
                 }
                 JanPiTenpoKama = new CompoundWord("jan-pi-tenpo-kama");
@@ -20150,7 +20162,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-tenpo-kama-sama", new[] { "posterity" } );
+                    en.Add("jan-pi-tenpo-kama-sama", new[] { "posterity" });
                     glossMap.Add("en", en);
                 }
                 JanPiTenpoKamaSama = new CompoundWord("jan-pi-tenpo-kama-sama");
@@ -20164,7 +20176,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-pi-weka-lipu", new[] { "person who removes web pages" } );
+                    en.Add("jan-pi-weka-lipu", new[] { "person who removes web pages" });
                     glossMap.Add("en", en);
                 }
                 JanPiWekaLipu = new CompoundWord("jan-pi-weka-lipu");
@@ -20178,7 +20190,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-sewi-pi-sijelo-ala", new[] { "atman"," self" } );
+                    en.Add("jan-sewi-pi-sijelo-ala", new[] { "atman", " self" });
                     glossMap.Add("en", en);
                 }
                 JanSewiPiSijeloAla = new CompoundWord("jan-sewi-pi-sijelo-ala");
@@ -20192,7 +20204,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-sewi-ale", new[] { "god" } );
+                    en.Add("jan-sewi-ale", new[] { "god" });
                     glossMap.Add("en", en);
                 }
                 JanSewiAle = new CompoundWord("jan-sewi-ale");
@@ -20206,7 +20218,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-sewi-lili", new[] { "priest" } );
+                    en.Add("jan-sewi-lili", new[] { "priest" });
                     glossMap.Add("en", en);
                 }
                 JanSewiLili = new CompoundWord("jan-sewi-lili");
@@ -20220,7 +20232,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-suli-lili", new[] { "teenager"," dwarf" } );
+                    en.Add("jan-suli-lili", new[] { "teenager", " dwarf" });
                     glossMap.Add("en", en);
                 }
                 JanSuliLili = new CompoundWord("jan-suli-lili");
@@ -20234,7 +20246,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-suli-pi-nasin-lawa", new[] { "pokiceman" } );
+                    en.Add("jan-suli-pi-nasin-lawa", new[] { "pokiceman" });
                     glossMap.Add("en", en);
                 }
                 JanSuliPiNasinLawa = new CompoundWord("jan-suli-pi-nasin-lawa");
@@ -20248,7 +20260,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-tawa-awen", new[] { "settler" } );
+                    en.Add("jan-tawa-awen", new[] { "settler" });
                     glossMap.Add("en", en);
                 }
                 JanTawaAwen = new CompoundWord("jan-tawa-awen");
@@ -20262,7 +20274,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-utala-lawa", new[] { "General" } );
+                    en.Add("jan-utala-lawa", new[] { "General" });
                     glossMap.Add("en", en);
                 }
                 JanUtalaLawa = new CompoundWord("jan-utala-lawa");
@@ -20276,7 +20288,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-weka", new[] { "editor Person in charge of getting rid of things" } );
+                    en.Add("jan-weka", new[] { "editor Person in charge of getting rid of things" });
                     glossMap.Add("en", en);
                 }
                 JanWeka = new CompoundWord("jan-weka");
@@ -20290,7 +20302,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jelo-wawa", new[] { "strong. Intense yellow-green" } );
+                    en.Add("jelo-wawa", new[] { "strong. Intense yellow-green" });
                     glossMap.Add("en", en);
                 }
                 JeloWawa = new CompoundWord("jelo-wawa");
@@ -20304,7 +20316,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jo-wawa", new[] { "grasp"," grip"," clutch" } );
+                    en.Add("jo-wawa", new[] { "grasp", " grip", " clutch" });
                     glossMap.Add("en", en);
                 }
                 JoWawa = new CompoundWord("jo-wawa");
@@ -20318,7 +20330,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kala-kiwen", new[] { "submarine" } );
+                    en.Add("kala-kiwen", new[] { "submarine" });
                     glossMap.Add("en", en);
                 }
                 KalaKiwen = new CompoundWord("kala-kiwen");
@@ -20332,7 +20344,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kalama-musi-pi-pona-tawa-Pakawan", new[] { "kirtan" } );
+                    en.Add("kalama-musi-pi-pona-tawa-Pakawan", new[] { "kirtan" });
                     glossMap.Add("en", en);
                 }
                 KalamaMusiPiPonaTawaPakawan = new CompoundWord("kalama-musi-pi-pona-tawa-Pakawan");
@@ -20346,7 +20358,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kalama-musi-sewi", new[] { "kirtan"," ritual dance" } );
+                    en.Add("kalama-musi-sewi", new[] { "kirtan", " ritual dance" });
                     glossMap.Add("en", en);
                 }
                 KalamaMusiSewi = new CompoundWord("kalama-musi-sewi");
@@ -20360,7 +20372,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kalama-musi-toki", new[] { "opera" } );
+                    en.Add("kalama-musi-toki", new[] { "opera" });
                     glossMap.Add("en", en);
                 }
                 KalamaMusiToki = new CompoundWord("kalama-musi-toki");
@@ -20374,7 +20386,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kalama-nimi", new[] { "syllable"," phoneme" } );
+                    en.Add("kalama-nimi", new[] { "syllable", " phoneme" });
                     glossMap.Add("en", en);
                 }
                 KalamaNimi = new CompoundWord("kalama-nimi");
@@ -20388,7 +20400,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kalama-pi-kon-ante", new[] { "consonant" } );
+                    en.Add("kalama-pi-kon-ante", new[] { "consonant" });
                     glossMap.Add("en", en);
                 }
                 KalamaPiKonAnte = new CompoundWord("kalama-pi-kon-ante");
@@ -20402,7 +20414,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kalama-pi-kon-awen", new[] { "vowel" } );
+                    en.Add("kalama-pi-kon-awen", new[] { "vowel" });
                     glossMap.Add("en", en);
                 }
                 KalamaPiKonAwen = new CompoundWord("kalama-pi-kon-awen");
@@ -20416,7 +20428,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-jo-wawa", new[] { "snatch"," grab"," steal"," rob of" } );
+                    en.Add("kama-jo-wawa", new[] { "snatch", " grab", " steal", " rob of" });
                     glossMap.Add("en", en);
                 }
                 KamaJoWawa = new CompoundWord("kama-jo-wawa");
@@ -20430,7 +20442,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-lon", new[] { "try to" } );
+                    en.Add("kama-lon", new[] { "try to" });
                     glossMap.Add("en", en);
                 }
                 KamaLon = new CompoundWord("kama-lon");
@@ -20444,7 +20456,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-lon-ona", new[] { "come to where he was" } );
+                    en.Add("kama-lon-ona", new[] { "come to where he was" });
                     glossMap.Add("en", en);
                 }
                 KamaLonOna = new CompoundWord("kama-lon-ona");
@@ -20458,7 +20470,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-lukin", new[] { "find" } );
+                    en.Add("kama-lukin", new[] { "find" });
                     glossMap.Add("en", en);
                 }
                 KamaLukin = new CompoundWord("kama-lukin");
@@ -20472,7 +20484,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-musi", new[] { "party" } );
+                    en.Add("kama-musi", new[] { "party" });
                     glossMap.Add("en", en);
                 }
                 KamaMusi = new CompoundWord("kama-musi");
@@ -20486,7 +20498,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-nasa", new[] { "go crazy" } );
+                    en.Add("kama-nasa", new[] { "go crazy" });
                     glossMap.Add("en", en);
                 }
                 KamaNasa = new CompoundWord("kama-nasa");
@@ -20500,7 +20512,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-pi-tenpo-suno", new[] { "diary" } );
+                    en.Add("kama-pi-tenpo-suno", new[] { "diary" });
                     glossMap.Add("en", en);
                 }
                 KamaPiTenpoSuno = new CompoundWord("kama-pi-tenpo-suno");
@@ -20514,7 +20526,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-sona-ala", new[] { "become confused"," forget" } );
+                    en.Add("kama-sona-ala", new[] { "become confused", " forget" });
                     glossMap.Add("en", en);
                 }
                 KamaSonaAla = new CompoundWord("kama-sona-ala");
@@ -20528,7 +20540,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kama-wawa-ijo", new[] { "run into things" } );
+                    en.Add("kama-wawa-ijo", new[] { "run into things" });
                     glossMap.Add("en", en);
                 }
                 KamaWawaIjo = new CompoundWord("kama-wawa-ijo");
@@ -20542,7 +20554,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kasi-lili-nasa", new[] { "some recreational plant" } );
+                    en.Add("kasi-lili-nasa", new[] { "some recreational plant" });
                     glossMap.Add("en", en);
                 }
                 KasiLiliNasa = new CompoundWord("kasi-lili-nasa");
@@ -20556,7 +20568,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kasi-loje-pi-len-lawa", new[] { "tulip" } );
+                    en.Add("kasi-loje-pi-len-lawa", new[] { "tulip" });
                     glossMap.Add("en", en);
                 }
                 KasiLojePiLenLawa = new CompoundWord("kasi-loje-pi-len-lawa");
@@ -20570,7 +20582,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kasi-mute-insa-tomo-mute", new[] { "park" } );
+                    en.Add("kasi-mute-insa-tomo-mute", new[] { "park" });
                     glossMap.Add("en", en);
                 }
                 KasiMuteInsaTomoMute = new CompoundWord("kasi-mute-insa-tomo-mute");
@@ -20584,7 +20596,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kasi-sewi", new[] { "ritual plant"," tulsi (holy basil)" } );
+                    en.Add("kasi-sewi", new[] { "ritual plant", " tulsi (holy basil)" });
                     glossMap.Add("en", en);
                 }
                 KasiSewi = new CompoundWord("kasi-sewi");
@@ -20598,7 +20610,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ken-kama", new[] { "invitation" } );
+                    en.Add("ken-kama", new[] { "invitation" });
                     glossMap.Add("en", en);
                 }
                 KenKama = new CompoundWord("ken-kama");
@@ -20612,7 +20624,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ken-toki", new[] { "freedom of speech" } );
+                    en.Add("ken-toki", new[] { "freedom of speech" });
                     glossMap.Add("en", en);
                 }
                 KenToki = new CompoundWord("ken-toki");
@@ -20626,7 +20638,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kepeken-pona-lili", new[] { "with difficulty" } );
+                    en.Add("kepeken-pona-lili", new[] { "with difficulty" });
                     glossMap.Add("en", en);
                 }
                 KepekenPonaLili = new CompoundWord("kepeken-pona-lili");
@@ -20640,7 +20652,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kili-linja", new[] { "corn" } );
+                    en.Add("kili-linja", new[] { "corn" });
                     glossMap.Add("en", en);
                 }
                 KiliLinja = new CompoundWord("kili-linja");
@@ -20654,7 +20666,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kili-suwi-jelo", new[] { "banana" } );
+                    en.Add("kili-suwi-jelo", new[] { "banana" });
                     glossMap.Add("en", en);
                 }
                 KiliSuwiJelo = new CompoundWord("kili-suwi-jelo");
@@ -20668,7 +20680,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kiwen-kule", new[] { "gem jewel" } );
+                    en.Add("kiwen-kule", new[] { "gem jewel" });
                     glossMap.Add("en", en);
                 }
                 KiwenKule = new CompoundWord("kiwen-kule");
@@ -20682,7 +20694,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kiwen-wawa-pimeja", new[] { "coal" } );
+                    en.Add("kiwen-wawa-pimeja", new[] { "coal" });
                     glossMap.Add("en", en);
                 }
                 KiwenWawaPimeja = new CompoundWord("kiwen-wawa-pimeja");
@@ -20696,7 +20708,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ko-kili", new[] { "(olive) oil"," jam"," puree"," much" } );
+                    en.Add("ko-kili", new[] { "(olive) oil", " jam", " puree", " much" });
                     glossMap.Add("en", en);
                 }
                 KoKili = new CompoundWord("ko-kili");
@@ -20710,7 +20722,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ko-mama", new[] { "pollen" } );
+                    en.Add("ko-mama", new[] { "pollen" });
                     glossMap.Add("en", en);
                 }
                 KoMama = new CompoundWord("ko-mama");
@@ -20724,7 +20736,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ko-pi-telo-lete", new[] { "snow" } );
+                    en.Add("ko-pi-telo-lete", new[] { "snow" });
                     glossMap.Add("en", en);
                 }
                 KoPiTeloLete = new CompoundWord("ko-pi-telo-lete");
@@ -20738,7 +20750,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ko-pimeja", new[] { "petroleum" } );
+                    en.Add("ko-pimeja", new[] { "petroleum" });
                     glossMap.Add("en", en);
                 }
                 KoPimeja = new CompoundWord("ko-pimeja");
@@ -20752,7 +20764,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ko-wawa-walo", new[] { "cocaine" } );
+                    en.Add("ko-wawa-walo", new[] { "cocaine" });
                     glossMap.Add("en", en);
                 }
                 KoWawaWalo = new CompoundWord("ko-wawa-walo");
@@ -20766,7 +20778,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kon-pakala", new[] { "a cold" } );
+                    en.Add("kon-pakala", new[] { "a cold" });
                     glossMap.Add("en", en);
                 }
                 KonPakala = new CompoundWord("kon-pakala");
@@ -20780,7 +20792,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kule-ma", new[] { "earth color"," brown" } );
+                    en.Add("kule-ma", new[] { "earth color", " brown" });
                     glossMap.Add("en", en);
                 }
                 KuleMa = new CompoundWord("kule-ma");
@@ -20794,7 +20806,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kule-telo", new[] { "paint" } );
+                    en.Add("kule-telo", new[] { "paint" });
                     glossMap.Add("en", en);
                 }
                 KuleTelo = new CompoundWord("kule-telo");
@@ -20808,7 +20820,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-jan-pi-ma-suli", new[] { "race" } );
+                    en.Add("kulupu-jan-pi-ma-suli", new[] { "race" });
                     glossMap.Add("en", en);
                 }
                 KulupuJanPiMaSuli = new CompoundWord("kulupu-jan-pi-ma-suli");
@@ -20822,7 +20834,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-lipu-sitelen", new[] { "group list" } );
+                    en.Add("kulupu-lipu-sitelen", new[] { "group list" });
                     glossMap.Add("en", en);
                 }
                 KulupuLipuSitelen = new CompoundWord("kulupu-lipu-sitelen");
@@ -20836,7 +20848,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-monsi", new[] { "predicate" } );
+                    en.Add("kulupu-monsi", new[] { "predicate" });
                     glossMap.Add("en", en);
                 }
                 KulupuMonsi = new CompoundWord("kulupu-monsi");
@@ -20850,7 +20862,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-open", new[] { "head phrase" } );
+                    en.Add("kulupu-open", new[] { "head phrase" });
                     glossMap.Add("en", en);
                 }
                 KulupuOpen = new CompoundWord("kulupu-open");
@@ -20864,7 +20876,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-pi-jan-ma", new[] { "nation" } );
+                    en.Add("kulupu-pi-jan-ma", new[] { "nation" });
                     glossMap.Add("en", en);
                 }
                 KulupuPiJanMa = new CompoundWord("kulupu-pi-jan-ma");
@@ -20878,7 +20890,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-pi-nimi-ante", new[] { "adverbial phrase" } );
+                    en.Add("kulupu-pi-nimi-ante", new[] { "adverbial phrase" });
                     glossMap.Add("en", en);
                 }
                 KulupuPiNimiAnte = new CompoundWord("kulupu-pi-nimi-ante");
@@ -20892,7 +20904,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-pini", new[] { "predicate" } );
+                    en.Add("kulupu-pini", new[] { "predicate" });
                     glossMap.Add("en", en);
                 }
                 KulupuPini = new CompoundWord("kulupu-pini");
@@ -20906,7 +20918,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kulupu-sinpin", new[] { "head phrase" } );
+                    en.Add("kulupu-sinpin", new[] { "head phrase" });
                     glossMap.Add("en", en);
                 }
                 KulupuSinpin = new CompoundWord("kulupu-sinpin");
@@ -20920,7 +20932,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lawa-nim", new[] { "grammar" } );
+                    en.Add("lawa-nim", new[] { "grammar" });
                     glossMap.Add("en", en);
                 }
                 LawaNim = new CompoundWord("lawa-nim");
@@ -20934,7 +20946,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lawa-pi-kalama-nimi", new[] { "phometics" } );
+                    en.Add("lawa-pi-kalama-nimi", new[] { "phometics" });
                     glossMap.Add("en", en);
                 }
                 LawaPiKalamaNimi = new CompoundWord("lawa-pi-kalama-nimi");
@@ -20948,7 +20960,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("len-ilo-nanpa", new[] { "internet" } );
+                    en.Add("len-ilo-nanpa", new[] { "internet" });
                     glossMap.Add("en", en);
                 }
                 LenIloNanpa = new CompoundWord("len-ilo-nanpa");
@@ -20962,7 +20974,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("len-linja", new[] { "dhoti"," lava-lava and the like" } );
+                    en.Add("len-linja", new[] { "dhoti", " lava-lava and the like" });
                     glossMap.Add("en", en);
                 }
                 LenLinja = new CompoundWord("len-linja");
@@ -20976,7 +20988,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("len-sewi", new[] { "(dhoti as) ritual dress" } );
+                    en.Add("len-sewi", new[] { "(dhoti as) ritual dress" });
                     glossMap.Add("en", en);
                 }
                 LenSewi = new CompoundWord("len-sewi");
@@ -20990,7 +21002,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("linja-pi-ma-seli", new[] { "equator" } );
+                    en.Add("linja-pi-ma-seli", new[] { "equator" });
                     glossMap.Add("en", en);
                 }
                 LinjaPiMaSeli = new CompoundWord("linja-pi-ma-seli");
@@ -21004,7 +21016,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("linja-pilin", new[] { "nerve (wires)" } );
+                    en.Add("linja-pilin", new[] { "nerve (wires)" });
                     glossMap.Add("en", en);
                 }
                 LinjaPilin = new CompoundWord("linja-pilin");
@@ -21018,7 +21030,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-lipu", new[] { "book" } );
+                    en.Add("lipu-lipu", new[] { "book" });
                     glossMap.Add("en", en);
                 }
                 LipuLipu = new CompoundWord("lipu-lipu");
@@ -21032,7 +21044,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-pana", new[] { "messages"," letters" } );
+                    en.Add("lipu-pana", new[] { "messages", " letters" });
                     glossMap.Add("en", en);
                 }
                 LipuPana = new CompoundWord("lipu-pana");
@@ -21046,7 +21058,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-pi-kama-sin", new[] { "newspaper" } );
+                    en.Add("lipu-pi-kama-sin", new[] { "newspaper" });
                     glossMap.Add("en", en);
                 }
                 LipuPiKamaSin = new CompoundWord("lipu-pi-kama-sin");
@@ -21060,7 +21072,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-suli-pi-telo-kiwen", new[] { "ice shelf" } );
+                    en.Add("lipu-suli-pi-telo-kiwen", new[] { "ice shelf" });
                     glossMap.Add("en", en);
                 }
                 LipuSuliPiTeloKiwen = new CompoundWord("lipu-suli-pi-telo-kiwen");
@@ -21074,7 +21086,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-toki-sewi", new[] { "holy books"," rweligious book" } );
+                    en.Add("lipu-toki-sewi", new[] { "holy books", " rweligious book" });
                     glossMap.Add("en", en);
                 }
                 LipuTokiSewi = new CompoundWord("lipu-toki-sewi");
@@ -21088,7 +21100,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-toki-sewi-Kolan", new[] { "Quran" } );
+                    en.Add("lipu-toki-sewi-Kolan", new[] { "Quran" });
                     glossMap.Add("en", en);
                 }
                 LipuTokiSewiKolan = new CompoundWord("lipu-toki-sewi-Kolan");
@@ -21102,7 +21114,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-toki-sewi-Pipija", new[] { "Bible" } );
+                    en.Add("lipu-toki-sewi-Pipija", new[] { "Bible" });
                     glossMap.Add("en", en);
                 }
                 LipuTokiSewiPipija = new CompoundWord("lipu-toki-sewi-Pipija");
@@ -21116,7 +21128,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lipu-toki-sewi-Tola", new[] { "Torah" } );
+                    en.Add("lipu-toki-sewi-Tola", new[] { "Torah" });
                     glossMap.Add("en", en);
                 }
                 LipuTokiSewiTola = new CompoundWord("lipu-toki-sewi-Tola");
@@ -21130,7 +21142,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("loje-jelo", new[] { "orange" } );
+                    en.Add("loje-jelo", new[] { "orange" });
                     glossMap.Add("en", en);
                 }
                 LojeJelo = new CompoundWord("loje-jelo");
@@ -21144,7 +21156,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lon-lawa-mi", new[] { "occur to me" } );
+                    en.Add("lon-lawa-mi", new[] { "occur to me" });
                     glossMap.Add("en", en);
                 }
                 LonLawaMi = new CompoundWord("lon-lawa-mi");
@@ -21158,7 +21170,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lon-monsi-tenpo-mute", new[] { "after much time" } );
+                    en.Add("lon-monsi-tenpo-mute", new[] { "after much time" });
                     glossMap.Add("en", en);
                 }
                 LonMonsiTenpoMute = new CompoundWord("lon-monsi-tenpo-mute");
@@ -21172,7 +21184,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lon-poki", new[] { "categorize" } );
+                    en.Add("lon-poki", new[] { "categorize" });
                     glossMap.Add("en", en);
                 }
                 LonPoki = new CompoundWord("lon-poki");
@@ -21186,7 +21198,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lon-pona-lili", new[] { "with difficulty" } );
+                    en.Add("lon-pona-lili", new[] { "with difficulty" });
                     glossMap.Add("en", en);
                 }
                 LonPonaLili = new CompoundWord("lon-pona-lili");
@@ -21200,7 +21212,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lon-sina", new[] { "your life"," your world" } );
+                    en.Add("lon-sina", new[] { "your life", " your world" });
                     glossMap.Add("en", en);
                 }
                 LonSina = new CompoundWord("lon-sina");
@@ -21214,7 +21226,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lon-weka", new[] { "be absent" } );
+                    en.Add("lon-weka", new[] { "be absent" });
                     glossMap.Add("en", en);
                 }
                 LonWeka = new CompoundWord("lon-weka");
@@ -21228,7 +21240,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("luka-sike", new[] { "embrace"," hug" } );
+                    en.Add("luka-sike", new[] { "embrace", " hug" });
                     glossMap.Add("en", en);
                 }
                 LukaSike = new CompoundWord("luka-sike");
@@ -21242,7 +21254,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("luka-tawa", new[] { "cradle"," lull" } );
+                    en.Add("luka-tawa", new[] { "cradle", " lull" });
                     glossMap.Add("en", en);
                 }
                 LukaTawa = new CompoundWord("luka-tawa");
@@ -21256,7 +21268,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lukin-e-sina", new[] { "see you"," look at you" } );
+                    en.Add("lukin-e-sina", new[] { "see you", " look at you" });
                     glossMap.Add("en", en);
                 }
                 LukinESina = new CompoundWord("lukin-e-sina");
@@ -21270,7 +21282,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lukin-pi-tomo-poka", new[] { "views of nearby buildings" } );
+                    en.Add("lukin-pi-tomo-poka", new[] { "views of nearby buildings" });
                     glossMap.Add("en", en);
                 }
                 LukinPiTomoPoka = new CompoundWord("lukin-pi-tomo-poka");
@@ -21284,7 +21296,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lukin-tawa-sina", new[] { "look for (seek) you"," look in your direction"," look in your behalf" } );
+                    en.Add("lukin-tawa-sina", new[] { "look for (seek) you", " look in your direction", " look in your behalf" });
                     glossMap.Add("en", en);
                 }
                 LukinTawaSina = new CompoundWord("lukin-tawa-sina");
@@ -21298,7 +21310,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("lukin-toki", new[] { "read" } );
+                    en.Add("lukin-toki", new[] { "read" });
                     glossMap.Add("en", en);
                 }
                 LukinToki = new CompoundWord("lukin-toki");
@@ -21312,7 +21324,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-kama-anpa-suno", new[] { "Occident"," West" } );
+                    en.Add("ma-kama-anpa-suno", new[] { "Occident", " West" });
                     glossMap.Add("en", en);
                 }
                 MaKamaAnpaSuno = new CompoundWord("ma-kama-anpa-suno");
@@ -21326,7 +21338,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-kama-sewi-suno", new[] { "Orient"," East" } );
+                    en.Add("ma-kama-sewi-suno", new[] { "Orient", " East" });
                     glossMap.Add("en", en);
                 }
                 MaKamaSewiSuno = new CompoundWord("ma-kama-sewi-suno");
@@ -21340,7 +21352,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-lawa", new[] { "nation" } );
+                    en.Add("ma-lawa", new[] { "nation" });
                     glossMap.Add("en", en);
                 }
                 MaLawa = new CompoundWord("ma-lawa");
@@ -21354,7 +21366,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-musi", new[] { "theme park" } );
+                    en.Add("ma-musi", new[] { "theme park" });
                     glossMap.Add("en", en);
                 }
                 MaMusi = new CompoundWord("ma-musi");
@@ -21368,7 +21380,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-pan", new[] { "cornfield" } );
+                    en.Add("ma-pan", new[] { "cornfield" });
                     glossMap.Add("en", en);
                 }
                 MaPan = new CompoundWord("ma-pan");
@@ -21382,7 +21394,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-pi-kasi-palisa", new[] { "forest" } );
+                    en.Add("ma-pi-kasi-palisa", new[] { "forest" });
                     glossMap.Add("en", en);
                 }
                 MaPiKasiPalisa = new CompoundWord("ma-pi-kasi-palisa");
@@ -21396,7 +21408,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-pi-suno-kama", new[] { "east" } );
+                    en.Add("ma-pi-suno-kama", new[] { "east" });
                     glossMap.Add("en", en);
                 }
                 MaPiSunoKama = new CompoundWord("ma-pi-suno-kama");
@@ -21410,7 +21422,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-pi-suno-sewi", new[] { "equatorial regions"," east" } );
+                    en.Add("ma-pi-suno-sewi", new[] { "equatorial regions", " east" });
                     glossMap.Add("en", en);
                 }
                 MaPiSunoSewi = new CompoundWord("ma-pi-suno-sewi");
@@ -21424,7 +21436,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-pi-suno-weka", new[] { "west" } );
+                    en.Add("ma-pi-suno-weka", new[] { "west" });
                     glossMap.Add("en", en);
                 }
                 MaPiSunoWeka = new CompoundWord("ma-pi-suno-weka");
@@ -21438,7 +21450,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-sike", new[] { "the world (physical/political)" } );
+                    en.Add("ma-sike", new[] { "the world (physical/political)" });
                     glossMap.Add("en", en);
                 }
                 MaSike = new CompoundWord("ma-sike");
@@ -21452,7 +21464,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-mute-pona", new[] { "park" } );
+                    en.Add("ma-tomo-mute-pona", new[] { "park" });
                     glossMap.Add("en", en);
                 }
                 MaTomoMutePona = new CompoundWord("ma-tomo-mute-pona");
@@ -21466,7 +21478,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("mi-pana-e-tomo-tawa-sina", new[] { "I give you a houzse/ I brought your car" } );
+                    en.Add("mi-pana-e-tomo-tawa-sina", new[] { "I give you a houzse/ I brought your car" });
                     glossMap.Add("en", en);
                 }
                 MiPanaETomoTawaSina = new CompoundWord("mi-pana-e-tomo-tawa-sina");
@@ -21480,7 +21492,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("mije-pona-en-mije--ike", new[] { "good men and bad ones"," good and bad men" } );
+                    en.Add("mije-pona-en-mije--ike", new[] { "good men and bad ones", " good and bad men" });
                     glossMap.Add("en", en);
                 }
                 MijePonaEnMijeIke = new CompoundWord("mije-pona-en-mije--ike");
@@ -21494,7 +21506,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("mije-pona-en-ona-ike", new[] { "good men and bad ones"," good and bad men" } );
+                    en.Add("mije-pona-en-ona-ike", new[] { "good men and bad ones", " good and bad men" });
                     glossMap.Add("en", en);
                 }
                 MijePonaEnOnaIke = new CompoundWord("mije-pona-en-ona-ike");
@@ -21508,7 +21520,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("moku-ali", new[] { "devour"," eat completely" } );
+                    en.Add("moku-ali", new[] { "devour", " eat completely" });
                     glossMap.Add("en", en);
                 }
                 MokuAli = new CompoundWord("moku-ali");
@@ -21522,7 +21534,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("moku-pi-moli-ala", new[] { "amrit"," ambrosia" } );
+                    en.Add("moku-pi-moli-ala", new[] { "amrit", " ambrosia" });
                     glossMap.Add("en", en);
                 }
                 MokuPiMoliAla = new CompoundWord("moku-pi-moli-ala");
@@ -21536,7 +21548,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("moli-tawa-jan-sewi", new[] { "sacrifice" } );
+                    en.Add("moli-tawa-jan-sewi", new[] { "sacrifice" });
                     glossMap.Add("en", en);
                 }
                 MoliTawaJanSewi = new CompoundWord("moli-tawa-jan-sewi");
@@ -21550,7 +21562,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("monsi-linja", new[] { "tail" } );
+                    en.Add("monsi-linja", new[] { "tail" });
                     glossMap.Add("en", en);
                 }
                 MonsiLinja = new CompoundWord("monsi-linja");
@@ -21564,7 +21576,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("mu-jan", new[] { "gibber" } );
+                    en.Add("mu-jan", new[] { "gibber" });
                     glossMap.Add("en", en);
                 }
                 MuJan = new CompoundWord("mu-jan");
@@ -21578,7 +21590,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("mun-nanpa-luka-luka-wan", new[] { "November" } );
+                    en.Add("mun-nanpa-luka-luka-wan", new[] { "November" });
                     glossMap.Add("en", en);
                 }
                 MunNanpaLukaLukaWan = new CompoundWord("mun-nanpa-luka-luka-wan");
@@ -21592,7 +21604,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("mun-tenp-wan", new[] { "January" } );
+                    en.Add("mun-tenp-wan", new[] { "January" });
                     glossMap.Add("en", en);
                 }
                 MunTenpWan = new CompoundWord("mun-tenp-wan");
@@ -21606,7 +21618,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("mun-tenpo", new[] { "month" } );
+                    en.Add("mun-tenpo", new[] { "month" });
                     glossMap.Add("en", en);
                 }
                 MunTenpo = new CompoundWord("mun-tenpo");
@@ -21620,7 +21632,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("musi-mani", new[] { "gambling" } );
+                    en.Add("musi-mani", new[] { "gambling" });
                     glossMap.Add("en", en);
                 }
                 MusiMani = new CompoundWord("musi-mani");
@@ -21634,7 +21646,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("mute-ike", new[] { "too much" } );
+                    en.Add("mute-ike", new[] { "too much" });
                     glossMap.Add("en", en);
                 }
                 MuteIke = new CompoundWord("mute-ike");
@@ -21648,7 +21660,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("mute-lon-tenpo-lili", new[] { "rapidly" } );
+                    en.Add("mute-lon-tenpo-lili", new[] { "rapidly" });
                     glossMap.Add("en", en);
                 }
                 MuteLonTenpoLili = new CompoundWord("mute-lon-tenpo-lili");
@@ -21662,7 +21674,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-anpa-luka-luka", new[] { "in base ten" } );
+                    en.Add("nasin-anpa-luka-luka", new[] { "in base ten" });
                     glossMap.Add("en", en);
                 }
                 NasinAnpaLukaLuka = new CompoundWord("nasin-anpa-luka-luka");
@@ -21676,7 +21688,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-anpa-pi-nanpa-tu-wan", new[] { "in base 3" } );
+                    en.Add("nasin-anpa-pi-nanpa-tu-wan", new[] { "in base 3" });
                     glossMap.Add("en", en);
                 }
                 NasinAnpaPiNanpaTuWan = new CompoundWord("nasin-anpa-pi-nanpa-tu-wan");
@@ -21690,7 +21702,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-linja", new[] { "orthodix" } );
+                    en.Add("nasin-linja", new[] { "orthodix" });
                     glossMap.Add("en", en);
                 }
                 NasinLinja = new CompoundWord("nasin-linja");
@@ -21704,7 +21716,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-Pajawi", new[] { "Baha'i" } );
+                    en.Add("nasin-Pajawi", new[] { "Baha'i" });
                     glossMap.Add("en", en);
                 }
                 NasinPajawi = new CompoundWord("nasin-Pajawi");
@@ -21718,7 +21730,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-pi-anpa-suno", new[] { "west" } );
+                    en.Add("nasin-pi-anpa-suno", new[] { "west" });
                     glossMap.Add("en", en);
                 }
                 NasinPiAnpaSuno = new CompoundWord("nasin-pi-anpa-suno");
@@ -21732,7 +21744,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-pi-kalama-toki", new[] { "phonology" } );
+                    en.Add("nasin-pi-kalama-toki", new[] { "phonology" });
                     glossMap.Add("en", en);
                 }
                 NasinPiKalamaToki = new CompoundWord("nasin-pi-kalama-toki");
@@ -21746,7 +21758,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-pi-sewi-suno", new[] { "east" } );
+                    en.Add("nasin-pi-sewi-suno", new[] { "east" });
                     glossMap.Add("en", en);
                 }
                 NasinPiSewiSuno = new CompoundWord("nasin-pi-sewi-suno");
@@ -21760,7 +21772,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-pi-supa-mute", new[] { "stairway" } );
+                    en.Add("nasin-pi-supa-mute", new[] { "stairway" });
                     glossMap.Add("en", en);
                 }
                 NasinPiSupaMute = new CompoundWord("nasin-pi-supa-mute");
@@ -21774,7 +21786,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-pilin", new[] { "philosophy"," way of thinking" } );
+                    en.Add("nasin-pilin", new[] { "philosophy", " way of thinking" });
                     glossMap.Add("en", en);
                 }
                 NasinPilin = new CompoundWord("nasin-pilin");
@@ -21788,7 +21800,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-Santelija", new[] { "Santeria" } );
+                    en.Add("nasin-Santelija", new[] { "Santeria" });
                     glossMap.Add("en", en);
                 }
                 NasinSantelija = new CompoundWord("nasin-Santelija");
@@ -21802,7 +21814,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-Satan", new[] { "Satanism" } );
+                    en.Add("nasin-Satan", new[] { "Satanism" });
                     glossMap.Add("en", en);
                 }
                 NasinSatan = new CompoundWord("nasin-Satan");
@@ -21816,7 +21828,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-sona", new[] { "epistemology" } );
+                    en.Add("nasin-sona", new[] { "epistemology" });
                     glossMap.Add("en", en);
                 }
                 NasinSona = new CompoundWord("nasin-sona");
@@ -21830,7 +21842,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-toki-tenpo", new[] { "grammatical tense" } );
+                    en.Add("nasin-toki-tenpo", new[] { "grammatical tense" });
                     glossMap.Add("en", en);
                 }
                 NasinTokiTenpo = new CompoundWord("nasin-toki-tenpo");
@@ -21844,7 +21856,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nasin-Wika", new[] { "Wicca" } );
+                    en.Add("nasin-Wika", new[] { "Wicca" });
                     glossMap.Add("en", en);
                 }
                 NasinWika = new CompoundWord("nasin-Wika");
@@ -21858,7 +21870,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nena-ma", new[] { "mountain" } );
+                    en.Add("nena-ma", new[] { "mountain" });
                     glossMap.Add("en", en);
                 }
                 NenaMa = new CompoundWord("nena-ma");
@@ -21872,7 +21884,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nena-sinpin", new[] { "tip of the nose" } );
+                    en.Add("nena-sinpin", new[] { "tip of the nose" });
                     glossMap.Add("en", en);
                 }
                 NenaSinpin = new CompoundWord("nena-sinpin");
@@ -21886,7 +21898,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nena-uta", new[] { "teeth" } );
+                    en.Add("nena-uta", new[] { "teeth" });
                     glossMap.Add("en", en);
                 }
                 NenaUta = new CompoundWord("nena-uta");
@@ -21900,7 +21912,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-ante-nimi", new[] { "adjective" } );
+                    en.Add("nimi-ante-nimi", new[] { "adjective" });
                     glossMap.Add("en", en);
                 }
                 NimiAnteNimi = new CompoundWord("nimi-ante-nimi");
@@ -21914,7 +21926,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-ante-pi-nimi-kama", new[] { "adverb" } );
+                    en.Add("nimi-ante-pi-nimi-kama", new[] { "adverb" });
                     glossMap.Add("en", en);
                 }
                 NimiAntePiNimiKama = new CompoundWord("nimi-ante-pi-nimi-kama");
@@ -21928,7 +21940,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-ijo", new[] { "noun" } );
+                    en.Add("nimi-ijo", new[] { "noun" });
                     glossMap.Add("en", en);
                 }
                 NimiIjo = new CompoundWord("nimi-ijo");
@@ -21942,7 +21954,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-kama", new[] { "verb" } );
+                    en.Add("nimi-kama", new[] { "verb" });
                     glossMap.Add("en", en);
                 }
                 NimiKama = new CompoundWord("nimi-kama");
@@ -21956,7 +21968,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-kama-jo", new[] { "object (direct"," indirect)" } );
+                    en.Add("nimi-kama-jo", new[] { "object (direct", " indirect)" });
                     glossMap.Add("en", en);
                 }
                 NimiKamaJo = new CompoundWord("nimi-kama-jo");
@@ -21970,7 +21982,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-lawa", new[] { "keywords"," head word (in a phrase)"," subject (gram)" } );
+                    en.Add("nimi-lawa", new[] { "keywords", " head word (in a phrase)", " subject (gram)" });
                     glossMap.Add("en", en);
                 }
                 NimiLawa = new CompoundWord("nimi-lawa");
@@ -21984,7 +21996,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-lupa", new[] { "hyperlink" } );
+                    en.Add("nimi-lupa", new[] { "hyperlink" });
                     glossMap.Add("en", en);
                 }
                 NimiLupa = new CompoundWord("nimi-lupa");
@@ -21998,7 +22010,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-mi-seme", new[] { "What words of mine" } );
+                    en.Add("nimi-mi-seme", new[] { "What words of mine" });
                     glossMap.Add("en", en);
                 }
                 NimiMiSeme = new CompoundWord("nimi-mi-seme");
@@ -22012,7 +22024,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-nimi", new[] { "noun" } );
+                    en.Add("nimi-nimi", new[] { "noun" });
                     glossMap.Add("en", en);
                 }
                 NimiNimi = new CompoundWord("nimi-nimi");
@@ -22026,7 +22038,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-open", new[] { "hyperlink"," url" } );
+                    en.Add("nimi-open", new[] { "hyperlink", " url" });
                     glossMap.Add("en", en);
                 }
                 NimiOpen = new CompoundWord("nimi-open");
@@ -22040,7 +22052,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-pali-pini", new[] { "intransitive verb" } );
+                    en.Add("nimi-pali-pini", new[] { "intransitive verb" });
                     glossMap.Add("en", en);
                 }
                 NimiPaliPini = new CompoundWord("nimi-pali-pini");
@@ -22054,7 +22066,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-pi-poka-lawa", new[] { "unofficial words (e.g. name adj)" } );
+                    en.Add("nimi-pi-poka-lawa", new[] { "unofficial words (e.g. name adj)" });
                     glossMap.Add("en", en);
                 }
                 NimiPiPokaLawa = new CompoundWord("nimi-pi-poka-lawa");
@@ -22068,7 +22080,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-poka", new[] { "modifier" } );
+                    en.Add("nimi-poka", new[] { "modifier" });
                     glossMap.Add("en", en);
                 }
                 NimiPoka = new CompoundWord("nimi-poka");
@@ -22082,7 +22094,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-poki-", new[] { "grammatical particle" } );
+                    en.Add("nimi-poki-", new[] { "grammatical particle" });
                     glossMap.Add("en", en);
                 }
                 NimiPoki = new CompoundWord("nimi-poki-");
@@ -22096,7 +22108,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-poki-lili", new[] { "grammatical particle" } );
+                    en.Add("nimi-poki-lili", new[] { "grammatical particle" });
                     glossMap.Add("en", en);
                 }
                 NimiPokiLili = new CompoundWord("nimi-poki-lili");
@@ -22110,7 +22122,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-tawa", new[] { "hyperlink" } );
+                    en.Add("nimi-tawa", new[] { "hyperlink" });
                     glossMap.Add("en", en);
                 }
                 NimiTawa = new CompoundWord("nimi-tawa");
@@ -22124,7 +22136,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-toki-lili", new[] { "abbreviated language names" } );
+                    en.Add("nimi-toki-lili", new[] { "abbreviated language names" });
                     glossMap.Add("en", en);
                 }
                 NimiTokiLili = new CompoundWord("nimi-toki-lili");
@@ -22138,7 +22150,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("nimi-wan", new[] { "conjunction" } );
+                    en.Add("nimi-wan", new[] { "conjunction" });
                     glossMap.Add("en", en);
                 }
                 NimiWan = new CompoundWord("nimi-wan");
@@ -22152,7 +22164,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("olin-pi-unpa-ala", new[] { "platonic love" } );
+                    en.Add("olin-pi-unpa-ala", new[] { "platonic love" });
                     glossMap.Add("en", en);
                 }
                 OlinPiUnpaAla = new CompoundWord("olin-pi-unpa-ala");
@@ -22166,7 +22178,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("olin-unpa", new[] { "sexual attraction" } );
+                    en.Add("olin-unpa", new[] { "sexual attraction" });
                     glossMap.Add("en", en);
                 }
                 OlinUnpa = new CompoundWord("olin-unpa");
@@ -22180,7 +22192,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ona-sama", new[] { "him self"," his own" } );
+                    en.Add("ona-sama", new[] { "him self", " his own" });
                     glossMap.Add("en", en);
                 }
                 OnaSama = new CompoundWord("ona-sama");
@@ -22194,7 +22206,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-ala-pi-pali-mute", new[] { "karma" } );
+                    en.Add("pali-ala-pi-pali-mute", new[] { "karma" });
                     glossMap.Add("en", en);
                 }
                 PaliAlaPiPaliMute = new CompoundWord("pali-ala-pi-pali-mute");
@@ -22208,7 +22220,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-musi-kiwen", new[] { "statue" } );
+                    en.Add("pali-musi-kiwen", new[] { "statue" });
                     glossMap.Add("en", en);
                 }
                 PaliMusiKiwen = new CompoundWord("pali-musi-kiwen");
@@ -22222,7 +22234,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-suli", new[] { "adventure" } );
+                    en.Add("pali-suli", new[] { "adventure" });
                     glossMap.Add("en", en);
                 }
                 PaliSuli = new CompoundWord("pali-suli");
@@ -22236,7 +22248,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-tawa", new[] { "care for"," attend to"," try to" } );
+                    en.Add("pali-tawa", new[] { "care for", " attend to", " try to" });
                     glossMap.Add("en", en);
                 }
                 PaliTawa = new CompoundWord("pali-tawa");
@@ -22250,7 +22262,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-weka", new[] { "try to get away" } );
+                    en.Add("pali-weka", new[] { "try to get away" });
                     glossMap.Add("en", en);
                 }
                 PaliWeka = new CompoundWord("pali-weka");
@@ -22264,7 +22276,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("palisa-mije", new[] { "penis" } );
+                    en.Add("palisa-mije", new[] { "penis" });
                     glossMap.Add("en", en);
                 }
                 PalisaMije = new CompoundWord("palisa-mije");
@@ -22278,7 +22290,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("palisa-sike", new[] { "helicopter" } );
+                    en.Add("palisa-sike", new[] { "helicopter" });
                     glossMap.Add("en", en);
                 }
                 PalisaSike = new CompoundWord("palisa-sike");
@@ -22292,7 +22304,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pan-pi-sike-mama-waso", new[] { "waffles" } );
+                    en.Add("pan-pi-sike-mama-waso", new[] { "waffles" });
                     glossMap.Add("en", en);
                 }
                 PanPiSikeMamaWaso = new CompoundWord("pan-pi-sike-mama-waso");
@@ -22305,7 +22317,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pana-pi-wile-jan-tawa-jan-sewi", new[] { "Islam" } );
+                    en.Add("pana-pi-wile-jan-tawa-jan-sewi", new[] { "Islam" });
                     glossMap.Add("en", en);
                 }
                 PanaPiWileJanTawaJanSewi = new CompoundWord("pana-pi-wile-jan-tawa-jan-sewi");
@@ -22319,7 +22331,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pana-wile-ala", new[] { "copyright" } );
+                    en.Add("pana-wile-ala", new[] { "copyright" });
                     glossMap.Add("en", en);
                 }
                 PanaWileAla = new CompoundWord("pana-wile-ala");
@@ -22329,25 +22341,25 @@ public static CompoundWord MaTomoEnkon;
             }
 
 
+            //{
+            //    var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+            //    {
+            //        var en = new Dictionary<string, string[]>();
+            //        en.Add("pilin-ale", new[] { "sense", " concept" });
+            //        glossMap.Add("en", en);
+            //    }
+            //    PilinAle = new CompoundWord("pilin-ale");
+
+            //    Dictionary.Add("pilin-ale", PilinAle);
+            //    Glosses.Add("pilin-ale", glossMap);
+            //}
+
+
             {
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pilin-ale", new[] { "sense"," concept" } );
-                    glossMap.Add("en", en);
-                }
-                PilinAle = new CompoundWord("pilin-ale");
-
-                Dictionary.Add("pilin-ale", PilinAle);
-                Glosses.Add("pilin-ale", glossMap);
-            }
-
-
-            {
-                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
-                {
-                    var en = new Dictionary<string, string[]>();
-                    en.Add("pilin-e-nena-mama-kepeken-uta", new[] { "kiss breasts" } );
+                    en.Add("pilin-e-nena-mama-kepeken-uta", new[] { "kiss breasts" });
                     glossMap.Add("en", en);
                 }
                 PilinENenaMamaKepekenUta = new CompoundWord("pilin-e-nena-mama-kepeken-uta");
@@ -22361,7 +22373,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pilin-e-pona-insa", new[] { "meditate" } );
+                    en.Add("pilin-e-pona-insa", new[] { "meditate" });
                     glossMap.Add("en", en);
                 }
                 PilinEPonaInsa = new CompoundWord("pilin-e-pona-insa");
@@ -22375,7 +22387,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pilin-insa", new[] { "intuition" } );
+                    en.Add("pilin-insa", new[] { "intuition" });
                     glossMap.Add("en", en);
                 }
                 PilinInsa = new CompoundWord("pilin-insa");
@@ -22389,7 +22401,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pilin-sijelo-pi-jan-sewi", new[] { "salat" } );
+                    en.Add("pilin-sijelo-pi-jan-sewi", new[] { "salat" });
                     glossMap.Add("en", en);
                 }
                 PilinSijeloPiJanSewi = new CompoundWord("pilin-sijelo-pi-jan-sewi");
@@ -22403,7 +22415,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pini-a", new[] { "at last"," finally" } );
+                    en.Add("pini-a", new[] { "at last", " finally" });
                     glossMap.Add("en", en);
                 }
                 PiniA = new CompoundWord("pini-a");
@@ -22417,7 +22429,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pini-e-insa", new[] { "fill" } );
+                    en.Add("pini-e-insa", new[] { "fill" });
                     glossMap.Add("en", en);
                 }
                 PiniEInsa = new CompoundWord("pini-e-insa");
@@ -22431,7 +22443,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pini-kalama", new[] { "glottal stop" } );
+                    en.Add("pini-kalama", new[] { "glottal stop" });
                     glossMap.Add("en", en);
                 }
                 PiniKalama = new CompoundWord("pini-kalama");
@@ -22445,7 +22457,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pini-sona", new[] { "forget" } );
+                    en.Add("pini-sona", new[] { "forget" });
                     glossMap.Add("en", en);
                 }
                 PiniSona = new CompoundWord("pini-sona");
@@ -22459,7 +22471,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pipi-jaki", new[] { "cockroach" } );
+                    en.Add("pipi-jaki", new[] { "cockroach" });
                     glossMap.Add("en", en);
                 }
                 PipiJaki = new CompoundWord("pipi-jaki");
@@ -22473,7 +22485,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pipi-kon-pi-ko-suwi", new[] { "bee" } );
+                    en.Add("pipi-kon-pi-ko-suwi", new[] { "bee" });
                     glossMap.Add("en", en);
                 }
                 PipiKonPiKoSuwi = new CompoundWord("pipi-kon-pi-ko-suwi");
@@ -22487,7 +22499,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pipi-lili", new[] { "germ" } );
+                    en.Add("pipi-lili", new[] { "germ" });
                     glossMap.Add("en", en);
                 }
                 PipiLili = new CompoundWord("pipi-lili");
@@ -22501,7 +22513,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pipi-linja", new[] { "lice" } );
+                    en.Add("pipi-linja", new[] { "lice" });
                     glossMap.Add("en", en);
                 }
                 PipiLinja = new CompoundWord("pipi-linja");
@@ -22515,7 +22527,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pipi-pi-kalama-musi", new[] { "grasshopper"," cicada" } );
+                    en.Add("pipi-pi-kalama-musi", new[] { "grasshopper", " cicada" });
                     glossMap.Add("en", en);
                 }
                 PipiPiKalamaMusi = new CompoundWord("pipi-pi-kalama-musi");
@@ -22529,7 +22541,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pipi-pi-pali-mute", new[] { "ant" } );
+                    en.Add("pipi-pi-pali-mute", new[] { "ant" });
                     glossMap.Add("en", en);
                 }
                 PipiPiPaliMute = new CompoundWord("pipi-pi-pali-mute");
@@ -22543,7 +22555,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pipi-pi-tomo-nena", new[] { "ant" } );
+                    en.Add("pipi-pi-tomo-nena", new[] { "ant" });
                     glossMap.Add("en", en);
                 }
                 PipiPiTomoNena = new CompoundWord("pipi-pi-tomo-nena");
@@ -22557,7 +22569,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pipi-pi-tomo-nena-kiwen", new[] { "termite" } );
+                    en.Add("pipi-pi-tomo-nena-kiwen", new[] { "termite" });
                     glossMap.Add("en", en);
                 }
                 PipiPiTomoNenaKiwen = new CompoundWord("pipi-pi-tomo-nena-kiwen");
@@ -22571,7 +22583,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pipi-pona-lukin-lon-kon", new[] { "butterfly" } );
+                    en.Add("pipi-pona-lukin-lon-kon", new[] { "butterfly" });
                     glossMap.Add("en", en);
                 }
                 PipiPonaLukinLonKon = new CompoundWord("pipi-pona-lukin-lon-kon");
@@ -22585,7 +22597,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("poka-pi-kama-suno", new[] { "east" } );
+                    en.Add("poka-pi-kama-suno", new[] { "east" });
                     glossMap.Add("en", en);
                 }
                 PokaPiKamaSuno = new CompoundWord("poka-pi-kama-suno");
@@ -22599,7 +22611,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("poka-pi-sinpin-lawa", new[] { "cheek" } );
+                    en.Add("poka-pi-sinpin-lawa", new[] { "cheek" });
                     glossMap.Add("en", en);
                 }
                 PokaPiSinpinLawa = new CompoundWord("poka-pi-sinpin-lawa");
@@ -22613,7 +22625,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("poka-pi-weka-suno", new[] { "west" } );
+                    en.Add("poka-pi-weka-suno", new[] { "west" });
                     glossMap.Add("en", en);
                 }
                 PokaPiWekaSuno = new CompoundWord("poka-pi-weka-suno");
@@ -22627,7 +22639,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("poki-kama", new[] { "categorize" } );
+                    en.Add("poki-kama", new[] { "categorize" });
                     glossMap.Add("en", en);
                 }
                 PokiKama = new CompoundWord("poki-kama");
@@ -22641,7 +22653,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("poki-wawa", new[] { "(electric) battery" } );
+                    en.Add("poki-wawa", new[] { "(electric) battery" });
                     glossMap.Add("en", en);
                 }
                 PokiWawa = new CompoundWord("poki-wawa");
@@ -22655,7 +22667,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pona-suwi", new[] { "mild"," gentle" } );
+                    en.Add("pona-suwi", new[] { "mild", " gentle" });
                     glossMap.Add("en", en);
                 }
                 PonaSuwi = new CompoundWord("pona-suwi");
@@ -22669,7 +22681,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sama-pi-soweli-Sukosi", new[] { "like Scottish animals" } );
+                    en.Add("sama-pi-soweli-Sukosi", new[] { "like Scottish animals" });
                     glossMap.Add("en", en);
                 }
                 SamaPiSoweliSukosi = new CompoundWord("sama-pi-soweli-Sukosi");
@@ -22683,7 +22695,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("selo-kasi", new[] { "bark (of tree)"," straw" } );
+                    en.Add("selo-kasi", new[] { "bark (of tree)", " straw" });
                     glossMap.Add("en", en);
                 }
                 SeloKasi = new CompoundWord("selo-kasi");
@@ -22697,7 +22709,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("selo-pi-poka-tu-tu", new[] { "square" } );
+                    en.Add("selo-pi-poka-tu-tu", new[] { "square" });
                     glossMap.Add("en", en);
                 }
                 SeloPiPokaTuTu = new CompoundWord("selo-pi-poka-tu-tu");
@@ -22711,7 +22723,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("seslo-oko", new[] { "eyelid" } );
+                    en.Add("seslo-oko", new[] { "eyelid" });
                     glossMap.Add("en", en);
                 }
                 SesloOko = new CompoundWord("seslo-oko");
@@ -22725,7 +22737,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sike-luka", new[] { "embrace"," hug" } );
+                    en.Add("sike-luka", new[] { "embrace", " hug" });
                     glossMap.Add("en", en);
                 }
                 SikeLuka = new CompoundWord("sike-luka");
@@ -22739,7 +22751,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sike-pi-pipi-linja", new[] { "NITS" } );
+                    en.Add("sike-pi-pipi-linja", new[] { "NITS" });
                     glossMap.Add("en", en);
                 }
                 SikePiPipiLinja = new CompoundWord("sike-pi-pipi-linja");
@@ -22753,7 +22765,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sike-supa", new[] { "disk" } );
+                    en.Add("sike-supa", new[] { "disk" });
                     glossMap.Add("en", en);
                 }
                 SikeSupa = new CompoundWord("sike-supa");
@@ -22767,7 +22779,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sike-walo", new[] { "egg" } );
+                    en.Add("sike-walo", new[] { "egg" });
                     glossMap.Add("en", en);
                 }
                 SikeWalo = new CompoundWord("sike-walo");
@@ -22781,7 +22793,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sinpin-suno", new[] { "computer (tv) screen"," screen (tv)``" } );
+                    en.Add("sinpin-suno", new[] { "computer (tv) screen", " screen (tv)``" });
                     glossMap.Add("en", en);
                 }
                 SinpinSuno = new CompoundWord("sinpin-suno");
@@ -22795,7 +22807,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-e-linja", new[] { "draw a lone (make a distinction)"," draw a line"," make a distinction" } );
+                    en.Add("sitelen-e-linja", new[] { "draw a lone (make a distinction)", " draw a line", " make a distinction" });
                     glossMap.Add("en", en);
                 }
                 SitelenELinja = new CompoundWord("sitelen-e-linja");
@@ -22809,7 +22821,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-ike", new[] { "spam" } );
+                    en.Add("sitelen-ike", new[] { "spam" });
                     glossMap.Add("en", en);
                 }
                 SitelenIke = new CompoundWord("sitelen-ike");
@@ -22823,7 +22835,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-jan-sewi-tu-wan-lon-jan-sewi-wan", new[] { "Trinity" } );
+                    en.Add("sitelen-jan-sewi-tu-wan-lon-jan-sewi-wan", new[] { "Trinity" });
                     glossMap.Add("en", en);
                 }
                 SitelenJanSewiTuWanLonJanSewiWan = new CompoundWord("sitelen-jan-sewi-tu-wan-lon-jan-sewi-wan");
@@ -22837,7 +22849,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-lape-ike", new[] { "nightmare" } );
+                    en.Add("sitelen-lape-ike", new[] { "nightmare" });
                     glossMap.Add("en", en);
                 }
                 SitelenLapeIke = new CompoundWord("sitelen-lape-ike");
@@ -22851,7 +22863,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-lili-lili", new[] { "lower case letters" } );
+                    en.Add("sitelen-lili-lili", new[] { "lower case letters" });
                     glossMap.Add("en", en);
                 }
                 SitelenLiliLili = new CompoundWord("sitelen-lili-lili");
@@ -22865,7 +22877,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-lili-nanpa", new[] { "numeral" } );
+                    en.Add("sitelen-lili-nanpa", new[] { "numeral" });
                     glossMap.Add("en", en);
                 }
                 SitelenLiliNanpa = new CompoundWord("sitelen-lili-nanpa");
@@ -22879,7 +22891,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-lili-sin", new[] { "punctuation marks" } );
+                    en.Add("sitelen-lili-sin", new[] { "punctuation marks" });
                     glossMap.Add("en", en);
                 }
                 SitelenLiliSin = new CompoundWord("sitelen-lili-sin");
@@ -22893,7 +22905,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-lili-suli", new[] { "captal letters" } );
+                    en.Add("sitelen-lili-suli", new[] { "captal letters" });
                     glossMap.Add("en", en);
                 }
                 SitelenLiliSuli = new CompoundWord("sitelen-lili-suli");
@@ -22907,7 +22919,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-lili-toki", new[] { "letter (alphabet)" } );
+                    en.Add("sitelen-lili-toki", new[] { "letter (alphabet)" });
                     glossMap.Add("en", en);
                 }
                 SitelenLiliToki = new CompoundWord("sitelen-lili-toki");
@@ -22921,7 +22933,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-moku", new[] { "spam" } );
+                    en.Add("sitelen-moku", new[] { "spam" });
                     glossMap.Add("en", en);
                 }
                 SitelenMoku = new CompoundWord("sitelen-moku");
@@ -22935,7 +22947,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-nanpa", new[] { "numerals" } );
+                    en.Add("sitelen-nanpa", new[] { "numerals" });
                     glossMap.Add("en", en);
                 }
                 SitelenNanpa = new CompoundWord("sitelen-nanpa");
@@ -22949,7 +22961,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-pi-jan-sewi", new[] { "idol"," statue of god" } );
+                    en.Add("sitelen-pi-jan-sewi", new[] { "idol", " statue of god" });
                     glossMap.Add("en", en);
                 }
                 SitelenPiJanSewi = new CompoundWord("sitelen-pi-jan-sewi");
@@ -22963,7 +22975,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-sinpin", new[] { "previous writing/message" } );
+                    en.Add("sitelen-sinpin", new[] { "previous writing/message" });
                     glossMap.Add("en", en);
                 }
                 SitelenSinpin = new CompoundWord("sitelen-sinpin");
@@ -22977,7 +22989,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-suno", new[] { "photograph" } );
+                    en.Add("sitelen-suno", new[] { "photograph" });
                     glossMap.Add("en", en);
                 }
                 SitelenSuno = new CompoundWord("sitelen-suno");
@@ -22991,7 +23003,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sona-kama", new[] { "lesson (text)" } );
+                    en.Add("sona-kama", new[] { "lesson (text)" });
                     glossMap.Add("en", en);
                 }
                 SonaKama = new CompoundWord("sona-kama");
@@ -23005,7 +23017,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sona-pi-ante-toki", new[] { "comparative linguisrics" } );
+                    en.Add("sona-pi-ante-toki", new[] { "comparative linguisrics" });
                     glossMap.Add("en", en);
                 }
                 SonaPiAnteToki = new CompoundWord("sona-pi-ante-toki");
@@ -23019,7 +23031,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sona-pi-insa-toki", new[] { "syntax" } );
+                    en.Add("sona-pi-insa-toki", new[] { "syntax" });
                     glossMap.Add("en", en);
                 }
                 SonaPiInsaToki = new CompoundWord("sona-pi-insa-toki");
@@ -23033,7 +23045,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sona-pi-kalama-nimi", new[] { "phonetics" } );
+                    en.Add("sona-pi-kalama-nimi", new[] { "phonetics" });
                     glossMap.Add("en", en);
                 }
                 SonaPiKalamaNimi = new CompoundWord("sona-pi-kalama-nimi");
@@ -23047,7 +23059,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sona-pi-tenpo-kama", new[] { "omen" } );
+                    en.Add("sona-pi-tenpo-kama", new[] { "omen" });
                     glossMap.Add("en", en);
                 }
                 SonaPiTenpoKama = new CompoundWord("sona-pi-tenpo-kama");
@@ -23061,7 +23073,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sona-pilin", new[] { "believe" } );
+                    en.Add("sona-pilin", new[] { "believe" });
                     glossMap.Add("en", en);
                 }
                 SonaPilin = new CompoundWord("sona-pilin");
@@ -23075,7 +23087,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sona-tawa", new[] { "laptop" } );
+                    en.Add("sona-tawa", new[] { "laptop" });
                     glossMap.Add("en", en);
                 }
                 SonaTawa = new CompoundWord("sona-tawa");
@@ -23089,7 +23101,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sona-toki-pi-tenpo-pini", new[] { "classical phililogy" } );
+                    en.Add("sona-toki-pi-tenpo-pini", new[] { "classical phililogy" });
                     glossMap.Add("en", en);
                 }
                 SonaTokiPiTenpoPini = new CompoundWord("sona-toki-pi-tenpo-pini");
@@ -23103,7 +23115,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sons-pi-sona-toki", new[] { "semantics" } );
+                    en.Add("sons-pi-sona-toki", new[] { "semantics" });
                     glossMap.Add("en", en);
                 }
                 SonsPiSonaToki = new CompoundWord("sons-pi-sona-toki");
@@ -23117,7 +23129,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-ike", new[] { "rat" } );
+                    en.Add("soweli-ike", new[] { "rat" });
                     glossMap.Add("en", en);
                 }
                 SoweliIke = new CompoundWord("soweli-ike");
@@ -23131,7 +23143,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-kasi-linja", new[] { "zebra" } );
+                    en.Add("soweli-kasi-linja", new[] { "zebra" });
                     glossMap.Add("en", en);
                 }
                 SoweliKasiLinja = new CompoundWord("soweli-kasi-linja");
@@ -23145,7 +23157,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-kiwen", new[] { "automobile or train"," salami. Armadillo"," statue of animal" } );
+                    en.Add("soweli-kiwen", new[] { "automobile or train", " salami. Armadillo", " statue of animal" });
                     glossMap.Add("en", en);
                 }
                 SoweliKiwen = new CompoundWord("soweli-kiwen");
@@ -23159,7 +23171,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-lape-ma", new[] { "groundhog" } );
+                    en.Add("soweli-lape-ma", new[] { "groundhog" });
                     glossMap.Add("en", en);
                 }
                 SoweliLapeMa = new CompoundWord("soweli-lape-ma");
@@ -23173,7 +23185,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-lili", new[] { "cat" } );
+                    en.Add("soweli-lili", new[] { "cat" });
                     glossMap.Add("en", en);
                 }
                 SoweliLili = new CompoundWord("soweli-lili");
@@ -23187,7 +23199,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-lili-lili", new[] { "mouse" } );
+                    en.Add("soweli-lili-lili", new[] { "mouse" });
                     glossMap.Add("en", en);
                 }
                 SoweliLiliLili = new CompoundWord("soweli-lili-lili");
@@ -23201,7 +23213,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-linja-wawa", new[] { "tiger" } );
+                    en.Add("soweli-linja-wawa", new[] { "tiger" });
                     glossMap.Add("en", en);
                 }
                 SoweliLinjaWawa = new CompoundWord("soweli-linja-wawa");
@@ -23215,7 +23227,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-pi-moku-kili-kiwen", new[] { "chipmunk" } );
+                    en.Add("soweli-pi-moku-kili-kiwen", new[] { "chipmunk" });
                     glossMap.Add("en", en);
                 }
                 SoweliPiMokuKiliKiwen = new CompoundWord("soweli-pi-moku-kili-kiwen");
@@ -23229,7 +23241,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-pi-nena-kiwen", new[] { "rhinoceros" } );
+                    en.Add("soweli-pi-nena-kiwen", new[] { "rhinoceros" });
                     glossMap.Add("en", en);
                 }
                 SoweliPiNenaKiwen = new CompoundWord("soweli-pi-nena-kiwen");
@@ -23243,7 +23255,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-pi-nena-palisa", new[] { "unicorn" } );
+                    en.Add("soweli-pi-nena-palisa", new[] { "unicorn" });
                     glossMap.Add("en", en);
                 }
                 SoweliPiNenaPalisa = new CompoundWord("soweli-pi-nena-palisa");
@@ -23257,7 +23269,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-pi-nene-linja", new[] { "elephant" } );
+                    en.Add("soweli-pi-nene-linja", new[] { "elephant" });
                     glossMap.Add("en", en);
                 }
                 SoweliPiNeneLinja = new CompoundWord("soweli-pi-nene-linja");
@@ -23271,7 +23283,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-suli-pi-lupa-nena-pi-ma-lete", new[] { "bear" } );
+                    en.Add("soweli-suli-pi-lupa-nena-pi-ma-lete", new[] { "bear" });
                     glossMap.Add("en", en);
                 }
                 SoweliSuliPiLupaNenaPiMaLete = new CompoundWord("soweli-suli-pi-lupa-nena-pi-ma-lete");
@@ -23285,7 +23297,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-tomo-ko", new[] { "cat" } );
+                    en.Add("soweli-tomo-ko", new[] { "cat" });
                     glossMap.Add("en", en);
                 }
                 SoweliTomoKo = new CompoundWord("soweli-tomo-ko");
@@ -23299,7 +23311,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-tomo-wawa", new[] { "dog" } );
+                    en.Add("soweli-tomo-wawa", new[] { "dog" });
                     glossMap.Add("en", en);
                 }
                 SoweliTomoWawa = new CompoundWord("soweli-tomo-wawa");
@@ -23313,7 +23325,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("suli-ala", new[] { "not old"," young" } );
+                    en.Add("suli-ala", new[] { "not old", " young" });
                     glossMap.Add("en", en);
                 }
                 SuliAla = new CompoundWord("suli-ala");
@@ -23327,7 +23339,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("suli-mute", new[] { "very important" } );
+                    en.Add("suli-mute", new[] { "very important" });
                     glossMap.Add("en", en);
                 }
                 SuliMute = new CompoundWord("suli-mute");
@@ -23341,7 +23353,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tawa-awen", new[] { "keep on going" } );
+                    en.Add("tawa-awen", new[] { "keep on going" });
                     glossMap.Add("en", en);
                 }
                 TawaAwen = new CompoundWord("tawa-awen");
@@ -23355,7 +23367,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tawa-kama", new[] { "return trip" } );
+                    en.Add("tawa-kama", new[] { "return trip" });
                     glossMap.Add("en", en);
                 }
                 TawaKama = new CompoundWord("tawa-kama");
@@ -23369,7 +23381,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tawa-kepeken-noka-tu", new[] { "walk" } );
+                    en.Add("tawa-kepeken-noka-tu", new[] { "walk" });
                     glossMap.Add("en", en);
                 }
                 TawaKepekenNokaTu = new CompoundWord("tawa-kepeken-noka-tu");
@@ -23383,7 +23395,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tawa-kon-weka", new[] { "fly away" } );
+                    en.Add("tawa-kon-weka", new[] { "fly away" });
                     glossMap.Add("en", en);
                 }
                 TawaKonWeka = new CompoundWord("tawa-kon-weka");
@@ -23397,7 +23409,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tawa-lon-selo-telo", new[] { "floated on the surface of the water" } );
+                    en.Add("tawa-lon-selo-telo", new[] { "floated on the surface of the water" });
                     glossMap.Add("en", en);
                 }
                 TawaLonSeloTelo = new CompoundWord("tawa-lon-selo-telo");
@@ -23411,7 +23423,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-jaki", new[] { "nicotine water"," slime"," mucus -- snail grease" } );
+                    en.Add("telo-jaki", new[] { "nicotine water", " slime", " mucus -- snail grease" });
                     glossMap.Add("en", en);
                 }
                 TeloJaki = new CompoundWord("telo-jaki");
@@ -23425,7 +23437,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-kiwen", new[] { "gasoline Coal" } );
+                    en.Add("telo-kiwen", new[] { "gasoline Coal" });
                     glossMap.Add("en", en);
                 }
                 TeloKiwen = new CompoundWord("telo-kiwen");
@@ -23439,7 +23451,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-kon", new[] { "(sea)foam" } );
+                    en.Add("telo-kon", new[] { "(sea)foam" });
                     glossMap.Add("en", en);
                 }
                 TeloKon = new CompoundWord("telo-kon");
@@ -23453,7 +23465,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-mama-soweli-kon", new[] { "whipped cream" } );
+                    en.Add("telo-mama-soweli-kon", new[] { "whipped cream" });
                     glossMap.Add("en", en);
                 }
                 TeloMamaSoweliKon = new CompoundWord("telo-mama-soweli-kon");
@@ -23467,7 +23479,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-nasa-jelo", new[] { "beer" } );
+                    en.Add("telo-nasa-jelo", new[] { "beer" });
                     glossMap.Add("en", en);
                 }
                 TeloNasaJelo = new CompoundWord("telo-nasa-jelo");
@@ -23481,7 +23493,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-nasa-pi-lawa-walo", new[] { "beer" } );
+                    en.Add("telo-nasa-pi-lawa-walo", new[] { "beer" });
                     glossMap.Add("en", en);
                 }
                 TeloNasaPiLawaWalo = new CompoundWord("telo-nasa-pi-lawa-walo");
@@ -23495,7 +23507,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-pi-suli-mute", new[] { "ocean" } );
+                    en.Add("telo-pi-suli-mute", new[] { "ocean" });
                     glossMap.Add("en", en);
                 }
                 TeloPiSuliMute = new CompoundWord("telo-pi-suli-mute");
@@ -23509,7 +23521,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenp-lili", new[] { "minute" } );
+                    en.Add("tenp-lili", new[] { "minute" });
                     glossMap.Add("en", en);
                 }
                 TenpLili = new CompoundWord("tenp-lili");
@@ -23523,7 +23535,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-laso", new[] { "Spring" } );
+                    en.Add("tenpo-laso", new[] { "Spring" });
                     glossMap.Add("en", en);
                 }
                 TenpoLaso = new CompoundWord("tenpo-laso");
@@ -23537,7 +23549,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-laso-jelo", new[] { "Spring" } );
+                    en.Add("tenpo-laso-jelo", new[] { "Spring" });
                     glossMap.Add("en", en);
                 }
                 TenpoLasoJelo = new CompoundWord("tenpo-laso-jelo");
@@ -23551,7 +23563,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-lili-mute", new[] { "second" } );
+                    en.Add("tenpo-lili-mute", new[] { "second" });
                     glossMap.Add("en", en);
                 }
                 TenpoLiliMute = new CompoundWord("tenpo-lili-mute");
@@ -23565,7 +23577,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-loje", new[] { "Summer" } );
+                    en.Add("tenpo-loje", new[] { "Summer" , "Fall"});
                     glossMap.Add("en", en);
                 }
                 TenpoLoje = new CompoundWord("tenpo-loje");
@@ -23575,25 +23587,25 @@ public static CompoundWord MaTomoEnkon;
             }
 
 
+            //{
+            //    var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+            //    {
+            //        var en = new Dictionary<string, string[]>();
+            //        en.Add("tenpo-loje", new[] { "Fall" });
+            //        glossMap.Add("en", en);
+            //    }
+            //    TenpoLoje = new CompoundWord("tenpo-loje");
+
+            //    Dictionary.Add("tenpo-loje", TenpoLoje);
+            //    Glosses.Add("tenpo-loje", glossMap);
+            //}
+
+
             {
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-loje", new[] { "Fall" } );
-                    glossMap.Add("en", en);
-                }
-                TenpoLoje = new CompoundWord("tenpo-loje");
-
-                Dictionary.Add("tenpo-loje", TenpoLoje);
-                Glosses.Add("tenpo-loje", glossMap);
-            }
-
-
-            {
-                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
-                {
-                    var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-loje-jelo", new[] { "Fall" } );
+                    en.Add("tenpo-loje-jelo", new[] { "Fall" });
                     glossMap.Add("en", en);
                 }
                 TenpoLojeJelo = new CompoundWord("tenpo-loje-jelo");
@@ -23607,7 +23619,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-pi-selo-oko-tawa", new[] { "the blink of an eye"," instant" } );
+                    en.Add("tenpo-pi-selo-oko-tawa", new[] { "the blink of an eye", " instant" });
                     glossMap.Add("en", en);
                 }
                 TenpoPiSeloOkoTawa = new CompoundWord("tenpo-pi-selo-oko-tawa");
@@ -23621,7 +23633,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-pimeja-la-mi-lukin-e-sina", new[] { "Let's meet after dark" } );
+                    en.Add("tenpo-pimeja-la-mi-lukin-e-sina", new[] { "Let's meet after dark" });
                     glossMap.Add("en", en);
                 }
                 TenpoPimejaLaMiLukinESina = new CompoundWord("tenpo-pimeja-la-mi-lukin-e-sina");
@@ -23635,7 +23647,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-pona-suno", new[] { "summer holiday" } );
+                    en.Add("tenpo-pona-suno", new[] { "summer holiday" });
                     glossMap.Add("en", en);
                 }
                 TenpoPonaSuno = new CompoundWord("tenpo-pona-suno");
@@ -23649,7 +23661,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-suno--pali-ala-pi-nanpa-wan", new[] { "Sunday" } );
+                    en.Add("tenpo-suno--pali-ala-pi-nanpa-wan", new[] { "Sunday" });
                     glossMap.Add("en", en);
                 }
                 TenpoSunoPaliAlaPiNanpaWan = new CompoundWord("tenpo-suno--pali-ala-pi-nanpa-wan");
@@ -23663,7 +23675,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-suno-pali-pi-nanpa-wan", new[] { "Monday" } );
+                    en.Add("tenpo-suno-pali-pi-nanpa-wan", new[] { "Monday" });
                     glossMap.Add("en", en);
                 }
                 TenpoSunoPaliPiNanpaWan = new CompoundWord("tenpo-suno-pali-pi-nanpa-wan");
@@ -23673,25 +23685,25 @@ public static CompoundWord MaTomoEnkon;
             }
 
 
+            //{
+            //    var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+            //    {
+            //        var en = new Dictionary<string, string[]>();
+            //        en.Add("toki-sewi", new[] { "prayer" });
+            //        glossMap.Add("en", en);
+            //    }
+            //    TokiSewi = new CompoundWord("toki-sewi");
+
+            //    Dictionary.Add("toki-sewi", TokiSewi);
+            //    Glosses.Add("toki-sewi", glossMap);
+            //}
+
+
             {
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-sewi", new[] { "prayer" } );
-                    glossMap.Add("en", en);
-                }
-                TokiSewi = new CompoundWord("toki-sewi");
-
-                Dictionary.Add("toki-sewi", TokiSewi);
-                Glosses.Add("toki-sewi", glossMap);
-            }
-
-
-            {
-                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
-                {
-                    var en = new Dictionary<string, string[]>();
-                    en.Add("toki-pona-sewi", new[] { "prayer" } );
+                    en.Add("toki-pona-sewi", new[] { "prayer" });
                     glossMap.Add("en", en);
                 }
                 TokiPonaSewi = new CompoundWord("toki-pona-sewi");
@@ -23705,7 +23717,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-kama-en-toki-tawa", new[] { "context" } );
+                    en.Add("toki-kama-en-toki-tawa", new[] { "context" });
                     glossMap.Add("en", en);
                 }
                 TokiKamaEnTokiTawa = new CompoundWord("toki-kama-en-toki-tawa");
@@ -23719,7 +23731,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-kepeken-toki", new[] { "speak in tongues" } );
+                    en.Add("toki-kepeken-toki", new[] { "speak in tongues" });
                     glossMap.Add("en", en);
                 }
                 TokiKepekenToki = new CompoundWord("toki-kepeken-toki");
@@ -23733,7 +23745,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kalama-sewi", new[] { "speak in tongues" } );
+                    en.Add("kalama-sewi", new[] { "speak in tongues" });
                     glossMap.Add("en", en);
                 }
                 KalamaSewi = new CompoundWord("kalama-sewi");
@@ -23747,7 +23759,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-lon-nanpa", new[] { "talk about numbers" } );
+                    en.Add("toki-lon-nanpa", new[] { "talk about numbers" });
                     glossMap.Add("en", en);
                 }
                 TokiLonNanpa = new CompoundWord("toki-lon-nanpa");
@@ -23761,7 +23773,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-lukin", new[] { "written word"," text"," books"," etc" } );
+                    en.Add("toki-lukin", new[] { "written word", " text", " books", " etc" });
                     glossMap.Add("en", en);
                 }
                 TokiLukin = new CompoundWord("toki-lukin");
@@ -23775,7 +23787,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-nanpa", new[] { "computer language" } );
+                    en.Add("toki-nanpa", new[] { "computer language" });
                     glossMap.Add("en", en);
                 }
                 TokiNanpa = new CompoundWord("toki-nanpa");
@@ -23789,7 +23801,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-pi-jo-ike", new[] { "language which has bad things" } );
+                    en.Add("toki-pi-jo-ike", new[] { "language which has bad things" });
                     glossMap.Add("en", en);
                 }
                 TokiPiJoIke = new CompoundWord("toki-pi-jo-ike");
@@ -23803,7 +23815,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-pi-nanpa-suli", new[] { "language about large numbers" } );
+                    en.Add("toki-pi-nanpa-suli", new[] { "language about large numbers" });
                     glossMap.Add("en", en);
                 }
                 TokiPiNanpaSuli = new CompoundWord("toki-pi-nanpa-suli");
@@ -23817,7 +23829,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-pi-tenpo-ni", new[] { "current language" } );
+                    en.Add("toki-pi-tenpo-ni", new[] { "current language" });
                     glossMap.Add("en", en);
                 }
                 TokiPiTenpoNi = new CompoundWord("toki-pi-tenpo-ni");
@@ -23831,7 +23843,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-sin", new[] { "reply"," constructed language" } );
+                    en.Add("toki-sin", new[] { "reply", " constructed language" });
                     glossMap.Add("en", en);
                 }
                 TokiSin = new CompoundWord("toki-sin");
@@ -23845,7 +23857,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-suli", new[] { "article (in newspaper"," etc"," )``"," official language of a country" } );
+                    en.Add("toki-suli", new[] { "article (in newspaper", " etc", " )``", " official language of a country" });
                     glossMap.Add("en", en);
                 }
                 TokiSuli = new CompoundWord("toki-suli");
@@ -23859,7 +23871,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-tawa-ja-sewi", new[] { "pray (Christian)" } );
+                    en.Add("toki-tawa-ja-sewi", new[] { "pray (Christian)" });
                     glossMap.Add("en", en);
                 }
                 TokiTawaJaSewi = new CompoundWord("toki-tawa-ja-sewi");
@@ -23873,7 +23885,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-tawa-jan-sewi", new[] { "pray" } );
+                    en.Add("toki-tawa-jan-sewi", new[] { "pray" });
                     glossMap.Add("en", en);
                 }
                 TokiTawaJanSewi = new CompoundWord("toki-tawa-jan-sewi");
@@ -23887,7 +23899,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-wile", new[] { "vote" } );
+                    en.Add("toki-wile", new[] { "vote" });
                     glossMap.Add("en", en);
                 }
                 TokiWile = new CompoundWord("toki-wile");
@@ -23897,25 +23909,25 @@ public static CompoundWord MaTomoEnkon;
             }
 
 
+            //{
+            //    var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+            //    {
+            //        var en = new Dictionary<string, string[]>();
+            //        en.Add("tomo-awen", new[] { "prison" } );
+            //        glossMap.Add("en", en);
+            //    }
+            //    TomoAwen = new CompoundWord("tomo-awen");
+
+            //    Dictionary.Add("tomo-awen", TomoAwen);
+            //    Glosses.Add("tomo-awen", glossMap);
+            //}
+
+
             {
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-awen", new[] { "prison" } );
-                    glossMap.Add("en", en);
-                }
-                TomoAwen = new CompoundWord("tomo-awen");
-
-                Dictionary.Add("tomo-awen", TomoAwen);
-                Glosses.Add("tomo-awen", glossMap);
-            }
-
-
-            {
-                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
-                {
-                    var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-kiwen", new[] { "brick house" } );
+                    en.Add("tomo-kiwen", new[] { "brick house" });
                     glossMap.Add("en", en);
                 }
                 TomoKiwen = new CompoundWord("tomo-kiwen");
@@ -23929,7 +23941,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-moli", new[] { "death camp" } );
+                    en.Add("tomo-moli", new[] { "death camp" });
                     glossMap.Add("en", en);
                 }
                 TomoMoli = new CompoundWord("tomo-moli");
@@ -23943,7 +23955,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-nanpa-wan", new[] { "first house" } );
+                    en.Add("tomo-nanpa-wan", new[] { "first house" });
                     glossMap.Add("en", en);
                 }
                 TomoNanpaWan = new CompoundWord("tomo-nanpa-wan");
@@ -23957,7 +23969,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-pi-kasi-palisa", new[] { "stick house" } );
+                    en.Add("tomo-pi-kasi-palisa", new[] { "stick house" });
                     glossMap.Add("en", en);
                 }
                 TomoPiKasiPalisa = new CompoundWord("tomo-pi-kasi-palisa");
@@ -23971,7 +23983,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-pi-lipu-kasi", new[] { "straw house" } );
+                    en.Add("tomo-pi-lipu-kasi", new[] { "straw house" });
                     glossMap.Add("en", en);
                 }
                 TomoPiLipuKasi = new CompoundWord("tomo-pi-lipu-kasi");
@@ -23985,7 +23997,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-pi-lon-tenpo", new[] { "inn"," hotel"," boarding house" } );
+                    en.Add("tomo-pi-lon-tenpo", new[] { "inn", " hotel", " boarding house" });
                     glossMap.Add("en", en);
                 }
                 TomoPiLonTenpo = new CompoundWord("tomo-pi-lon-tenpo");
@@ -23999,7 +24011,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-tawa-pi-insa-ma", new[] { "subway" } );
+                    en.Add("tomo-tawa-pi-insa-ma", new[] { "subway" });
                     glossMap.Add("en", en);
                 }
                 TomoTawaPiInsaMa = new CompoundWord("tomo-tawa-pi-insa-ma");
@@ -24013,7 +24025,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-tawa-pi-linja-tu", new[] { "trolley" } );
+                    en.Add("tomo-tawa-pi-linja-tu", new[] { "trolley" });
                     glossMap.Add("en", en);
                 }
                 TomoTawaPiLinjaTu = new CompoundWord("tomo-tawa-pi-linja-tu");
@@ -24027,7 +24039,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("trenpo-suno-pi-moku-mute", new[] { "Thanksgiving Day (USA)" } );
+                    en.Add("trenpo-suno-pi-moku-mute", new[] { "Thanksgiving Day (USA)" });
                     glossMap.Add("en", en);
                 }
                 TrenpoSunoPiMokuMute = new CompoundWord("trenpo-suno-pi-moku-mute");
@@ -24041,7 +24053,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("uta-kiwen", new[] { "beak","  bill" } );
+                    en.Add("uta-kiwen", new[] { "beak", "  bill" });
                     glossMap.Add("en", en);
                 }
                 UtaKiwen = new CompoundWord("uta-kiwen");
@@ -24055,7 +24067,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wab-pi-kama-sona", new[] { "credit hour" } );
+                    en.Add("wab-pi-kama-sona", new[] { "credit hour" });
                     glossMap.Add("en", en);
                 }
                 WabPiKamaSona = new CompoundWord("wab-pi-kama-sona");
@@ -24069,7 +24081,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wan-kalama", new[] { "syllable" } );
+                    en.Add("wan-kalama", new[] { "syllable" });
                     glossMap.Add("en", en);
                 }
                 WanKalama = new CompoundWord("wan-kalama");
@@ -24083,7 +24095,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wan-lete-pi-sike-ma", new[] { "Arctic" } );
+                    en.Add("wan-lete-pi-sike-ma", new[] { "Arctic" });
                     glossMap.Add("en", en);
                 }
                 WanLetePiSikeMa = new CompoundWord("wan-lete-pi-sike-ma");
@@ -24097,7 +24109,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wan-pi-ma-lili-Mewika", new[] { "USA" } );
+                    en.Add("wan-pi-ma-lili-Mewika", new[] { "USA" });
                     glossMap.Add("en", en);
                 }
                 WanPiMaLiliMewika = new CompoundWord("wan-pi-ma-lili-Mewika");
@@ -24111,7 +24123,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wan-pi-ma-lili-mute", new[] { "USA" } );
+                    en.Add("wan-pi-ma-lili-mute", new[] { "USA" });
                     glossMap.Add("en", en);
                 }
                 WanPiMaLiliMute = new CompoundWord("wan-pi-ma-lili-mute");
@@ -24125,7 +24137,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wan-pi-ma-lili-mute-Mewika", new[] { "USA" } );
+                    en.Add("wan-pi-ma-lili-mute-Mewika", new[] { "USA" });
                     glossMap.Add("en", en);
                 }
                 WanPiMaLiliMuteMewika = new CompoundWord("wan-pi-ma-lili-mute-Mewika");
@@ -24139,7 +24151,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wan-pi-sona-toki", new[] { "language lesson" } );
+                    en.Add("wan-pi-sona-toki", new[] { "language lesson" });
                     glossMap.Add("en", en);
                 }
                 WanPiSonaToki = new CompoundWord("wan-pi-sona-toki");
@@ -24153,7 +24165,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wan-sona-toki", new[] { "language lesson" } );
+                    en.Add("wan-sona-toki", new[] { "language lesson" });
                     glossMap.Add("en", en);
                 }
                 WanSonaToki = new CompoundWord("wan-sona-toki");
@@ -24167,7 +24179,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("waso-kiwen", new[] { "airplane" } );
+                    en.Add("waso-kiwen", new[] { "airplane" });
                     glossMap.Add("en", en);
                 }
                 WasoKiwen = new CompoundWord("waso-kiwen");
@@ -24181,7 +24193,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("waso-pimeja", new[] { "crow"," raven" } );
+                    en.Add("waso-pimeja", new[] { "crow", " raven" });
                     glossMap.Add("en", en);
                 }
                 WasoPimeja = new CompoundWord("waso-pimeja");
@@ -24195,7 +24207,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("waso-toki", new[] { "parrot" } );
+                    en.Add("waso-toki", new[] { "parrot" });
                     glossMap.Add("en", en);
                 }
                 WasoToki = new CompoundWord("waso-toki");
@@ -24209,7 +24221,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wawa-pi-tu-wan", new[] { "power of three" } );
+                    en.Add("wawa-pi-tu-wan", new[] { "power of three" });
                     glossMap.Add("en", en);
                 }
                 WawaPiTuWan = new CompoundWord("wawa-pi-tu-wan");
@@ -24223,7 +24235,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("weka-pi-jan-jaku", new[] { "quarantine" } );
+                    en.Add("weka-pi-jan-jaku", new[] { "quarantine" });
                     glossMap.Add("en", en);
                 }
                 WekaPiJanJaku = new CompoundWord("weka-pi-jan-jaku");
@@ -24237,7 +24249,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("weka-tan-kama-sin-en-kama-moli", new[] { "moksha" } );
+                    en.Add("weka-tan-kama-sin-en-kama-moli", new[] { "moksha" });
                     glossMap.Add("en", en);
                 }
                 WekaTanKamaSinEnKamaMoli = new CompoundWord("weka-tan-kama-sin-en-kama-moli");
@@ -24251,7 +24263,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tepo-mute-lili", new[] { "sometimes" } );
+                    en.Add("tepo-mute-lili", new[] { "sometimes" });
                     glossMap.Add("en", en);
                 }
                 TepoMuteLili = new CompoundWord("tepo-mute-lili");
@@ -24265,7 +24277,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("unpa-lukin", new[] { "sexy looking" } );
+                    en.Add("unpa-lukin", new[] { "sexy looking" });
                     glossMap.Add("en", en);
                 }
                 UnpaLukin = new CompoundWord("unpa-lukin");
@@ -24279,7 +24291,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-nimi", new[] { "comics"," cartoons"," logogram (words wriitten with single character)" } );
+                    en.Add("sitelen-nimi", new[] { "comics", " cartoons", " logogram (words wriitten with single character)" });
                     glossMap.Add("en", en);
                 }
                 SitelenNimi = new CompoundWord("sitelen-nimi");
@@ -24293,7 +24305,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sike-lon-lili-pi-insa-wan", new[] { "cancer" } );
+                    en.Add("sike-lon-lili-pi-insa-wan", new[] { "cancer" });
                     glossMap.Add("en", en);
                 }
                 SikeLonLiliPiInsaWan = new CompoundWord("sike-lon-lili-pi-insa-wan");
@@ -24307,7 +24319,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wan-insa", new[] { "organ" } );
+                    en.Add("wan-insa", new[] { "organ" });
                     glossMap.Add("en", en);
                 }
                 WanInsa = new CompoundWord("wan-insa");
@@ -24321,7 +24333,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("toki-luka", new[] { "sign language" } );
+                    en.Add("toki-luka", new[] { "sign language" });
                     glossMap.Add("en", en);
                 }
                 TokiLuka = new CompoundWord("toki-luka");
@@ -24335,7 +24347,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("luka-nimi", new[] { "sign in sign language" } );
+                    en.Add("luka-nimi", new[] { "sign in sign language" });
                     glossMap.Add("en", en);
                 }
                 LukaNimi = new CompoundWord("luka-nimi");
@@ -24349,7 +24361,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("poka-pona", new[] { "right side" } );
+                    en.Add("poka-pona", new[] { "right side" });
                     glossMap.Add("en", en);
                 }
                 PokaPona = new CompoundWord("poka-pona");
@@ -24363,7 +24375,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("poka-ike", new[] { "left side" } );
+                    en.Add("poka-ike", new[] { "left side" });
                     glossMap.Add("en", en);
                 }
                 PokaIke = new CompoundWord("poka-ike");
@@ -24377,7 +24389,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-sewi", new[] { "hieroglyph (logogram)" } );
+                    en.Add("sitelen-sewi", new[] { "hieroglyph (logogram)" });
                     glossMap.Add("en", en);
                 }
                 SitelenSewi = new CompoundWord("sitelen-sewi");
@@ -24391,7 +24403,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sitelen-wan", new[] { "logogram (words wriitten with single character)" } );
+                    en.Add("sitelen-wan", new[] { "logogram (words wriitten with single character)" });
                     glossMap.Add("en", en);
                 }
                 SitelenWan = new CompoundWord("sitelen-wan");
@@ -24405,7 +24417,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("mi-sewi", new[] { "I win" } );
+                    en.Add("mi-sewi", new[] { "I win" });
                     glossMap.Add("en", en);
                 }
                 MiSewi = new CompoundWord("mi-sewi");
@@ -24419,7 +24431,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("musi-sike", new[] { "ball game (prob. Soccer)" } );
+                    en.Add("musi-sike", new[] { "ball game (prob. Soccer)" });
                     glossMap.Add("en", en);
                 }
                 MusiSike = new CompoundWord("musi-sike");
@@ -24433,7 +24445,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-pi-kasi-lili", new[] { "field"," yard"," lawn" } );
+                    en.Add("ma-pi-kasi-lili", new[] { "field", " yard", " lawn" });
                     glossMap.Add("en", en);
                 }
                 MaPiKasiLili = new CompoundWord("ma-pi-kasi-lili");
@@ -24447,7 +24459,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-sewi-pona", new[] { "Heaven" } );
+                    en.Add("ma-sewi-pona", new[] { "Heaven" });
                     glossMap.Add("en", en);
                 }
                 MaSewiPona = new CompoundWord("ma-sewi-pona");
@@ -24461,7 +24473,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-ike", new[] { "Hell" } );
+                    en.Add("ma-ike", new[] { "Hell" });
                     glossMap.Add("en", en);
                 }
                 MaIke = new CompoundWord("ma-ike");
@@ -24475,7 +24487,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("musi-pilin", new[] { "interesting" } );
+                    en.Add("musi-pilin", new[] { "interesting" });
                     glossMap.Add("en", en);
                 }
                 MusiPilin = new CompoundWord("musi-pilin");
@@ -24489,7 +24501,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("mije-lawa-olin-mi", new[] { "my man" } );
+                    en.Add("mije-lawa-olin-mi", new[] { "my man" });
                     glossMap.Add("en", en);
                 }
                 MijeLawaOlinMi = new CompoundWord("mije-lawa-olin-mi");
@@ -24503,7 +24515,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("meli-lawa-olin-mi", new[] { "my sweetheart" } );
+                    en.Add("meli-lawa-olin-mi", new[] { "my sweetheart" });
                     glossMap.Add("en", en);
                 }
                 MeliLawaOlinMi = new CompoundWord("meli-lawa-olin-mi");
@@ -24517,7 +24529,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-mama", new[] { "Nature" } );
+                    en.Add("ma-mama", new[] { "Nature" });
                     glossMap.Add("en", en);
                 }
                 MaMama = new CompoundWord("ma-mama");
@@ -24531,7 +24543,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("mute-ala-ike", new[] { "not enough"," insufficient" } );
+                    en.Add("mute-ala-ike", new[] { "not enough", " insufficient" });
                     glossMap.Add("en", en);
                 }
                 MuteAlaIke = new CompoundWord("mute-ala-ike");
@@ -24545,7 +24557,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("meli-suli", new[] { "old woman" } );
+                    en.Add("meli-suli", new[] { "old woman" });
                     glossMap.Add("en", en);
                 }
                 MeliSuli = new CompoundWord("meli-suli");
@@ -24559,7 +24571,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("mun-lili", new[] { "parentheses" } );
+                    en.Add("mun-lili", new[] { "parentheses" });
                     glossMap.Add("en", en);
                 }
                 MunLili = new CompoundWord("mun-lili");
@@ -24569,39 +24581,39 @@ public static CompoundWord MaTomoEnkon;
             }
 
 
+            //{
+            //    var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+            //    {
+            //        var en = new Dictionary<string, string[]>();
+            //        en.Add("mije-insa", new[] { "transexual" });
+            //        glossMap.Add("en", en);
+            //    }
+            //    MijeInsa = new CompoundWord("mije-insa");
+
+            //    Dictionary.Add("mije-insa", MijeInsa);
+            //    Glosses.Add("mije-insa", glossMap);
+            //}
+
+
+            //{
+            //    var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+            //    {
+            //        var en = new Dictionary<string, string[]>();
+            //        en.Add("meli-insa", new[] { "transexual" });
+            //        glossMap.Add("en", en);
+            //    }
+            //    MeliInsa = new CompoundWord("meli-insa");
+
+            //    Dictionary.Add("meli-insa", MeliInsa);
+            //    Glosses.Add("meli-insa", glossMap);
+            //}
+
+
             {
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("mije-insa", new[] { "transexual" } );
-                    glossMap.Add("en", en);
-                }
-                MijeInsa = new CompoundWord("mije-insa");
-
-                Dictionary.Add("mije-insa", MijeInsa);
-                Glosses.Add("mije-insa", glossMap);
-            }
-
-
-            {
-                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
-                {
-                    var en = new Dictionary<string, string[]>();
-                    en.Add("meli-insa", new[] { "transexual" } );
-                    glossMap.Add("en", en);
-                }
-                MeliInsa = new CompoundWord("meli-insa");
-
-                Dictionary.Add("meli-insa", MeliInsa);
-                Glosses.Add("meli-insa", glossMap);
-            }
-
-
-            {
-                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
-                {
-                    var en = new Dictionary<string, string[]>();
-                    en.Add("meli-jan", new[] { "Woman" } );
+                    en.Add("meli-jan", new[] { "Woman" });
                     glossMap.Add("en", en);
                 }
                 MeliJan = new CompoundWord("meli-jan");
@@ -24615,7 +24627,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Pijawi", new[] { "Prince Edward Island" } );
+                    en.Add("ma-Pijawi", new[] { "Prince Edward Island" });
                     glossMap.Add("en", en);
                 }
                 MaPijawi = new CompoundWord("ma-Pijawi");
@@ -24629,7 +24641,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Jukan", new[] { "Yukon" } );
+                    en.Add("ma-Jukan", new[] { "Yukon" });
                     glossMap.Add("en", en);
                 }
                 MaJukan = new CompoundWord("ma-Jukan");
@@ -24643,7 +24655,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Kaliponija", new[] { "California" } );
+                    en.Add("ma-Kaliponija", new[] { "California" });
                     glossMap.Add("en", en);
                 }
                 MaKaliponija = new CompoundWord("ma-Kaliponija");
@@ -24657,7 +24669,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Kanesika", new[] { "Connecticut" } );
+                    en.Add("ma-Kanesika", new[] { "Connecticut" });
                     glossMap.Add("en", en);
                 }
                 MaKanesika = new CompoundWord("ma-Kanesika");
@@ -24671,7 +24683,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Kepeka", new[] { "Quebec" } );
+                    en.Add("ma-Kepeka", new[] { "Quebec" });
                     glossMap.Add("en", en);
                 }
                 MaKepeka = new CompoundWord("ma-Kepeka");
@@ -24685,7 +24697,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Luwisijana", new[] { "Louisiana" } );
+                    en.Add("ma-Luwisijana", new[] { "Louisiana" });
                     glossMap.Add("en", en);
                 }
                 MaLuwisijana = new CompoundWord("ma-Luwisijana");
@@ -24699,7 +24711,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Manitopa", new[] { "Manitoba" } );
+                    en.Add("ma-Manitopa", new[] { "Manitoba" });
                     glossMap.Add("en", en);
                 }
                 MaManitopa = new CompoundWord("ma-Manitopa");
@@ -24713,7 +24725,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Masasusi", new[] { "Massachusetts" } );
+                    en.Add("ma-Masasusi", new[] { "Massachusetts" });
                     glossMap.Add("en", en);
                 }
                 MaMasasusi = new CompoundWord("ma-Masasusi");
@@ -24727,7 +24739,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Misikan", new[] { "Michigan" } );
+                    en.Add("ma-Misikan", new[] { "Michigan" });
                     glossMap.Add("en", en);
                 }
                 MaMisikan = new CompoundWord("ma-Misikan");
@@ -24741,7 +24753,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Nowasosa", new[] { "Nova Scotia" } );
+                    en.Add("ma-Nowasosa", new[] { "Nova Scotia" });
                     glossMap.Add("en", en);
                 }
                 MaNowasosa = new CompoundWord("ma-Nowasosa");
@@ -24755,7 +24767,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Nowetewetowi", new[] { "Northwest Territories" } );
+                    en.Add("ma-Nowetewetowi", new[] { "Northwest Territories" });
                     glossMap.Add("en", en);
                 }
                 MaNowetewetowi = new CompoundWord("ma-Nowetewetowi");
@@ -24769,7 +24781,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Nujoka", new[] { "New York" } );
+                    en.Add("ma-Nujoka", new[] { "New York" });
                     glossMap.Add("en", en);
                 }
                 MaNujoka = new CompoundWord("ma-Nujoka");
@@ -24783,7 +24795,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Nunanu", new[] { "Nunavut" } );
+                    en.Add("ma-Nunanu", new[] { "Nunavut" });
                     glossMap.Add("en", en);
                 }
                 MaNunanu = new CompoundWord("ma-Nunanu");
@@ -24797,7 +24809,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Nupansuwi", new[] { "New Brunswick" } );
+                    en.Add("ma-Nupansuwi", new[] { "New Brunswick" });
                     glossMap.Add("en", en);
                 }
                 MaNupansuwi = new CompoundWord("ma-Nupansuwi");
@@ -24811,7 +24823,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Nupenlan", new[] { "Newfoundland" } );
+                    en.Add("ma-Nupenlan", new[] { "Newfoundland" });
                     glossMap.Add("en", en);
                 }
                 MaNupenlan = new CompoundWord("ma-Nupenlan");
@@ -24825,7 +24837,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Nuwansa", new[] { "New Hampashire" } );
+                    en.Add("ma-Nuwansa", new[] { "New Hampashire" });
                     glossMap.Add("en", en);
                 }
                 MaNuwansa = new CompoundWord("ma-Nuwansa");
@@ -24839,7 +24851,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Owekan", new[] { "Oregon" } );
+                    en.Add("ma-Owekan", new[] { "Oregon" });
                     glossMap.Add("en", en);
                 }
                 MaOwekan = new CompoundWord("ma-Owekan");
@@ -24849,25 +24861,25 @@ public static CompoundWord MaTomoEnkon;
             }
 
 
+            //{
+            //    var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+            //    {
+            //        var en = new Dictionary<string, string[]>();
+            //        en.Add("ma-Pisi", new[] { "British Columbia" });
+            //        glossMap.Add("en", en);
+            //    }
+            //    MaPisi = new CompoundWord("ma-Pisi");
+
+            //    Dictionary.Add("ma-Pisi", MaPisi);
+            //    Glosses.Add("ma-Pisi", glossMap);
+            //}
+
+
             {
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Pisi", new[] { "British Columbia" } );
-                    glossMap.Add("en", en);
-                }
-                MaPisi = new CompoundWord("ma-Pisi");
-
-                Dictionary.Add("ma-Pisi", MaPisi);
-                Glosses.Add("ma-Pisi", glossMap);
-            }
-
-
-            {
-                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
-                {
-                    var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Powita", new[] { "Florida" } );
+                    en.Add("ma-Powita", new[] { "Florida" });
                     glossMap.Add("en", en);
                 }
                 MaPowita = new CompoundWord("ma-Powita");
@@ -24881,7 +24893,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Sakasuwan", new[] { "Saskatchewan" } );
+                    en.Add("ma-Sakasuwan", new[] { "Saskatchewan" });
                     glossMap.Add("en", en);
                 }
                 MaSakasuwan = new CompoundWord("ma-Sakasuwan");
@@ -24895,7 +24907,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Sosa", new[] { "Georgia" } );
+                    en.Add("ma-Sosa", new[] { "Georgia" });
                     glossMap.Add("en", en);
                 }
                 MaSosa = new CompoundWord("ma-Sosa");
@@ -24909,7 +24921,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Tesa", new[] { "Texas" } );
+                    en.Add("ma-Tesa", new[] { "Texas" });
                     glossMap.Add("en", en);
                 }
                 MaTesa = new CompoundWord("ma-Tesa");
@@ -24923,7 +24935,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Elopa", new[] { "Europe" } );
+                    en.Add("ma-Elopa", new[] { "Europe" });
                     glossMap.Add("en", en);
                 }
                 MaElopa = new CompoundWord("ma-Elopa");
@@ -24937,7 +24949,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-Enkon", new[] { "Hong Kong" } );
+                    en.Add("ma-Enkon", new[] { "Hong Kong" });
                     glossMap.Add("en", en);
                 }
                 MaEnkon = new CompoundWord("ma-Enkon");
@@ -24951,7 +24963,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-lili-Pijawi", new[] { "Prince Edward Island" } );
+                    en.Add("ma-lili-Pijawi", new[] { "Prince Edward Island" });
                     glossMap.Add("en", en);
                 }
                 MaLiliPijawi = new CompoundWord("ma-lili-Pijawi");
@@ -24965,7 +24977,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-lili-Jukan", new[] { "Yukon" } );
+                    en.Add("ma-lili-Jukan", new[] { "Yukon" });
                     glossMap.Add("en", en);
                 }
                 MaLiliJukan = new CompoundWord("ma-lili-Jukan");
@@ -24979,7 +24991,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-lili-Kaliponija", new[] { "California" } );
+                    en.Add("ma-lili-Kaliponija", new[] { "California" });
                     glossMap.Add("en", en);
                 }
                 MaLiliKaliponija = new CompoundWord("ma-lili-Kaliponija");
@@ -24993,7 +25005,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-lili-Kanesika", new[] { "Connecticut" } );
+                    en.Add("ma-lili-Kanesika", new[] { "Connecticut" });
                     glossMap.Add("en", en);
                 }
                 MaLiliKanesika = new CompoundWord("ma-lili-Kanesika");
@@ -25007,7 +25019,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-lili-Kepeka", new[] { "Quebec" } );
+                    en.Add("ma-lili-Kepeka", new[] { "Quebec" });
                     glossMap.Add("en", en);
                 }
                 MaLiliKepeka = new CompoundWord("ma-lili-Kepeka");
@@ -25021,7 +25033,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-lili-Luwisijana", new[] { "Louisiana" } );
+                    en.Add("ma-lili-Luwisijana", new[] { "Louisiana" });
                     glossMap.Add("en", en);
                 }
                 MaLiliLuwisijana = new CompoundWord("ma-lili-Luwisijana");
@@ -25035,7 +25047,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-lili-Manitopa", new[] { "Manitoba" } );
+                    en.Add("ma-lili-Manitopa", new[] { "Manitoba" });
                     glossMap.Add("en", en);
                 }
                 MaLiliManitopa = new CompoundWord("ma-lili-Manitopa");
@@ -25049,7 +25061,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-lili-Masasusi", new[] { "Massachusetts" } );
+                    en.Add("ma-lili-Masasusi", new[] { "Massachusetts" });
                     glossMap.Add("en", en);
                 }
                 MaLiliMasasusi = new CompoundWord("ma-lili-Masasusi");
@@ -25063,7 +25075,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-lili-Misikan", new[] { "Michigan" } );
+                    en.Add("ma-lili-Misikan", new[] { "Michigan" });
                     glossMap.Add("en", en);
                 }
                 MaLiliMisikan = new CompoundWord("ma-lili-Misikan");
@@ -25077,7 +25089,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-lili-Nowasosa", new[] { "Nova Scotia" } );
+                    en.Add("ma-lili-Nowasosa", new[] { "Nova Scotia" });
                     glossMap.Add("en", en);
                 }
                 MaLiliNowasosa = new CompoundWord("ma-lili-Nowasosa");
@@ -25091,7 +25103,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-lili-Nowetewetowi", new[] { "Northwest Territories" } );
+                    en.Add("ma-lili-Nowetewetowi", new[] { "Northwest Territories" });
                     glossMap.Add("en", en);
                 }
                 MaLiliNowetewetowi = new CompoundWord("ma-lili-Nowetewetowi");
@@ -25105,7 +25117,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-lili-Nujoka", new[] { "New York" } );
+                    en.Add("ma-lili-Nujoka", new[] { "New York" });
                     glossMap.Add("en", en);
                 }
                 MaLiliNujoka = new CompoundWord("ma-lili-Nujoka");
@@ -25119,7 +25131,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-lili-Nunanu", new[] { "Nunavut" } );
+                    en.Add("ma-lili-Nunanu", new[] { "Nunavut" });
                     glossMap.Add("en", en);
                 }
                 MaLiliNunanu = new CompoundWord("ma-lili-Nunanu");
@@ -25133,7 +25145,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-lili-Nupansuwi", new[] { "New Brunswick" } );
+                    en.Add("ma-lili-Nupansuwi", new[] { "New Brunswick" });
                     glossMap.Add("en", en);
                 }
                 MaLiliNupansuwi = new CompoundWord("ma-lili-Nupansuwi");
@@ -25147,7 +25159,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-lili-Nupenlan", new[] { "Newfoundland" } );
+                    en.Add("ma-lili-Nupenlan", new[] { "Newfoundland" });
                     glossMap.Add("en", en);
                 }
                 MaLiliNupenlan = new CompoundWord("ma-lili-Nupenlan");
@@ -25161,7 +25173,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-lili-Nuwansa", new[] { "New Hampashire" } );
+                    en.Add("ma-lili-Nuwansa", new[] { "New Hampashire" });
                     glossMap.Add("en", en);
                 }
                 MaLiliNuwansa = new CompoundWord("ma-lili-Nuwansa");
@@ -25175,7 +25187,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-lili-Owekan", new[] { "Oregon" } );
+                    en.Add("ma-lili-Owekan", new[] { "Oregon" });
                     glossMap.Add("en", en);
                 }
                 MaLiliOwekan = new CompoundWord("ma-lili-Owekan");
@@ -25189,7 +25201,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-lili-Pisi", new[] { "British Columbia" } );
+                    en.Add("ma-lili-Pisi", new[] { "British Columbia" });
                     glossMap.Add("en", en);
                 }
                 MaLiliPisi = new CompoundWord("ma-lili-Pisi");
@@ -25203,7 +25215,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-lili-Powita", new[] { "Florida" } );
+                    en.Add("ma-lili-Powita", new[] { "Florida" });
                     glossMap.Add("en", en);
                 }
                 MaLiliPowita = new CompoundWord("ma-lili-Powita");
@@ -25217,7 +25229,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-lili-Sakasuwan", new[] { "Saskatchewan" } );
+                    en.Add("ma-lili-Sakasuwan", new[] { "Saskatchewan" });
                     glossMap.Add("en", en);
                 }
                 MaLiliSakasuwan = new CompoundWord("ma-lili-Sakasuwan");
@@ -25231,7 +25243,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-lili-Sosa", new[] { "Georgia" } );
+                    en.Add("ma-lili-Sosa", new[] { "Georgia" });
                     glossMap.Add("en", en);
                 }
                 MaLiliSosa = new CompoundWord("ma-lili-Sosa");
@@ -25245,7 +25257,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-lili-Tesa", new[] { "Texas" } );
+                    en.Add("ma-lili-Tesa", new[] { "Texas" });
                     glossMap.Add("en", en);
                 }
                 MaLiliTesa = new CompoundWord("ma-lili-Tesa");
@@ -25259,7 +25271,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-suli-Elopa", new[] { "Europe" } );
+                    en.Add("ma-suli-Elopa", new[] { "Europe" });
                     glossMap.Add("en", en);
                 }
                 MaSuliElopa = new CompoundWord("ma-suli-Elopa");
@@ -25273,7 +25285,7 @@ public static CompoundWord MaTomoEnkon;
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Enkon", new[] { "Hong Kong" } );
+                    en.Add("ma-tomo-Enkon", new[] { "Hong Kong" });
                     glossMap.Add("en", en);
                 }
                 MaTomoEnkon = new CompoundWord("ma-tomo-Enkon");
@@ -25281,10 +25293,6 @@ public static CompoundWord MaTomoEnkon;
                 Dictionary.Add("ma-tomo-Enkon", MaTomoEnkon);
                 Glosses.Add("ma-tomo-Enkon", glossMap);
             }
-
-
-
         }
-
     }
 }

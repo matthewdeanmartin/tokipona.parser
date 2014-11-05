@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using BasicTypes.Dictionary;
 using BasicTypes.Exceptions;
 
 namespace BasicTypes.Parser
@@ -23,21 +25,7 @@ namespace BasicTypes.Parser
     /// </remarks>
     public class Normalizer
     {
-        public static bool IsNullWhiteOrPunctuation(string value)
-        {
-            if (string.IsNullOrWhiteSpace(value)) return true;
-
-
-            foreach (char c in value)
-            {
-                if (!"!.', !@#$%^&*())_[]|~`<>?:\n '»".Contains(c))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
+        
         public static string NormalizeText(string text, Dialect dialect = null)
         {
             //Console.WriteLine("Before: " + text);
@@ -65,6 +53,8 @@ namespace BasicTypes.Parser
                 normalized = RepairErrors(normalized);
             }
 
+            
+
             //Hyphenated words. This could cause a problem for compound words that cross lines.
             if (normalized.Contains("-\n"))
             {
@@ -81,15 +71,6 @@ namespace BasicTypes.Parser
             {
                 normalized = normalized.Replace("(","");
                 normalized = normalized.Replace(")", "");
-
-            }
-
-            
-
-            //Left overs from initial parsing.
-            if (normalized.Contains("[NULL]"))
-            {
-                normalized = normalized.Replace("[NULL]", "");
             }
 
             //Extraneous commas
@@ -100,18 +81,19 @@ namespace BasicTypes.Parser
                     normalized = normalized.Replace(s, " " + s.Trim(new char[] { ' ', ',' }) + " ");
                 }
             }
+            
 
-            //Line breaks & other white spaces make it harder to find boundaries
-            //jan li
-            //tawa. ==> jan li tawa.
-            normalized = normalized.Replace("\n", " ");
-
-
-            //Extraneous whitespace
-            while (normalized.Contains("  "))
+            //Left overs from initial parsing.
+            if (normalized.Contains("[NULL]"))
             {
-                normalized = normalized.Replace("  ", " ");
+                normalized = normalized.Replace("[NULL]", "");
             }
+
+            normalized = ProcessExtraneousWhiteSpace(normalized);
+
+
+            //Okay, phrases should be recognizable now.
+            normalized = ProcessCompoundWords(normalized);
 
 
             string[] preps = Particles.Prepositions;
@@ -377,28 +359,7 @@ namespace BasicTypes.Parser
 
             if (normalized.Contains("'"))
             {
-                StringBuilder sb = new StringBuilder();
-                bool open = true;
-                foreach (char c in normalized)
-                {
-                    if (c == '\'')
-                    {
-                        if (open)
-                        {
-                            sb.Append("«");
-                        }
-                        else
-                        {
-                            sb.Append("»");
-                        }
-                        open = !open;
-                    }
-                    else
-                    {
-                        sb.Append(c);
-                    }
-                }
-                normalized = sb.ToString();
+                normalized = AddDirectedQuotes(normalized);
             }
 
             if (normalized == fakePredicate)
@@ -409,6 +370,77 @@ namespace BasicTypes.Parser
             {
                 throw new InvalidOperationException("quote recognition went wrong: "  + text);
             }
+            return normalized;
+        }
+
+        private static string ProcessCompoundWords(string normalized)
+        {
+            foreach (var pair in CompoundWords.Dictionary.OrderBy(x=>x.Key.Length *-1))
+            {
+                //Need to treat la fragments separately.
+                if (pair.Key.EndsWith("-la")) continue;
+
+                string spacey= pair.Key.Replace("-", " ");
+                if (normalized.Contains(spacey))
+                {
+                    string savePoint = string.Copy(normalized);
+                    Regex r = new Regex(@"\b" + spacey +@"\b");
+                    var isIt = r.Match(normalized);
+                    if (isIt.Success)
+                    {
+                        //This won't replace on boundaries though.
+                        normalized = normalized.Replace(spacey, pair.Key.Trim(new char[] { ' ', '-' }));
+                    }
+                    if (normalized.Contains("-" + pair.Key) || normalized.Contains(pair.Key + "-"))
+                    {
+                        //Undo! We matched a word that crosses compound words. How is that even possible?
+                        normalized = savePoint;
+                    }
+                }
+            }
+            return normalized;
+        }
+
+        private static string ProcessExtraneousWhiteSpace(string normalized)
+        {
+//Line breaks & other white spaces make it harder to find boundaries
+            //jan li
+            //tawa. ==> jan li tawa.
+            normalized = normalized.Replace("\n", " ");
+
+
+            //Extraneous whitespace
+            while (normalized.Contains("  "))
+            {
+                normalized = normalized.Replace("  ", " ");
+            }
+            return normalized;
+        }
+
+        private static string AddDirectedQuotes(string normalized)
+        {
+            StringBuilder sb = new StringBuilder();
+            bool open = true;
+            foreach (char c in normalized)
+            {
+                if (c == '\'')
+                {
+                    if (open)
+                    {
+                        sb.Append("«");
+                    }
+                    else
+                    {
+                        sb.Append("»");
+                    }
+                    open = !open;
+                }
+                else
+                {
+                    sb.Append(c);
+                }
+            }
+            normalized = sb.ToString();
             return normalized;
         }
 
@@ -430,6 +462,22 @@ namespace BasicTypes.Parser
             }
             return normalized;
         }
+
+        public static bool IsNullWhiteOrPunctuation(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value)) return true;
+
+
+            foreach (char c in value)
+            {
+                if (!"!.', !@#$%^&*())_[]|~`<>?:\n '»".Contains(c))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
 
         private static string ProcessWhiteSpaceInForeignText(string normalized)
         {

@@ -135,9 +135,9 @@
     <Compile Include="MoreTypes\EnumerationThing.cs" />
     <Compile Include="MoreTypes\ParseOrDefault.cs" />
     <Compile Include="MoreTypes\SerializableDictionary.cs" />
-    <Compile Include="Parser\NormalizeChaos.cs" />
-    <Compile Include="Parser\Normalizer.cs" />
-    <Compile Include="Parser\NormalizerTests.cs" />
+    <Compile Include="Normalizer\NormalizeChaos.cs" />
+    <Compile Include="Normalizer\Normalizer.cs" />
+    <Compile Include="Normalizer\NormalizerTests.cs" />
     <Compile Include="Parser\ParserUtils.cs" />
     <Compile Include="Knowledge\PhoneNumbers.cs" />
     <Compile Include="Knowledge\PhoneNumberTests.cs" />
@@ -668,6 +668,7 @@
     <Content Include="Corpus\YahooMailingList\Salome\nasin nanpa.txt" />
     <Content Include="Corpus\YahooMailingList\Scott Redd\Our Father.txt" />
     <Content Include="Corpus\YahooMailingList\Sven Walper\Sapir Worf.txt" />
+    <Content Include="Normalizer\Normalizer.html" />
     <Content Include="notes.html" />
     <Content Include="Parts\PartsComments.html" />
   </ItemGroup>

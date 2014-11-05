@@ -19,9 +19,6 @@ namespace BasicTypes.Parts
             //For XML serialization only.
         }
 
-        [DataMember(IsRequired = true)]
-        private readonly string word;
-
         [DataMember(IsRequired = false,EmitDefaultValue = false)]
         private readonly Dictionary<string, Dictionary<string, string[]>> glossMap;
 
@@ -31,13 +28,15 @@ namespace BasicTypes.Parts
             {
                 throw new ArgumentNullException("word", "Can't construct words with null");
             }
-            if (!word.Contains("*") || word.Contains(" "))
+            word = ProcessPuncuation(word);
+            //!word.Contains("*")  foreign word might have no spaces
+            if (word.Contains(" "))
             {
-                throw new ArgumentNullException("word", "Normalized foreign words and phrases can have *, but no spaces");
+                throw new ArgumentNullException("word", "Normalized foreign words and phrases can have *, but no spaces [" + word + "]");
             }
             if (!(word.EndsWith("\"") && word.StartsWith("\"")))
             {
-                throw new InvalidLetterSetException("Must be bracketed by double quotes");
+                throw new InvalidLetterSetException("Must be bracketed by double quotes ["+ word +"]");
             }
             this.word = word;
         }
@@ -50,6 +49,11 @@ namespace BasicTypes.Parts
             { 
                 return word.Split('*').Select(x=>new Word(x)).ToArray();
             }
+        }
+
+        public string TryGloss(string language, string pos)
+        {
+            return "\"" + Text + "\"";
         }
     }
 }

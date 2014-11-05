@@ -11,6 +11,12 @@ namespace BasicTypes.Dictionary
     public class DictionaryTests
     {
         [Test]
+        public void BuildIt()
+        {
+            CompoundWords.BuildIt();
+        }
+
+        [Test]
         public void ExclamationsToday()
         {
             int count = 0;

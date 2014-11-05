@@ -351,5 +351,10 @@ namespace BasicTypes
                 return false;
             }
         }
+
+        public static string LookupForm(string value)
+        {
+            return value.Trim(new char[] { ',', '«', '»','!',' ' });
+        }
     }
 }

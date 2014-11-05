@@ -11,6 +11,23 @@ namespace BasicTypes.Parser
     [TestFixture]
     public class NormalizerTests
     {
+        //ko suno linja li lon ale, taso ni li ken kama kiwen kiwen kiwen kiwen li kama sijelo.
+        //[Test]
+        //public void ProllyAnotherWordBoundaryProblem()
+        //{
+        //    string s = "ko suno linja li lon ale, taso ni li ken kama kiwen kiwen kiwen kiwen li kama sijelo.";
+        //    string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+        //    Assert.AreEqual("ko-suno-linja li ~lon ale, taso ni li ken kama kiwen kiwen kiwen kiwen li kama sijelo.", normalized);
+        //}
+
+        [Test]
+        public void DontScrewUpLaCompoundNormalization()
+        {
+            string s="tan ni la soweli lili li tawa poki.";
+            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+            Assert.AreEqual("tan ni la soweli-lili li ~tawa poki.",normalized);
+        }
+
         [Test]
         public void NormalizeAllTextFiles()
         {

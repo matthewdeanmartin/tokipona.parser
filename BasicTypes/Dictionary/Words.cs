@@ -1855,7 +1855,8 @@ namespace BasicTypes
                 {
                     var en = new Dictionary<string, string[]>();
                     en.Add("adj", new[] { "this", "that" });
-
+                    en.Add("noun", new[] { "this", "that" });
+                    en.Add("pronoun", new[] { "this", "that" });
                     glossMap.Add("en", en);
                 }
                 {

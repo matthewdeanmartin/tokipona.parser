@@ -133,7 +133,7 @@ namespace BasicTypes
                 //Strictest test.
                 Word blah = Words.a;
                 Word test;
-                if (!Words.Dictionary.TryGetValue(prospectiveWord, out test))
+                if (!Words.Dictionary.TryGetValue(LookupForm(prospectiveWord), out test))
                 {
                     //Console.WriteLine(prospectiveWord[0].ToString().ToUpper());
                     //Console.WriteLine(prospectiveWord[0].ToString());
@@ -281,10 +281,29 @@ namespace BasicTypes
 
         }
 
-        private string TryGloss(string language, string pos)
+        public string TryGloss(string language, string pos)
         {
+            //HACK: This is wrong. Should be using Token or some other base class.
+            if (word.Contains("-"))
+            {
+                CompoundWord cw = new CompoundWord(Text);
+                return cw.TryGloss(language, pos);
+            }
+
+            //HACK: This is a proper modifer
+            if (LookupForm(word).IsFirstUpperCased())
+            {
+                if (!ProperModifier.IsProperModifer(LookupForm(word)))
+                {
+                    ForeignWord fw = new ForeignWord(word);
+                    return fw.TryGloss(language, pos);
+                }
+                ProperModifier cw = new ProperModifier(Text);
+                return cw.TryGloss(language, pos);
+            }
+
             Dictionary<string, Dictionary<string, string[]>> glossMap;
-            Words.Glosses.TryGetValue(word, out glossMap);
+            Words.Glosses.TryGetValue(LookupForm(word), out glossMap);
 
             if (glossMap == null)
             {

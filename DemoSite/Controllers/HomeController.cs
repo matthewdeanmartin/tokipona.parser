@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using BasicTypes;
 using BasicTypes.Glosser;
+using BasicTypes.Knowledge;
 using BasicTypes.Parser;
 using DemoSite.Models;
 
@@ -115,10 +116,28 @@ namespace DemoSite.Controllers
 
         public ActionResult Index()
         {
+            Random r= new Random(DateTime.Now.Millisecond);
+
+            string[] samples =
+                new string[]
+                {
+                CorpusTexts.UnpaText,
+                CorpusTexts.Gilgamesh,
+                CorpusTexts.SampleText1,
+                CorpusTexts.SampleText3,
+                CorpusTexts.Lao,
+                CorpusTexts.GeorgeSong,
+                    CorpusTexts.CrazyAnimal,
+                    CorpusTexts.CrazyAnimal2
+                    //,CorpusTexts.JanSin  //Too many neologisms to cope. 
+                    ,CorpusTexts.RuneDanceSong
+                    ,CorpusTexts.janPusaRice
+                    ,CorpusTexts.janPend,
+                    "nena meli li suli la monsi li suli kin."
+                };
             SimpleParserViewModel vm = new SimpleParserViewModel()
             {
-                SourceText = "nena meli li suli la monsi li suli kin."
-
+                SourceText = samples[r.Next(samples.Length)]
             };
             ProcessParserModel(vm);
             return View(vm);

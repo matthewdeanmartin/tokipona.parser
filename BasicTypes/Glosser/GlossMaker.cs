@@ -94,7 +94,7 @@ namespace BasicTypes.Glosser
                 j++;
                 if (j == 1)
                 {
-                    gloss.Add("is/does");
+                    gloss.Add("is");
                 }
                 else if (j != 1)
                 {
@@ -195,7 +195,7 @@ namespace BasicTypes.Glosser
             {
                 if (c == null)
                 {
-                    Console.WriteLine("WARN: No subject, but a non-null array. That is odd");
+                    //Imperatives have implicit subjects.
                     continue;
                 }
                 ProcessOneChain(includePos, gloss, config, c);

@@ -193,6 +193,12 @@ namespace BasicTypes
             {
                 switch (Text)
                 {
+                    case "en":
+                        return "and";
+                    case "anu":
+                        return "or";
+                    case "taso":
+                        return "but";
                     case "la":
                         return "then";
                     case "pi":
