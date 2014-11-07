@@ -365,7 +365,7 @@ namespace BasicTypes
         private static string[] modals = new string[]
         {
             "ken", "kama", "tawa", "awen", "wile", //jan Sonja
-            "pini", //Community usage
+            "open","pini", //Community usage
             "seme" //because seme can replace any content word, so this can replace a modal too! Odd but seemingly true.
         };
         public static string[] Modals

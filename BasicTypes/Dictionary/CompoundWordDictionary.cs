@@ -2886,7 +2886,7 @@ BuildIt();
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("ilo-pi-sitelen-toki", new[] { "pen. pencil", " etc." });
+                    en.Add("ilo-pi-sitelen-toki", new[] { "pen","pencil", " etc." });
                     glossMap.Add("en", en);
                 }
                 IloPiSitelenToki = new CompoundWord("ilo-pi-sitelen-toki");
@@ -3740,7 +3740,7 @@ BuildIt();
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-olin", new[] { "partner", " spouse", " significant other. loved one" });
+                    en.Add("jan-olin", new[] { "partner", " spouse", " significant other","loved one" });
                     glossMap.Add("en", en);
                 }
                 JanOlin = new CompoundWord("jan-olin");
@@ -4356,7 +4356,7 @@ BuildIt();
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-sona", new[] { "knowledgeable person", " wise person", " educated person", " academic", " specialist. Teacher", " scientist", " savant", " expert" });
+                    en.Add("jan-sona", new[] { "knowledgeable person", " wise person", " educated person", " academic", " specialist", "Teacher", " scientist", " savant", " expert" });
                     glossMap.Add("en", en);
                 }
                 JanSona = new CompoundWord("jan-sona");
@@ -5714,7 +5714,7 @@ BuildIt();
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kili-loje", new[] { "e.g. tomato", " apple" });
+                    en.Add("kili-loje", new[] { "tomato", " apple" });
                     glossMap.Add("en", en);
                 }
                 KiliLoje = new CompoundWord("kili-loje");
@@ -5728,7 +5728,7 @@ BuildIt();
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("kili-ma", new[] { "e.g. potato" });
+                    en.Add("kili-ma", new[] { "potato" });
                     glossMap.Add("en", en);
                 }
                 KiliMa = new CompoundWord("kili-ma");
@@ -12602,7 +12602,7 @@ BuildIt();
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-ni", new[] { "now", " the present", " at that time (indicated by previous sentence)" });
+                    en.Add("tenpo-ni", new[] { "now", " the present", "at that time" });
                     glossMap.Add("en", en);
                 }
                 TenpoNi = new CompoundWord("tenpo-ni");
@@ -13008,7 +13008,7 @@ BuildIt();
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pali-e-toki-linja", new[] { "spin a yarn. Tell a tale" });
+                    en.Add("pali-e-toki-linja", new[] { "spin a yarn","tell a tale" });
                     glossMap.Add("en", en);
                 }
                 PaliETokiLinja = new CompoundWord("pali-e-toki-linja");
@@ -13316,7 +13316,7 @@ BuildIt();
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-pali", new[] { "work(place)", " office", " factory ..." });
+                    en.Add("tomo-pali", new[] { "work(place)", " office", " factory" });
                     glossMap.Add("en", en);
                 }
                 TomoPali = new CompoundWord("tomo-pali");
@@ -13792,7 +13792,7 @@ BuildIt();
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pilin-ike-lon-kulupu", new[] { "be timid/shy. timidity" });
+                    en.Add("pilin-ike-lon-kulupu", new[] { "be timid/shy","timidity" });
                     glossMap.Add("en", en);
                 }
                 PilinIkeLonKulupu = new CompoundWord("pilin-ike-lon-kulupu");
@@ -14898,7 +14898,7 @@ BuildIt();
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sike-noka", new[] { "football (ball itself)", " football (i.e. soccer)" });
+                    en.Add("sike-noka", new[] { "football (ball itself)", " football","soccer)" });
                     glossMap.Add("en", en);
                 }
                 SikeNoka = new CompoundWord("sike-noka");
@@ -15262,7 +15262,7 @@ BuildIt();
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("sona-mute", new[] { "smart", " intelligent. Wise" });
+                    en.Add("sona-mute", new[] { "smart", " intelligent","wise" });
                     glossMap.Add("en", en);
                 }
                 SonaMute = new CompoundWord("sona-mute");
@@ -16578,7 +16578,7 @@ BuildIt();
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("telo-nasa-kasi", new[] { "beer (etc. - grain alcohol)" });
+                    en.Add("telo-nasa-kasi", new[] { "beer","grain alcohol" });
                     glossMap.Add("en", en);
                 }
                 TeloNasaKasi = new CompoundWord("telo-nasa-kasi");
@@ -17726,7 +17726,7 @@ BuildIt();
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tomo-sewi", new[] { "church. Religious house", " skyscraper" });
+                    en.Add("tomo-sewi", new[] { "church","Religious house", " skyscraper" });
                     glossMap.Add("en", en);
                 }
                 TomoSewi = new CompoundWord("tomo-sewi");
@@ -20302,7 +20302,7 @@ BuildIt();
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jelo-wawa", new[] { "strong. Intense yellow-green" });
+                    en.Add("jelo-wawa", new[] { "strong","intense yellow-green" });
                     glossMap.Add("en", en);
                 }
                 JeloWawa = new CompoundWord("jelo-wawa");
@@ -23157,7 +23157,7 @@ BuildIt();
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("soweli-kiwen", new[] { "automobile or train", " salami. Armadillo", " statue of animal" });
+                    en.Add("soweli-kiwen", new[] { "automobile or train", " salami","Armadillo", " statue of animal" });
                     glossMap.Add("en", en);
                 }
                 SoweliKiwen = new CompoundWord("soweli-kiwen");
@@ -24431,7 +24431,7 @@ BuildIt();
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("musi-sike", new[] { "ball game (prob. Soccer)" });
+                    en.Add("musi-sike", new[] { "ball game","soccer" });
                     glossMap.Add("en", en);
                 }
                 MusiSike = new CompoundWord("musi-sike");

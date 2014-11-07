@@ -6,8 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BasicTypes.Collections;
+using BasicTypes.Dictionary;
 using BasicTypes.Extensions;
 using BasicTypes.Globalization;
+using BasicTypes.Parts;
 
 namespace BasicTypes.Glosser
 {
@@ -75,11 +77,27 @@ namespace BasicTypes.Glosser
                 //Need ...?
             }
 
+            //mabye lots of fragents, all attached to the sentence.
             if (s.LaFragment != null && s.LaFragment.Count > 0)
             {
                 foreach (Chain bit in s.LaFragment )
                 {
-                    ProcessOneChain(includePos, gloss, config, bit);
+                    string ordinaryTp= bit.ToString("g").Replace(" ","-");
+                    if (!ordinaryTp.EndsWith("la"))
+                    {
+                        ordinaryTp = ordinaryTp + "-la";
+                    }
+                    CompoundWord cw = new CompoundWord(ordinaryTp);
+                    string attempt = cw.TryGloss("en", "noun");
+                    if (!attempt.StartsWith("["))
+                    {
+                        gloss.Add(attempt);
+                    }
+                    else
+                    {
+                        ProcessOneChain(includePos, gloss, config, bit);
+                    }
+                    
                 }
             }
 
@@ -143,17 +161,19 @@ namespace BasicTypes.Glosser
 
                             foreach (Word modifier in predicate.VerbPhrase.Adverbs)
                             {
-                                gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
+                                gloss.Add(GlossWithFallBack(includePos, config, modifier, PartOfSpeech.Adjective));
                             }
 
                             if (predicate.VerbPhrase.HeadVerb.ToString(PartOfSpeech.Noun, config).Contains("Error"))
                             {
                                 //Oh, this might be an adjective. jan li laso.
-                                gloss.Add(predicate.VerbPhrase.HeadVerb.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
+                               //gloss.Add(predicate.VerbPhrase.HeadVerb.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
+                                gloss.Add(GlossWithFallBack(includePos, config, predicate.VerbPhrase.HeadVerb, PartOfSpeech.Adjective));
                             }
                             else
                             {
-                                gloss.Add(predicate.VerbPhrase.HeadVerb.ToString(PartOfSpeech.Noun + ":" + includePos, config));
+                                //gloss.Add(predicate.VerbPhrase.HeadVerb.ToString(PartOfSpeech.Noun + ":" + includePos, config));
+                                gloss.Add(GlossWithFallBack(includePos, config, predicate.VerbPhrase.HeadVerb, PartOfSpeech.Noun));
                             }
                         }
                         else
@@ -165,7 +185,8 @@ namespace BasicTypes.Glosser
                                 foreach (Word modal in predicate.VerbPhrase.Modals)
                                 {
                                     //HACK: What no separate POS For modal verbs?
-                                    gloss.Add(modal.ToString(PartOfSpeech.VerbIntransitive + ":" + includePos, config));
+                                    //modal.ToString(PartOfSpeech.VerbIntransitive + ":" + includePos, config)
+                                    gloss.Add(GlossWithFallBack(includePos, config, modal, PartOfSpeech.VerbIntransitive));
                                 }
                             }
 
@@ -173,13 +194,7 @@ namespace BasicTypes.Glosser
                             {
                                 foreach (Word modifier in predicate.VerbPhrase.Adverbs)
                                 {
-                                    string maybeAdverb = modifier.ToString(PartOfSpeech.Adverb + ":" + includePos, config);
-                                    if (maybeAdverb.Contains("Error"))
-                                    {
-                                        //jan Sonja dictionary treats Adv & Adj the same.
-                                        maybeAdverb = modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config);
-                                    }
-                                    gloss.Add(maybeAdverb);
+                                    gloss.Add(GlossWithFallBack(includePos, config, modifier, PartOfSpeech.Adverb));
                                 }
                             }
 
@@ -209,13 +224,10 @@ namespace BasicTypes.Glosser
                             {
                                 foreach (Word modifier in hp.Modifiers)
                                 {
-                                    PartOfSpeech pos = PartOfSpeech.Adjective;
-                                    string adjectiveWithFallBack =
-                                        GlossWithFallBack(includePos, config, modifier, pos);
-                                    gloss.Add(adjectiveWithFallBack);
+                                    gloss.Add(GlossWithFallBack(includePos, config, modifier, PartOfSpeech.Adjective));
                                 }
 
-                                gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos, config));
+                                gloss.Add(GlossWithFallBack(includePos, config, hp.Head, PartOfSpeech.Noun));
                             }
                         }
                     }
@@ -237,9 +249,100 @@ namespace BasicTypes.Glosser
             }
         }
 
-        private static string GlossWithFallBack(bool includePos, Dialect config, Word modifier, PartOfSpeech pos)
+        public static string GlossWithFallBack(bool includePos, IFormatProvider config, Word word, PartOfSpeech pos)
         {
-            return modifier.ToString(pos+ ":" + includePos, config);
+            string firstAttempt= word.ToString(pos + ":" + includePos, config);
+
+            //Don't want fall backs or it was fine.
+            if (!(config as Dialect).GlossWithFallBacks || !firstAttempt.StartsWith("[Error"))
+            {
+                return firstAttempt;
+            }
+
+            if (pos.Value == PartOfSpeech.Adjective)
+            {
+                foreach (PartOfSpeech alt in new PartOfSpeech[]{ PartOfSpeech.Noun, PartOfSpeech.VerbIntransitive, PartOfSpeech.VerbTransitive, PartOfSpeech.Adverb })
+                {
+                    string tryAgain = word.ToString(alt + ":" + includePos, config);
+
+                    //Don't want fall backs or it was fine.
+                    if (!tryAgain.StartsWith("[Error"))
+                    {
+                        return tryAgain;
+                    }        
+                }
+            }
+            else if (pos.Value == PartOfSpeech.VerbIntransitive)
+            {
+                foreach (PartOfSpeech alt in new PartOfSpeech[] { PartOfSpeech.VerbIntransitive, PartOfSpeech.VerbTransitive, PartOfSpeech.Noun, PartOfSpeech.Adverb, PartOfSpeech.Adjective })
+                {
+                    string tryAgain = word.ToString(alt + ":" + includePos, config);
+
+                    //Don't want fall backs or it was fine.
+                    if (!tryAgain.StartsWith("[Error"))
+                    {
+                        return tryAgain;
+                    }
+                }
+            }
+            else if (pos.Value == PartOfSpeech.VerbIntransitive)
+            {
+                foreach (PartOfSpeech alt in new PartOfSpeech[] {  PartOfSpeech.VerbTransitive, PartOfSpeech.Noun, PartOfSpeech.Adverb, PartOfSpeech.Adjective })
+                {
+                    string tryAgain = word.ToString(alt + ":" + includePos, config);
+
+                    //Don't want fall backs or it was fine.
+                    if (!tryAgain.StartsWith("[Error"))
+                    {
+                        return tryAgain;
+                    }
+                }
+            }
+            else if (pos.Value == PartOfSpeech.VerbTransitive)
+            {
+                foreach (PartOfSpeech alt in new PartOfSpeech[] { PartOfSpeech.VerbIntransitive, PartOfSpeech.Noun, PartOfSpeech.Adverb, PartOfSpeech.Adjective })
+                {
+                    string tryAgain = word.ToString(alt + ":" + includePos, config);
+
+                    //Don't want fall backs or it was fine.
+                    if (!tryAgain.StartsWith("[Error"))
+                    {
+                        return tryAgain;
+                    }
+                }
+            }
+            else if (pos.Value == PartOfSpeech.Noun)
+            {
+                foreach (PartOfSpeech alt in new PartOfSpeech[] { PartOfSpeech.Adverb, PartOfSpeech.Adjective, PartOfSpeech.VerbIntransitive, PartOfSpeech.VerbTransitive})
+                {
+                    string tryAgain = word.ToString(alt + ":" + includePos, config);
+
+                    //Don't want fall backs or it was fine.
+                    if (!tryAgain.StartsWith("[Error"))
+                    {
+                        return tryAgain;
+                    }
+                }
+            }
+
+            string finalTryAgain = null;
+            //Try anything!
+            foreach (PartOfSpeech alt in new PartOfSpeech[]
+            {
+                PartOfSpeech.Kama, PartOfSpeech.Conjunction, PartOfSpeech.Pronoun, PartOfSpeech.Preposition, PartOfSpeech.Interjection, PartOfSpeech.Conditional, PartOfSpeech.Adverb,
+                PartOfSpeech.Noun, PartOfSpeech.Adjective,PartOfSpeech.VerbIntransitive, PartOfSpeech.VerbTransitive
+            })
+            {
+                finalTryAgain = word.ToString(alt + ":" + includePos, config);
+
+                //Don't want fall backs or it was fine.
+                if (!finalTryAgain.StartsWith("[Error"))
+                {
+                    return finalTryAgain;
+                }
+            }
+
+            return firstAttempt;
         }
 
         private static void ProcessSubjects(bool includePos, Sentence s, List<string> gloss, Dialect config)
@@ -333,7 +436,7 @@ namespace BasicTypes.Glosser
 
             foreach (Word modifier in hp.Modifiers)
             {
-                gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
+                gloss.Add(GlossWithFallBack(includePos, config,modifier, PartOfSpeech.Adjective));
             }
             if (shouldSupressJan)
             {
@@ -341,7 +444,7 @@ namespace BasicTypes.Glosser
             }
             else
             {
-                gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos, config));
+                gloss.Add(GlossWithFallBack(includePos, config, hp.Head, PartOfSpeech.Noun));
             }
         }
 
@@ -353,11 +456,12 @@ namespace BasicTypes.Glosser
                 //Leaf
                 foreach (HeadedPhrase hp in sub.HeadedPhrases)
                 {
-                    gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos, formatProvider));
+
+                    gloss.Add(GlossWithFallBack(includePos, formatProvider, hp.Head, PartOfSpeech.Noun));// hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos, formatProvider));
 
                     foreach (Word modifier in hp.Modifiers)
                     {
-                        gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, formatProvider));
+                        gloss.Add(GlossWithFallBack(includePos, formatProvider, modifier, PartOfSpeech.Adjective));
                     }
                 }
             }
