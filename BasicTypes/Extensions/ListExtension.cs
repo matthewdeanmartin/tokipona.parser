@@ -21,6 +21,14 @@ namespace BasicTypes.Extensions
             //Can be exact, or match despite extra stuff 
         }
 
+        public static void AddIfNeeded(this List<string> list, string marker, string format)
+        {
+            if (format.StartsWith("b"))
+            {
+                list.Add(marker);
+            }
+        }
+
         public static void AddRange(this List<string> list, Particle particle, IEnumerable<string> strings, string format, IFormatProvider formatProvider, bool hasParent)
         {
             int i = 0;
@@ -78,8 +86,8 @@ namespace BasicTypes.Extensions
                     {
                         if (index == 0) continue; //skip first space e.g. " foo"
                         if(index-1>0 && bracketedWithExtra[index-1]==' ') continue; //skip double, e.g. foo  bar
-                        if (index - 1 >= 0 && "<{[(#".Contains(bracketedWithExtra[index - 1])) continue; //previous was opening, e.g. "[ foo"
-                        if (index + 1 < bracketedWithExtra.Length && ">}])".Contains(bracketedWithExtra[index +1])) continue; //skip if upcoming is closing bracket e.g. foo)
+                        if (index - 1 >= 0 && "<{[(#\\".Contains(bracketedWithExtra[index - 1])) continue; //previous was opening, e.g. "[ foo"
+                        if (index + 1 < bracketedWithExtra.Length && ">}])/".Contains(bracketedWithExtra[index +1])) continue; //skip if upcoming is closing bracket e.g. foo)
 
                         //if (index - 1 > 0 && "<{[(".Contains(bracketedWithExtra[index - 1])) continue; //previous was opening, e.g. "[ foo"
 

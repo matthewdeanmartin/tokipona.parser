@@ -1,22 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.DesignerServices;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
 namespace BasicTypes.Parts
 {
+    /// <summary>
+    /// Words can be converted to .NET types such as integer, decimal, etc.
+    /// </summary>
+    /// <remarks>
+    /// Necessarily, this entails some degree of "community proposal"
+    /// </remarks>
+    [Serializable]
     public class Number:Token
     {
-        private string number;
-        public Number(string number)
+        public Number(string word)
         {
-            this.number = number;
+            this.word = word;
         }
 
-
-        //            0 ala (nothing)
+        //0 ala (nothing)
         //* 1 nena (nose) (or wan)
         //* 2 oko (eyes) (or tu)
         //3 kute (ears) (sum of everything inbetween)
@@ -145,6 +151,29 @@ namespace BasicTypes.Parts
             }
         }
 
-        
+
+        //The ordinal/cardinal split in TP is fundamentally borked
+        public static bool IsNumber(HeadedPhrase phrase)
+        {
+            if (WordByValue.Instance.Equals(phrase.Head, Words.nanpa))
+            {
+                //We have an ordinal...
+                return true;
+            }
+            //# numbers.
+            if(BodyNumbers.Contains(phrase.Head.Text) && phrase.Modifiers.All((x => Token.BodyNumbers.Contains(x.Text))))
+            {
+                return true;
+            }
+            if (StupidNumbers.Contains(phrase.Head.Text) &&  phrase.Modifiers.All(x => Token.StupidNumbers.Contains(x.Text)))
+            {
+                return true;
+            }
+            if (HalfStupidNumbers.Contains(phrase.Head.Text) &&  phrase.Modifiers.All(x => Token.HalfStupidNumbers.Contains(x.Text)))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

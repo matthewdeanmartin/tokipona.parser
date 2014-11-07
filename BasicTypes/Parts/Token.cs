@@ -49,15 +49,20 @@ namespace BasicTypes
         //The specific types have stricter constructors than the parent type.
         //And SO says that that is okay.
         //https://stackoverflow.com/questions/5490824/should-constructors-comply-with-the-liskov-substitution-principle
-        public Token(string word)
+        public Token(string word, bool iAmAPrepositionChain = false)
         {
-            if (String.IsNullOrWhiteSpace(word))
+            if (!iAmAPrepositionChain)
             {
-                throw new ArgumentNullException("word","Token can't be null or white space");
-            }
-            if (word.Contains(" "))
-            {
-                throw new ArgumentNullException("word", "Token can't contain white space-- must use *, - or other punctuation to join words into a single token : " + word);
+                if (String.IsNullOrWhiteSpace(word))
+                {
+                    throw new ArgumentNullException("word", "Token can't be null or white space");
+                }
+                if (word.Contains(" "))
+                {
+                    throw new ArgumentNullException("word",
+                        "Token can't contain white space-- must use *, - or other punctuation to join words into a single token : " +
+                        word);
+                }
             }
             if (word.Contains("\n"))
             {
@@ -103,13 +108,13 @@ namespace BasicTypes
             }
         }
 
-        private bool ValidateLetterSet(string value)
+        private static bool ValidateLetterSet(string value)
         {
             string lowerWord = value.ToLowerInvariant();
             return lowerWord.All(c => "jklmnpstwaeiou".Contains(c));
         }
 
-        public  bool ValidateCompoundWordLetterSet(string value)
+        public  static bool ValidateCompoundWordLetterSet(string value)
         {
             string lowerWord = value.ToLowerInvariant();
             return lowerWord.All(c => "jklmnpstwaeiou-".Contains(c));
@@ -140,7 +145,7 @@ namespace BasicTypes
             }
         }
 
-        public bool CheckIsValidPhonology(string value)
+        public static bool CheckIsValidPhonology(string value)
         {
 
             //Letters
@@ -360,13 +365,85 @@ namespace BasicTypes
         private static string[] modals = new string[]
         {
             "ken", "kama", "tawa", "awen", "wile", //jan Sonja
-            "pini" //Community usage
+            "pini", //Community usage
+            "seme" //because seme can replace any content word, so this can replace a modal too! Odd but seemingly true.
         };
         public static string[] Modals
         {
             get
             {
                 return modals;  
+            }
+        }
+
+        //poman, stupid, half-stupid, body
+
+        private static string[] pomanNumbers = new string[]
+        {
+            "W",//1
+            "T",//2
+            "L",//2
+            "M",//20
+            "A" //100
+        };
+        public static string[] PomanNumbers
+        {
+            get
+            {
+                return pomanNumbers;
+            }
+        }
+
+        private static string[] halfStupidNumbers = new string[]
+        {
+            "ala",//0
+            "wan",//1
+            "tu",//2
+            "luka",//2
+            "mute",//20
+            "ali", "ale" //100
+        };
+        public static string[] HalfStupidNumbers
+        {
+            get
+            {
+                return halfStupidNumbers;
+            }
+        }
+
+        private static string[] stupidNumbers = new string[]
+        {
+            "ala",
+            "wan",
+            "tu"
+        };
+        public static string[] StupidNumbers
+        {
+            get
+            {
+                return stupidNumbers;
+            }
+        }
+
+        private static string[] bodyNumbers = new string[]
+        {
+            "ala",
+            "nena", "wan",
+            "oko", "tu",
+            "kute",
+            "uta", 
+            "luka",
+            "insa",
+            "monsi",
+            "palisa", "lupa",
+            "noka"
+            //,"noka-pini"
+        };
+        public static string[] BodyNumbers
+        {
+            get
+            {
+                return bodyNumbers;
             }
         }
 

@@ -13,8 +13,8 @@ namespace BasicTypes.Collections
         [Test]
         public void CanSerialize()
         {
-            HeadedPhrase hp = new HeadedPhrase(Words.jan,new WordSet(){ Words.seme});
-            TpPredicate p = new TpPredicate(Particles.li, hp, ChainTests.SampleChain(), ChainTests.SampleChain());
+            VerbPhrase hp = new VerbPhrase(Words.jan,new WordSet(){ Words.seme});
+            TpPredicate p = new TpPredicate(Particles.li, hp, ChainTests.SampleChain(),ChainTests.SampleChain());
             Assert.NotNull(p.ToJsonDcJs());
         }
     }

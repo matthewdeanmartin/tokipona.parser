@@ -7,7 +7,12 @@ using System.Threading.Tasks;
 
 namespace BasicTypes
 {
-    //Unordered words.-- uh oh, this may be same concept as headed phrase.
+    /// <summary>
+    /// Unordered words.
+    /// </summary>
+    /// <remarks>
+    /// Oh oh, this may be same concept as headed phrase.
+    /// </remarks>
     [Serializable]
     public class WordSet : HashSet<Word>, IContainsWord, IFormattable, IToString
     {

@@ -495,7 +495,7 @@ namespace BasicTypes
             TokenParserUtils pu = new TokenParserUtils();
             Particle verbPhraseParticle = null;
             Chain directObjectChain = null;
-            HeadedPhrase verbPhrase = null;
+            VerbPhrase verbPhrase = null;
             Chain prepositionalChain = null;
             Chain nominalPredicate = null;
             //Transitive Path.
@@ -523,7 +523,7 @@ namespace BasicTypes
                     }
                     else
                     {
-                        verbPhrase = HeadedPhraseParser(ArrayExtensions.Tail(verbPhraseParts));
+                        verbPhrase = VerbPhraseParser(ArrayExtensions.Tail(verbPhraseParts));
 
                     }
                 }
@@ -611,7 +611,7 @@ namespace BasicTypes
                     }
                     else
                     {
-                        verbPhrase = HeadedPhraseParser(ArrayExtensions.Tail(verbPhraseParts));
+                        verbPhrase = VerbPhraseParser(ArrayExtensions.Tail(verbPhraseParts));
 
                     }
                 }
@@ -631,8 +631,8 @@ namespace BasicTypes
                         if (tail.Length == 0)
                         {
                             //uh oh. This is an intransitive verb, like "ni li lon"
-                            //HACK: Oh, this is so ugly
-                            verbPhrase = HeadedPhraseParser(new string[] { preposition.Replace("~", "") });
+                            //HACK: Oh, this is so ugly (still sort of ugly)
+                            verbPhrase = new VerbPhrase(new Word(preposition.Replace("~", "")));
                             //or a noun phrase.
 
                             continue;
@@ -661,6 +661,74 @@ namespace BasicTypes
                 return new TpPredicate(verbPhraseParticle, nominalPredicate, directObjectChain, prepositionalChain);
 
             }
+        }
+
+        private VerbPhrase VerbPhraseParser(string[] tokens)
+        {
+            //Adjectives & noun phrases will sneak in here. Maybe need more punctuation?
+
+            WordSet modals = new WordSet();
+            Word headVerb = null;
+            WordSet adverbs = new WordSet();
+            foreach (string token in tokens)
+            {
+                //modals until used up. Strictly by dictionary.
+                if (headVerb == null)
+                {
+                    if (Token.IsModal(token))
+                    {
+                        modals.Add(token);
+                        continue;
+                    }
+                }
+                
+                //head verb, only because we ran out of modals. (unless there is only one word!)
+                if (headVerb == null)
+                {
+                    headVerb = new Word(token); //If number, proper modifier, etc, then this is not really a verb!
+                    continue;
+                }
+                //Adverbs thereafter.
+                if (headVerb != null)
+                {
+                    adverbs.Add(token);   
+                }
+
+            }
+
+            if (headVerb == null)
+            {
+                //Shoot!
+                modals = new WordSet();
+                headVerb = null;
+                adverbs = new WordSet();
+                foreach (string token in tokens)
+                {
+                    //modals until used up. Strictly by dictionary.
+                    //if (headVerb == null)
+                    //{
+                    //    if (Token.IsModal(token))
+                    //    {
+                    //        modals.Add(token);
+                    //        continue;
+                    //    }
+                    //}
+
+                    //head verb, only because we ran out of modals. (unless there is only one word!)
+                    if (headVerb == null)
+                    {
+                        headVerb = new Word(token); //If number, proper modifier, etc, then this is not really a verb!
+                        continue;
+                    }
+                    //Adverbs thereafter.
+                    if (headVerb != null)
+                    {
+                        adverbs.Add(token);
+                    }
+                }
+            }
+
+            return new VerbPhrase(headVerb,modals,adverbs);
         }
 
         public List<Chain> ProcessPrepositionalPhrases(string[] partsWithPreps)

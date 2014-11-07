@@ -36,9 +36,10 @@ namespace BasicTypes.Collections
                 {
                     sb.AddRange(tpPredicate.NominalPredicate.ToTokenList(format, formatProvider));
                 }
-                else if (tpPredicate.VerbPhrases != null)
+                else if (tpPredicate.VerbPhrase != null)
                 {
-                    sb.AddRange(tpPredicate.VerbPhrases.ToTokenList(format, formatProvider, tpPredicate.Directs!=null));
+                    //, tpPredicate.Directs!=null
+                    sb.AddRange(tpPredicate.VerbPhrase.ToTokenList(format, formatProvider));
                 }
 
                 //Can have nominal predicate & direct object. (tranformative thingy)
@@ -69,7 +70,7 @@ namespace BasicTypes.Collections
 
         public override string ToString()
         {
-            return this.ToString(null, Config.CurrentDialect);
+            return this.ToString("g", Config.CurrentDialect);
         }
     }
 }

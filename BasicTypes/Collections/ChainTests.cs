@@ -58,6 +58,11 @@ namespace BasicTypes.Collections
             return c;
         }
 
+        public static VerbPhrase SampleVerbPhrase()
+        {
+            return  new VerbPhrase(Words.moku,new WordSet() {Words.ken}, new WordSet(){ Words.mute});
+        }
+
         [Test]
         public void ToStringTest()
         {

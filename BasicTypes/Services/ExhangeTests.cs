@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,7 +52,7 @@ namespace BasicTypes
             Particle e = Particles.e;
 
             Chain subject = new Chain(ChainType.Subjects, en, new[] { new HeadedPhrase(jan, null) });
-            HeadedPhrase verbs = new HeadedPhrase(jo, null);
+            VerbPhrase verbs = new VerbPhrase(Words.jo);
             
             Chain directs = new Chain(ChainType.Directs, e, new[] { new HeadedPhrase(nanpa, new WordSet() { fiveEtc }) });
             TpPredicate predicate = new TpPredicate(Particles.li, verbs, directs,null);
@@ -62,8 +63,6 @@ namespace BasicTypes
         private static Sentence EstablishAFact()
         {
             Word jan = Words.jan;
-            Particle li = Particles.li;
-            Word jo = Words.jo;
             Word nanpa = Words.nanpa;
             Word fiveEtc = new Word("555-1234");
 
@@ -71,7 +70,7 @@ namespace BasicTypes
             Particle e = Particles.e;
 
             Chain subject = new Chain(ChainType.Subjects, en, new[] { new HeadedPhrase(jan, null) });
-            HeadedPhrase verbs =  new HeadedPhrase(jo, null) ;
+            VerbPhrase verbs = new VerbPhrase(Words.jo);
             Chain directs = new Chain(ChainType.Directs, e, new[] { new HeadedPhrase(nanpa, new WordSet() { fiveEtc }) });
 
             TpPredicate predicate = new TpPredicate(Particles.li, verbs, directs, null);

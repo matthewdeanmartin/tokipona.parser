@@ -14,7 +14,7 @@ namespace BasicTypes.Parts
     // jan pona != jan-pona.
     // BUT
     // tomo pi telo nasa ==> tomo mute pi telo nasa   (Dear me, it's an infix)
-    // 
+    [Serializable]
     public class CompoundWord : Token
     {
         internal CompoundWord()

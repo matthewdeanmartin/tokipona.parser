@@ -225,14 +225,14 @@ namespace BasicTypes
         //Lossy, human oriented serialization.
         public override string ToString()
         {
-            return this.ToString("g", Config.CurrentDialect);
+            return this.ToString("g", Dialect.DialectFactory);
 
         }
 
-        public string ToString(string format)
-        {
-            return this.ToString(format, Config.CurrentDialect);
-        }
+        //public string ToString(string format)
+        //{
+        //    return this.ToString(format, Config.CurrentDialect);
+        //}
 
         public string ToString(string format, IFormatProvider formatProvider)
         {

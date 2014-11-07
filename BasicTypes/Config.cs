@@ -66,6 +66,7 @@ namespace BasicTypes
     [Serializable]
     public class Dialect : IFormatProvider
     {
+        
         public bool AllowMiOVerbPhrase { get; set; } //E.g. mi o moku. vs o mi moku.
         public int UpToVersion { get; set; } //oldest (1)| mani, pan, esun... (2)| kipisi,monsuta ...(3)| ... pu (4)|
         public bool StrictPos { get; set; } //e.g. vt must have e phrase, adj must follow head word, etc.
@@ -84,6 +85,7 @@ namespace BasicTypes
         public string WritingSystem { get; set; } //ToString to a prestige or utility script (e.g. pretty or compressed)
         public string WriteProperNounsInThisLanguage { get; set; }
         public string TargetGloss { get; set; } //Language letter codes, defaults to tp, thread is special & means culture of current computer.
+        public bool GlossWithFallBacks { get; set; } //Fallback to other POS if not found.
 
         //set to tp/en/eo/etc, e.g. ma tomo "New York" vs ma tomo Nujoku
 

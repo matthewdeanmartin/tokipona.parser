@@ -118,41 +118,76 @@ namespace BasicTypes.Glosser
                     verb = PartOfSpeech.VerbTransitive;
                 }
 
-                if (predicate.VerbPhrases != null) //This is possible
+                if (predicate.VerbPhrase != null) //This is possible
                 {
-                    if (predicate.VerbPhrases.Head.ToString(verb, config).Contains("Error"))
+                    if (predicate.VerbPhrase.NounComplement != null)
                     {
-                        foreach (Word modifier in predicate.VerbPhrases.Modifiers)
+                        if (verb == PartOfSpeech.VerbTransitive)
                         {
-                            gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
-                        }
-
-                        //Can't gloss as verb, assume we have a noun phrase
-                        if (predicate.VerbPhrases.Head.ToString(PartOfSpeech.Noun, config).Contains("Error"))
-                        {
-                            //Oh, this might be an adjective. jan li laso.
-                            gloss.Add(predicate.VerbPhrases.Head.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
+                            gloss.Add("transforms into ");
+                            ProcessOneChain(includePos, gloss, config, predicate.VerbPhrase.NounComplement);
+                            gloss.Add(", these targets: ");
                         }
                         else
                         {
-                            gloss.Add(predicate.VerbPhrases.Head.ToString(PartOfSpeech.Noun + ":" + includePos, config));
+                            ProcessOneChain(includePos, gloss, config, predicate.VerbPhrase.NounComplement);
                         }
                     }
                     else
                     {
-                        foreach (Word modifier in predicate.VerbPhrases.Modifiers)
+                        //Try to guess if this is a verb or something else.
+                        if (predicate.VerbPhrase.HeadVerb.ToString(verb, config).Contains("Error")
+                            && (predicate.VerbPhrase.Modals == null || predicate.VerbPhrase.Modals.Count == 0))
                         {
-                            string maybeAdverb = modifier.ToString(PartOfSpeech.Adverb + ":" + includePos, config);
-                            if (maybeAdverb.Contains("Error"))
+                            //No modals, Can't gloss as verb, assume we have a noun phrase
+
+                            foreach (Word modifier in predicate.VerbPhrase.Adverbs)
                             {
-                                //jan Sonja dictionary treats Adv & Adj the same.
-                                maybeAdverb = modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config);
+                                gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
                             }
-                            gloss.Add(maybeAdverb);
+
+                            if (predicate.VerbPhrase.HeadVerb.ToString(PartOfSpeech.Noun, config).Contains("Error"))
+                            {
+                                //Oh, this might be an adjective. jan li laso.
+                                gloss.Add(predicate.VerbPhrase.HeadVerb.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
+                            }
+                            else
+                            {
+                                gloss.Add(predicate.VerbPhrase.HeadVerb.ToString(PartOfSpeech.Noun + ":" + includePos, config));
+                            }
+                        }
+                        else
+                        {
+                            // I can really eat.
+                            // I can eat quickly. (uh-oh!)
+                            if (predicate.VerbPhrase.Modals != null)
+                            {
+                                foreach (Word modal in predicate.VerbPhrase.Modals)
+                                {
+                                    //HACK: What no separate POS For modal verbs?
+                                    gloss.Add(modal.ToString(PartOfSpeech.VerbIntransitive + ":" + includePos, config));
+                                }
+                            }
+
+                            if (predicate.VerbPhrase.Adverbs != null)
+                            {
+                                foreach (Word modifier in predicate.VerbPhrase.Adverbs)
+                                {
+                                    string maybeAdverb = modifier.ToString(PartOfSpeech.Adverb + ":" + includePos, config);
+                                    if (maybeAdverb.Contains("Error"))
+                                    {
+                                        //jan Sonja dictionary treats Adv & Adj the same.
+                                        maybeAdverb = modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config);
+                                    }
+                                    gloss.Add(maybeAdverb);
+                                }
+                            }
+
+                            gloss.Add(predicate.VerbPhrase.HeadVerb.ToString(verb, config));
                         }
 
-                        gloss.Add(predicate.VerbPhrases.Head.ToString(verb, config));
                     }
+                    
                 }
 
 
@@ -174,7 +209,10 @@ namespace BasicTypes.Glosser
                             {
                                 foreach (Word modifier in hp.Modifiers)
                                 {
-                                    gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
+                                    PartOfSpeech pos = PartOfSpeech.Adjective;
+                                    string adjectiveWithFallBack =
+                                        GlossWithFallBack(includePos, config, modifier, pos);
+                                    gloss.Add(adjectiveWithFallBack);
                                 }
 
                                 gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos, config));
@@ -197,6 +235,11 @@ namespace BasicTypes.Glosser
                     //leaf?
                 }
             }
+        }
+
+        private static string GlossWithFallBack(bool includePos, Dialect config, Word modifier, PartOfSpeech pos)
+        {
+            return modifier.ToString(pos+ ":" + includePos, config);
         }
 
         private static void ProcessSubjects(bool includePos, Sentence s, List<string> gloss, Dialect config)

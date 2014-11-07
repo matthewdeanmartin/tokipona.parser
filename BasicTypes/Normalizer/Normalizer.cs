@@ -380,6 +380,18 @@ namespace BasicTypes.Parser
                 //Need to treat la fragments separately.
                 if (pair.Key.EndsWith("-la")) continue;
 
+                //TODO: Can't distinguish these yet.
+                //ijo li wile sona e ni. //modal + verb
+                //mi pana e wile-sona ni.//question
+                foreach (string modal in Token.Modals)
+                {
+                    if (pair.Key.StartsWith(modal + "-"))
+                    {
+                        continue;
+                    }
+                }
+                
+
                 string spacey= pair.Key.Replace("-", " ");
                 if (normalized.Contains(spacey))
                 {

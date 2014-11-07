@@ -16,21 +16,9 @@ using System.Collections.ObjectModel;
 
 namespace BasicTypes
 {
-
     [DataContract]
     [Serializable]
-    public class SentenceOptionalParts
-    {
-        public bool IsHortative { get; set; } //o
-        public Particle Conjunction { get; set; }//anu, taso
-        public Chain Fragments { get; set; } // x la ni la 
-        //Basic Sentence goes here. S+V+PP
-        public Punctuation Punctuation { get; set; }//.?!
-    }
-
-    [DataContract]
-    [Serializable]
-    public class Sentence : IContainsWord, IFormattable, IToString
+    public partial class Sentence : IContainsWord, IFormattable, IToString
     {
         [DataMember]
         private readonly Sentence conclusion;
@@ -237,7 +225,7 @@ namespace BasicTypes
 
         public override string ToString()
         {
-            return this.ToString(null, Config.CurrentDialect);
+            return this.ToString("g", Config.CurrentDialect);
         }
 
         public string ToString(string format, IFormatProvider formatProvider)
@@ -280,6 +268,11 @@ namespace BasicTypes
                 }
             }
 
+            if (spaceJoined.Contains(" , "))
+            {
+                spaceJoined = spaceJoined.Replace(" , ", ", ");
+            }
+
             if (format != "bs")
             {
                 string result = Denormalize(spaceJoined, format);
@@ -315,10 +308,10 @@ namespace BasicTypes
                 {
                     foreach (Chain chain in LaFragment)
                     {
-                        sb.Add("{");
+                        sb.AddIfNeeded("{",format);
                         sb.AddRange(chain.ToTokenList(format, formatProvider));
                         sb.Add(Particles.la.ToString(format, formatProvider));
-                        sb.Add("}");
+                        sb.AddIfNeeded("}",format);   
                     }
                 }
 
@@ -326,19 +319,19 @@ namespace BasicTypes
                 if (subjects != null)
                 {
                     //Should only happen for imperatives
-                    sb.Add("[");
+                    sb.AddIfNeeded("[",format);
                     sb.AddRange(Particles.en,
                         subjects.Select(x => x == null ? "[NULL]" : x.ToString(format, formatProvider)), format, formatProvider, false);
-                    sb.Add("]");
+                    sb.AddIfNeeded("]",format);
                 }
                 else
                 {
                     Console.WriteLine("This was surprising.. no subjects");
                 }
 
-                sb.Add("<");
+                sb.AddIfNeeded("<",format);
                 sb.AddRange(Predicates.ToTokenList(format, formatProvider));
-                sb.Add(">");
+                sb.AddIfNeeded(">",format);
             }
 
 
@@ -398,28 +391,7 @@ namespace BasicTypes
         }
 
 
-        public static Sentence Parse(string value, IFormatProvider formatProvider)
-        {
-            if (string.IsNullOrEmpty(value))
-            {
-                throw new ArgumentException("value is null or zero length string");
-            }
-            return SentenceTypeConverter.Parse(value, formatProvider);
-        }
-
-        public static bool TryParse(string value,  IFormatProvider formatProvider, out Sentence result)
-        {
-            try
-            {
-                result = SentenceTypeConverter.Parse(value, formatProvider);
-                return true;
-            }
-            catch (Exception)
-            {
-                result = null;
-                return false;
-            }
-        }
+        
 
         public bool HasPunctuation()
         {

@@ -9,7 +9,6 @@ using BasicTypes.MoreTypes;
 namespace BasicTypes.Parts
 {
     [Serializable]
-    
     public class GlossMap : Dictionary<string, Word>
     {
         public GlossMap()

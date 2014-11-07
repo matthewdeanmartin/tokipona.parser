@@ -16,7 +16,7 @@ namespace BasicTypes.Glosser
         [Test]
         public void MissingFragment()
         {
-            string s = "tan ni la kala akesi li kama , tawa selo pi telo-suli.";
+            string s = "tan ni la kala akesi li kama, tawa selo pi telo-suli.";
             GlossMaker gm = new GlossMaker();
             Console.WriteLine(gm.Gloss(s, s));
             Console.WriteLine(gm.Gloss(s, s));

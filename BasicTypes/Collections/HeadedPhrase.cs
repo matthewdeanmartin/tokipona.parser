@@ -11,12 +11,16 @@ using BasicTypes.Parts;
 
 namespace BasicTypes
 {
-    //Pretty little girls school==> a school characterized by pretty, little and girls.
-    //i.e. same as girls school & little school & pretty school, etc.
+    /// <summary>
+    /// Phrase with no particles. Head word is special, subsequent words might not be ordered.
+    /// </summary>
     [DataContract]
     [Serializable]
     public class HeadedPhrase : IContainsWord, IFormattable, IToString
     {
+        //Pretty little girls school==> a school characterized by pretty, little and girls.
+        //i.e. same as girls school & little school & pretty school, etc.
+
         [DataMember]
         private readonly Word head;
         [DataMember]
@@ -114,19 +118,15 @@ namespace BasicTypes
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            var words = ToTokenList(format,formatProvider,false);
+            var words = ToTokenList(format,formatProvider);
             return words.SpaceJoin(format);
         }
 
-        public List<string> ToTokenList(string format, IFormatProvider formatProvider, bool isVerbTransitive)
+        public List<string> ToTokenList(string format, IFormatProvider formatProvider)
         {
              
             List<string> words = new List<string>();
-            if (isVerbTransitive)
-            {
-                words.Add("#");
-            }
-            words.Add("#");
+            
 
             words.Add(head.ToString(format,formatProvider));
             if (Modifiers != null && Modifiers.Count > 0)

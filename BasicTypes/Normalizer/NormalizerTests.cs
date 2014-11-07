@@ -59,7 +59,7 @@ namespace BasicTypes.Parser
             string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
             Console.WriteLine("Normalized: " + normalized);
 
-            const string expected = "taso sina li ~tawa ma Mewika la sina li ken kama jo e ijo mute ~kepeken ona.";
+            const string expected = "taso sina li ~tawa ma-Mewika la sina li ken kama jo e ijo mute ~kepeken ona.";
             Assert.AreEqual(expected, normalized);
         }
 
@@ -72,7 +72,7 @@ namespace BasicTypes.Parser
             string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
             Console.WriteLine("Normalized: " + normalized);
             //sina li toki e ni: 
-            const string expected = "nena meli kin li tawa en tan li kama nena pi suli en kiwen.";
+            const string expected = "nena-meli kin li tawa en tan li kama nena pi suli en kiwen.";
             Assert.AreEqual(expected, normalized);
         }
 

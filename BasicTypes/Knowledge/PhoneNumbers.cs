@@ -46,7 +46,7 @@ namespace BasicTypes.Knowledge
             Chain subject = new Chain(ChainType.Subjects, en, 
                 new[] { new HeadedPhrase(jan, new WordSet(){ name}) });
             //Chain verbs = new Chain(ChainType.Predicates, li, new[] { new HeadedPhrase(jo, null) });
-            HeadedPhrase verb = new HeadedPhrase(Words.jo,null);
+            VerbPhrase verb = new VerbPhrase(Words.jo);
             Chain directs = new Chain(ChainType.Directs, e, new[] { new HeadedPhrase(nanpa, new WordSet() { fiveEtc }) });
 
             TpPredicate predicate = new TpPredicate(Particles.li, verb, directs, null);

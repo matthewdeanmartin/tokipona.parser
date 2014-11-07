@@ -9,23 +9,15 @@ using System.Threading.Tasks;
 using BasicTypes.Collections;
 using BasicTypes.Diagnostics;
 using BasicTypes.Extensions;
+using BasicTypes.Parts;
 using KellermanSoftware.CompareNetObjects;
 using NUnit.Framework.Constraints;
 
 namespace BasicTypes
 {
-    public enum ChainType
-    {
-        None = 0,
-        Subjects = 1, //Chain of en
-        NounVerbPhrase = 2,//Chain of pi (can be a VP
-        Predicates = 3, //Chain of li
-        Directs = 4,//Chain of e
-        Prepositionals = 5, //Chain lon(*) (phrases split by any prep)
-        Fragments = 6
-    }
-
-    //Chains of particles
+    /// <summary>
+    /// Phrases joined by potentially heterogeneous particles.
+    /// </summary>
     [DataContract]
     [Serializable]
     public partial class Chain : IContainsWord, IFormattable, IToString
@@ -178,8 +170,33 @@ namespace BasicTypes
 
         public override string ToString()
         {
-            return this.ToString(null, Config.CurrentDialect);
+            return this.ToString("g", Config.CurrentDialect);
         }
 
+        public static bool IsPlural(Chain value)
+        {
+            if (value.Contains(Words.mute)) return true;
+            if (value.Contains(Words.kulupu)) return true; //Lexically sort of plural
+            if (value.Contains(Words.tu)) return true; //Number
+            //Other numbers need to detect.
+            foreach (HeadedPhrase phrase in value.HeadedPhrases)
+            {
+                if (Number.IsNumber(phrase)) return true;
+            }
+            return false;
+        }
     }
+
+
+    public enum ChainType
+    {
+        None = 0,
+        Subjects = 1, //Chain of en
+        NounVerbPhrase = 2,//Chain of pi (can be a VP
+        Predicates = 3, //Chain of li
+        Directs = 4,//Chain of e
+        Prepositionals = 5, //Chain lon(*) (phrases split by any prep)
+        Fragments = 6
+    }
+
 }

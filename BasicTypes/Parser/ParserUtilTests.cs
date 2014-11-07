@@ -30,7 +30,7 @@ namespace BasicTypes.Parser
                 {
                     Word w = new Word(word);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     Console.WriteLine("Uh-oh: " + word);
                 }
@@ -468,8 +468,8 @@ namespace BasicTypes.Parser
             ParserUtils pu = new ParserUtils(c);
 
             TpPredicate predicate = pu.ProcessPredicates("li soweli lili");
-            Assert.AreEqual("soweli", predicate.VerbPhrases.Head.Text);
-            Assert.AreEqual("lili", predicate.VerbPhrases.Modifiers.First().Text);
+            Assert.AreEqual("soweli", predicate.VerbPhrase.HeadVerb.Text);
+            Assert.AreEqual("lili", predicate.VerbPhrase.Adverbs.First().Text);
         }
 
     }

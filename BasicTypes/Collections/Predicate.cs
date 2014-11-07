@@ -9,7 +9,9 @@ using BasicTypes.Extensions;
 
 namespace BasicTypes.Collections
 {
-    //Stuff after the 1st li, never itself contains li.
+    /// <summary>
+    /// Stuff after the first li, never itself contains li.
+    /// </summary>
     [DataContract]
     [Serializable]
     public class TpPredicate : IContainsWord, IFormattable, IToString
@@ -18,7 +20,7 @@ namespace BasicTypes.Collections
         private readonly Particle particle;
 
         [DataMember]
-        private readonly HeadedPhrase verbPhrases; //Currently assumes verb+ adverbs* 
+        private readonly VerbPhrase verbPhrase; 
 
         [DataMember]
         private readonly Chain directs;
@@ -26,7 +28,8 @@ namespace BasicTypes.Collections
         private readonly Chain prepositionals;
         [DataMember]
         private readonly Chain nominalPredicate;
-        public TpPredicate(Particle particle, Chain nominalPredicate, Chain directs, Chain prepositionals)
+
+        public TpPredicate(Particle particle, Chain nominalPredicate, Chain directs = null, Chain prepositionals = null)
         {
             if (particle.Text != Particles.o.Text && particle.Text != Particles.li.Text)
             {
@@ -48,37 +51,37 @@ namespace BasicTypes.Collections
             this.prepositionals = prepositionals;//only ~prop, pi, en 
         }
 
-        public TpPredicate(Particle particle,  HeadedPhrase verbPhrases, Chain directs, Chain prepositionals)
+        public TpPredicate(Particle particle, VerbPhrase verbPhrase, Chain directs=null, Chain prepositionals=null)
         {
             if (particle.Text != Particles.o.Text && particle.Text != Particles.li.Text)
             {
                 throw new TpSyntaxException("Tp Predicate can only have a Predicate headed by li or o-- got " + particle.Text);
             }
-            if (verbPhrases == null && prepositionals == null)
+            if (verbPhrase == null && prepositionals == null)
             {
                 throw new TpSyntaxException("A verb phrase or prepositional phrase required. (Directs are optional)");
             }
-            if (verbPhrases ==null && directs==null && prepositionals ==null)
+            if (verbPhrase ==null && directs==null && prepositionals ==null)
             {
                 throw new TpSyntaxException("Verb, directs and prepositional phrases all null, not good");
             }
 
             //TODO: Validate. 
             this.particle = particle;//li or o
-            this.verbPhrases = verbPhrases; //only pi, en
+            this.verbPhrase = verbPhrase; //only pi, en
             this.directs = directs;//only e, pi, en
             this.prepositionals = prepositionals;//only ~prop, pi, en 
         }
 
         public Particle Particle { get { return particle; } }
-        public HeadedPhrase VerbPhrases { get { return verbPhrases; } }
+        public VerbPhrase VerbPhrase { get { return verbPhrase; } }
         public Chain Directs { get { return directs; } }
         public Chain Prepositionals { get { return prepositionals; } }
         public Chain NominalPredicate { get { return nominalPredicate; } }
 
         public bool Contains(Word word)
         {
-            List<IContainsWord> chains = new List<IContainsWord>() { verbPhrases, directs, prepositionals };
+            List<IContainsWord> chains = new List<IContainsWord>() { verbPhrase, directs, prepositionals };
             return chains.Any(x => x != null && x.Contains(word));
         }
 
@@ -97,7 +100,7 @@ namespace BasicTypes.Collections
 
         public override string ToString()
         {
-            return this.ToString(null, Config.CurrentDialect);
+            return this.ToString("g", Config.CurrentDialect);
         }
 
         public string ToString(string format, IFormatProvider formatProvider)
@@ -111,9 +114,7 @@ namespace BasicTypes.Collections
         {
             List<string> sb = new List<string>();
 
-            sb.Add(verbPhrases.Head.ToString());
-            sb.AddRange(verbPhrases.Modifiers.Select(x => x.ToString(format, formatProvider)));
-
+            sb.AddRange(verbPhrase.ToTokenList(format, formatProvider));
 
             foreach (Chain chain in new[] {directs, Prepositionals})
             {
@@ -147,9 +148,10 @@ namespace BasicTypes.Collections
 
         public override bool Equals(TpPredicate x, TpPredicate y)
         {
-            return ChainByValue.Instance.Equals(x.Directs, y.Directs)
-                   && ChainByValue.Instance.Equals(x.Prepositionals, y.Prepositionals)
-                   && HeadPhraseByValue.Instance.Equals(x.VerbPhrases, y.VerbPhrases);
+            throw new NotImplementedException("Doh! Soon.");
+            //return ChainByValue.Instance.Equals(x.Directs, y.Directs)
+            //       && ChainByValue.Instance.Equals(x.Prepositionals, y.Prepositionals)
+            //       && HeadPhraseByValue.Instance.Equals(x.VerbPhrase, y.VerbPhrase);
         }
 
         public override int GetHashCode(TpPredicate obj)

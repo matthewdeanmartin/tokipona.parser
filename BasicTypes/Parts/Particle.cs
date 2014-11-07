@@ -14,12 +14,21 @@ namespace BasicTypes
     [Serializable]
     public class Particle : Token, IFormattable, IToString
     {
-        [DataMember]
-        private readonly string particle;
+        
 
         [DataMember]
         private readonly bool middleOnly;
 
+        //These can't be content words ever, ever, ever.
+        //This compares to kepeken (verb), taso (adj), etc.
+        public static string[] NonContentPrticles= new string[]
+        {
+            "la", 
+            "li",
+            "o", //exclamation
+            "pi",
+            "e"
+        };
 
         public static string[] dictionary = new string[]
         {
@@ -32,7 +41,7 @@ namespace BasicTypes
             //"taso",//Sentence conj. - 
 
             "li",
-            "o", //overlays li
+            "o", //overlays li, also exclamation, & vocative
             "pi",
             "e",
             "~lon",
@@ -43,7 +52,7 @@ namespace BasicTypes
             "~sama"
         };
 
-        public Particle(string particle, bool iAmAPrepositionChain = true)
+        public Particle(string particle, bool iAmAPrepositionChain = false):base(particle, iAmAPrepositionChain)
         {
             if (!iAmAPrepositionChain)
             {
@@ -57,7 +66,7 @@ namespace BasicTypes
 
             //TODO: Validate, particles is a closed class.
 
-            this.particle = particle;
+            this.word= particle;
             if (particle == "en" || particle == "pi" || particle == " ")
             {
                 middleOnly = true;
@@ -68,7 +77,7 @@ namespace BasicTypes
             }
         }
 
-        public string Text { get { return particle; } }
+        
         public bool MiddleOnly { get { return middleOnly; } }
         public bool PreComma { get { return preComma; }}
         public bool PostComma { get { return postComma; } }
@@ -76,7 +85,7 @@ namespace BasicTypes
         public override string ToString()
         {
 
-            return ToString("g", CultureInfo.CurrentCulture);
+            return ToString("g", Dialect.DialectFactory);
         }
 
         public string[] SupportedsStringFormats
@@ -87,10 +96,10 @@ namespace BasicTypes
             }
         }
 
-        public string ToString(string format)
-        {
-            return ToString(format, CultureInfo.CurrentCulture);
-        }
+        //public string ToString(string format)
+        //{
+        //    return ToString(format, CultureInfo.CurrentCulture);
+        //}
 
         //Dupe
         public string ToString(string format, IFormatProvider formatProvider)
@@ -278,7 +287,7 @@ namespace BasicTypes
                 return false;
             }
             string[] parts = phrase.Split(new string[] { " ", Environment.NewLine, ".", "!", "?" }, StringSplitOptions.RemoveEmptyEntries);
-            return parts.Contains(particle);
+            return parts.Contains(word);
         }
     }
 
