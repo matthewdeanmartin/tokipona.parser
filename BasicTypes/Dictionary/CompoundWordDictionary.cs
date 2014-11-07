@@ -4412,7 +4412,7 @@ BuildIt();
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("jan-suli", new[] { "big", " tall or fat person; adult", " giant", " celebrity", " (human) lord", " lord" });
+                    en.Add("jan-suli", new[] { "big", " tall person","fat person; adult", " giant", " celebrity", " lord" });
                     glossMap.Add("en", en);
                 }
                 JanSuli = new CompoundWord("jan-suli");
