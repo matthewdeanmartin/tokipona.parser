@@ -8,9 +8,11 @@ using NUnit.Framework;
 
 namespace BasicTypes.Globalization
 {
+#if VS2013
     [TestFixture]
     public class TpCultureTest
     {
+
         [Test]
         public void Test()
         {
@@ -65,5 +67,7 @@ namespace BasicTypes.Globalization
             }
             
         }
+
     }
+#endif
 }

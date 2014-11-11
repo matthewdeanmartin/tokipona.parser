@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using BasicTypes.MoreTypes;
-using Polenter.Serialization;
+//using Polenter.Serialization;
 
 namespace BasicTypes.Serialization
 {
@@ -22,7 +22,7 @@ namespace BasicTypes.Serialization
         [XmlIgnore]
         public Dictionary<string, string> GlossMap{ get; set; }
 
-        [ExcludeFromSerialization] //Sharp serializer treats this as a reference anyhow.
+        //[ExcludeFromSerialization] //Sharp serializer treats this as a reference anyhow.
         public DictionaryProxy<string, string> GlossMapXml {
             get { return new DictionaryProxy<string, string>(this.GlossMap); }
             set { GlossMap = value.ToDictionary(); }

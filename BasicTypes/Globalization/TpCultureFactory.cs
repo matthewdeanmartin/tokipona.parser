@@ -8,6 +8,7 @@ using System.Web.UI;
 
 namespace BasicTypes.Globalization
 {
+#if VS2013
     public class TpCultureFactory
     {
         public static CultureAndRegionInfoBuilder CreateTpCulture()
@@ -46,4 +47,5 @@ namespace BasicTypes.Globalization
             cib.Register();
         }
     }
+#endif
 }

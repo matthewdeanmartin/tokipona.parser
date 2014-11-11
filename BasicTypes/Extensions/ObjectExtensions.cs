@@ -10,7 +10,7 @@ using System.Web.Script.Serialization;
 using System.Xml;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
-using Polenter.Serialization;
+//using Polenter.Serialization;
 using Formatting = Newtonsoft.Json.Formatting;
 
 namespace BasicTypes
@@ -18,8 +18,10 @@ namespace BasicTypes
     
         public static class ObjectExensionsSerialization
         {
+
             public static string ToSharpXml(this object o)
             {
+#if VS2013
                 // create the settings
                 //var settings = new SharpSerializerBinarySettings(); // for binary mode
                 var settings = new SharpSerializerXmlSettings(); // for xml mode
@@ -40,7 +42,10 @@ namespace BasicTypes
                         var sr = new StreamReader(ms);
                         return sr.ReadToEnd();
                     }
-                
+#else
+                throw new NotImplementedException();
+#endif
+
             }
 
             public static string ToJsonNet(this object o)
