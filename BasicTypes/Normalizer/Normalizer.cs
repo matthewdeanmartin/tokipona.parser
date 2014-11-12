@@ -397,6 +397,8 @@ namespace BasicTypes.Parser
                 if (pair.Key.StartsWith("pi-")) continue; //This is essentially a possessive or adjective noun phrase, should deal with via POS for compound words.
                 if (pair.Key.EndsWith("-ala")) continue; //negation is special.
                 if (pair.Key.StartsWith("li-")) continue; //These are essentially verb markers and all verbs phrases are templates (i.e. can have additional words inserted & be the same template)
+                if (pair.Key.Contains("-e-")) continue;
+                
 
                 //Weak compounds, i.e. to close to noun + ordinary modifier because the modifier is excedingly common.
                 //if (pair.Key.EndsWith("-lili")) continue; //jan lili = child?  Ugh, but it is so common.
@@ -405,14 +407,16 @@ namespace BasicTypes.Parser
                 //TODO: Can't distinguish these yet.
                 //ijo li wile sona e ni. //modal + verb
                 //mi pana e wile-sona ni.//question
+                bool thatsAModal = false;
                 foreach (string modal in Token.Modals)
                 {
                     if (pair.Key.StartsWith(modal + "-"))
                     {
-                        continue;
+                        thatsAModal = true;
                     }
                 }
 
+                if(thatsAModal) continue;
 
                 string spacey = pair.Key.Replace("-", " ");
                 if (normalized.Contains(spacey))

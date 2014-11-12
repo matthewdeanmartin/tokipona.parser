@@ -16,33 +16,82 @@ namespace BasicTypes.Parser
     {
         public static string Normalize(string sentence)
         {
-            string normalized=DetectEntireForeignSentence(sentence);
+            string normalized = DetectWrongQuotes(sentence);
+            normalized = DetectEntireForeignSentence(normalized);
 
+            
+            //Doesn't work!!!
+            //normalized = DetectIndividualForeignWords(normalized);
+
+            return normalized;
+        }
+
+        private static string DetectWrongQuotes(string normalized)
+        {
+            if (normalized.StartsWith(@"""") && normalized.EndsWith(@""""))
+            {
+                if (PercentTokiPona(normalized.Trim(new char[]
+                {
+                    '«', '»', '@', '.', '!', ' ', '?', '!', '\n', '\r', ';', ':', '<', '>', '/', '&', '$', '\'',
+                    '"','(',')',
+                })) > .80m)
+                {
+                    return "'" + normalized.Substring(1, normalized.Length - 2) + "'";
+                }
+            }
+            if (normalized.StartsWith(@"""") )
+            {
+                if (PercentTokiPona(normalized.Trim(new char[]
+                {
+                    '«', '»', '@', '.', '!', ' ', '?', '!', '\n', '\r', ';', ':', '<', '>', '/', '&', '$', '\'',
+                    '"','(',')',
+                })) > .80m)
+                {
+                    return "'" + normalized.Substring(1, normalized.Length - 1);
+                }
+            }
+            if (normalized.EndsWith(@""""))
+            {
+                if (PercentTokiPona(normalized.Trim(new char[]
+                {
+                    '«', '»', '@', '.', '!', ' ', '?', '!', '\n', '\r', ';', ':', '<', '>', '/', '&', '$', '\'',
+                    '"','(',')',
+                })) > .80m)
+                {
+                    return normalized.Substring(0, normalized.Length - 2) + "'";
+                }
+            }
+
+            return normalized;
+            
+        }
+
+        private static string DetectIndividualForeignWords(string normalized)
+        {
             if (normalized.Contains(" "))
             {
                 bool needFixing = false;
                 List<string> normalizedTokens = new List<string>();
-                string[] tokens= normalized.Split(new[] {' '});
+                string[] tokens = normalized.Split(new[] {' '});
                 foreach (string token in tokens)
                 {
                     //Already foreign enough.
                     string unpunctuated =
                         token.Trim(new char[]
                         {
-                            '«', '»', '@', '.', '!', ' ', '?', '!', '\n', '\r', ';', ':', '<', '>', '/', '&', '$', '\'',
+                            '«', '»', '@', '.', '!', ' ', '?', '!', '\n', '\r', ';', ':', '<', '>', '/', '&', '$', '\'','(',')',
                             '"'
                         });
-                    if(token.StartsWith(@"""") && token.EndsWith(@"""") && !token.Contains(" ")) continue;
+                    if (token.StartsWith(@"""") && token.EndsWith(@"""") && !token.Contains(" ")) continue;
 
                     var justLetters = Regex.Match(unpunctuated
-                        
                         , @"\p{L}+");
                     if (justLetters.Success)
                     {
                         if (!Token.CheckIsValidPhonology(justLetters.Value))
                         {
                             needFixing = true;
-                            normalizedTokens.Add(@"""" + token + @"""");
+                            normalizedTokens.Add(@"""" + token.Trim()  + @"""");
                         }
                         else
                         {
@@ -54,7 +103,6 @@ namespace BasicTypes.Parser
                 {
                     normalized = string.Join(" ", normalizedTokens);
                 }
-                 
             }
             return normalized;
         }
@@ -92,13 +140,22 @@ namespace BasicTypes.Parser
 
         public static decimal PercentTokiPona(string sentence)
         {
+            if (string.IsNullOrWhiteSpace(sentence)) return 1; //Blank is fine!
+
             TokenParserUtils pu = new TokenParserUtils();
             Token[]  tokens= pu.ValidTokens(sentence);
             Word w =new Word();
             int bad = 0;
             foreach (Token token in tokens)
             {
-                string[] errors= w.ValidateOnConstruction(token.Text, false);
+                string unpunctuated =
+                        token.Text.Trim(new char[]
+                        {
+                            '«', '»', '@', '.', '!', ' ', '?', '!', '\n', '\r', ';', ':', '<', '>', '/', '&', '$', '\'','(',')'
+                            '"'
+                        });
+
+                string[] errors= w.ValidateOnConstruction(unpunctuated, false);
                 if (errors.Length > 0)
                 {
                     bad++;

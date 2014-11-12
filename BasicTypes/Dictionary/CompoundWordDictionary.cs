@@ -2097,18 +2097,19 @@ BuildIt();
             }
 
 
-            {
-                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
-                {
-                    var en = new Dictionary<string, string[]>();
-                    en.Add("awen-lon", new[] { "live in/at", " keep/remain in" });
-                    glossMap.Add("en", en);
-                }
-                AwenLon = new CompoundWord("awen-lon");
-
-                Dictionary.Add("awen-lon", AwenLon);
-                Glosses.Add("awen-lon", glossMap);
-            }
+            //Template li awen xxx lon yyy
+            //{
+            //    var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+            //    {
+            //        var en = new Dictionary<string, string[]>();
+            //        en.Add("awen-lon", new[] { "live in/at", " keep/remain in" });
+            //        glossMap.Add("en", en);
+            //    }
+            //    AwenLon = new CompoundWord("awen-lon");
+            //
+            //    Dictionary.Add("awen-lon", AwenLon);
+            //    Glosses.Add("awen-lon", glossMap);
+            //}
 
 
             {
@@ -23727,18 +23728,18 @@ BuildIt();
             }
 
 
-            {
-                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
-                {
-                    var en = new Dictionary<string, string[]>();
-                    en.Add("toki-kepeken-toki", new[] { "speak in tongues" });
-                    glossMap.Add("en", en);
-                }
-                TokiKepekenToki = new CompoundWord("toki-kepeken-toki");
-
-                Dictionary.Add("toki-kepeken-toki", TokiKepekenToki);
-                Glosses.Add("toki-kepeken-toki", glossMap);
-            }
+//            {
+//                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+//                {
+//                    var en = new Dictionary<string, string[]>();
+//                    en.Add("toki-kepeken-toki", new[] { "speak in tongues" });
+//                    glossMap.Add("en", en);
+//                }
+//                TokiKepekenToki = new CompoundWord("toki-kepeken-toki");
+//
+//                Dictionary.Add("toki-kepeken-toki", TokiKepekenToki);
+//                Glosses.Add("toki-kepeken-toki", glossMap);
+//            }
 
 
             {
