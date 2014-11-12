@@ -32,14 +32,15 @@ namespace BasicTypes.Parser
         public void NormalizeAllTextFiles()
         {
             int i = 0;
-            ParserUtils pu  = new ParserUtils(Dialect.DialectFactory);
+            Dialect dialect = Dialect.DialectFactory;
+            ParserUtils pu  = new ParserUtils(dialect);
             
             CorpusFileReader reader =new CorpusFileReader();
             foreach (string s in reader.NextFile())
             {
                 foreach (string sentence in pu.ParseIntoRawSentences(s))
                 {
-                    string result = Normalizer.NormalizeText(sentence);
+                    string result = Normalizer.NormalizeText(sentence, dialect);
                     decimal percent = NormalizeChaos.PercentTokiPona(result);
                     Console.WriteLine(percent + "%");
                     i++;
@@ -111,9 +112,10 @@ namespace BasicTypes.Parser
         {
             //ken la mi mute li toki ike 
             const string s = "o pali sama mije lili pona anu meli lili pona";
-
+            Dialect d = Dialect.DialectFactory;
+            d.InferCompoundsPrepositionsForeignText = false;
             Console.WriteLine("Original  : " + s);
-            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+            string normalized = Normalizer.NormalizeText(s, d);
             Console.WriteLine("Normalized: " + normalized);
 
             const string expected = "o pali ~sama mije lili pona anu meli lili pona";
@@ -123,7 +125,8 @@ namespace BasicTypes.Parser
         [Test]
         public void Normalize_IntransitiveVerb()
         {
-            string value = Normalizer.NormalizeText("jan li moku, kepeken ilo moku");
+            Dialect dialect = Dialect.DialectFactory;
+            string value = Normalizer.NormalizeText("jan li moku, kepeken ilo moku",dialect);
             Console.WriteLine(value);
             Assert.IsTrue(value.Contains("~"), value);
         }

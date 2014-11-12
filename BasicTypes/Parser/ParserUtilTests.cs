@@ -43,8 +43,9 @@ namespace BasicTypes.Parser
         public void ShouldBeGoodKunpapa()
         {
             string s = "jan Kunpapa";
+            Dialect dialect = Dialect.DialectFactory;
             Normalizer n = new Normalizer();
-            Console.WriteLine(Normalizer.NormalizeText(s));
+            Console.WriteLine(Normalizer.NormalizeText(s,dialect));
             TokenParserUtils pu = new TokenParserUtils();
 
             Word[] words = pu.ValidWords(s);
@@ -63,8 +64,9 @@ namespace BasicTypes.Parser
         public void ShouldBeGoodProperModifier()
         {
             string s = "jan Oliwa";
+            Dialect dialect = Dialect.DialectFactory;
             Normalizer n = new Normalizer();
-            Console.WriteLine(Normalizer.NormalizeText(s));
+            Console.WriteLine(Normalizer.NormalizeText(s,dialect));
             TokenParserUtils pu = new TokenParserUtils();
 
             Word[] words = pu.ValidWords(s);
@@ -83,7 +85,8 @@ namespace BasicTypes.Parser
         {
             string s = "jan MaliyA";
             Normalizer n = new Normalizer();
-            Console.WriteLine(Normalizer.NormalizeText(s));
+            Dialect dialect = Dialect.DialectFactory;
+            Console.WriteLine(Normalizer.NormalizeText(s, dialect));
             TokenParserUtils pu = new TokenParserUtils();
             Word[] words;
             try
@@ -196,14 +199,15 @@ namespace BasicTypes.Parser
             Dictionary<string, string> bad = new Dictionary<string, string>();
             List<string> good = new List<string>();
             TokenParserUtils tpu = new TokenParserUtils();
-            ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
+            Dialect dialect = Dialect.DialectFactory;
+            ParserUtils pu = new ParserUtils(dialect);
 
             foreach (string s in reader.NextFile())
             {
                 string[] rawSentences = pu.ParseIntoRawSentences(s);
                 foreach (string sentence in rawSentences)
                 {
-                    string normalized = Normalizer.NormalizeText(sentence);
+                    string normalized = Normalizer.NormalizeText(sentence, dialect);
                     //Normalization improved stuff
                     string[] words = tpu.JustTokens(normalized);
                     for (int index = 0; index < words.Length; index++)
@@ -249,7 +253,8 @@ namespace BasicTypes.Parser
         public void StressTestNormalizeAndParseEverything()
         {
             int i = 0;
-            ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
+            Dialect dialect = Dialect.DialectFactory;
+            ParserUtils pu = new ParserUtils(dialect   );
 
             CorpusFileReader reader = new CorpusFileReader();
             foreach (string s in reader.NextFile())
@@ -260,10 +265,10 @@ namespace BasicTypes.Parser
                     string normalized;
                     try
                     {
-                        normalized = Normalizer.NormalizeText(original);
+                        normalized = Normalizer.NormalizeText(original,dialect);
                         structured = pu.ParsedSentenceFactory(normalized, original);
                         string diag = structured.ToString("b");
-                        
+                        Console.WriteLine(diag);
                     }
                     catch (Exception ex)
                     {

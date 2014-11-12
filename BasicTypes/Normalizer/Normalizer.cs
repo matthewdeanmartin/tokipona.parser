@@ -25,8 +25,8 @@ namespace BasicTypes.Parser
     /// </remarks>
     public class Normalizer
     {
-        
-        public static string NormalizeText(string text, Dialect dialect = null)
+
+        public static string NormalizeText(string text, Dialect dialect)//= null
         {
             //Console.WriteLine("Before: " + text);
             if (string.IsNullOrWhiteSpace(text))
@@ -53,7 +53,13 @@ namespace BasicTypes.Parser
                 normalized = RepairErrors(normalized);
             }
 
-            
+
+            if (dialect.InferCompoundsPrepositionsForeignText)
+            {
+                normalized= NormalizeChaos.Normalize(normalized);
+
+
+            }
 
             //Hyphenated words. This could cause a problem for compound words that cross lines.
             if (normalized.Contains("-\n"))
@@ -69,7 +75,7 @@ namespace BasicTypes.Parser
             //Extraneous punctuation-- TODO, expand to most other symbols.
             if (normalized.Contains("(") || normalized.Contains(")"))
             {
-                normalized = normalized.Replace("(","");
+                normalized = normalized.Replace("(", "");
                 normalized = normalized.Replace(")", "");
             }
 
@@ -81,7 +87,7 @@ namespace BasicTypes.Parser
                     normalized = normalized.Replace(s, " " + s.Trim(new char[] { ' ', ',' }) + " ");
                 }
             }
-            
+
 
             //Left overs from initial parsing.
             if (normalized.Contains("[NULL]"))
@@ -93,11 +99,20 @@ namespace BasicTypes.Parser
 
 
             //Okay, phrases should be recognizable now.
-            normalized = ProcessCompoundWords(normalized);
+            if (dialect.InferCompoundsPrepositionsForeignText)
+            {
+                normalized = ProcessCompoundWords(normalized);
+            }
 
 
             string[] preps = Particles.Prepositions;
+
             bool isPunctuated = false;
+
+            if (!dialect.InferCompoundsPrepositionsForeignText)
+            {
+                isPunctuated = true;
+            }
             foreach (string prep in preps)
             {
                 if (normalized.Contains(prep))
@@ -133,7 +148,7 @@ namespace BasicTypes.Parser
                 normalized = normalized.Replace(" la o ", " la jan Sanwan o ");
             }
 
-            
+
 
             //TODO: detect start of sentence & replace mi X and sina Y with 
             string[] pronounModifiers = new string[]
@@ -165,19 +180,19 @@ namespace BasicTypes.Parser
                     //Need a new concept-- ordinary POS & fallback POS
                     string pronoun = "mi";
                     Dictionary<string, Dictionary<string, string[]>> glosses;
-                    if(Words.Glosses.TryGetValue(possible.Text, out glosses))
+                    if (Words.Glosses.TryGetValue(possible.Text, out glosses))
                     {
                         Dictionary<string, string[]> enGlosses;
                         if (glosses.TryGetValue("en", out enGlosses))
                         {
-                            if ((enGlosses.ContainsKey("vt") && enGlosses["vt"].Length > 0) 
-                                || 
-                                (enGlosses.ContainsKey("vi")  && enGlosses["vi"].Length > 0))
+                            if ((enGlosses.ContainsKey("vt") && enGlosses["vt"].Length > 0)
+                                ||
+                                (enGlosses.ContainsKey("vi") && enGlosses["vi"].Length > 0))
                             {
                                 string unLied = " " + pronoun + " " + possible + " ";
                                 if (normalized.Contains(unLied) && !pronounModifiers.Contains(unLied.Trim()))
                                 {
-                                    normalized = normalized.Replace(unLied, " "+ pronoun +" li " + possible + " ");
+                                    normalized = normalized.Replace(unLied, " " + pronoun + " li " + possible + " ");
                                 }
                             }
                         }
@@ -242,7 +257,7 @@ namespace BasicTypes.Parser
                         normalized = Regex.Replace(normalized, @"\bli li\b", "li"); //normalize contractions
                     }
                 }
-                
+
 
             }
 
@@ -268,7 +283,7 @@ namespace BasicTypes.Parser
                         normalized = Regex.Replace(normalized, @"\bli li\b", "li"); //normalize contractions
                     }
                 }
-                
+
             }
 
             if (normalized.Contains("~"))
@@ -279,7 +294,7 @@ namespace BasicTypes.Parser
             normalized = Regex.Replace(normalized, @"^\s+|\s+$", ""); //Remove extraneous whitespace
 
             //If it is a sentence fragment, I really can't deal with prep phrase that may or may not be in it.
-            if (normalized.Contains("~") 
+            if (normalized.Contains("~")
                 && !normalized.Contains(" li ") //full sentence okay
                 && !normalized.StartsWith("o ") //imperative okay
                 )
@@ -332,7 +347,7 @@ namespace BasicTypes.Parser
             {
                 normalized = normalized.Replace("sina li o ", "sina o ");
             }
-            
+
 
 
             //e mi li mute
@@ -368,17 +383,24 @@ namespace BasicTypes.Parser
             }
             if (normalized.StartsWith("« »"))
             {
-                throw new InvalidOperationException("quote recognition went wrong: "  + text);
+                throw new InvalidOperationException("quote recognition went wrong: " + text);
             }
             return normalized;
         }
 
         private static string ProcessCompoundWords(string normalized)
         {
-            foreach (var pair in CompoundWords.Dictionary.OrderBy(x=>x.Key.Length *-1))
+            foreach (var pair in CompoundWords.Dictionary.OrderBy(x => x.Key.Length * -1))
             {
                 //Need to treat la fragments separately.
                 if (pair.Key.EndsWith("-la")) continue;
+                if (pair.Key.StartsWith("pi-")) continue; //This is essentially a possessive or adjective noun phrase, should deal with via POS for compound words.
+                if (pair.Key.EndsWith("-ala")) continue; //negation is special.
+                if (pair.Key.StartsWith("li-")) continue; //These are essentially verb markers and all verbs phrases are templates (i.e. can have additional words inserted & be the same template)
+
+                //Weak compounds, i.e. to close to noun + ordinary modifier because the modifier is excedingly common.
+                //if (pair.Key.EndsWith("-lili")) continue; //jan lili = child?  Ugh, but it is so common.
+                //if (pair.Key.EndsWith("-pona")) continue;//jan pona...
 
                 //TODO: Can't distinguish these yet.
                 //ijo li wile sona e ni. //modal + verb
@@ -390,13 +412,13 @@ namespace BasicTypes.Parser
                         continue;
                     }
                 }
-                
 
-                string spacey= pair.Key.Replace("-", " ");
+
+                string spacey = pair.Key.Replace("-", " ");
                 if (normalized.Contains(spacey))
                 {
                     string savePoint = string.Copy(normalized);
-                    Regex r = new Regex(@"\b" + spacey +@"\b");
+                    Regex r = new Regex(@"\b" + spacey + @"\b");
                     var isIt = r.Match(normalized);
                     if (isIt.Success)
                     {
@@ -415,7 +437,7 @@ namespace BasicTypes.Parser
 
         private static string ProcessExtraneousWhiteSpace(string normalized)
         {
-//Line breaks & other white spaces make it harder to find boundaries
+            //Line breaks & other white spaces make it harder to find boundaries
             //jan li
             //tawa. ==> jan li tawa.
             normalized = normalized.Replace("\n", " ");
@@ -522,7 +544,7 @@ namespace BasicTypes.Parser
         {
             //I don't even know what that means.
             //This is just so corpus texts can pass. Better solution is to write annoted text in the first place.
-            foreach (string  oneOff in new string[] {
+            foreach (string oneOff in new string[] {
                                                         " li ~tawa wawa e", // motion thingy.  Maybe catch with common adverbs?
                                                         " li ~lon wawa e ",// placement thingy. Quickly place something.
                                                         "tenpo ~tawa ali la", //This is just strange.
@@ -545,9 +567,9 @@ namespace BasicTypes.Parser
                                                          "o ~tawa kon e" // moving stuff around.
                                                     })
             {
-                normalized = normalized.Replace(oneOff, oneOff.Replace("~",""));
+                normalized = normalized.Replace(oneOff, oneOff.Replace("~", ""));
             }
-            
+
             //As in jan sama o!
             //jan ~sama o!
             if (normalized.Contains(" ~sama o "))
@@ -598,7 +620,7 @@ namespace BasicTypes.Parser
                 }
             }
 
-            
+
             //li ~tawa ala e
             foreach (string prep in preps)
             {
@@ -678,7 +700,7 @@ namespace BasicTypes.Parser
                     normalized = normalized.Replace(piHeadedPrep, piHeadedPrep.Replace("~", ""));
                 }
             }
-            
+
 
             //.. li sama.
             foreach (string prep in preps)

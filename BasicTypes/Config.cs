@@ -66,7 +66,8 @@ namespace BasicTypes
     [Serializable]
     public class Dialect : IFormatProvider
     {
-        
+        public bool InferCompoundsPrepositionsForeignText { get; set; } //Stabilizes unit tests, as the particular dictionary can change the # of words hyphenated.
+
         public bool AllowMiOVerbPhrase { get; set; } //E.g. mi o moku. vs o mi moku.
         public int UpToVersion { get; set; } //oldest (1)| mani, pan, esun... (2)| kipisi,monsuta ...(3)| ... pu (4)|
         public bool StrictPos { get; set; } //e.g. vt must have e phrase, adj must follow head word, etc.
@@ -110,7 +111,9 @@ namespace BasicTypes
                     NumberType = "Body",
                     WritingSystem = "Roman",
                     ThrowOnSyntaxError = false,
-                    TargetGloss = "tp"
+                    TargetGloss = "tp",
+                    InferCompoundsPrepositionsForeignText = true
+
                 };
             }
         }

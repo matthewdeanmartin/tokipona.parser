@@ -268,14 +268,15 @@ namespace BasicTypes
                 }
             }
 
-            if (spaceJoined.Contains(" , "))
-            {
-                spaceJoined = spaceJoined.Replace(" , ", ", ");
-            }
+            
 
             if (format != "bs")
             {
                 string result = Denormalize(spaceJoined, format);
+                while (result.Contains(" , "))
+                {
+                    result = result.Replace(" , ", ", ");
+                }
                 return result;
             }
             else
@@ -287,6 +288,13 @@ namespace BasicTypes
         public List<string> ToTokenList(string format, IFormatProvider formatProvider)
         {
             List<string> sb = new List<string>();
+
+            if (conjunction != null)
+            {
+                sb.AddIfNeeded("|", format);
+                sb.Add(conjunction.Text);
+                sb.AddIfNeeded("|", format);
+            }
 
             //TODO Vocative sentences
             //[chain]o[!.?]

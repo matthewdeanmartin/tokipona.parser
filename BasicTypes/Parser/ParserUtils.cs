@@ -118,7 +118,7 @@ namespace BasicTypes
             {
                 throw new InvalidOperationException("Something went wrong, sentence ends with li");
             }
-            sentence = Normalizer.NormalizeText(sentence); //Any way to avoid calling this twice?
+            sentence = Normalizer.NormalizeText(sentence, config); //Any way to avoid calling this twice?
             if (string.IsNullOrWhiteSpace(sentence))
             {
                 return null;
@@ -258,6 +258,28 @@ namespace BasicTypes
 
         private Sentence ProcessSimpleSentence(string sentence, Punctuation punctuation, string original)
         {
+            Particle conjunction=null;
+            if (sentence.StartsWith("taso "))
+            {
+                conjunction = Particles.taso;
+                sentence = sentence.Substring(5);
+            }
+            else if (sentence.StartsWith("anu "))
+            {
+                conjunction = Particles.anu;
+                sentence = sentence.Substring(4);
+            }
+            //else if (sentence.StartsWith("en ")) //is this legal?
+            //{
+            //    conjunction = Particles.en;
+            //    sentence = sentence.Substring(4);
+            //}
+            else if (sentence.StartsWith("ante ")) //never seen it.
+            {
+                conjunction = Particles.ante;
+                sentence = sentence.Substring(5);
+            }
+
             if (sentence.EndsWith(" li"))
             {
                 throw new InvalidOperationException("Something went wrong-- sentenc ends with li. " + sentence);
@@ -366,7 +388,7 @@ namespace BasicTypes
 
             Sentence parsedSentence = new Sentence(subjectChain, verbPhrases, new SentenceOptionalParts()
             {
-                //Conjunction
+                Conjunction =  conjunction,
                 //Etc
                 Punctuation = punctuation,
                 IsHortative = isHortative

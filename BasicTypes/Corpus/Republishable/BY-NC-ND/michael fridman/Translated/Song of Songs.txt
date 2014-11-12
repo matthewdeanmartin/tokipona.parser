@@ -1,6 +1,6 @@
-kalama musi suli
+kalama musi suli.
 
-1
+1.
 
 
 kalama musi suli pi jan Solomon.
@@ -87,7 +87,7 @@ supa pi mi mute li kasi pona.
 
 kasi palisa li lon anpa tomo.
 
-2
+2.
 
 mi kasi loje pi ma Salon
 
@@ -109,9 +109,9 @@ ona li pana mi e tomo moku.
 
 olin ona e lon sewi mi.
 
-"o pana e moku suwi e telo suwi tawa mi.
+'o pana e moku suwi e telo suwi tawa mi.
 
-mi pilin wawa ala tan olin."
+mi pilin wawa ala tan olin.'
 
 luka ona li lon anpa lawa mi.
 
@@ -133,7 +133,7 @@ li lukin e lupa pi tomo mi.
 
 ona li toki tawa mi:
 
-"o lon! o kama! o weka!
+'o lon! o kama! o weka!
 
 tenpo pi lete li weka.
 
@@ -161,7 +161,7 @@ o kalama!
 
 kalama sina li suwi.
 
-sinpin sina li pona lukin."
+sinpin sina li pona lukin.'
 
 o jo e soweli loje.
 
@@ -183,7 +183,7 @@ sina sama e soweli tawa.
 
 o tawa ma nena pi kasi pona!
 
-3
+3.
 
 tenpo pimeja la
 
@@ -199,7 +199,7 @@ mi tawa li lukin ala e ona.
 
 mi toki e jan utala:
 
-"sina lukin ala lukin e olin mi?"
+'sina lukin ala lukin e olin mi?'
 
 tenpo pi weka mi la mi lukin e ona.
 
@@ -241,7 +241,7 @@ ona li len e len lawa suli tan ni:
 
 ona li wan e olin ona li pona.
 
-4
+4.
 
 sina pona lukin.
 
@@ -329,7 +329,7 @@ olin mi li ken kama
 
 li pona li moku e kili.
 
-5
+5.
 
 mi kama e ma kili mi.
 
@@ -419,7 +419,7 @@ meli pi ma tomo Elusalen;
 
 ni li olin mi!
 
-6
+6.
 
 meli pi pona lukin,
 
@@ -495,7 +495,7 @@ tenpo lili la mi lukin
 
 e soweli utala pi ma pona mi.
 
-7
+7.
 
 o sike! meli pi ma Sulen, o sike!
 
@@ -537,9 +537,9 @@ nena tu li sama e kili pi telo nasa.
 
 mi toki e ni:
 
-"mi wile tawa kasi palisa
+'mi wile tawa kasi palisa
 
-li wile pilin e luka kasi sina!"
+li wile pilin e luka kasi sina!'
 
 kon uta li sama e kili loje.
 
@@ -571,7 +571,7 @@ li lon luka mi.
 
 mi pana e ona tawa sina.
 
-8
+8.
 
 sina sama e lili mama mi la
 

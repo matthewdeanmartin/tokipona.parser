@@ -88,6 +88,29 @@ namespace BasicTypes.Collections
             this.nounComplement = nounComplement;
         }
 
+
+        /// <summary>
+        /// Useful for glossing, evening if tp doesn't have morphological Perfective
+        /// </summary>
+        /// <returns></returns>
+        public bool IsPerfect()
+        {
+            if (Modals.Contains(Words.pini))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool IsNegative()
+        {
+            if (Adverbs.Contains(Words.ala))
+            {
+                return true;
+            }
+            return false;
+        }
+
         public bool Contains(Word word)
         {
             if (headVerb != null)

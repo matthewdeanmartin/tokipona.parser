@@ -13694,13 +13694,13 @@ BuildIt();
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("pi-lukin-ala", new[] { "invisible" });
+                    en.Add("lukin-ala", new[] { "invisible" });
                     glossMap.Add("en", en);
                 }
-                PiLukinAla = new CompoundWord("pi-lukin-ala");
+                PiLukinAla = new CompoundWord("lukin-ala");
 
-                Dictionary.Add("pi-lukin-ala", PiLukinAla);
-                Glosses.Add("pi-lukin-ala", glossMap);
+                Dictionary.Add("lukin-ala", PiLukinAla);
+                Glosses.Add("lukin-ala", glossMap);
             }
 
 
@@ -16167,19 +16167,19 @@ BuildIt();
                 Glosses.Add("tan-sijelo", glossMap);
             }
 
+            //Sentence!
+            //{
+            //    var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+            //    {
+            //        var en = new Dictionary<string, string[]>();
+            //        en.Add("mi-tawa", new[] { "Good Bye!" });
+            //        glossMap.Add("en", en);
+            //    }
+            //    MiTawa = new CompoundWord("mi-tawa");
 
-            {
-                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
-                {
-                    var en = new Dictionary<string, string[]>();
-                    en.Add("mi-tawa", new[] { "Good Bye!" });
-                    glossMap.Add("en", en);
-                }
-                MiTawa = new CompoundWord("mi-tawa");
-
-                Dictionary.Add("mi-tawa", MiTawa);
-                Glosses.Add("mi-tawa", glossMap);
-            }
+            //    Dictionary.Add("mi-tawa", MiTawa);
+            //    Glosses.Add("mi-tawa", glossMap);
+            //}
 
 
             {

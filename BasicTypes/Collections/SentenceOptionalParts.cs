@@ -20,5 +20,10 @@ namespace BasicTypes
         //Basic Sentence goes here. S+V+PP
         [DataMember]
         public Punctuation Punctuation { get; set; }//.?!
+
+        // part or all of sentence is quoted text. If has quotes, it is part. If no quotes, it is entirely quoted text. jan li "toki! ni li pona tawa mi. mi tawa"
+        // yeilds 3 sentences, 2 with quote punctuation, 1 that is a quote but no punctuation.
+        [DataMember]
+        public Punctuation IsQuotedText { get; set; } 
     }
 }
