@@ -48,7 +48,7 @@ namespace BasicTypes.Collections
             {
                 throw new ArgumentNullException("headVerb");
             }
-            if (Particle.NonContentPrticles.Contains(headVerb.Text))
+            if (Particle.NonContentParticles.Contains(headVerb.Text))
             {
                 throw new InvalidOperationException("Head verb can't be a particle.");
             }
@@ -56,7 +56,7 @@ namespace BasicTypes.Collections
             {
                 foreach (Word modal in modals)
                 {
-                    if (modal.Text != "pi" && Particle.NonContentPrticles.Contains(modal.Text))
+                    if (modal.Text != "pi" && Particle.NonContentParticles.Contains(modal.Text))
                     {
                         throw new InvalidOperationException("Modals can't be a particle.");
                     }
@@ -71,7 +71,7 @@ namespace BasicTypes.Collections
             {
                 foreach (Word adverb in adverbs)
                 {
-                    if (adverb.Text != "pi" && Particle.NonContentPrticles.Contains(adverb.Text))
+                    if (adverb.Text != "pi" && Particle.NonContentParticles.Contains(adverb.Text))
                     {
                         throw new InvalidOperationException("Adverbs can't be a particle. (maybe we have a nominal predicate here?)");
                     }

@@ -418,6 +418,18 @@ namespace BasicTypes.Parser
 
                 if(thatsAModal) continue;
 
+                //lon-poka 
+                bool thatsAPreposition = false;
+                foreach (string preposition in Particles.Prepositions)
+                {
+                    if (pair.Key.StartsWith(preposition + "-"))
+                    {
+                        thatsAPreposition = true;
+                    }
+                }
+                if (thatsAPreposition) continue;
+
+
                 string spacey = pair.Key.Replace("-", " ");
                 if (normalized.Contains(spacey))
                 {

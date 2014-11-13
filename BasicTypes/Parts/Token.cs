@@ -364,10 +364,12 @@ namespace BasicTypes
 
         private static string[] modals = new string[]
         {
-            "ken", "kama", "tawa", "awen", "wile", //jan Sonja
+            "ken", "kama", "tawa", "awen", "wile", //jan Sonja v1
+            "lukin", "oko", "sona",//Jan Sonja vPu
             "open","pini", //Community usage
             "seme" //because seme can replace any content word, so this can replace a modal too! Odd but seemingly true.
         };
+
         public static string[] Modals
         {
             get
@@ -425,6 +427,7 @@ namespace BasicTypes
             }
         }
 
+        //TODO: make parameter driven
         private static string[] bodyNumbers = new string[]
         {
             "ala",

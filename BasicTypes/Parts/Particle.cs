@@ -21,7 +21,7 @@ namespace BasicTypes
 
         //These can't be content words ever, ever, ever.
         //This compares to kepeken (verb), taso (adj), etc.
-        public static string[] NonContentPrticles= new string[]
+        public static string[] NonContentParticles= new string[]
         {
             "la", 
             "li",
