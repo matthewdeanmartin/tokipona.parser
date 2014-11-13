@@ -21,6 +21,25 @@ namespace BasicTypes.Parser
         //}
 
         [Test]
+        public void Nine()
+        {
+            string original = "waso li tawa kon li tawa ma luka luka weka wan.";
+
+                Dialect dialect = Dialect.DialectFactory;
+            dialect.InferCompoundsPrepositionsForeignText = false;
+            ParserUtils pu = new ParserUtils(dialect);
+
+            CorpusFileReader reader = new CorpusFileReader();
+            
+                    Sentence structured = null;
+                    string normalized;
+                    
+                        normalized = Normalizer.NormalizeText(original, dialect);
+                        //string result= NormalizeNumbers.FindNumbers(normalized);
+                        Assert.AreEqual("waso li tawa kon li ~tawa ma #luka-luka weka #wan.", normalized);
+        }
+
+        [Test]
         public void DontScrewUpLaCompoundNormalization()
         {
             string s="tan ni la soweli lili li tawa poki.";

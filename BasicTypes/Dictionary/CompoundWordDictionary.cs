@@ -16005,7 +16005,7 @@ BuildIt();
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("tenpo-suno", new[] { "day", " day (both senses)" });
+                    en.Add("tenpo-suno", new[] { "day"});
                     glossMap.Add("en", en);
                 }
                 TenpoSuno = new CompoundWord("tenpo-suno");

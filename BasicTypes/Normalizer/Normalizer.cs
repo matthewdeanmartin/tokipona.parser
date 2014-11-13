@@ -59,16 +59,18 @@ namespace BasicTypes.Parser
                 normalized= NormalizeChaos.Normalize(normalized);
             }
 
-            if (dialect.InferNumbers)
-            {
-                normalized = NormalizeNumbers.FindNumbers(normalized);
-            }
-
             //Hyphenated words. This could cause a problem for compound words that cross lines.
             if (normalized.Contains("-\n"))
             {
                 normalized = normalized.Replace("-\n", "");
             }
+
+            //must be after - processing
+            if (dialect.InferNumbers)
+            {
+                normalized = NormalizeNumbers.FindNumbers(normalized);
+            }
+
 
             if (normalized.Contains("\""))
             {

@@ -384,7 +384,7 @@ namespace BasicTypes
         private static string[] modals = new string[]
         {
             "ken", "kama", "tawa", "awen", "wile", //jan Sonja v1
-            "lukin", "oko", "sona",//Jan Sonja vPu
+            "lukin", "oko", "sona",//Jan Sonja vPu (are these really serial verbs?)
             "open","pini", //Community usage
             "seme" //because seme can replace any content word, so this can replace a modal too! Odd but seemingly true.
         };

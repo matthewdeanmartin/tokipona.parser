@@ -27,6 +27,11 @@ namespace BasicTypes
             {
                 return sentence;
             }
+            if (sentence.Contains("#"))
+            {
+                //HACK: Could be a stray #
+                return sentence;
+            }
             TokenParserUtils tpu = new TokenParserUtils();
 
             string lastBit = "";

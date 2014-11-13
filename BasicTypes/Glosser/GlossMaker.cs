@@ -21,6 +21,7 @@ namespace BasicTypes.Glosser
             Dialect config = Dialect.DialectFactory;
             config.ThrowOnSyntaxError = false;
             config.TargetGloss = "en";
+            config.GlossWithFallBacks = true;
             ParserUtils pu = new ParserUtils(config);
 
             Sentence sentenceTree = pu.ParsedSentenceFactory(normalized, original);
@@ -125,11 +126,8 @@ namespace BasicTypes.Glosser
             int j = 0;
             foreach (TpPredicate predicate in s.Predicates)
             {
-                bool isImperative=false;
-                if (predicate.Particle == Particles.o)
-                {
-                    isImperative=true;
-                }
+                bool isImperative = predicate.Particle == Particles.o;
+
                 j++;
                 if (j == 1)
                 {
