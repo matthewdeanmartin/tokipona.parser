@@ -57,8 +57,11 @@ namespace BasicTypes.Parser
             if (dialect.InferCompoundsPrepositionsForeignText)
             {
                 normalized= NormalizeChaos.Normalize(normalized);
+            }
 
-
+            if (dialect.InferNumbers)
+            {
+                normalized = NormalizeNumbers.FindNumbers(normalized);
             }
 
             //Hyphenated words. This could cause a problem for compound words that cross lines.
@@ -162,6 +165,8 @@ namespace BasicTypes.Parser
                 "sina tu",
                 "sina mute",
                 "sina suli",
+
+                "mi en sina",
             };
             if (normalized.Contains("mi"))
             {
@@ -234,6 +239,32 @@ namespace BasicTypes.Parser
                     }
                 }
             }
+
+
+            Dictionary<string, string> pronounModifiersMap = new Dictionary<string, string>
+            {
+                {"mi wan li ","mi li wan li "},
+                {"mi tu li ","mi li tu li "},
+                {"mi mute li ","mi li mute li "},
+                {"mi suli li ","mi li suli li "},
+                
+                {"sina wan li ","sina li wan li "},
+                {"sina tu li ","sina li tu li "},
+                {"sina mute li ","sina li mute li "},
+                {"sina suli li ","sina li suli li "},
+                
+                {"mi en sina li ","mi li en sina li"}
+            };
+
+            //undo overnormalization
+            foreach (KeyValuePair<string, string> pair in pronounModifiersMap)
+            {
+                if (normalized.Contains(pair.Value))
+                {
+                    normalized = normalized.Replace(pair.Value, pair.Key);
+                }
+            }
+
 
 
             if (normalized.Contains("la mi"))

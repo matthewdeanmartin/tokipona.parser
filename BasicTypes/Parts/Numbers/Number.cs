@@ -17,9 +17,24 @@ namespace BasicTypes.Parts
     [Serializable]
     public class Number:Token
     {
-        public Number(string word)
+        public Number(string word):base(word)
         {
-            this.word = word;
+            if (string.IsNullOrWhiteSpace(word))
+            {
+                throw new ArgumentException("Null or blank number");
+            }
+            if (word.Length == 1)
+            {
+                throw new ArgumentException("Too short to be a word.");
+            }
+            if (word.StartsWith("#"))
+            {
+                this.word = word.Substring(1);
+            }
+            else
+            {
+                this.word = word;
+            }
         }
 
         //0 ala (nothing)
@@ -174,6 +189,36 @@ namespace BasicTypes.Parts
                 return true;
             }
             return false;
+        }
+
+        public int ToInteger()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string TryGloss(string language, string pos)
+        {
+            int sum=0;
+            foreach (string part in word.Split(new char[]{'-'}))
+            {
+                switch (part)
+                {
+                    case "ala":
+                        continue;
+                    case "wan":
+                        sum += 1;
+                        break;
+                    case "tu":
+                        sum += 2;
+                        break;
+                    case "luka":
+                        sum += 5;
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException("Unexpected token " + part + " in " + word);
+                }
+            }
+            return sum.ToString();
         }
     }
 }

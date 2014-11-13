@@ -28,6 +28,16 @@ namespace BasicTypes.Parser
 
         private static string DetectWrongQuotes(string normalized)
         {
+            if (string.IsNullOrWhiteSpace(normalized))
+            {
+                //degenerate case
+                return normalized;
+            }
+            if (normalized.Length <= 2 && normalized.Contains(@""""))
+            {
+                //degenerate
+                return normalized;
+            }
             if (normalized.StartsWith(@"""") && normalized.EndsWith(@""""))
             {
                 if (PercentTokiPona(normalized.Trim(new char[]
@@ -161,6 +171,7 @@ namespace BasicTypes.Parser
                     bad++;
                 }
             }
+            if (tokens.Length == 0) return 1;//Must be punctuation, or blank or something.
             return (((decimal)tokens.Length - (decimal)bad) / (decimal)tokens.Length);
         }
     }

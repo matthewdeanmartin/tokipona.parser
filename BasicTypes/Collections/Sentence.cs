@@ -214,24 +214,24 @@ namespace BasicTypes
         {
             get
             {
-                return new string[] { "g", "b", "bs" };
+                return new[] { "g", "b", "bs" };
             }
         }
 
         public string ToString(string format)
         {
-            return this.ToString(format, Config.CurrentDialect);
+            return ToString(format, Config.CurrentDialect);
         }
 
         public override string ToString()
         {
-            return this.ToString("g", Config.CurrentDialect);
+            return ToString("g", Config.CurrentDialect);
         }
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
             List<string> sb = new List<string>();
-            string spaceJoined = null;
+            string spaceJoined;
             if (preconditions != null)
             {
                 foreach (Sentence precondition in preconditions)
@@ -248,7 +248,7 @@ namespace BasicTypes
                 spaceJoined = sb.SpaceJoin(format);
                 if (conclusion.punctuation != null)
                 {
-                    spaceJoined = spaceJoined + conclusion.punctuation.ToString();//format, formatProvider
+                    spaceJoined = spaceJoined + conclusion.punctuation;//format, formatProvider
                 }
             }
             else
@@ -264,7 +264,7 @@ namespace BasicTypes
                 
                 if (punctuation != null)
                 {
-                    spaceJoined = spaceJoined + this.punctuation.ToString();//format, formatProvider
+                    spaceJoined = spaceJoined + punctuation;//format, formatProvider
                 }
             }
 
@@ -279,10 +279,7 @@ namespace BasicTypes
                 }
                 return result;
             }
-            else
-            {
-                return spaceJoined;
-            }
+            return spaceJoined;
         }
 
         public List<string> ToTokenList(string format, IFormatProvider formatProvider)

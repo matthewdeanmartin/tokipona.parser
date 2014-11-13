@@ -290,6 +290,12 @@ namespace BasicTypes
                 return cw.TryGloss(language, pos);
             }
 
+            if (word.StartsWith("#"))
+            {
+                Number n = new Number(Text);
+                return n.TryGloss(language, pos);
+            }
+
             //HACK: This is a proper modifer
             if (LookupForm(word).IsFirstUpperCased())
             {

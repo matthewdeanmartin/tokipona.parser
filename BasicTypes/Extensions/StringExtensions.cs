@@ -11,6 +11,21 @@ namespace BasicTypes.Extensions
 {
     public static class StringExtensions
     {
+        public static string Remove(this string value, string letters)
+        {
+            StringBuilder sb = new StringBuilder(value.Length);
+            foreach (char c in value)
+            {
+                if(letters.Contains(c) ) continue;
+                sb.Append(c);
+            }
+            return sb.ToString();
+        }
+
+        public static bool ContainsLetter(this string value, string letters)
+        {
+            return value != null && letters.Any(value.Contains);
+        }
 
         public static bool IsFirstUpperCased(this string value)
         {

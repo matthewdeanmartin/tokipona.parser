@@ -185,7 +185,7 @@ namespace BasicTypes.Collections
                 string verbMarker = string.Empty;
                 if (format.StartsWith("b"))
                 {
-                    verbMarker = isVerbTransitive ? "##" : "#";
+                    verbMarker = isVerbTransitive ? "%%" : "%";
                 }
 
                 sb.Add(verbMarker + headVerb.ToString(format, formatProvider));

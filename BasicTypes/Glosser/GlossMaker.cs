@@ -23,8 +23,14 @@ namespace BasicTypes.Glosser
             config.TargetGloss = "en";
             ParserUtils pu = new ParserUtils(config);
 
-            List<string> gloss = new List<string>();
             Sentence sentenceTree = pu.ParsedSentenceFactory(normalized, original);
+
+            return GlossOneSentence(includePos, sentenceTree, config);
+        }
+
+        public string GlossOneSentence(bool includePos, Sentence sentenceTree,  Dialect config)
+        {
+            List<string> gloss = new List<string>();
 
             if (sentenceTree.Preconditions != null)
             {
@@ -57,7 +63,6 @@ namespace BasicTypes.Glosser
             }
 
             return result;
-
         }
 
         private void ProcessSimpleSentence(bool includePos, Sentence s, List<string> gloss, Dialect config)
@@ -116,13 +121,27 @@ namespace BasicTypes.Glosser
 
         private void ProcessPredicates(bool includePos, Sentence s, List<string> gloss, Dialect config)
         {
+            
             int j = 0;
             foreach (TpPredicate predicate in s.Predicates)
             {
+                bool isImperative=false;
+                if (predicate.Particle == Particles.o)
+                {
+                    isImperative=true;
+                }
                 j++;
                 if (j == 1)
                 {
-                    gloss.Add("is");
+                    if (isImperative)
+                    {
+                        gloss.Add("please, you must");
+                    }
+                    else
+                    {
+                        gloss.Add("is");
+                    }
+                    
                 }
                 else if (j != 1)
                 {

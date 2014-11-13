@@ -17,7 +17,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;VS2013</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -26,7 +26,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;VS2013</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -101,6 +101,7 @@
     <Compile Include="Dictionary\CompoundWordDictionary.cs" />
     <Compile Include="Dictionary\DictionaryGenerator.cs" />
     <Compile Include="Dictionary\DictionaryGeneratorCompounds.cs" />
+    <Compile Include="Dictionary\DictionaryProperModifiers.cs" />
     <Compile Include="Dictionary\DictionaryTests.cs" />
     <Compile Include="Dictionary\ExtractNewLexemes.cs" />
     <Compile Include="Dictionary\Semantics.cs" />
@@ -142,7 +143,8 @@
     <Compile Include="MoreTypes\EnumerationThing.cs" />
     <Compile Include="MoreTypes\ParseOrDefault.cs" />
     <Compile Include="MoreTypes\SerializableDictionary.cs" />
-    <Compile Include="Normalizer\NormalizeChaos.cs" />
+    <Compile Include="Normalizer\NormalizeForeignText.cs" />
+    <Compile Include="Normalizer\NormalizeNumbers.cs" />
     <Compile Include="Normalizer\Normalizer.cs" />
     <Compile Include="Normalizer\NormalizerTests.cs" />
     <Compile Include="Parser\ParserUtils.cs" />
@@ -158,11 +160,13 @@
     <Compile Include="Parts\ConvertWordToBasicType.cs" />
     <Compile Include="Parts\ConvertWordToBasicTypeTests.cs" />
     <Compile Include="Parts\Neologism.cs" />
-    <Compile Include="Parts\NumberTest.cs" />
+    <Compile Include="Parts\Numbers\EnumerateNumbers.cs" />
+    <Compile Include="Parts\Numbers\NumberTest.cs" />
+    <Compile Include="Parts\Numbers\ParseNumber.cs" />
     <Compile Include="Parts\Onomatopoeia.cs" />
     <Compile Include="Parts\ForeignWord.cs" />
     <Compile Include="Parts\GlossMap.cs" />
-    <Compile Include="Parts\Number.cs" />
+    <Compile Include="Parts\Numbers\Number.cs" />
     <Compile Include="Parts\PartOfSpeech.cs" />
     <Compile Include="Parts\Pronoun.cs" />
     <Compile Include="Parts\ProperModifier.cs" />
@@ -187,6 +191,9 @@
     <Compile Include="Services\Wobato.cs" />
     <Compile Include="Services\ExhangeTests.cs" />
     <Compile Include="Dictionary\Words.cs" />
+    <Compile Include="Transliterate\Transliterator.cs" />
+    <Compile Include="Transliterate\TransliteratorSupportTests.cs" />
+    <Compile Include="Transliterate\TransliteratorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

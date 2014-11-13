@@ -10,7 +10,9 @@ using System.Web.Script.Serialization;
 using System.Xml;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
-//using Polenter.Serialization;
+#if VS2013
+using Polenter.Serialization;
+#endif
 using Formatting = Newtonsoft.Json.Formatting;
 
 namespace BasicTypes

@@ -77,6 +77,8 @@ namespace BasicTypes.Extensions
             {
                 StringBuilder sb= new StringBuilder();
                 string bracketedWithExtra =String.Join(" ", parts);
+
+                bool togglePipe = true;
                 for (int index= 0; index < bracketedWithExtra.Length; index++)
                 {
                     char c = bracketedWithExtra[index];
@@ -89,10 +91,20 @@ namespace BasicTypes.Extensions
                         if (index - 1 >= 0 && "<{[(#\\".Contains(bracketedWithExtra[index - 1])) continue; //previous was opening, e.g. "[ foo"
                         if (index + 1 < bracketedWithExtra.Length && ">}])/".Contains(bracketedWithExtra[index +1])) continue; //skip if upcoming is closing bracket e.g. foo)
 
-                        //if (index - 1 > 0 && "<{[(".Contains(bracketedWithExtra[index - 1])) continue; //previous was opening, e.g. "[ foo"
+                        //Toggles
+                        if (togglePipe && (index - 1 >= 0 && "|".Contains(bracketedWithExtra[index - 1])))
+                        {
+                            togglePipe = !togglePipe;
+                            continue; 
+                        }
+                        
+                        if (!togglePipe && (index + 1 < bracketedWithExtra.Length && "|".Contains(bracketedWithExtra[index + 1]))) 
+                        {
+                            togglePipe = !togglePipe;
+                            continue; 
+                        }
 
                         sb.Append(" ");
-
                     }
                 }
                 return sb.ToString();

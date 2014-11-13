@@ -87,9 +87,45 @@ namespace BasicTypes
         public string WriteProperNounsInThisLanguage { get; set; }
         public string TargetGloss { get; set; } //Language letter codes, defaults to tp, thread is special & means culture of current computer.
         public bool GlossWithFallBacks { get; set; } //Fallback to other POS if not found.
+        public bool InferNumbers { get; set; } //Stupid numbers
 
         //set to tp/en/eo/etc, e.g. ma tomo "New York" vs ma tomo Nujoku
 
+
+        /// <summary>
+        /// For interactive use of parser, for someone who is trying to write good toki pona.
+        /// </summary>
+        public static Dialect WordProcessorRules
+        {
+            get
+            {
+                return new Dialect()
+                {
+                    UpToVersion = 999,
+                    StrictPos = false,
+                    ObligatoryPlural = false,
+                    ObligatoryGender = false,
+                    IncludeApocrypha = true,
+                    PreferAle = true,
+                    TemporalLon = false,
+                    AllowUnpunctuated = true,
+                    EmbeddedPrepositionalPhrasesRequirePi = false,
+                    ColorsAreOnlyAdjectives = false,
+                    LiPiIsValid = false,
+                    CalendarType = "Compact",
+                    NumberType = "Body",
+                    WritingSystem = "Roman",
+                    ThrowOnSyntaxError = false,
+                    TargetGloss = "tp",
+                    InferCompoundsPrepositionsForeignText = false, //Make user enter their own!
+                    InferNumbers =false
+                };
+            }
+        }
+
+        /// <summary>
+        /// For reading toki pona, which potentially is a mess.
+        /// </summary>
         public static Dialect DialectFactory
         {
             get
@@ -112,11 +148,13 @@ namespace BasicTypes
                     WritingSystem = "Roman",
                     ThrowOnSyntaxError = false,
                     TargetGloss = "tp",
-                    InferCompoundsPrepositionsForeignText = true
-
+                    InferCompoundsPrepositionsForeignText = true,
+                    InferNumbers =true
                 };
             }
         }
+
+        
 
         public object GetFormat(Type formatType)
         {

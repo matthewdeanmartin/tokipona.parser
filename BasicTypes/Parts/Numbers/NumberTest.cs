@@ -10,6 +10,81 @@ namespace BasicTypes.Parts
     [TestFixture]
     public class NumberTest
     {
+
+        [Test]
+        public void StringToNumber_One_To_OneHundred_Stupid()
+        {
+            string[] values =
+            {
+                "wan",
+
+            };
+            foreach (var VARIABLE in values)
+            {
+                
+            }
+            string ten = "luka luka";
+            Number n = new Number(ten);
+            int result = n.ToInteger();
+            Assert.AreEqual(10,result);
+        }
+
+        [Test]
+        public void StringToNumber_One_To_OneHundred_HalfStupid()
+        {
+            string[] values =
+            {
+                "wan",
+
+            };
+            foreach (var VARIABLE in values)
+            {
+
+            }
+            string ten = "luka luka";
+            Number n = new Number(ten);
+            int result = n.ToInteger();
+            Assert.AreEqual(10, result);
+        }
+
+        [Test]
+        public void StringToNumber_One_To_OneHundred_Poman()
+        {
+            string[] values =
+            {
+                "wan",
+
+            };
+            foreach (var VARIABLE in values)
+            {
+
+            }
+            string ten = "luka luka";
+            Number n = new Number(ten);
+            int result = n.ToInteger();
+            Assert.AreEqual(10, result);
+        }
+
+        [Test]
+        public void StringToNumber_One_To_OneHundred_Decimal()
+        {
+            //Configurable.
+
+            string[] values =
+            {
+                "wan",
+
+            };
+            foreach (var VARIABLE in values)
+            {
+
+            }
+            string ten = "luka luka";
+            Number n = new Number(ten);
+            int result = n.ToInteger();
+            Assert.AreEqual(10, result);
+        }
+
         [Test]
         public void TestIt()
         {

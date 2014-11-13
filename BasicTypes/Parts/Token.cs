@@ -108,7 +108,15 @@ namespace BasicTypes
             }
         }
 
-        private static bool ValidateLetterSet(string value)
+        public static string Alphabet {
+            get { return "jklmnpstwaeiou"; }
+        }
+        public static string AlphabetUpper
+        {
+            get { return "JKLMNPSTWAEIOU"; }
+        }
+
+        public  static bool ValidateLetterSet(string value)
         {
             string lowerWord = value.ToLowerInvariant();
             return lowerWord.All(c => "jklmnpstwaeiou".Contains(c));
@@ -226,6 +234,17 @@ namespace BasicTypes
             {
                 return true;
             }
+            bool allPartsAreNumbers =true;
+            foreach (string part in toCheck.Split(new char[]{'-'}))
+            {
+                if (Token.RealStupidNumbers.Contains(part))continue; 
+                if (Token.StupidNumbers.Contains(part)) continue;
+                if(Token.HalfStupidNumbers.Contains(part)) continue;
+                if(Token.BodyNumbers.Contains(part)) continue;
+                allPartsAreNumbers=false;
+            }
+
+            if(allPartsAreNumbers) return true;
 
             return false;
         }
@@ -396,6 +415,7 @@ namespace BasicTypes
             }
         }
 
+        //Overlap with negative, verb "to divide", plural marker, and universal qualifier
         private static string[] halfStupidNumbers = new string[]
         {
             "ala",//0
@@ -413,11 +433,31 @@ namespace BasicTypes
             }
         }
 
-        private static string[] stupidNumbers = new string[]
+        private static string[] realStupidNumbers = new string[]
         {
             "ala",
             "wan",
             "tu"
+            //mute
+        };
+
+        //nothing, one, two, many!
+        public static string[] RealStupidNumbers
+        {
+            get
+            {
+                return realStupidNumbers;
+            }
+        }
+
+        //Most common.
+        // wan, tu, tu wan, tu tu, luka, luka wan, luka tu, luka tu wan, luka luka
+        private static string[] stupidNumbers = new string[]
+        {
+            "ala",
+            "wan",
+            "tu",
+            "luka"
         };
         public static string[] StupidNumbers
         {

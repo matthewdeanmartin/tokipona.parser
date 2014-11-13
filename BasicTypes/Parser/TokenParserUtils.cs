@@ -5,6 +5,8 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using NUnit.Framework;
+using BasicTypes.Extensions;
 
 namespace BasicTypes.Parser
 {
@@ -27,8 +29,32 @@ namespace BasicTypes.Parser
 
         public Token[] ValidTokens(string value)
         {
+            List<char> prePuncutation = new List<char>();
+            string punctuation = "!@#$%^&*()_+{}:\"<>?|,./;'[]";
+            foreach (char c in value)
+            {
+                if (punctuation.Contains("c"))
+                {
+                    prePuncutation.Add(c);
+                    continue;
+                }
+                break;
+            }
+            List<char> postPuncutation = new List<char>();
+            foreach (char c in value.Reverse())
+            {
+                if (punctuation.Contains("c"))
+                {
+                    postPuncutation.Add(c);
+                    continue;
+                }
+                break;
+            }
+            postPuncutation.Reverse();
+            value = value.Remove(punctuation);
             string[] strings = RemergeCompounds(JustTokens(value));
-            return Array.ConvertAll(strings, s => new Token(s));
+            return Array.ConvertAll(strings, s => new Token(
+                string.Join("",prePuncutation)+ s + string.Join("",postPuncutation)));
         }
 
         public Word[] ValidWords(string value)

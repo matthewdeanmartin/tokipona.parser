@@ -154,7 +154,7 @@ namespace BasicTypes
         public static Word pu;
         public static Word apeja;
         public static Word pake;
-        public static Word monsuata;
+        public static Word monsuta;
 
         public static Dictionary<string, Word> Dictionary;
 
@@ -462,6 +462,7 @@ namespace BasicTypes
             }
 
 
+
             {
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
 
@@ -489,6 +490,7 @@ namespace BasicTypes
 
                 {
                     var en = new Dictionary<string, string[]>();
+                    en.Add("noun", new[] { "something" });
 
                     glossMap.Add("en", en);
                 }
@@ -3577,10 +3579,10 @@ namespace BasicTypes
 
                     glossMap.Add("eo", eo);
                 }
-                monsuata = new Word("monsuata");
+                monsuta = new Word("monsuta");
 
-                Dictionary.Add("monsuata", monsuata);
-                Glosses.Add("monsuata", glossMap);
+                Dictionary.Add("monsuata", monsuta);
+                Glosses.Add("monsuta", glossMap);
             }
 
 

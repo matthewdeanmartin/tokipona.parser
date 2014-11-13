@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using BasicTypes.Exceptions;
+using BasicTypes.Transliterate;
 
 namespace BasicTypes.Parts
 {
@@ -54,6 +55,27 @@ namespace BasicTypes.Parts
         public string TryGloss(string language, string pos)
         {
             return "\"" + Text + "\"";
+        }
+
+        public string Transliterate(Options options=null)
+        {
+            if (options == null)
+            {
+                options = new Options()
+                {
+                    ConsonantCluster = ClusterPreference.Merge,
+                    IsFinalEPronounced = false,
+                    NeutralConsonant = "j",
+                    NeutralVowel = "o",
+                    RLanguage = LanguageForR.English,
+                    SorT = "s",
+                    VowelCluster = ClusterPreference.Merge
+                };
+            }
+            TransliterateEngine engine = new TransliterateEngine();
+            string trace;
+            string plain = Text.Replace("*", " ").Replace(@""""," ");
+            return engine.Transliterate(plain, out trace, options);
         }
     }
 }

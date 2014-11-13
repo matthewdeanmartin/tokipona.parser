@@ -250,13 +250,62 @@ namespace BasicTypes.Parser
         }
 
         [Test]
+        public void StressTestNormalizeNumbers()
+        {
+            int i = 0;
+            Dialect dialect = Dialect.DialectFactory;
+            dialect.InferCompoundsPrepositionsForeignText = false;
+            ParserUtils pu = new ParserUtils(dialect);
+
+            CorpusFileReader reader = new CorpusFileReader();
+            foreach (string s in reader.NextFile())
+            {
+                foreach (string original in pu.ParseIntoRawSentences(s))
+                {
+                    Sentence structured = null;
+                    string normalized;
+                    try
+                    {
+                        normalized = Normalizer.NormalizeText(original, dialect);
+                        string result= NormalizeNumbers.FindNumbers(normalized);
+                        if (result.Contains("#"))
+                        {
+                            Console.WriteLine("O: "+ original);
+                            Console.WriteLine("N: " + normalized);
+                            Console.WriteLine("#: " + result);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("ORIGINAL  : " + original);
+                        if (structured != null)
+                        {
+                            Console.WriteLine(structured.ToString("b"));
+                        }
+                        Console.WriteLine(ex.Message);
+                        i++;
+                    }
+
+                }
+            }
+            Console.WriteLine("Failed Sentences: " + i);
+        }
+
+        [Test]
         public void StressTestNormalizeAndParseEverything()
         {
             int i = 0;
             Dialect dialect = Dialect.DialectFactory;
             ParserUtils pu = new ParserUtils(dialect   );
 
+            Dialect english = Dialect.DialectFactory;
+            english.ThrowOnSyntaxError = false;
+            english.TargetGloss = "en";
+            english.GlossWithFallBacks = true;
+
             CorpusFileReader reader = new CorpusFileReader();
+            GlossMaker gm = new GlossMaker();
+            
             foreach (string s in reader.NextFile())
             {
                 foreach (string original in pu.ParseIntoRawSentences(s))
@@ -266,9 +315,11 @@ namespace BasicTypes.Parser
                     try
                     {
                         normalized = Normalizer.NormalizeText(original,dialect);
+                        if(!normalized.Contains("#")) continue;
                         structured = pu.ParsedSentenceFactory(normalized, original);
                         string diag = structured.ToString("b");
                         Console.WriteLine(diag);
+                        Console.WriteLine(gm.GlossOneSentence(false,structured,english));
                     }
                     catch (Exception ex)
                     {
