@@ -17,20 +17,9 @@ namespace BasicTypes
 
         public override bool Equals(Sentence x, Sentence y)
         {
-            if (x.Subjects.Length != y.Subjects.Length)
+            if (!ChainByValue.Instance.Equals(x.Subjects, y.Subjects))
             {
                 return false;
-            }
-            
-            foreach (Chain xSubject in x.Subjects)
-            {
-                foreach (Chain ySubject in y.Subjects)
-                {
-                    if (! ChainByValue.Instance.Equals(xSubject,ySubject))
-                    {
-                        return false;
-                    }
-                }
             }
 
             if (x.Predicates.Count != y.Predicates.Count)

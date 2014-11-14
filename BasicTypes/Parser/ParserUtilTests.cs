@@ -116,7 +116,7 @@ namespace BasicTypes.Parser
             ParserUtils pu = new ParserUtils(c);
             Sentence sentence = pu.ParsedSentenceFactory(s, s);
             Assert.IsNotNull(sentence.Subjects);
-            Assert.IsTrue(sentence.Subjects.Length > 0);
+            //Assert.IsTrue(sentence.Subjects.Length > 0);
 
             //Assert.IsNotNull(sentence.Subjects[0].HeadedPhrases[0].Head.Text,"mi"); //pi chains :-(
         }
@@ -129,6 +129,7 @@ namespace BasicTypes.Parser
             ParserUtils pu = new ParserUtils(c);
             Sentence sentence = pu.ParsedSentenceFactory(s, s);
             Assert.IsNotNull(sentence.Predicates[0].Prepositionals!=null);
+            Console.WriteLine(sentence.ToString("b"));
         }
 
         //
@@ -136,12 +137,18 @@ namespace BasicTypes.Parser
         public void SplitSentenceWithColon_Normalized()
         {
             string s = "sina toki e ni: mi wile e ni.";
-            Dialect c = Dialect.DialectFactory;
+            Dialect dialect = Dialect.DialectFactory;
             //c.ThrowOnSyntaxError = false;
-            ParserUtils pu = new ParserUtils(c);
-            string[] parts = pu.ParseIntoRawSentences(s);
-            Assert.AreEqual("sina li toki e ni:", parts[0]);
-            Assert.AreEqual("mi li wile e ni.", parts[1]);
+            ParserUtils pu = new ParserUtils(dialect);
+            string[] sentences = pu.ParseIntoNonNormalizedSentences(s);
+
+            for (int index = 0; index < sentences.Length; index++)
+            {
+                sentences[index] = Normalizer.NormalizeText(sentences[index], dialect);
+            }
+
+            Assert.AreEqual("sina li toki e ni:", sentences[0]);
+            Assert.AreEqual("mi li wile e ni.", sentences[1]);
         }
 
         [Test]
@@ -204,7 +211,7 @@ namespace BasicTypes.Parser
 
             foreach (string s in reader.NextFile())
             {
-                string[] rawSentences = pu.ParseIntoRawSentences(s);
+                string[] rawSentences = pu.ParseIntoNonNormalizedSentences(s);
                 foreach (string sentence in rawSentences)
                 {
                     string normalized = Normalizer.NormalizeText(sentence, dialect);
@@ -260,7 +267,7 @@ namespace BasicTypes.Parser
             CorpusFileReader reader = new CorpusFileReader();
             foreach (string s in reader.NextFile())
             {
-                foreach (string original in pu.ParseIntoRawSentences(s))
+                foreach (string original in pu.ParseIntoNonNormalizedSentences(s))
                 {
                     Sentence structured = null;
                     string normalized;
@@ -308,7 +315,7 @@ namespace BasicTypes.Parser
             
             foreach (string s in reader.NextFile())
             {
-                foreach (string original in pu.ParseIntoRawSentences(s))
+                foreach (string original in pu.ParseIntoNonNormalizedSentences(s))
                 {
                     Sentence structured=null;
                     string normalized;
@@ -363,23 +370,54 @@ namespace BasicTypes.Parser
         }
 
         [Test]
-        public void IdentifyDiscourses_CanItEvenParseTheSentences_ShowGoodOnes()
+        public void WhyDidNormalizerStripOffTheDoubleQuotes()
         {
+            //,CorpusTexts.JanSin  //Too many neologisms to cope. 
             string[] samples =
                 new string[]
                 {
-                CorpusTexts.UnpaText,
-                CorpusTexts.Gilgamesh,
-                CorpusTexts.SampleText1,
-                CorpusTexts.SampleText3,
-                CorpusTexts.Lao,
+                CorpusTexts.GeorgeSong
+                };
+            Dialect dialect = Dialect.DialectFactory;
+            dialect.TargetGloss = "en";
+
+            GlossMaker gm = new GlossMaker();
+            ParserUtils pu = new ParserUtils(dialect);
+            foreach (string sample in samples)
+            {
+                string[] sentences = pu.ParseIntoNonNormalizedSentences(sample);
+                foreach (string sentence in sentences)
+                {
+                    if (sentence.Contains("Georgia"))
+                    {
+                        string result = Normalizer.NormalizeText(sentence,dialect);
+                        Assert.IsTrue(result.Contains("\"Georgia\""));
+                    }
+                }
+
+                
+            }
+
+        }
+
+        [Test]
+        public void IdentifyDiscourses_CanItEvenParseTheSentences_ShowGoodOnes()
+        {
+            //,CorpusTexts.JanSin  //Too many neologisms to cope. 
+            string[] samples =
+                new string[]
+                {
+                //CorpusTexts.UnpaText,
+                //CorpusTexts.Gilgamesh,
+                //CorpusTexts.SampleText1,
+                //CorpusTexts.SampleText3,
+                //CorpusTexts.Lao,
                 CorpusTexts.GeorgeSong,
-                    CorpusTexts.CrazyAnimal,
-                    CorpusTexts.CrazyAnimal2
-                    //,CorpusTexts.JanSin  //Too many neologisms to cope. 
-                    ,CorpusTexts.RuneDanceSong
-                    ,CorpusTexts.janPusaRice
-                    ,CorpusTexts.janPend
+                //    CorpusTexts.CrazyAnimal,
+                //    CorpusTexts.CrazyAnimal2
+                //    ,CorpusTexts.RuneDanceSong
+                //    ,CorpusTexts.janPusaRice
+                //    ,CorpusTexts.janPend
                 };
             Dialect dialect = Dialect.DialectFactory;
             dialect.TargetGloss = "en";
@@ -443,7 +481,7 @@ namespace BasicTypes.Parser
             ParserUtils pu = new ParserUtils(c);
 
             Sentence[] s = pu
-                            .ParseIntoRawSentences(CorpusTexts.UnpaText)
+                            .ParseIntoNonNormalizedSentences(CorpusTexts.UnpaText)
                             .Select(x => pu.ParsedSentenceFactory(x, x))
                             .Where(x => x != null)
                             .ToArray();

@@ -17,6 +17,10 @@ namespace BasicTypes.Collections
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
+            if (format == null)
+            {
+                format = "g";
+            }
             if (this.Count == 0) 
                 return "";
 
@@ -65,6 +69,10 @@ namespace BasicTypes.Collections
 
         public string ToString(string format)
         {
+            if (format == null)
+            {
+                format = "g";
+            }
             return this.ToString(format, Config.CurrentDialect);
         }
 

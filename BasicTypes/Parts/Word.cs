@@ -89,7 +89,8 @@ namespace BasicTypes
             this.word = word;
         }
 
-       
+        
+
 
         public string[] ValidateOnConstruction(string prospectiveWord, bool failFast=true)
         {
@@ -165,8 +166,8 @@ namespace BasicTypes
                         //{
                         //    Console.WriteLine(Convert.ToInt32(c));
                         //}
-                        string message = "This word (" + prospectiveWord +
-                                         ")  failed all checks.";
+                        string message = "This word -->" + prospectiveWord +
+                                         "<--  failed all checks.";
                         errors.Add(message);
                         //Console.WriteLine("BAAAAAAAAAAAAAAAAD: " + prospectiveWord);
                         if (failFast) throw new InvalidOperationException(message);

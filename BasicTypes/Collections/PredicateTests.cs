@@ -14,7 +14,7 @@ namespace BasicTypes.Collections
         public void CanSerialize()
         {
             VerbPhrase hp = new VerbPhrase(Words.jan,new WordSet(){ Words.seme});
-            TpPredicate p = new TpPredicate(Particles.li, hp, ChainTests.SampleChain(),ChainTests.SampleChain());
+            TpPredicate p = new TpPredicate(Particles.li, hp, ChainTests.SampleDirectsChain(), ChainTests.SampleMixedPrepsChain());
             Assert.NotNull(p.ToJsonDcJs());
         }
     }

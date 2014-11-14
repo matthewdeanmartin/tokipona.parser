@@ -20,7 +20,7 @@ namespace BasicTypes
         {
             this.config = config;
         }
-        public string[] ParseIntoRawSentences(string text)
+        public string[] ParseIntoNonNormalizedSentences(string text)
         {
             //https://stackoverflow.com/questions/521146/c-sharp-split-string-but-keep-split-chars-separators
             //https://stackoverflow.com/questions/3115150/how-to-escape-regular-expression-special-characters-using-javascript
@@ -53,16 +53,14 @@ namespace BasicTypes
                 }
             }
 
-
-
-
             //Crap. If we break on \n then sentences with line feeds are cut in half.
             //If we don't break on \n, then we blow up on intentional fragments like titles.
             //Choosing to not break on \n & and manually add . to titles.
             return Regex
                 .Split(text, @"(?<=[\?!.:])")  //split preserving punctuation
                 .Where(x => !string.IsNullOrWhiteSpace(x)) //skip empties
-                .Select(x => Normalizer.NormalizeText(x, config))
+                //.Select(x => Normalizer.NormalizeText(x, config))
+                .Select(x => x)
                 .Where(x => x != null)
                 .ToArray();
         }
@@ -215,7 +213,7 @@ namespace BasicTypes
                         if (laLessString.StartsWith("~"))
                         {
                             string[] parts = Splitters.SplitOnPrepositions(laLessString);
-                            fragment = new Chain(ChainType.Prepositionals, Particles.Blank,
+                            fragment = new Chain(ChainType.MixedPrepositional, Particles.Blank,
                                 ProcessPrepositionalPhrases(parts).ToArray());
                         }
                         else
@@ -597,7 +595,7 @@ namespace BasicTypes
 
                 if (partsWithPreps != null)
                 {
-                    prepositionalChain = new Chain(ChainType.Prepositionals, Particles.Blank, ProcessPrepositionalPhrases(partsWithPreps).ToArray());
+                    prepositionalChain = new Chain(ChainType.MixedPrepositional, Particles.Blank, ProcessPrepositionalPhrases(partsWithPreps).ToArray());
                 }
             }
             else
@@ -668,7 +666,7 @@ namespace BasicTypes
                     }
                     if (pChains.Count > 0)
                     {
-                        prepositionalChain = new Chain(ChainType.Prepositionals, Particles.Blank, pChains.ToArray());
+                        prepositionalChain = new Chain(ChainType.MixedPrepositional, Particles.Blank, pChains.ToArray());
                     }
                     else
                     {

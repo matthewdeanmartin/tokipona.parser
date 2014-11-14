@@ -57,7 +57,7 @@ namespace BasicTypes.Parser
             CorpusFileReader reader =new CorpusFileReader();
             foreach (string s in reader.NextFile())
             {
-                foreach (string sentence in pu.ParseIntoRawSentences(s))
+                foreach (string sentence in pu.ParseIntoNonNormalizedSentences(s))
                 {
                     string result = Normalizer.NormalizeText(sentence, dialect);
                     decimal percent = NormalizeChaos.PercentTokiPona(result);

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using BasicTypes.Collections;
 
 namespace BasicTypes
 {
@@ -24,6 +25,9 @@ namespace BasicTypes
         // part or all of sentence is quoted text. If has quotes, it is part. If no quotes, it is entirely quoted text. jan li "toki! ni li pona tawa mi. mi tawa"
         // yeilds 3 sentences, 2 with quote punctuation, 1 that is a quote but no punctuation.
         [DataMember]
-        public Punctuation IsQuotedText { get; set; } 
+        public Punctuation IsQuotedText { get; set; }
+
+        [DataMember]
+        public TagQuestion TagQuestion { get; set; } 
     }
 }

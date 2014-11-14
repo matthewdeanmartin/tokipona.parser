@@ -104,6 +104,10 @@ namespace BasicTypes
         //Dupe
         public string ToString(string format, IFormatProvider formatProvider)
         {
+            if (format == null)
+            {
+                format = "g";
+            }
             Dialect c = formatProvider.GetFormat(typeof(Particle)) as Dialect;
 
             //// Handle null or empty string. 

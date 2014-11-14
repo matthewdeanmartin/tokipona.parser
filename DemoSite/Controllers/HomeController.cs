@@ -24,7 +24,7 @@ namespace DemoSite.Controllers
         {
             Dialect dialect = Dialect.DialectFactory;
             ParserUtils pu = new ParserUtils(dialect);
-            string[] sentences = pu.ParseIntoRawSentences(parse.SourceText);
+            string[] sentences = pu.ParseIntoNonNormalizedSentences(parse.SourceText);
             StringBuilder normalizedSb = new StringBuilder();
             StringBuilder spitBackSb = new StringBuilder();
             StringBuilder bracketSb = new StringBuilder();

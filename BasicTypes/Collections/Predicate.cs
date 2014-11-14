@@ -69,7 +69,17 @@ namespace BasicTypes.Collections
             //TODO: Validate. 
             this.particle = particle;//li or o
             this.verbPhrase = verbPhrase; //only pi, en
+            if (directs != null && directs.Particle.Text != Particles.e.Text)
+            {
+                throw new TpSyntaxException("Directs must have e as the particle.");
+            }
+
             this.directs = directs;//only e, pi, en
+
+            if (prepositionals != null && prepositionals.Particle.Text != Particles.Blank)
+            {
+                throw new TpSyntaxException("Prepositional phrases are strung together by no particular particle.");
+            }
             this.prepositionals = prepositionals;//only ~prop, pi, en 
         }
 
@@ -95,6 +105,10 @@ namespace BasicTypes.Collections
 
         public string ToString(string format)
         {
+            if (format == null)
+            {
+                format = "g";
+            }
             return this.ToString(format, Config.CurrentDialect);
         }
 
@@ -105,6 +119,10 @@ namespace BasicTypes.Collections
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
+            if (format == null)
+            {
+                format = "g";
+            }
             //Mixture of adding words, phrases adn brackets. Ugly.
             var sb = ToTokenList(format, formatProvider);
             return sb.SpaceJoin(format);

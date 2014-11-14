@@ -5,23 +5,18 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BasicTypes
+namespace BasicTypes.Collections
 {
     /// <summary>
-    /// Unordered words. The neither the ordering, nor the head is special.
+    /// An ordered list of words, numeric modifiers, serial verbs.
     /// </summary>
     [Serializable]
-    public class WordSet : HashSet<Word>, IContainsWord, IFormattable, IToString
+    public class WordList : List<Word>, IContainsWord, IFormattable, IToString
     {
-        public WordSet():base()
+        public WordList():base()
         {
         }
-        public WordSet(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-        }
-
-        public WordSet(IEnumerable<string> strings)
+        public WordList(IEnumerable<string> strings)
             : base()
         {
             foreach (string s in strings)
@@ -30,7 +25,7 @@ namespace BasicTypes
             }
         }
 
-        public WordSet(IEnumerable<Word> strings)
+        public WordList(IEnumerable<Word> strings)
             : base()
         {
             foreach (string s in strings)
@@ -101,6 +96,5 @@ namespace BasicTypes
             return  this.Select(x => x.Text).ToList();
         }
     }
-
     
 }

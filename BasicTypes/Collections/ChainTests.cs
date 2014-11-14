@@ -48,6 +48,31 @@ namespace BasicTypes.Collections
             }
         }
 
+        public static Chain SampleDirectsChain()
+        {
+            Chain c = new Chain(ChainType.Directs, Particles.e, new HeadedPhrase[]
+            {
+                new HeadedPhrase(Words.jelo, new WordSet() {Words.esun}),
+                new HeadedPhrase(Words.kasi, new WordSet() {Words.esun}),
+            });
+            return c;
+        }
+
+        public static Chain SampleMixedPrepsChain()
+        {
+            Chain c = new Chain(ChainType.MixedPrepositional, Particles.Blank, new Chain[]{ SamplePrepsChain()});
+            return c;
+        }
+
+        public static Chain SamplePrepsChain()
+        {
+            Chain c = new Chain(ChainType.Prepositionals, new Particle("~kepeken"), new HeadedPhrase[]
+            {
+                new HeadedPhrase(Words.jelo, new WordSet() {Words.esun}),
+                new HeadedPhrase(Words.kasi, new WordSet() {Words.esun}),
+            });
+            return c;
+        }
         public static Chain SampleChain()
         {
             Chain c = new Chain(ChainType.Subjects, Particles.en, new HeadedPhrase[]
@@ -100,9 +125,9 @@ namespace BasicTypes.Collections
         {
             string value = "~kepeken ilo";
             Chain c = Chain.Parse(value);
-            Assert.AreEqual(c.Particle.ToString(), Particles.en.ToString());
+            Assert.AreEqual("~kepeken",c.Particle.ToString());
             Console.WriteLine(c.ToJsonDcJs());
-            Assert.AreEqual("kepeken ilo", c.ToString(), c.ToString("b"));
+            Assert.AreEqual("~kepeken ilo", c.ToString(), c.ToString("b"));
         }
 
         [Test]
@@ -110,9 +135,9 @@ namespace BasicTypes.Collections
         {
             string value = "~kepeken ilo suli";
             Chain c = Chain.Parse(value);
-            Assert.AreEqual(c.Particle.ToString(), Particles.en.ToString());
+            Assert.AreEqual("~kepeken",c.Particle.ToString());
             Console.WriteLine(c.ToJsonDcJs());
-            Assert.AreEqual("kepeken ilo suli", c.ToString(), c.ToString("b"));
+            Assert.AreEqual("~kepeken ilo suli", c.ToString(), c.ToString("b"));
         }
 
         [Test]
@@ -133,7 +158,7 @@ namespace BasicTypes.Collections
         {
             string value = "tomo pi telo nasa";
             Chain c = Chain.Parse(value);
-            Assert.AreEqual(c.Particle.ToString(), Particles.en.ToString());
+            Assert.AreEqual(Particles.en.ToString(),c.Particle.ToString());
             Console.WriteLine(c.ToJsonDcJs());
             Assert.AreEqual(value, c.ToString(), c.ToString("b"));
         }
@@ -143,9 +168,9 @@ namespace BasicTypes.Collections
         {
             string value = "~kepeken ilo suli pi ma suli";
             Chain c = Chain.Parse(value);
-            Assert.AreEqual(c.Particle.ToString(), Particles.en.ToString());
+            Assert.AreEqual("~kepeken",c.Particle.ToString() );
             Console.WriteLine(c.ToJsonDcJs());
-            Assert.AreEqual("kepeken ilo suli pi ma suli", c.ToString(), c.ToString("b"));
+            Assert.AreEqual("~kepeken ilo suli pi ma suli", c.ToString(), c.ToString("b"));
         }
 
         [Test]

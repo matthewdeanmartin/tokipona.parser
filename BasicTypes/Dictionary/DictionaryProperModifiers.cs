@@ -31,10 +31,10 @@ namespace BasicTypes.Dictionary
             ParserUtils pu = new ParserUtils(dialect);
 
             CorpusFileReader reader = new CorpusFileReader();
-            Dictionary<string,int> words = new Dictionary<string, int>(500);
+            Dictionary<string, int> words = new Dictionary<string, int>(500);
             foreach (string s in reader.NextFile())
             {
-                foreach (string original in pu.ParseIntoRawSentences(s))
+                foreach (string original in pu.ParseIntoNonNormalizedSentences(s))
                 {
                     Sentence structured = null;
                     string normalized;
@@ -44,26 +44,25 @@ namespace BasicTypes.Dictionary
                         structured = pu.ParsedSentenceFactory(normalized, original);
                         //string diag = structured.ToString("b");
 
-                        foreach (Chain subject in structured.Subjects)
+
+                        string stringified = structured.Subjects.ToString();
+                        if (!stringified.Contains(" ")) continue;//single word
+                        if (stringified.Contains(@"""")) continue;//foreign
+                        if (stringified.StartsWith(@"nanpa")) continue;//implicit number
+                        if (stringified.StartsWith(@"#")) continue;//explicit number by punctuation
+                        if (stringified.ContainsLetter(Token.AlphabetUpper))
                         {
-                            string stringified = subject.ToString();
-                            if(!stringified.Contains(" ")) continue;//single word
-                            if (stringified.Contains(@"""")) continue;//foreign
-                            if (stringified.StartsWith(@"nanpa")) continue;//implicit number
-                            if (stringified.StartsWith(@"#")) continue;//explicit number by punctuation
-                            if (stringified.ContainsLetter(Token.AlphabetUpper))
+                            if (words.ContainsKey(stringified))
                             {
-                                if (words.ContainsKey(stringified))
-                                {
-                                    words[stringified] = words[stringified] + 1;
-                                }
-                                else
-                                {
-                                    words.Add(stringified,1);
-                                    Console.WriteLine(i + " : " + stringified);    
-                                }
+                                words[stringified] = words[stringified] + 1;
+                            }
+                            else
+                            {
+                                words.Add(stringified, 1);
+                                Console.WriteLine(i + " : " + stringified);
                             }
                         }
+
                     }
                     catch (Exception ex)
                     {
@@ -78,7 +77,7 @@ namespace BasicTypes.Dictionary
 
                 }
             }
-            foreach (KeyValuePair<string, int> pair in words.OrderBy(x=>x.Value))
+            foreach (KeyValuePair<string, int> pair in words.OrderBy(x => x.Value))
             {
                 Console.WriteLine(pair.Key + " : " + pair.Value);
             }
@@ -96,21 +95,21 @@ namespace BasicTypes.Dictionary
 
             foreach (var item in CompoundWords.Dictionary)
             {
-             
-                            string stringified = item.Key;
-                            if (stringified.ContainsLetter(Token.AlphabetUpper))
-                            {
-                                if (words.ContainsKey(stringified))
-                                {
-                                    words[stringified] = words[stringified] + 1;
-                                }
-                                else
-                                {
-                                    words.Add(stringified, 1);
-                                    Console.WriteLine(i + " : " + stringified);
-                                }
-                            }
-                        }
+
+                string stringified = item.Key;
+                if (stringified.ContainsLetter(Token.AlphabetUpper))
+                {
+                    if (words.ContainsKey(stringified))
+                    {
+                        words[stringified] = words[stringified] + 1;
+                    }
+                    else
+                    {
+                        words.Add(stringified, 1);
+                        Console.WriteLine(i + " : " + stringified);
+                    }
+                }
+            }
             foreach (KeyValuePair<string, int> pair in words.OrderBy(x => x.Value))
             {
                 Console.WriteLine(pair.Key + " : " + pair.Value);

@@ -3581,7 +3581,7 @@ namespace BasicTypes
                 }
                 monsuta = new Word("monsuta");
 
-                Dictionary.Add("monsuata", monsuta);
+                Dictionary.Add("monsuta", monsuta);
                 Glosses.Add("monsuta", glossMap);
             }
 

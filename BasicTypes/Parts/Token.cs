@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Runtime.Serialization;
@@ -151,6 +152,20 @@ namespace BasicTypes
 
                 //return lowerWord.All(c => "jklmnpstwaeiou".Contains(c));
             }
+        }
+
+        public bool IsParticle {
+            get { return CheckIsParticle(word); }
+        }
+
+        public static bool CheckIsParticle(string value)
+        {
+            if (Particles.Prepositions.Contains("~" + value)) return true;
+
+            if (Particles.Conjunctions.Contains(value)) return true;
+
+            if (Particle.NonContentParticles.Contains(value)) return true;
+            return false;
         }
 
         public static bool CheckIsValidPhonology(string value)
@@ -430,6 +445,34 @@ namespace BasicTypes
             get
             {
                 return halfStupidNumbers;
+            }
+        }
+
+
+        private static string[] deprecated = new string[]
+        {
+"pata",
+"kapa", 
+"iki",
+"kan",
+"pasila",
+"kapesi",
+"leko",
+"majuno",
+"tuli",
+"po",
+"kijetesantakalu",
+"ipi",
+"jalan",
+//"pu",//Wait and see...
+"apeja",
+"pake"};
+
+        public static string[] Deprecated
+        {
+            get
+            {
+                return deprecated;
             }
         }
 

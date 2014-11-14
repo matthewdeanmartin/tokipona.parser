@@ -8,13 +8,16 @@
         <li>Parse text to C# data structure.</li>
         <li>Support C# data facilities, such as Equality, Comparison, Serialization, TypeConversion, Mapping, etc</li>
         <li>Serialize C# data structure to a lossy, human readable string.</li>
-        <li>Serialize to alternative formats, namely, English Gloss and Structure Annotated</li>
+        <li>Serialize to alternative formats, namely, English Gloss and Bracketed</li>
     </ul>
 
     <h2>TODO</h2>
     <ul>
-        <li>Run-ons (e.g. poetry)-- probably via normalization (insert missing periods)</li>
-        <li>Verb phrase work: modals (m m m V adv adv adv)</li>
+        <li>Instrument for trace, especially parser, normalizer, stringifier.</li>
+        <li>Simple Chain and Complex Chain as distinct ideas? (one has child Chains, one doesn't?)</li>
+        <li>Chains for prep phrases is not entirely broken but isn't distinct enough (things keep breaking because I treat them as generic Chains).</li>
+        <li>Instrument for perf trace.</li>
+        <li>Run-ons (e.g. poetry)-- probably via normalization (insert missing periods)... too hard to infer between line breaks, run ons and titles, and missing periods.</li>
         <li>Verb phrase work: transformatives (li phrase with pi e ...)</li>
         <li>Verb phrase work: better nominal/adjective predicate/intransitive detection.</li>
         <li>Verb phrase- kama/tawa + np </li>
@@ -22,24 +25,13 @@
         <li>Better treatment of direct speech</li>
         <li>Pronouns as 1st class</li>
         <li>Better treatment of Discourse runs of linked sentences</li>
-        <li>Compound word dictionary</li>
+        <li>Proper modifier dictionary distinct from Compound Words</li>
     </ul>
 
     <h2>INPROCESS</h2>
     <ul>
-        <li>Remove null tokens from ToString() results (but maybe leave in bracketed or change to 0)</li>
         <li>Deal with o o o vocative edge case.</li>
-        <li>Implement class hierarchy with Token as a base for essentially all content (and maybe a separate class for particle)</li>
-        <li>Implement proper modifiers</li>
-        <li>Fragments (e.g. conversation)-- probably via normalization &amp; null tokens- STARTED</li>
-        <li>Deal with foreign words, maybe with escaping.- STARTED</li>
         <li>Deal with direct quotes (maybe as a sort of noun).- STARTED</li>
-    </ul>
-    <h2>DONE</h2>
-    <ul>
-        <li>Support titles- Uses li XXX token, which can be removed before displaying. It's alike a null token.</li>
-        <li>Deal with foreign words, maybe with escaping.</li>
-        <li>Deal with direct quotes (maybe as a sort of noun).</li>
     </ul>
 
     <h2>To and From Strings</h2>
@@ -48,6 +40,7 @@
 
     <h2>Serialization</h2>
     <p>Types support binary, XML, and JSON serialization. This differs from Parse/ToString because it isn't (very) lossy and the target consumer is a computer.</p>
+    <p>Serialization is going to require specific types for JSON or XML because the full .NET version has too much cruft.</p>
 
     <h2>To and From Other DataType</h2>
     <p>Except for numbers, there isn't a natural way to convert among types, since they are at best similar. So for these type conversion is done with AutoMapper</p>
@@ -81,7 +74,7 @@ Automatically fix all upper cased.
 Do something with this (p-phrase body has a verb + object in it):
 > mi li pakala li telo e lawa sama e nena kute ~sama [kepeken e telo wawa pi tomo-tawa!]
 Deal with foreign tokens with special tokens, e.g. punctuation.
-Deal with hyphenated words. (Really?!)
+Deal with hyphenated words.
 </pre>
 
 

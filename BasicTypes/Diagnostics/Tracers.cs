@@ -9,8 +9,34 @@ namespace BasicTypes.Diagnostics
 {
     public static class Tracers
     {
-        public static TraceSource Stringify = new TraceSource("stringify");
-        public static TraceSource Parse = new TraceSource("parse");
+        static Tracers()
+        {
+            SourceLevels singleSwitch = SourceLevels.Off;
+            ConsoleTraceListener console = new ConsoleTraceListener();
 
+            SourceSwitch stringifySwitch = new SourceSwitch("stringify", "Verbose");
+            stringifySwitch.Level = singleSwitch;
+            SourceSwitch parseSwitch = new SourceSwitch("parse", "Verbose");
+            parseSwitch.Level = singleSwitch;
+            SourceSwitch normalizeSwitch = new SourceSwitch("normalize", "Verbose");
+            normalizeSwitch.Level = singleSwitch;
+
+            Stringify = new TraceSource("stringify");
+            Stringify.Switch = stringifySwitch;
+
+            Parse = new TraceSource("parse");
+            Parse.Switch = parseSwitch;
+
+            Normalize = new TraceSource("normalize");
+            Normalize.Switch = normalizeSwitch;
+
+            Parse.Listeners.Add(console);
+            Normalize.Listeners.Add(console);
+            Stringify.Listeners.Add(console);
+        }
+
+        public static TraceSource Stringify;
+        public static TraceSource Parse;
+        public static TraceSource Normalize;
     }
 }

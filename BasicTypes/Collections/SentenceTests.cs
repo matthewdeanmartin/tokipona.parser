@@ -55,7 +55,7 @@ namespace BasicTypes
         [Test]
         public void MaximalSentences_Part_Tail()
         {
-            string value = "mi mute li lukin e sitelen pona kepeken ilo tawa mani li jo e ijo mute lon ma suli pi mi mute.";
+            string value = "mi mute li lukin e sitelen pona, kepeken ilo-tawa mani li jo e ijo mute, lon ma-suli pi mi mute.";
             Sentence s = Sentence.Parse(value, Dialect.DialectFactory);
             Console.WriteLine("Original: " + value);
             Console.WriteLine("ToString: " + s.ToString("g", Dialect.DialectFactory));

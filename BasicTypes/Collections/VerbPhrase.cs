@@ -134,6 +134,10 @@ namespace BasicTypes.Collections
 
         public string ToString(string format)
         {
+            if (format == null)
+            {
+                format = "g";
+            }
             return this.ToString(format, Config.CurrentDialect);
         }
 
@@ -144,6 +148,10 @@ namespace BasicTypes.Collections
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
+            if (format == null)
+            {
+                format = "g";
+            }
             List<string> sb = ToTokenList(format, formatProvider);
 
             return sb.SpaceJoin(format);

@@ -60,6 +60,7 @@ namespace BasicTypes.Parts
 
             }
             string ten = "luka luka";
+
             Number n = new Number(ten);
             int result = n.ToInteger();
             Assert.AreEqual(10, result);

@@ -39,6 +39,12 @@ namespace BasicTypes
             {
                 throw new InvalidOperationException("Chain with no headed phrases. This would be a bare particle if written as text");
             }
+            if (type == ChainType.MixedPrepositional)
+            {
+                throw new InvalidOperationException("MixedPrepositional must hold subchains and not headedPhrases");
+            }
+            
+
             this.chainType = type;
             this.particle = particle;
             this.headedPhrases = headedPhrases;
@@ -46,9 +52,15 @@ namespace BasicTypes
 
         public Chain(ChainType type, Particle particle, Chain[] subChains)
         {
+            
             if (subChains ==null || subChains.Length == 0)
             {
                 throw new InvalidOperationException("Chain with no no subchains. This would be a bare particle if written as text");
+            }
+
+            if (type == ChainType.MixedPrepositional && particle.Text != " ")
+            {
+                throw new InvalidOperationException("MixedPrepositional should be held together with the blank particle.");
             }
 
             foreach (Chain subChain in subChains)
@@ -86,6 +98,10 @@ namespace BasicTypes
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
+            if (format == null)
+            {
+                format = "g";
+            }
             List<string> sb = ToTokenList(format, formatProvider);
 
             return sb.SpaceJoin(format);
@@ -120,11 +136,11 @@ namespace BasicTypes
                 i++;
                 if (particle.MiddleOnly && i != 1)
                 {
-                    sb.Add(particle.ToString(format,formatProvider));
+                    sb.AddIfNotReduplicate(particle.ToString(format, formatProvider));
                 }
                 if (!particle.MiddleOnly)
                 {
-                  sb.Add(particle.ToString(format, formatProvider));
+                    sb.AddIfNotReduplicate(particle.ToString(format, formatProvider));
                 }
 
                 //Tracers.Stringify.TraceInformation("At Leaf " + subChain.HeadedPhrases + "  headed phrases (i.e. no particles)");
@@ -147,7 +163,7 @@ namespace BasicTypes
                         {
                             if (subChain.Particle!=null && Particle.CheckIsPreposition(subChain.Particle.Text))
                             {
-                                sb.Add(subChain.Particle.Text);
+                                sb.AddIfNotReduplicate(subChain.Particle.Text);
                             }
                             ProcessSubChain(format,formatProvider, sb, inner.SubChains);    
                         }
@@ -165,6 +181,10 @@ namespace BasicTypes
 
         public string ToString(string format)
         {
+            if (format == null)
+            {
+                format = "g";
+            }
             return this.ToString(format, Config.CurrentDialect);
         }
 
@@ -195,8 +215,9 @@ namespace BasicTypes
         NounVerbPhrase = 2,//Chain of pi (can be a VP
         Predicates = 3, //Chain of li
         Directs = 4,//Chain of e
-        Prepositionals = 5, //Chain lon(*) (phrases split by any prep)
-        Fragments = 6
+        MixedPrepositional= 5,
+        Prepositionals = 6, //Chain lon(*) (phrases split by any prep)
+        Fragments = 7
     }
 
 }

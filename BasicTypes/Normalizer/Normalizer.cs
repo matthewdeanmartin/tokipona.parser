@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using BasicTypes.Diagnostics;
 using BasicTypes.Dictionary;
 using BasicTypes.Exceptions;
 
@@ -31,32 +32,32 @@ namespace BasicTypes.Parser
             //Console.WriteLine("Before: " + text);
             if (string.IsNullOrWhiteSpace(text))
             {
-                return null;
+                return "";
             }
 
             if (IsNullWhiteOrPunctuation(text))
             {
-                return null;
+                return "";
             }
 
             if (dialect == null)
             {
                 dialect = Config.CurrentDialect;
             }
-            string normalized = text;
+            string normalized = text.Trim(new char[] { '\n', '\r', ' ' });
             //Normalize prepositions to ~, so that we don't have tokens with embedded spaces (e.g. foo, kepeken => [foo],[, kepeken])
 
 
             bool hasErrors = DetectErrors(normalized, dialect.ThrowOnSyntaxError);
             if (hasErrors)
             {
-                normalized = RepairErrors(normalized);
+                normalized = ApplyNormalization(normalized, "Particles", RepairErrors);
             }
 
 
             if (dialect.InferCompoundsPrepositionsForeignText)
             {
-                normalized= NormalizeChaos.Normalize(normalized);
+                normalized = ApplyNormalization(normalized, "Foreign", NormalizeChaos.Normalize);
             }
 
             //Hyphenated words. This could cause a problem for compound words that cross lines.
@@ -68,13 +69,13 @@ namespace BasicTypes.Parser
             //must be after - processing
             if (dialect.InferNumbers)
             {
-                normalized = NormalizeNumbers.FindNumbers(normalized);
+                normalized = ApplyNormalization(normalized, "Numbers", NormalizeNumbers.FindNumbers);
             }
 
 
             if (normalized.Contains("\""))
             {
-                normalized = ProcessWhiteSpaceInForeignText(normalized);
+                normalized = ApplyNormalization(normalized, "ForeignSpace", ProcessWhiteSpaceInForeignText);
             }
 
             //Extraneous punctuation-- TODO, expand to most other symbols.
@@ -85,14 +86,10 @@ namespace BasicTypes.Parser
             }
 
             //Extraneous commas
-            foreach (string s in new String[] { ", li ", ", la ", ",la ", " la, ", " la,", ", o ", ",o " })
+            if (normalized.Contains(","))
             {
-                if (normalized.Contains(s))
-                {
-                    normalized = normalized.Replace(s, " " + s.Trim(new char[] { ' ', ',' }) + " ");
-                }
+                normalized = ApplyNormalization(normalized, "ExtraCommas", ProcessExtraneousCommas);
             }
-
 
             //Left overs from initial parsing.
             if (normalized.Contains("[NULL]"))
@@ -100,13 +97,15 @@ namespace BasicTypes.Parser
                 normalized = normalized.Replace("[NULL]", "");
             }
 
-            normalized = ProcessExtraneousWhiteSpace(normalized);
-
+            if (normalized.Contains(" "))
+            {
+                normalized = ApplyNormalization(normalized, "ExtraWhiteSpace", ProcessExtraneousWhiteSpace);
+            }
 
             //Okay, phrases should be recognizable now.
             if (dialect.InferCompoundsPrepositionsForeignText)
             {
-                normalized = ProcessCompoundWords(normalized);
+                normalized = ApplyNormalization(normalized, "Compounds", ProcessCompoundWords);
             }
 
 
@@ -156,90 +155,15 @@ namespace BasicTypes.Parser
 
 
             //TODO: detect start of sentence & replace mi X and sina Y with 
-            string[] pronounModifiers = new string[]
-            {
-                "mi wan",
-                "mi tu",
-                "mi mute",
-                "mi suli",
 
-                "sina wan",
-                "sina tu",
-                "sina mute",
-                "sina suli",
-
-                "mi en sina",
-            };
             if (normalized.Contains("mi"))
             {
-                if (normalized.Contains("mi wile ala e ma li"))
-                {
-                    Console.WriteLine("Ok");
-                }
-                normalized = NormalizedMiLi(normalized);
-                normalized = NormalizedMiLi(normalized, "'");
-                normalized = NormalizedMiLi(normalized, "«");
-                normalized = NormalizedMiLi(normalized, "' ");
-                normalized = NormalizedMiLi(normalized, "« ");
-
-                foreach (Word possible in Words.Dictionary.Values)
-                {
-                    //Need a new concept-- ordinary POS & fallback POS
-                    string pronoun = "mi";
-                    Dictionary<string, Dictionary<string, string[]>> glosses;
-                    if (Words.Glosses.TryGetValue(possible.Text, out glosses))
-                    {
-                        Dictionary<string, string[]> enGlosses;
-                        if (glosses.TryGetValue("en", out enGlosses))
-                        {
-                            if ((enGlosses.ContainsKey("vt") && enGlosses["vt"].Length > 0)
-                                ||
-                                (enGlosses.ContainsKey("vi") && enGlosses["vi"].Length > 0))
-                            {
-                                string unLied = " " + pronoun + " " + possible + " ";
-                                if (normalized.Contains(unLied) && !pronounModifiers.Contains(unLied.Trim()))
-                                {
-                                    normalized = normalized.Replace(unLied, " " + pronoun + " li " + possible + " ");
-                                }
-                            }
-                        }
-                    }
-                }
+                normalized = ApplyNormalization(normalized, "mi li", ProcessMi);
             }
 
             if (normalized.Contains("sina"))
             {
-                normalized = NormalizedSinaLi(normalized);
-                normalized = NormalizedSinaLi(normalized, "'");
-                normalized = NormalizedSinaLi(normalized, "«");
-                normalized = NormalizedSinaLi(normalized, "' ");
-                normalized = NormalizedSinaLi(normalized, "« ");
-                normalized = NormalizedSinaLi(normalized, "taso "); //conjunctions behave like leading punct
-
-
-                foreach (Word possible in Words.Dictionary.Values)
-                {
-                    //Need a new concept-- ordinary POS & fallback POS
-                    string pronoun = "sina";
-                    Dictionary<string, Dictionary<string, string[]>> glosses;
-                    if (Words.Glosses.TryGetValue(possible.Text, out glosses))
-                    {
-                        Dictionary<string, string[]> enGlosses;
-                        if (glosses.TryGetValue("en", out enGlosses))
-                        {
-                            if ((enGlosses.ContainsKey("vt") && enGlosses["vt"].Length > 0)
-                                ||
-                                (enGlosses.ContainsKey("vi") && enGlosses["vi"].Length > 0))
-                            {
-                                string unLied = " " + pronoun + " " + possible + " ";
-                                if (normalized.Contains(unLied) && !pronounModifiers.Contains(unLied.Trim()))
-                                {
-                                    normalized = normalized.Replace(unLied, " " + pronoun + " li " + possible + " ");
-                                }
-                            }
-                        }
-                    }
-                }
+                normalized = ApplyNormalization(normalized, "sina li", ProcessSina);
             }
 
 
@@ -407,7 +331,7 @@ namespace BasicTypes.Parser
 
             if (normalized.Contains("'"))
             {
-                normalized = AddDirectedQuotes(normalized);
+                normalized = ApplyNormalization(normalized, "DirectQuotes", AddDirectedQuotes);
             }
 
             if (normalized == fakePredicate)
@@ -417,6 +341,119 @@ namespace BasicTypes.Parser
             if (normalized.StartsWith("« »"))
             {
                 throw new InvalidOperationException("quote recognition went wrong: " + text);
+            }
+            return normalized;
+        }
+
+        private static string[] pronounModifiers = new string[]
+            {
+                "mi wan",
+                "mi tu",
+                "mi mute",
+                "mi suli",
+
+                "sina wan",
+                "sina tu",
+                "sina mute",
+                "sina suli",
+
+                "mi en sina",
+            };
+
+        private static string ProcessSina(string normalized)
+        {
+            normalized = NormalizedSinaLi(normalized);
+            normalized = NormalizedSinaLi(normalized, "'");
+            normalized = NormalizedSinaLi(normalized, "«");
+            normalized = NormalizedSinaLi(normalized, "' ");
+            normalized = NormalizedSinaLi(normalized, "« ");
+            normalized = NormalizedSinaLi(normalized, "taso "); //conjunctions behave like leading punct
+
+
+            foreach (Word possible in Words.Dictionary.Values)
+            {
+                //Need a new concept-- ordinary POS & fallback POS
+                string pronoun = "sina";
+                Dictionary<string, Dictionary<string, string[]>> glosses;
+                if (Words.Glosses.TryGetValue(possible.Text, out glosses))
+                {
+                    Dictionary<string, string[]> enGlosses;
+                    if (glosses.TryGetValue("en", out enGlosses))
+                    {
+                        if ((enGlosses.ContainsKey("vt") && enGlosses["vt"].Length > 0)
+                            ||
+                            (enGlosses.ContainsKey("vi") && enGlosses["vi"].Length > 0))
+                        {
+                            string unLied = " " + pronoun + " " + possible + " ";
+                            if (normalized.Contains(unLied) && !pronounModifiers.Contains(unLied.Trim()))
+                            {
+                                normalized = normalized.Replace(unLied, " " + pronoun + " li " + possible + " ");
+                            }
+                        }
+                    }
+                }
+            }
+            return normalized;
+        }
+
+        private static string ProcessMi(string normalized)
+        {
+            if (normalized.Contains("mi wile ala e ma li"))
+            {
+                Console.WriteLine("Ok");
+            }
+            normalized = NormalizedMiLi(normalized);
+            normalized = NormalizedMiLi(normalized, "'");
+            normalized = NormalizedMiLi(normalized, "«");
+            normalized = NormalizedMiLi(normalized, "' ");
+            normalized = NormalizedMiLi(normalized, "« ");
+
+            foreach (Word possible in Words.Dictionary.Values)
+            {
+                //Need a new concept-- ordinary POS & fallback POS
+                string pronoun = "mi";
+                Dictionary<string, Dictionary<string, string[]>> glosses;
+                if (Words.Glosses.TryGetValue(possible.Text, out glosses))
+                {
+                    Dictionary<string, string[]> enGlosses;
+                    if (glosses.TryGetValue("en", out enGlosses))
+                    {
+                        if ((enGlosses.ContainsKey("vt") && enGlosses["vt"].Length > 0)
+                            ||
+                            (enGlosses.ContainsKey("vi") && enGlosses["vi"].Length > 0))
+                        {
+                            string unLied = " " + pronoun + " " + possible + " ";
+                            if (normalized.Contains(unLied) && !pronounModifiers.Contains(unLied.Trim()))
+                            {
+                                normalized = normalized.Replace(unLied, " " + pronoun + " li " + possible + " ");
+                            }
+                        }
+                    }
+                }
+            }
+            return normalized;
+        }
+
+        private static string ProcessExtraneousCommas(string normalized)
+        {
+            foreach (string s in new String[] { ", li ", ", la ", ",la ", " la, ", " la,", ", o ", ",o " })
+            {
+                if (normalized.Contains(s))
+                {
+                    normalized = normalized.Replace(s, " " + s.Trim(new char[] { ' ', ',' }) + " ");
+                }
+            }
+            return normalized;
+        }
+
+        private static string ApplyNormalization(string normalized, string what, Func<string, string> normalization)
+        {
+            string copy = string.Copy(normalized);
+            normalized = normalization.Invoke(normalized);// NormalizeChaos.Normalize(normalized);
+            if (copy != normalized)
+            {
+                Tracers.Normalize.TraceInformation(what + "1:" + copy);
+                Tracers.Normalize.TraceInformation(what + "2:" + normalized);
             }
             return normalized;
         }
@@ -431,7 +468,7 @@ namespace BasicTypes.Parser
                 if (pair.Key.EndsWith("-ala")) continue; //negation is special.
                 if (pair.Key.StartsWith("li-")) continue; //These are essentially verb markers and all verbs phrases are templates (i.e. can have additional words inserted & be the same template)
                 if (pair.Key.Contains("-e-")) continue;
-                
+
 
                 //Weak compounds, i.e. to close to noun + ordinary modifier because the modifier is excedingly common.
                 //if (pair.Key.EndsWith("-lili")) continue; //jan lili = child?  Ugh, but it is so common.
@@ -449,7 +486,7 @@ namespace BasicTypes.Parser
                     }
                 }
 
-                if(thatsAModal) continue;
+                if (thatsAModal) continue;
 
                 //lon-poka 
                 bool thatsAPreposition = false;
@@ -805,6 +842,14 @@ namespace BasicTypes.Parser
                 }
             }
 
+            foreach (string prep in preps)
+            {
+                string terminalPrep = "~" + prep;
+                if (normalized.EndsWith(terminalPrep))
+                {
+                    normalized = normalized.Remove(normalized.LastIndexOf(terminalPrep),1);
+                }
+            }
 
             //e ~sama
             foreach (string prep in preps)

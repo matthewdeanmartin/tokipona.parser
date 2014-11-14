@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using BasicTypes.Collections;
-
+using BasicTypes.Parser;
 using NUnit.Framework.Constraints;
 
 namespace BasicTypes.Knowledge
@@ -30,7 +30,11 @@ namespace BasicTypes.Knowledge
             c = dialect;
             ParserUtils pu = new ParserUtils(c);
 
-            sentences = pu.ParseIntoRawSentences(corpus);
+            sentences = pu.ParseIntoNonNormalizedSentences(corpus);
+            for (int index= 0; index < sentences.Length; index++)
+            {
+                sentences[index] = Normalizer.NormalizeText(sentences[index],dialect);
+            }
         }
 
         public Discourse[] MakeSentences()

@@ -113,11 +113,19 @@ namespace BasicTypes
 
         public string ToString(string format)
         {
+            if (format == null)
+            {
+                format = "g";
+            }
             return this.ToString(format, Config.CurrentDialect);
         }
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
+            if (format == null)
+            {
+                format = "g";
+            }
             var words = ToTokenList(format,formatProvider);
             return words.SpaceJoin(format);
         }

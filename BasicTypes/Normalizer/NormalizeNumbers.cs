@@ -41,7 +41,7 @@ namespace BasicTypes
                 sentence = sentence.Substring(0, sentence.Length - 1);
             }
             
-            Token[] tokens = tpu.ValidTokens(sentence);
+            Token[] tokens =  sentence.Split(new char[]{' '},StringSplitOptions.RemoveEmptyEntries).Select(x=>new Token(x)).ToArray();
 
             List<NumberAddress> numbers =new List<NumberAddress>();
             NumberAddress number  = new NumberAddress();

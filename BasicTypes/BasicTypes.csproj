@@ -89,8 +89,10 @@
     <Compile Include="Collections\SentenceSemeEqual.cs" />
     <Compile Include="Collections\SentenceTypeConverter.cs" />
     <Compile Include="CollectionsDegenerate\Vocative.cs" />
+    <Compile Include="Collections\TagQuestion.cs" />
     <Compile Include="Collections\VerbPhrase.cs" />
     <Compile Include="Collections\VerbPhraseTests.cs" />
+    <Compile Include="Collections\WordList.cs" />
     <Compile Include="Collections\WordSet.cs" />
     <Compile Include="Collections\WordSetByValue.cs" />
     <Compile Include="Collections\SentenceTests.cs" />
@@ -138,6 +140,7 @@
     <Compile Include="Knowledge\CorpusKnowledge.cs" />
     <Compile Include="Knowledge\CorpusTexts.cs" />
     <Compile Include="Knowledge\KnowledgeScope.cs" />
+    <Compile Include="Lorem\TextGenerator.cs" />
     <Compile Include="MoreTypes\CustomKeyedCollection.cs" />
     <Compile Include="MoreTypes\DictionaryProxy.cs" />
     <Compile Include="MoreTypes\EnumerationThing.cs" />

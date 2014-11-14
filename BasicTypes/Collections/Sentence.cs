@@ -34,7 +34,7 @@ namespace BasicTypes
         private readonly Chain fragments;
 
         [DataMember]
-        private readonly Chain[] subjects;
+        private readonly Chain subjects;
         [DataMember]
         private readonly PredicateList predicates;
         [DataMember]
@@ -123,25 +123,28 @@ namespace BasicTypes
         }
 
         //Preconditions
-        public Sentence(Chain subjects, PredicateList predicates, string original = null, string normalized = null)
-        {
-            LaFragment = new List<Chain>();
-            this.subjects = new Chain[] { subjects }; //only (*), o, en
-            this.predicates = predicates; //only li, pi, en
-
-            this.original = original;
-            this.normalized = normalized;
-        }
+        //public Sentence(Chain subjects, PredicateList predicates, string original = null, string normalized = null)
+        //{
+        //    LaFragment = new List<Chain>();
+        //    this.subjects =  subjects ; //only (*), o, en
+        //    this.predicates = predicates; //only li, pi, en
+        //
+        //    this.original = original;
+        //    this.normalized = normalized;
+        //}
         
         //Simple Sentences
-        public Sentence(Chain subjects, PredicateList predicates, SentenceOptionalParts parts, string original = null, string normalized = null)
+        public Sentence(Chain subjects, PredicateList predicates, SentenceOptionalParts parts=null, string original = null, string normalized = null)
         {
             LaFragment = new List<Chain>();
-            this.subjects = new Chain[] { subjects }; //only (*), o, en
+            this.subjects =  subjects ; //only (*), o, en
             this.predicates = predicates; //only li, pi, en
-            this.punctuation = parts.Punctuation;
-            this.conjunction = parts.Conjunction;
-
+            if (parts != null)
+            {
+                this.punctuation = parts.Punctuation;
+                this.conjunction = parts.Conjunction;
+            }
+            
             this.original = original;
             this.normalized = normalized;
         }
@@ -172,9 +175,15 @@ namespace BasicTypes
 
         public bool Contains(Word word)
         {
-            List<IContainsWord> parts = subjects.Cast<IContainsWord>().ToList();
-            parts.AddRange(predicates);
-            return parts.Any(x => x.Contains(word));
+            if (subjects != null)
+            {
+                if (subjects.Contains(word)) return true;
+            }
+            if (predicates != null)
+            {
+                if (predicates.Contains(word)) return true;
+            }
+            return false;
         }
 
         public bool IsTrue()
@@ -193,7 +202,7 @@ namespace BasicTypes
         public Fragment Fragment { get { return fragment; } }
 
         public Particle Conjunction { get { return conjunction; } } //Anu, taso
-        public Chain[] Subjects { get { return subjects; } } //jan 
+        public Chain Subjects { get { return subjects; } } //jan 
         public PredicateList Predicates { get { return predicates; } }//li verb li noun li prep phrase
         public Punctuation Punctuation { get { return punctuation; } } //.?!
 
@@ -206,7 +215,7 @@ namespace BasicTypes
         {
             List<IContainsWord> w = new List<IContainsWord>();
             w.AddRange(Predicates);
-            w.AddRange(Subjects);
+            w.Add(Subjects);
             return w.ToArray();
         }
 
@@ -220,6 +229,10 @@ namespace BasicTypes
 
         public string ToString(string format)
         {
+            if (format == null)
+            {
+                format = "g";
+            }
             return ToString(format, Config.CurrentDialect);
         }
 
@@ -230,6 +243,10 @@ namespace BasicTypes
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
+            if (format == null)
+            {
+                format = "g";
+            }
             List<string> sb = new List<string>();
             string spaceJoined;
             if (preconditions != null)
@@ -325,13 +342,17 @@ namespace BasicTypes
                 {
                     //Should only happen for imperatives
                     sb.AddIfNeeded("[",format);
-                    sb.AddRange(Particles.en,
-                        subjects.Select(x => x == null ? "[NULL]" : x.ToString(format, formatProvider)), format, formatProvider, false);
+                    sb.Add(subjects == null ? "[NULL]" : subjects.ToString(format, formatProvider));
+                        //subjects.Select(x => x == null ? "[NULL]" : x.ToString(format, formatProvider)), format, formatProvider, false);
                     sb.AddIfNeeded("]",format);
                 }
                 else
                 {
-                    Console.WriteLine("This was surprising.. no subjects");
+                    //Not surprising if it is an imperative.
+                    if (Predicates.All(x => x.Particle.Text != Particles.o.Text))
+                    {
+                        Console.WriteLine("This was surprising.. no subjects and AFAIK, this isn't an imperative of any sort.");
+                    }
                 }
 
                 sb.AddIfNeeded("<",format);

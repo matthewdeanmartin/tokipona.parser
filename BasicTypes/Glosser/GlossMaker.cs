@@ -364,12 +364,12 @@ namespace BasicTypes.Glosser
 
         private static void ProcessSubjects(bool includePos, Sentence s, List<string> gloss, Dialect config)
         {
-            foreach (Chain c in s.Subjects)
+            Chain c = s.Subjects;
             {
                 if (c == null)
                 {
                     //Imperatives have implicit subjects.
-                    continue;
+                    return;
                 }
                 ProcessOneChain(includePos, gloss, config, c);
             }

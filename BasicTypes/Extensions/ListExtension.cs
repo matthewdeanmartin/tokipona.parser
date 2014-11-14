@@ -8,6 +8,16 @@ namespace BasicTypes.Extensions
 {
     public static class ListExtension
     {
+        public static void AddIfNotReduplicate(this List<string> list, string value)
+        {
+            if (list.Count >0 &&  list[list.Count - 1] == value)
+            {
+                return;
+                //throw new InvalidOperationException("Reduplicate");
+            }
+            list.Add(value);
+        }
+
         public static void Format(this List<string> template, Dictionary<string,string> values)
         {
             //Swap {#n} tokens found in list with n#th value in values
@@ -47,7 +57,7 @@ namespace BasicTypes.Extensions
 
                             if (!Particle.IsParticle(lastWord) && !Token.CheckIsConjunction(lastWord))
                             {
-                                list.Add(particle.ToString(format, formatProvider));
+                                list.AddIfNotReduplicate(particle.ToString(format, formatProvider));
                             }
                         }
                     }
@@ -59,12 +69,12 @@ namespace BasicTypes.Extensions
                         string lastWord = list[list.Count - 1];
                         if ((!Particle.IsParticle(lastWord) && !Token.CheckIsConjunction(lastWord)))
                         {
-                            list.Add(particle.ToString(format, formatProvider));
+                            list.AddIfNotReduplicate(particle.ToString(format, formatProvider));
                         }
                     }
                     else if (list.Count == 0)
                     {
-                        list.Add(particle.ToString(format, formatProvider));
+                        list.AddIfNotReduplicate(particle.ToString(format, formatProvider));
                     }
                 }
                 list.Add(s);

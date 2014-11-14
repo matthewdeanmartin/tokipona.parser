@@ -31,7 +31,9 @@ namespace BasicTypes.Extensions
         {
             if (string.IsNullOrWhiteSpace(value)) return false;
             if (value.Length == 0) return false;
-            return value[0].ToString().ToUpperInvariant() == value[0].ToString();
+            string toTest = value.Trim(new[] {'~', '#','\''});
+            if (toTest.Length == 0) return false;
+            return toTest[0].ToString().ToUpperInvariant() == value[0].ToString();
         }
 
         public static string RemoveLeadingWholeWord(this string value, string word)
