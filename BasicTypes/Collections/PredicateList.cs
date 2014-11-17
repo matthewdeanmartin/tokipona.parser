@@ -53,7 +53,11 @@ namespace BasicTypes.Collections
                 }
                 if (tpPredicate.Prepositionals != null)
                 {
-                    sb.AddRange(tpPredicate.Prepositionals.ToTokenList(format, formatProvider));
+                    foreach (PrepositionalPhrase phrase in tpPredicate.Prepositionals)
+                    {
+                        sb.AddRange(phrase.ToTokenList(format, formatProvider));    
+                    }
+                    
                 }
             }
             return sb;

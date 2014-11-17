@@ -51,35 +51,15 @@ namespace BasicTypes.Collections
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
-            if (item.Contains("~"))
-            {
-                string[] parts = Splitters.SplitOnPrepositions(item);
-                List<Chain> chain = pu.ProcessPrepositionalPhrases(parts);
-                if (chain.Count != 1)
-                {
-                    throw new InvalidOperationException("Tried to parse a single chain, but value contains " + chain.Count);
-                }
-                return chain[0];
-            }
-
             if (item.Contains(" e ") || item.StartsWith("e "))
             {
                 throw new NotImplementedException("Need a pi chain processor");
-                //string[] parts = Splitters.SplitOnE(item);
-
-                //HeadedPhrase
-                //foreach (string part in parts)
-                //{
-
-                //}
-                //Chain c  = new Chain(ChainType.Directs, Particles.e, pu.HeadedPhraseParser());
-                //return c;
             }
-            //If subject, then en & pi
-
-            //If pp then 
-
-            return pu.ProcessEnPiChain(item);
+            if (item.Contains(" en "))
+            {
+                throw new NotImplementedException("This is necessarily a pi/en chain, contains en: " + value);
+            }
+            return pu.ProcessPiChain(item);
         }
     }
 }

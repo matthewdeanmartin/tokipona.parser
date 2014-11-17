@@ -1,18 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection.Emit;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using BasicTypes.Collections;
 using BasicTypes.CollectionsDegenerate;
 using BasicTypes.Exceptions;
 using BasicTypes.Extensions;
-using System.Collections.ObjectModel;
 
 namespace BasicTypes
 {
@@ -28,13 +22,13 @@ namespace BasicTypes
 
         //Breaks immutability :-(
         [DataMember]
-        public List<Chain> LaFragment { get; set; }
+        public List<Fragment> LaFragment { get; set; }
 
         [DataMember]
-        private readonly Chain fragments;
+        private readonly ComplexChain fragments; //not used????
 
         [DataMember]
-        private readonly Chain subjects;
+        private readonly ComplexChain subjects;
         [DataMember]
         private readonly PredicateList predicates;
         [DataMember]
@@ -64,7 +58,7 @@ namespace BasicTypes
 
         public Sentence(Sentence[] preconditions = null, Sentence conclusion = null, string original = null, string normalized = null)
         {
-            LaFragment=new List<Chain>();
+            LaFragment = new List<Fragment>();
             if (preconditions != null && preconditions.Length > 0 && conclusion == null)
             {
                 throw new TpSyntaxException("There must be a head sentence (conclusions) if there are preconditions.");
@@ -134,15 +128,15 @@ namespace BasicTypes
         //}
         
         //Simple Sentences
-        public Sentence(Chain subjects, PredicateList predicates, SentenceOptionalParts parts=null, string original = null, string normalized = null)
+        public Sentence(ComplexChain subjects, PredicateList predicates, SentenceOptionalParts parts=null, string original = null, string normalized = null)
         {
-            LaFragment = new List<Chain>();
+            LaFragment = new List<Fragment>();
             this.subjects =  subjects ; //only (*), o, en
             this.predicates = predicates; //only li, pi, en
             if (parts != null)
             {
-                this.punctuation = parts.Punctuation;
-                this.conjunction = parts.Conjunction;
+                punctuation = parts.Punctuation;
+                conjunction = parts.Conjunction;
             }
             
             this.original = original;
@@ -202,13 +196,13 @@ namespace BasicTypes
         public Fragment Fragment { get { return fragment; } }
 
         public Particle Conjunction { get { return conjunction; } } //Anu, taso
-        public Chain Subjects { get { return subjects; } } //jan 
+        public ComplexChain Subjects { get { return subjects; } } //jan 
         public PredicateList Predicates { get { return predicates; } }//li verb li noun li prep phrase
         public Punctuation Punctuation { get { return punctuation; } } //.?!
 
         public Sentence EquivallencyGenerator()
         {
-            return (Sentence)this.MemberwiseClone();
+            return (Sentence)MemberwiseClone();
         }
 
         public IContainsWord[] Segments()
@@ -328,7 +322,7 @@ namespace BasicTypes
             {
                 if (LaFragment != null)
                 {
-                    foreach (Chain chain in LaFragment)
+                    foreach (Fragment chain in LaFragment)
                     {
                         sb.AddIfNeeded("{",format);
                         sb.AddRange(chain.ToTokenList(format, formatProvider));

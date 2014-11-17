@@ -30,6 +30,16 @@ namespace BasicTypes
             "e"
         };
 
+        public static string[] SimplePrepositions = new string[]
+        {
+            "~lon",
+            "~kepeken",
+            "~tawa",
+            "~sike",
+            "~poka",
+            "~sama"
+        };
+
         public static string[] dictionary = new string[]
         {
             "la", //Sentence conj.

@@ -17,7 +17,7 @@ namespace BasicTypes
 
         public override bool Equals(Sentence x, Sentence y)
         {
-            if (!ChainByValue.Instance.Equals(x.Subjects, y.Subjects))
+            if (!ComplexChainByValue.Instance.Equals(x.Subjects, y.Subjects))
             {
                 return false;
             }

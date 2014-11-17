@@ -20,16 +20,16 @@ namespace BasicTypes.Collections
         private readonly Particle particle;
 
         [DataMember]
-        private readonly VerbPhrase verbPhrase; 
+        private readonly VerbPhrase verbPhrase;
 
         [DataMember]
-        private readonly Chain directs;
+        private readonly ComplexChain directs;
         [DataMember]
-        private readonly Chain prepositionals;
+        private readonly PrepositionalPhrase[] prepositionals;
         [DataMember]
-        private readonly Chain nominalPredicate;
+        private readonly ComplexChain nominalPredicate;
 
-        public TpPredicate(Particle particle, Chain nominalPredicate, Chain directs = null, Chain prepositionals = null)
+        public TpPredicate(Particle particle, ComplexChain nominalPredicate, ComplexChain directs = null, PrepositionalPhrase[] prepositionals = null)
         {
             if (particle.Text != Particles.o.Text && particle.Text != Particles.li.Text)
             {
@@ -46,12 +46,12 @@ namespace BasicTypes.Collections
 
             //TODO: Validate. 
             this.particle = particle;//li or o
-            this.nominalPredicate= nominalPredicate; //only pi, en
+            this.nominalPredicate = nominalPredicate; //only pi, en
             this.directs = directs;//only e, pi, en
             this.prepositionals = prepositionals;//only ~prop, pi, en 
         }
 
-        public TpPredicate(Particle particle, VerbPhrase verbPhrase, Chain directs=null, Chain prepositionals=null)
+        public TpPredicate(Particle particle, VerbPhrase verbPhrase, ComplexChain directs = null, PrepositionalPhrase[] prepositionals = null)
         {
             if (particle.Text != Particles.o.Text && particle.Text != Particles.li.Text)
             {
@@ -61,7 +61,7 @@ namespace BasicTypes.Collections
             {
                 throw new TpSyntaxException("A verb phrase or prepositional phrase required. (Directs are optional)");
             }
-            if (verbPhrase ==null && directs==null && prepositionals ==null)
+            if (verbPhrase == null && directs == null && prepositionals == null)
             {
                 throw new TpSyntaxException("Verb, directs and prepositional phrases all null, not good");
             }
@@ -76,22 +76,19 @@ namespace BasicTypes.Collections
 
             this.directs = directs;//only e, pi, en
 
-            if (prepositionals != null && prepositionals.Particle.Text != Particles.Blank)
-            {
-                throw new TpSyntaxException("Prepositional phrases are strung together by no particular particle.");
-            }
             this.prepositionals = prepositionals;//only ~prop, pi, en 
         }
 
         public Particle Particle { get { return particle; } }
         public VerbPhrase VerbPhrase { get { return verbPhrase; } }
-        public Chain Directs { get { return directs; } }
-        public Chain Prepositionals { get { return prepositionals; } }
-        public Chain NominalPredicate { get { return nominalPredicate; } }
+        public ComplexChain Directs { get { return directs; } }
+        public PrepositionalPhrase[] Prepositionals { get { return prepositionals; } }
+        public ComplexChain NominalPredicate { get { return nominalPredicate; } }
 
         public bool Contains(Word word)
         {
-            List<IContainsWord> chains = new List<IContainsWord>() { verbPhrase, directs, prepositionals };
+            List<IContainsWord> chains = new List<IContainsWord>() { verbPhrase, directs };
+            chains.AddRange(prepositionals);
             return chains.Any(x => x != null && x.Contains(word));
         }
 
@@ -134,24 +131,24 @@ namespace BasicTypes.Collections
 
             sb.AddRange(verbPhrase.ToTokenList(format, formatProvider));
 
-            foreach (Chain chain in new[] {directs, Prepositionals})
+            foreach (ComplexChain chain in new[] { directs })
             {
                 if (chain == null) continue;
-
-                if (chain.HeadedPhrases != null)
+                sb.Add("{");
+                sb.AddRange(chain.ToTokenList(format, formatProvider));
+                sb.Add("}");
+            }
+            if (Prepositionals != null)
+            {
+                foreach (PrepositionalPhrase phrase in Prepositionals)
                 {
+                    if (phrase == null) continue;
                     sb.Add("{");
-                    if (chain.HeadedPhrases.Any())
-                    {
-                        sb.Add(chain.Particle.ToString(format, formatProvider));
-                    }
-                    foreach (HeadedPhrase headedPhrase in chain.HeadedPhrases)
-                    {
-                        sb.Add(headedPhrase.ToString(format, formatProvider));
-                    }
+                    sb.AddRange(phrase.ToTokenList(format, formatProvider));
                     sb.Add("}");
                 }
             }
+
             return sb;
         }
     }

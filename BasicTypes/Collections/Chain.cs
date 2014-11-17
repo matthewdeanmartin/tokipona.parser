@@ -18,8 +18,14 @@ namespace BasicTypes
     [Serializable]
     public partial class Chain : IContainsWord, IFormattable, IToString
     {
-        [DataMember(IsRequired = true)]
-        readonly ChainType chainType;
+        public static Chain PiChainFactory(HeadedPhrase[] phrases)
+        {
+            return new Chain(Particles.pi, phrases);
+        }
+        public static Chain PiChainFactory(HeadedPhrase phrase)
+        {
+            return new Chain(Particles.pi, new[] { phrase });
+        }
         [DataMember(IsRequired = true)]
         readonly Particle particle;
         [DataMember(IsRequired = false, EmitDefaultValue = false)]
@@ -27,30 +33,20 @@ namespace BasicTypes
         
         private Chain parentChain;
 
-        public Chain(ChainType type, Particle particle, HeadedPhrase[] headedPhrases)
+        public Chain(Particle particle, HeadedPhrase[] headedPhrases)
         {
             if (headedPhrases.Length == 0)
             {
                 throw new InvalidOperationException("Chain with no headed phrases. This would be a bare particle if written as text");
             }
-            if (type == ChainType.MixedPrepositional)
-            {
-                throw new InvalidOperationException("MixedPrepositional must hold subchains and not headedPhrases");
-            }
-            
-
-            chainType = type;
             this.particle = particle;
             this.headedPhrases = headedPhrases;
         }
 
-
-        public ChainType ChainType { get { return chainType; } }
         public Particle Particle { get { return particle; } }
         public HeadedPhrase[] HeadedPhrases { get { return headedPhrases; } }
  
         public Chain ParentChain { get { return parentChain; }
-            private set { parentChain = value; }
         }
 
         public bool Contains(Word word)

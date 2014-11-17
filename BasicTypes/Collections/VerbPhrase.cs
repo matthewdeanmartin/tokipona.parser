@@ -34,12 +34,12 @@ namespace BasicTypes.Collections
 
         //jan li tawa ma Wasinton
         [DataMember]
-        private Chain nounComplement;
+        private ComplexChain nounComplement;
 
         public WordSet Modals { get { return modals; } }
         public Word HeadVerb { get { return headVerb; } }
         public WordSet Adverbs { get { return adverbs; } }
-        public Chain NounComplement { get { return nounComplement; } }
+        public ComplexChain NounComplement { get { return nounComplement; } }
 
         //Doesn't deal with adj pi adj adj
         public VerbPhrase(Word headVerb, WordSet modals = null, WordSet adverbs = null)
@@ -83,7 +83,7 @@ namespace BasicTypes.Collections
             this.adverbs = adverbs;
         }
 
-        public VerbPhrase(Chain nounComplement = null)
+        public VerbPhrase(ComplexChain nounComplement = null)
         {
             this.nounComplement = nounComplement;
         }

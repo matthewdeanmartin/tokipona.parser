@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
 
 namespace BasicTypes.Collections
@@ -48,53 +45,59 @@ namespace BasicTypes.Collections
             }
         }
 
-        public static Chain SampleDirectsChain()
+        public static ComplexChain SampleDirectsChain()
         {
-            Chain c = new Chain(ChainType.Directs, Particles.e, new HeadedPhrase[]
-            {
-                new HeadedPhrase(Words.jelo, new WordSet() {Words.esun}),
-                new HeadedPhrase(Words.kasi, new WordSet() {Words.esun}),
-            });
+            Chain c1 = Chain.PiChainFactory(new HeadedPhrase(Words.jelo, new WordSet {Words.esun}));
+            Chain c2 = Chain.PiChainFactory(new HeadedPhrase(Words.kasi, new WordSet {Words.esun}));
+            ComplexChain c = new ComplexChain(Particles.e, new[]{c1,c2});
             return c;
         }
 
-        public static Chain SampleMixedPrepsChain()
+        
+
+        public static PrepositionalPhrase[] SamplePrepsChain()
         {
-            Chain c = new Chain(ChainType.MixedPrepositional, Particles.Blank, new Chain[]{ SamplePrepsChain()});
-            return c;
+            //Bit over kill.
+            Chain simpleChain = new Chain( Particles.pi, new[]
+            {
+                new HeadedPhrase(Words.jelo, new WordSet {Words.esun})
+            });
+            ComplexChain complexChain = new ComplexChain(Particles.en, new[] { simpleChain });
+
+            Chain simpleChain2 = new Chain(Particles.pi, new[]
+            {
+                new HeadedPhrase(Words.jelo, new WordSet {Words.esun})
+            });
+            ComplexChain complexChain2 = new ComplexChain(Particles.en, new[] { simpleChain2 });
+
+            PrepositionalPhrase phrase1 = new PrepositionalPhrase(Words.kepeken, complexChain);
+            PrepositionalPhrase phrase2 = new PrepositionalPhrase(Words.kepeken, complexChain2);
+
+            return new[]{phrase1, phrase2};//should these be it's own concept?
         }
 
-        public static Chain SamplePrepsChain()
-        {
-            Chain c = new Chain(ChainType.Prepositionals, new Particle("~kepeken"), new HeadedPhrase[]
-            {
-                new HeadedPhrase(Words.jelo, new WordSet() {Words.esun}),
-                new HeadedPhrase(Words.kasi, new WordSet() {Words.esun}),
-            });
-            return c;
-        }
         public static Chain SampleChain()
         {
-            Chain c = new Chain(ChainType.Subjects, Particles.en, new HeadedPhrase[]
+            Chain c = new Chain(Particles.en, new[]
             {
-                new HeadedPhrase(Words.jelo, new WordSet() {Words.esun}),
-                new HeadedPhrase(Words.kasi, new WordSet() {Words.esun}),
+                new HeadedPhrase(Words.jelo, new WordSet {Words.esun}),
+                new HeadedPhrase(Words.kasi, new WordSet {Words.esun})
             });
             return c;
         }
 
         public static VerbPhrase SampleVerbPhrase()
         {
-            return  new VerbPhrase(Words.moku,new WordSet() {Words.ken}, new WordSet(){ Words.mute});
+            return  new VerbPhrase(Words.moku,new WordSet {Words.ken}, new WordSet { Words.mute});
         }
 
         [Test]
         public void ToStringTest()
         {
-            Chain c = new Chain(ChainType.Subjects, Particles.en, new HeadedPhrase[]
+            Chain c = new Chain(Particles.en, new[]
             {
-              new HeadedPhrase(Words.jelo, new WordSet(){ Words.esun}),    
-              new HeadedPhrase(Words.kasi, new WordSet(){ Words.esun}),    
+                new HeadedPhrase(Words.jelo, new WordSet { Words.esun}),    
+                new HeadedPhrase(Words.kasi, new WordSet { Words.esun})
             });
             Console.WriteLine(c.ToJsonDcJs());
             Assert.AreEqual("jelo esun en kasi esun",c.ToString());
@@ -103,7 +106,7 @@ namespace BasicTypes.Collections
         [Test]
         public void ParseAndToString()
         {
-            string value= "jelo esun en kasi esun";
+            const string value = "jelo esun en kasi esun";
             Chain c = Chain.Parse(value);
             Console.WriteLine(c.ToJsonDcJs());
             Assert.AreEqual(value, c.ToString(), c.ToString("b"));
@@ -112,7 +115,7 @@ namespace BasicTypes.Collections
         [Test]
         public void ParseEsunEnKasi()
         {
-            string value = "esun en kasi";
+            const string value = "esun en kasi";
             Chain c = Chain.Parse(value);
             Assert.AreEqual(c.Particle.ToString(), Particles.en.ToString());
             Console.WriteLine(c.ToJsonDcJs());
@@ -123,7 +126,7 @@ namespace BasicTypes.Collections
         [Test]
         public void ParseKepekenIlo()
         {
-            string value = "~kepeken ilo";
+            const string value = "~kepeken ilo";
             Chain c = Chain.Parse(value);
             Assert.AreEqual("~kepeken",c.Particle.ToString());
             Console.WriteLine(c.ToJsonDcJs());
@@ -133,7 +136,7 @@ namespace BasicTypes.Collections
         [Test]
         public void ParseKepekenIloSuli()
         {
-            string value = "~kepeken ilo suli";
+            const string value = "~kepeken ilo suli";
             Chain c = Chain.Parse(value);
             Assert.AreEqual("~kepeken",c.Particle.ToString());
             Console.WriteLine(c.ToJsonDcJs());
@@ -143,7 +146,7 @@ namespace BasicTypes.Collections
         [Test]
         public void ThreePreps()
         {
-            string value = "ni li ~kepeken ilo suli ~tawa ilo suli ~poka ilo suli";
+            const string value = "ni li ~kepeken ilo suli ~tawa ilo suli ~poka ilo suli";
             ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
             Sentence s = pu.ParsedSentenceFactory(value, value);
             string predicates= s.Predicates.ToString();
@@ -156,7 +159,7 @@ namespace BasicTypes.Collections
         [Test]
         public void SmallestPiChain()
         {
-            string value = "tomo pi telo nasa";
+            const string value = "tomo pi telo nasa";
             Chain c = Chain.Parse(value);
             Assert.AreEqual(Particles.en.ToString(),c.Particle.ToString());
             Console.WriteLine(c.ToJsonDcJs());
@@ -166,7 +169,7 @@ namespace BasicTypes.Collections
         [Test]
         public void ParseKepekenIloSuliPiMaSuli()
         {
-            string value = "~kepeken ilo suli pi ma suli";
+            const string value = "~kepeken ilo suli pi ma suli";
             Chain c = Chain.Parse(value);
             Assert.AreEqual("~kepeken",c.Particle.ToString() );
             Console.WriteLine(c.ToJsonDcJs());
@@ -176,7 +179,7 @@ namespace BasicTypes.Collections
         [Test]
         public void ParseTwoPiPhrasesPlusEn()
         {
-            string value = "esun pi tenpo suno en kasi pi tenpo suno";
+            const string value = "esun pi tenpo suno en kasi pi tenpo suno";
             Chain c = Chain.Parse(value);
             Assert.AreEqual(c.Particle.ToString(), Particles.en.ToString());
             Console.WriteLine(c.ToJsonDcJs());
@@ -188,7 +191,7 @@ namespace BasicTypes.Collections
         {
             try
             {
-                string value = "e esun e soweli";
+                const string value = "e esun e soweli";
                 Chain c = Chain.Parse(value);
                 Assert.AreEqual(c.Particle.ToString(), Particles.e.ToString());
                 Console.WriteLine(c.ToJsonDcJs());

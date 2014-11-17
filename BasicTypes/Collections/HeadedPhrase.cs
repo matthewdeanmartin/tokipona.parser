@@ -26,16 +26,42 @@ namespace BasicTypes
         [DataMember]
         private readonly WordSet modifiers;
 
-        public HeadedPhrase(Word head, WordSet modifiers)
+        public HeadedPhrase(Word head, Word modifier1, Word modifier2 = null, Word modifier3 = null)
         {
-            
+            WordSet modifiers = null;
+            //if (modifier2 != null || modifier3 != null)
+            {
+               modifiers= new WordSet();
+               //if (modifier1 != null) 
+                   modifiers.Add(modifier1);
+               if (modifier2 != null) modifiers.Add(modifier2);
+               if (modifier3 != null) modifiers.Add(modifier3);
+            }
+
+            ValidateConstruction(head, modifiers);
+
+            this.head = head;
+            this.modifiers = modifiers;
+        }
+
+        public HeadedPhrase(Word head, WordSet modifiers=null)
+        {
+            ValidateConstruction(head, modifiers);
+
+            this.head = head;
+            this.modifiers = modifiers;
+        }
+
+        private static void ValidateConstruction(Word head, WordSet modifiers)
+        {
             if (head == null)
             {
                 throw new ArgumentNullException("head", "Can't construct with null");
             }
             if (Particle.IsParticle(head.Text))
             {
-                throw new TpSyntaxException("You can't have a headed phrase that is headed by a particle. That would be a chain. " + head.Text);
+                throw new TpSyntaxException(
+                    "You can't have a headed phrase that is headed by a particle. That would be a chain. " + head.Text);
             }
             if (ProperModifier.IsProperModifer(head.Text))
             {
@@ -60,16 +86,12 @@ namespace BasicTypes
                     //HACK:
                 else if (modifiers.Any(x => x.Text == "anu" || x.Text == "en")) //Because we've deferred dealing with conj.
                 {
-
                 }
                 else
                 {
                     throw new InvalidOperationException("Suspiciously long headed phrase " + head + " " + modifiers);
                 }
             }
-
-            this.head = head;
-            this.modifiers = modifiers;
         }
 
         //public HeadedPhrase(Word head, WordSet modifiers, HeadedPhrase[] subPhrases)

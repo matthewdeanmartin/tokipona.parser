@@ -13,8 +13,8 @@ namespace BasicTypes.Knowledge
     {
         public PhoneNumbers()
         {
-            this.Add("jan Mato","555-1523");
-            this.Add("jan Seko", "123-4568");
+            Add("jan Mato","555-1523");
+            Add("jan Seko", "123-4568");
         }
     }
 
@@ -30,28 +30,21 @@ namespace BasicTypes.Knowledge
 
         private static Sentence EstablishAFact(KeyValuePair<string, string> pair)
         {
-            string[] nameParts = pair.Key.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+            string[] nameParts = pair.Key.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
             
             Word jan = Words.jan;
             Word name = new Word(nameParts[1]);
-            
-            Particle li = Particles.li;
-            Word jo = Words.jo;
+
             Word nanpa = Words.nanpa;
             Word fiveEtc = new Word(pair.Value);
 
-            Particle en = Particles.en;
-            Particle e = Particles.e;
-
-            Chain subject = new Chain(ChainType.Subjects, en, 
-                new[] { new HeadedPhrase(jan, new WordSet(){ name}) });
-            //Chain verbs = new Chain(ChainType.Predicates, li, new[] { new HeadedPhrase(jo, null) });
+            ComplexChain subject = ComplexChain.SinglePiEnChainFactory( new HeadedPhrase(jan, new WordSet { name}) );
             VerbPhrase verb = new VerbPhrase(Words.jo);
-            Chain directs = new Chain(ChainType.Directs, e, new[] { new HeadedPhrase(nanpa, new WordSet() { fiveEtc }) });
+            ComplexChain directs = ComplexChain.SingleEPiChainFactory(new HeadedPhrase(nanpa, new WordSet { fiveEtc }));
 
-            TpPredicate predicate = new TpPredicate(Particles.li, verb, directs, null);
+            TpPredicate predicate = new TpPredicate(Particles.li, verb, directs);
             Sentence fact = new Sentence(subject, new PredicateList { predicate },
-                new SentenceOptionalParts()
+                new SentenceOptionalParts
                 {
                  Punctuation = new Punctuation(".") 
                 });

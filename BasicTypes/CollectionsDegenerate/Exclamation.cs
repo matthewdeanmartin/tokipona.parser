@@ -10,6 +10,8 @@ namespace BasicTypes.CollectionsDegenerate
 {
     //pona a! o! ike! pakala!
     //I don't think these have any interesting internal grammar.
+    [DataContract]
+    [Serializable]
     public class Exclamation
     {
         [DataMember]

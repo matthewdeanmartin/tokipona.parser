@@ -79,18 +79,18 @@ namespace BasicTypes.Lorem
             bool isTransitive = random.Next(0, 100) < 50;
 
             VerbPhrase verbPhrase = RandomVerbPhrase(isTransitive?"vt":"vi");
-            Chain nominal = RandomPiChain();
+            ComplexChain nominal = RandomEnPiChain();
 
             TpPredicate p;
             if (random.Next(0, 100) < 75)
             {
-                Chain prepositionals = null;
+                PrepositionalPhrase[] prepositionals = null;
                 if (random.Next(0, 100) < 35)
                 {
                     prepositionals = RandomPrepChain();
                 }
                 
-                Chain directs=null;
+                ComplexChain directs=null;
                 if (isTransitive)
                 {
                     directs = RandomEChain();
@@ -104,7 +104,7 @@ namespace BasicTypes.Lorem
             }
 
 
-            Sentence s = new Sentence(RandomPiChain(),new PredicateList(){ p},OptionalParts());
+            Sentence s = new Sentence(RandomEnPiChain(),new PredicateList { p},OptionalParts());
             return s;
         }
 
@@ -115,7 +115,7 @@ namespace BasicTypes.Lorem
                 return null;
             }
             SentenceOptionalParts sop = new SentenceOptionalParts();
-            sop.Fragments = RandomPiChain();
+            sop.Fragments = RandomEnPiChain();
             if (random.Next(0, 100) < 25)
             {
                 if (random.Next(0, 100) < 50)
@@ -144,7 +144,7 @@ namespace BasicTypes.Lorem
             VerbPhrase vp;
             if (random.Next(0, 100) < 25)
             {
-                 vp = new VerbPhrase(RandomPiChain());
+                 vp = new VerbPhrase(RandomEnPiChain());
             }
             else
             {
@@ -187,7 +187,7 @@ namespace BasicTypes.Lorem
 
         public static WordSet RandomModals()
         {
-            Dictionary<int, int> odds = new Dictionary<int, int>()
+            Dictionary<int, int> odds = new Dictionary<int, int>
             {
                 {0,74},
                 {1,10},
@@ -216,9 +216,9 @@ namespace BasicTypes.Lorem
             return ws;
         }
 
-        public static Chain RandomPrepChain()
+        public static PrepositionalPhrase[] RandomPrepChain()
         {
-            Dictionary<int, int> odds = new Dictionary<int, int>()
+            Dictionary<int, int> odds = new Dictionary<int, int>
             {
                 {1,74},
                 {2,10},
@@ -236,20 +236,19 @@ namespace BasicTypes.Lorem
             int dice = random.Next(0, 101);
             var howMany = odds.Where(x => dice <= x.Value).Select(x => x.Key).First();
 
-            List<Chain> prepositionals = new List<Chain>();
+            List<PrepositionalPhrase> prepositionals = new List<PrepositionalPhrase>();
 
             while (howMany > 0)
             {
-                prepositionals.Add(RandomPiChain());
+                Word w = new Word(Particles.Prepositions[random.Next(1,7)]);
+                PrepositionalPhrase pp = new PrepositionalPhrase(w, RandomEnPiChain());
+                prepositionals.Add(pp);
                 howMany--;
             }
-
-
-            Chain c = new Chain(ChainType.MixedPrepositional, Particles.Blank, prepositionals.ToArray());
-            return c;
+            return prepositionals.ToArray();
         }
 
-        public static Chain RandomEChain()
+        public static ComplexChain RandomEChain()
         {
             Dictionary<int, int> odds = new Dictionary<int, int>()
             {
@@ -268,27 +267,28 @@ namespace BasicTypes.Lorem
 
             int dice = random.Next(0, 101);
             var howMany = odds.Where(x => dice<=x.Value  ).Select(x=>x.Key).First();
-            
-            List<Chain> directObjects = new List<Chain>();
+
+            List<ComplexChain> directObjects = new List<ComplexChain>();
 
             while(howMany>0)
             {
-                directObjects.Add(RandomPiChain());
+                directObjects.Add(RandomEnPiChain());
                 howMany--;
             }
 
-
-            Chain c = new Chain(ChainType.Directs, Particles.e, directObjects.ToArray() );
+            ComplexChain c = new ComplexChain(Particles.e, directObjects.ToArray() );
             return c;
         }
 
-        public static Chain RandomPiChain()
+
+
+        public static ComplexChain RandomEnPiChain()
         {
             Word headWord = RandomWord("noun");
-            WordSet modifiers = new WordSet() { RandomWord("adj") };
+            WordSet modifiers = new WordSet { RandomWord("adj") };
             List<Chain> agents = new List<Chain>();
-            agents.Add(new Chain(ChainType.None, Particles.pi, new HeadedPhrase[] { new HeadedPhrase(headWord, modifiers) }));
-            Chain c = new Chain(ChainType.Subjects, Particles.en, agents.ToArray());
+            agents.Add(new Chain(Particles.pi, new[] { new HeadedPhrase(headWord, modifiers) }));
+            ComplexChain c = new ComplexChain(Particles.en, agents.ToArray());
             return c;
         }
 
@@ -303,7 +303,7 @@ namespace BasicTypes.Lorem
             
             
 
-            Word word = null;
+            Word word;
             do
             {
                 word = Words.Dictionary.ElementAt(random.Next(0, count)).Value;

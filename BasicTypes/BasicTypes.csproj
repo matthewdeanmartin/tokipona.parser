@@ -70,6 +70,7 @@
     <Compile Include="Collections\ChainTypeConverter.cs" />
     <Compile Include="Collections\CommonBehaviors.cs" />
     <Compile Include="Collections\ComplexChain.cs" />
+    <Compile Include="Collections\ComplexChainByValue.cs" />
     <Compile Include="Collections\ComplexPronoun.cs" />
     <Compile Include="Collections\DirectSpeech.cs" />
     <Compile Include="Collections\Discourse.cs" />

@@ -29,7 +29,7 @@ namespace BasicTypes.Glosser
             return GlossOneSentence(includePos, sentenceTree, config);
         }
 
-        public string GlossOneSentence(bool includePos, Sentence sentenceTree,  Dialect config)
+        public string GlossOneSentence(bool includePos, Sentence sentenceTree, Dialect config)
         {
             List<string> gloss = new List<string>();
 
@@ -86,24 +86,52 @@ namespace BasicTypes.Glosser
             //mabye lots of fragents, all attached to the sentence.
             if (s.LaFragment != null && s.LaFragment.Count > 0)
             {
-                foreach (Chain bit in s.LaFragment )
+                foreach (Fragment bit in s.LaFragment)
                 {
-                    string ordinaryTp= bit.ToString("g").Replace(" ","-");
-                    if (!ordinaryTp.EndsWith("la"))
+                    
+                    if (bit.Nominal != null)
                     {
-                        ordinaryTp = ordinaryTp + "-la";
-                    }
-                    CompoundWord cw = new CompoundWord(ordinaryTp);
-                    string attempt = cw.TryGloss("en", "noun");
-                    if (!attempt.StartsWith("["))
-                    {
-                        gloss.Add(attempt);
+                        string ordinaryTp = bit.ToString("g").Replace(" ", "-");
+                        if (!ordinaryTp.EndsWith("la"))
+                        {
+                            ordinaryTp = ordinaryTp + "-la";
+                        }
+                        CompoundWord cw = new CompoundWord(ordinaryTp);
+                        string attempt = cw.TryGloss("en", "noun");
+                        if (!attempt.StartsWith("["))
+                        {
+                            gloss.Add(attempt);
+                        }
+                        else
+                        {
+                            ProcessOneChain(includePos, gloss, config, bit.Nominal);
+                        }
                     }
                     else
                     {
-                        ProcessOneChain(includePos, gloss, config, bit);
+                        string ordinaryTp = bit.ToString("g").Replace(" ", "-");
+                        if (!ordinaryTp.EndsWith("la"))
+                        {
+                            ordinaryTp = ordinaryTp + "-la";
+                        }
+                        CompoundWord cw = new CompoundWord(ordinaryTp);
+                        string attempt = cw.TryGloss("en", "noun");
+                        if (!attempt.StartsWith("["))
+                        {
+                            gloss.Add(attempt);
+                        }
+                        else
+                        {
+                            foreach (PrepositionalPhrase phrase in bit.Prepositionals)
+                            {
+                                ProcessPrepositionalPhrase(gloss, phrase, includePos, config);    
+                            }
+                        }
+
                     }
+
                     
+
                 }
             }
 
@@ -120,9 +148,9 @@ namespace BasicTypes.Glosser
 
         }
 
-        private void ProcessPredicates(bool includePos, Sentence s, List<string> gloss, Dialect config)
+        public void ProcessPredicates(bool includePos, Sentence s, List<string> gloss, Dialect config)
         {
-            
+
             int j = 0;
             foreach (TpPredicate predicate in s.Predicates)
             {
@@ -139,7 +167,7 @@ namespace BasicTypes.Glosser
                     {
                         gloss.Add("is");
                     }
-                    
+
                 }
                 else if (j != 1)
                 {
@@ -184,7 +212,7 @@ namespace BasicTypes.Glosser
                             if (predicate.VerbPhrase.HeadVerb.ToString(PartOfSpeech.Noun, config).Contains("Error"))
                             {
                                 //Oh, this might be an adjective. jan li laso.
-                               //gloss.Add(predicate.VerbPhrase.HeadVerb.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
+                                //gloss.Add(predicate.VerbPhrase.HeadVerb.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
                                 gloss.Add(GlossWithFallBack(includePos, config, predicate.VerbPhrase.HeadVerb, PartOfSpeech.Adjective));
                             }
                             else
@@ -219,7 +247,7 @@ namespace BasicTypes.Glosser
                         }
 
                     }
-                    
+
                 }
 
 
@@ -252,15 +280,14 @@ namespace BasicTypes.Glosser
 
                 if (predicate.Prepositionals != null)
                 {
-                    if (predicate.Prepositionals.SubChains != null)
-                    {
-                        foreach (Chain sub in predicate.Prepositionals.SubChains)
+                    
+                        foreach (PrepositionalPhrase sub in predicate.Prepositionals)
                         {
-                            gloss.Add(sub.Particle.ToString(PartOfSpeech.Preposition, config));
+                            gloss.Add(sub.Preposition.ToString(PartOfSpeech.Preposition, config));
 
-                            ProcessChain(gloss, sub, includePos, config);
+                            ProcessPrepositionalPhrase(gloss, sub, includePos, config);
                         }
-                    }
+                    
                     //leaf?
                 }
             }
@@ -268,7 +295,7 @@ namespace BasicTypes.Glosser
 
         public static string GlossWithFallBack(bool includePos, IFormatProvider config, Word word, PartOfSpeech pos)
         {
-            string firstAttempt= word.ToString(pos + ":" + includePos, config);
+            string firstAttempt = word.ToString(pos + ":" + includePos, config);
 
             //Don't want fall backs or it was fine.
             if (!(config as Dialect).GlossWithFallBacks || !firstAttempt.StartsWith("[Error"))
@@ -278,7 +305,7 @@ namespace BasicTypes.Glosser
 
             if (pos.Value == PartOfSpeech.Adjective)
             {
-                foreach (PartOfSpeech alt in new PartOfSpeech[]{ PartOfSpeech.Noun, PartOfSpeech.VerbIntransitive, PartOfSpeech.VerbTransitive, PartOfSpeech.Adverb })
+                foreach (PartOfSpeech alt in new PartOfSpeech[] { PartOfSpeech.Noun, PartOfSpeech.VerbIntransitive, PartOfSpeech.VerbTransitive, PartOfSpeech.Adverb })
                 {
                     string tryAgain = word.ToString(alt + ":" + includePos, config);
 
@@ -286,7 +313,7 @@ namespace BasicTypes.Glosser
                     if (!tryAgain.StartsWith("[Error"))
                     {
                         return tryAgain;
-                    }        
+                    }
                 }
             }
             else if (pos.Value == PartOfSpeech.VerbIntransitive)
@@ -304,7 +331,7 @@ namespace BasicTypes.Glosser
             }
             else if (pos.Value == PartOfSpeech.VerbIntransitive)
             {
-                foreach (PartOfSpeech alt in new PartOfSpeech[] {  PartOfSpeech.VerbTransitive, PartOfSpeech.Noun, PartOfSpeech.Adverb, PartOfSpeech.Adjective })
+                foreach (PartOfSpeech alt in new[] { PartOfSpeech.VerbTransitive, PartOfSpeech.Noun, PartOfSpeech.Adverb, PartOfSpeech.Adjective })
                 {
                     string tryAgain = word.ToString(alt + ":" + includePos, config);
 
@@ -317,7 +344,7 @@ namespace BasicTypes.Glosser
             }
             else if (pos.Value == PartOfSpeech.VerbTransitive)
             {
-                foreach (PartOfSpeech alt in new PartOfSpeech[] { PartOfSpeech.VerbIntransitive, PartOfSpeech.Noun, PartOfSpeech.Adverb, PartOfSpeech.Adjective })
+                foreach (PartOfSpeech alt in new[] { PartOfSpeech.VerbIntransitive, PartOfSpeech.Noun, PartOfSpeech.Adverb, PartOfSpeech.Adjective })
                 {
                     string tryAgain = word.ToString(alt + ":" + includePos, config);
 
@@ -330,7 +357,7 @@ namespace BasicTypes.Glosser
             }
             else if (pos.Value == PartOfSpeech.Noun)
             {
-                foreach (PartOfSpeech alt in new PartOfSpeech[] { PartOfSpeech.Adverb, PartOfSpeech.Adjective, PartOfSpeech.VerbIntransitive, PartOfSpeech.VerbTransitive})
+                foreach (PartOfSpeech alt in new[] { PartOfSpeech.Adverb, PartOfSpeech.Adjective, PartOfSpeech.VerbIntransitive, PartOfSpeech.VerbTransitive })
                 {
                     string tryAgain = word.ToString(alt + ":" + includePos, config);
 
@@ -342,7 +369,6 @@ namespace BasicTypes.Glosser
                 }
             }
 
-            string finalTryAgain = null;
             //Try anything!
             foreach (PartOfSpeech alt in new PartOfSpeech[]
             {
@@ -350,7 +376,7 @@ namespace BasicTypes.Glosser
                 PartOfSpeech.Noun, PartOfSpeech.Adjective,PartOfSpeech.VerbIntransitive, PartOfSpeech.VerbTransitive
             })
             {
-                finalTryAgain = word.ToString(alt + ":" + includePos, config);
+                string finalTryAgain = word.ToString(alt + ":" + includePos, config);
 
                 //Don't want fall backs or it was fine.
                 if (!finalTryAgain.StartsWith("[Error"))
@@ -364,77 +390,76 @@ namespace BasicTypes.Glosser
 
         private static void ProcessSubjects(bool includePos, Sentence s, List<string> gloss, Dialect config)
         {
-            Chain c = s.Subjects;
+            ComplexChain c = s.Subjects;
+            if (c == null)
             {
-                if (c == null)
-                {
-                    //Imperatives have implicit subjects.
-                    return;
-                }
-                ProcessOneChain(includePos, gloss, config, c);
+                //Imperatives have implicit subjects.
+                return;
             }
+            ProcessOneChain(includePos, gloss, config, c);
         }
 
-        private static void ProcessOneChain(bool includePos, List<string> gloss, Dialect config, Chain c)
+        private static void ProcessOneChain(bool includePos, List<string> gloss, Dialect config, ComplexChain c)
         {
+            throw new NotImplementedException();
             //Odd chain if the subchains and headedphrase are missing.
 
-            int i = 0;
-            if (c.SubChains != null)
-            {
-                foreach (Chain sub in c.SubChains)
-                {
-                    i++;
-                    if (i != 1)
-                    {
-                        gloss.Add(sub.Particle.ToString(PartOfSpeech.Conjunction + ":" + includePos, config));
-                    }
+            //int i = 0;
+            //if (c.SubChains != null)
+            //{
+            //    foreach (Chain sub in c.SubChains)
+            //    {
+            //        i++;
+            //        if (i != 1)
+            //        {
+            //            gloss.Add(sub.Particle.ToString(PartOfSpeech.Conjunction + ":" + includePos, config));
+            //        }
 
-                    int k = 0;
-                    if (sub.SubChains != null)
-                    {
-                        foreach (Chain subsub in sub.SubChains)
-                        {
-                            k++;
-                            if (k != 1)
-                            {
-                                gloss.Add(subsub.Particle.ToString(PartOfSpeech.Conjunction + ":" + includePos, config));
-                            }
+            //        int k = 0;
+            //        if (sub.SubChains != null)
+            //        {
+            //            foreach (Chain subsub in sub.SubChains)
+            //            {
+            //                k++;
+            //                if (k != 1)
+            //                {
+            //                    gloss.Add(subsub.Particle.ToString(PartOfSpeech.Conjunction + ":" + includePos, config));
+            //                }
 
-                            //deeper levels?
-                            ProcessSimpleHeadedPhrase(includePos, gloss, config, subsub.HeadedPhrases);
-                        }
-                    }
-                    else
-                    {
-                        ProcessSimpleHeadedPhrase(includePos, gloss, config, sub.HeadedPhrases);
-                        //deeper levels?
-                        //foreach (HeadedPhrase hp in sub.HeadedPhrases)
-                        //{
-                        //    foreach (Word modifier in hp.Modifiers)
-                        //    {
-                        //        gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
-                        //    }
+            //                //deeper levels?
+            //                ProcessSimpleHeadedPhrase(includePos, gloss, config, subsub.HeadedPhrases);
+            //            }
+            //        }
+            //        else
+            //        {
+            //            ProcessSimpleHeadedPhrase(includePos, gloss, config, sub.HeadedPhrases);
+            //            //deeper levels?
+            //            //foreach (HeadedPhrase hp in sub.HeadedPhrases)
+            //            //{
+            //            //    foreach (Word modifier in hp.Modifiers)
+            //            //    {
+            //            //        gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
+            //            //    }
 
-                        //    gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos, config));
-                        //}
-                    }
-                }
-            }
+            //            //    gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos, config));
+            //            //}
+            //        }
+            //    }
+            //}
 
-            if (c.HeadedPhrases != null)
-            {
-                ProcessSimpleHeadedPhrase(includePos, gloss, config, c.HeadedPhrases);
-                //foreach (HeadedPhrase hp in c.HeadedPhrases)
-                //{
-                //    foreach (Word modifier in hp.Modifiers)
-                //    {
-                //        gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
-                //    }
-                //
-                //    gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos, config));
-                //}
-            }
+            //if (c.HeadedPhrases != null)
+            //{
+            //    ProcessSimpleHeadedPhrase(includePos, gloss, config, c.HeadedPhrases);
+            //    //foreach (HeadedPhrase hp in c.HeadedPhrases)
+            //    //{
+            //    //    foreach (Word modifier in hp.Modifiers)
+            //    //    {
+            //    //        gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
+            //    //    }
+            //    //
+            //    //    gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos, config));
+            //    //}
+            //}
         }
 
         private static void ProcessSimpleHeadedPhrase(bool includePos, List<string> gloss, Dialect config, HeadedPhrase[] phrases)
@@ -453,7 +478,7 @@ namespace BasicTypes.Glosser
 
             foreach (Word modifier in hp.Modifiers)
             {
-                gloss.Add(GlossWithFallBack(includePos, config,modifier, PartOfSpeech.Adjective));
+                gloss.Add(GlossWithFallBack(includePos, config, modifier, PartOfSpeech.Adjective));
             }
             if (shouldSupressJan)
             {
@@ -465,33 +490,39 @@ namespace BasicTypes.Glosser
             }
         }
 
+        private void ProcessPrepositionalPhrase(List<string> gloss, PrepositionalPhrase sub, bool includePos, IFormatProvider formatProvider)
+        {
+            throw new NotImplementedException();
+
+        }
+
         private void ProcessChain(List<string> gloss, Chain sub, bool includePos, IFormatProvider formatProvider)
         {
-            //deeper levels?
-            if (sub.HeadedPhrases != null && sub.HeadedPhrases.Length > 0)
-            {
-                //Leaf
-                foreach (HeadedPhrase hp in sub.HeadedPhrases)
-                {
-
-                    gloss.Add(GlossWithFallBack(includePos, formatProvider, hp.Head, PartOfSpeech.Noun));// hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos, formatProvider));
-
-                    foreach (Word modifier in hp.Modifiers)
-                    {
-                        gloss.Add(GlossWithFallBack(includePos, formatProvider, modifier, PartOfSpeech.Adjective));
-                    }
-                }
-            }
-            else
-            {
-                foreach (Chain subChain in sub.SubChains)
-                {
-                    gloss.Add(subChain.Particle.ToString(PartOfSpeech.Adjective + ":" + includePos, formatProvider));
-
-                    ProcessChain(gloss, subChain, includePos, formatProvider);
-                }
-            }
-
+            throw new NotImplementedException();
+            ////deeper levels?
+            //if (sub.HeadedPhrases != null && sub.HeadedPhrases.Length > 0)
+            //{
+            //    //Leaf
+            //    foreach (HeadedPhrase hp in sub.HeadedPhrases)
+            //    {
+            //
+            //        gloss.Add(GlossWithFallBack(includePos, formatProvider, hp.Head, PartOfSpeech.Noun));// hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos, formatProvider));
+            //
+            //        foreach (Word modifier in hp.Modifiers)
+            //        {
+            //            gloss.Add(GlossWithFallBack(includePos, formatProvider, modifier, PartOfSpeech.Adjective));
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    foreach (Chain subChain in sub.SubChains)
+            //    {
+            //        gloss.Add(subChain.Particle.ToString(PartOfSpeech.Adjective + ":" + includePos, formatProvider));
+            //
+            //        ProcessChain(gloss, subChain, includePos, formatProvider);
+            //    }
+            //}
         }
 
         public bool ThrowOnSyntaxErrors { get; set; }

@@ -28,7 +28,7 @@ namespace BasicTypes.Collections
                 modifiers.Add(modifier);
                 l.Add(new HeadedPhrase(phrase.Head, modifiers));
             }
-            Chain c = new Chain(ChainType.Subjects, Particles.en, l.ToArray());
+            Chain c = new Chain( Particles.en, l.ToArray());
             return c;
         }
 

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BasicTypes.Collections;
 using BasicTypes.Corpus;
 using BasicTypes.Glosser;
@@ -42,9 +39,9 @@ namespace BasicTypes.Parser
         [Test]
         public void ShouldBeGoodKunpapa()
         {
-            string s = "jan Kunpapa";
+            const string s = "jan Kunpapa";
             Dialect dialect = Dialect.DialectFactory;
-            Normalizer n = new Normalizer();
+            
             Console.WriteLine(Normalizer.NormalizeText(s,dialect));
             TokenParserUtils pu = new TokenParserUtils();
 
@@ -63,9 +60,9 @@ namespace BasicTypes.Parser
         [Test]
         public void ShouldBeGoodProperModifier()
         {
-            string s = "jan Oliwa";
+            const string s = "jan Oliwa";
             Dialect dialect = Dialect.DialectFactory;
-            Normalizer n = new Normalizer();
+            
             Console.WriteLine(Normalizer.NormalizeText(s,dialect));
             TokenParserUtils pu = new TokenParserUtils();
 
@@ -83,8 +80,8 @@ namespace BasicTypes.Parser
         [Test]
         public void DoubleBadProperModifer()
         {
-            string s = "jan MaliyA";
-            Normalizer n = new Normalizer();
+            const string s = "jan MaliyA";
+            
             Dialect dialect = Dialect.DialectFactory;
             Console.WriteLine(Normalizer.NormalizeText(s, dialect));
             TokenParserUtils pu = new TokenParserUtils();
@@ -110,7 +107,7 @@ namespace BasicTypes.Parser
         [Test]
         public void OLetsHaveThisSentenceParse()
         {
-            string s = "o mi tu li kama tomo mi.";
+            const string s = "o mi tu li kama tomo mi.";
             Dialect c = Dialect.DialectFactory;
             //c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
@@ -124,7 +121,7 @@ namespace BasicTypes.Parser
         [Test]
         public void LostPrep()
         {
-            string s = "o toki pona e mi tawa jan sewi Utu!";
+            const string s = "o toki pona e mi tawa jan sewi Utu!";
             Dialect c = Dialect.DialectFactory;
             ParserUtils pu = new ParserUtils(c);
             Sentence sentence = pu.ParsedSentenceFactory(s, s);
@@ -136,7 +133,7 @@ namespace BasicTypes.Parser
         [Test]
         public void SplitSentenceWithColon_Normalized()
         {
-            string s = "sina toki e ni: mi wile e ni.";
+            const string s = "sina toki e ni: mi wile e ni.";
             Dialect dialect = Dialect.DialectFactory;
             //c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(dialect);
@@ -221,7 +218,7 @@ namespace BasicTypes.Parser
                     {
                         //Don't remove double quotes or we can't ID some marked foreign text.
                         //'"'
-                        words[index] = words[index].Trim(new char[]{':','.','\'','«','»','!','?','-','[',']'});
+                        words[index] = words[index].Trim(new[]{':','.','\'','«','»','!','?','-','[',']'});
                     }
                     foreach (string word in words.Where(x => !string.IsNullOrEmpty(x)))
                     {
@@ -269,11 +266,9 @@ namespace BasicTypes.Parser
             {
                 foreach (string original in pu.ParseIntoNonNormalizedSentences(s))
                 {
-                    Sentence structured = null;
-                    string normalized;
                     try
                     {
-                        normalized = Normalizer.NormalizeText(original, dialect);
+                        string normalized = Normalizer.NormalizeText(original, dialect);
                         string result= NormalizeNumbers.FindNumbers(normalized);
                         if (result.Contains("#"))
                         {
@@ -285,10 +280,6 @@ namespace BasicTypes.Parser
                     catch (Exception ex)
                     {
                         Console.WriteLine("ORIGINAL  : " + original);
-                        if (structured != null)
-                        {
-                            Console.WriteLine(structured.ToString("b"));
-                        }
                         Console.WriteLine(ex.Message);
                         i++;
                     }
@@ -318,10 +309,9 @@ namespace BasicTypes.Parser
                 foreach (string original in pu.ParseIntoNonNormalizedSentences(s))
                 {
                     Sentence structured=null;
-                    string normalized;
                     try
                     {
-                        normalized = Normalizer.NormalizeText(original,dialect);
+                        string normalized = Normalizer.NormalizeText(original,dialect);
                         if(!normalized.Contains("#")) continue;
                         structured = pu.ParsedSentenceFactory(normalized, original);
                         string diag = structured.ToString("b");
@@ -374,14 +364,12 @@ namespace BasicTypes.Parser
         {
             //,CorpusTexts.JanSin  //Too many neologisms to cope. 
             string[] samples =
-                new string[]
-                {
+            {
                 CorpusTexts.GeorgeSong
-                };
+            };
             Dialect dialect = Dialect.DialectFactory;
             dialect.TargetGloss = "en";
 
-            GlossMaker gm = new GlossMaker();
             ParserUtils pu = new ParserUtils(dialect);
             foreach (string sample in samples)
             {
@@ -405,8 +393,7 @@ namespace BasicTypes.Parser
         {
             //,CorpusTexts.JanSin  //Too many neologisms to cope. 
             string[] samples =
-                new string[]
-                {
+            {
                 //CorpusTexts.UnpaText,
                 //CorpusTexts.Gilgamesh,
                 //CorpusTexts.SampleText1,
@@ -418,7 +405,7 @@ namespace BasicTypes.Parser
                 //    ,CorpusTexts.RuneDanceSong
                 //    ,CorpusTexts.janPusaRice
                 //    ,CorpusTexts.janPend
-                };
+            };
             Dialect dialect = Dialect.DialectFactory;
             dialect.TargetGloss = "en";
 
@@ -452,7 +439,7 @@ namespace BasicTypes.Parser
         public void ParseJustO()
         {
             //o!
-            string s = "o!";
+            const string s = "o!";
             ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
 
             Sentence parsedSentence = pu.ParsedSentenceFactory(s, s);
@@ -463,7 +450,7 @@ namespace BasicTypes.Parser
         [Test]
         public void ParseThreePart()
         {
-            string s = "nena meli kin li tawa en tan li kama nena pi suli en kiwen.";
+            const string s = "nena meli kin li tawa en tan li kama nena pi suli en kiwen.";
             ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
 
             Sentence parsedSentence = pu.ParsedSentenceFactory(s, s);
@@ -533,7 +520,7 @@ namespace BasicTypes.Parser
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
-            Chain list = pu.ProcessEnPiChain("jan en soweli");
+            ComplexChain list = pu.ProcessEnPiChain("jan en soweli");
             Console.WriteLine(list.ToJsonNet());
             Console.WriteLine(list);
             //Assert.AreEqual(1, list.SubChains[0].HeadedPhrases.Length);
@@ -548,7 +535,7 @@ namespace BasicTypes.Parser
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
-            Chain list = pu.ProcessEnPiChain("jan Mato");
+            ComplexChain list = pu.ProcessEnPiChain("jan Mato");
             Console.WriteLine(list);
             //Assert.AreEqual(1, list.SubChains[0].SubChains.Length);
             //Assert.AreEqual("jan", list.SubChains[0].SubChains[0].HeadedPhrases.Head.Text);

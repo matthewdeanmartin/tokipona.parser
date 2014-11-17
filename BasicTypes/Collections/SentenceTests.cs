@@ -116,9 +116,9 @@ namespace BasicTypes
             Particle en = Particles.en;
             Particle e = Particles.e;
 
-            Chain subject = new Chain(ChainType.Subjects, en, new[] { new HeadedPhrase(jan, null) });
+            ComplexChain subject = ComplexChain.SinglePiEnChainFactory(new HeadedPhrase(jan, null));
             VerbPhrase verbs = new VerbPhrase( Words.jo);
-            Chain directs = new Chain(ChainType.Directs, e, new[] { new HeadedPhrase(nanpa, new WordSet() { fiveEtc }) });
+            ComplexChain directs = ComplexChain.SingleEPiChainFactory(new HeadedPhrase(nanpa, new WordSet() { fiveEtc }));
 
             TpPredicate predicate = new TpPredicate(Particles.li, verbs, directs, null);
             Sentence fact = new Sentence(subject, new PredicateList { predicate });

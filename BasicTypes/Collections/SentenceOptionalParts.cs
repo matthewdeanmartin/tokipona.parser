@@ -17,7 +17,7 @@ namespace BasicTypes
         [DataMember]
         public Particle Conjunction { get; set; }//anu, taso
         [DataMember]
-        public Chain Fragments { get; set; } // x la ni la 
+        public ComplexChain Fragments { get; set; } // x la ni la 
         //Basic Sentence goes here. S+V+PP
         [DataMember]
         public Punctuation Punctuation { get; set; }//.?!
