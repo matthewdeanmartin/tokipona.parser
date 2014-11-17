@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
-using BasicTypes.Collections;
-using BasicTypes.Diagnostics;
 using BasicTypes.Extensions;
 using BasicTypes.Parts;
-using KellermanSoftware.CompareNetObjects;
-using NUnit.Framework.Constraints;
+// soweli lili en waso suli en kala loje --- headed phrases joined by en
+// soweli pi ma suli en waso pi ma lili --- headed phrases joined by pi in turn joined by en 
+// soweli pi ma suli ~lon sike pi mi mute ---- headed phrase with prep modifier.
+
 
 namespace BasicTypes
 {
@@ -28,9 +24,7 @@ namespace BasicTypes
         readonly Particle particle;
         [DataMember(IsRequired = false, EmitDefaultValue = false)]
         readonly HeadedPhrase[] headedPhrases;
-        [DataMember(IsRequired = false, EmitDefaultValue = false)]
-        readonly Chain[] subChains;
-
+        
         private Chain parentChain;
 
         public Chain(ChainType type, Particle particle, HeadedPhrase[] headedPhrases)
@@ -45,44 +39,16 @@ namespace BasicTypes
             }
             
 
-            this.chainType = type;
+            chainType = type;
             this.particle = particle;
             this.headedPhrases = headedPhrases;
         }
 
-        public Chain(ChainType type, Particle particle, Chain[] subChains)
-        {
-            
-            if (subChains ==null || subChains.Length == 0)
-            {
-                throw new InvalidOperationException("Chain with no no subchains. This would be a bare particle if written as text");
-            }
-
-            if (type == ChainType.MixedPrepositional && particle.Text != " ")
-            {
-                throw new InvalidOperationException("MixedPrepositional should be held together with the blank particle.");
-            }
-
-            foreach (Chain subChain in subChains)
-            {
-                bool hasHeadedPhrase = subChain.HeadedPhrases != null && subChain.HeadedPhrases.Length > 0;
-                bool hasSubSubChain = subChain.subChains != null && subChain.subChains.Length > 0;
-                if (!hasHeadedPhrase && ! hasSubSubChain)
-                {
-                    throw new InvalidOperationException("Subchain with no subchains or headed phrases. This would be a bare particle if written as text");
-                }
-                subChain.ParentChain = this;
-            }
-            
-            this.chainType = type;
-            this.particle = particle;
-            this.subChains = subChains;
-        }
 
         public ChainType ChainType { get { return chainType; } }
         public Particle Particle { get { return particle; } }
         public HeadedPhrase[] HeadedPhrases { get { return headedPhrases; } }
-        public Chain[] SubChains { get { return subChains; } }
+ 
         public Chain ParentChain { get { return parentChain; }
             private set { parentChain = value; }
         }
@@ -112,11 +78,12 @@ namespace BasicTypes
         {
             List<string> sb = new List<string>();
 
-            if (subChains != null)
-            {
-                ProcessSubChain(format,formatProvider, sb, subChains);
-            }
-            else if (HeadedPhrases != null)
+            //if (subChains != null)
+            //{
+            //    ProcessSubChain(format,formatProvider, sb, subChains);
+            //}
+            //else 
+            if (HeadedPhrases != null)
             {
                 sb.AddRange(particle, HeadedPhrases.Select(phrase => phrase.ToString(format, formatProvider)), format, formatProvider,parentChain!=null);
             }
@@ -127,55 +94,11 @@ namespace BasicTypes
             return sb;
         }
 
-        private void ProcessSubChain(string format, IFormatProvider formatProvider, List<string> sb, Chain[] innerChains)
-        {
-            int i = 0;
-            foreach (Chain subChain in innerChains)
-            {
-                //This seems to work for (..pi...)en(...pi..) phrases
-                i++;
-                if (particle.MiddleOnly && i != 1)
-                {
-                    sb.AddIfNotReduplicate(particle.ToString(format, formatProvider));
-                }
-                if (!particle.MiddleOnly)
-                {
-                    sb.AddIfNotReduplicate(particle.ToString(format, formatProvider));
-                }
-
-                //Tracers.Stringify.TraceInformation("At Leaf " + subChain.HeadedPhrases + "  headed phrases (i.e. no particles)");
-
-                if (subChain.HeadedPhrases != null)
-                {
-                    //LEAF
-                    sb.AddRange(subChain.Particle, subChain.HeadedPhrases.Select(phrase => phrase.ToString(format, formatProvider)), format, formatProvider, subChain.ParentChain!=null);
-                    //Tracers.Stringify.TraceInformation(sb.SpaceJoin(format) + " ... so far");
-                }
-                else
-                {
-                    foreach (Chain inner in subChain.SubChains )
-                    {
-                        if (inner.headedPhrases != null)
-                        {
-                            sb.AddRange(inner.Particle, inner.HeadedPhrases.Select(phrase => phrase.ToString(format, formatProvider)),format, formatProvider, inner.ParentChain!=null);
-                        }
-                        else
-                        {
-                            if (subChain.Particle!=null && Particle.CheckIsPreposition(subChain.Particle.Text))
-                            {
-                                sb.AddIfNotReduplicate(subChain.Particle.Text);
-                            }
-                            ProcessSubChain(format,formatProvider, sb, inner.SubChains);    
-                        }
-                    }
-                }
-            }
-        }
 
         public string[] SupportedsStringFormats {
             get
             {
-                return new string[] { "g" };
+                return new[] { "g" };
             } 
         }
 
@@ -185,12 +108,12 @@ namespace BasicTypes
             {
                 format = "g";
             }
-            return this.ToString(format, Config.CurrentDialect);
+            return ToString(format, Config.CurrentDialect);
         }
 
         public override string ToString()
         {
-            return this.ToString("g", Config.CurrentDialect);
+            return ToString("g", Config.CurrentDialect);
         }
 
         public static bool IsPlural(Chain value)

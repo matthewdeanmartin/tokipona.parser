@@ -14,6 +14,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoSite", "DemoSite\DemoSi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoSite.Tests", "DemoSite.Tests\DemoSite.Tests.csproj", "{2902770A-0FD7-4F28-965C-0B9F93D8599E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokiPonaApi", "TokiPonaApi\TokiPonaApi.csproj", "{F20BC67B-8B57-4A94-BF05-7D08BD30F8AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokiPonaApi.Tests", "TokiPonaApi.Tests\TokiPonaApi.Tests.csproj", "{ED65B6A2-9165-4385-8218-75276E3A4486}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +36,14 @@ Global
 		{2902770A-0FD7-4F28-965C-0B9F93D8599E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2902770A-0FD7-4F28-965C-0B9F93D8599E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2902770A-0FD7-4F28-965C-0B9F93D8599E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F20BC67B-8B57-4A94-BF05-7D08BD30F8AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F20BC67B-8B57-4A94-BF05-7D08BD30F8AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F20BC67B-8B57-4A94-BF05-7D08BD30F8AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F20BC67B-8B57-4A94-BF05-7D08BD30F8AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED65B6A2-9165-4385-8218-75276E3A4486}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED65B6A2-9165-4385-8218-75276E3A4486}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED65B6A2-9165-4385-8218-75276E3A4486}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED65B6A2-9165-4385-8218-75276E3A4486}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

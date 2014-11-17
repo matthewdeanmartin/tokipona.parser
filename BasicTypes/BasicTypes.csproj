@@ -69,6 +69,7 @@
     <Compile Include="Collections\ChainTests.cs" />
     <Compile Include="Collections\ChainTypeConverter.cs" />
     <Compile Include="Collections\CommonBehaviors.cs" />
+    <Compile Include="Collections\ComplexChain.cs" />
     <Compile Include="Collections\ComplexPronoun.cs" />
     <Compile Include="Collections\DirectSpeech.cs" />
     <Compile Include="Collections\Discourse.cs" />
@@ -77,11 +78,13 @@
     <Compile Include="Collections\HeadedPhraseConverter.cs" />
     <Compile Include="Collections\HeadedPhraseEquivallenceGenerator.cs" />
     <Compile Include="Collections\HeadPhraseByValue.cs" />
+    <Compile Include="Collections\Modifer.cs" />
     <Compile Include="Collections\Phrase.cs" />
     <Compile Include="Collections\Predicate.cs" />
     <Compile Include="Collections\PredicateList.cs" />
     <Compile Include="Collections\PredicateTests.cs" />
     <Compile Include="Collections\PrepositionalComplex.cs" />
+    <Compile Include="Collections\PrepositionalPhrase.cs" />
     <Compile Include="Collections\Sentence.cs" />
     <Compile Include="Collections\SentenceByValue.cs" />
     <Compile Include="Collections\SentenceOptionalParts.cs" />
@@ -191,6 +194,7 @@
     <Compile Include="Serialization\WordJson.cs" />
     <Compile Include="Serialization\WordXml.cs" />
     <Compile Include="Services\Exchange.cs" />
+    <Compile Include="Services\SpellCheck.cs" />
     <Compile Include="Services\Wobato.cs" />
     <Compile Include="Services\ExhangeTests.cs" />
     <Compile Include="Dictionary\Words.cs" />
