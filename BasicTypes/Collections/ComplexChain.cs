@@ -5,22 +5,26 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using BasicTypes.Extensions;
+using NUnit.Framework.Constraints;
+using Polenter.Serialization.Advanced.Serializing;
 
 namespace BasicTypes.Collections
 {
     //Series of Chains joined by the same particle.
+    [DataContract]
+    [Serializable]
     public class ComplexChain : IContainsWord, IFormattable, IToString
     {
         public static ComplexChain SinglePiEnChainFactory(HeadedPhrase phrase)
         {
-            Chain piChain = new Chain(Particles.pi, new HeadedPhrase[]{phrase});
+            Chain piChain = new Chain(Particles.pi, new HeadedPhrase[] { phrase });
             ComplexChain c = new ComplexChain(Particles.en, new Chain[] { piChain });
             return c;
         }
         public static ComplexChain SinglePiEnChainFactory(HeadedPhrase[] phrases)
         {
             Chain piChain = new Chain(Particles.pi, phrases);
-            ComplexChain c = new ComplexChain(Particles.en,new Chain[]{piChain});
+            ComplexChain c = new ComplexChain(Particles.en, new Chain[] { piChain });
             return c;
         }
 
@@ -40,11 +44,11 @@ namespace BasicTypes.Collections
             return directs;
         }
 
-        
+
 
         [DataMember(IsRequired = true, EmitDefaultValue = false)]
         private readonly Particle particle;
-        
+
         [DataMember(IsRequired = false, EmitDefaultValue = false)]
         private readonly Chain[] subChains; //(x pi y pi z) en A en B 
 
@@ -67,6 +71,14 @@ namespace BasicTypes.Collections
 
         public ComplexChain(Particle particle, ComplexChain[] complexChains)
         {
+            if (string.IsNullOrWhiteSpace(particle.Text))
+            {
+                throw new InvalidOperationException("Particle required, blank particles no longer allowed.");
+            }
+            if (complexChains == null || complexChains.Length == 0)
+            {
+                throw new InvalidOperationException("complexChains list required else we'd have a bare particle.");
+            }
             this.particle = particle;
             this.complexChains = complexChains;
             //foreach (Chain subChain in subChains)
@@ -78,7 +90,11 @@ namespace BasicTypes.Collections
 
         public ComplexChain(Particle particle, Chain[] subChains)
         {
-            if (subChains ==null || subChains.Length == 0)
+            if (string.IsNullOrWhiteSpace(particle.Text))
+            {
+                throw new InvalidOperationException("Particle required, blank particles no longer allowed.");
+            }
+            if (subChains == null || subChains.Length == 0)
             {
                 throw new InvalidOperationException("Chain with no no subchains. This would be a bare particle if written as text");
             }
@@ -104,7 +120,40 @@ namespace BasicTypes.Collections
 
             if (subChains != null)
             {
-                ProcessSubChain(format,formatProvider, sb, subChains);
+                int i = 0;
+                foreach (Chain chain in subChains)
+                {
+                    //have to check because of e.
+                    if (particle.MiddleOnly && i == 0)
+                    {
+
+                    }
+                    else
+                    {
+                        sb.Add(particle.ToString(format, formatProvider));
+                    }
+                    sb.AddRange(chain.ToTokenList(format, formatProvider));
+                    i++;
+                }
+            }
+            if (complexChains != null)
+            {
+                int i = 0;
+                foreach (ComplexChain chain in complexChains)
+                {
+                    //have to check because of e.
+                    if (particle.MiddleOnly && i == 0)
+                    {
+
+                    }
+                    else
+                    {
+                        sb.Add(particle.ToString(format, formatProvider));
+                    }
+
+                    sb.AddRange(chain.ToTokenList(format, formatProvider));
+                    i++;
+                }
             }
             //else 
             return sb;
@@ -143,7 +192,7 @@ namespace BasicTypes.Collections
                 }
             }
 
-            if (subChains!= null)
+            if (subChains != null)
             {
                 foreach (Chain chain in subChains)
                 {
@@ -154,50 +203,22 @@ namespace BasicTypes.Collections
             return false;
         }
 
-
-        private void ProcessSubChain(string format, IFormatProvider formatProvider, List<string> sb, Chain[] innerChains)
+        public static ComplexChain Parse(string value)
         {
-            //int i = 0;
-            //foreach (Chain subChain in innerChains)
-            //{
-            //    //This seems to work for (..pi...)en(...pi..) phrases
-            //    i++;
-            //    if (particle.MiddleOnly && i != 1)
-            //    {
-            //        sb.AddIfNotReduplicate(particle.ToString(format, formatProvider));
-            //    }
-            //    if (!particle.MiddleOnly)
-            //    {
-            //        sb.AddIfNotReduplicate(particle.ToString(format, formatProvider));
-            //    }
+            Dialect c = Dialect.DialectFactory;
+            c.ThrowOnSyntaxError = false;
+            ParserUtils pu = new ParserUtils(c);
 
-            //    //Tracers.Stringify.TraceInformation("At Leaf " + subChain.HeadedPhrases + "  headed phrases (i.e. no particles)");
+            if (value.Contains(" e ") || value.StartsWith("e "))
+            {
+                throw new NotImplementedException();
+                //return pu.ProcessEnPiChain(value);
+            }
 
-            //    if (subChain.HeadedPhrases != null)
-            //    {
-            //        //LEAF
-            //        sb.AddRange(subChain.Particle, subChain.HeadedPhrases.Select(phrase => phrase.ToString(format, formatProvider)), format, formatProvider, subChain.ParentChain != null);
-            //        //Tracers.Stringify.TraceInformation(sb.SpaceJoin(format) + " ... so far");
-            //    }
-            //    else
-            //    {
-            //        foreach (Chain inner in subChain.)
-            //        {
-            //            if (inner.headedPhrases != null)
-            //            {
-            //                sb.AddRange(inner.Particle, inner.HeadedPhrases.Select(phrase => phrase.ToString(format, formatProvider)), format, formatProvider, inner.ParentChain != null);
-            //            }
-            //            else
-            //            {
-            //                if (subChain.Particle != null && Particle.CheckIsPreposition(subChain.Particle.Text))
-            //                {
-            //                    sb.AddIfNotReduplicate(subChain.Particle.Text);
-            //                }
-            //                ProcessSubChain(format, formatProvider, sb, inner.SubChains);
-            //            }
-            //        }
-            //    }
-            //}
+            //other kinds of complex chains
+
+            //pi and en
+            return pu.ProcessEnPiChain(value);
         }
 
     }

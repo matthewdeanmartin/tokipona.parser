@@ -71,6 +71,7 @@
     <Compile Include="Collections\CommonBehaviors.cs" />
     <Compile Include="Collections\ComplexChain.cs" />
     <Compile Include="Collections\ComplexChainByValue.cs" />
+    <Compile Include="Collections\ComplexChainTests.cs" />
     <Compile Include="Collections\ComplexPronoun.cs" />
     <Compile Include="Collections\DirectSpeech.cs" />
     <Compile Include="Collections\Discourse.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Collections\PredicateTests.cs" />
     <Compile Include="Collections\PrepositionalComplex.cs" />
     <Compile Include="Collections\PrepositionalPhrase.cs" />
+    <Compile Include="Collections\PrepositionalPhraseTests.cs" />
     <Compile Include="Collections\Sentence.cs" />
     <Compile Include="Collections\SentenceByValue.cs" />
     <Compile Include="Collections\SentenceOptionalParts.cs" />

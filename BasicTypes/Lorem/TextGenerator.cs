@@ -240,7 +240,7 @@ namespace BasicTypes.Lorem
 
             while (howMany > 0)
             {
-                Word w = new Word(Particles.Prepositions[random.Next(1,7)]);
+                Word w = new Word(Particles.Prepositions[random.Next(0,6)]);
                 PrepositionalPhrase pp = new PrepositionalPhrase(w, RandomEnPiChain());
                 prepositionals.Add(pp);
                 howMany--;

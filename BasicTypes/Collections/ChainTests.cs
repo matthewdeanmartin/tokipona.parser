@@ -20,15 +20,6 @@ namespace BasicTypes.Collections
         public void CanBinarySerialize()
         {
             TestSerialization(SampleChain,ChainByValue.Instance);
-
-            //BinaryFormatter formatter = new BinaryFormatter();
-            //using (MemoryStream ms = new MemoryStream())
-            //{
-            //    formatter.Serialize(ms, f);
-            //    ms.Position = 0;
-            //    Chain result = formatter.Deserialize(ms) as Chain;
-            //    Assert.NotNull(ChainByValue.Instance.Equals(result, f));
-            //}
         }
 
         public void TestSerialization<T>(Func<T> generator, IEqualityComparer<T> comparer)
@@ -45,13 +36,6 @@ namespace BasicTypes.Collections
             }
         }
 
-        public static ComplexChain SampleDirectsChain()
-        {
-            Chain c1 = Chain.PiChainFactory(new HeadedPhrase(Words.jelo, new WordSet {Words.esun}));
-            Chain c2 = Chain.PiChainFactory(new HeadedPhrase(Words.kasi, new WordSet {Words.esun}));
-            ComplexChain c = new ComplexChain(Particles.e, new[]{c1,c2});
-            return c;
-        }
 
         
 
@@ -103,94 +87,29 @@ namespace BasicTypes.Collections
             Assert.AreEqual("jelo esun en kasi esun",c.ToString());
         }
 
-        [Test]
-        public void ParseAndToString()
-        {
-            const string value = "jelo esun en kasi esun";
-            Chain c = Chain.Parse(value);
-            Console.WriteLine(c.ToJsonDcJs());
-            Assert.AreEqual(value, c.ToString(), c.ToString("b"));
-        }
-
-        [Test]
-        public void ParseEsunEnKasi()
-        {
-            const string value = "esun en kasi";
-            Chain c = Chain.Parse(value);
-            Assert.AreEqual(c.Particle.ToString(), Particles.en.ToString());
-            Console.WriteLine(c.ToJsonDcJs());
-            Assert.AreEqual(value, c.ToString(), c.ToString("b"));
-        }
 
 
-        [Test]
-        public void ParseKepekenIlo()
-        {
-            const string value = "~kepeken ilo";
-            Chain c = Chain.Parse(value);
-            Assert.AreEqual("~kepeken",c.Particle.ToString());
-            Console.WriteLine(c.ToJsonDcJs());
-            Assert.AreEqual("~kepeken ilo", c.ToString(), c.ToString("b"));
-        }
+        
 
-        [Test]
-        public void ParseKepekenIloSuli()
-        {
-            const string value = "~kepeken ilo suli";
-            Chain c = Chain.Parse(value);
-            Assert.AreEqual("~kepeken",c.Particle.ToString());
-            Console.WriteLine(c.ToJsonDcJs());
-            Assert.AreEqual("~kepeken ilo suli", c.ToString(), c.ToString("b"));
-        }
-
-        [Test]
-        public void ThreePreps()
-        {
-            const string value = "ni li ~kepeken ilo suli ~tawa ilo suli ~poka ilo suli";
-            ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
-            Sentence s = pu.ParsedSentenceFactory(value, value);
-            string predicates= s.Predicates.ToString();
-            Console.WriteLine(s.Predicates[0].Prepositionals);
-            Console.WriteLine(predicates);
-            Console.WriteLine(s.ToString());
-            
-        }
 
         [Test]
         public void SmallestPiChain()
         {
             const string value = "tomo pi telo nasa";
             Chain c = Chain.Parse(value);
-            Assert.AreEqual(Particles.en.ToString(),c.Particle.ToString());
+            Assert.AreEqual(Particles.pi.ToString(),c.Particle.ToString());
             Console.WriteLine(c.ToJsonDcJs());
             Assert.AreEqual(value, c.ToString(), c.ToString("b"));
         }
 
-        [Test]
-        public void ParseKepekenIloSuliPiMaSuli()
-        {
-            const string value = "~kepeken ilo suli pi ma suli";
-            Chain c = Chain.Parse(value);
-            Assert.AreEqual("~kepeken",c.Particle.ToString() );
-            Console.WriteLine(c.ToJsonDcJs());
-            Assert.AreEqual("~kepeken ilo suli pi ma suli", c.ToString(), c.ToString("b"));
-        }
-
-        [Test]
-        public void ParseTwoPiPhrasesPlusEn()
-        {
-            const string value = "esun pi tenpo suno en kasi pi tenpo suno";
-            Chain c = Chain.Parse(value);
-            Assert.AreEqual(c.Particle.ToString(), Particles.en.ToString());
-            Console.WriteLine(c.ToJsonDcJs());
-            Assert.AreEqual(value, c.ToString(), c.ToString("b"));
-        }
+        
 
         [Test]
         public void ParseE_eEsunESoweli()
         {
             try
             {
+                //This may not stay this way-- an e phrase holds chains, not headed phrases.
                 const string value = "e esun e soweli";
                 Chain c = Chain.Parse(value);
                 Assert.AreEqual(c.Particle.ToString(), Particles.e.ToString());

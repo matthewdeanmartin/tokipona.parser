@@ -12,7 +12,7 @@ using BasicTypes.Parts;
 namespace BasicTypes
 {
     /// <summary>
-    /// Phrases joined by potentially heterogeneous particles.
+    /// Headed phrases joined by one particles. Cannot contain any other chains! (so mostly pi, maybe o)
     /// </summary>
     [DataContract]
     [Serializable]
@@ -26,6 +26,7 @@ namespace BasicTypes
         {
             return new Chain(Particles.pi, new[] { phrase });
         }
+
         [DataMember(IsRequired = true)]
         readonly Particle particle;
         [DataMember(IsRequired = false, EmitDefaultValue = false)]
@@ -46,8 +47,7 @@ namespace BasicTypes
         public Particle Particle { get { return particle; } }
         public HeadedPhrase[] HeadedPhrases { get { return headedPhrases; } }
  
-        public Chain ParentChain { get { return parentChain; }
-        }
+        public Chain ParentChain { get { return parentChain; } }
 
         public bool Contains(Word word)
         {
@@ -74,18 +74,13 @@ namespace BasicTypes
         {
             List<string> sb = new List<string>();
 
-            //if (subChains != null)
-            //{
-            //    ProcessSubChain(format,formatProvider, sb, subChains);
-            //}
-            //else 
             if (HeadedPhrases != null)
             {
                 sb.AddRange(particle, HeadedPhrases.Select(phrase => phrase.ToString(format, formatProvider)), format, formatProvider,parentChain!=null);
             }
             else
             {
-                throw new InvalidOperationException("No sub chain, no head phrase");
+                throw new InvalidOperationException("No head phrases");
             }
             return sb;
         }
@@ -127,16 +122,16 @@ namespace BasicTypes
     }
 
 
-    public enum ChainType
-    {
-        None = 0,
-        Subjects = 1, //Chain of en
-        NounVerbPhrase = 2,//Chain of pi (can be a VP
-        Predicates = 3, //Chain of li
-        Directs = 4,//Chain of e
-        MixedPrepositional= 5,
-        Prepositionals = 6, //Chain lon(*) (phrases split by any prep)
-        Fragments = 7
-    }
+    //public enum ChainType
+    //{
+    //    None = 0,
+    //    Subjects = 1, //Chain of en
+    //    NounVerbPhrase = 2,//Chain of pi (can be a VP
+    //    Predicates = 3, //Chain of li
+    //    Directs = 4,//Chain of e
+    //    MixedPrepositional= 5,
+    //    Prepositionals = 6, //Chain lon(*) (phrases split by any prep)
+    //    Fragments = 7
+    //}
 
 }

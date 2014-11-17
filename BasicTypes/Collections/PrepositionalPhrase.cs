@@ -17,18 +17,22 @@ namespace BasicTypes.Collections
     {
         //preposition
         [DataMember]
-        private Word preposition;
+        private readonly Word preposition;
 
         //noun phrase (pi & en)
         [DataMember]
-        private ComplexChain complexChain;
+        private readonly ComplexChain complexChain;
 
         //1 of these per Different preps strung together  //~sama x ~sama x2 ~kepeken y
         public PrepositionalPhrase(Word preposition, ComplexChain complexChain)
         {
-            if (!preposition.Text.StartsWith("~"))
+            if (Particles.Prepositions.Contains(preposition.Text))
             {
-                throw new ArgumentException("preposition must be normalized and start with ~");
+                preposition = new Word("~" + preposition.Text);
+            }
+            else if (!Particles.Prepositions.Contains(preposition.Text.Remove(0,1)))
+            {
+                throw new ArgumentException("Invlaid prep: " + preposition.Text);
             }
             if (complexChain == null)
             {
@@ -77,10 +81,7 @@ namespace BasicTypes.Collections
 
             sb.Add(preposition.ToString(format,formatProvider));
 
-            if (complexChain != null)//seems unlikely.
-            {
-                complexChain.ToTokenList(format, formatProvider);
-            }
+            sb.AddRange(complexChain.ToTokenList(format, formatProvider));
 
             return sb;
         }
