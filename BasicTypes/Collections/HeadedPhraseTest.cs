@@ -13,6 +13,16 @@ namespace BasicTypes
     public class HeadedPhraseTest
     {
         [Test]
+        public void ParseHeadedPhraseWithPrep()
+        {
+            string s = "kule ~lon palisa luka li pona ~tawa mi.";
+            ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
+            Sentence sentence = pu.ParsedSentenceFactory(s, s);
+            Console.WriteLine(sentence.ToString());
+            Console.WriteLine(sentence.ToString("b"));
+        
+        }
+        [Test]
         public void TestToStringThreeWords()
         {
             HeadedPhrase hp = new HeadedPhrase(Words.jan, new WordSet(new []{"lili","suli"}));

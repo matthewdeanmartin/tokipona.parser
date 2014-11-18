@@ -80,7 +80,7 @@
     <Compile Include="Collections\HeadedPhraseConverter.cs" />
     <Compile Include="Collections\HeadedPhraseEquivallenceGenerator.cs" />
     <Compile Include="Collections\HeadPhraseByValue.cs" />
-    <Compile Include="Collections\Modifer.cs" />
+    <Compile Include="Collections\ModiferPhrase.cs" />
     <Compile Include="Collections\Phrase.cs" />
     <Compile Include="Collections\Predicate.cs" />
     <Compile Include="Collections\PredicateList.cs" />

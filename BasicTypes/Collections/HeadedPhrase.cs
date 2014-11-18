@@ -15,9 +15,17 @@ namespace BasicTypes
     /// Phrase with no particles. Head word is special, subsequent words might not be ordered.
     /// </summary>
     [DataContract]
-    [Serializable]
+    [Serializable] 
     public class HeadedPhrase : IContainsWord, IFormattable, IToString
     {
+        // [head word] - [mods] - (pi) [prep phrases]
+        // head word usually noun, sometimes adj, e.g. laso pi pona mute.
+        // mods are usually adjectives, can be agents  ilo mi, or nouns for "genative" ilo ma, nation's machinery
+        // prep phrases, with our without pi
+        // --- noticable in subject slot. 
+        // --- (maybe noticable inside an e chain, e.g. e X e Y PP ... But only if 2 e! other wise looks like 1st prep.
+        // --- Inside of prep phrases, not at all noticable. [lon ma <--[sama ma mi.]]
+
         //Pretty little girls school==> a school characterized by pretty, little and girls.
         //i.e. same as girls school & little school & pretty school, etc.
 
@@ -25,6 +33,11 @@ namespace BasicTypes
         private readonly Word head;
         [DataMember]
         private readonly WordSet modifiers;
+
+        //soweli (tan tomo) (sama akesi) pi ma suli en waso pi ma lili (lon ma ni) li 
+       
+        [DataMember] 
+        private readonly PrepositionalPhrase[] prepositionalPhrases;
 
         public HeadedPhrase(Word head, Word modifier1, Word modifier2 = null, Word modifier3 = null)
         {
@@ -44,12 +57,13 @@ namespace BasicTypes
             this.modifiers = modifiers;
         }
 
-        public HeadedPhrase(Word head, WordSet modifiers=null)
+        public HeadedPhrase(Word head, WordSet modifiers=null, PrepositionalPhrase[] prepositionalPhrases=null)
         {
             ValidateConstruction(head, modifiers);
 
             this.head = head;
             this.modifiers = modifiers;
+            this.prepositionalPhrases = prepositionalPhrases;
         }
 
         private static void ValidateConstruction(Word head, WordSet modifiers)
@@ -94,17 +108,6 @@ namespace BasicTypes
             }
         }
 
-        //public HeadedPhrase(Word head, WordSet modifiers, HeadedPhrase[] subPhrases)
-        //{
-        //    if (head == null)
-        //    {
-        //        throw new ArgumentNullException("head", "Can't construct with null");
-        //    }
-        //    this.head = head;
-        //    this.modifiers = modifiers;
-        //}
-
-        
         public Word Head { get { return head; } }
         public WordSet Modifiers { get { return modifiers; } }
         
@@ -154,17 +157,27 @@ namespace BasicTypes
 
         public List<string> ToTokenList(string format, IFormatProvider formatProvider)
         {
-             
-            List<string> words = new List<string>();
-            
 
-            words.Add(head.ToString(format,formatProvider));
+            List<string> words = new List<string>();
+
+            words.Add(head.ToString(format, formatProvider));
             if (Modifiers != null && Modifiers.Count > 0)
             {
-                words.Add("(");
-                words.AddRange(modifiers.Select(x => x.ToString(format,formatProvider)));
-                words.Add(")");
+                words.AddIfNeeded("(", format);
+                words.AddRange(modifiers.Select(x => x.ToString(format, formatProvider)));
+                words.AddIfNeeded(")", format);
             }
+            if (prepositionalPhrases != null)
+            {
+                foreach (PrepositionalPhrase phrase in prepositionalPhrases)
+                {
+                    words.AddIfNeeded("(", format);
+                    words.AddRange(phrase.ToTokenList(format, formatProvider));
+                    words.AddIfNeeded(")", format);
+                }
+
+            }
+
             return words;
         }
 

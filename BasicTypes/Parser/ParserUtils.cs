@@ -42,7 +42,7 @@ namespace BasicTypes
             }
 
             //swap quote/terminator order
-            foreach (string delims in new[] { ".'", ".\"", "?'", "?\"", "!'", "!\""})
+            foreach (string delims in new[] { ".'", ".\"", "?'", "?\"", "!'", "!\"" })
             {
                 if (text.Contains(delims))
                 {
@@ -252,7 +252,7 @@ namespace BasicTypes
 
         public Sentence ProcessSimpleSentence(string sentence, Punctuation punctuation, string original)
         {
-            Particle conjunction=null;
+            Particle conjunction = null;
             if (sentence.StartsWith("taso "))
             {
                 conjunction = Particles.taso;
@@ -309,11 +309,11 @@ namespace BasicTypes
                 TokenParserUtils tpu = new TokenParserUtils();
 
                 Word[] tokes = tpu.ValidWords(sentence);
-                WordSet parts = new WordSet( tokes  );
+                WordSet parts = new WordSet(tokes);
                 bool modifiersAreA = true;
 
                 int i = 0;
-                foreach (Word w in parts )
+                foreach (Word w in parts)
                 {
                     if (i != 0)
                     {
@@ -335,7 +335,7 @@ namespace BasicTypes
 
 
             //Degenerate sentences.
-            if (liParts[liParts.Length - 1].Trim(new char[] { ',', '«', '»','!',' ' }) == "o")
+            if (liParts[liParts.Length - 1].Trim(new char[] { ',', '«', '»', '!', ' ' }) == "o")
             {
                 //We have a vocative sentence...
                 Vocative vocative = new Vocative(ProcessEnPiChain(liParts[0]));
@@ -358,10 +358,6 @@ namespace BasicTypes
                 subjectChain = ProcessEnPiChain(subjects);
             }
 
-
-
-
-
             PredicateList verbPhrases = new PredicateList();
 
             for (int i = startAt; i < liParts.Length; i++)
@@ -382,7 +378,7 @@ namespace BasicTypes
 
             Sentence parsedSentence = new Sentence(subjectChain, verbPhrases, new SentenceOptionalParts
             {
-                Conjunction =  conjunction,
+                Conjunction = conjunction,
                 //Etc
                 Punctuation = punctuation,
                 IsHortative = isHortative
@@ -391,36 +387,36 @@ namespace BasicTypes
             return parsedSentence;
         }
 
-        public ComplexChain ProcessEnPiChain2(string subjects)
-        {
-            string[] subjectTokens = Splitters.SplitOnEn(subjects);
+        //public ComplexChain ProcessEnPiChain2(string subjects)
+        //{
+        //    string[] subjectTokens = Splitters.SplitOnEn(subjects);
 
-            //Split on pi
-            //jan pi pali suli en soweli pi tawa wawa
+        //    //Split on pi
+        //    //jan pi pali suli en soweli pi tawa wawa
 
-            List<Chain> piChainList = new List<Chain>();
-            for (int i = 0; i < subjectTokens.Length; i++)
-            {
-                string piChains = subjectTokens[i];
+        //    List<Chain> piChainList = new List<Chain>();
+        //    for (int i = 0; i < subjectTokens.Length; i++)
+        //    {
+        //        string piChains = subjectTokens[i];
 
-                string[] piLessTokens = Splitters.SplitOnPi(piChains);
+        //        string[] piLessTokens = Splitters.SplitOnPi(piChains);
 
-                List<HeadedPhrase> headedPhrases = new List<HeadedPhrase>();
-                foreach (string piLessToken in piLessTokens)
-                {
-                    //Console.WriteLine("Preparing to parse [" + piLessToken + "] as piLessToken");
-                    //Splits on spaces & separates into head & tail
-                    HeadedPhrase piPhrase = HeadedPhraseParser(piLessToken);
-                    //Console.WriteLine("Ended up with " + piPhrase);
-                    headedPhrases.Add(piPhrase);
-                }
-                Chain piChain = new Chain(Particles.pi, headedPhrases.ToArray());
-                piChainList.Add(piChain);
-            }
+        //        List<HeadedPhrase> headedPhrases = new List<HeadedPhrase>();
+        //        foreach (string piLessToken in piLessTokens)
+        //        {
+        //            //Console.WriteLine("Preparing to parse [" + piLessToken + "] as piLessToken");
+        //            //Splits on spaces & separates into head & tail
+        //            HeadedPhrase piPhrase = HeadedPhraseParser(piLessToken);
+        //            //Console.WriteLine("Ended up with " + piPhrase);
+        //            headedPhrases.Add(piPhrase);
+        //        }
+        //        Chain piChain = new Chain(Particles.pi, headedPhrases.ToArray());
+        //        piChainList.Add(piChain);
+        //    }
 
-            ComplexChain subject =  new ComplexChain(Particles.en, piChainList.ToArray());
-            return subject;
-        }
+        //    ComplexChain subject =  new ComplexChain(Particles.en, piChainList.ToArray());
+        //    return subject;
+        //}
 
         public Chain ProcessPiChain(string value)
         {
@@ -432,10 +428,11 @@ namespace BasicTypes
             {
                 throw new ArgumentException("Contains la. This isn't possible in a pi chain.");
             }
-            if (value.Contains("~"))
-            {
-                throw new ArgumentException("Contains preposition. This isn't possible in a pi chain. (well not right now. kule pi lon palisa): actual: " + value);
-            }
+            //if (value.Contains("~"))
+            //{
+            //    throw new ArgumentException("Contains preposition. This isn't possible in a pi chain. (well not right //now. kule pi lon palisa): actual: " + value);
+            //}
+            //soweli ~lon ma ni pi ma suli ~sama ma ante
 
             string piChains = value;
 
@@ -447,7 +444,7 @@ namespace BasicTypes
                 HeadedPhrase piPhrase = HeadedPhraseParser(piLessToken);
                 piCollection.Add(piPhrase);
             }
-            return new Chain( Particles.pi, piCollection.ToArray());
+            return new Chain(Particles.pi, piCollection.ToArray());
 
         }
 
@@ -469,6 +466,10 @@ namespace BasicTypes
 
             //Split on pi
             //jan pi pali suli en soweli pi tawa wawa
+
+            //jan ~tan ma pi pali suli ~tawa mani pi ma suli en soweli pi tawa wawa
+            //jan ~tan ma pi pali suli ~tawa mani pi ma suli /en/ soweli pi tawa wawa
+            //jan ~tan ma //pi// pali suli ~tawa mani //pi// ma suli /en/ soweli //pi// tawa wawa
 
             List<ComplexChain> subChains = new List<ComplexChain>();
             for (int i = 0; i < subjectTokens.Length; i++)
@@ -534,7 +535,7 @@ namespace BasicTypes
                     if (verbPhraseParts.Any(x => x == "pi"))
                     {
                         //nominal predicate
-                        nominalPredicate = 
+                        nominalPredicate =
                             new ComplexChain(Particles.en,
                                 new[]{
                                     ProcessPiChain(string.Join(" ", ArrayExtensions.Tail(verbPhraseParts)))
@@ -700,7 +701,7 @@ namespace BasicTypes
                         continue;
                     }
                 }
-                
+
                 //head verb, only because we ran out of modals. (unless there is only one word!)
                 if (headVerb == null)
                 {
@@ -740,7 +741,7 @@ namespace BasicTypes
                 }
             }
 
-            return new VerbPhrase(headVerb,modals,adverbs);
+            return new VerbPhrase(headVerb, modals, adverbs);
         }
 
         public List<PrepositionalPhrase> ProcessPrepositionalPhrases(string[] partsWithPreps)
@@ -756,7 +757,7 @@ namespace BasicTypes
                     //These chains are ordered.
                     //kepeken x lon y kepeken z lon a   NOT EQUAL TO kepeken x  kepeken z lon a lon y
                     //Maybe.
-                    prepositionalChain.Add(new PrepositionalPhrase(new Word(preposition), string.IsNullOrEmpty(tail) ? null :  ProcessEnPiChain(tail) ));
+                    prepositionalChain.Add(new PrepositionalPhrase(new Word(preposition), string.IsNullOrEmpty(tail) ? null : ProcessEnPiChain(tail)));
                 }
                 else
                 {
@@ -791,12 +792,18 @@ namespace BasicTypes
             return phrase;
         }
 
+        /// <summary>
+        /// Parses simple headed phrases fine. Parses some headed phrases with PP modifiers, but
+        /// not if the PP is in maximal form.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public HeadedPhrase HeadedPhraseParser(string value)
         {
-            if (value.Contains("~"))
-            {
-                throw new TpSyntaxException("Headed phrase can't contain a preposition. This one does: " + value);
-            }
+            //if (value.Contains("~"))
+            //{
+            //    throw new TpSyntaxException("Headed phrase can't contain a preposition. This one does: " + value);
+            //}
             foreach (string particle in new[] { "pi", "la", "e", "li" })
             {
                 if (value.StartsOrContainsOrEnds(particle))
@@ -809,6 +816,14 @@ namespace BasicTypes
             {
                 throw new ArgumentException("Impossible to parse a null or zero length string.");
             }
+
+            PrepositionalPhrase[] pp=null;
+            if (value.Contains("~"))
+            {
+                string[] headAndPreps = Splitters.SplitOnPrepositions(value);
+                value = headAndPreps[0];
+                pp=ProcessPrepositionalPhrases(ArrayExtensions.Tail(headAndPreps)).ToArray();
+            }
             //No Pi!
             TokenParserUtils pu = new TokenParserUtils();
 
@@ -819,14 +834,8 @@ namespace BasicTypes
             {
                 throw new InvalidOperationException("Failed to parse: " + value);
             }
-            HeadedPhrase phrase = new HeadedPhrase(words[0], new WordSet(ArrayExtensions.Tail(words)));
+            HeadedPhrase phrase = new HeadedPhrase(words[0], new WordSet(ArrayExtensions.Tail(words)),pp);
             return phrase;
         }
-
-
-        //public string ProcessDirects(object value)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }

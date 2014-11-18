@@ -116,7 +116,7 @@ namespace BasicTypes
             Particle en = Particles.en;
             Particle e = Particles.e;
 
-            ComplexChain subject = ComplexChain.SinglePiEnChainFactory(new HeadedPhrase(jan, null));
+            ComplexChain subject = ComplexChain.SinglePiEnChainFactory(new HeadedPhrase(jan));
             VerbPhrase verbs = new VerbPhrase( Words.jo);
             ComplexChain directs = ComplexChain.SingleEPiChainFactory(new HeadedPhrase(nanpa, new WordSet() { fiveEtc }));
 

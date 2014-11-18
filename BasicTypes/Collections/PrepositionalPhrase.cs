@@ -36,7 +36,7 @@ namespace BasicTypes.Collections
             }
             if (complexChain == null)
             {
-                throw new ArgumentNullException("prepositional phrases can't be a stand alone preposition");
+                throw new ArgumentNullException("complexChain","prepositional phrases can't be a stand alone preposition");
             }
             this.preposition = preposition;
             this.complexChain = complexChain;
