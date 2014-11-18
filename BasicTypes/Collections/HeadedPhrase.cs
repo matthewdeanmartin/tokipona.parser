@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
@@ -183,9 +184,16 @@ namespace BasicTypes
             return words;
         }
 
-        public bool IsPlural(string value)
+        public bool IsPlural()
         {
-            return Modifiers.Contains(Words.mute);
+            foreach (string value in Token.SemanticallyPlural)
+            {
+                foreach (Word modifier in modifiers)
+                {
+                    if (modifier.Text == value) return true;
+                }
+            }
+            return false;
         }
 
         public static HeadedPhrase Parse(string value)

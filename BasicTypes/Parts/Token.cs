@@ -533,6 +533,23 @@ namespace BasicTypes
             }
         }
 
+
+        private static string[] semanticallyPlural= new string[]
+        {
+            "mute", //most common
+            "kulupu", //can go either way (a pack of wolves), )(two packs)
+            "tu" //two
+            //other numbers... that's a can of worms.
+        };
+        public static string[] SemanticallyPlural
+        {
+            get
+            {
+                return semanticallyPlural;
+            }
+        }
+
+
         public static bool IsModal(string value)
         {
             return modals.Contains(value);

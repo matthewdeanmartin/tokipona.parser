@@ -14,6 +14,18 @@ namespace BasicTypes.Glosser
     public class GlossMakerTests
     {
         [Test]
+        public void GlossPlural()
+        {
+            string s = "mi mute li wile e moku mute e soweli mute e waso mute e kala mute e mani mute.";
+            GlossMaker gm = new GlossMaker();
+            Console.WriteLine(gm.Gloss(s, s));
+            Console.WriteLine(gm.Gloss(s, s));
+            Console.WriteLine(gm.Gloss(s, s));
+            Console.WriteLine(gm.Gloss(s, s));
+            Console.WriteLine(gm.Gloss(s, s, "en", true));
+        }
+
+        [Test]
         public void MissingFragment()
         {
             string s = "tan ni la kala akesi li kama, tawa selo pi telo-suli.";

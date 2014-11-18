@@ -10,6 +10,8 @@ using BasicTypes.Dictionary;
 using BasicTypes.Extensions;
 using BasicTypes.Globalization;
 using BasicTypes.Parts;
+using Humanizer;
+using Microsoft.SqlServer.Server;
 
 namespace BasicTypes.Glosser
 {
@@ -267,12 +269,13 @@ namespace BasicTypes.Glosser
                             //deeper levels?
                             foreach (HeadedPhrase hp in sub.HeadedPhrases)
                             {
-                                foreach (Word modifier in hp.Modifiers)
-                                {
-                                    gloss.Add(GlossWithFallBack(includePos, config, modifier, PartOfSpeech.Adjective));
-                                }
-
-                                gloss.Add(GlossWithFallBack(includePos, config, hp.Head, PartOfSpeech.Noun));
+                                ProcessingleHeadedPhrase(includePos, gloss, config, hp);
+                                //foreach (Word modifier in hp.Modifiers)
+                                //{
+                                //    gloss.Add(GlossWithFallBack(includePos, config, modifier, PartOfSpeech.Adjective));
+                                //}
+                                //
+                                //gloss.Add(GlossWithFallBack(includePos, config, hp.Head, PartOfSpeech.Noun));
                             }
                         }
                     }
@@ -401,76 +404,41 @@ namespace BasicTypes.Glosser
 
         private static void ProcessOneChain(bool includePos, List<string> gloss, Dialect config, ComplexChain c)
         {
-            throw new NotImplementedException();
-            //Odd chain if the subchains and headedphrase are missing.
-
-            //int i = 0;
-            //if (c.SubChains != null)
-            //{
-            //    foreach (Chain sub in c.SubChains)
-            //    {
-            //        i++;
-            //        if (i != 1)
-            //        {
-            //            gloss.Add(sub.Particle.ToString(PartOfSpeech.Conjunction + ":" + includePos, config));
-            //        }
-
-            //        int k = 0;
-            //        if (sub.SubChains != null)
-            //        {
-            //            foreach (Chain subsub in sub.SubChains)
-            //            {
-            //                k++;
-            //                if (k != 1)
-            //                {
-            //                    gloss.Add(subsub.Particle.ToString(PartOfSpeech.Conjunction + ":" + includePos, config));
-            //                }
-
-            //                //deeper levels?
-            //                ProcessSimpleHeadedPhrase(includePos, gloss, config, subsub.HeadedPhrases);
-            //            }
-            //        }
-            //        else
-            //        {
-            //            ProcessSimpleHeadedPhrase(includePos, gloss, config, sub.HeadedPhrases);
-            //            //deeper levels?
-            //            //foreach (HeadedPhrase hp in sub.HeadedPhrases)
-            //            //{
-            //            //    foreach (Word modifier in hp.Modifiers)
-            //            //    {
-            //            //        gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
-            //            //    }
-
-            //            //    gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos, config));
-            //            //}
-            //        }
-            //    }
-            //}
-
-            //if (c.HeadedPhrases != null)
-            //{
-            //    ProcessSimpleHeadedPhrase(includePos, gloss, config, c.HeadedPhrases);
-            //    //foreach (HeadedPhrase hp in c.HeadedPhrases)
-            //    //{
-            //    //    foreach (Word modifier in hp.Modifiers)
-            //    //    {
-            //    //        gloss.Add(modifier.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
-            //    //    }
-            //    //
-            //    //    gloss.Add(hp.Head.ToString(PartOfSpeech.Noun + ":" + includePos, config));
-            //    //}
-            //}
-        }
-
-        private static void ProcessSimpleHeadedPhrase(bool includePos, List<string> gloss, Dialect config, HeadedPhrase[] phrases)
-        {
-            //BUG: Forgot to deal with particles!
-
-            foreach (HeadedPhrase hp in phrases)
+            //Recurse
+            if (c.ComplexChains != null)
             {
-                ProcessingleHeadedPhrase(includePos, gloss, config, hp);
+                int k = 0;
+                foreach (var innerComplexChain in c.ComplexChains)
+                {
+                    k++;
+                    if (k != 1)
+                    {
+                        gloss.Add(innerComplexChain.Particle.ToString(PartOfSpeech.Conjunction + ":" + includePos, config));
+                    }
+                    ProcessOneChain(includePos, gloss, config, innerComplexChain);
+                }
+            }
+
+            //Almost to a leaf
+            int i = 0;
+            if (c.SubChains != null)
+            {
+                foreach (Chain sub in c.SubChains)
+                {
+                    i++;
+                    if (i != 1)
+                    {
+                        gloss.Add(sub.Particle.ToString(PartOfSpeech.Conjunction + ":" + includePos, config));
+                    }
+
+                    foreach (HeadedPhrase hp in sub.HeadedPhrases)
+                    {
+                        ProcessingleHeadedPhrase(includePos, gloss, config, hp);
+                    }
+                }
             }
         }
+
 
         private static void ProcessingleHeadedPhrase(bool includePos, List<string> gloss, Dialect config, HeadedPhrase hp)
         {
@@ -478,6 +446,7 @@ namespace BasicTypes.Glosser
 
             foreach (Word modifier in hp.Modifiers)
             {
+                
                 gloss.Add(GlossWithFallBack(includePos, config, modifier, PartOfSpeech.Adjective));
             }
             if (shouldSupressJan)
@@ -486,17 +455,25 @@ namespace BasicTypes.Glosser
             }
             else
             {
-                gloss.Add(GlossWithFallBack(includePos, config, hp.Head, PartOfSpeech.Noun));
+                string nounPossiblePlural = GlossWithFallBack(includePos, config, hp.Head, PartOfSpeech.Noun);
+
+                if ((!new String[]{"I","we","he","she","it","they"}.Contains(nounPossiblePlural)) && hp.IsPlural())
+                {
+                    nounPossiblePlural= nounPossiblePlural.Pluralize();
+                }
+                gloss.Add(nounPossiblePlural);
             }
         }
 
-        private void ProcessPrepositionalPhrase(List<string> gloss, PrepositionalPhrase sub, bool includePos, IFormatProvider formatProvider)
+        private void ProcessPrepositionalPhrase(List<string> gloss, PrepositionalPhrase sub, bool includePos, Dialect formatProvider)
         {
-            throw new NotImplementedException();
+            gloss.Add(GlossWithFallBack(includePos, formatProvider, sub.Preposition, PartOfSpeech.Preposition));
+
+            ProcessOneChain(includePos, gloss, formatProvider, sub.Complement);
 
         }
 
-        private void ProcessChain(List<string> gloss, Chain sub, bool includePos, IFormatProvider formatProvider)
+        private void ProcessChain(List<string> gloss, Chain sub, bool includePos, Dialect formatProvider)
         {
             throw new NotImplementedException();
             ////deeper levels?

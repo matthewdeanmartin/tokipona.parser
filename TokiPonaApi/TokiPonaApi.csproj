@@ -233,6 +233,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HelpRelationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ParseTextController.cs" />
     <Compile Include="Controllers\QueueController.cs" />
     <Compile Include="Controllers\ValuesAsyncController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />

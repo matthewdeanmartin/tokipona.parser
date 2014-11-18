@@ -109,9 +109,11 @@ namespace BasicTypes
 
         public static bool IsPlural(Chain value)
         {
-            if (value.Contains(Words.mute)) return true;
-            if (value.Contains(Words.kulupu)) return true; //Lexically sort of plural
-            if (value.Contains(Words.tu)) return true; //Number
+            foreach (string s in Token.SemanticallyPlural)
+            {
+                if (value.Contains(s)) return true;
+            }
+            
             //Other numbers need to detect.
             foreach (HeadedPhrase phrase in value.HeadedPhrases)
             {

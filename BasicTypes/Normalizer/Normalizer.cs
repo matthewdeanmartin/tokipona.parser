@@ -66,6 +66,16 @@ namespace BasicTypes.Parser
                 normalized = normalized.Replace("-\n", "");
             }
 
+            //can't cope with line breaks.
+            if (normalized.Contains("\n"))
+            {
+                normalized = normalized.Replace("\n", " ");
+            }
+            if (normalized.Contains("\t"))
+            {
+                normalized = normalized.Replace("\t", " ");
+            }
+
             //must be after - processing
             if (dialect.InferNumbers)
             {
