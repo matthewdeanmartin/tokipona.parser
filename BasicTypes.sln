@@ -18,6 +18,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokiPonaApi", "TokiPonaApi\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokiPonaApi.Tests", "TokiPonaApi.Tests\TokiPonaApi.Tests.csproj", "{ED65B6A2-9165-4385-8218-75276E3A4486}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokiPonaApi.Client", "TokiPonaApi.Client\TokiPonaApi.Client.csproj", "{674486EF-C15F-49F7-801D-C918BCCD3008}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokiPonaApi.SharedTypes", "TokiPonaApi.SharedTypes\TokiPonaApi.SharedTypes.csproj", "{6835FDDA-FE9B-4D20-9C0D-646232C6DBDF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +48,14 @@ Global
 		{ED65B6A2-9165-4385-8218-75276E3A4486}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED65B6A2-9165-4385-8218-75276E3A4486}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED65B6A2-9165-4385-8218-75276E3A4486}.Release|Any CPU.Build.0 = Release|Any CPU
+		{674486EF-C15F-49F7-801D-C918BCCD3008}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{674486EF-C15F-49F7-801D-C918BCCD3008}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{674486EF-C15F-49F7-801D-C918BCCD3008}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{674486EF-C15F-49F7-801D-C918BCCD3008}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6835FDDA-FE9B-4D20-9C0D-646232C6DBDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6835FDDA-FE9B-4D20-9C0D-646232C6DBDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6835FDDA-FE9B-4D20-9C0D-646232C6DBDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6835FDDA-FE9B-4D20-9C0D-646232C6DBDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

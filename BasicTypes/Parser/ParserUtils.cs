@@ -837,5 +837,16 @@ namespace BasicTypes
             HeadedPhrase phrase = new HeadedPhrase(words[0], new WordSet(ArrayExtensions.Tail(words)),pp);
             return phrase;
         }
+
+        public string[] FindXalaX(string value)
+        {
+            Regex x = new Regex(@"\b(\w+)\s+ala\s+\1\b");
+            List<string> s = new List<string>();
+            foreach (var v in x.Matches(value))
+            {
+                s.Add(v.ToString());
+            }
+            return s.ToArray();
+        }
     }
 }

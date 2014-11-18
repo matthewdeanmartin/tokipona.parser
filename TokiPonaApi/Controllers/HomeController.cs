@@ -8,6 +8,7 @@ namespace TokiPonaApi.Controllers
 {
     public class HomeController : Controller
     {
+        //Essentially a test page.
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
