@@ -537,5 +537,20 @@ namespace BasicTypes
         {
             return modals.Contains(value);
         }
+
+        protected static bool AreMinimalPairs(string word1, string word2)
+        {
+            if(word1.Length != word2.Length) return false;
+            if(word1 == word2) return true;
+
+            int diff =0;
+            for (int i = 0; i < word1.Length; i++)
+            {
+                char c = word1[i];
+                if (word1[i] == word2[i]) diff++;
+                if(diff>1) return false;
+            }
+            return true; //differ only by 1 char.
+        }
     }
 }

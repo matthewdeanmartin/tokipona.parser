@@ -28,7 +28,9 @@ namespace BasicTypes
 
         //Pretty little girls school==> a school characterized by pretty, little and girls.
         //i.e. same as girls school & little school & pretty school, etc.
-
+        //kili pi suwi en namako
+        //kili lili pi suwi en namako
+        //kili lili pi kasi suli pi suwi en namako
         [DataMember]
         private readonly Word head;
         [DataMember]

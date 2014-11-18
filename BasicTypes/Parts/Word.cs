@@ -37,6 +37,28 @@ namespace BasicTypes
         Prepositional = 5,
     }
 
+    //kin, ala, x ala x..., x anu seme
+    // seems like they can appear after any word
+    // jan li moku e kili.
+    // jan ala li moku e kili
+    // jan li moku ala e kili.
+    // jan li moku e kili ala.
+    // jan anu seme li moku e kili.
+    // jan li moku ala moku e kili.
+    // jan ala jan li moku e kili.??
+    // jan kin li moku e kili
+    // np li vp e do pp1 pp2
+    // np (ala) li m (ala m) m2 (ala m2) v (ala v) e np (ala)
+    public class Morphology 
+    {
+        public bool XalaX { get; set; } //for any verb in VP
+        public bool Ala { get; set; }
+        public bool Kin { get; set; } //like modifier
+        //public bool AnuSeme { get; set; } Everyone does this sentence level
+
+    }
+
+
     /// <summary>
     /// Content words-- everything not a Particle
     /// </summary>
@@ -55,6 +77,7 @@ namespace BasicTypes
             //For XML serialization only.
         }
 
+        
 
 
         //[DataMember(IsRequired = true)]

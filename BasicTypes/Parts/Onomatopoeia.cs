@@ -11,7 +11,7 @@ namespace BasicTypes.Parts
     [Serializable]
     public class Onomatopoeia :Token
     {
-        //Similar to a proper modifier, but it isn't a modifier, except maybe of mu, kalama.
+        //Similar to a proper modifier, but it isn't a modifier, except maybe of mu, kalama, nimi, toki
 
     }
 }

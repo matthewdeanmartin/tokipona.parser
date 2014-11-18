@@ -76,9 +76,14 @@ namespace BasicTypes.Lorem
             //Exclamation, Fragment, Vocative, 
             //Simple, Simple + Optional Parts
             //
+            return SingleSimpleSentence();
+        }
+
+        private static Sentence SingleSimpleSentence()
+        {
             bool isTransitive = random.Next(0, 100) < 50;
 
-            VerbPhrase verbPhrase = RandomVerbPhrase(isTransitive?"vt":"vi");
+            VerbPhrase verbPhrase = RandomVerbPhrase(isTransitive ? "vt" : "vi");
             ComplexChain nominal = RandomEnPiChain();
 
             TpPredicate p;
@@ -89,14 +94,14 @@ namespace BasicTypes.Lorem
                 {
                     prepositionals = RandomPrepChain();
                 }
-                
-                ComplexChain directs=null;
+
+                ComplexChain directs = null;
                 if (isTransitive)
                 {
                     directs = RandomEChain();
                 }
 
-                p = new TpPredicate(Particles.li, verbPhrase,directs,prepositionals);
+                p = new TpPredicate(Particles.li, verbPhrase, directs, prepositionals);
             }
             else
             {
@@ -104,7 +109,7 @@ namespace BasicTypes.Lorem
             }
 
 
-            Sentence s = new Sentence(RandomEnPiChain(),new PredicateList { p},OptionalParts());
+            Sentence s = new Sentence(RandomEnPiChain(), new PredicateList {p}, OptionalParts());
             return s;
         }
 
@@ -127,13 +132,21 @@ namespace BasicTypes.Lorem
                     sop.Conjunction = Particles.anu;
                 }
             }
-            if (random.Next(0, 100) < 80)
+            int isQuestion = random.Next(0, 100);
+            if (isQuestion < 30)
             {
                 sop.Punctuation = new Punctuation(".");
             }
-            else
+            else if(isQuestion<60)
             {
                 sop.Punctuation = new Punctuation(":");
+            }
+            else {
+                if (random.Next(0, 100) < 50)
+                {
+                    sop.TagQuestion = new TagQuestion();
+                }
+                sop.Punctuation = new Punctuation("?");
             }
             //tag
             return sop;

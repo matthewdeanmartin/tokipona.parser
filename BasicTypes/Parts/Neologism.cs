@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using BasicTypes.Extensions;
@@ -17,10 +18,19 @@ namespace BasicTypes.Parts
     ///  Glosses to itself in all languages. Can only be a content word. Appears only in strict parsing mode,
     /// in non-strict mode, we can only assume that this is a misspelling, foreign test or an uncapitalized 
     /// </remarks>
+    [DataContract]
+    [Serializable]
     public class Neologism:Token
     {
 
         public Neologism(string word)
+        {
+            CheckIsNeologism(word);
+
+            this.word = word;
+        }
+
+        private static void CheckIsNeologism(string word)
         {
             if (Word.IsWord(word))
             {
@@ -35,7 +45,13 @@ namespace BasicTypes.Parts
             {
                 throw new InvalidOperationException("Neologism must be a valid word phonotactically.");
             }
-            this.word = word;
+            foreach (KeyValuePair<string, Word> pair in Words.Dictionary)
+            {
+                if (Token.AreMinimalPairs(word, pair.Key))
+                {
+                    throw new InvalidOperationException("Minimal pair, likely mispelling");
+                }
+            }
         }
     }
 }
