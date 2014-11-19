@@ -18,11 +18,23 @@ namespace BasicTypes.Glosser
     //Culture aware! TP = InvariantCulture.
     public class GlossMaker
     {
+        public string Gloss(string normalized, string original, Dialect dialect)
+        {
+            dialect.ThrowOnSyntaxError = false;
+            dialect.TargetGloss = "en";
+            dialect.GlossWithFallBacks = true;
+            ParserUtils pu = new ParserUtils(dialect);
+
+            Sentence sentenceTree = pu.ParsedSentenceFactory(normalized, original);
+
+            return GlossOneSentence(false, sentenceTree, dialect);
+        }
+
         public string Gloss(string normalized, string original, string language = "en", bool includePos = false)
         {
             Dialect config = Dialect.DialectFactory;
             config.ThrowOnSyntaxError = false;
-            config.TargetGloss = "en";
+            config.TargetGloss = language;
             config.GlossWithFallBacks = true;
             ParserUtils pu = new ParserUtils(config);
 
@@ -283,14 +295,11 @@ namespace BasicTypes.Glosser
 
                 if (predicate.Prepositionals != null)
                 {
-                    
                         foreach (PrepositionalPhrase sub in predicate.Prepositionals)
                         {
-                            gloss.Add(sub.Preposition.ToString(PartOfSpeech.Preposition, config));
-
+                            //gloss.Add(sub.Preposition.ToString(PartOfSpeech.Preposition, config));
                             ProcessPrepositionalPhrase(gloss, sub, includePos, config);
-                        }
-                    
+                        }   
                     //leaf?
                 }
             }
@@ -402,7 +411,7 @@ namespace BasicTypes.Glosser
             ProcessOneChain(includePos, gloss, config, c);
         }
 
-        private static void ProcessOneChain(bool includePos, List<string> gloss, Dialect config, ComplexChain c)
+        private static void ProcessOneChain(bool includePos, List<string> gloss, Dialect config, ComplexChain c, bool surpressFirstPreposition=false)
         {
             //Recurse
             if (c.ComplexChains != null)
@@ -467,6 +476,7 @@ namespace BasicTypes.Glosser
 
         private void ProcessPrepositionalPhrase(List<string> gloss, PrepositionalPhrase sub, bool includePos, Dialect formatProvider)
         {
+            //HACK: I think the parser is wrapping a whole Perp phrase in a complex chain with just one Prep. Maybe that is correct & leave open option of treating chains of preps as a chains.
             gloss.Add(GlossWithFallBack(includePos, formatProvider, sub.Preposition, PartOfSpeech.Preposition));
 
             ProcessOneChain(includePos, gloss, formatProvider, sub.Complement);

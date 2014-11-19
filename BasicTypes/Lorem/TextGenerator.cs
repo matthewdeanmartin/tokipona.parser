@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Data.OleDb;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Script.Services;
 using BasicTypes.Collections;
+using BasicTypes.CollectionsDegenerate;
+using BasicTypes.Glosser;
 using Newtonsoft.Json.Converters;
 using NUnit.Framework;
 
@@ -17,21 +20,27 @@ namespace BasicTypes.Lorem
         [Test]
         public void GenerateObjectAndStringify()
         {
+            Dialect d = Dialect.DialectFactory;
+            d.IncludeApocrypha = false;
+            TextGenerator tg = new TextGenerator(d);
             for (int i = 0; i < 1000; i++)
             {
-                Sentence s = TextGenerator.GenerateSentence();
+                Sentence s = tg.GenerateSentence();
                 Console.WriteLine(s.ToString());
                 Console.WriteLine(s.ToString("b"));    
             }
         }
 
         [Test]
-        public void GenerateObjectAndStringifyParse()
+        public void GenerateObjectAndStringifyParse(Dialect dialect)
         {
+            Dialect d = Dialect.DialectFactory;
+            d.IncludeApocrypha = false;
+            TextGenerator tg = new TextGenerator(d);
             List<Sentence> sentences = new List<Sentence>();
             for (int i = 0; i < 1000; i++)
             {
-                sentences.Add(TextGenerator.GenerateSentence());
+                sentences.Add(tg.GenerateSentence());
             }
             
              
@@ -59,27 +68,127 @@ namespace BasicTypes.Lorem
                 
             }
         }
+
+
+        [Test]
+        public void GenerateObjectAndStringifyParseGloss()
+        {
+            List<Sentence> sentences = new List<Sentence>();
+            Dialect d = Dialect.WordProcessorRules;
+            d.IncludeApocrypha = false; 
+            TextGenerator tg =new TextGenerator(d);
+            for (int i = 0; i < 1000; i++)
+            {
+                sentences.Add(tg.GenerateSentence());
+            }
+
+            ParserUtils pu = new ParserUtils(Dialect.WordProcessorRules);
+            GlossMaker gm = new GlossMaker();
+            
+            foreach (Sentence sentence in sentences)
+            {
+                string s = sentence.ToString();
+                Console.WriteLine(s);
+                Console.WriteLine(sentence.ToString("b"));
+                Console.WriteLine(gm.Gloss(s, s));
+                //try
+                //{
+                    Sentence reparsed = pu.ParsedSentenceFactory(s, s);
+
+                    string reparseString = reparsed.ToString();
+                    Console.WriteLine(reparseString);
+                    Console.WriteLine(gm.Gloss(reparseString, s));
+                //}
+                //catch (Exception ex)
+                //{
+                //    if (ex.Message.Contains("This isn't possible in a pi chain"))
+                //    {
+                //        Console.WriteLine("Prep phrase in a subject :-(");
+                //        continue;
+                //    }
+                //    else
+                //        throw;
+                //}
+
+            }
+        }
     }
 
     public class TextGenerator
     {
-        static Random random = new Random(DateTime.Now.Millisecond);
+        private readonly Dialect dialect;
+        public TextGenerator(Dialect dialect)
+        {
+            this.dialect = dialect;
+        }
 
-        public static string GenerateText()
+        private static readonly Random random = new Random(DateTime.Now.Millisecond);
+
+        public string GenerateText()
         {
             Sentence result = GenerateSentence();
             return result.ToString();
         }
 
-        public static Sentence GenerateSentence()
+        public Sentence GenerateSentence()
         {
             //Exclamation, Fragment, Vocative, 
             //Simple, Simple + Optional Parts
             //
+            int dice = random.Next(0, 100);
+            if (dice < 10)
+            {
+                return SingleExclamation();
+            }
+
             return SingleSimpleSentence();
         }
 
-        private static Sentence SingleSimpleSentence()
+        //language|word|noun|adj|vt|vi|adv|prep|pronoun|kama|conditional|interj|conj|
+        private Sentence SingleExclamation()
+        {
+            Word interj = RandomWord("interj");
+            Word[] exclamationModifiers = new Word[]
+            {
+                Words.a, Words.kin
+            };
+            Dictionary<int, int> odds = new Dictionary<int, int>()
+            {
+                {0,85},
+                {1,10},
+                {2,5}
+            };
+            int last = 0;
+            foreach (int key in odds.Keys.Select(x => x).ToArray())
+            {
+                odds[key] = odds[key] + last;
+                last = odds[key];
+            }
+            int dice = random.Next(0, 101);
+            WordSet ws =new WordSet();
+            if (dice < 25)
+            {
+                dice = random.Next(0, 101);
+                var howMany = odds.Where(x => dice <= x.Value).Select(x => x.Key).First();
+                while (howMany > 0)
+                {
+                    ws.Add(Token.Modals[random.Next(0, Token.Modals.Length)]);
+                    howMany--;
+                }
+                Exclamation e = new Exclamation(new HeadedPhrase(interj,ws));
+                Sentence s = new Sentence(e, new Punctuation("!"));
+                return s;
+            }
+            else
+            {
+                Exclamation e = new Exclamation(new HeadedPhrase(interj));
+                Sentence s = new Sentence(e, new Punctuation("!"));
+                return s;
+            }
+
+        }
+
+        private Sentence SingleSimpleSentence()
         {
             bool isTransitive = random.Next(0, 100) < 50;
 
@@ -113,7 +222,7 @@ namespace BasicTypes.Lorem
             return s;
         }
 
-        public static SentenceOptionalParts OptionalParts()
+        public SentenceOptionalParts OptionalParts()
         {
             if (random.Next(0, 100) < 75)
             {
@@ -152,7 +261,7 @@ namespace BasicTypes.Lorem
             return sop;
         }
 
-        public static VerbPhrase RandomVerbPhrase(string pos)
+        public  VerbPhrase RandomVerbPhrase(string pos)
         {
             VerbPhrase vp;
             if (random.Next(0, 100) < 25)
@@ -168,7 +277,7 @@ namespace BasicTypes.Lorem
         }
 
 
-        public static WordSet RandomAdverbs()
+        public  WordSet RandomAdverbs()
         {
             Dictionary<int, int> odds = new Dictionary<int, int>()
             {
@@ -229,7 +338,7 @@ namespace BasicTypes.Lorem
             return ws;
         }
 
-        public static PrepositionalPhrase[] RandomPrepChain()
+        public PrepositionalPhrase[] RandomPrepChain()
         {
             Dictionary<int, int> odds = new Dictionary<int, int>
             {
@@ -261,7 +370,7 @@ namespace BasicTypes.Lorem
             return prepositionals.ToArray();
         }
 
-        public static ComplexChain RandomEChain()
+        public ComplexChain RandomEChain()
         {
             Dictionary<int, int> odds = new Dictionary<int, int>()
             {
@@ -295,7 +404,7 @@ namespace BasicTypes.Lorem
 
 
 
-        public static ComplexChain RandomEnPiChain()
+        public  ComplexChain RandomEnPiChain()
         {
             Word headWord = RandomWord("noun");
             WordSet modifiers = new WordSet { RandomWord("adj") };
@@ -305,7 +414,7 @@ namespace BasicTypes.Lorem
             return c;
         }
 
-        public static Word RandomWord(string pos)
+        public Word RandomWord(string pos)
         {
             
             //var glosses = Words.Glosses["en"].Where(x=>x.Key==pos).Select(x=>x);
@@ -320,8 +429,11 @@ namespace BasicTypes.Lorem
             do
             {
                 word = Words.Dictionary.ElementAt(random.Next(0, count)).Value;
-                
-            } while (word == null || word.IsParticle || Token.Deprecated.Contains(word.Text) || !Words.Glosses[word.Text]["en"].ContainsKey(pos));
+
+            } while (
+                word == null || word.IsParticle || 
+                (!dialect.IncludeApocrypha &&  Token.Deprecated.Contains(word.Text) )
+                || !Words.Glosses[word.Text]["en"].ContainsKey(pos));
 
             return word;
             //throw new InvalidOperationException("How did we get here?");

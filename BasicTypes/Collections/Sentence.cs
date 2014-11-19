@@ -257,10 +257,26 @@ namespace BasicTypes
                     throw new InvalidOperationException("Something went wrong, sentence ends in li");
                 }
                 spaceJoined = sb.SpaceJoin(format);
+
+                //Correct punctuation
+                BasicTypes.Punctuation normalizedPunctuation=null;
+                if (Contains(Words.seme))
+                {
+                    normalizedPunctuation = new Punctuation("?");
+                }
+
                 if (conclusion.punctuation != null)
                 {
-                    spaceJoined = spaceJoined + conclusion.punctuation;//format, formatProvider
+                    normalizedPunctuation = conclusion.punctuation;
                 }
+
+                //Default
+                if (normalizedPunctuation == null)
+                {
+                    normalizedPunctuation = new Punctuation(".");
+                }
+                spaceJoined = spaceJoined + normalizedPunctuation.ToString();
+
             }
             else
             {
@@ -272,6 +288,29 @@ namespace BasicTypes
                     throw new InvalidOperationException("Something went wrong, sentence ends in li");
                 }
                 spaceJoined = sb.SpaceJoin(format);
+
+
+                //Correct punctuation
+                BasicTypes.Punctuation normalizedPunctuation = null;
+                if (Contains(Words.seme))
+                {
+                    normalizedPunctuation = new Punctuation("?");
+                }
+
+                if (punctuation != null)
+                {
+                    normalizedPunctuation = punctuation;
+                }
+
+                //Default (depends on if we have a parent?)
+                //if (normalizedPunctuation == null)
+                //{
+                //    normalizedPunctuation = new Punctuation(".");
+                //}
+                if (normalizedPunctuation != null)
+                {
+                    spaceJoined = spaceJoined + normalizedPunctuation.ToString();
+                }
                 
                 if (punctuation != null)
                 {
@@ -288,7 +327,13 @@ namespace BasicTypes
                 {
                     result = result.Replace(" , ", ", ");
                 }
-                return result;
+                spaceJoined =result;
+            }
+
+            if (spaceJoined.EndsWith("..") || spaceJoined.EndsWith("??") || spaceJoined.EndsWith("::") || spaceJoined.EndsWith("!!"))
+            {
+                //HACK: WHY?!
+                spaceJoined = spaceJoined.Substring(0, spaceJoined.Length - 1);
             }
             return spaceJoined;
         }

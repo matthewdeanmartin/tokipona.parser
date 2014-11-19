@@ -88,7 +88,10 @@ namespace BasicTypes.Collections
         public bool Contains(Word word)
         {
             List<IContainsWord> chains = new List<IContainsWord>() { verbPhrase, directs };
-            chains.AddRange(prepositionals);
+            if (prepositionals != null)
+            {
+                chains.AddRange(prepositionals);
+            }
             return chains.Any(x => x != null && x.Contains(word));
         }
 

@@ -18945,7 +18945,7 @@ BuildIt();
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("wan-suli", new[] { "important part Large part", " big/important part (of everything)" });
+                    en.Add("wan-suli", new[] { "important part","large part", " big part" });
                     glossMap.Add("en", en);
                 }
                 WanSuli = new CompoundWord("wan-suli");

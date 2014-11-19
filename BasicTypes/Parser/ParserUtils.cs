@@ -304,25 +304,26 @@ namespace BasicTypes
 
             if (Exclamation.IsExclamation(liParts[0]))
             {
+                //HACK: Duplicate code. & it only deals with a single final puncution mark.
+                string possiblePunctuation = sentence[sentence.Length - 1].ToString();
+                if (Punctuation.TryParse(possiblePunctuation, out punctuation))
+                {
+                    sentence = sentence.Substring(0, sentence.Length - 1);
+                }
+
                 //The whole thing is o! (or pakala! or the like)
                 //pona a! a a a! ike a!
                 TokenParserUtils tpu = new TokenParserUtils();
 
                 Word[] tokes = tpu.ValidWords(sentence);
-                WordSet parts = new WordSet(tokes);
+                HeadedPhrase parts = new HeadedPhrase(tokes[0], new WordSet(ArrayExtensions.Tail(tokes)));
                 bool modifiersAreA = true;
 
-                int i = 0;
-                foreach (Word w in parts)
+                foreach (Word w in parts.Modifiers)
                 {
-                    if (i != 0)
-                    {
-                        if (w != "a")
-                        {
-                            modifiersAreA = false;
-                        }
-                    }
-                    i++;
+                    if (w == "a") continue; //peculiar to exclamations & repeats.
+                    if (w == "kin") continue; //modifies just about anything
+                    modifiersAreA = false;
                 }
 
                 if (modifiersAreA)
@@ -817,12 +818,12 @@ namespace BasicTypes
                 throw new ArgumentException("Impossible to parse a null or zero length string.");
             }
 
-            PrepositionalPhrase[] pp=null;
+            PrepositionalPhrase[] pp = null;
             if (value.Contains("~"))
             {
                 string[] headAndPreps = Splitters.SplitOnPrepositions(value);
                 value = headAndPreps[0];
-                pp=ProcessPrepositionalPhrases(ArrayExtensions.Tail(headAndPreps)).ToArray();
+                pp = ProcessPrepositionalPhrases(ArrayExtensions.Tail(headAndPreps)).ToArray();
             }
             //No Pi!
             TokenParserUtils pu = new TokenParserUtils();
@@ -834,7 +835,7 @@ namespace BasicTypes
             {
                 throw new InvalidOperationException("Failed to parse: " + value);
             }
-            HeadedPhrase phrase = new HeadedPhrase(words[0], new WordSet(ArrayExtensions.Tail(words)),pp);
+            HeadedPhrase phrase = new HeadedPhrase(words[0], new WordSet(ArrayExtensions.Tail(words)), pp);
             return phrase;
         }
 

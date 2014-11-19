@@ -52,6 +52,10 @@ namespace BasicTypes
         //https://stackoverflow.com/questions/5490824/should-constructors-comply-with-the-liskov-substitution-principle
         public Token(string word, bool iAmAPrepositionChain = false)
         {
+            if (word.EndsWith(" ") && word!=" ")
+            {
+                throw new InvalidOperationException("Untrimmed word.");
+            }
             if (!iAmAPrepositionChain)
             {
                 if (String.IsNullOrWhiteSpace(word))
@@ -393,7 +397,7 @@ namespace BasicTypes
 
         public static string LookupForm(string value)
         {
-            return value.Trim(new char[] { ',', '«', '»','!',' ' });
+            return value.Trim(new char[] {'~', ',', '«', '»','!',' ' });
         }
 
         private static string[] modals = new string[]

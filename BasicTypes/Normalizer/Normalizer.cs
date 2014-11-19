@@ -854,6 +854,18 @@ namespace BasicTypes.Parser
 
             foreach (string prep in preps)
             {
+                foreach (var conjunction in new string[] { "anu ", "taso " })
+                {
+                    string initialPrep = conjunction + "~" + prep;
+                    if (normalized.StartsWith(initialPrep))
+                    {
+                        normalized = normalized.Replace(initialPrep, initialPrep.Replace("~",""));
+                    }
+                }
+            }
+
+            foreach (string prep in preps)
+            {
                 string terminalPrep = "~" + prep;
                 if (normalized.EndsWith(terminalPrep))
                 {

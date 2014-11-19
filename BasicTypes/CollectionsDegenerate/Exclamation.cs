@@ -15,8 +15,8 @@ namespace BasicTypes.CollectionsDegenerate
     public class Exclamation
     {
         [DataMember]
-        private readonly WordSet wordSet;
-        public Exclamation(WordSet wordSet)
+        private readonly HeadedPhrase wordSet;
+        public Exclamation(HeadedPhrase wordSet)
         {
             if (wordSet == null)
             {
@@ -25,7 +25,7 @@ namespace BasicTypes.CollectionsDegenerate
             this.wordSet = wordSet;
         }
 
-        public WordSet Phrase { get { return wordSet; } }
+        public HeadedPhrase Phrase { get { return wordSet; } }
 
         public List<string> ToTokenList(string format, IFormatProvider formatProvider)
         {

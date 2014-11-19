@@ -93,7 +93,6 @@ namespace BasicTypes
         public static Word palisa;
         public static Word pan;
         public static Word pana;
-        
         public static Word pi;
         public static Word pilin;
         public static Word pimeja;
@@ -136,9 +135,6 @@ namespace BasicTypes
         public static Word wawa;
         public static Word weka;
         public static Word wile;
-
-        //obs
-        public static Word pata;
         public static Word kapa;
         public static Word iki;
         public static Word kan;
@@ -155,6 +151,8 @@ namespace BasicTypes
         public static Word apeja;
         public static Word pake;
         public static Word monsuta;
+        public static Word pata;
+        //language|word|noun|adj|vt|vi|adv|prep|pronoun|kama|conditional|interj|conj|
 
         public static Dictionary<string, Word> Dictionary;
 
@@ -167,7 +165,7 @@ namespace BasicTypes
 
             {
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
-
+                
                 {
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "laugh" });
@@ -199,6 +197,7 @@ namespace BasicTypes
 
                     glossMap.Add("en", en);
                 }
+
                 {
                     var eo = new Dictionary<string, string[]>();
                     eo.Add("noun", new[] { "malkaresinda besto", "rampulo", "amfibio" });
@@ -462,13 +461,15 @@ namespace BasicTypes
             }
 
 
-
             {
                 var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
 
                 {
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "market", "shop" });
+                    en.Add("adj", new[] { "commecial" });
+                    en.Add("vt", new[] { "sell", "buy", "exchange" });
+                    en.Add("vi", new[] { "sell", "buy" });
 
                     glossMap.Add("en", en);
                 }
@@ -490,12 +491,17 @@ namespace BasicTypes
 
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("noun", new[] { "something" });
+                    en.Add("noun", new[] { "thing", "something", "stuff", "anything", "object" });
+                    en.Add("adj", new[] { "of something" });
+                    en.Add("vt", new[] { "objectify" });
 
                     glossMap.Add("en", en);
                 }
                 {
                     var eo = new Dictionary<string, string[]>();
+                    eo.Add("noun", new[] { "aĵo", "afero", "io", "objekto" });
+                    eo.Add("adj", new[] { "de io", "pri io" });
+                    eo.Add("vt", new[] { "objektigi" });
 
                     glossMap.Add("eo", eo);
                 }
@@ -516,7 +522,7 @@ namespace BasicTypes
                     en.Add("vt", new[] { "to make bad", "to worsen", "to have a negative effect upon" });
                     en.Add("vi", new[] { "to be bad", "to suck" });
                     en.Add("adv", new[] { "badly", "negatively", "wrongly", "evilly", "overly complex", "unhealthyly" });
-                    en.Add("interj", new[] { "oh dear! woe! alas!" });
+                    en.Add("interj", new[] { "oh dear!", "woe!", "alas!" });
 
                     glossMap.Add("en", en);
                 }
@@ -544,6 +550,8 @@ namespace BasicTypes
                 {
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "tool", "device", "machine" });
+                    en.Add("adj", new[] { "mechanical" });
+                    en.Add("adv", new[] { "mechanically" });
 
                     glossMap.Add("en", en);
                 }
@@ -595,7 +603,7 @@ namespace BasicTypes
                     en.Add("adj", new[] { "dirty", "gross", "filthy" });
                     en.Add("vt", new[] { "pollute", "dirty" });
                     en.Add("adv", new[] { "dirtily", "grossly", "filthily" });
-                    en.Add("interj", new[] { "ew! yuck!" });
+                    en.Add("interj", new[] { "ew!", "yuck!" });
 
                     glossMap.Add("en", en);
                 }
@@ -697,6 +705,7 @@ namespace BasicTypes
                 {
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "fish", "sea creature" });
+                    en.Add("adj", new[] { "fish" });
 
                     glossMap.Add("en", en);
                 }
@@ -773,6 +782,7 @@ namespace BasicTypes
                 {
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "plant", "leaf", "herb", "tree", "wood" });
+                    en.Add("adj", new[] { "vegetable", "plant-like" });
 
                     glossMap.Add("en", en);
                 }
@@ -822,6 +832,8 @@ namespace BasicTypes
 
                 {
                     var en = new Dictionary<string, string[]>();
+                    en.Add("noun", new[] { "usage" });
+                    en.Add("adj", new[] { "usable" });
                     en.Add("vt", new[] { "use" });
                     en.Add("prep", new[] { "with" });
 
@@ -847,6 +859,7 @@ namespace BasicTypes
                 {
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "fruit", "pulpy vegetable", "mushroom" });
+                    en.Add("adj", new[] { "fruity" });
 
                     glossMap.Add("en", en);
                 }
@@ -1015,6 +1028,7 @@ namespace BasicTypes
 
                 {
                     var en = new Dictionary<string, string[]>();
+                    en.Add("noun", new[] { "hearing" });
                     en.Add("adj", new[] { "auditory", "hearing" });
                     en.Add("vt", new[] { "listen", "hear" });
                     en.Add("adv", new[] { "audibly" });
@@ -1115,7 +1129,9 @@ namespace BasicTypes
 
                 {
                     var en = new Dictionary<string, string[]>();
+                    en.Add("noun", new[] { "blue", "blue-green" });
                     en.Add("adj", new[] { "blue", "blue-green" });
+                    en.Add("vt", new[] { "makes blue" });
 
                     glossMap.Add("en", en);
                 }
@@ -1235,6 +1251,7 @@ namespace BasicTypes
 
                 {
                     var en = new Dictionary<string, string[]>();
+                    en.Add("noun", new[] { "little one" });
                     en.Add("adj", new[] { "small", "little", "young", "a bit", "short", "few", "less" });
                     en.Add("vt", new[] { "reduce", "shorten", "shrink", "lessen" });
                     en.Add("adv", new[] { "little", "a bit", "less" });
@@ -1305,7 +1322,10 @@ namespace BasicTypes
 
                 {
                     var en = new Dictionary<string, string[]>();
+                    en.Add("noun", new[] { "red" });
                     en.Add("adj", new[] { "red" });
+                    en.Add("vt", new[] { "make red" });
+                    en.Add("vi", new[] { "redden", "is red" });
 
                     glossMap.Add("en", en);
                 }
@@ -1327,7 +1347,11 @@ namespace BasicTypes
 
                 {
                     var en = new Dictionary<string, string[]>();
+                    en.Add("noun", new[] { "existence", "reality" });
+                    en.Add("adj", new[] { "true", "real" });
+                    en.Add("vt", new[] { "place" });
                     en.Add("vi", new[] { "be there", "be present", "be real/true", "exist", "be awake" });
+                    en.Add("adv", new[] { "truly" });
                     en.Add("prep", new[] { "be (located) in/at/on" });
 
                     glossMap.Add("en", en);
@@ -1472,6 +1496,7 @@ namespace BasicTypes
                 {
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "money", "material wealth", "currency", "dollar", "capital" });
+                    en.Add("adj", new[] { "monetary" });
 
                     glossMap.Add("en", en);
                 }
@@ -1594,6 +1619,7 @@ namespace BasicTypes
                     en.Add("adj", new[] { "dead", "deadly", "fatal" });
                     en.Add("vt", new[] { "kill" });
                     en.Add("vi", new[] { "die", "be dead" });
+                    en.Add("adv", new[] { "deadly" });
 
                     glossMap.Add("en", en);
                 }
@@ -1645,13 +1671,13 @@ namespace BasicTypes
                     en.Add("noun", new[] { "sound", "noise" });
                     en.Add("vt", new[] { "make a noise like" });
                     en.Add("vi", new[] { "to bellow" });
-                    en.Add("interj", new[] { "woof! meow! moo!" });
+                    en.Add("interj", new[] { "woof!", "meow!", "moo!" });
 
                     glossMap.Add("en", en);
                 }
                 {
                     var eo = new Dictionary<string, string[]>();
-                    eo.Add("interj", new[] { "blek! ŭa! miaŭ! ra!" });
+                    eo.Add("interj", new[] { "blek!", "ŭa!", "miaŭ!", "ra!" });
 
                     glossMap.Add("eo", eo);
                 }
@@ -1745,7 +1771,8 @@ namespace BasicTypes
 
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("noun", new[] { "extra", "addtional", "spice" });
+                    en.Add("noun", new[] { "extra", "additional", "spice" });
+                    en.Add("adj", new[] { "extra", "additional", "spicy" });
 
                     glossMap.Add("en", en);
                 }
@@ -1767,6 +1794,8 @@ namespace BasicTypes
                 {
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "number" });
+                    en.Add("adj", new[] { "number's" });
+                    en.Add("vt", new[] { "count" });
 
                     glossMap.Add("en", en);
                 }
@@ -1856,14 +1885,17 @@ namespace BasicTypes
 
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("adj", new[] { "this", "that" });
-                    en.Add("noun", new[] { "this", "that" });
+                    en.Add("noun", new[] { "this" });
+                    en.Add("adj", new[] { "this" });
                     en.Add("pronoun", new[] { "this", "that" });
+
                     glossMap.Add("en", en);
                 }
                 {
                     var eo = new Dictionary<string, string[]>();
+                    eo.Add("noun", new[] { "tiu", "ĉi tiu", "ĉi-", "jena" });
                     eo.Add("adj", new[] { "tiu", "ĉi tiu", "ĉi-", "jena" });
+                    eo.Add("pronoun", new[] { "tiu", "ĉi tiu", "ĉi-", "jena" });
 
                     glossMap.Add("eo", eo);
                 }
@@ -1880,6 +1912,7 @@ namespace BasicTypes
                 {
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "word", "name" });
+                    en.Add("adj", new[] { "word's" });
 
                     glossMap.Add("en", en);
                 }
@@ -1902,6 +1935,7 @@ namespace BasicTypes
                 {
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "leg", "foot" });
+                    en.Add("adj", new[] { "leg's" });
 
                     glossMap.Add("en", en);
                 }
@@ -1946,6 +1980,7 @@ namespace BasicTypes
                 {
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "eye" });
+                    en.Add("adj", new[] { "eye's" });
 
                     glossMap.Add("en", en);
                 }
@@ -2044,7 +2079,7 @@ namespace BasicTypes
                     en.Add("noun", new[] { "blunder", "accident", "mistake", "destruction", "damage", "breaking" });
                     en.Add("vt", new[] { "screw up", "fuck up", "botch", "ruin", "break", "hurt", "injure", "damage", "spoil", "ruin" });
                     en.Add("vi", new[] { "screw up", "fall apart", "break" });
-                    en.Add("interj", new[] { "damn! fuck!" });
+                    en.Add("interj", new[] { "damn!", "fuck!" });
 
                     glossMap.Add("en", en);
                 }
@@ -2165,28 +2200,6 @@ namespace BasicTypes
 
                 {
                     var en = new Dictionary<string, string[]>();
-                    en.Add("noun", new[] { "brother" });
-
-                    glossMap.Add("en", en);
-                }
-                {
-                    var eo = new Dictionary<string, string[]>();
-                    eo.Add("noun", new[] { "???" });
-
-                    glossMap.Add("eo", eo);
-                }
-                pata = new Word("pata");
-
-                Dictionary.Add("pata", pata);
-                Glosses.Add("pata", glossMap);
-            }
-
-
-            {
-                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
-
-                {
-                    var en = new Dictionary<string, string[]>();
 
                     glossMap.Add("en", en);
                 }
@@ -2210,6 +2223,7 @@ namespace BasicTypes
                     en.Add("noun", new[] { "feelings", "emotion", "heart" });
                     en.Add("vt", new[] { "feel", "think", "sense", "touch" });
                     en.Add("vi", new[] { "feel" });
+                    en.Add("adv", new[] { "emotionally" });
 
                     glossMap.Add("en", en);
                 }
@@ -2236,6 +2250,7 @@ namespace BasicTypes
                     en.Add("noun", new[] { "darkness", "shadows" });
                     en.Add("adj", new[] { "black", "dark" });
                     en.Add("vt", new[] { "darken" });
+                    en.Add("adv", new[] { "darkly" });
 
                     glossMap.Add("en", en);
                 }
@@ -2262,6 +2277,8 @@ namespace BasicTypes
                     en.Add("noun", new[] { "end", "tip" });
                     en.Add("adj", new[] { "completed", "finished", "past", "done", "ago" });
                     en.Add("vt", new[] { "finish", "close", "end", "turn off" });
+                    en.Add("vi", new[] { "finish" });
+                    en.Add("adv", new[] { "finally", "completely" });
 
                     glossMap.Add("en", en);
                 }
@@ -2286,6 +2303,8 @@ namespace BasicTypes
                 {
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "bug", "insect", "spider" });
+                    en.Add("adj", new[] { "insect's", "insect-like" });
+                    en.Add("vt", new[] { "make into an insect" });
 
                     glossMap.Add("en", en);
                 }
@@ -2358,7 +2377,7 @@ namespace BasicTypes
                     en.Add("noun", new[] { "good", "simplicity", "positivity" });
                     en.Add("adj", new[] { "good", "simple", "positive", "nice", "correct", "right" });
                     en.Add("vt", new[] { "improve", "fix", "repair", "make good" });
-                    en.Add("interj", new[] { "great! good! thanks! OK! cool! yay!" });
+                    en.Add("interj", new[] { "great!", "good!", "thanks!", "OK!", "cool!", "yay!" });
 
                     glossMap.Add("en", en);
                 }
@@ -2367,7 +2386,7 @@ namespace BasicTypes
                     eo.Add("noun", new[] { "bona", "simplo", "pozitivo" });
                     eo.Add("adj", new[] { "bona", "simpla", "pozitiva", "afabla", "ĝusta" });
                     eo.Add("vt", new[] { "bonigi", "plibonigi", "ripari" });
-                    eo.Add("interj", new[] { "bone! bonege! dankon! en ordo!" });
+                    eo.Add("interj", new[] { "bone!", "bonege!", "dankon!", "en ordo!" });
 
                     glossMap.Add("eo", eo);
                 }
@@ -2384,6 +2403,9 @@ namespace BasicTypes
                 {
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "same", "similar", "equal", "of equal status or position" });
+                    en.Add("adj", new[] { "self" });
+                    en.Add("vt", new[] { "copy" });
+                    en.Add("adv", new[] { "similarly" });
                     en.Add("prep", new[] { "like", "as", "seem" });
 
                     glossMap.Add("en", en);
@@ -2434,6 +2456,8 @@ namespace BasicTypes
                 {
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "outside", "surface", "skin", "shell", "bark", "shape", "peel" });
+                    en.Add("adj", new[] { "shell-like" });
+                    en.Add("vt", new[] { "surround" });
 
                     glossMap.Add("en", en);
                 }
@@ -2455,12 +2479,17 @@ namespace BasicTypes
 
                 {
                     var en = new Dictionary<string, string[]>();
+                    en.Add("noun", new[] { "what", "which" });
+                    en.Add("adj", new[] { "what sort" });
+                    en.Add("vi", new[] { "is what" });
+                    en.Add("adv", new[] { "in what way" });
                     en.Add("pronoun", new[] { "what", "which" });
 
                     glossMap.Add("en", en);
                 }
                 {
                     var eo = new Dictionary<string, string[]>();
+                    eo.Add("noun", new[] { "ki-x" });
                     eo.Add("pronoun", new[] { "ki-x" });
 
                     glossMap.Add("eo", eo);
@@ -2525,6 +2554,7 @@ namespace BasicTypes
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "circle", "wheel", "sphere", "ball", "cycle" });
                     en.Add("adj", new[] { "round", "cyclical" });
+                    en.Add("vt", new[] { "circle" });
 
                     glossMap.Add("en", en);
                 }
@@ -2598,6 +2628,7 @@ namespace BasicTypes
                 {
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "front", "chest", "torso", "face", "wall" });
+                    en.Add("adj", new[] { "front" });
 
                     glossMap.Add("en", en);
                 }
@@ -2620,6 +2651,7 @@ namespace BasicTypes
                 {
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "picture", "image" });
+                    en.Add("adj", new[] { "illutrated" });
                     en.Add("vt", new[] { "draw", "write" });
 
                     glossMap.Add("en", en);
@@ -2696,6 +2728,7 @@ namespace BasicTypes
                     en.Add("noun", new[] { "size" });
                     en.Add("adj", new[] { "big", "tall", "long", "adult", "important" });
                     en.Add("vt", new[] { "enlarge", "lengthen" });
+                    en.Add("adv", new[] { "greatly" });
 
                     glossMap.Add("en", en);
                 }
@@ -2720,6 +2753,8 @@ namespace BasicTypes
                 {
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "sun", "light" });
+                    en.Add("adj", new[] { "sunny", "bright" });
+                    en.Add("adv", new[] { "sunnily" });
 
                     glossMap.Add("en", en);
                 }
@@ -2766,6 +2801,7 @@ namespace BasicTypes
                     en.Add("noun", new[] { "candy", "sweet food" });
                     en.Add("adj", new[] { "sweet", "cute" });
                     en.Add("vt", new[] { "sweeten" });
+                    en.Add("adv", new[] { "sweetly" });
 
                     glossMap.Add("en", en);
                 }
@@ -2814,6 +2850,7 @@ namespace BasicTypes
                 {
                     var en = new Dictionary<string, string[]>();
                     en.Add("adj", new[] { "only", "sole" });
+                    en.Add("adv", new[] { "only" });
                     en.Add("conj", new[] { "but" });
 
                     glossMap.Add("en", en);
@@ -2868,6 +2905,7 @@ namespace BasicTypes
                 {
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "water", "liquid", "juice", "sauce" });
+                    en.Add("adj", new[] { "liquid" });
                     en.Add("vt", new[] { "water", "wash with water" });
 
                     glossMap.Add("en", en);
@@ -2892,6 +2930,7 @@ namespace BasicTypes
                 {
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "time", "period of time", "moment", "duration", "situation" });
+                    en.Add("vt", new[] { "time" });
 
                     glossMap.Add("en", en);
                 }
@@ -2917,7 +2956,7 @@ namespace BasicTypes
                     en.Add("adj", new[] { "talking", "verbal" });
                     en.Add("vt", new[] { "say" });
                     en.Add("vi", new[] { "talk", "chat", "communicate" });
-                    en.Add("interj", new[] { "hello! hi!" });
+                    en.Add("interj", new[] { "hello!", "hi!" });
 
                     glossMap.Add("en", en);
                 }
@@ -3023,6 +3062,7 @@ namespace BasicTypes
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "mouth" });
                     en.Add("adj", new[] { "oral" });
+                    en.Add("vt", new[] { "kiss" });
 
                     glossMap.Add("en", en);
                 }
@@ -3071,6 +3111,7 @@ namespace BasicTypes
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "white thing or part", "whiteness", "lightness" });
                     en.Add("adj", new[] { "white", "light colored" });
+                    en.Add("vt", new[] { "whiten" });
 
                     glossMap.Add("en", en);
                 }
@@ -3120,6 +3161,7 @@ namespace BasicTypes
                 {
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "bird", "winged animal" });
+                    en.Add("adj", new[] { "bird like" });
 
                     glossMap.Add("en", en);
                 }
@@ -3196,6 +3238,7 @@ namespace BasicTypes
                     en.Add("noun", new[] { "desire", "need", "will" });
                     en.Add("adj", new[] { "necessary" });
                     en.Add("vt", new[] { "to want", "need", "wish", "have to", "must", "will", "should" });
+                    en.Add("vi", new[] { "want" });
 
                     glossMap.Add("en", en);
                 }
@@ -3220,6 +3263,7 @@ namespace BasicTypes
                 {
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "bump", "nose", "hill", "mountain", "button" });
+                    en.Add("adj", new[] { "bump-like" });
 
                     glossMap.Add("en", en);
                 }
@@ -3430,6 +3474,7 @@ namespace BasicTypes
                 {
                     var en = new Dictionary<string, string[]>();
                     en.Add("noun", new[] { "armadillo", "pangolin" });
+                    en.Add("adj", new[] { "armadillo", "pangolin" });
 
                     glossMap.Add("en", en);
                 }
@@ -3586,6 +3631,26 @@ namespace BasicTypes
             }
 
 
+            {
+                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+
+                {
+                    var en = new Dictionary<string, string[]>();
+                    en.Add("noun", new[] { "brother" });
+
+                    glossMap.Add("en", en);
+                }
+                {
+                    var eo = new Dictionary<string, string[]>();
+                    eo.Add("noun", new[] { "???" });
+
+                    glossMap.Add("eo", eo);
+                }
+                pata = new Word("pata");
+
+                Dictionary.Add("pata", pata);
+                Glosses.Add("pata", glossMap);
+            }
 
 
 
