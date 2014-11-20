@@ -58,7 +58,7 @@ namespace BasicTypes
                 .Where(x => !string.IsNullOrWhiteSpace(x)) //skip empties
                 //.Select(x => Normalizer.NormalizeText(x, config))
                 .Select(x => x)
-                .Where(x => x != null)
+                .Where(x => !string.IsNullOrWhiteSpace(x))
                 .ToArray();
         }
 
@@ -108,16 +108,18 @@ namespace BasicTypes
         //This should only operate on normalized sentences.
         public Sentence ParsedSentenceFactory(string sentence, string original)
         {
+            if (string.IsNullOrWhiteSpace(sentence))
+            {
+                throw new InvalidOperationException("Don't give me a null sentence. Can't tell if null sentence is from input or got lost in translation");
+            }
+
             string preNormalize = string.Copy(sentence);
             if (sentence.EndsWith(" li") || sentence.EndsWith(" li."))
             {
                 throw new InvalidOperationException("Something went wrong, sentence ends with li");
             }
             sentence = Normalizer.NormalizeText(sentence, config); //Any way to avoid calling this twice?
-            if (string.IsNullOrWhiteSpace(sentence))
-            {
-                return null;
-            }
+            
             bool startsQuotedSpeech;
             bool endsQuotedSpeech;
             if (sentence.StartsWith("«"))
@@ -302,7 +304,7 @@ namespace BasicTypes
 
             string[] liParts = Splitters.SplitOnLiOrO(sentence);
 
-            if (Exclamation.IsExclamation(liParts[0]))
+            if (liParts.Length==1 && Exclamation.IsExclamation(liParts[0]) )
             {
                 //HACK: Duplicate code. & it only deals with a single final puncution mark.
                 string possiblePunctuation = sentence[sentence.Length - 1].ToString();

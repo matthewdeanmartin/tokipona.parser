@@ -19,6 +19,7 @@ namespace BasicTypes.Parser
             string normalized = DetectWrongQuotes(sentence);
             normalized = DetectEntireForeignSentence(normalized);
 
+            //TODO: use english spell check to detect words
             
             //Doesn't work!!!
             //normalized = DetectIndividualForeignWords(normalized);

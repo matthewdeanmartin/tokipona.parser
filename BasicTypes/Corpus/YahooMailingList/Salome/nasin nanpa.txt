@@ -1,36 +1,35 @@
-nasim nanpa
-by Salomé » Mon Nov 26, 2007 4:05 pm
+nasin nanpa.
+"by Salomé » Mon Nov 26, 2007".
 
 
-toki !
+toki!
 
 pilin lawa pi nanpa li kama tawa mi.
-jan pi toki-pona li ken kepeken e nasim nanpa pi tu anu tu wan. ante
-la jan kepeken e nasim nanpa pi luka luka. nasim nanpa pi luka luka li
-ike. nasim nanpa pi tu li pona. tan ni la ilo nanpa li kepeken e nasim
+jan pi toki-pona li ken kepeken e nasin nanpa pi tu anu tu wan. ante
+la jan kepeken e nasin nanpa pi luka luka. nasin nanpa pi luka luka li
+ike. nasin nanpa pi tu li pona. tan ni la ilo nanpa li kepeken e nasin
 nanpa pi tu.
 
-nasim nanpa pi tu li ken lon e ni:
+nasin nanpa pi tu li ken lon e ni:
 
-347 = 3 * 10^2 + 4 * 10 + 7
-ni li kepeken e nasim nanpa pi luka luka.
-
-
-347 = 2^8 + 2^6 + 2^4 + 2^3 + 2 + 1
-
-101011011 = 1 * 2^8 + 0 * 2^7 + 1 * 2^6 + 0 * 2^5 + 1 * 2^4 + 1 * 2^3
-+ 0 * 2^2 + 1 * 2 + 1
-ni li kepeken e nasim nanpa pi tu.
-
-101011011 li 347 kepeken nasim nanpa pi tu.
+"347 = 3 * 10^2 + 4 * 10 + 7".
+ni li kepeken e nasin nanpa pi luka luka.
 
 
-347 = 3^5 + 3^4 + 2 * 3^2 + 3 + 2
+"347 = 2^8 + 2^6 + 2^4 + 2^3 + 2 + 1".
 
-110212 = 1 * 3^5 + 1 * 3^4 + 0 * 3^3 + 2 * 3^2 + 1 * 3 + 2
-ni li kepeken e nasim nanpa pi tu wan.
+"101011011 = 1 * 2^8 + 0 * 2^7 + 1 * 2^6 + 0 * 2^5 + 1 * 2^4 + 1 * 2^3 + 0 * 2^2 + 1 * 2 + 1"
+ni li kepeken e nasin nanpa pi tu.
 
-110212 li 347 kepeken nasim nanpa pi tu wan.
+101011011 li 347 kepeken nasin nanpa pi tu.
+
+
+"347 = 3^5 + 3^4 + 2 * 3^2 + 3 + 2".
+
+"110212 = 1 * 3^5 + 1 * 3^4 + 0 * 3^3 + 2 * 3^2 + 1 * 3 + 2".
+ni li kepeken e nasin nanpa pi tu wan.
+
+110212 li 347 kepeken nasin nanpa pi tu wan.
 
 tenpo ni la jan pi toki-pona li ken toki e 347. taso jan o wan ala e
 nanpa. wan e nanpa li ike. wan ala e nanpa li pona.
@@ -38,15 +37,15 @@ tenpo ni la 347 li ken lon e ni: wan ala wan ala wan wan ala wan wan.
 tenpo ni la 347 li ken kin lon e ni: wan wan ala tu wan tu.
 
 
-ale li pona !
+ale li pona!
 
--jan Salome
+jan Salome
 
 
 
 pona, mi toki sin e toki-pona. weka e ike mi e ni: mi pali e pakala. 
 
-jan salome o, sina pali e lipu ni? sina lukin e lipu ni? sina o lukin e lipu pi nasim nanpa.
+jan salome o, sina pali e lipu ni? sina lukin e lipu ni? sina o lukin e lipu pi nasin nanpa.
 
 http://danielmacouin.chez-alice.fr/toki_IO/en_general_toki_io.htm
 

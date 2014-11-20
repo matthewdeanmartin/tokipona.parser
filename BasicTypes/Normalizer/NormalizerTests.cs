@@ -84,6 +84,20 @@ namespace BasicTypes.Parser
         }
 
         [Test]
+        public void MissingLi2()
+        {
+            //ni li ijo ike mute! 
+            string s = "tenpo ni la sike mi li tawa kepeken tenpo lili.";
+            Console.WriteLine("Original  : " + s);
+            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+            Console.WriteLine("Normalized: " + normalized);
+
+            const string expected = "tenpo ni la sike mi li tawa ~kepeken tenpo lili.";
+            Assert.AreEqual(expected, normalized);
+        
+        }
+
+        [Test]
         public void LiTawaEnTan()
         {
             //sina toki e ni: 

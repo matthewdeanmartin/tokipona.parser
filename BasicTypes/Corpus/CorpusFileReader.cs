@@ -13,10 +13,13 @@ namespace BasicTypes.Corpus
         //Return all files
         public IEnumerable<string> NextFile()
         {
-            //DirectoryInfo di = new DirectoryInfo(@"C:\Users\mmartin\Documents\GitHub\tokipona.parser\BasicTypes\Corpus");
-            DirectoryInfo di = new DirectoryInfo(@"C:\Users\mmartin\code\GitHub\tokipona.parser\BasicTypes\Corpus");
+            DirectoryInfo di;
+            if(Directory.Exists(@"C:\Users\mmartin\Documents\GitHub"))
+                di = new DirectoryInfo(@"C:\Users\mmartin\Documents\GitHub\tokipona.parser\BasicTypes\Corpus");
+            else
+                di = new DirectoryInfo(@"C:\Users\mmartin\code\GitHub\tokipona.parser\BasicTypes\Corpus");
             //"*Yves*.txt"
-            foreach (FileInfo file in di.EnumerateFiles("*.txt", SearchOption.AllDirectories))
+            foreach (FileInfo file in di.EnumerateFiles("*.txt", SearchOption.AllDirectories).Reverse())
             {
                 if (file.FullName.Contains("janKipoCollected")) continue;
                 if (file.FullName.Contains("toki sewi kolisu p2.txt")) continue;

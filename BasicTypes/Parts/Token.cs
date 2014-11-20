@@ -121,8 +121,10 @@ namespace BasicTypes
             get { return "JKLMNPSTWAEIOU"; }
         }
 
-        public  static bool ValidateLetterSet(string value)
+        public static bool ValidateLetterSet(string value)
         {
+            if (string.IsNullOrWhiteSpace(value)) return false;
+
             string lowerWord = value.ToLowerInvariant();
             return lowerWord.All(c => "jklmnpstwaeiou".Contains(c));
         }
@@ -174,7 +176,7 @@ namespace BasicTypes
 
         public static bool CheckIsValidPhonology(string value)
         {
-
+            if (string.IsNullOrWhiteSpace(value)) return false;
             //Letters
             if (!ValidateLetterSet(value))
             {

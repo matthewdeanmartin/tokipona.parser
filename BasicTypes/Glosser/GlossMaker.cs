@@ -218,9 +218,12 @@ namespace BasicTypes.Glosser
                         {
                             //No modals, Can't gloss as verb, assume we have a noun phrase
 
-                            foreach (Word modifier in predicate.VerbPhrase.Adverbs)
+                            if (predicate.VerbPhrase.Adverbs != null)
                             {
-                                gloss.Add(GlossWithFallBack(includePos, config, modifier, PartOfSpeech.Adjective));
+                                foreach (Word modifier in predicate.VerbPhrase.Adverbs)
+                                {
+                                    gloss.Add(GlossWithFallBack(includePos, config, modifier, PartOfSpeech.Adjective));
+                                }
                             }
 
                             if (predicate.VerbPhrase.HeadVerb.ToString(PartOfSpeech.Noun, config).Contains("Error"))

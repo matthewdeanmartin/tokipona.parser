@@ -14,6 +14,7 @@ namespace BasicTypes.CollectionsDegenerate
     [Serializable]
     public class Exclamation
     {
+        //Headed phrase can't be headed by a particle, but an exclamation can!
         [DataMember]
         private readonly HeadedPhrase wordSet;
         public Exclamation(HeadedPhrase wordSet)

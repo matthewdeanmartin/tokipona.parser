@@ -18,6 +18,7 @@ using BasicTypes.MoreTypes;
 using BasicTypes.Parts;
 using Microsoft.SqlServer.Server;
 using Newtonsoft.Json;
+using NHunspell;
 using NUnit.Framework;
 
 namespace BasicTypes
@@ -185,6 +186,19 @@ namespace BasicTypes
                     }
                     else
                     {
+                        if (!CheckIsValidPhonology(prospectiveWord) && prospectiveWord.Length > 1)
+                        {
+                            using (Hunspell hunspell = new Hunspell("en_us.aff", "en_us.dic"))
+                            {
+                                bool correct = hunspell.Spell(prospectiveWord);
+                                if (correct)
+                                {
+                                    errors.Add("This is English: " + prospectiveWord);
+                                    //It's Enlgish.
+                                    //throw new InvalidOperationException();
+                                }
+                            }
+                        }
                         //foreach (char c in prospectiveWord)
                         //{
                         //    Console.WriteLine(Convert.ToInt32(c));
@@ -314,7 +328,9 @@ namespace BasicTypes
                 return cw.TryGloss(language, pos);
             }
 
-            if (word.StartsWith("#"))
+            int digits;
+            bool isNumeric = int.TryParse(word, out digits);
+            if (word.StartsWith("#") || isNumeric)
             {
                 Number n = new Number(Text);
                 return n.TryGloss(language, pos);

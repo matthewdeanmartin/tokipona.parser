@@ -16,7 +16,7 @@ namespace BasicTypes
     /// Phrase with no particles. Head word is special, subsequent words might not be ordered.
     /// </summary>
     [DataContract]
-    [Serializable] 
+    [Serializable]
     public class HeadedPhrase : IContainsWord, IFormattable, IToString
     {
         // [head word] - [mods] - (pi) [prep phrases]
@@ -38,8 +38,8 @@ namespace BasicTypes
         private readonly WordSet modifiers;
 
         //soweli (tan tomo) (sama akesi) pi ma suli en waso pi ma lili (lon ma ni) li 
-       
-        [DataMember] 
+
+        [DataMember]
         private readonly PrepositionalPhrase[] prepositionalPhrases;
 
         public HeadedPhrase(Word head, Word modifier1, Word modifier2 = null, Word modifier3 = null)
@@ -47,11 +47,11 @@ namespace BasicTypes
             WordSet modifiers = null;
             //if (modifier2 != null || modifier3 != null)
             {
-               modifiers= new WordSet();
-               //if (modifier1 != null) 
-                   modifiers.Add(modifier1);
-               if (modifier2 != null) modifiers.Add(modifier2);
-               if (modifier3 != null) modifiers.Add(modifier3);
+                modifiers = new WordSet();
+                //if (modifier1 != null) 
+                modifiers.Add(modifier1);
+                if (modifier2 != null) modifiers.Add(modifier2);
+                if (modifier3 != null) modifiers.Add(modifier3);
             }
 
             ValidateConstruction(head, modifiers);
@@ -60,7 +60,7 @@ namespace BasicTypes
             this.modifiers = modifiers;
         }
 
-        public HeadedPhrase(Word head, WordSet modifiers=null, PrepositionalPhrase[] prepositionalPhrases=null)
+        public HeadedPhrase(Word head, WordSet modifiers = null, PrepositionalPhrase[] prepositionalPhrases = null)
         {
             ValidateConstruction(head, modifiers);
 
@@ -94,13 +94,24 @@ namespace BasicTypes
                     }
                 }
             }
+            if (modifiers != null && modifiers.Count > 1)
+            {
+                var query = modifiers.GroupBy(x => x)
+                  .Where(g => g.Count() > 1)
+                  .Select(y => y.Key)
+                  .ToList();
+                if (query.Count > 0)
+                {
+                    throw new InvalidOperationException("Degenerate modifiers-- doubles " + modifiers);
+                }
+            }
             if (modifiers != null && modifiers.Count > 5)
             {
                 if (head.Text == "nanpa")
                 {
                     //no surprise there
                 }
-                    //HACK:
+                //HACK:
                 else if (modifiers.Any(x => x.Text == "anu" || x.Text == "en")) //Because we've deferred dealing with conj.
                 {
                 }
@@ -113,14 +124,14 @@ namespace BasicTypes
 
         public Word Head { get { return head; } }
         public WordSet Modifiers { get { return modifiers; } }
-        
+
         public bool Contains(Word word)
         {
             if (WordByValue.Instance.Equals(word, head))
             {
                 return true;
             }
-            if (modifiers == null) 
+            if (modifiers == null)
                 return false;
             return modifiers.Any() && modifiers.Any(modifier => WordByValue.Instance.Equals(word, modifier));
         }
@@ -154,7 +165,7 @@ namespace BasicTypes
             {
                 format = "g";
             }
-            var words = ToTokenList(format,formatProvider);
+            var words = ToTokenList(format, formatProvider);
             return words.SpaceJoin(format);
         }
 

@@ -47,6 +47,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NHunspell">
+      <HintPath>..\packages\NHunspell.1.2.5359.26126\lib\net\NHunspell.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -119,6 +122,7 @@
     <Compile Include="Dictionary\DictionaryTests.cs" />
     <Compile Include="Dictionary\ExtractNewLexemes.cs" />
     <Compile Include="Dictionary\Semantics.cs" />
+    <Compile Include="English\DetectEnglishTests.cs" />
     <Compile Include="Exceptions\SyntaxErrors.cs" />
     <Compile Include="Extensions\BinaryFormatterCopier.cs" />
     <Compile Include="Extensions\ListExtension.cs" />
@@ -213,6 +217,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="bin\Debug\en_US.aff" />
+    <None Include="bin\Debug\en_US.dic" />
     <None Include="Dictionary\COMPOUND WORDS SOURCE-tp-eng.xlsx" />
     <None Include="Dictionary\PreprocessedCompounds.xlsx" />
     <None Include="Dictionary\RawData.xlsx" />
@@ -699,6 +705,12 @@
     <Content Include="Corpus\YahooMailingList\Salome\nasin nanpa.txt" />
     <Content Include="Corpus\YahooMailingList\Scott Redd\Our Father.txt" />
     <Content Include="Corpus\YahooMailingList\Sven Walper\Sapir Worf.txt" />
+    <None Include="Hunspellx64.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Hunspellx86.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="Normalizer\Normalizer.html" />
     <Content Include="notes.html" />
     <Content Include="Parts\PartsComments.html" />

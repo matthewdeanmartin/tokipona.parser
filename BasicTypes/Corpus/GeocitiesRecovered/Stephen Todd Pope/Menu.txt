@@ -2,7 +2,7 @@ lipu mi  li (kepeken e toki-pona!)
 
 lipu mute!
 
-tomo toki pi toki-pona '(unofficial)'
+tomo toki pi toki-pona "(unofficial)"
 
 nasin sewi!
 
@@ -14,4 +14,4 @@ lipu nasa!
 
 o toki! sina li lon lipu mi!  mi wile e ni:lipu ni li musi tawa sina!
 
-jan Sonja li pali e toki-pona. ona li pali e kute pi lipu ni. lipu pi jan Sonja li 'www-tokipona-org'!
+jan Sonja li pali e toki-pona. ona li pali e kute pi lipu ni. lipu pi jan Sonja li "www-tokipona-org"!

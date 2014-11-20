@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using BasicTypes.Collections;
@@ -309,25 +310,38 @@ namespace BasicTypes.Parser
                 foreach (string original in pu.ParseIntoNonNormalizedSentences(s))
                 {
                     Sentence structured=null;
-                    try
-                    {
+                    //try
+                    //{
                         string normalized = Normalizer.NormalizeText(original,dialect);
-                        if(!normalized.Contains("#")) continue;
+                    if (string.IsNullOrWhiteSpace(normalized) && !string.IsNullOrWhiteSpace(original)
+                        && !new String[] { ".", ":", "?", "!", "'.", "'!", "\".", "''." }.Contains(original.Trim()))
+                    //BUG:happens when we have ni li ni?:  or ni li ni...
+                    //BUG:Any maybe 'ni li ni?' or 'ni li ni'? are failing due to quotes
+                    {
+                        throw new InvalidOperationException("Normalizer turned this into null or white space : " + original);
+                    }
+                    if (original=="\".") continue;//BUG:
+                    if (string.IsNullOrWhiteSpace(normalized)) continue;
+                    //if(!normalized.Contains("#")) continue;
                         structured = pu.ParsedSentenceFactory(normalized, original);
                         string diag = structured.ToString("b");
                         Console.WriteLine(diag);
                         Console.WriteLine(gm.GlossOneSentence(false,structured,english));
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("ORIGINAL  : " + original);
-                        if (structured != null)
-                        {
-                            Console.WriteLine(structured.ToString("b"));
-                        }
-                        Console.WriteLine(ex.Message);
-                        i++;
-                    }
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    if (ex.Message.Contains("all tests"))
+                    //    {
+                    //        Console.WriteLine("ORIGINAL  : " + original);
+                    //        if (structured != null)
+                    //        {
+                    //            Console.WriteLine(structured.ToString("b"));
+                    //        }
+                    //        Console.WriteLine(ex.Message);
+                    //        i++;
+                    //    }
+                    //    else throw;
+                    //}
 
                 }
             }

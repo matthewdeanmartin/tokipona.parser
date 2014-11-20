@@ -13,7 +13,7 @@ akesi linja li toki: 'toki.'
 
 'mi lon sike seme?'
 
-'sina lon sike ma lon ma 'Aperika'.'
+'sina lon sike ma lon ma "Aperika".'
 
 'a! jan ala li lon sike ni anu seme?'
 

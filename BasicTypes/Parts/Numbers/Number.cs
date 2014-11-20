@@ -198,6 +198,12 @@ namespace BasicTypes.Parts
 
         public string TryGloss(string language, string pos)
         {
+            //Arabic numbers. Just return them.
+            int n;
+            bool isNumeric = int.TryParse(word, out n);
+            if (isNumeric) return word;
+
+            //Toki pona numbers of some sort.
             int sum=0;
             foreach (string part in word.Split(new char[]{'-'}))
             {
