@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.InteropServices;
@@ -188,7 +189,9 @@ namespace BasicTypes
                     {
                         if (!CheckIsValidPhonology(prospectiveWord) && prospectiveWord.Length > 1)
                         {
-                            using (Hunspell hunspell = new Hunspell("en_us.aff", "en_us.dic"))
+                            string path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
+
+                            using (Hunspell hunspell = new Hunspell(Path.Combine(path, "en_us.aff"), Path.Combine(path,"en_us.dic")))
                             {
                                 bool correct = hunspell.Spell(prospectiveWord);
                                 if (correct)

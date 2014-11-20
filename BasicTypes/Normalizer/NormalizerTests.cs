@@ -39,6 +39,15 @@ namespace BasicTypes.Parser
                         Assert.AreEqual("waso li tawa kon li ~tawa ma #luka-luka weka #wan.", normalized);
         }
 
+        //mi la jan ni li nasa.
+        [Test]
+        public void MiLaShouldBeFine()
+        {
+            string s = "mi la jan ni li nasa.";
+            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+            Assert.AreEqual("mi la jan ni li nasa.", normalized);
+        }
+
         [Test]
         public void DontScrewUpLaCompoundNormalization()
         {

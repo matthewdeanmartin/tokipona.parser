@@ -315,7 +315,11 @@ namespace BasicTypes.Parser
                 normalized = normalized.Replace("sina li o ", "sina o ");
             }
 
-
+            if (text.StartsWith("mi la ") && normalized.StartsWith("mi li "))
+            {
+                //ugh what a hack.
+                normalized = "mi la " + normalized.Substring(9);
+            }
 
             //e mi li mute
             if (normalized.Contains("e mi li mute"))

@@ -17,6 +17,17 @@ namespace BasicTypes.Lorem
     [TestFixture]
     public class TextGeneratorTest
     {
+
+        //Discourse patterns.
+        //Title (sentence or fragement)
+        //Sentence 1-4, then paragraph break.
+        //Author. (jan Sowanso)
+        
+        //Person one says, "...."
+        //Person two says, "...."
+
+        //Question, Answer.
+
         [Test]
         public void GenerateObjectAndStringify()
         {

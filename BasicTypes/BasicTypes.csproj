@@ -222,6 +222,12 @@
     <None Include="Dictionary\COMPOUND WORDS SOURCE-tp-eng.xlsx" />
     <None Include="Dictionary\PreprocessedCompounds.xlsx" />
     <None Include="Dictionary\RawData.xlsx" />
+    <None Include="en_US.aff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="en_US.dic">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

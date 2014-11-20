@@ -6,7 +6,7 @@ toki!
 
 pilin lawa pi nanpa li kama tawa mi.
 jan pi toki-pona li ken kepeken e nasin nanpa pi tu anu tu wan. ante
-la jan kepeken e nasin nanpa pi luka luka. nasin nanpa pi luka luka li
+la jan li kepeken e nasin nanpa pi luka luka. nasin nanpa pi luka luka li
 ike. nasin nanpa pi tu li pona. tan ni la ilo nanpa li kepeken e nasin
 nanpa pi tu.
 
@@ -18,7 +18,7 @@ ni li kepeken e nasin nanpa pi luka luka.
 
 "347 = 2^8 + 2^6 + 2^4 + 2^3 + 2 + 1".
 
-"101011011 = 1 * 2^8 + 0 * 2^7 + 1 * 2^6 + 0 * 2^5 + 1 * 2^4 + 1 * 2^3 + 0 * 2^2 + 1 * 2 + 1"
+"101011011 = 1 * 2^8 + 0 * 2^7 + 1 * 2^6 + 0 * 2^5 + 1 * 2^4 + 1 * 2^3 + 0 * 2^2 + 1 * 2 + 1".
 ni li kepeken e nasin nanpa pi tu.
 
 101011011 li 347 kepeken nasin nanpa pi tu.
@@ -39,7 +39,7 @@ tenpo ni la 347 li ken kin lon e ni: wan wan ala tu wan tu.
 
 ale li pona!
 
-jan Salome
+jan Salome.
 
 
 
@@ -47,14 +47,14 @@ pona, mi toki sin e toki-pona. weka e ike mi e ni: mi pali e pakala.
 
 jan salome o, sina pali e lipu ni? sina lukin e lipu ni? sina o lukin e lipu pi nasin nanpa.
 
-http://danielmacouin.chez-alice.fr/toki_IO/en_general_toki_io.htm
+"http://danielmacouin.chez-alice.fr/toki_IO/en_general_toki_io.htm".
 
 pona!
 
-jan Alexandre Baudry
+jan "Alexandre Baudry".
 
 
-pona a!  toki-pona li ken kin kepeken e nasin nanpa pi tu anu tu wan.  taso nanpa suli li ike tawa kon pi toki-pona. tan ni la nasin nanpa li ken e nanpa suli la toki-pona li wile ala e nasin ni.  ante la toki-pona li wile e nimi lon.  nimi lon li tawa lon en ilo sona en ilo toki en tenpo en ante. nimi lon mute li kulupu linja pi sitelen nanpa.  tan ni la toki-pona li wile e nimi pi sitelen nanpa.  mi pilin e ni: nimi pi sitelen nanpa li wile ante tan mnimi 'ala' en nimi 'wan' en nimi 'tu.' lon la jan li ken toki e nimi lon nanpa la jan ken toki e nanpa suli.  taso jan li wile ala toki e ni.  toki ni li toki ante kepeken toki-pona. kin la toki-pona li wile e nimi pi
+pona a!  toki-pona li ken kin kepeken e nasin nanpa pi tu anu tu wan.  taso nanpa suli li ike tawa kon pi toki-pona. tan ni la nasin nanpa li ken e nanpa suli la toki-pona li wile ala e nasin ni.  ante la toki-pona li wile e nimi lon.  nimi lon li tawa lon en ilo sona en ilo toki en tenpo en ante. nimi lon mute li kulupu linja pi sitelen nanpa.  tan ni la toki-pona li wile e nimi pi sitelen nanpa.  mi pilin e ni: nimi pi sitelen nanpa li wile ante tan nimi 'ala' en nimi 'wan' en nimi 'tu.' lon la jan li ken toki e nimi lon nanpa la jan li ken toki e nanpa suli.  taso jan li wile ala toki e ni.  toki ni li toki ante kepeken toki-pona. kin la toki-pona li wile e nimi pi
 sitelen toki tawa nimi lon.
 
-jan Kipo
+jan Kipo.

@@ -14,7 +14,7 @@ namespace BasicTypes.Corpus
         public IEnumerable<string> NextFile()
         {
             DirectoryInfo di;
-            if(Directory.Exists(@"C:\Users\mmartin\Documents\GitHub"))
+            if (Directory.Exists(@"C:\Users\mmartin\Documents\GitHub\tokipona.parser\"))
                 di = new DirectoryInfo(@"C:\Users\mmartin\Documents\GitHub\tokipona.parser\BasicTypes\Corpus");
             else
                 di = new DirectoryInfo(@"C:\Users\mmartin\code\GitHub\tokipona.parser\BasicTypes\Corpus");
