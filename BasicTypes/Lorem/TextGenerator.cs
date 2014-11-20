@@ -6,9 +6,11 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Script.Services;
+using System.Web.UI.WebControls;
 using BasicTypes.Collections;
 using BasicTypes.CollectionsDegenerate;
 using BasicTypes.Glosser;
+using BasicTypes.Parts;
 using Newtonsoft.Json.Converters;
 using NUnit.Framework;
 
@@ -22,7 +24,7 @@ namespace BasicTypes.Lorem
         //Title (sentence or fragement)
         //Sentence 1-4, then paragraph break.
         //Author. (jan Sowanso)
-        
+
         //Person one says, "...."
         //Person two says, "...."
 
@@ -38,7 +40,7 @@ namespace BasicTypes.Lorem
             {
                 Sentence s = tg.GenerateSentence();
                 Console.WriteLine(s.ToString());
-                Console.WriteLine(s.ToString("b"));    
+                Console.WriteLine(s.ToString("b"));
             }
         }
 
@@ -53,9 +55,9 @@ namespace BasicTypes.Lorem
             {
                 sentences.Add(tg.GenerateSentence());
             }
-            
-             
-            ParserUtils pu=new ParserUtils(Dialect.WordProcessorRules);
+
+
+            ParserUtils pu = new ParserUtils(Dialect.WordProcessorRules);
             foreach (Sentence sentence in sentences)
             {
                 string s = sentence.ToString();
@@ -76,7 +78,7 @@ namespace BasicTypes.Lorem
                     else
                         throw;
                 }
-                
+
             }
         }
 
@@ -86,8 +88,8 @@ namespace BasicTypes.Lorem
         {
             List<Sentence> sentences = new List<Sentence>();
             Dialect d = Dialect.WordProcessorRules;
-            d.IncludeApocrypha = false; 
-            TextGenerator tg =new TextGenerator(d);
+            d.IncludeApocrypha = false;
+            TextGenerator tg = new TextGenerator(d);
             for (int i = 0; i < 1000; i++)
             {
                 sentences.Add(tg.GenerateSentence());
@@ -95,7 +97,7 @@ namespace BasicTypes.Lorem
 
             ParserUtils pu = new ParserUtils(Dialect.WordProcessorRules);
             GlossMaker gm = new GlossMaker();
-            
+
             foreach (Sentence sentence in sentences)
             {
                 string s = sentence.ToString();
@@ -104,11 +106,11 @@ namespace BasicTypes.Lorem
                 Console.WriteLine(gm.Gloss(s, s));
                 //try
                 //{
-                    Sentence reparsed = pu.ParsedSentenceFactory(s, s);
+                Sentence reparsed = pu.ParsedSentenceFactory(s, s);
 
-                    string reparseString = reparsed.ToString();
-                    Console.WriteLine(reparseString);
-                    Console.WriteLine(gm.Gloss(reparseString, s));
+                string reparseString = reparsed.ToString();
+                Console.WriteLine(reparseString);
+                Console.WriteLine(gm.Gloss(reparseString, s));
                 //}
                 //catch (Exception ex)
                 //{
@@ -152,7 +154,18 @@ namespace BasicTypes.Lorem
                 return SingleExclamation();
             }
 
+            if (dice < 20)
+            {
+                return SingleVocative();
+            }
             return SingleSimpleSentence();
+        }
+
+        private Sentence SingleVocative()
+        {
+            Vocative e = new Vocative(RandomEnPiChainOfProperModifers());
+            Sentence s = new Sentence(e, new Punctuation("!"));
+            return s;
         }
 
         //language|word|noun|adj|vt|vi|adv|prep|pronoun|kama|conditional|interj|conj|
@@ -176,7 +189,7 @@ namespace BasicTypes.Lorem
                 last = odds[key];
             }
             int dice = random.Next(0, 101);
-            WordSet ws =new WordSet();
+            WordSet ws = new WordSet();
             if (dice < 25)
             {
                 dice = random.Next(0, 101);
@@ -186,7 +199,7 @@ namespace BasicTypes.Lorem
                     ws.Add(Token.Modals[random.Next(0, Token.Modals.Length)]);
                     howMany--;
                 }
-                Exclamation e = new Exclamation(new HeadedPhrase(interj,ws));
+                Exclamation e = new Exclamation(new HeadedPhrase(interj, ws));
                 Sentence s = new Sentence(e, new Punctuation("!"));
                 return s;
             }
@@ -229,7 +242,7 @@ namespace BasicTypes.Lorem
             }
 
 
-            Sentence s = new Sentence(RandomEnPiChain(), new PredicateList {p}, OptionalParts());
+            Sentence s = new Sentence(RandomEnPiChain(), new PredicateList { p }, OptionalParts());
             return s;
         }
 
@@ -257,11 +270,12 @@ namespace BasicTypes.Lorem
             {
                 sop.Punctuation = new Punctuation(".");
             }
-            else if(isQuestion<60)
+            else if (isQuestion < 60)
             {
                 sop.Punctuation = new Punctuation(":");
             }
-            else {
+            else
+            {
                 if (random.Next(0, 100) < 50)
                 {
                     sop.TagQuestion = new TagQuestion();
@@ -272,23 +286,23 @@ namespace BasicTypes.Lorem
             return sop;
         }
 
-        public  VerbPhrase RandomVerbPhrase(string pos)
+        public VerbPhrase RandomVerbPhrase(string pos)
         {
             VerbPhrase vp;
             if (random.Next(0, 100) < 25)
             {
-                 vp = new VerbPhrase(RandomEnPiChain());
+                vp = new VerbPhrase(RandomEnPiChain());
             }
             else
             {
-                vp = new VerbPhrase(RandomWord(pos),RandomModals(),RandomAdverbs());
+                vp = new VerbPhrase(RandomWord(pos), RandomModals(), RandomAdverbs());
             }
 
             return vp;
         }
 
 
-        public  WordSet RandomAdverbs()
+        public WordSet RandomAdverbs()
         {
             Dictionary<int, int> odds = new Dictionary<int, int>()
             {
@@ -336,16 +350,16 @@ namespace BasicTypes.Lorem
             }
 
             int dice = random.Next(0, 101);
-            var howMany = odds.Where(x => dice<=x.Value  ).Select(x=>x.Key).First();
-            
+            var howMany = odds.Where(x => dice <= x.Value).Select(x => x.Key).First();
+
             WordSet ws = new WordSet();
 
-            while(howMany>0)
+            while (howMany > 0)
             {
                 ws.Add(Token.Modals[random.Next(0, Token.Modals.Length)]);
                 howMany--;
             }
-            
+
             return ws;
         }
 
@@ -373,7 +387,7 @@ namespace BasicTypes.Lorem
 
             while (howMany > 0)
             {
-                Word w = new Word(Particles.Prepositions[random.Next(0,6)]);
+                Word w = new Word(Particles.Prepositions[random.Next(0, 6)]);
                 PrepositionalPhrase pp = new PrepositionalPhrase(w, RandomEnPiChain());
                 prepositionals.Add(pp);
                 howMany--;
@@ -399,23 +413,59 @@ namespace BasicTypes.Lorem
             }
 
             int dice = random.Next(0, 101);
-            var howMany = odds.Where(x => dice<=x.Value  ).Select(x=>x.Key).First();
+            var howMany = odds.Where(x => dice <= x.Value).Select(x => x.Key).First();
 
             List<ComplexChain> directObjects = new List<ComplexChain>();
 
-            while(howMany>0)
+            while (howMany > 0)
             {
                 directObjects.Add(RandomEnPiChain());
                 howMany--;
             }
 
-            ComplexChain c = new ComplexChain(Particles.e, directObjects.ToArray() );
+            ComplexChain c = new ComplexChain(Particles.e, directObjects.ToArray());
             return c;
         }
 
 
+        public ComplexChain RandomEnPiChainOfProperModifers()
+        {
+            Word headWord;
+            int dice = random.Next(0, 100);
+            if (dice < 70)
+            {
+                headWord = Words.jan;
+            }
+            else if (dice < 84)
+            {
+                headWord = Words.meli;
+            }
+            else if (dice < 99)
+            {
+                headWord = Words.mije;
+            }
+            else
+            {
+                headWord = Words.soweli;
+            }
 
-        public  ComplexChain RandomEnPiChain()
+            WordSet modifiers;
+            if (random.Next(0, 100) < 75)
+            {
+                modifiers = new WordSet { Neologism.MakeProperNeologism() };
+            }
+            else
+            {
+                modifiers = new WordSet { Neologism.MakeProperNeologism(), Neologism.MakeProperNeologism() };
+            }
+
+            List<Chain> agents = new List<Chain>();
+            agents.Add(new Chain(Particles.pi, new[] { new HeadedPhrase(headWord, modifiers) }));
+            ComplexChain c = new ComplexChain(Particles.en, agents.ToArray());
+            return c;
+        }
+
+        public ComplexChain RandomEnPiChain()
         {
             Word headWord = RandomWord("noun");
             WordSet modifiers = new WordSet { RandomWord("adj") };
@@ -427,14 +477,14 @@ namespace BasicTypes.Lorem
 
         public Word RandomWord(string pos)
         {
-            
+
             //var glosses = Words.Glosses["en"].Where(x=>x.Key==pos).Select(x=>x);
 
             int count = Words.Dictionary.Count;
 
             // Words.Glosses["soweli"]["en"]["pos"][3]
-            
-            
+
+
 
             Word word;
             do
@@ -442,8 +492,8 @@ namespace BasicTypes.Lorem
                 word = Words.Dictionary.ElementAt(random.Next(0, count)).Value;
 
             } while (
-                word == null || word.IsParticle || 
-                (!dialect.IncludeApocrypha &&  Token.Deprecated.Contains(word.Text) )
+                word == null || word.IsParticle ||
+                (!dialect.IncludeApocrypha && Token.Deprecated.Contains(word.Text))
                 || !Words.Glosses[word.Text]["en"].ContainsKey(pos));
 
             return word;

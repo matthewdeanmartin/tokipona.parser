@@ -97,7 +97,7 @@ namespace BasicTypes
             this.normalized = normalized;
         }
 
-        //Suggest that vocatives don't chain.  o jan o meli o soweli => o jan! o meli! o soweli!
+        //Suggest that vocatives don't chain.  o jan o meli o soweli o => o! jan o! meli o! soweli o!
         public Sentence(Vocative vocative, Punctuation punctuation, string original = null, string normalized = null)
         {
             this.vocative = vocative;
@@ -354,6 +354,7 @@ namespace BasicTypes
             if (vocative != null)
             {
                 sb.AddRange(vocative.ToTokenList(format,formatProvider));
+                sb.Add(Particles.o.ToString(format,formatProvider)); //Seems dodgy. Why not a property of the chain or sentence?
             }
             else if (fragment != null)
             {

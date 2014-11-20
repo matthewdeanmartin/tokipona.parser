@@ -191,6 +191,10 @@ namespace BasicTypes
                         {
                             string path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
 
+                            if (path.Contains(@"file:\"))
+                            {
+                                path = path.Replace(@"file:\", "");
+                            }
                             using (Hunspell hunspell = new Hunspell(Path.Combine(path, "en_us.aff"), Path.Combine(path,"en_us.dic")))
                             {
                                 bool correct = hunspell.Spell(prospectiveWord);

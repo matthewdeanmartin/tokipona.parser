@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using BasicTypes.Extensions;
+using BasicTypes.Lorem;
 
 namespace BasicTypes.Parts
 {
@@ -20,7 +21,7 @@ namespace BasicTypes.Parts
     /// </remarks>
     [DataContract]
     [Serializable]
-    public class Neologism:Token
+    public class Neologism : Token
     {
 
         public Neologism(string word)
@@ -53,5 +54,98 @@ namespace BasicTypes.Parts
                 }
             }
         }
+
+        public static Word MakeProperNeologism()
+        {
+            string word;
+            do
+            {
+                word = GenerateNeologism(true);
+            } while (string.IsNullOrWhiteSpace(word) || !Token.CheckIsValidPhonology(word));
+            return new Word(word);
+        }
+
+        public static Word MakeNeologism()
+        {
+            string word;
+            do
+            {
+                word = GenerateNeologism(false);
+            } while (string.IsNullOrWhiteSpace(word) ||  !Token.CheckIsValidPhonology(word));
+            return new Word(word);
+        }
+
+        private static Random random = new Random(DateTime.Now.Millisecond);
+
+        private static string GenerateNeologism(bool proper)
+        {
+            //Syllables
+            Dictionary<int, int> odds = new Dictionary<int, int>
+            {
+                {1, 10},
+                {2, 79},
+                {3, 10},
+                {4, 5},
+                {5, 1},
+            };
+            int last = 0;
+            foreach (int key in odds.Keys.Select(x => x).ToArray())
+            {
+                odds[key] = odds[key] + last;
+                last = odds[key];
+            }
+
+            int dice = random.Next(0, 101);
+            var howMany = odds.Where(x => dice <= x.Value).Select(x => x.Key).First();
+
+
+            StringBuilder sb = new StringBuilder(howMany*2);
+            bool canVowel =true;
+            bool canConsonant =true;
+            for (int i = 0; i < howMany; i++)
+            {
+                if (canConsonant && i > 0 && random.Next(0, 100) < 5)
+                {
+                    sb.Append("n");
+                    canVowel = true;
+                    canConsonant = true;
+                }
+                else if (canVowel && random.Next(0, 100) < 5)
+                {
+                    sb.Append(Token.AlphabetVowels[random.Next(0, 5)]);
+                    canVowel = false;
+                    canConsonant = true;
+                }
+                else if(canConsonant)
+                {
+                    sb.Append(Token.AlphabetConsonants[random.Next(0, 9)]);
+                    sb.Append(Token.AlphabetVowels[random.Next(0, 5)]);
+
+                    canVowel = false;
+                    canConsonant = true;
+                }
+            }
+
+            if (sb.Length == 0)
+            {
+                throw new InvalidOperationException("Failed to generate anything");
+            }
+
+            if (proper)
+            {   
+                if (sb.Length == 1)
+                {
+                    return sb[0].ToString().ToUpper();
+                }
+                if (sb.Length == 2)
+                {
+                    return sb[0].ToString().ToUpper() + sb[1];
+                }
+                return sb[0].ToString().ToUpper() + sb.ToString(1,sb.Length-1);
+            }
+
+            return sb.ToString();
+        }
     }
 }
+

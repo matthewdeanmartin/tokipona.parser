@@ -92,6 +92,21 @@ namespace BasicTypes.Parser
             Assert.AreEqual(expected, normalized);
         }
 
+        //
+
+        [Test]
+        public void SinaEn()
+        {
+            string s = "sina en jan suli li pona kin.";
+
+            Console.WriteLine("Original  : " + s);
+            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+            Console.WriteLine("Normalized: " + normalized);
+
+            const string expected = "sina en jan-suli li pona kin.";
+            Assert.AreEqual(expected, normalized);
+        }
+
         [Test]
         public void MissingLi2()
         {

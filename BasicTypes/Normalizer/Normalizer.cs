@@ -321,6 +321,18 @@ namespace BasicTypes.Parser
                 normalized = "mi la " + normalized.Substring(9);
             }
 
+            if (normalized.StartsWith("sina li en "))
+            {
+                //ugh what a hack.
+                normalized = "sina en " + normalized.Substring("sina li en ".Length);
+            }
+
+            if (normalized.StartsWith("mi li en "))
+            {
+                //ugh what a hack.
+                normalized = "mi en " + normalized.Substring("mi li en ".Length);
+            }
+
             //e mi li mute
             if (normalized.Contains("e mi li mute"))
             {
@@ -507,6 +519,11 @@ namespace BasicTypes.Parser
                 foreach (string preposition in Particles.Prepositions)
                 {
                     if (pair.Key.StartsWith(preposition + "-"))
+                    {
+                        thatsAPreposition = true;
+                    }
+
+                    if (pair.Key.EndsWith("-" + preposition)) // jan ante li toki kepeken toki ante taso.
                     {
                         thatsAPreposition = true;
                     }

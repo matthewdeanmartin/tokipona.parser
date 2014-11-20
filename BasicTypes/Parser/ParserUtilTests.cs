@@ -42,8 +42,8 @@ namespace BasicTypes.Parser
         {
             const string s = "jan Kunpapa";
             Dialect dialect = Dialect.DialectFactory;
-            
-            Console.WriteLine(Normalizer.NormalizeText(s,dialect));
+
+            Console.WriteLine(Normalizer.NormalizeText(s, dialect));
             TokenParserUtils pu = new TokenParserUtils();
 
             Word[] words = pu.ValidWords(s);
@@ -63,8 +63,8 @@ namespace BasicTypes.Parser
         {
             const string s = "jan Oliwa";
             Dialect dialect = Dialect.DialectFactory;
-            
-            Console.WriteLine(Normalizer.NormalizeText(s,dialect));
+
+            Console.WriteLine(Normalizer.NormalizeText(s, dialect));
             TokenParserUtils pu = new TokenParserUtils();
 
             Word[] words = pu.ValidWords(s);
@@ -82,7 +82,7 @@ namespace BasicTypes.Parser
         public void DoubleBadProperModifer()
         {
             const string s = "jan MaliyA";
-            
+
             Dialect dialect = Dialect.DialectFactory;
             Console.WriteLine(Normalizer.NormalizeText(s, dialect));
             TokenParserUtils pu = new TokenParserUtils();
@@ -126,7 +126,7 @@ namespace BasicTypes.Parser
             Dialect c = Dialect.DialectFactory;
             ParserUtils pu = new ParserUtils(c);
             Sentence sentence = pu.ParsedSentenceFactory(s, s);
-            Assert.IsNotNull(sentence.Predicates[0].Prepositionals!=null);
+            Assert.IsNotNull(sentence.Predicates[0].Prepositionals != null);
             Console.WriteLine(sentence.ToString("b"));
         }
 
@@ -219,7 +219,7 @@ namespace BasicTypes.Parser
                     {
                         //Don't remove double quotes or we can't ID some marked foreign text.
                         //'"'
-                        words[index] = words[index].Trim(new[]{':','.','\'','«','»','!','?','-','[',']'});
+                        words[index] = words[index].Trim(new[] { ':', '.', '\'', '«', '»', '!', '?', '-', '[', ']' });
                     }
                     foreach (string word in words.Where(x => !string.IsNullOrEmpty(x)))
                     {
@@ -270,10 +270,10 @@ namespace BasicTypes.Parser
                     try
                     {
                         string normalized = Normalizer.NormalizeText(original, dialect);
-                        string result= NormalizeNumbers.FindNumbers(normalized);
+                        string result = NormalizeNumbers.FindNumbers(normalized);
                         if (result.Contains("#"))
                         {
-                            Console.WriteLine("O: "+ original);
+                            Console.WriteLine("O: " + original);
                             Console.WriteLine("N: " + normalized);
                             Console.WriteLine("#: " + result);
                         }
@@ -295,7 +295,7 @@ namespace BasicTypes.Parser
         {
             int i = 0;
             Dialect dialect = Dialect.DialectFactory;
-            ParserUtils pu = new ParserUtils(dialect   );
+            ParserUtils pu = new ParserUtils(dialect);
 
             Dialect english = Dialect.DialectFactory;
             english.ThrowOnSyntaxError = false;
@@ -304,44 +304,49 @@ namespace BasicTypes.Parser
 
             CorpusFileReader reader = new CorpusFileReader();
             GlossMaker gm = new GlossMaker();
-            
+
             foreach (string s in reader.NextFile())
             {
                 foreach (string original in pu.ParseIntoNonNormalizedSentences(s))
                 {
-                    Sentence structured=null;
-                    try
-                    {
-                        string normalized = Normalizer.NormalizeText(original,dialect);
-                    if (string.IsNullOrWhiteSpace(normalized) && !string.IsNullOrWhiteSpace(original)
-                        && !new String[] { ".", ":", "?", "!", "'.", "'!", "\".", "''.", ")." }.Contains(original.Trim()))
-                    //BUG:happens when we have ni li ni?:  or ni li ni...
-                    //BUG:Any maybe 'ni li ni?' or 'ni li ni'? are failing due to quotes
-                    {
-                        throw new InvalidOperationException("Normalizer turned this into null or white space : " + original);
-                    }
-                    if (original=="\".") continue;//BUG:
-                    if (string.IsNullOrWhiteSpace(normalized)) continue;
-                    if (!(normalized.Contains("anu ") || normalized.Contains("taso ") || normalized.Contains("en ") || normalized.Contains("ante "))) continue;
+                    Sentence structured = null;
+                    //try
+                    //{
+                        string normalized = Normalizer.NormalizeText(original, dialect);
+                        if (string.IsNullOrWhiteSpace(normalized) && !string.IsNullOrWhiteSpace(original)
+                            && !new String[] { ".", ":", "?", "!", "'.", "'!", "\".", "''.", ").","\"«" }.Contains(original.Trim()))
+                        //BUG:happens when we have ni li ni?:  or ni li ni...
+                        //BUG:Any maybe 'ni li ni?' or 'ni li ni'? are failing due to quotes
+                        {
+                            throw new InvalidOperationException("Normalizer turned this into null or white space : " + original);
+                        }
+                        if (original == "\".") continue;//BUG:
+                        if (string.IsNullOrWhiteSpace(normalized)) continue;
+                        if (!(normalized.Contains(" anu ") || normalized.Contains(" taso ") || normalized.Contains(" en ") || normalized.Contains(" ante "))) continue;
+
                         structured = pu.ParsedSentenceFactory(normalized, original);
                         string diag = structured.ToString("b");
-                        Console.WriteLine(diag);
-                        Console.WriteLine(gm.GlossOneSentence(false,structured,english));
-                    }
-                    catch (Exception ex)
-                    {
-                        if (ex.Message.Contains("all tests"))
-                        {
-                            Console.WriteLine("ORIGINAL  : " + original);
-                            if (structured != null)
-                            {
-                                Console.WriteLine(structured.ToString("b"));
-                            }
-                            Console.WriteLine(ex.Message);
-                            i++;
-                        }
-                        else throw;
-                    }
+
+                        //if ((normalized.Contains("%ante"))) continue; //verb!
+
+                        Console.WriteLine("O: " + (original??"").Trim(new []{'\n','\r',' ','\t'}));
+                        Console.WriteLine("B: " + diag);
+                        Console.WriteLine("G: " + gm.GlossOneSentence(false, structured, english));
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    if (ex.Message.Contains("all tests"))
+                    //    {
+                    //        Console.WriteLine("ORIGINAL  : " + original);
+                    //        if (structured != null)
+                    //        {
+                    //            Console.WriteLine(structured.ToString("b"));
+                    //        }
+                    //        Console.WriteLine(ex.Message);
+                    //        i++;
+                    //    }
+                    //    else throw;
+                    //}
 
                 }
             }
@@ -392,12 +397,12 @@ namespace BasicTypes.Parser
                 {
                     if (sentence.Contains("Georgia"))
                     {
-                        string result = Normalizer.NormalizeText(sentence,dialect);
+                        string result = Normalizer.NormalizeText(sentence, dialect);
                         Assert.IsTrue(result.Contains("\"Georgia\""));
                     }
                 }
 
-                
+
             }
 
         }

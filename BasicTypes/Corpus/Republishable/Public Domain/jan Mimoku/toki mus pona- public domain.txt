@@ -32,19 +32,19 @@ toki       musi         pona.
 
  seme      li  lon   lipu   ni?
 
- jan  ale o, toki!........................................................3
- seme   li lon lipu ni?....................................................4
- tomo   tawa  linja ......................................................5
- toki  musi lili pona ....................................................6
- sona...................................................................7
- ale  ike ................................................................8
- toki! mi jan  Pona......................................................9
- jan  Pona  en kasi moli pona..........................................11
- luka!..................................................................12
- sitelen  soweli........................................................13
- tan  lipu sona Wikipesija:............................................18
-   TENPO PINI............................................................................................................18
-   TOKI EPELANTO.....................................................................................................19
+ jan  ale o, toki!........................................................3.
+ seme   li lon lipu ni?....................................................4.
+ tomo   tawa  linja ......................................................5.
+ toki  musi lili pona ....................................................6.
+ sona...................................................................7.
+ ale  ike ................................................................8.
+ toki! mi jan  Pona......................................................9.
+ jan  Pona  en kasi moli pona..........................................11.
+ luka!..................................................................12.
+ sitelen  soweli........................................................13.
+ tan  lipu sona Wikipesija:............................................18.
+   tenpo pini............................................................................................................18.
+   toki Epelanto.....................................................................................................19.
    
    
 4 . 
@@ -207,7 +207,7 @@ o lukin pona a! soweli suli ni li ken moku e sina! taso soweli ale ala li pakala
 17.
 
 tan  lipu sona  Wikipesija
- lipu Wikipesija li lon lipu http://tokipona.wikia.com.
+ lipu Wikipesija li lon lipu "http://tokipona.wikia.com".
 
  tenpo pini
  tenpo pini li sona pi tenpo pini. jan sona pi tenpo pini li
@@ -226,16 +226,16 @@ tan  lipu sona  Wikipesija
  jan Augustine pi ma tomo Hippo li jan sona suli. taso ona li pilin e ni: jan li wile kama sona e tenpo pini la ona li wile lukin e lipu sewi. jan Georg Wilhelm Friedrich Hegel pi ma Tosi li pilin e ni: jan li wile kama sona e tenpo pini la ona li wile lukin e ijo jan.
 
 
- toki Epelanto
+ toki Epelanto.
  toki Epelanto li toki sin. nimi ona li Esperanto kepeken toki Epelanto.
  jan Sameno li pali e ona. ona li pali e nimi Epelanto kepeken nimi pi toki Elopa mute. jan Sameno liwile e ni: jan mute pi ma ali li kepeken e toki Epelanto.
 
- jan li ken kama sona e toki Epelanto lon lipu http://lernu.net
+ jan li ken kama sona e toki Epelanto lon lipu "http://lernu.net".
 
 19.
 
 
-  PINI
+  pini.
                           pi lipu ni.
 
 

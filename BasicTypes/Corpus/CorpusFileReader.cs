@@ -23,6 +23,11 @@ namespace BasicTypes.Corpus
             {
                 if (file.FullName.Contains("janKipoCollected")) continue;
                 if (file.FullName.Contains("toki sewi kolisu p2.txt")) continue;
+                if (file.FullName.Contains("nimi poka en nimi kule")) continue; //Has a defective conjunction of prep phrases, waiting to get some comm feedback before fixing text.
+                if (file.FullName.Contains("Book Summaries_Has ENGLISH.txt")) continue; //Asides in square brackets. Blaaaah!
+                
+
+
                 //if(!file.FullName.Contains("jan Mato")) continue;
                 Console.WriteLine("----------------------------------");
                 Console.WriteLine(file.Directory);

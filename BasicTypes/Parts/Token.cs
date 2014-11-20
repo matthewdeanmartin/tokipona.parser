@@ -113,6 +113,14 @@ namespace BasicTypes
             }
         }
 
+        public static string AlphabetVowels
+        {
+            get { return "aeiou"; }
+        }
+        public static string AlphabetConsonants
+        {
+            get { return "jklmnpstw"; }
+        }
         public static string Alphabet {
             get { return "jklmnpstwaeiou"; }
         }

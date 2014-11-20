@@ -11,7 +11,7 @@ namespace BasicTypes.Diagnostics
     {
         static Tracers()
         {
-            SourceLevels singleSwitch = SourceLevels.Verbose;
+            SourceLevels singleSwitch = SourceLevels.Off;
             ConsoleTraceListener console = new ConsoleTraceListener();
 
             SourceSwitch stringifySwitch = new SourceSwitch("stringify", "Verbose");
