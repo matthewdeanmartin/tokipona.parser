@@ -37,6 +37,12 @@ namespace BasicTypes
         [DataMember]
         private readonly WordSet modifiers;
 
+        [DataMember]
+        private readonly WordSet alternativeModifiers; //jan pona anu ike
+
+        [DataMember]
+        private readonly WordSet joinedModifiers;  //kili suwi en namako (does it need pi? who knows, we can a parse it)
+
         //soweli (tan tomo) (sama akesi) pi ma suli en waso pi ma lili (lon ma ni) li 
 
         [DataMember]
@@ -60,7 +66,13 @@ namespace BasicTypes
             this.modifiers = modifiers;
         }
 
-        public HeadedPhrase(Word head, WordSet modifiers = null, PrepositionalPhrase[] prepositionalPhrases = null)
+
+        //Maximal phrase: (subject)
+        //jan pona anu ike lon tomo ...li pona tawa mi.
+        //kili suwi en namako lon tomo ...li pona tawa mi. 
+        //kili suwi en namako anu loje lon tomo .... li pona tawa mi.
+        //kili suwi namako anu loje
+        public HeadedPhrase(Word head, WordSet modifiers = null, PrepositionalPhrase[] prepositionalPhrases = null, WordSet[] joinedModifiers=null, WordSet[] alernativeModifiers=null)
         {
             ValidateConstruction(head, modifiers);
 

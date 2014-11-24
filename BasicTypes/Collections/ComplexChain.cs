@@ -121,6 +121,9 @@ namespace BasicTypes.Collections
             if (subChains != null)
             {
                 int i = 0;
+                if(subChains!=null && subChains.Length>0)
+                    sb.AddIfNeeded("(-", format);
+
                 foreach (Chain chain in subChains)
                 {
                     //have to check because of e.
@@ -135,10 +138,16 @@ namespace BasicTypes.Collections
                     sb.AddRange(chain.ToTokenList(format, formatProvider));
                     i++;
                 }
+                if (subChains != null && subChains.Length > 0)
+                   sb.AddIfNeeded("-)", format);
+
             }
             if (complexChains != null)
             {
                 int i = 0;
+                if (complexChains != null && complexChains.Length > 0)
+  
+                sb.AddIfNeeded("{",format);
                 foreach (ComplexChain chain in complexChains)
                 {
                     //have to check because of e.
@@ -154,6 +163,9 @@ namespace BasicTypes.Collections
                     sb.AddRange(chain.ToTokenList(format, formatProvider));
                     i++;
                 }
+                if (complexChains != null && complexChains.Length > 0)
+  
+                sb.AddIfNeeded("}", format);
             }
             //else 
             return sb;

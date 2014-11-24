@@ -322,7 +322,8 @@ namespace BasicTypes.Parser
                         }
                         if (original == "\".") continue;//BUG:
                         if (string.IsNullOrWhiteSpace(normalized)) continue;
-                        if (!(normalized.Contains(" anu ") || normalized.Contains(" taso ") || normalized.Contains(" en ") || normalized.Contains(" ante "))) continue;
+                        if (!(normalized.Contains(" anu ") || normalized.Contains("xx taso ") 
+                            || normalized.Contains("xx en ") || normalized.Contains("xxx ante "))) continue;
 
                         structured = pu.ParsedSentenceFactory(normalized, original);
                         string diag = structured.ToString("b");
