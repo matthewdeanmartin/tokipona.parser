@@ -98,17 +98,17 @@ namespace BasicTypes.Extensions
                     {
                         if (index == 0) continue; //skip first space e.g. " foo"
                         if(index-1>0 && bracketedWithExtra[index-1]==' ') continue; //skip double, e.g. foo  bar
-                        if (index - 1 >= 0 && "<{[(#\\".Contains(bracketedWithExtra[index - 1])) continue; //previous was opening, e.g. "[ foo"
-                        if (index + 1 < bracketedWithExtra.Length && ">}])/".Contains(bracketedWithExtra[index +1])) continue; //skip if upcoming is closing bracket e.g. foo)
+                        if (index - 1 >= 0 && "<{[(#\\".ContainsCheck(bracketedWithExtra[index - 1])) continue; //previous was opening, e.g. "[ foo"
+                        if (index + 1 < bracketedWithExtra.Length && ">}])/".ContainsCheck(bracketedWithExtra[index +1])) continue; //skip if upcoming is closing bracket e.g. foo)
 
                         //Toggles
-                        if (togglePipe && (index - 1 >= 0 && "|".Contains(bracketedWithExtra[index - 1])))
+                        if (togglePipe && (index - 1 >= 0 && "|".ContainsCheck(bracketedWithExtra[index - 1])))
                         {
                             togglePipe = !togglePipe;
                             continue; 
                         }
                         
-                        if (!togglePipe && (index + 1 < bracketedWithExtra.Length && "|".Contains(bracketedWithExtra[index + 1]))) 
+                        if (!togglePipe && (index + 1 < bracketedWithExtra.Length && "|".ContainsCheck(bracketedWithExtra[index + 1]))) 
                         {
                             togglePipe = !togglePipe;
                             continue; 
@@ -137,7 +137,7 @@ namespace BasicTypes.Extensions
                 //[] = modifiers
                 //() = NP/VP
 
-                return !("<>{}[]()#".Contains(value[0])); //Not a bracket? Keep it.
+                return !("<>{}[]()#".ContainsCheck(value[0])); //Not a bracket? Keep it.
             }
 
             if (format == "b" || format == "bs")//bracketed

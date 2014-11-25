@@ -52,11 +52,11 @@ namespace BasicTypes.Collections
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
-            if (item.Contains(" e ") || item.StartCheck("e "))
+            if (item.ContainsCheck(" e ") || item.StartCheck("e "))
             {
                 throw new NotImplementedException("Need a pi chain processor");
             }
-            if (item.Contains(" en "))
+            if (item.ContainsCheck(" en "))
             {
                 throw new NotImplementedException("This is necessarily a pi/en chain, contains en: " + value);
             }

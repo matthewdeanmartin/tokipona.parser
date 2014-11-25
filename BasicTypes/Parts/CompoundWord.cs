@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BasicTypes.Dictionary;
 using BasicTypes.Exceptions;
+using BasicTypes.Extensions;
 using BasicTypes.MoreTypes;
 
 namespace BasicTypes.Parts
@@ -29,7 +30,7 @@ namespace BasicTypes.Parts
                 throw new ArgumentNullException("word", "Can't construct words with null");
             }
             word = ProcessPuncuation(word);
-            if (!word.Contains("-") || word.Contains(" "))
+            if (!word.ContainsCheck("-") || word.ContainsCheck(" "))
             {
                 throw new ArgumentNullException("word", "Compound words must have dashes, but no spaces");
             }

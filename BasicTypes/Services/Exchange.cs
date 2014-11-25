@@ -54,9 +54,9 @@ namespace BasicTypes.Services
             
             ////Borked now! Have to search the entire tree..
             //Chain semeSegment=
-            //    (new List<Chain> { question.Subjects }).First(x => x.Contains(Words.seme));
+            //    (new List<Chain> { question.Subjects }).First(x => x.ContainsCheck(Words.seme));
             ////.AddRange(question.Predicates)
-            ////  .First(x => x.Contains(Words.seme));
+            ////  .First(x => x.ContainsCheck(Words.seme));
 
             ////Replace the seme segmenet in the question with the corresponding one from fact
             //List<Chain> segments = (new List<Chain> { question.Subjects }).ToList();

@@ -240,7 +240,7 @@ namespace BasicTypes.Transliterate
 
                 foreach (char c in "aeiou")
                 {
-                    if (s.Contains(c.ToString() + c))
+                    if (s.ContainsCheck(c.ToString() + c))
                         s = s.Replace(c.ToString() + c, c.ToString());
                 }
             }
@@ -248,7 +248,7 @@ namespace BasicTypes.Transliterate
             {
                 foreach (char c in "aeiou")
                 {
-                    if (s.Contains(c.ToString() + c))
+                    if (s.ContainsCheck(c.ToString() + c))
                         s = s.Replace(c.ToString() + c, c.ToString());
                 }
             }
@@ -300,7 +300,7 @@ namespace BasicTypes.Transliterate
             //Something between here and the above code for dealing with double vowels creates a double vowel
             foreach (char c in "aeiou")
             {
-                if (s.Contains(c.ToString() + c))
+                if (s.ContainsCheck(c.ToString() + c))
                     s = s.Replace(c.ToString() + c, c.ToString());
             }
 
@@ -412,7 +412,7 @@ namespace BasicTypes.Transliterate
 
             const string alphabet = "AEIJKLMNOPSTUW";
 
-            return !alphabet.Contains(input[0].ToString());
+            return !alphabet.ContainsCheck(input[0].ToString());
         }
 
         public bool ContainsNonLetters(string input)
@@ -421,7 +421,7 @@ namespace BasicTypes.Transliterate
 
             foreach (char c in input)
             {
-                if (!alphabet.Contains(c.ToString())) return true;
+                if (!alphabet.ContainsCheck(c.ToString())) return true;
             }
 
             return false;

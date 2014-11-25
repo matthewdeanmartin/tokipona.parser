@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using BasicTypes.Extensions;
 
 namespace BasicTypes
 {
@@ -22,7 +23,7 @@ namespace BasicTypes
             {
                 throw new InvalidOperationException("Punctuation must be 1 char long");
             }
-            if (!symbols.Contains(symbol))
+            if (!symbols.ContainsCheck(symbol))
             {
                 throw new InvalidOperationException("Punctuation must be : or . or ? or !");
             }
@@ -82,7 +83,7 @@ namespace BasicTypes
         {
             foreach (char c in symbols)
             {
-                if (value.Contains(c))
+                if (value.ContainsCheck(c))
                 {
                     return true;
                 }
@@ -95,7 +96,7 @@ namespace BasicTypes
             {
                 foreach (char c in symbols)
                 {
-                    if (value.Contains(c))
+                    if (value.ContainsCheck(c))
                     {
                         return true;
                     }

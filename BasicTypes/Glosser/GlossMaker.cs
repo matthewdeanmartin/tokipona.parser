@@ -72,7 +72,7 @@ namespace BasicTypes.Glosser
 
             //HACK:
             string result = gloss.SpaceJoin("g");
-            if (result.Contains("and of of"))
+            if (result.ContainsCheck("and of of"))
             {
                 result = result.Replace("and of of", "");
             }
@@ -213,7 +213,7 @@ namespace BasicTypes.Glosser
                     else
                     {
                         //Try to guess if this is a verb or something else.
-                        if (predicate.VerbPhrase.HeadVerb.ToString(verb, config).Contains("Error")
+                        if (predicate.VerbPhrase.HeadVerb.ToString(verb, config).ContainsCheck("Error")
                             && (predicate.VerbPhrase.Modals == null || predicate.VerbPhrase.Modals.Count == 0))
                         {
                             //No modals, Can't gloss as verb, assume we have a noun phrase
@@ -226,7 +226,7 @@ namespace BasicTypes.Glosser
                                 }
                             }
 
-                            if (predicate.VerbPhrase.HeadVerb.ToString(PartOfSpeech.Noun, config).Contains("Error"))
+                            if (predicate.VerbPhrase.HeadVerb.ToString(PartOfSpeech.Noun, config).ContainsCheck("Error"))
                             {
                                 //Oh, this might be an adjective. jan li laso.
                                 //gloss.Add(predicate.VerbPhrase.HeadVerb.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
@@ -469,7 +469,7 @@ namespace BasicTypes.Glosser
             {
                 string nounPossiblePlural = GlossWithFallBack(includePos, config, hp.Head, PartOfSpeech.Noun);
 
-                if ((!new String[]{"I","we","he","she","it","they"}.Contains(nounPossiblePlural)) && hp.IsPlural())
+                if ((!new String[] { "I", "we", "he", "she", "it", "they" }.Contains(nounPossiblePlural)) && hp.IsPlural())
                 {
                     nounPossiblePlural= nounPossiblePlural.Pluralize();
                 }

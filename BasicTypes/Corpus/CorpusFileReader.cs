@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BasicTypes.Extensions;
 
 namespace BasicTypes.Corpus
 {
@@ -21,14 +22,14 @@ namespace BasicTypes.Corpus
             //"*Yves*.txt"
             foreach (FileInfo file in di.EnumerateFiles("*.txt", SearchOption.AllDirectories).Reverse())
             {
-                if (file.FullName.Contains("janKipoCollected")) continue;
-                if (file.FullName.Contains("toki sewi kolisu p2.txt")) continue;
-                if (file.FullName.Contains("nimi poka en nimi kule")) continue; //Has a defective conjunction of prep phrases, waiting to get some comm feedback before fixing text.
-                if (file.FullName.Contains("Book Summaries_Has ENGLISH.txt")) continue; //Asides in square brackets. Blaaaah!
-                if (file.FullName.Contains("Phonology")) continue; //full of prnounciation characters
+                if (file.FullName.ContainsCheck("janKipoCollected")) continue;
+                if (file.FullName.ContainsCheck("toki sewi kolisu p2.txt")) continue;
+                if (file.FullName.ContainsCheck("nimi poka en nimi kule")) continue; //Has a defective conjunction of prep phrases, waiting to get some comm feedback before fixing text.
+                if (file.FullName.ContainsCheck("Book Summaries_Has ENGLISH.txt")) continue; //Asides in square brackets. Blaaaah!
+                if (file.FullName.ContainsCheck("Phonology")) continue; //full of prnounciation characters
 
 
-                //if(!file.FullName.Contains("jan Mato")) continue;
+                //if(!file.FullName.ContainsCheck("jan Mato")) continue;
                 Console.WriteLine("----------------------------------");
                 Console.WriteLine(file.Directory);
                 Console.WriteLine(file.Name);

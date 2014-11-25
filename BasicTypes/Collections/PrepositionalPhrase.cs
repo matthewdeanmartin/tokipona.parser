@@ -30,7 +30,7 @@ namespace BasicTypes.Collections
             {
                 preposition = new Word("~" + preposition.Text);
             }
-            else if (!Particles.Prepositions.Contains(preposition.Text.Remove(0,1)))
+            else if (!Particles.Prepositions.Contains(preposition.Text.Remove(0, 1)))
             {
                 throw new ArgumentException("Invlaid prep: " + preposition.Text);
             }
@@ -61,7 +61,7 @@ namespace BasicTypes.Collections
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
-            if (item.Contains("~"))
+            if (item.ContainsCheck("~"))
             {
                 string[] parts = Splitters.SplitOnPrepositions(item);
                 List<PrepositionalPhrase> chain = pu.ProcessPrepositionalPhrases(parts);

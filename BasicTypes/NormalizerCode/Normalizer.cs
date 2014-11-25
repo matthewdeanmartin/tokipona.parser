@@ -56,7 +56,7 @@ namespace BasicTypes.NormalizerCode
             }
 
             ////"/\\*.*?\\*/"
-            if (normalized.Contains("/*") || normalized.Contains("*/"))
+            if (normalized.ContainsCheck("/*") || normalized.ContainsCheck("*/"))
             {
                 normalized = ApplyNormalization(normalized, "Comments", StripMultilineComments);
             }
@@ -68,17 +68,17 @@ namespace BasicTypes.NormalizerCode
             }
 
             //Hyphenated words. This could cause a problem for compound words that cross lines.
-            if (normalized.Contains("-\n"))
+            if (normalized.ContainsCheck("-\n"))
             {
                 normalized = normalized.Replace("-\n", "");
             }
 
             //can't cope with line breaks.
-            if (normalized.Contains("\n"))
+            if (normalized.ContainsCheck("\n"))
             {
                 normalized = normalized.Replace("\n", " ");
             }
-            if (normalized.Contains("\t"))
+            if (normalized.ContainsCheck("\t"))
             {
                 normalized = normalized.Replace("\t", " ");
             }
@@ -90,31 +90,31 @@ namespace BasicTypes.NormalizerCode
             }
 
 
-            if (normalized.Contains("\""))
+            if (normalized.ContainsCheck("\""))
             {
                 normalized = ApplyNormalization(normalized, "ForeignSpace", ProcessWhiteSpaceInForeignText);
             }
 
             //Extraneous punctuation-- TODO, expand to most other symbols.
-            if (normalized.Contains("(") || normalized.Contains(")"))
+            if (normalized.ContainsCheck("(") || normalized.ContainsCheck(")"))
             {
                 normalized = normalized.Replace("(", "");
                 normalized = normalized.Replace(")", "");
             }
 
             //Extraneous commas
-            if (normalized.Contains(","))
+            if (normalized.ContainsCheck(","))
             {
                 normalized = ApplyNormalization(normalized, "ExtraCommas", ProcessExtraneousCommas);
             }
 
             //Left overs from initial parsing.
-            if (normalized.Contains("[NULL]"))
+            if (normalized.ContainsCheck("[NULL]"))
             {
                 normalized = normalized.Replace("[NULL]", "");
             }
 
-            if (normalized.Contains(" "))
+            if (normalized.ContainsCheck(" "))
             {
                 normalized = ApplyNormalization(normalized, "ExtraWhiteSpace", ProcessExtraneousWhiteSpace);
             }
@@ -136,23 +136,23 @@ namespace BasicTypes.NormalizerCode
             }
             foreach (string prep in preps)
             {
-                if (normalized.Contains(prep))
+                if (normalized.ContainsCheck(prep))
                 {
-                    isPunctuated = normalized.Contains(", " + prep) || normalized.Contains("," + prep);
+                    isPunctuated = normalized.ContainsCheck(", " + prep) || normalized.ContainsCheck("," + prep);
                     normalized = Regex.Replace(normalized, "," + prep, " ~" + prep);
                     normalized = Regex.Replace(normalized, ", " + prep, " ~" + prep);
 
-                    if (normalized.Contains("~ ~"))
+                    if (normalized.ContainsCheck("~ ~"))
                     {
                         throw new InvalidOperationException(text);
                     }
                 }
             }
-            if (!isPunctuated && !normalized.Contains("~"))
+            if (!isPunctuated && !normalized.ContainsCheck("~"))
             {
                 foreach (string prep in preps)
                 {
-                    if (normalized.Contains(prep))
+                    if (normalized.ContainsCheck(prep))
                     {
                         //HACK:Naive repair-- doesn't deal with unusal white space patterns.
                         normalized = Regex.Replace(normalized, " " + prep, " ~" + prep);
@@ -164,7 +164,7 @@ namespace BasicTypes.NormalizerCode
 
             //la o
             //invisible implicit subject.
-            if (normalized.Contains(" la o "))
+            if (normalized.ContainsCheck(" la o "))
             {
                 normalized = normalized.Replace(" la o ", " la jan Sanwan o ");
             }
@@ -173,12 +173,12 @@ namespace BasicTypes.NormalizerCode
 
             //TODO: detect start of sentence & replace mi X and sina Y with 
 
-            if (normalized.Contains("mi"))
+            if (normalized.ContainsCheck("mi"))
             {
                 normalized = ApplyNormalization(normalized, "mi li", ProcessMi);
             }
 
-            if (normalized.Contains("sina"))
+            if (normalized.ContainsCheck("sina"))
             {
                 normalized = ApplyNormalization(normalized, "sina li", ProcessSina);
             }
@@ -202,7 +202,7 @@ namespace BasicTypes.NormalizerCode
             //undo overnormalization
             foreach (KeyValuePair<string, string> pair in pronounModifiersMap)
             {
-                if (normalized.Contains(pair.Value))
+                if (normalized.ContainsCheck(pair.Value))
                 {
                     normalized = normalized.Replace(pair.Value, pair.Key);
                 }
@@ -210,12 +210,12 @@ namespace BasicTypes.NormalizerCode
 
 
 
-            if (normalized.Contains("la mi"))
+            if (normalized.ContainsCheck("la mi"))
             {
                 bool dontTouch = false;
                 foreach (string pronounModifier in pronounModifiers)
                 {
-                    if (normalized.Contains("la " + pronounModifier))
+                    if (normalized.ContainsCheck("la " + pronounModifier))
                     {
                         dontTouch = true;
                     }
@@ -225,7 +225,7 @@ namespace BasicTypes.NormalizerCode
                     normalized = Regex.Replace(normalized, @"\bla mi\b", "la mi li"); //normalize contractions
 
                     //If original was, say, "kin la mi li pali", we get a double li li
-                    if (normalized.Contains(" li li "))
+                    if (normalized.ContainsCheck(" li li "))
                     {
                         //undo doubling.
                         normalized = Regex.Replace(normalized, @"\bli li\b", "li"); //normalize contractions
@@ -236,12 +236,12 @@ namespace BasicTypes.NormalizerCode
             }
 
 
-            if (normalized.Contains("la sina"))
+            if (normalized.ContainsCheck("la sina"))
             {
                 bool dontTouch = false;
                 foreach (string pronounModifier in pronounModifiers)
                 {
-                    if (normalized.Contains("la " + pronounModifier))
+                    if (normalized.ContainsCheck("la " + pronounModifier))
                     {
                         dontTouch = true;
                     }
@@ -251,7 +251,7 @@ namespace BasicTypes.NormalizerCode
                     normalized = Regex.Replace(normalized, @"\bla sina\b", "la sina li"); //normalize contractions
 
                     //If original was, say, "kin la sina li pali", we get a double li li
-                    if (normalized.Contains(" li li "))
+                    if (normalized.ContainsCheck(" li li "))
                     {
                         //undo doubling.
                         normalized = Regex.Replace(normalized, @"\bli li\b", "li"); //normalize contractions
@@ -260,7 +260,7 @@ namespace BasicTypes.NormalizerCode
 
             }
 
-            if (normalized.Contains("~"))
+            if (normalized.ContainsCheck("~"))
             {
                 normalized = ThoseArentPrepositions(preps, normalized);
             }
@@ -268,8 +268,8 @@ namespace BasicTypes.NormalizerCode
             normalized = Regex.Replace(normalized, @"^\s+|\s+$", ""); //Remove extraneous whitespace
 
             //If it is a sentence fragment, I really can't deal with prep phrase that may or may not be in it.
-            if (normalized.Contains("~")
-                && !normalized.Contains(" li ") //full sentence okay
+            if (normalized.ContainsCheck("~")
+                && !normalized.ContainsCheck(" li ") //full sentence okay
                 && !normalized.StartCheck("o ") //imperative okay
                 )
             {
@@ -282,42 +282,42 @@ namespace BasicTypes.NormalizerCode
 
 
             //It's a prep, but missing the li.
-            if (normalized.Contains("sina ~tawa"))
+            if (normalized.ContainsCheck("sina ~tawa"))
             {
                 normalized = normalized.Replace("sina ~tawa", " sina li ~tawa");
             }
-            if (normalized.Contains("mi ~tawa"))
+            if (normalized.ContainsCheck("mi ~tawa"))
             {
                 normalized = normalized.Replace("mi ~tawa", "mi li ~tawa");
             }
             //"mi li ~tawa lon" -- the other one is a prep
-            if (normalized.Contains("mi li ~tawa lon"))
+            if (normalized.ContainsCheck("mi li ~tawa lon"))
             {
                 normalized = normalized.Replace("mi li ~tawa lon", "mi li tawa ~lon");
             }
 
             //missing li (ha,previously I skiped this on purpose!)
-            if (normalized.Contains("taso, sina soweli"))
+            if (normalized.ContainsCheck("taso, sina soweli"))
             {
                 normalized = normalized.Replace("taso, sina soweli", "taso, sina li soweli");
             }
             //overnormalized... mi li ~tawa
-            if (normalized.Contains("e mi li ~tawa"))
+            if (normalized.ContainsCheck("e mi li ~tawa"))
             {
                 normalized = normalized.Replace("e mi li ~tawa", "e mi ~tawa");
             }
 
             //overnormalized... mama pi mi mute o
-            if (normalized.Contains("mama pi mi li mute o"))
+            if (normalized.ContainsCheck("mama pi mi li mute o"))
             {
                 normalized = normalized.Replace("mama pi mi li mute o", "mama pi mi mute o");
             }
             //overnorm
-            if (normalized.Contains("sina li ~tawa mi"))
+            if (normalized.ContainsCheck("sina li ~tawa mi"))
             {
                 normalized = normalized.Replace("sina li ~tawa mi", "sina ~tawa mi");
             }
-            if (normalized.Contains("sina li o "))
+            if (normalized.ContainsCheck("sina li o "))
             {
                 normalized = normalized.Replace("sina li o ", "sina o ");
             }
@@ -341,7 +341,7 @@ namespace BasicTypes.NormalizerCode
             }
 
             //e mi li mute
-            if (normalized.Contains("e mi li mute"))
+            if (normalized.ContainsCheck("e mi li mute"))
             {
                 normalized = normalized.Replace("e mi li mute", "e mi mute");
             }
@@ -357,12 +357,12 @@ namespace BasicTypes.NormalizerCode
             }
 
             //Probably added above by mistake
-            while (normalized.Contains("  "))
+            while (normalized.ContainsCheck("  "))
             {
                 normalized = normalized.Replace("  ", " ");
             }
 
-            if (normalized.Contains("'"))
+            if (normalized.ContainsCheck("'"))
             {
                 normalized = ApplyNormalization(normalized, "DirectQuotes", AddDirectedQuotes);
             }
@@ -424,7 +424,7 @@ namespace BasicTypes.NormalizerCode
                             (enGlosses.ContainsKey("vi") && enGlosses["vi"].Length > 0))
                         {
                             string unLied = " " + pronoun + " " + possible + " ";
-                            if (normalized.Contains(unLied) && !pronounModifiers.Contains(unLied.Trim()))
+                            if (normalized.ContainsCheck(unLied) && !pronounModifiers.Contains(unLied.Trim()))
                             {
                                 normalized = normalized.Replace(unLied, " " + pronoun + " li " + possible + " ");
                             }
@@ -437,7 +437,7 @@ namespace BasicTypes.NormalizerCode
 
         private static string ProcessMi(string normalized)
         {
-            if (normalized.Contains("mi wile ala e ma li"))
+            if (normalized.ContainsCheck("mi wile ala e ma li"))
             {
                 Console.WriteLine("Ok");
             }
@@ -462,7 +462,7 @@ namespace BasicTypes.NormalizerCode
                             (enGlosses.ContainsKey("vi") && enGlosses["vi"].Length > 0))
                         {
                             string unLied = " " + pronoun + " " + possible + " ";
-                            if (normalized.Contains(unLied) && !pronounModifiers.Contains(unLied.Trim()))
+                            if (normalized.ContainsCheck(unLied) && !pronounModifiers.Contains(unLied.Trim()))
                             {
                                 normalized = normalized.Replace(unLied, " " + pronoun + " li " + possible + " ");
                             }
@@ -477,7 +477,7 @@ namespace BasicTypes.NormalizerCode
         {
             foreach (string s in new String[] { ", li ", ", la ", ",la ", " la, ", " la,", ", o ", ",o " })
             {
-                if (normalized.Contains(s))
+                if (normalized.ContainsCheck(s))
                 {
                     normalized = normalized.Replace(s, " " + s.Trim(new char[] { ' ', ',' }) + " ");
                 }
@@ -511,7 +511,7 @@ namespace BasicTypes.NormalizerCode
                 if (pair.Key.StartCheck("pi-")) continue; //This is essentially a possessive or adjective noun phrase, should deal with via POS for compound words.
                 if (pair.Key.EndCheck("-ala")) continue; //negation is special.
                 if (pair.Key.StartCheck("li-")) continue; //These are essentially verb markers and all verbs phrases are templates (i.e. can have additional words inserted & be the same template)
-                if (pair.Key.Contains("-e-")) continue;
+                if (pair.Key.ContainsCheck("-e-")) continue;
 
                 
                 //Weak compounds, i.e. to close to noun + ordinary modifier because the modifier is excedingly common.
@@ -555,7 +555,7 @@ namespace BasicTypes.NormalizerCode
 
 
                 string spacey = pair.Key.Replace("-", " ");
-                if (normalized.Contains(spacey))
+                if (normalized.ContainsCheck(spacey))
                 {
                     string savePoint = string.Copy(normalized);
                     Regex r = new Regex(@"\b" + spacey + @"\b");
@@ -565,7 +565,7 @@ namespace BasicTypes.NormalizerCode
                         //This won't replace on boundaries though.
                         normalized = normalized.Replace(spacey, pair.Key.Trim(new char[] { ' ', '-' }));
                     }
-                    if (normalized.Contains("-" + pair.Key) || normalized.Contains(pair.Key + "-"))
+                    if (normalized.ContainsCheck("-" + pair.Key) || normalized.ContainsCheck(pair.Key + "-"))
                     {
                         //Undo! We matched a word that crosses compound words. How is that even possible?
                         normalized = savePoint;
@@ -584,7 +584,7 @@ namespace BasicTypes.NormalizerCode
 
 
             //Extraneous whitespace
-            while (normalized.Contains("  "))
+            while (normalized.ContainsCheck("  "))
             {
                 normalized = normalized.Replace("  ", " ");
             }
@@ -620,7 +620,7 @@ namespace BasicTypes.NormalizerCode
 
         private static string UseDummyPredicateForObviousFragments(string normalized, string fakePredicate)
         {
-            if (!(normalized.Contains(" li ")) && !IsVocative(normalized) && !IsExclamatory(normalized) &&
+            if (!(normalized.ContainsCheck(" li ")) && !IsVocative(normalized) && !IsExclamatory(normalized) &&
                 !IsFragment(normalized))
             {
                 //Add a marker that we can later remove. Allows for parsing NPs, like titles, as if
@@ -644,7 +644,7 @@ namespace BasicTypes.NormalizerCode
 
             foreach (char c in value)
             {
-                if (!"!.', !@#$%^&*())_[]|~`<>?:\n '»".Contains(c))
+                if (!"!.', !@#$%^&*())_[]|~`<>?:\n '»".ContainsCheck(c))
                 {
                     return false;
                 }
@@ -712,11 +712,11 @@ namespace BasicTypes.NormalizerCode
 
             //As in jan sama o!
             //jan ~sama o!
-            if (normalized.Contains(" ~sama o "))
+            if (normalized.ContainsCheck(" ~sama o "))
             {
                 normalized = normalized.Replace(" ~sama o ", " sama o ");
             }
-            if (normalized.Contains(" ~sama o, "))
+            if (normalized.ContainsCheck(" ~sama o, "))
             {
                 normalized = normalized.Replace(" ~sama o, ", " sama o, ");
             }
@@ -743,7 +743,7 @@ namespace BasicTypes.NormalizerCode
             foreach (string prep in preps)
             {
                 string barePrep = " li ~" + prep + " e ";
-                if (normalized.Contains(barePrep))
+                if (normalized.ContainsCheck(barePrep))
                 {
                     normalized = normalized.Replace(barePrep, barePrep.Replace("~", ""));
                 }
@@ -754,7 +754,7 @@ namespace BasicTypes.NormalizerCode
             foreach (string prep in preps)
             {
                 string leadPrep = " la ~" + prep + " ";
-                if (normalized.Contains(leadPrep))
+                if (normalized.ContainsCheck(leadPrep))
                 {
                     normalized = normalized.Replace(leadPrep, leadPrep.Replace("~", ""));
                 }
@@ -765,7 +765,7 @@ namespace BasicTypes.NormalizerCode
             foreach (string prep in preps)
             {
                 string barePrep = " li ~" + prep + " ala e ";
-                if (normalized.Contains(barePrep))
+                if (normalized.ContainsCheck(barePrep))
                 {
                     normalized = normalized.Replace(barePrep, barePrep.Replace("~", ""));
                 }
@@ -774,7 +774,7 @@ namespace BasicTypes.NormalizerCode
             foreach (string prep in preps)
             {
                 string barePrep = " o ~" + prep + " ala e ";
-                if (normalized.Contains(barePrep))
+                if (normalized.ContainsCheck(barePrep))
                 {
                     normalized = normalized.Replace(barePrep, barePrep.Replace("~", ""));
                 }
@@ -783,7 +783,7 @@ namespace BasicTypes.NormalizerCode
             foreach (string prep in preps)
             {
                 string barePrep = " ~" + prep + " e ";
-                if (normalized.Contains(barePrep))
+                if (normalized.ContainsCheck(barePrep))
                 {
                     normalized = normalized.Replace(barePrep, barePrep.Replace("~", ""));
                 }
@@ -794,7 +794,7 @@ namespace BasicTypes.NormalizerCode
                 //TODO: Add other modals.
                 //modal + prep => probably verb.
                 string barePrep = " li ken ~" + prep;
-                if (normalized.Contains(barePrep))
+                if (normalized.ContainsCheck(barePrep))
                 {
                     normalized = normalized.Replace(barePrep, barePrep.Replace("~", ""));
                 }
@@ -804,7 +804,7 @@ namespace BasicTypes.NormalizerCode
             foreach (string prep in preps)
             {
                 string barePrep = "~" + prep + "-";
-                if (normalized.Contains(barePrep))
+                if (normalized.ContainsCheck(barePrep))
                 {
                     normalized = normalized.Replace(barePrep, barePrep.Replace("~", ""));
                 }
@@ -814,7 +814,7 @@ namespace BasicTypes.NormalizerCode
             foreach (string prep in preps)
             {
                 string barePrep = "~" + prep + " pi ";
-                if (normalized.Contains(barePrep))
+                if (normalized.ContainsCheck(barePrep))
                 {
                     normalized = normalized.Replace(barePrep, barePrep.Replace("~", ""));
                 }
@@ -835,7 +835,7 @@ namespace BasicTypes.NormalizerCode
             foreach (string prep in preps)
             {
                 string piHeadedPrep = " pi ~" + prep + " ";
-                if (normalized.Contains(piHeadedPrep))
+                if (normalized.ContainsCheck(piHeadedPrep))
                 {
                     normalized = normalized.Replace(piHeadedPrep, piHeadedPrep.Replace("~", ""));
                 }
@@ -848,7 +848,7 @@ namespace BasicTypes.NormalizerCode
                 foreach (char c in ":!?.")
                 {
                     string terminalPrep = "~" + prep + c;
-                    if (normalized.Contains(terminalPrep))
+                    if (normalized.ContainsCheck(terminalPrep))
                     {
                         normalized = normalized.Replace(terminalPrep, prep + c);
                     }
@@ -862,7 +862,7 @@ namespace BasicTypes.NormalizerCode
                 foreach (var predicateSplitter in new string[] { " o ", " li " })
                 {
                     string terminalPrep = "~" + prep + predicateSplitter;
-                    if (normalized.Contains(terminalPrep))
+                    if (normalized.ContainsCheck(terminalPrep))
                     {
                         normalized = normalized.Replace(terminalPrep, prep + predicateSplitter);
                     }
@@ -876,7 +876,7 @@ namespace BasicTypes.NormalizerCode
                 foreach (var predicateSplitter in new string[] { " la " })
                 {
                     string terminalPrep = "~" + prep + predicateSplitter;
-                    if (normalized.Contains(terminalPrep))
+                    if (normalized.ContainsCheck(terminalPrep))
                     {
                         normalized = normalized.Replace(terminalPrep, prep + predicateSplitter);
                     }
@@ -889,7 +889,7 @@ namespace BasicTypes.NormalizerCode
                 foreach (var predicateSplitter in new string[] { ", o ", ", li " })
                 {
                     string terminalPrep = "~" + prep + predicateSplitter;
-                    if (normalized.Contains(terminalPrep))
+                    if (normalized.ContainsCheck(terminalPrep))
                     {
                         normalized = normalized.Replace(terminalPrep, prep + predicateSplitter);
                     }
@@ -924,7 +924,7 @@ namespace BasicTypes.NormalizerCode
                 foreach (char c in "e")
                 {
                     string terminalPrep = " " + c + " ~" + prep;
-                    if (normalized.Contains(terminalPrep))
+                    if (normalized.ContainsCheck(terminalPrep))
                     {
                         normalized = normalized.Replace(terminalPrep, " e " + prep);
                     }
@@ -939,12 +939,12 @@ namespace BasicTypes.NormalizerCode
                 foreach (string prep2 in preps)
                 {
                     string doublePrep = "~" + prep1 + " " + "~" + prep2;
-                    if (normalized.Contains(doublePrep))
+                    if (normalized.ContainsCheck(doublePrep))
                     {
                         normalized = normalized.Replace(doublePrep, "~" + prep1 + " " + prep2);
                     }
                     doublePrep = "~" + prep2 + " " + "~" + prep1;
-                    if (normalized.Contains(doublePrep))
+                    if (normalized.ContainsCheck(doublePrep))
                     {
                         normalized = normalized.Replace(doublePrep, "~" + prep2 + " " + prep1);
                     }
@@ -962,12 +962,12 @@ namespace BasicTypes.NormalizerCode
                 foreach (string prep2 in preps)
                 {
                     string doublePrep = "~" + prep1 + " en " + "~" + prep2;
-                    if (normalized.Contains(doublePrep))
+                    if (normalized.ContainsCheck(doublePrep))
                     {
                         normalized = normalized.Replace(doublePrep, prep1 + " " + prep2);
                     }
                     doublePrep = "~" + prep2 + " en " + "~" + prep1;
-                    if (normalized.Contains(doublePrep))
+                    if (normalized.ContainsCheck(doublePrep))
                     {
                         normalized = normalized.Replace(doublePrep, prep2 + " " + prep1);
                     }
@@ -983,12 +983,12 @@ namespace BasicTypes.NormalizerCode
                 foreach (string prep2 in preps)
                 {
                     string doublePrep = " li ~" + prep1 + " en " + prep2 + " li ";
-                    if (normalized.Contains(doublePrep))
+                    if (normalized.ContainsCheck(doublePrep))
                     {
                         normalized = normalized.Replace(doublePrep, doublePrep.Replace("~", ""));
                     }
                     doublePrep = " li ~" + prep2 + " en " + prep1 + " li ";
-                    if (normalized.Contains(doublePrep))
+                    if (normalized.ContainsCheck(doublePrep))
                     {
                         normalized = normalized.Replace(doublePrep, doublePrep.Replace("~", ""));
                     }
@@ -1002,12 +1002,12 @@ namespace BasicTypes.NormalizerCode
                 foreach (string prep2 in preps)
                 {
                     string doublePrep = " li " + prep1 + " en ~" + prep2 + " li ";
-                    if (normalized.Contains(doublePrep))
+                    if (normalized.ContainsCheck(doublePrep))
                     {
                         normalized = normalized.Replace(doublePrep, doublePrep.Replace("~", ""));
                     }
                     doublePrep = " li " + prep2 + " en ~" + prep1 + " li ";
-                    if (normalized.Contains(doublePrep))
+                    if (normalized.ContainsCheck(doublePrep))
                     {
                         normalized = normalized.Replace(doublePrep, doublePrep.Replace("~", ""));
                     }
@@ -1018,7 +1018,7 @@ namespace BasicTypes.NormalizerCode
             foreach (string prep in preps)
             {
                 string question = " li ~" + prep + " ala " + prep + " e ";
-                if (normalized.Contains(question))
+                if (normalized.ContainsCheck(question))
                 {
                     normalized = normalized.Replace(question, question.Replace("~", ""));
                 }
@@ -1038,7 +1038,7 @@ namespace BasicTypes.NormalizerCode
                 //mi mute li suli.
                 //mi toki.
 
-                if (possibleProunoun && normalized.Contains("sina li " + normalized.Substring(5 + punctuation.Length)))
+                if (possibleProunoun && normalized.ContainsCheck("sina li " + normalized.Substring(5 + punctuation.Length)))
                 {
                     //Skip we probalby have a li already.
                 }
@@ -1062,7 +1062,7 @@ namespace BasicTypes.NormalizerCode
                 //mi toki.
 
                 //modified mi will force a li.
-                if (possibleProunoun && !normalized.Contains("mi li " + normalized.Substring(3 + punctuation.Length)))
+                if (possibleProunoun && !normalized.ContainsCheck("mi li " + normalized.Substring(3 + punctuation.Length)))
                 {
                     //Skip we probalby have a li already.
                 }
@@ -1091,7 +1091,7 @@ namespace BasicTypes.NormalizerCode
         public static bool IsVocative(string value)
         {
             string normalized = value.Trim(new char[] { ' ', '\'', '«', '.', '!', '?', ',' });
-            return normalized.Contains(" o ") ||
+            return normalized.ContainsCheck(" o ") ||
                    normalized.StartCheck("o ") ||
                    normalized.EndCheck(" o") ||
                    normalized == "o";

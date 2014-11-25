@@ -29,16 +29,16 @@ namespace BasicTypes
             //TODO: Normalize foreign words zap => 'zap', alternatively assume they are tp, but a mistake
 
             //Normalize end lines.
-            if (text.Contains("\r\n"))
+            if (text.ContainsCheck("\r\n"))
             {
                 text = text.Replace("\r\n", "\n");
             }
-            if (text.Contains("\n\n"))
+            if (text.ContainsCheck("\n\n"))
             {
                 text = text.Replace("\n\n", "\n");
             }
 
-            if (text.Contains(";"))
+            if (text.ContainsCheck(";"))
             {
                 //2 sentences connected... or 2 phrases connected?
                 text = text.Replace(";", ":");
@@ -47,7 +47,7 @@ namespace BasicTypes
             //swap quote/terminator order
             foreach (string delims in new[] { ".'", ".\"", "?'", "?\"", "!'", "!\"" })
             {
-                if (text.Contains(delims))
+                if (text.ContainsCheck(delims))
                 {
                     text = text.Replace(delims, delims[1] + delims[0].ToString());
                 }
@@ -303,13 +303,13 @@ namespace BasicTypes
 
             bool isHortative = false;
             bool isImperative = false;
-            if (sentence.StartCheck("o ") && sentence.Contains(" li "))
+            if (sentence.StartCheck("o ") && sentence.ContainsCheck(" li "))
             {
                 //o mi mute li moku
                 isHortative = true;
                 sentence = sentence.RemoveLeadingWholeWord("o");
             }
-            if (sentence.StartCheck("o ") && !sentence.Contains(" li "))
+            if (sentence.StartCheck("o ") && !sentence.ContainsCheck(" li "))
             {
                 //o pana e pan
                 isImperative = true;
@@ -442,11 +442,11 @@ namespace BasicTypes
             {
                 throw new ArgumentException("Can't parse null/empty subjects");
             }
-            if (value.Contains(" la ") || value.EndCheck(" la"))
+            if (value.ContainsCheck(" la ") || value.EndCheck(" la"))
             {
                 throw new ArgumentException("Contains la. This isn't possible in a pi chain.");
             }
-            //if (value.Contains("~"))
+            //if (value.ContainsCheck("~"))
             //{
             //    throw new ArgumentException("Contains preposition. This isn't possible in a pi chain. (well not right //now. kule pi lon palisa): actual: " + value);
             //}
@@ -569,13 +569,13 @@ namespace BasicTypes
                 string verbsMaybePrepositions = eParts[eParts.Length - 1];
 
 
-                if (verbsMaybePrepositions.Contains("~"))
+                if (verbsMaybePrepositions.ContainsCheck("~"))
                 {
                     partsWithPreps = Splitters.SplitOnPrepositions(verbsMaybePrepositions);
                     if (partsWithPreps.Length == 1)
                     {
                         //This is the last e phrase or 1st prep.
-                        if (partsWithPreps[0].Contains("~"))
+                        if (partsWithPreps[0].ContainsCheck("~"))
                         {
                             //That is a prep phrase (is this possible?)
                         }
@@ -769,7 +769,7 @@ namespace BasicTypes
             List<PrepositionalPhrase> prepositionalChain = new List<PrepositionalPhrase>();
             foreach (string partsWithPrep in partsWithPreps)
             {
-                if (partsWithPrep.Contains("~")) //Is it really?
+                if (partsWithPrep.ContainsCheck("~")) //Is it really?
                 {
                     TokenParserUtils pu = new TokenParserUtils();
                     string preposition = pu.WordsPunctuationAndCompounds(partsWithPrep)[0];
@@ -797,11 +797,11 @@ namespace BasicTypes
             }
             foreach (string s in value)
             {
-                if (s.Contains(" "))
+                if (s.ContainsCheck(" "))
                 {
                     throw new ArgumentException("One of the strings in the array contains spaces, this must not have been properly normalized.: " + s);
                 }
-                if (s.Contains("~"))
+                if (s.ContainsCheck("~"))
                 {
                     throw new ArgumentException("One of the strings in the array starts with a ~, so the prep wasn't stripped off. : " + s);
                 }
@@ -820,7 +820,7 @@ namespace BasicTypes
         /// <returns></returns>
         public HeadedPhrase HeadedPhraseParser(string value)
         {
-            //if (value.Contains("~"))
+            //if (value.ContainsCheck("~"))
             //{
             //    throw new TpSyntaxException("Headed phrase can't contain a preposition. This one does: " + value);
             //}
@@ -838,7 +838,7 @@ namespace BasicTypes
             }
 
             PrepositionalPhrase[] pp = null;
-            if (value.Contains("~"))
+            if (value.ContainsCheck("~"))
             {
                 string[] headAndPreps = Splitters.SplitOnPrepositions(value);
                 value = headAndPreps[0];

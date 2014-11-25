@@ -25,7 +25,7 @@ namespace BasicTypes.Parts
             {
                 throw new InvalidOperationException("This isn't a valid comment, valid comments are started with /// and ended by a newline (must start with ///)");
             }
-            if (checkValue.Contains("\n"))
+            if (checkValue.ContainsCheck("\n"))
             {
                 throw new InvalidOperationException("This isn't a valid comment, valid comments are started with /// and ended by a newline (must not contain a newline)");
             }

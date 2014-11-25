@@ -33,7 +33,7 @@ namespace BasicTypes.Parser
             string punctuation = "!@#$%^&*()_+{}:<>?|,./;'[]«";
             foreach (char c in value)
             {
-                if (punctuation.Contains("c"))
+                if (punctuation.ContainsCheck("c"))
                 {
                     prePuncutation.Add(c);
                     continue;
@@ -43,7 +43,7 @@ namespace BasicTypes.Parser
             List<char> postPuncutation = new List<char>();
             foreach (char c in value.Reverse())
             {
-                if (punctuation.Contains("c"))
+                if (punctuation.ContainsCheck("c"))
                 {
                     postPuncutation.Add(c);
                     continue;
@@ -104,7 +104,7 @@ namespace BasicTypes.Parser
 
         public string[] RemergeCompounds(string[] words)
         {
-            if (!words.Any(x => x.Contains("-")))
+            if (!words.Any(x => x.ContainsCheck("-")))
             {
                 //No compound words here
                 return words;

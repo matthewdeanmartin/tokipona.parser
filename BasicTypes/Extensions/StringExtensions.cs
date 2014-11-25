@@ -12,6 +12,17 @@ namespace BasicTypes.Extensions
 {
     public static class StringExtensions
     {
+        public static bool ContainsCheck(this string value, char middle)
+        {
+            //http://cc.davelozinski.com/c-sharp/fastest-way-to-check-if-a-string-occurs-within-a-string
+            if (((value.Length - value.Replace(middle.ToString(), String.Empty).Length) / 1) > 0)
+            {
+                return true;
+            }
+            return false;
+        
+        }
+
         public static bool ContainsCheck(this string value, string middle)
         {
             //http://cc.davelozinski.com/c-sharp/fastest-way-to-check-if-a-string-occurs-within-a-string
@@ -44,7 +55,7 @@ namespace BasicTypes.Extensions
             StringBuilder sb = new StringBuilder(value.Length);
             foreach (char c in value)
             {
-                if(letters.Contains(c) ) continue;
+                if(letters.ContainsCheck(c) ) continue;
                 sb.Append(c);
             }
             return sb.ToString();
@@ -69,12 +80,12 @@ namespace BasicTypes.Extensions
 
         public static string RemoveLeadingWholeWord(this string value, string word)
         {
-            if (!value.Contains(word)) return value;//short circuit
+            if (!value.ContainsCheck(word)) return value;//short circuit
 
             //TODO: Maybe use regex instead?
             foreach (var white in new String[]{" ","\n"})
             {
-                if (value.Contains(white))
+                if (value.ContainsCheck(white))
                 {
                     string wordWithWhite = word + white;
                     value = value.StartCheck(wordWithWhite) ? value.Substring(wordWithWhite.Length) : value;    
@@ -99,7 +110,7 @@ namespace BasicTypes.Extensions
                 {
                     return true;
                 }
-                if (value.Contains(white + target + white))
+                if (value.ContainsCheck(white + target + white))
                 {
                     return true;
                 }    

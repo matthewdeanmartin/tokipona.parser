@@ -126,7 +126,7 @@ namespace BasicTypes
             }
 
             //HACK: and an ugly one. This brackets potentially entire sentences, sometimes a word. Sort of like compound word.
-            if (prospectiveWord.Contains('«') || prospectiveWord.Contains('»'))
+            if (prospectiveWord.ContainsCheck('«') || prospectiveWord.ContainsCheck('»'))
             {
                 prospectiveWord = prospectiveWord.Trim(new char[] {'«', '»'});
             }
@@ -173,7 +173,7 @@ namespace BasicTypes
                     {
                         //Console.WriteLine("NUMBER: " + prospectiveWord);
                     }
-                    else if (prospectiveWord.Contains("-") &&  CheckIsCompoundWord(prospectiveWord))
+                    else if (prospectiveWord.ContainsCheck("-") &&  CheckIsCompoundWord(prospectiveWord))
                     {
                         //Console.WriteLine("COMPOUND: " + prospectiveWord);
                     }
@@ -211,7 +211,7 @@ namespace BasicTypes
                 string path =
                     System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
 
-                if (path.Contains(@"file:\"))
+                if (path.ContainsCheck(@"file:\"))
                 {
                     path = path.Replace(@"file:\", "");
                 }
@@ -304,7 +304,7 @@ namespace BasicTypes
 
 
             bool includePos = false;
-            if (format.Contains(":"))
+            if (format.ContainsCheck(":"))
             {
                 string[] parts = format.Split(new char[] { ':' });
                 format = parts[0];
@@ -339,7 +339,7 @@ namespace BasicTypes
         public string TryGloss(string language, string pos)
         {
             //HACK: This is wrong. Should be using Token or some other base class.
-            if (word.Contains("-"))
+            if (word.ContainsCheck("-"))
             {
                 CompoundWord cw = new CompoundWord(Text);
                 return cw.TryGloss(language, pos);

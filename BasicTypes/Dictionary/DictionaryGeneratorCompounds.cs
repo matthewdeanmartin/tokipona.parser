@@ -78,21 +78,21 @@ namespace BasicTypes.Dictionary
                                 //If it is a simple phrase, it *could* have slots, but its going to just be modifiers (potentially infixed).
                                 //TODO: 
 
-                                if (prospectiveWord.Contains(" li ")) continue; //sentence
-                                if (prospectiveWord.Contains(":")) continue;//sentence, template
-                                if (prospectiveWord.Contains("...")) continue; //template
-                                if (prospectiveWord.Contains("X")) continue; //template
-                                if (prospectiveWord.Contains("Y")) continue;//template
-                                if (prospectiveWord.Contains("A")) continue;//template
-                                if (prospectiveWord.Contains("B")) continue;//template
+                                if (prospectiveWord.ContainsCheck(" li ")) continue; //sentence
+                                if (prospectiveWord.ContainsCheck(":")) continue;//sentence, template
+                                if (prospectiveWord.ContainsCheck("...")) continue; //template
+                                if (prospectiveWord.ContainsCheck("X")) continue; //template
+                                if (prospectiveWord.ContainsCheck("Y")) continue;//template
+                                if (prospectiveWord.ContainsCheck("A")) continue;//template
+                                if (prospectiveWord.ContainsCheck("B")) continue;//template
 
                                 if (prospectiveWord.EndCheck(" e ")) continue;//template ... 
                                 if (prospectiveWord.EndCheck(" e")) continue;//template ... 
                                 if (prospectiveWord.EndCheck(" pi")) continue;//template ... varies depending on what follows pi
                                 if (prospectiveWord.EndCheck(" la")) continue;//la fragment...  This means this ONLY when in la positions, so it is a type of template [...] la X => as for [...] X is true.
 
-                                if (prospectiveWord.Contains(",")) continue;//make up your mind
-                                if (prospectiveWord.Contains("/")) continue;//make up your mind
+                                if (prospectiveWord.ContainsCheck(",")) continue;//make up your mind
+                                if (prospectiveWord.ContainsCheck("/")) continue;//make up your mind
 
                                 if (reader[2] != null && reader[2] != DBNull.Value && reader[2].ToString() != "")
                                 {
@@ -147,21 +147,21 @@ namespace BasicTypes.Dictionary
                                 //If it is a simple phrase, it *could* have slots, but its going to just be modifiers (potentially infixed).
                                 //TODO: 
 
-                                if (prospectiveWord.Contains(" li ")) continue; //sentence
-                                if (prospectiveWord.Contains(":")) continue;//sentence, template
-                                if (prospectiveWord.Contains("...")) continue; //template
-                                if (prospectiveWord.Contains("X")) continue; //template
-                                if (prospectiveWord.Contains("Y")) continue;//template
-                                if (prospectiveWord.Contains("A")) continue;//template
-                                if (prospectiveWord.Contains("B")) continue;//template
+                                if (prospectiveWord.ContainsCheck(" li ")) continue; //sentence
+                                if (prospectiveWord.ContainsCheck(":")) continue;//sentence, template
+                                if (prospectiveWord.ContainsCheck("...")) continue; //template
+                                if (prospectiveWord.ContainsCheck("X")) continue; //template
+                                if (prospectiveWord.ContainsCheck("Y")) continue;//template
+                                if (prospectiveWord.ContainsCheck("A")) continue;//template
+                                if (prospectiveWord.ContainsCheck("B")) continue;//template
 
                                 if (prospectiveWord.EndCheck(" e ")) continue;//template ... 
                                 if (prospectiveWord.EndCheck(" e")) continue;//template ... 
                                 if (prospectiveWord.EndCheck(" pi")) continue;//template ... varies depending on what follows pi
                                 if (prospectiveWord.EndCheck(" la")) continue;//la fragment...  This means this ONLY when in la positions, so it is a type of template [...] la X => as for [...] X is true.
 
-                                if (prospectiveWord.Contains(",")) continue;//make up your mind
-                                if (prospectiveWord.Contains("/")) continue;//make up your mind
+                                if (prospectiveWord.ContainsCheck(",")) continue;//make up your mind
+                                if (prospectiveWord.ContainsCheck("/")) continue;//make up your mind
 
                                 string perWordTemplate = @"
             {{
@@ -183,7 +183,7 @@ namespace BasicTypes.Dictionary
                                 
 
                                 string value = objects[3].ToString();
-                                if (value.Contains(","))
+                                if (value.ContainsCheck(","))
                                 {
                                     meanings = string.Join(",",
                                         value.Split(new char[] {','}).Select(x => "\"" + x + "\"").ToArray());
@@ -218,7 +218,7 @@ namespace BasicTypes.Dictionary
                 object[] objects = new object[reader.FieldCount];
                 int o = reader.GetValues(objects);
                 
-                if (objects[0].ToString().Trim().Contains(" "))
+                if (objects[0].ToString().Trim().ContainsCheck(" "))
                 {
                     string word = objects[0].ToString().Trim(new char[] {' ', '.', '<'});
                     string definition = objects[1].ToString().Replace("(?)", "").Replace("?", "");

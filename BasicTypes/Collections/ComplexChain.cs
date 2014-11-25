@@ -221,7 +221,7 @@ namespace BasicTypes.Collections
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
-            if (value.Contains(" e ") || value.StartCheck("e "))
+            if (value.ContainsCheck(" e ") || value.StartCheck("e "))
             {
                 throw new NotImplementedException();
                 //return pu.ProcessEnPiChain(value);

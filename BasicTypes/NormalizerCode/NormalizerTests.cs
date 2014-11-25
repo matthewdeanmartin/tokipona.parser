@@ -1,5 +1,6 @@
 ﻿using System;
 using BasicTypes.Corpus;
+using BasicTypes.Extensions;
 using NUnit.Framework;
 
 namespace BasicTypes.NormalizerCode
@@ -139,9 +140,9 @@ namespace BasicTypes.NormalizerCode
             Console.WriteLine("Normalized: " + normalized);
             //sina li toki e ni: 
             
-            Assert.IsFalse(normalized.Contains("Nanunanuwakawakawawa"));
+            Assert.IsFalse(normalized.ContainsCheck("Nanunanuwakawakawawa"));
             normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
-            Assert.IsFalse(normalized.Contains("Nanunanuwakawakawawa"));
+            Assert.IsFalse(normalized.ContainsCheck("Nanunanuwakawakawawa"));
         }
 
         [Test]
@@ -180,7 +181,7 @@ namespace BasicTypes.NormalizerCode
             Dialect dialect = Dialect.DialectFactory;
             string value = Normalizer.NormalizeText("jan li moku, kepeken ilo moku",dialect);
             Console.WriteLine(value);
-            Assert.IsTrue(value.Contains("~"), value);
+            Assert.IsTrue(value.ContainsCheck("~"), value);
         }
 
         [Test]

@@ -74,35 +74,35 @@ namespace BasicTypes.Parts
         {
 
             string temp = "#" + sb.ToString().Trim(new[] {'-'});
-            if (i.Contains("-"))
+            if (i.ContainsCheck("-"))
             {
                 temp = "nanpa-anpa " + temp;
             }
-            while(temp.Contains("--"))
+            while(temp.ContainsCheck("--"))
             {
                 temp = temp.Replace("--", "-");
             }
-            while (temp.Contains("wawa-ala"))
+            while (temp.ContainsCheck("wawa-ala"))
             {
                 temp = temp.Replace("wawa-ala", "wawa-");
             }
-            while (temp.Contains("wawa-ala"))
+            while (temp.ContainsCheck("wawa-ala"))
             {
                 temp = temp.Replace("wawa-ala", "wawa-");
             }
-            while (temp.Contains("--"))
+            while (temp.ContainsCheck("--"))
             {
                 temp = temp.Replace("--", "-");
             }
-            while (temp.Contains("wawa-lili-ala"))
+            while (temp.ContainsCheck("wawa-lili-ala"))
             {
                 temp = temp.Replace("wawa-lili-ala", "wawa-lili-");
             }
-            while (temp.Contains("wawa-lili-ala"))
+            while (temp.ContainsCheck("wawa-lili-ala"))
             {
                 temp = temp.Replace("wawa-lili-ala", "wawa-lili-");
             }
-            while (temp.Contains("--"))
+            while (temp.ContainsCheck("--"))
             {
                 temp = temp.Replace("--", "-");
             }
@@ -177,15 +177,15 @@ namespace BasicTypes.Parts
                 return true;
             }
             //# numbers.
-            if(BodyNumbers.Contains(phrase.Head.Text) && phrase.Modifiers.All((x => Token.BodyNumbers.Contains(x.Text))))
+            if (BodyNumbers.Contains(phrase.Head.Text) && phrase.Modifiers.All((x => Token.BodyNumbers.Contains(x.Text))))
             {
                 return true;
             }
-            if (StupidNumbers.Contains(phrase.Head.Text) &&  phrase.Modifiers.All(x => Token.StupidNumbers.Contains(x.Text)))
+            if (StupidNumbers.Contains(phrase.Head.Text) && phrase.Modifiers.All(x => Token.StupidNumbers.Contains(x.Text)))
             {
                 return true;
             }
-            if (HalfStupidNumbers.Contains(phrase.Head.Text) &&  phrase.Modifiers.All(x => Token.HalfStupidNumbers.Contains(x.Text)))
+            if (HalfStupidNumbers.Contains(phrase.Head.Text) && phrase.Modifiers.All(x => Token.HalfStupidNumbers.Contains(x.Text)))
             {
                 return true;
             }

@@ -339,7 +339,7 @@ namespace BasicTypes
             if (format != "bs")
             {
                 string result = Denormalize(spaceJoined, format);
-                while (result.Contains(" , "))
+                while (result.ContainsCheck(" , "))
                 {
                     result = result.Replace(" , ", ", ");
                 }
@@ -422,16 +422,16 @@ namespace BasicTypes
 
         private bool NeedToReplace(string value, string pronoun)
         {
-            bool startsWith = value.Contains(pronoun+ " li") && value.StartCheck(pronoun+ " ");
+            bool startsWith = value.ContainsCheck(pronoun+ " li") && value.StartCheck(pronoun+ " ");
             if(startsWith) return true;
 
-            bool followsConditional = value.Contains(pronoun + " li") && value.Contains(" la "+pronoun+" li ");
+            bool followsConditional = value.ContainsCheck(pronoun + " li") && value.ContainsCheck(" la "+pronoun+" li ");
             if(followsConditional) return true;
 
-            bool followsPunctuation = value.Contains(pronoun + " li") && value.Contains(". " + pronoun + " li ");
+            bool followsPunctuation = value.ContainsCheck(pronoun + " li") && value.ContainsCheck(". " + pronoun + " li ");
             if (followsPunctuation) return true;
 
-            bool followsColon = value.Contains(pronoun + " li") && value.Contains(": " + pronoun + " li ");
+            bool followsColon = value.ContainsCheck(pronoun + " li") && value.ContainsCheck(": " + pronoun + " li ");
             if (followsColon) return true;
 
             return false;
@@ -457,15 +457,15 @@ namespace BasicTypes
                 value = r.Replace(value, "sina");
             }
 
-            if (value.Contains("~"))
+            if (value.ContainsCheck("~"))
             {
                 value = value.Replace("~", ", ");
             }
-            if (value.Contains("li ijo Nanunanuwakawakawawa."))
+            if (value.ContainsCheck("li ijo Nanunanuwakawakawawa."))
             {
                 value = value.Replace("li ijo Nanunanuwakawakawawa.", format.StartCheck("b")?"[NULL TOKEN]":"");
             }
-            if (value.Contains("[NULL]") && !format.StartCheck("b"))
+            if (value.ContainsCheck("[NULL]") && !format.StartCheck("b"))
             {
                 value = value.Replace("[NULL]","");
             }

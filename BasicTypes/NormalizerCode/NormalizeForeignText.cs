@@ -30,7 +30,7 @@ namespace BasicTypes.NormalizerCode
                 //degenerate case
                 return normalized;
             }
-            if (normalized.Length <= 2 && normalized.Contains(@""""))
+            if (normalized.Length <= 2 && normalized.ContainsCheck(@""""))
             {
                 //degenerate
                 return normalized;
@@ -75,7 +75,7 @@ namespace BasicTypes.NormalizerCode
 
         private static string DetectIndividualForeignWords(string normalized)
         {
-            if (normalized.Contains(" "))
+            if (normalized.ContainsCheck(" "))
             {
                 bool needFixing = false;
                 List<string> normalizedTokens = new List<string>();
@@ -89,7 +89,7 @@ namespace BasicTypes.NormalizerCode
                             '«', '»', '@', '.', '!', ' ', '?', '!', '\n', '\r', ';', ':', '<', '>', '/', '&', '$', '\'','(',')',
                             '"'
                         });
-                    if (token.StartCheck(@"""") && token.EndCheck(@"""") && !token.Contains(" ")) continue;
+                    if (token.StartCheck(@"""") && token.EndCheck(@"""") && !token.ContainsCheck(" ")) continue;
 
                     var justLetters = Regex.Match(unpunctuated
                         , @"\p{L}+");
@@ -119,7 +119,7 @@ namespace BasicTypes.NormalizerCode
             decimal percentTokipona = PercentTokiPona(sentence);
             if (percentTokipona < 0.20m)
             {
-                if (sentence.Contains(" "))
+                if (sentence.ContainsCheck(" "))
                 {
                     sentence = sentence.Replace(" ", "*");
                 }

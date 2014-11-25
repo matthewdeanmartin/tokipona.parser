@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using BasicTypes.Extensions;
 
 namespace BasicTypes
 {
@@ -49,7 +50,7 @@ namespace BasicTypes
             for (tokenCount = 0; ; tokenCount++)
             {
                 string token = string.Format("{{{0}}}", tokenCount);
-                if (!format.Contains(token)) break;
+                if (!format.ContainsCheck(token)) break;
                 format = format.Replace(token,
                     string.Format("(?'group{0}'.*)", tokenCount));
             }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BasicTypes.Extensions;
 using BasicTypes.Parser;
 
 namespace BasicTypes.NormalizerCode
@@ -26,7 +27,7 @@ namespace BasicTypes.NormalizerCode
             {
                 return sentence;
             }
-            if (sentence.Contains("#"))
+            if (sentence.ContainsCheck("#"))
             {
                 //HACK: Could be a stray #
                 return sentence;
@@ -34,7 +35,7 @@ namespace BasicTypes.NormalizerCode
             TokenParserUtils tpu = new TokenParserUtils();
 
             string lastBit = "";
-            if ("!.?:".Contains(sentence[sentence.Length - 1]))
+            if ("!.?:".ContainsCheck(sentence[sentence.Length - 1]))
             {
                 lastBit = sentence[sentence.Length - 1].ToString();
                 sentence = sentence.Substring(0, sentence.Length - 1);
@@ -77,7 +78,7 @@ namespace BasicTypes.NormalizerCode
                         //Also causes too many false positives
                         continue;
                     }
-                    if (i > 0 && "mi|sina|ona".Contains(tokens[i - 1]))
+                    if (i > 0 && "mi|sina|ona".ContainsCheck(tokens[i - 1]))
                     {
                         //mi tu isn't really a number. It's a dual pronoun.
                         continue;

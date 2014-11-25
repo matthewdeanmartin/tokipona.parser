@@ -124,7 +124,7 @@ namespace BasicTypes
                 return Text;
 
             bool includePos = false;
-            if (format.Contains(":"))
+            if (format.ContainsCheck(":"))
             {
                 string[] parts = format.Split(new char[] { ':' });
                 format = parts[0];
@@ -259,7 +259,7 @@ namespace BasicTypes
                 throw new ArgumentNullException();
             }
             string lookupForm;
-            if (token.Contains(",") || token.Contains("»") || token.Contains("«"))
+            if (token.ContainsCheck(",") || token.ContainsCheck("»") || token.ContainsCheck("«"))
             {
                 lookupForm = token.Trim(new char[] {',','»','«', ' '});
             }
@@ -273,7 +273,7 @@ namespace BasicTypes
         public static bool ContainsProposition(string phrase)
         {
 
-            if (!phrase.Contains(phrase))
+            if (!phrase.ContainsCheck(phrase))
             {
                 return false;
             }
@@ -292,7 +292,7 @@ namespace BasicTypes
 
         public bool ContainsPreposition(string phrase)
         {
-            if (!phrase.Contains(phrase))
+            if (!phrase.ContainsCheck(phrase))
             {
                 return false;
             }

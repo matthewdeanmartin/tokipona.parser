@@ -63,18 +63,18 @@ namespace BasicTypes
                 {
                     throw new ArgumentNullException("word", "Token can't be null or white space");
                 }
-                if (word.Contains(" "))
+                if (word.ContainsCheck(" "))
                 {
                     throw new ArgumentNullException("word",
                         "Token can't contain white space-- must use *, - or other punctuation to join words into a single token : " +
                         word);
                 }
             }
-            if (word.Contains("\n"))
+            if (word.ContainsCheck("\n"))
             {
                 throw new ArgumentNullException("word", "Token can't contain white space-- must use *, - or other punctuation to join words into a single token : " + word);
             }
-            if (word.Contains("\t"))
+            if (word.ContainsCheck("\t"))
             {
                 throw new ArgumentNullException("word", "Token can't contain white space-- must use *, - or other punctuation to join words into a single token : " + word);
             }
@@ -135,13 +135,13 @@ namespace BasicTypes
             if (string.IsNullOrWhiteSpace(value)) return false;
 
             string lowerWord = value.ToLowerInvariant();
-            return lowerWord.All(c => "jklmnpstwaeiou".Contains(c));
+            return lowerWord.All(c => "jklmnpstwaeiou".ContainsCheck(c));
         }
 
         public  static bool ValidateCompoundWordLetterSet(string value)
         {
             string lowerWord = value.ToLowerInvariant();
-            return lowerWord.All(c => "jklmnpstwaeiou-".Contains(c));
+            return lowerWord.All(c => "jklmnpstwaeiou-".ContainsCheck(c));
         }
 
         public  string ListInvalidCharacters(string value)
@@ -151,7 +151,7 @@ namespace BasicTypes
             List<string> wrongOnes = new List<string>();
             foreach (char c in lowerWord)
             {
-                if (!"jklmnpstwaeiou".Contains(c))
+                if (!"jklmnpstwaeiou".ContainsCheck(c))
                 {
                     wrongOnes.Add(c.ToString());
                 }
@@ -165,7 +165,7 @@ namespace BasicTypes
             {
                 return CheckIsValidPhonology(word);
 
-                //return lowerWord.All(c => "jklmnpstwaeiou".Contains(c));
+                //return lowerWord.All(c => "jklmnpstwaeiou".ContainsCheck(c));
             }
         }
 
@@ -195,7 +195,7 @@ namespace BasicTypes
             //Invalid syllables.: "ji", "wu", "wo", "ti", "nm", "nn"
             foreach (string invalid in new string[] {"ji", "wu", "wo", "ti", "nm", "nn"})
             {
-                if (value.Contains(invalid))
+                if (value.ContainsCheck(invalid))
                 {
                     return false;
                 }
@@ -220,13 +220,13 @@ namespace BasicTypes
         {
             get
             {
-                return word.All(c => "1234567890-.#".Contains(c));
+                return word.All(c => "1234567890-.#".ContainsCheck(c));
             }
         }
 
         public bool CheckIsCompoundWord(string prospectiveWord)
         {
-            if (!prospectiveWord.Contains("-"))
+            if (!prospectiveWord.ContainsCheck("-"))
             {
                 return false;
             }
@@ -254,23 +254,23 @@ namespace BasicTypes
                 toCheck =value.Substring(1);
             }
 
-            if (toCheck.All(c => "1234567890-.".Contains(c)))
+            if (toCheck.All(c => "1234567890-.".ContainsCheck(c)))
             {
                 return true;
             }
 
             //Most likely a roman number, eg. nanpa MMLW
-            if (toCheck.All(c => "WTLMA".Contains(c)))
+            if (toCheck.All(c => "WTLMA".ContainsCheck(c)))
             {
                 return true;
             }
             bool allPartsAreNumbers =true;
             foreach (string part in toCheck.Split(new char[]{'-'}))
             {
-                if (Token.RealStupidNumbers.Contains(part))continue; 
+                if (Token.RealStupidNumbers.Contains(part))continue;
                 if (Token.StupidNumbers.Contains(part)) continue;
-                if(Token.HalfStupidNumbers.Contains(part)) continue;
-                if(Token.BodyNumbers.Contains(part)) continue;
+                if (Token.HalfStupidNumbers.Contains(part)) continue;
+                if (Token.BodyNumbers.Contains(part)) continue;
                 allPartsAreNumbers=false;
             }
 
@@ -293,7 +293,7 @@ namespace BasicTypes
             {
                 return false;
             }
-            
+
             return Particles.Conjunctions.Contains(prospectiveWord);
         }
 
@@ -354,7 +354,7 @@ namespace BasicTypes
 
         public bool ContainedBy(string phrase)
         {
-            if (!phrase.Contains(phrase))
+            if (!phrase.ContainsCheck(phrase))
             {
                 return false;
             }
@@ -392,11 +392,11 @@ namespace BasicTypes
         /// <returns></returns>
         public static bool IsForeign(string s)
         {
-            if (s.StartCheck("\"") && s.EndCheck("\"") && !s.Contains(" "))
+            if (s.StartCheck("\"") && s.EndCheck("\"") && !s.ContainsCheck(" "))
             {
                 return true;
             }
-            if(!s.Contains(" ") && s.Contains("*"))
+            if(!s.ContainsCheck(" ") && s.ContainsCheck("*"))
             {
                 return true;
             }

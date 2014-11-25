@@ -117,7 +117,7 @@ namespace BasicTypes.Parser
                     {
                         string normalized = Normalizer.NormalizeText(original, dialect);
                         string result = NormalizeNumbers.FindNumbers(normalized);
-                        if (result.Contains("#"))
+                        if (result.ContainsCheck("#"))
                         {
                             Console.WriteLine("O: " + original);
                             Console.WriteLine("N: " + normalized);
@@ -175,7 +175,7 @@ namespace BasicTypes.Parser
                     structured = pu.ParsedSentenceFactory(normalized, original);
                     string diag = structured.ToString("b");
 
-                    //if ((normalized.Contains("%ante"))) continue; //verb!
+                    //if ((normalized.ContainsCheck("%ante"))) continue; //verb!
 
                     Console.WriteLine("O: " + (original ?? "").Trim(new[] { '\n', '\r', ' ', '\t' }));
                     Console.WriteLine("B: " + diag);
@@ -183,7 +183,7 @@ namespace BasicTypes.Parser
                     //}
                     //catch (Exception ex)
                     //{
-                    //    if (ex.Message.Contains("all tests"))
+                    //    if (ex.Message.ContainsCheck("all tests"))
                     //    {
                     //        Console.WriteLine("ORIGINAL  : " + original);
                     //        if (structured != null)
@@ -242,7 +242,7 @@ namespace BasicTypes.Parser
                     structured = pu.ParsedSentenceFactory(normalized, original);
                     string diag = structured.ToString("b");
 
-                    //if ((normalized.Contains("%ante"))) continue; //verb!
+                    //if ((normalized.ContainsCheck("%ante"))) continue; //verb!
 
                     Console.WriteLine("O: " + (original ?? "").Trim(new[] { '\n', '\r', ' ', '\t' }));
                     Console.WriteLine("B: " + diag);
@@ -250,7 +250,7 @@ namespace BasicTypes.Parser
                     //}
                     //catch (Exception ex)
                     //{
-                    //    if (ex.Message.Contains("all tests"))
+                    //    if (ex.Message.ContainsCheck("all tests"))
                     //    {
                     //        Console.WriteLine("ORIGINAL  : " + original);
                     //        if (structured != null)
@@ -292,7 +292,7 @@ namespace BasicTypes.Parser
                     {
                         string normalized = Normalizer.NormalizeText(original, dialect);
                         if (string.IsNullOrWhiteSpace(normalized) && !string.IsNullOrWhiteSpace(original)
-                            && !new String[] { ".", ":", "?", "!", "'.", "'!", "\".", "''.", ").","\"«" }.Contains(original.Trim()))
+                            && !new String[] { ".", ":", "?", "!", "'.", "'!", "\".", "''.", ").", "\"«" }.Contains(original.Trim()))
                         //BUG:happens when we have ni li ni?:  or ni li ni...
                         //BUG:Any maybe 'ni li ni?' or 'ni li ni'? are failing due to quotes
                         {
@@ -304,7 +304,7 @@ namespace BasicTypes.Parser
                         structured = pu.ParsedSentenceFactory(normalized, original);
                         string diag = structured.ToString("b");
 
-                        //if ((normalized.Contains("%ante"))) continue; //verb!
+                        //if ((normalized.ContainsCheck("%ante"))) continue; //verb!
 
                         Console.WriteLine("O: " + (original??"").Trim(new []{'\n','\r',' ','\t'}));
                         Console.WriteLine("B: " + diag);
@@ -312,7 +312,7 @@ namespace BasicTypes.Parser
                     }
                     catch (Exception ex)
                     {
-                        if (ex.Message.Contains("all tests"))
+                        if (ex.Message.ContainsCheck("all tests"))
                         {
                             Console.WriteLine("ORIGINAL  : " + original);
                             if (structured != null)
@@ -373,10 +373,10 @@ namespace BasicTypes.Parser
                 string[] sentences = pu.ParseIntoNonNormalizedSentences(sample);
                 foreach (string sentence in sentences)
                 {
-                    if (sentence.Contains("Georgia"))
+                    if (sentence.ContainsCheck("Georgia"))
                     {
                         string result = Normalizer.NormalizeText(sentence, dialect);
-                        Assert.IsTrue(result.Contains("\"Georgia\""));
+                        Assert.IsTrue(result.ContainsCheck("\"Georgia\""));
                     }
                 }
 

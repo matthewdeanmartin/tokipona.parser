@@ -100,7 +100,7 @@ namespace BasicTypes.Parts
             //Really need a "probably is modifier"
             foreach (char c in text.ToLower())
             {
-                if (!"jklmnpstwaeiou".Contains(c))
+                if (!"jklmnpstwaeiou".ContainsCheck(c))
                 {
                     return false; //Foreign text. Really a different thing.
                 }
@@ -122,7 +122,7 @@ namespace BasicTypes.Parts
 
             foreach (char c in text)
             {
-                if (!"jklmnpstwaeiou".Contains(c))
+                if (!"jklmnpstwaeiou".ContainsCheck(c))
                 {
                     return false; //Foreign text. Really a different thing.
                 }    

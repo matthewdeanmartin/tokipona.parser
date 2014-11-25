@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using BasicTypes.Extensions;
 
 namespace BasicTypes.Parser
 {
@@ -25,7 +26,7 @@ namespace BasicTypes.Parser
                 throw new ArgumentException("Impossible to parse a null or zero length string.");
             }
             //HACK
-            if (value.Contains("-en-") && !value.Contains(" en "))
+            if (value.ContainsCheck("-en-") && !value.ContainsCheck(" en "))
             {
                 return new string[]{value};
             }
@@ -40,11 +41,11 @@ namespace BasicTypes.Parser
             {
                 throw new ArgumentException("Impossible to parse a null or zero length string.");
             }
-            if (value.Contains("-") &&  value.Contains("-pi-"))
+            if (value.ContainsCheck("-") &&  value.ContainsCheck("-pi-"))
             {
                 value = value.Replace("-pi-", "ZZZZZZZZZZZZ");
             }
-            if (value.Contains("*") && value.Contains("*pi*"))
+            if (value.ContainsCheck("*") && value.ContainsCheck("*pi*"))
             {
                 value = value.Replace("*pi*", "VVVVVVVVVVV");
             }
@@ -52,14 +53,14 @@ namespace BasicTypes.Parser
             string[] piLessTokens = splitOnPi.Split(value).Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x)).ToArray();
             for (int i = 0; i < piLessTokens.Length; i++)
             {
-                if (piLessTokens[i].Contains("ZZZZZZZZZZZZ"))
+                if (piLessTokens[i].ContainsCheck("ZZZZZZZZZZZZ"))
                 {
                     piLessTokens[i]=piLessTokens[i].Replace("ZZZZZZZZZZZZ", "-pi-");
                 }
             }
             for (int i = 0; i < piLessTokens.Length; i++)
             {
-                if (piLessTokens[i].Contains("VVVVVVVVVVV"))
+                if (piLessTokens[i].ContainsCheck("VVVVVVVVVVV"))
                 {
                     piLessTokens[i] = piLessTokens[i].Replace("VVVVVVVVVVV", "*pi*");
                 }
@@ -155,7 +156,7 @@ namespace BasicTypes.Parser
             //@"\s(?=\bkepeken\b|\bsama\b|\btawa\b|\btawa\b)"
             Regex splitOnEn = new Regex(@"\s(?=" + parts + ")");
             string[] prepTokens = splitOnEn.Split(value).Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x)).ToArray();
-            if (prepTokens.Any(x => x.Contains(" ~")))
+            if (prepTokens.Any(x => x.ContainsCheck(" ~")))
             {
                 throw new InvalidOperationException("Split failed");
             }
@@ -168,13 +169,13 @@ namespace BasicTypes.Parser
                 string prepToken = prepTokens[i];
                 //Change mind?
                 //HACK: Not sure why this happens
-                if (prepToken.Contains(" e "))
+                if (prepToken.ContainsCheck(" e "))
                 {
                     prepTokens[i] = prepToken.Replace("~", "");
                 }
                 //If the phrase is like, "li ~kepeken"  then it is an verb intr.
                 //Hard to distinguish from li kepken mute (vi.)
-                if (!prepToken.Trim().Contains(" "))
+                if (!prepToken.Trim().ContainsCheck(" "))
                 {
                     prepTokens[i] = prepToken.Replace("~", "");
                 }
