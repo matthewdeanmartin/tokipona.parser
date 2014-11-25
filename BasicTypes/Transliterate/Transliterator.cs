@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BasicTypes.Extensions;
 
 namespace BasicTypes.Transliterate
 {
@@ -86,7 +87,7 @@ namespace BasicTypes.Transliterate
 
             s = s.Replace("oo", "u");
 
-            if (s.StartsWith("kl"))
+            if (s.StartCheck("kl"))
                 s = s.Replace("kl", "s");
 
             //str in australia
@@ -105,7 +106,7 @@ namespace BasicTypes.Transliterate
             //Attempt to remove final silent e
             if (!how.IsFinalEPronounced)
             {
-                if (s.EndsWith("e"))
+                if (s.EndCheck("e"))
                 {
                     s = s.Substring(0, s.Length - 1);
                 }
@@ -143,7 +144,7 @@ namespace BasicTypes.Transliterate
                     throw new InvalidOperationException("Unknown preferred language");
             }
 
-            if (s.EndsWith("sh"))
+            if (s.EndCheck("sh"))
             {
                 s = s.Substring(0, s.Length - 2) + "si";
             }
@@ -151,7 +152,7 @@ namespace BasicTypes.Transliterate
 
             //replace final m (nasal) with n
 
-            if (s.EndsWith("m"))
+            if (s.EndCheck("m"))
             {
                 s = s.Substring(0, s.Length - 1) + "n";
             }
@@ -179,7 +180,7 @@ namespace BasicTypes.Transliterate
             {
                 while (IsConsonant(s.Substring(s.Length - 1, 1)))
                 {
-                    if (s.EndsWith("n"))
+                    if (s.EndCheck("n"))
                     {
                         break; // TODO: might not be correct. Was : Exit While
                     }
@@ -200,7 +201,7 @@ namespace BasicTypes.Transliterate
             s = s.Replace("wu", "u");
             sbTrace.AppendLine(s);
 
-            if (s.EndsWith("ja"))
+            if (s.EndCheck("ja"))
                 s = s.Replace("ja", "ya"); //Kenja
             else
             {
@@ -213,13 +214,13 @@ namespace BasicTypes.Transliterate
             if (how.VowelCluster == ClusterPreference.Split)
             {
 
-                if (s.EndsWith("ya")) //Libya
+                if (s.EndCheck("ya")) //Libya
                     s = s.Replace("ya", "ija");
 
-                if (s.EndsWith("ia")) //Italia
+                if (s.EndCheck("ia")) //Italia
                     s = s.Replace("ia", "ija");
 
-                if (s.EndsWith("ea")) //Etritrea
+                if (s.EndCheck("ea")) //Etritrea
                     s = s.Replace("ea", "eja");
 
                 //s = s.Replace("ie", "i");
@@ -260,7 +261,7 @@ namespace BasicTypes.Transliterate
             s = s.Replace("ea", "e"); //New Zealand -> i
             s = s.Replace("oo", "o"); //could also be u
 
-            if (s.StartsWith("au"))
+            if (s.StartCheck("au"))
                 s = s.Replace("au", "o"); //Australia
             else
                 s = s.Replace("au", "u"); //Maruitania
@@ -272,11 +273,11 @@ namespace BasicTypes.Transliterate
 
 
 
-            //If s.EndsWith(...nasal vowel...) then ' huh?
+            //If s.EndCheck(...nasal vowel...) then ' huh?
             // s = s.Substring(0, s.Length - 1) + "n"
             //End if
 
-            //If s.EndsWith(...voiceless later consonants...) then ' huh?
+            //If s.EndCheck(...voiceless later consonants...) then ' huh?
             // s = s.replace( vlc's,"s")
             //End if
 
@@ -309,7 +310,7 @@ namespace BasicTypes.Transliterate
             s = s.Replace("z", "s");
             s = s.Replace("y", "j"); //last ditch effort
 
-            if (s.StartsWith("h"))
+            if (s.StartCheck("h"))
                 s = s.Replace("h", "");
 
             //May create clusters

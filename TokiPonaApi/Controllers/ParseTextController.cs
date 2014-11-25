@@ -4,6 +4,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using BasicTypes;
+using BasicTypes.Collections;
+using BasicTypes.NormalizerCode;
 
 namespace TokiPonaApi.Controllers
 {
@@ -15,6 +18,17 @@ namespace TokiPonaApi.Controllers
     /// </remarks>
     public class ParseTextController : ApiController
     {
+
+        public string Get(string text)
+        {
+            Dialect d = Dialect.DialectFactory;
+            
+            string normalized = Normalizer.NormalizeText(text, d);
+            ParserUtils pu = new ParserUtils(d);
+            Sentence s=  pu.ParsedSentenceFactory(normalized, text);
+
+
+        }
 
     }
 }

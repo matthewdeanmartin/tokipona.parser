@@ -33,7 +33,7 @@ namespace BasicTypes.Extensions
 
         public static void AddIfNeeded(this List<string> list, string marker, string format)
         {
-            if (format.StartsWith("b"))
+            if (format.StartCheck("b"))
             {
                 list.Add(marker);
             }

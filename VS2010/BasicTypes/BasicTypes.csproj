@@ -40,12 +40,18 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
+    <Reference Include="Humanizer">
+      <HintPath>..\packages\Humanizer.1.31.0\lib\portable-win+net40+sl50+wp8+wpa81\Humanizer.dll</HintPath>
+    </Reference>
     <Reference Include="KellermanSoftware.Compare-NET-Objects">
       <HintPath>..\packages\CompareNETObjects.3.01.0.0\lib\net40\KellermanSoftware.Compare-NET-Objects.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NHunspell">
+      <HintPath>..\packages\NHunspell.1.2.5359.26126\lib\net\NHunspell.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
@@ -90,6 +96,15 @@
     <Compile Include="..\..\BasicTypes\Collections\CommonBehaviors.cs">
       <Link>Collections\CommonBehaviors.cs</Link>
     </Compile>
+    <Compile Include="..\..\BasicTypes\Collections\ComplexChain.cs">
+      <Link>Collections\ComplexChain.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\Collections\ComplexChainByValue.cs">
+      <Link>Collections\ComplexChainByValue.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\Collections\ComplexChainTests.cs">
+      <Link>Collections\ComplexChainTests.cs</Link>
+    </Compile>
     <Compile Include="..\..\BasicTypes\Collections\DirectSpeech.cs">
       <Link>Collections\DirectSpeech.cs</Link>
     </Compile>
@@ -129,6 +144,12 @@
     <Compile Include="..\..\BasicTypes\Collections\PrepositionalComplex.cs">
       <Link>Collections\PrepositionalComplex.cs</Link>
     </Compile>
+    <Compile Include="..\..\BasicTypes\Collections\PrepositionalPhrase.cs">
+      <Link>Collections\PrepositionalPhrase.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\Collections\PrepositionalPhraseTests.cs">
+      <Link>Collections\PrepositionalPhraseTests.cs</Link>
+    </Compile>
     <Compile Include="..\..\BasicTypes\Collections\Sentence.cs">
       <Link>Collections\Sentence.cs</Link>
     </Compile>
@@ -150,11 +171,17 @@
     <Compile Include="..\..\BasicTypes\Collections\SentenceTypeConverter.cs">
       <Link>Collections\SentenceTypeConverter.cs</Link>
     </Compile>
+    <Compile Include="..\..\BasicTypes\Collections\TagQuestion.cs">
+      <Link>Collections\TagQuestion.cs</Link>
+    </Compile>
     <Compile Include="..\..\BasicTypes\Collections\VerbPhrase.cs">
       <Link>Collections\VerbPhrase.cs</Link>
     </Compile>
     <Compile Include="..\..\BasicTypes\Collections\VerbPhraseTests.cs">
       <Link>Collections\VerbPhraseTests.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\Collections\WordList.cs">
+      <Link>Collections\WordList.cs</Link>
     </Compile>
     <Compile Include="..\..\BasicTypes\Collections\WordSet.cs">
       <Link>Collections\WordSet.cs</Link>
@@ -312,23 +339,32 @@
     <Compile Include="..\..\BasicTypes\MoreTypes\SerializableDictionary.cs">
       <Link>MoreTypes\SerializableDictionary.cs</Link>
     </Compile>
-    <Compile Include="..\..\BasicTypes\Normalizer\NormalizeChaos.cs">
-      <Link>Normalizer\NormalizeChaos.cs</Link>
+    <Compile Include="..\..\BasicTypes\NormalizerCode\NormalizeForeignText.cs">
+      <Link>Normalizer\NormalizeForeignText.cs</Link>
     </Compile>
-    <Compile Include="..\..\BasicTypes\Normalizer\Normalizer.cs">
+    <Compile Include="..\..\BasicTypes\NormalizerCode\NormalizeNumbers.cs">
+      <Link>Normalizer\NormalizeNumbers.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\NormalizerCode\Normalizer.cs">
       <Link>Normalizer\Normalizer.cs</Link>
     </Compile>
-    <Compile Include="..\..\BasicTypes\Normalizer\NormalizerTests.cs">
+    <Compile Include="..\..\BasicTypes\NormalizerCode\NormalizerTests.cs">
       <Link>Normalizer\NormalizerTests.cs</Link>
     </Compile>
     <Compile Include="..\..\BasicTypes\Parser\ParserUtils.cs">
       <Link>Parser\ParserUtils.cs</Link>
     </Compile>
+    <Compile Include="..\..\BasicTypes\Parser\ParserUtilsChallengePhrases.cs">
+      <Link>Parser\ParserUtilsChallengePhrases.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\Parser\ParserUtilsChallengeSentences.cs">
+      <Link>Parser\ParserUtilsChallengeSentences.cs</Link>
+    </Compile>
     <Compile Include="..\..\BasicTypes\Parser\ParserUtilsTestsRegex.cs">
       <Link>Parser\ParserUtilsTestsRegex.cs</Link>
     </Compile>
-    <Compile Include="..\..\BasicTypes\Parser\ParserUtilTests.cs">
-      <Link>Parser\ParserUtilTests.cs</Link>
+    <Compile Include="..\..\BasicTypes\Parser\ParserUtilsTestsStressTests.cs">
+      <Link>Parser\ParserUtilsTestsStressTests.cs</Link>
     </Compile>
     <Compile Include="..\..\BasicTypes\Parser\Splitters.cs">
       <Link>Parser\Splitters.cs</Link>
@@ -338,6 +374,9 @@
     </Compile>
     <Compile Include="..\..\BasicTypes\Parser\TokenParserUtils.cs">
       <Link>Parser\TokenParserUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\Parts\Comment.cs">
+      <Link>Parts\Comment.cs</Link>
     </Compile>
     <Compile Include="..\..\BasicTypes\Parts\CompoundWord.cs">
       <Link>Parts\CompoundWord.cs</Link>
@@ -360,11 +399,17 @@
     <Compile Include="..\..\BasicTypes\Parts\Neologism.cs">
       <Link>Parts\Neologism.cs</Link>
     </Compile>
-    <Compile Include="..\..\BasicTypes\Parts\Number.cs">
-      <Link>Parts\Number.cs</Link>
+    <Compile Include="..\..\BasicTypes\Parts\Numbers\EnumerateNumbers.cs">
+      <Link>Parts\Numbers\EnumerateNumbers.cs</Link>
     </Compile>
-    <Compile Include="..\..\BasicTypes\Parts\NumberTest.cs">
-      <Link>Parts\NumberTest.cs</Link>
+    <Compile Include="..\..\BasicTypes\Parts\Numbers\Number.cs">
+      <Link>Parts\Numbers\Number.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\Parts\Numbers\NumberTest.cs">
+      <Link>Parts\Numbers\NumberTest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\Parts\Numbers\ParseNumber.cs">
+      <Link>Parts\Numbers\ParseNumber.cs</Link>
     </Compile>
     <Compile Include="..\..\BasicTypes\Parts\Onomatopoeia.cs">
       <Link>Parts\Onomatopoeia.cs</Link>
@@ -432,10 +477,40 @@
     <Compile Include="..\..\BasicTypes\Services\Wobato.cs">
       <Link>Services\Wobato.cs</Link>
     </Compile>
+    <Compile Include="..\..\BasicTypes\Transliterate\Transliterator.cs">
+      <Link>Transliteration\Transliterator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\Transliterate\TransliteratorSupportTests.cs">
+      <Link>Transliteration\TransliteratorSupportTests.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\Transliterate\TransliteratorTests.cs">
+      <Link>Transliteration\TransliteratorTests.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="\\localhost\C%24\%40GMT-2014.11.20-05.07.33\Users\mmartin\code\GitHub\tokipona.parser\BasicTypes\Lorem\TextGenerator.cs">
+      <Link>LoremIpsum\TextGenerator.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="..\..\BasicTypes\en_US.aff">
+      <Link>en_US.aff</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\BasicTypes\en_US.dic">
+      <Link>en_US.dic</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Hunspellx64.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Hunspellx86.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />

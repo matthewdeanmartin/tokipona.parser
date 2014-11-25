@@ -19,7 +19,7 @@ kama?  ijo li ike tawa jan mute la, jan li ken ala toki e ijo ni?
 a, mi sona!  nanpa suli li ike tawa jan mute pi toki-pona.  tan ni,
 jan li ken ala toki e nanpa suli!
 
-taso jan li ken toki e ni: "meli li nasa e mije."
+taso jan li ken toki e ni: 'meli li nasa e mije.'
 
 mi pilin e ni: toki-pona li pona, taso ni li nasa.
 
@@ -89,8 +89,8 @@ jan Nijon. kulupu Tawito "[Taito]" li kama tan jan Juta, jan Mikale Kokan
 "[Michael Kogan]". nimi Taito lon toki Nijon li "jan Juta lon poka suno kama".
 tenpo pi utala suli pi nanpa tu la, jan Juta lon ma Lijatuwa en ma Posuka
 li tawa ma tomo Kope "[Kobe, Hyogo]" lon ma Nijon. jan Nasi li toki e ni:
-o moli e ona. taso jan lawa pi ma Nijon li toki e ni: "ni li ijo pi insa
-ma Nijon. o toki ala e ni." tenpo pini ni la, jan Juta li tawa ma tomo
+o moli e ona. taso jan lawa pi ma Nijon li toki e ni: 'ni li ijo pi insa
+ma Nijon. o toki ala e ni.' tenpo pini ni la, jan Juta li tawa ma tomo
 Sanka "[Shanghai, China under Japanese rule]". tan ni la jan Nasi li ken ala
 toki e ni sin.
 
@@ -116,7 +116,7 @@ kama tan soweli jan.  jan ante mute lili li wile e ni: jan Kolisu li
 ken ala toki pi nasin Kolisu.  utala toki li mute.  tan ni, jan mute
 li wile ala e ni: jan lawa li utala e ken toki.
 
-ijo pi jan Juta lon ma Nijon li "[interesting]" (mi sona ala toki e ni
+ijo pi jan Juta lon ma Nijon li "[interesting]". (mi sona ala toki e ni
 kepeken toki-pona).
 
 jan Sosuwa.

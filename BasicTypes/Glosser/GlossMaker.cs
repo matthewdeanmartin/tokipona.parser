@@ -106,13 +106,13 @@ namespace BasicTypes.Glosser
                     if (bit.Nominal != null)
                     {
                         string ordinaryTp = bit.ToString("g").Replace(" ", "-");
-                        if (!ordinaryTp.EndsWith("la"))
+                        if (!ordinaryTp.EndCheck("la"))
                         {
                             ordinaryTp = ordinaryTp + "-la";
                         }
                         CompoundWord cw = new CompoundWord(ordinaryTp);
                         string attempt = cw.TryGloss("en", "noun");
-                        if (!attempt.StartsWith("["))
+                        if (!attempt.StartCheck("["))
                         {
                             gloss.Add(attempt);
                         }
@@ -124,13 +124,13 @@ namespace BasicTypes.Glosser
                     else
                     {
                         string ordinaryTp = bit.ToString("g").Replace(" ", "-");
-                        if (!ordinaryTp.EndsWith("la"))
+                        if (!ordinaryTp.EndCheck("la"))
                         {
                             ordinaryTp = ordinaryTp + "-la";
                         }
                         CompoundWord cw = new CompoundWord(ordinaryTp);
                         string attempt = cw.TryGloss("en", "noun");
-                        if (!attempt.StartsWith("["))
+                        if (!attempt.StartCheck("["))
                         {
                             gloss.Add(attempt);
                         }
@@ -313,7 +313,7 @@ namespace BasicTypes.Glosser
             string firstAttempt = word.ToString(pos + ":" + includePos, config);
 
             //Don't want fall backs or it was fine.
-            if (!(config as Dialect).GlossWithFallBacks || !firstAttempt.StartsWith("[Error"))
+            if (!(config as Dialect).GlossWithFallBacks || !firstAttempt.StartCheck("[Error"))
             {
                 return firstAttempt;
             }
@@ -325,7 +325,7 @@ namespace BasicTypes.Glosser
                     string tryAgain = word.ToString(alt + ":" + includePos, config);
 
                     //Don't want fall backs or it was fine.
-                    if (!tryAgain.StartsWith("[Error"))
+                    if (!tryAgain.StartCheck("[Error"))
                     {
                         return tryAgain;
                     }
@@ -338,7 +338,7 @@ namespace BasicTypes.Glosser
                     string tryAgain = word.ToString(alt + ":" + includePos, config);
 
                     //Don't want fall backs or it was fine.
-                    if (!tryAgain.StartsWith("[Error"))
+                    if (!tryAgain.StartCheck("[Error"))
                     {
                         return tryAgain;
                     }
@@ -351,7 +351,7 @@ namespace BasicTypes.Glosser
                     string tryAgain = word.ToString(alt + ":" + includePos, config);
 
                     //Don't want fall backs or it was fine.
-                    if (!tryAgain.StartsWith("[Error"))
+                    if (!tryAgain.StartCheck("[Error"))
                     {
                         return tryAgain;
                     }
@@ -364,7 +364,7 @@ namespace BasicTypes.Glosser
                     string tryAgain = word.ToString(alt + ":" + includePos, config);
 
                     //Don't want fall backs or it was fine.
-                    if (!tryAgain.StartsWith("[Error"))
+                    if (!tryAgain.StartCheck("[Error"))
                     {
                         return tryAgain;
                     }
@@ -377,7 +377,7 @@ namespace BasicTypes.Glosser
                     string tryAgain = word.ToString(alt + ":" + includePos, config);
 
                     //Don't want fall backs or it was fine.
-                    if (!tryAgain.StartsWith("[Error"))
+                    if (!tryAgain.StartCheck("[Error"))
                     {
                         return tryAgain;
                     }
@@ -394,7 +394,7 @@ namespace BasicTypes.Glosser
                 string finalTryAgain = word.ToString(alt + ":" + includePos, config);
 
                 //Don't want fall backs or it was fine.
-                if (!finalTryAgain.StartsWith("[Error"))
+                if (!finalTryAgain.StartCheck("[Error"))
                 {
                     return finalTryAgain;
                 }

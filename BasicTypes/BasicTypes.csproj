@@ -162,20 +162,24 @@
     <Compile Include="MoreTypes\EnumerationThing.cs" />
     <Compile Include="MoreTypes\ParseOrDefault.cs" />
     <Compile Include="MoreTypes\SerializableDictionary.cs" />
-    <Compile Include="Normalizer\NormalizeForeignText.cs" />
-    <Compile Include="Normalizer\NormalizeNumbers.cs" />
-    <Compile Include="Normalizer\Normalizer.cs" />
-    <Compile Include="Normalizer\NormalizerTests.cs" />
+    <Compile Include="NormalizerCode\NormalizeForeignText.cs" />
+    <Compile Include="NormalizerCode\NormalizeNumbers.cs" />
+    <Compile Include="NormalizerCode\Normalizer.cs" />
+    <Compile Include="NormalizerCode\NormalizerTests.cs" />
     <Compile Include="Parser\ParserUtils.cs" />
     <Compile Include="Knowledge\PhoneNumbers.cs" />
     <Compile Include="Knowledge\PhoneNumberTests.cs" />
+    <Compile Include="Parser\ParserUtilsChallengePhrases.cs" />
+    <Compile Include="Parser\ParserUtilsChallengeSentences.cs" />
     <Compile Include="Parser\ParserUtilsTestsRegex.cs" />
-    <Compile Include="Parser\ParserUtilTests.cs" />
+    <Compile Include="Parser\ParserUtilsTestsStressTests.cs" />
     <Compile Include="Parser\Splitters.cs" />
     <Compile Include="Parser\StringInverseFormat.cs" />
     <Compile Include="Parser\TokenParserUtils.cs" />
+    <Compile Include="Parts\Comment.cs" />
     <Compile Include="Parts\CompoundWord.cs" />
     <Compile Include="Parts\CompoundWordsTest.cs" />
+    <Compile Include="Parts\ContentPhrase.cs" />
     <Compile Include="Parts\ConvertWordToBasicType.cs" />
     <Compile Include="Parts\ConvertWordToBasicTypeTests.cs" />
     <Compile Include="Parts\Neologism.cs" />
@@ -717,7 +721,7 @@
     <None Include="Hunspellx86.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <Content Include="Normalizer\Normalizer.html" />
+    <Content Include="NormalizerCode\Normalizer.html" />
     <Content Include="notes.html" />
     <Content Include="Parts\PartsComments.html" />
   </ItemGroup>

@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using BasicTypes.Extensions;
 
 namespace BasicTypes
 {
@@ -106,11 +107,6 @@ namespace BasicTypes
             }
         }
 
-        //public string ToString(string format)
-        //{
-        //    return ToString(format, CultureInfo.CurrentCulture);
-        //}
-
         //Dupe
         public string ToString(string format, IFormatProvider formatProvider)
         {
@@ -174,7 +170,7 @@ namespace BasicTypes
 
 
             string normalizeForLookup;
-            if (Text.StartsWith("~"))
+            if (Text.StartCheck("~"))
             {
                 normalizeForLookup = Text.Substring(1);
                 //pos should be prep!
@@ -282,7 +278,7 @@ namespace BasicTypes
                 return false;
             }
             string[] parts = phrase.Split(new string[] { " ", Environment.NewLine, ".", "!", "?" }, StringSplitOptions.RemoveEmptyEntries);
-            var preps = dictionary.Where(z => z.StartsWith("~"));
+            var preps = dictionary.Where(z => z.StartCheck("~"));
 
             foreach (string prep in preps)
             {

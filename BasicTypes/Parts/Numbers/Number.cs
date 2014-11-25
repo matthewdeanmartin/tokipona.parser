@@ -4,6 +4,7 @@ using System.Linq;
 //using System.Runtime.DesignerServices;
 using System.Text;
 using System.Threading.Tasks;
+using BasicTypes.Extensions;
 using NUnit.Framework;
 
 namespace BasicTypes.Parts
@@ -27,7 +28,7 @@ namespace BasicTypes.Parts
             {
                 throw new ArgumentException("Too short to be a word.");
             }
-            if (word.StartsWith("#"))
+            if (word.StartCheck("#"))
             {
                 this.word = word.Substring(1);
             }

@@ -1,13 +1,13 @@
 ma Mewika li pona anu ma Ilan li pona?
-by Gustaf Mjolnir-Cohen » Thu Feb 15, 2007 10:06 am
+///"by Gustaf Mjolnir-Cohen » Thu Feb 15, 2007 10:06 am"
 
 
 jan lawa pi ma Mewika li utala toki e jan lawa ma Ilan.
 
-jan lawa pi ma Mewika li toki e ni: "jan Mewika li wile pali e ijo la,
-li ken pali e ijo.  taso la, jan Ilan ken ala".
+jan lawa pi ma Mewika li toki e ni: 'jan Mewika li wile pali e ijo la,
+li ken pali e ijo.  taso la, jan Ilan ken ala'.
 
-jan Mewika li ken pali e ni: toki e "jan lawa pi ma Mewike li ike mute!"
+jan Mewika li ken pali e ni: jan li toki e ni: 'jan lawa pi ma Mewike li ike mute!'
 
-jan lawa pi ma Ilan li toki e ni: "a! ma Ilan li sama.  kin la jan Ilan
-mute li ken toki e ni: jan lawa pi ma Mewike li ike mute!"
+jan lawa pi ma Ilan li toki e ni: 'a! ma Ilan li sama.  kin la jan Ilan
+mute li ken toki e ni: jan lawa pi ma Mewike li ike mute!'

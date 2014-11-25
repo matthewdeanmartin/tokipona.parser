@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using BasicTypes.Exceptions;
+using BasicTypes.Extensions;
 using BasicTypes.Transliterate;
 
 namespace BasicTypes.Parts
@@ -35,7 +36,7 @@ namespace BasicTypes.Parts
             {
                 throw new ArgumentNullException("word", "Normalized foreign words and phrases can have *, but no spaces [" + word + "]");
             }
-            if (!(word.EndsWith("\"") && word.StartsWith("\"")))
+            if (!(word.EndCheck("\"") && word.StartCheck("\"")))
             {
                 throw new InvalidLetterSetException("Must be bracketed by double quotes ["+ word +"]");
             }

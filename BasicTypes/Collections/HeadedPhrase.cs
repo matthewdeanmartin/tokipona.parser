@@ -117,7 +117,8 @@ namespace BasicTypes
                     throw new InvalidOperationException("Degenerate modifiers-- doubles " + modifiers);
                 }
             }
-            if (modifiers != null && modifiers.Count > 5)
+            //5 about never gets false positives.
+            if (modifiers != null && modifiers.Count > 3)
             {
                 if (head.Text == "nanpa")
                 {

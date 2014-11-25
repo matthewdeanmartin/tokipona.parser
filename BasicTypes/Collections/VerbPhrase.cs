@@ -178,12 +178,12 @@ namespace BasicTypes.Collections
                     List<string> list = modals.ToTokenList(format, formatProvider);
                     if (list.Count > 0)
                     {
-                        if (format.StartsWith("b"))
+                        if (format.StartCheck("b"))
                         {
                             sb.Add("\\");
                         }
                         sb.AddRange(list);
-                        if (format.StartsWith("b"))
+                        if (format.StartCheck("b"))
                         {
                             sb.Add("/");
                         }
@@ -191,7 +191,7 @@ namespace BasicTypes.Collections
                 }
 
                 string verbMarker = string.Empty;
-                if (format.StartsWith("b"))
+                if (format.StartCheck("b"))
                 {
                     verbMarker = isVerbTransitive ? "%%" : "%";
                 }
@@ -203,12 +203,12 @@ namespace BasicTypes.Collections
                     List<string> list = adverbs.ToTokenList(format, formatProvider);
                     if (list.Count > 0)
                     {
-                        if (format.StartsWith("b"))
+                        if (format.StartCheck("b"))
                         {
                             sb.Add("\\");
                         }
                         sb.AddRange(list);
-                        if (format.StartsWith("b"))
+                        if (format.StartCheck("b"))
                         {
                             sb.Add("/");
                         }

@@ -7,6 +7,7 @@ using AutoMapper.Mappers;
 using BasicTypes.Corpus;
 using BasicTypes.Extensions;
 using BasicTypes.Parser;
+using BasicTypes.NormalizerCode;
 using BasicTypes.Parts;
 using NUnit.Framework;
 

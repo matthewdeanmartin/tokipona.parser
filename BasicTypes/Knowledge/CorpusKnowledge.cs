@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using BasicTypes.Collections;
+using BasicTypes.NormalizerCode;
 using BasicTypes.Parser;
 using NUnit.Framework.Constraints;
 

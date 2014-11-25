@@ -6,7 +6,10 @@ using BasicTypes.Collections;
 using BasicTypes.CollectionsDegenerate;
 using BasicTypes.Exceptions;
 using BasicTypes.Extensions;
+using BasicTypes.NormalizerCode;
 using BasicTypes.Parser;
+using BasicTypes.Parts;
+using NUnit.Framework.Constraints;
 
 namespace BasicTypes
 {
@@ -113,21 +116,33 @@ namespace BasicTypes
                 throw new InvalidOperationException("Don't give me a null sentence. Can't tell if null sentence is from input or got lost in translation");
             }
 
+            if (sentence.StartCheck(" "))
+            {
+                throw new InvalidOperationException("Don't give me a sentence that leads with whitespace, I don't want to do defensive Trim() all day.");
+            }
+
+            if (sentence.StartCheck("///"))
+            {
+                Comment c = new Comment(sentence);
+                return new Sentence(c);
+            }
+
             string preNormalize = string.Copy(sentence);
-            if (sentence.EndsWith(" li") || sentence.EndsWith(" li."))
+            if (sentence.EndCheck(" li") || sentence.EndCheck(" li."))
             {
                 throw new InvalidOperationException("Something went wrong, sentence ends with li");
             }
-            sentence = Normalizer.NormalizeText(sentence, config); //Any way to avoid calling this twice?
+            //Normalization is really expensive. We must stop calling it twice.
+            //sentence = Normalizer.NormalizeText(sentence, config); //Any way to avoid calling this twice?
             
             bool startsQuotedSpeech;
             bool endsQuotedSpeech;
-            if (sentence.StartsWith("«"))
+            if (sentence.StartCheck("«"))
             {
                 startsQuotedSpeech = true;
                 sentence = sentence.Replace("«", " ").Trim();
             }
-            if (sentence.StartsWith("»"))
+            if (sentence.StartCheck("»"))
             {
                 endsQuotedSpeech = true;
                 sentence = sentence.Replace("»", " ").Trim();
@@ -135,7 +150,7 @@ namespace BasicTypes
             //TODO: do something with quoted speech. Big problem #1 it spans multiple sentences
 
 
-            if (sentence.EndsWith(" "))
+            if (sentence.EndCheck(" "))
             {
                 throw new InvalidOperationException("Normalizer failed to trim");
             }
@@ -187,7 +202,7 @@ namespace BasicTypes
                     if (i == 1)
                     {
                         //Head sentence.
-                        // subSentence.StartsWith("la ") ? subSentence.Substring(3) : subSentence
+                        // subSentence.StartCheck("la ") ? subSentence.Substring(3) : subSentence
                         string laLessString = subSentence.RemoveLeadingWholeWord("la");
                         headSentence = ProcessSimpleSentence(laLessString, punctuation, original);
                         continue; //Not dealing with "kin la!"
@@ -209,7 +224,7 @@ namespace BasicTypes
                     {
                         string laLessString = subSentence.RemoveLeadingWholeWord("la");
                         Fragment fragment;
-                        if (laLessString.StartsWith("~"))
+                        if (laLessString.StartCheck("~"))
                         {
                             string[] parts = Splitters.SplitOnPrepositions(laLessString);
                             fragment = new Fragment(ProcessPrepositionalPhrases(parts).ToArray());
@@ -255,28 +270,28 @@ namespace BasicTypes
         public Sentence ProcessSimpleSentence(string sentence, Punctuation punctuation, string original)
         {
             Particle conjunction = null;
-            if (sentence.StartsWith("taso "))
+            if (sentence.StartCheck("taso "))
             {
                 conjunction = Particles.taso;
                 sentence = sentence.Substring(5);
             }
-            else if (sentence.StartsWith("anu "))
+            else if (sentence.StartCheck("anu "))
             {
                 conjunction = Particles.anu;
                 sentence = sentence.Substring(4);
             }
-            //else if (sentence.StartsWith("en ")) //is this legal?
+            //else if (sentence.StartCheck("en ")) //is this legal?
             //{
             //    conjunction = Particles.en;
             //    sentence = sentence.Substring(4);
             //}
-            else if (sentence.StartsWith("ante ")) //never seen it.
+            else if (sentence.StartCheck("ante ")) //never seen it.
             {
                 conjunction = Particles.ante;
                 sentence = sentence.Substring(5);
             }
 
-            if (sentence.EndsWith(" li"))
+            if (sentence.EndCheck(" li"))
             {
                 throw new InvalidOperationException("Something went wrong-- sentenc ends with li. " + sentence);
 
@@ -288,13 +303,13 @@ namespace BasicTypes
 
             bool isHortative = false;
             bool isImperative = false;
-            if (sentence.StartsWith("o ") && sentence.Contains(" li "))
+            if (sentence.StartCheck("o ") && sentence.Contains(" li "))
             {
                 //o mi mute li moku
                 isHortative = true;
                 sentence = sentence.RemoveLeadingWholeWord("o");
             }
-            if (sentence.StartsWith("o ") && !sentence.Contains(" li "))
+            if (sentence.StartCheck("o ") && !sentence.Contains(" li "))
             {
                 //o pana e pan
                 isImperative = true;
@@ -351,7 +366,7 @@ namespace BasicTypes
             ComplexChain subjectChain = null;
             int startAt = 1; //slot 0 is normally a subject
 
-            if (subjects.StartsWith("o "))
+            if (subjects.StartCheck("o "))
             {
                 //This is a verb phrase with implicit subjects!
                 startAt = 0;
@@ -427,7 +442,7 @@ namespace BasicTypes
             {
                 throw new ArgumentException("Can't parse null/empty subjects");
             }
-            if (value.Contains(" la ") || value.EndsWith(" la"))
+            if (value.Contains(" la ") || value.EndCheck(" la"))
             {
                 throw new ArgumentException("Contains la. This isn't possible in a pi chain.");
             }
@@ -581,7 +596,7 @@ namespace BasicTypes
                 string[] toUse;
                 if (partsWithPreps != null)
                 {
-                    toUse = partsWithPreps.Where(x => x.StartsWith("e ")).ToArray();
+                    toUse = partsWithPreps.Where(x => x.StartCheck("e ")).ToArray();
                 }
                 else
                 {
@@ -698,7 +713,9 @@ namespace BasicTypes
                 //modals until used up. Strictly by dictionary.
                 if (headVerb == null)
                 {
+                    //HACK: ala & kin, are modifiers with range over 1 word (or it helps to sometimes think so)
                     if (Token.IsModal(token))
+                        //|| token == "ala" || token == "kin")
                     {
                         modals.Add(token);
                         continue;

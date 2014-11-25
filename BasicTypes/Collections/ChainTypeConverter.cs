@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BasicTypes.Extensions;
 using BasicTypes.Parser;
 
 namespace BasicTypes.Collections
@@ -51,7 +52,7 @@ namespace BasicTypes.Collections
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
-            if (item.Contains(" e ") || item.StartsWith("e "))
+            if (item.Contains(" e ") || item.StartCheck("e "))
             {
                 throw new NotImplementedException("Need a pi chain processor");
             }

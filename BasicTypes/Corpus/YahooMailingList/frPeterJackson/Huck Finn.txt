@@ -1,9 +1,9 @@
-jan Pita
+jan Pita.
 
-pali suli pi jan Akapeli Pin
-sitelen pi jan Maka Tuwen
+pali suli pi jan Akapeli Pin.
+sitelen pi jan Maka Tuwen.
 
-sitelen lawa nanpa wan
+sitelen lawa nanpa wan.
 
 sina lukin ala e sitelen pi nimi "pali suli pi jan Tama Saja" la
 sina kute ala e nimi mi. taso ni li suli ala. jan Maka Tuwen li
@@ -84,12 +84,12 @@ ala e pona.
 tenpo ni la ona kama toki li toki kin tawa mi e nasin ma pona. ona
 toki e ni: ma ni la jan li wile taso kalama kepeken ilo linja li
 kalama musi uta. mi pilin ala suli tan ona. taso tenpo ala la mi
-toki e ona. mi toki e ni tawa jan Wason: ona pilin ala pilin e ni:
+toki e ona. mi toki e ni tawa jan Wason: ona li pilin ala pilin e ni:
 jan Tama li tawa ala tawa lon ma ni. ona li toki e ni: ken mute la
 jan Tama li tawa ala lon ma ni. mi pilin pona tan ona tan ni: mi
 wile lon poka jan Tama.
 
-tenpo sin la jan Wason li pakala mi. mi pilin wala ala li pilin ike.
+tenpo sin la jan Wason li pakala mi. mi pilin +wala ala li pilin ike.
 tenpo lili pini la jan li kulupu e jan pimeja li toki tawa jan sewi.
 tenpo ni la jan ale li tawa li kama lape. mi jo e palisa suno li
 tawa lon tomo mi li pana e palisa suno lon supa. mi tawa lon supa

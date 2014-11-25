@@ -8,6 +8,7 @@ using System.Runtime.ConstrainedExecution;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
+using BasicTypes.Extensions;
 using NUnit.Framework;
 
 namespace BasicTypes.Dictionary
@@ -99,7 +100,7 @@ namespace BasicTypes.Dictionary
                             }
                             for (int i = 0; i < reader.FieldCount - 1; i++)
                             {
-                                if (reader.GetName(i).EndsWith(" "))
+                                if (reader.GetName(i).EndCheck(" "))
                                 {
                                     throw new InvalidOperationException("Invalid file format, column ends in significant white space : " + reader.GetName(i));
                                 }

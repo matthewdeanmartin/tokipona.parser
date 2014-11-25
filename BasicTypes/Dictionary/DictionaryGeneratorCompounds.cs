@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using BasicTypes.Extensions;
 using NUnit.Framework;
 
 namespace BasicTypes.Dictionary
@@ -85,10 +86,10 @@ namespace BasicTypes.Dictionary
                                 if (prospectiveWord.Contains("A")) continue;//template
                                 if (prospectiveWord.Contains("B")) continue;//template
 
-                                if (prospectiveWord.EndsWith(" e ")) continue;//template ... 
-                                if (prospectiveWord.EndsWith(" e")) continue;//template ... 
-                                if (prospectiveWord.EndsWith(" pi")) continue;//template ... varies depending on what follows pi
-                                if (prospectiveWord.EndsWith(" la")) continue;//la fragment...  This means this ONLY when in la positions, so it is a type of template [...] la X => as for [...] X is true.
+                                if (prospectiveWord.EndCheck(" e ")) continue;//template ... 
+                                if (prospectiveWord.EndCheck(" e")) continue;//template ... 
+                                if (prospectiveWord.EndCheck(" pi")) continue;//template ... varies depending on what follows pi
+                                if (prospectiveWord.EndCheck(" la")) continue;//la fragment...  This means this ONLY when in la positions, so it is a type of template [...] la X => as for [...] X is true.
 
                                 if (prospectiveWord.Contains(",")) continue;//make up your mind
                                 if (prospectiveWord.Contains("/")) continue;//make up your mind
@@ -119,7 +120,7 @@ namespace BasicTypes.Dictionary
                             }
                             for (int i = 0; i < reader.FieldCount - 1; i++)
                             {
-                                if (reader.GetName(i).EndsWith(" "))
+                                if (reader.GetName(i).EndCheck(" "))
                                 {
                                     throw new InvalidOperationException(
                                         "Invalid file format, column ends in significant white space : " +
@@ -154,10 +155,10 @@ namespace BasicTypes.Dictionary
                                 if (prospectiveWord.Contains("A")) continue;//template
                                 if (prospectiveWord.Contains("B")) continue;//template
 
-                                if (prospectiveWord.EndsWith(" e ")) continue;//template ... 
-                                if (prospectiveWord.EndsWith(" e")) continue;//template ... 
-                                if (prospectiveWord.EndsWith(" pi")) continue;//template ... varies depending on what follows pi
-                                if (prospectiveWord.EndsWith(" la")) continue;//la fragment...  This means this ONLY when in la positions, so it is a type of template [...] la X => as for [...] X is true.
+                                if (prospectiveWord.EndCheck(" e ")) continue;//template ... 
+                                if (prospectiveWord.EndCheck(" e")) continue;//template ... 
+                                if (prospectiveWord.EndCheck(" pi")) continue;//template ... varies depending on what follows pi
+                                if (prospectiveWord.EndCheck(" la")) continue;//la fragment...  This means this ONLY when in la positions, so it is a type of template [...] la X => as for [...] X is true.
 
                                 if (prospectiveWord.Contains(",")) continue;//make up your mind
                                 if (prospectiveWord.Contains("/")) continue;//make up your mind

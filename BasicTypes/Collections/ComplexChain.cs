@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BasicTypes.Extensions;
 using NUnit.Framework.Constraints;
-using Polenter.Serialization.Advanced.Serializing;
+//using Polenter.Serialization.Advanced.Serializing;
 
 namespace BasicTypes.Collections
 {
@@ -221,7 +221,7 @@ namespace BasicTypes.Collections
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
-            if (value.Contains(" e ") || value.StartsWith("e "))
+            if (value.Contains(" e ") || value.StartCheck("e "))
             {
                 throw new NotImplementedException();
                 //return pu.ProcessEnPiChain(value);

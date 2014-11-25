@@ -6,6 +6,7 @@ using System.Runtime.Remoting.Messaging;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using BasicTypes.Extensions;
 using BasicTypes.Parser;
 using KellermanSoftware.CompareNetObjects;
 
@@ -52,7 +53,7 @@ namespace BasicTypes
         //https://stackoverflow.com/questions/5490824/should-constructors-comply-with-the-liskov-substitution-principle
         public Token(string word, bool iAmAPrepositionChain = false)
         {
-            if (word.EndsWith(" ") && word!=" ")
+            if (word.EndCheck(" ") && word!=" ")
             {
                 throw new InvalidOperationException("Untrimmed word.");
             }
@@ -82,19 +83,19 @@ namespace BasicTypes
 
         protected string ProcessPuncuation(string token)
         {
-            if (token.EndsWith(","))
+            if (token.EndCheck(","))
             {
                 postComma = true;
             }
-            if (token.StartsWith(","))
+            if (token.StartCheck(","))
             {
                 preComma = true;
             }
-            if (token.EndsWith("»"))
+            if (token.EndCheck("»"))
             {
                 postQuote = true;
             }
-            if (token.StartsWith("«"))
+            if (token.StartCheck("«"))
             {
                 preQuote = true;
             }
@@ -248,7 +249,7 @@ namespace BasicTypes
         public bool CheckIsNumber(string value)
         {
             string toCheck = value;
-            if (value.StartsWith("#"))
+            if (value.StartCheck("#"))
             {
                 toCheck =value.Substring(1);
             }
@@ -302,7 +303,7 @@ namespace BasicTypes
             {
                 return false;
             }
-            if (!prospectiveWord.StartsWith("~"))
+            if (!prospectiveWord.StartCheck("~"))
             {
                 return false;
             }
@@ -319,7 +320,7 @@ namespace BasicTypes
                 return false;
             }
 
-            if (value.StartsWith("#") || value.StartsWith("\"") || value.StartsWith("~"))
+            if (value.StartCheck("#") || value.StartCheck("\"") || value.StartCheck("~"))
             {
                 //number, foreign text, preposition respectively.
                 return false;
@@ -391,7 +392,7 @@ namespace BasicTypes
         /// <returns></returns>
         public static bool IsForeign(string s)
         {
-            if (s.StartsWith("\"") && s.EndsWith("\"") && !s.Contains(" "))
+            if (s.StartCheck("\"") && s.EndCheck("\"") && !s.Contains(" "))
             {
                 return true;
             }

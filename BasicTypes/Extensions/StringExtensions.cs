@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
 
@@ -11,6 +12,33 @@ namespace BasicTypes.Extensions
 {
     public static class StringExtensions
     {
+        public static bool ContainsCheck(this string value, string middle)
+        {
+            //http://cc.davelozinski.com/c-sharp/fastest-way-to-check-if-a-string-occurs-within-a-string
+            if(((value.Length - value.Replace(middle, String.Empty).Length) / middle.Length)>0)
+            {
+                return true;
+            }
+            return false;
+
+        }
+
+        public static bool StartCheck(this string value, string leadToken)
+        {
+            //Perf trace said this was surprisingly slow.
+
+            //https://stackoverflow.com/questions/484796/more-efficient-way-to-determine-if-a-string-starts-with-a-token-from-a-set-of-to
+            return value.StartsWith(leadToken, StringComparison.Ordinal);
+        }
+
+        public static bool EndCheck(this string value, string endToken)
+        {
+            //Perf trace said this was surprisingly slow.
+
+            //https://stackoverflow.com/questions/484796/more-efficient-way-to-determine-if-a-string-starts-with-a-token-from-a-set-of-to
+            return value.EndsWith(endToken, StringComparison.Ordinal);
+        }
+
         public static string Remove(this string value, string letters)
         {
             StringBuilder sb = new StringBuilder(value.Length);
@@ -21,7 +49,10 @@ namespace BasicTypes.Extensions
             }
             return sb.ToString();
         }
-
+        public static bool ContainsWholeWord(this string value, string word)
+        {
+            return Regex.IsMatch(value,@"\b" + word + @"\b");
+        }
         public static bool ContainsLetter(this string value, string letters)
         {
             return value != null && letters.Any(value.Contains);
@@ -46,7 +77,7 @@ namespace BasicTypes.Extensions
                 if (value.Contains(white))
                 {
                     string wordWithWhite = word + white;
-                    value = value.StartsWith(wordWithWhite) ? value.Substring(wordWithWhite.Length) : value;    
+                    value = value.StartCheck(wordWithWhite) ? value.Substring(wordWithWhite.Length) : value;    
                 }
             }
             return value;
@@ -60,11 +91,11 @@ namespace BasicTypes.Extensions
             }
             foreach (var white in new string[] {" ","\n" })
             {
-                if (value.StartsWith(target + white))
+                if (value.StartCheck(target + white))
                 {
                     return true;
                 }
-                if (value.EndsWith(white + target))
+                if (value.EndCheck(white + target))
                 {
                     return true;
                 }

@@ -7,6 +7,7 @@ using BasicTypes.Collections;
 using BasicTypes.CollectionsDegenerate;
 using BasicTypes.Exceptions;
 using BasicTypes.Extensions;
+using BasicTypes.Parts;
 
 namespace BasicTypes
 {
@@ -43,6 +44,8 @@ namespace BasicTypes
         [DataMember]
         private readonly Exclamation exclamation;//Degenerate sentence, maybe should be a subclass?
 
+        [DataMember]
+        private readonly Comment comment;
 
         [DataMember]
         private readonly Fragment fragment;
@@ -55,6 +58,11 @@ namespace BasicTypes
 
         [DataMember]
         private readonly string normalized;
+
+        public Sentence(Comment comment)
+        {
+            this.comment = comment;
+        }
 
         public Sentence(Sentence[] preconditions = null, Sentence conclusion = null, string original = null, string normalized = null)
         {
@@ -241,6 +249,14 @@ namespace BasicTypes
             {
                 format = "g";
             }
+
+            if (comment != null)
+            {
+                //We don't do anything fancy.
+                //(Maybe suppress?)
+                return comment.ToString(format, formatProvider);
+            }
+
             List<string> sb = new List<string>();
             string spaceJoined;
             if (preconditions != null)
@@ -330,7 +346,7 @@ namespace BasicTypes
                 spaceJoined =result;
             }
 
-            if (spaceJoined.EndsWith("..") || spaceJoined.EndsWith("??") || spaceJoined.EndsWith("::") || spaceJoined.EndsWith("!!"))
+            if (spaceJoined.EndCheck("..") || spaceJoined.EndCheck("??") || spaceJoined.EndCheck("::") || spaceJoined.EndCheck("!!"))
             {
                 //HACK: WHY?!
                 spaceJoined = spaceJoined.Substring(0, spaceJoined.Length - 1);
@@ -406,7 +422,7 @@ namespace BasicTypes
 
         private bool NeedToReplace(string value, string pronoun)
         {
-            bool startsWith = value.Contains(pronoun+ " li") && value.StartsWith(pronoun+ " ");
+            bool startsWith = value.Contains(pronoun+ " li") && value.StartCheck(pronoun+ " ");
             if(startsWith) return true;
 
             bool followsConditional = value.Contains(pronoun + " li") && value.Contains(" la "+pronoun+" li ");
@@ -447,9 +463,9 @@ namespace BasicTypes
             }
             if (value.Contains("li ijo Nanunanuwakawakawawa."))
             {
-                value = value.Replace("li ijo Nanunanuwakawakawawa.", format.StartsWith("b")?"[NULL TOKEN]":"");
+                value = value.Replace("li ijo Nanunanuwakawakawawa.", format.StartCheck("b")?"[NULL TOKEN]":"");
             }
-            if (value.Contains("[NULL]") && !format.StartsWith("b"))
+            if (value.Contains("[NULL]") && !format.StartCheck("b"))
             {
                 value = value.Replace("[NULL]","");
             }

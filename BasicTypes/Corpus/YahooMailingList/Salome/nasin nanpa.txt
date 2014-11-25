@@ -32,9 +32,9 @@ ni li kepeken e nasin nanpa pi tu wan.
 110212 li 347 kepeken nasin nanpa pi tu wan.
 
 tenpo ni la jan pi toki-pona li ken toki e 347. taso jan o wan ala e
-nanpa. wan e nanpa li ike. wan ala e nanpa li pona.
-tenpo ni la 347 li ken lon e ni: wan ala wan ala wan wan ala wan wan.
-tenpo ni la 347 li ken kin lon e ni: wan wan ala tu wan tu.
+nanpa. #wan nanpa li ike. #wan-ala nanpa li pona.
+tenpo ni la 347 li ken lon e ni: #wan-ala-wan-ala-wan-wan-ala-wan-wan.
+tenpo ni la 347 li ken kin lon e ni: #wan-wan-ala-tu-wan-tu.
 
 
 ale li pona!

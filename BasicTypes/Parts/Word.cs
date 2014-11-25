@@ -187,33 +187,15 @@ namespace BasicTypes
                     }
                     else
                     {
-                        if (!CheckIsValidPhonology(prospectiveWord) && prospectiveWord.Length > 1)
-                        {
-                            string path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
-
-                            if (path.Contains(@"file:\"))
-                            {
-                                path = path.Replace(@"file:\", "");
-                            }
-                            using (Hunspell hunspell = new Hunspell(Path.Combine(path, "en_us.aff"), Path.Combine(path,"en_us.dic")))
-                            {
-                                bool correct = hunspell.Spell(prospectiveWord);
-                                if (correct)
-                                {
-                                    errors.Add("This is English: " + prospectiveWord);
-                                    //It's Enlgish.
-                                    //throw new InvalidOperationException();
-                                }
-                            }
-                        }
-                        //foreach (char c in prospectiveWord)
+                        //TODO: This is a perf killer.
+                        //if (CheckIsEnglish(prospectiveWord))
                         //{
-                        //    Console.WriteLine(Convert.ToInt32(c));
+                        //    errors.Add("This is English :" + prospectiveWord);
                         //}
+                        
                         string message = "This word -->" + prospectiveWord +
                                          "<--  failed all checks.";
                         errors.Add(message);
-                        //Console.WriteLine("BAAAAAAAAAAAAAAAAD: " + prospectiveWord);
                         if (failFast) throw new InvalidOperationException(message);
                     }
 
@@ -222,13 +204,41 @@ namespace BasicTypes
             return errors.ToArray();
         }
 
+        private static bool CheckIsEnglish(string prospectiveWord)
+        {
+            if (!CheckIsValidPhonology(prospectiveWord) && prospectiveWord.Length > 1)
+            {
+                string path =
+                    System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
 
-        
+                if (path.Contains(@"file:\"))
+                {
+                    path = path.Replace(@"file:\", "");
+                }
+                using (
+                    Hunspell hunspell = new Hunspell(Path.Combine(path, "en_us.aff"), Path.Combine(path, "en_us.dic")))
+                {
+                    return hunspell.Spell(prospectiveWord);
+                    //if (correct)
+                    //{
+                    //
+                    //    errors.Add("This is English: " + prospectiveWord);
+                    //    //It's Enlgish.
+                    //    //throw new InvalidOperationException();
+                    //}
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
         public static bool IsEscaped(string value)
         {
             //TODO:check for internal "
-            return !(value.StartsWith("\"") && value.EndsWith("\""));
+            return !(value.StartCheck("\"") && value.EndCheck("\""));
         }
 
         public Word(string word): base(word)
@@ -237,15 +247,15 @@ namespace BasicTypes
             {
                 throw new ArgumentNullException("word", "Can't construct words with null");
             }
-            if (word.EndsWith(" "))
+            if (word.EndCheck(" "))
             {
                 throw new InvalidOperationException("Untrimmed word.");
             }
-            if (word.EndsWith(","))
+            if (word.EndCheck(","))
             {
                 postComma = true;
             }
-            if (word.StartsWith(","))
+            if (word.StartCheck(","))
             {
                 preComma = true;
             }
@@ -337,7 +347,7 @@ namespace BasicTypes
 
             int digits;
             bool isNumeric = int.TryParse(word, out digits);
-            if (word.StartsWith("#") || isNumeric)
+            if (word.StartCheck("#") || isNumeric)
             {
                 Number n = new Number(Text);
                 return n.TryGloss(language, pos);

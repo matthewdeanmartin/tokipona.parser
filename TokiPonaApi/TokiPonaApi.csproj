@@ -331,6 +331,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BasicTypes\BasicTypes.csproj">
+      <Project>{5CE1B326-F28F-4AFA-B458-D72B82C15A78}</Project>
+      <Name>BasicTypes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TokiPonaApi.SharedTypes\TokiPonaApi.SharedTypes.csproj">
       <Project>{6835fdda-fe9b-4d20-9c0d-646232c6dbdf}</Project>
       <Name>TokiPonaApi.SharedTypes</Name>
