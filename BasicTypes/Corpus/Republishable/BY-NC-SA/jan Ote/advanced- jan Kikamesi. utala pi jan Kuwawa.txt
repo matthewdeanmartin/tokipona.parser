@@ -1,4 +1,4 @@
-jan Kikamesi. utala e jan Kunpapa.
+jan Kikamesi li utala e jan Kunpapa.
 jan Kikamesi li jan lawa pi ma tomo Uluku. jan Enkitu li kama tan ma 
 
 nena. jan Enkitu li jan pona tawa jan Kikamesi. ona li jan sama. ona li 
@@ -65,7 +65,7 @@ toki e ni: 'jan Kikamesi li utala e jan wawa Kuwawa lon nena pi kasi suli
 
 li kama moli lon utala ni'. nimi mi li kama suli'.
 
-kulupu pi jan sona
+kulupu pi jan sona.
 jan Kikamesi en jan Enkitu li tawa supa pi ma tomo. jan lawa Kikamesi li 
 
 toki e ni: 'jan ali o kute! mi wile kama tawa jan wawa Kuwawa li moli e 
@@ -106,9 +106,9 @@ Kuwawa lon nena pi kasi suli'.
 
 jan sona li toki tawa jan Kikamesi li toki e ni: 'o tawa! o jan sewi sina 
 
-li pana e pona tawa sina!'.
+li pana e pona tawa sina!'
 
-jan sewi Utu
+jan sewi Utu.
 jan Kikamesi li tawa tomo pi jan sewi Utu. ona li moli e soweli lili li 
 
 sewi e luka ona. ona li toki e ni: 'jan sewi Utu o! mi wile kama tawa jan 
@@ -144,7 +144,7 @@ tawa tomo pi jan sewi Nintu. ona li kama lon insa tomo li toki e ni:
 
 'mama o, mi wile kama tawa jan Kuwawa ike li moli e ona. o toki-pona e mi 
 
-tawa jan sewi Utu!'. jan sewi Nintu li telo e sijelo ona li len e len 
+tawa jan sewi Utu!' jan sewi Nintu li telo e sijelo ona li len e len 
 
 pona lukin. ona li pana e linja sike tawa anpa lawa ona. jan Nintu li 
 
@@ -190,7 +190,7 @@ pi telo pona li weka e telo pona lili tawa jan sewi.
 lape pi jan Kikamesi.
 ona li tawa nena suli loje walo. jan Kikamesi li weka e ko pan pona tawa 
 
-ma li toki e ni: 'nena o pana e lape pona tawa mi!'. tenpo pimeja li 
+ma li toki e ni: 'nena o pana e lape pona tawa mi!' tenpo pimeja li 
 
 kama. jan Kikamesi en jan Enkitu li anpa. ona tu li pilin e luka pi jan 
 
@@ -235,7 +235,7 @@ ona li tawa lon insa ma pi kasi suli. jan Kikamesi li lukin li toki e ni:
 
 Enkitu li weka e palisa tan kasi suli ni.
 
-wawa sewi
+wawa sewi.
 jan Kuwawa li kute e kalama li pilin ike wawa. ona li toki wawa e ni: 
 
 'jan seme li kama tawa ma mi li pakala e kasi suli mi?'. jan Kuwawa li 
@@ -271,13 +271,13 @@ jan sewi Utu li toki tawa jan Kikamesi li toki e ni: 'o awen ala! jan
 
 Kuwawa li len e wawa sewi wan taso. ona li jo e wawa sewi mute lon tomo 
 
-ona. sina awen la ona li ken len e wawa sewi ali. o tawa!'.
+ona. sina awen la ona li ken len e wawa sewi ali. o tawa!'
 
 ona tu li tawa wawa tomo pi jan Kuwawa. jan Kuwawa li tawa ona. jan 
 
 Kikamesi li toki wawa e ni: 'mi jan Kikamesi li jan lawa pi ma tomo 
 
-Uluku! jan Kuwawa ike o kama moli!'. ona li wile utala e jan Kuwawa 
+Uluku! jan Kuwawa ike o kama moli!' ona li wile utala e jan Kuwawa 
 
 kepeken ilo utala palisa. jan Enkitu li kama tawa utala kin poka ona. 
 
@@ -291,7 +291,7 @@ pimeja. jan Kikamesi li pilin ike li pana e telo oko. ona li toki e ni:
 
 'a! ona li wawa mute. mi ken anpa ala e ona. jan sewi Utu o! o pana e 
 
-pona tawa mi!'.
+pona tawa mi!'
 
 kon tawa mute.
 jan sewi Utu li kute e toki pi jan Kikamesi. ona li weka e kon tawa mute 
@@ -337,7 +337,7 @@ toki ike li toki utala. jan lawa sina li pana e moku tawa sina. tan ni
 
 taso la sina tawa lon monsi ona. tan ni la sina wile ala e ni: jan 
 
-Kikamesi li jan lawa mi kin. jan anpa o! o toki ala!'.
+Kikamesi li jan lawa mi kin. jan anpa o! o toki ala!'
 
 jan Enkitu li pilin ike wawa. ona li utala wawa e jan Kuwawa kepeken ilo 
 
@@ -345,7 +345,7 @@ utala palisa li weka e lawa ona tan sijelo ona. jan Kuwawa li anpa lon
 
 ma. kasi suli mute li kalama sama pilin ike.
 
-nimi suli
+nimi suli.
 jan Kikamesi en jan Enkitu li anpa e kasi suli. jan Uluku li pali poka 
 
 ona. jan Enkitu li toki e ni: 'jan sewi Utu li pona mute. mi wile pali e 
@@ -354,7 +354,7 @@ sinpin suli pi lupa pi tomo ona. kasi suli ni li pona mute tawa pali ni'.
 
 ona mute li anpa e kasi suli mute.
 
-[...]* [see below]
+///[]* [see below]
 
 ona li kama jo e kasi suli mute li tawa tan nena pi kasi suli tawa telo 
 
@@ -366,22 +366,22 @@ ona li tawa lon telo. tenpo suno mute lili pini la ona li tawa ma tomo
 
 Uluku. jan mute li kulupu li toki e ni: 'o lukin! o pilin pona! ona li 
 
-jan utala pona kin!'. nimi ona li suli.
+jan utala pona kin!' nimi ona li suli.
 
-____________________________________
-* needs some work (or to be omitted?):
+///____________________________________
+///* needs some work (or to be omitted)?
 jan Kikamesi en jan Enkitu li kama jo e lawa pi jan Kuwawa li pana e ona 
 
 lon sewi palisa. ona li tawa li pana e ona lon poka noka pi jan sewi An. 
 
-jan sewi An li lukin li toki e ni: 'sina moli e ona tan seme?!'. ona li 
+jan sewi An li lukin li toki e ni: 'sina moli e ona tan seme?' ona li 
 
 toki ike tawa ona tu li toki e ni: 'o seli li pakala e sinpin sina! o 
 
-seli li moku e moku sina! o seli li moku e telo sina!'.
+seli li moku e moku sina! o seli li moku e telo sina!'
 
-Version after some discussion with my jan lili:
+///Version after some discussion with my jan lili:
 jan sewi An li tawa ma pi kasi suli. ona li lukin li toki tawa ona tu li 
-toki e ni: 'sina moli e ona tan seme?!'. ona li toki ike e ni: 'seli li 
+toki e ni: 'sina moli e ona tan seme?' ona li toki ike e ni: 'seli li 
 pakala e sinpin sina! seli li moku e moku sina! seli li moku e telo 
-sina!'. jan sewi An li kama jo e wawa sewi pi jan Kuwawa li tawa weka.
+sina!' jan sewi An li kama jo e wawa sewi pi jan Kuwawa li tawa weka.

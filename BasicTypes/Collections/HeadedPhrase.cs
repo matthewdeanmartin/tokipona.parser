@@ -102,7 +102,7 @@ namespace BasicTypes
                 {
                     if (Particle.IsParticle(word.Text))
                     {
-                        throw new TpSyntaxException("Particles shouldn't be modifiers");
+                        throw new TpSyntaxException("Particles shouldn't be modifiers: " + word.Text);
                     }
                 }
             }

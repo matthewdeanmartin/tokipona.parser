@@ -33,6 +33,11 @@ namespace BasicTypes.Parts
 
         private static void CheckIsNeologism(string word)
         {
+            if (word.StartsWith("+"))
+            {
+                //Explicit neologism
+                word = word.Substring(1);
+            }
             if (Word.IsWord(word))
             {
                 throw new InvalidOperationException("This is real word. Can't be a neologism.");
@@ -42,17 +47,18 @@ namespace BasicTypes.Parts
                 throw new InvalidOperationException("Uppercased, this acts like a proper modifier.");
             }
 
-            if (Token.CheckIsValidPhonology(word))
+            if (!Token.CheckIsValidPhonology(word))
             {
-                throw new InvalidOperationException("Neologism must be a valid word phonotactically.");
+                throw new InvalidOperationException("Neologism must be a valid word phonotactically, eg. no ji, wu, wo, ti, nm, nn");
             }
-            foreach (KeyValuePair<string, Word> pair in Words.Dictionary)
-            {
-                if (Token.AreMinimalPairs(word, pair.Key))
-                {
-                    throw new InvalidOperationException("Minimal pair, likely mispelling");
-                }
-            }
+
+            //foreach (KeyValuePair<string, Word> pair in Words.Dictionary)
+            //{
+            //    if (Token.AreMinimalPairs(word, pair.Key))
+            //    {
+            //        throw new InvalidOperationException("Minimal pair, likely mispelling");
+            //    }
+            //}
         }
 
         public static Word MakeProperNeologism()

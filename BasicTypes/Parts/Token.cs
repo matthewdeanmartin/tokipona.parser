@@ -564,6 +564,31 @@ namespace BasicTypes
             }
         }
 
+        public static bool IsNeologism(string value)
+        {
+            if (value.StartsWith("+"))
+            {
+                value = value.Substring(1);
+            }
+
+            if (Word.IsWord(value))
+            {
+                return false;
+            }
+            if (value.IsFirstUpperCased())
+            {
+                return false;
+            }
+
+            if (!Token.CheckIsValidPhonology(value))
+            {
+                return false;
+            }
+            
+            return true;
+            
+            return modals.Contains(value);
+        }
 
         public static bool IsModal(string value)
         {

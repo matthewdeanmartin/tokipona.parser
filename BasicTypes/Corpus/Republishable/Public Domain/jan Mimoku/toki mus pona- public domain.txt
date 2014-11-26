@@ -20,9 +20,9 @@ toki       musi         pona.
  mi wile e ni: tenpo pi nanpa wan la sina o lukin pona e
  lipu mi. tenpo pinanpa tu la sina o toki e pilin sina tawa
  mi. jan li ken toki tawa mi kepeken nimi
- "ikojba@gmail.com"
+ "ikojba@gmail.com".
  sina ken toki kin lon kulupu pi toki-pona. ni li lon lipu
- "http://groups.yahoo.com/groups/tokipona"
+ "http://groups.yahoo.com/groups/tokipona".
  mi wile toki e pona tawa jan Sonja tan toki-pona ona.
 
  mi tawa. sina lukin la o musi!
@@ -84,39 +84,39 @@ toki musi  lili pona
 
 6.
 
-sona
- jan li sona ala
- jan o kama sona
+sona.
+ jan li sona ala.
+ jan o kama sona.
 
- sona li lon jan
- jan li lon tomo
- tomo li lon ma
- ma li lon ale
+ sona li lon jan.
+ jan li lon tomo.
+ tomo li lon ma.
+ ma li lon ale.
 
- jan ale o kama  sona e ale
+ jan ale o kama  sona e ale.
 
- jan ala o kama
+ jan ala o kama.
 
- jan o, mi tawa
+ jan o, mi tawa.
 
 7.
 
-sona
- jan li sona ala
- jan o kama sona
+sona.
+ jan li sona ala.
+ jan o kama sona.
 
- sona li lon jan
- jan li lon tomo
- tomo li lon ma
- ma li lon ale
+ sona li lon jan.
+ jan li lon tomo.
+ tomo li lon ma.
+ ma li lon ale.
 
- jan ale o kama  sona e ale
+ jan ale o kama  sona e ale.
 
- jan ala o kama
+ jan ala o kama.
 
- jan o, mi tawa
+ jan o, mi tawa.
 
-toki! mi  jan Pona
+toki! mi  jan Pona.
  jan Pona li jan pi toki-pona.
  o lukin! jan Pona li kama lon ni! 
  toki! sina jan seme?
@@ -145,7 +145,7 @@ taso tenpo suno la jan Pona li toki e nimi ante... - mi pilin ike...
  
  
  
- jan  Pona  en kasi  moli pona
+ jan  Pona  en kasi  moli pona.
  jan Pona li jo e ma kasi lili. tenpo mute la jan Pona li
  tawa ma kasi ona.
 
@@ -206,10 +206,10 @@ o lukin pona a! soweli suli ni li ken moku e sina! taso soweli ale ala li pakala
 
 17.
 
-tan  lipu sona  Wikipesija
+tan  lipu sona  Wikipesija.
  lipu Wikipesija li lon lipu "http://tokipona.wikia.com".
 
- tenpo pini
+ tenpo pini.
  tenpo pini li sona pi tenpo pini. jan sona pi tenpo pini li
  kama sona e tenpo pini kepeken nasin mute ni:
  ona li lukin e lipu sitelen.

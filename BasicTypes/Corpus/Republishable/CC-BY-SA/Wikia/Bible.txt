@@ -2,7 +2,8 @@ lipu sewi Pipija li lipu sewi pi nasin sewi Kolisu. jan mute mute li jo e lipu s
 
 
 lipu sewi Pipija li suli mute tawa jan pi sona toki. tan ni la jan pi toki-pona li pana kin e ona tawa toki ona. jan mute li pali e ni:
-[o ante] jan Sami
+///[o ante] 
+jan Sami.
 tenpo suno 2006 la jan Sami li kama pali e ni: ona li pana e lipu sewi Pipija tawa toki-pona. tenpo wan la ona li pana e lipu nanpa wan pi jan Mose tawa toki-pona. tenpo ni la wan pi nanpa luka wan li lon toki-pona.
 pana toki ona li sama e ni:
 lipu nanpa wan pi jan Mose
@@ -15,11 +16,13 @@ lipu nanpa wan pi jan Mose
 5. jan sewi Jawe li pana e nimi pi suno: tenpo suno.
    jan sewi Jawe li pana e nimi pi kon pimeja: tenpo pimeja.
    tenpo ni li tenpo suno nanpa wan.
-sina ken lukin e lipu sewi Pipija tan jan Sami lon ni: 1.1, 1.2 & 1.3, 1.4 & 1.5, 1.6
-[o ante] jan Stephen Todd Pope
-jan Stephen Todd Pope li pana e wan ante pi lipu sewi Pipija tawa toki-pona. ona li pana e ona tawa lipu sina lon ilo Intene.
+sina ken lukin e lipu sewi Pipija tan jan Sami lon ni: 
+///1.1, 1.2 & 1.3, 1.4 & 1.5, 1.6
+///[o ante] 
+jan "Stephen Todd Pope".
+jan "Stephen Todd Pope" li pana e wan ante pi lipu sewi Pipija tawa toki-pona. ona li pana e ona tawa lipu sina lon ilo Intene.
 pana toki ona li sama e ni:
-ma tomo pi toki nasa
+ma tomo pi toki nasa.
 1. jan ali li kepeken e toki wan sama.
 2. jan li kama tan nasin pi kama suno li kama tawa ma Sinale li awen lon ni.
 3. jan li toki e ni: "o kama! mi mute o pali e kiwen. o seli e ona."
@@ -38,7 +41,8 @@ ma tomo pi toki nasa
    jan sewi Jawe li pakala e toki pi jan ali.
    tan ma tomo toki nasa la jan sewi Jawe li tawa e jan tawa ma mute.
 sina ken lukin e lipu sewi Pipija tan jan Stephen Todd Pope lon ni.
-[o ante] jan Oli
+///[o ante] 
+jan Oli.
 jan Oli li jan ante li pana kin e wan pi lipu sewi Pipija tawa toki-pona.
 pana toki ona li sama e ni:
 lipu nanpa wan pi jan Mose

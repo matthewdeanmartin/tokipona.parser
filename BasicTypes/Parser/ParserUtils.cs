@@ -269,6 +269,13 @@ namespace BasicTypes
 
         public Sentence ProcessSimpleSentence(string sentence, Punctuation punctuation, string original)
         {
+            //Comment? Get out of here!
+            if (sentence.StartCheck("///"))
+            {
+                Comment c = new Comment(sentence);
+                return new Sentence(c);
+            }
+
             Particle conjunction = null;
             if (sentence.StartCheck("taso "))
             {
@@ -605,6 +612,10 @@ namespace BasicTypes
 
                 foreach (string directObject in toUse)
                 {
+                    if (directObject.Length <= 2)
+                    {
+                        throw new TpParseException("This is a degenerate e phrase, i.e. it is only e or e space. ref: " + liPart);
+                    }
                     string eFree = directObject.Substring(2);
                     Chain phrase = ProcessPiChain(eFree);
                     doPiChains.Add(phrase);
@@ -629,7 +640,7 @@ namespace BasicTypes
 
                 if (Punctuation.ContainsPunctuation(ppParts[0]))
                 {
-                    throw new InvalidOperationException("This has punctuation, may fail to parse");
+                    throw new InvalidOperationException("This has punctuation, may fail to parse : " + ppParts[0]);
                 }
                 string[] verbPhraseParts = pu.WordsPunctuationAndCompounds(ppParts[0]);
 

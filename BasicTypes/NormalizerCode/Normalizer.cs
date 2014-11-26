@@ -340,6 +340,20 @@ namespace BasicTypes.NormalizerCode
                 normalized = "mi en " + normalized.Substring("mi li en ".Length);
             }
 
+            //mi la
+            if (normalized.StartCheck("mi li la "))
+            {
+                //ugh what a hack.
+                normalized = "mi la " + normalized.Substring("mi li la ".Length);
+            }
+
+            //mi la
+            if (normalized.StartCheck("sina li la "))
+            {
+                //ugh what a hack.
+                normalized = "sina la " + normalized.Substring("sina li la ".Length);
+            }
+
             //e mi li mute
             if (normalized.ContainsCheck("e mi li mute"))
             {
@@ -704,7 +718,8 @@ namespace BasicTypes.NormalizerCode
                                                          "li ~kepeken sin e", //use again
                                                          "li ~tawa jo wawa e", //I don't even know what this means
                                                          "tenpo pi mi ~lon sike", //my life (span)
-                                                         "o ~tawa kon e" // moving stuff around.
+                                                         "o ~tawa kon e", // moving stuff around.
+                                                         "li ~kepeken selo pi len kule ala" //transformative
                                                     })
             {
                 normalized = normalized.Replace(oneOff, oneOff.Replace("~", ""));

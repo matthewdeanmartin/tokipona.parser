@@ -17,13 +17,14 @@ jan mute pi toki-pona li toki e toki Epelanto.
 
 
 
-toki Anku
+toki Anku.
 jan li kepeken e toki Anku lon ma Anku seli en ma Anku lete.
-poki lawa [o suli e poki ni.]
+poki lawa.
+//[o suli e poki ni.]
 o ante "toki Anku" li seme lon toki Anku?
 
-tenpo pini la jan Anku ali li pana e nimi Choson'o tawa toki ni. taso ma Anku li tu la jan Anku li pali e nimi sin tawa toki ona.
-jan pi ma Anku seli li kepeken e nimi hangungmal(???). jan pi ma Anku lete li kepeken e nimi (???).
+tenpo pini la jan Anku ali li pana e nimi "Choson o" tawa toki ni. taso ma Anku li tu la jan Anku li pali e nimi sin tawa toki ona.
+jan pi ma Anku seli li kepeken e nimi "hangungmal(???)". jan pi ma Anku lete li kepeken e nimi (???).
 o antetoki Anku li lon kulupu toki seme?
 
 pilin mute li lon.
@@ -36,23 +37,30 @@ tenpo pini la jan Anku li sitelen e toki ona kepeken nasin sitelen Sonko. tenpo 
 
 
 
-toki Iwisi
+toki Iwisi.
 
-toki Iwisi li toki pi jan Juta. toki Iwisi la, nimi ona li ?????. tenpo mute la ona li lape. lon tenpo pi lape ona jan li kepeken e toki ni taso tawa toki sewi tawa toki sona.
+toki Iwisi li toki pi jan Juta. toki Iwisi la, nimi ona li "unicode lost". tenpo mute la ona li lape. lon tenpo pi lape ona jan li kepeken e toki ni taso tawa toki sewi tawa toki sona.
 jan mute li kama li sin e toki ni li pali e toki Iwisi sin.
 toki Iwisi sin en toki Iwisi pi tenpo pini li sama li jo e nasin tenpo ante.
-sina wile lukin e wikipedia:toki awen pi toki Iwisi sin la, sina ken lukin e lipu Wikipesija|toki awen pi toki Iwisi sin la, sina ken lukin e [[]] - pi toki Iwisi
-[o ante] sin pi toki Iwisi
-jan Elijeser pen jeuta li pana mute tawa sin pi toki Iwisi li jan lawa pi sin ona.
-jan li toki e ni: tenpo ale la jan Juta li ken toki lon toki Iwisi. jan Elijeser pen jeuta li kama la jan Juta li toki kin lon toki Iwisi.
+sina wile lukin e wikipedia:toki awen pi toki Iwisi sin la, sina ken lukin e lipu Wikipesija.
+toki awen pi toki Iwisi sin la, sina ken lukin e "unicode lost" - pi toki Iwisi
+///[o ante] 
+sin pi toki Iwisi.
+jan "Elijeser" pen jeuta li pana mute tawa sin pi toki Iwisi li jan lawa pi sin ona.
+jan li toki e ni: tenpo ale la jan Juta li ken toki lon toki Iwisi. jan "Elijeser pen jeuta" li kama la jan Juta li toki kin lon toki Iwisi.
 jan ante mute li pana mute tawa sin ona. jan Sameno kin.
 jan pi sin toki Iwisi li wile e ni: jan Juta li toki kin lon ona li toki taso lon ona. jan pi sin toki Iwisi li utala e toki ante li pali e utala pi toki Iwisi.
-[o ante] nasin pi pali nimi
+///[o ante] 
+nasin pi pali nimi.
 toki Iwisi li jo e nasin pi pali nimi. nasin ni li nasin pi kulupu toki Sem.
-toki Iwisi li jo e nasin pi pali e nimi pali: nasin Pinjanim (lon toki Iwisi: ???????)
+toki Iwisi li jo e nasin pi pali e nimi pali: nasin Pinjanim (lon toki Iwisi: 
+///unicode lost
 nasin Pinjanim li nasin tawa ni: (tenpo kama...)
-[o ante] pali nimi
-toki Iwisi jo 22 pali nimi: ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? 5 pali nimi li jo kin sitelen pi monsi pi nimi:
+///[o ante] 
+pali nimi.
+toki Iwisi jo 22 pali nimi: 
+///unicode lost
+5 pali nimi li jo kin sitelen pi monsi pi nimi:
 
 
 
@@ -65,19 +73,19 @@ toki Kuwenja li pona kute.
 
 
 
-toki Kanse li toki. toki Kanse la nimi pi toki Kanse li français.
+toki Kanse li toki. toki Kanse la nimi pi toki Kanse li "français".
 jan li toki e toki Kanse lon ma Kanse, lon ma Kanata, lon ma Suwasi, li ma Pesije. ma mute lon ma suli Apika li kepeken kin e toki Kanse.
-jan Sonja li ken toki kepeken toki Kanse pi ma Akasi (Acadia). nimi mute pi toki-pona li nimi pi toki Kanse en toki Kanse pi ma Akasi.
-anpa = en bas
-kule = couleur
-kute = écouter
-len = linge
-lete = frette (kepeken toki Kanse pi ma Akasi) = froid (kepeken toki Kanse)
-moli = mourir
-monsi = mon tchu (ma Akasi) = mon cul
-pipi = bibitte (ma Akasi) = insecte
-supa = surface
-waso = oiseau
-o antekulupu toki
+jan Sonja li ken toki kepeken toki Kanse pi ma Akasi "(Acadia)". nimi mute pi toki-pona li nimi pi toki Kanse en toki Kanse pi ma Akasi.
+anpa = en bas.
+kule = couleur.
+kute = écouter.
+len = linge.
+lete = frette (kepeken toki Kanse pi ma Akasi) = froid (kepeken toki Kanse).
+moli = mourir.
+monsi = mon tchu (ma Akasi) = mon cul.
+pipi = bibitte (ma Akasi) = insecte.
+supa = surface.
+waso = oiseau.
+o antekulupu toki.
 
 toki mama pi toki Kanse li toki Lasina sama toki Italija en toki Potuke en toki Epanja...

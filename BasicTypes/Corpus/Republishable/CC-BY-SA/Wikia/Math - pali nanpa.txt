@@ -1,12 +1,14 @@
 pali nanpa li mute li ante. pali nanpa poka en pali nanpa tenpo li pali nanpa suli.
 sina jo e pali nanpa la sina ken kama lon e ma nanpa sin.
 pali nanpa li ken jo e nanpa pi ante ala. sina pali e nanpa pi ante ala e nanpa ijo la sina jo e nanpa ni. pali nanpa poka la nanpa weka li nanpa pi ante ala. pali nanpa tenpo la nanpa wan li nanpa pi ante ala.
-o antepali nanpa pi toki-pona
+//o ante
+pali nanpa pi toki-pona.
 
 
-tenpo mute la sama jan pona pi tenpo pini mute la jan toki-pona li kepeken e nimi "mute" li kepeken ala e nanpa ni: ona li suli mute e luka.
+tenpo mute la sama jan pona pi tenpo pini mute la jan toki-pona li kepeken e nimi mute li kepeken ala e nanpa ni: ona li suli mute e luka.
 tan ni la pali nanpa ali pi toki-pona li lon anpa.
-[o ante]pali nanpa poka
+///[o ante]
+pali nanpa poka.
 wan poka wan li sama e tu.
 wan poka tu li sama e wan tu.
 wan poka wan tu li sama e tu tu.
@@ -29,8 +31,12 @@ mute poka mute li ken sama e mute li ken sama e mute mute.
 mute poka mute mute li sama e mute mute.
 mute mute poka mute mute li sama e mute mute.
 ijo poka ijo ante li sama e ijo ante ante la ijo ante poka ijo li sama e ijo ante ante.
-ijo poka e ijo ante li sama e ijo anta ante la jan nasa li toki e ni: ijo ante ante poka ala e ijo ante li sama e ijo.
-[o ante]pali nanpa tenpo
+///What???
+///ijo poka e ijo ante li sama e ijo anta ante la jan nasa li toki e ni: 
+///ijo ante ante poka ala e ijo ante li sama e ijo.
+///[o ante]
+
+pali nanpa tenpo.
 wan pi tenpo wan li sama e wan.
 wan pi tenpo tu li sama e tu.
 wan pi tenpo wan tu li sama e wan tu.
@@ -53,4 +59,6 @@ mute pi tenpo mute li sama e mute mute.
 mute pi tenpo mute mute li sama e mute mute.
 mute mute pi tenpo mute mute li sama e mute mute.
 ijo pi tenpo ijo ante li sama e ijo ante ante la ijo ante pi tenpo ijo li sama e ijo ante ante.
-ijo pi tenpo e ijo ante li sama e ijo anta ante la jan nasa li toki e ni: ijo ante ante pi tenpo ala e ijo ante li sama e ijo.
+///What???
+///ijo pi tenpo e ijo ante li sama e ijo anta ante la jan nasa li toki e ni: 
+///ijo ante ante pi tenpo ala e ijo ante li sama e ijo.

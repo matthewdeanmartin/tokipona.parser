@@ -1,5 +1,6 @@
-toki suli Intenasijonale
-tlum. jan-ante
+toki suli Intenasijonale.
+//tlum. 
+jan Ante
 
 o kama! jan pali o kama!
 o kama tawa utala!
@@ -16,7 +17,7 @@ ma Intenasijonale.
 jan pona sin li lon.
 
 
-len loje, tan Ssolbergj
+len loje, tan "Ssolbergj".
 o awen ala pona sewi.
 o awen ala pona jan.
 o kepeken e wawa sona

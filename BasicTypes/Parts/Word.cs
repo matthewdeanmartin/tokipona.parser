@@ -185,6 +185,11 @@ namespace BasicTypes
                     {
                         //Console.WriteLine("Foreign Text: " + prospectiveWord);
                     }
+                    else if (IsNeologism(prospectiveWord))
+                    {
+                        //Can be explicit or implicit
+                        //Console.WriteLine("Foreign Text: " + prospectiveWord);
+                    }
                     else
                     {
                         //TODO: This is a perf killer.
@@ -352,10 +357,18 @@ namespace BasicTypes
                 Number n = new Number(Text);
                 return n.TryGloss(language, pos);
             }
+            
+            if (Token.IsNeologism(LookupForm(word)))
+            {
+                //A neologism is unglossable.
+                return word;
+            }
 
             //HACK: This is a proper modifer
             if (LookupForm(word).IsFirstUpperCased())
             {
+                
+
                 if (!ProperModifier.IsProperModifer(LookupForm(word)))
                 {
                     ForeignWord fw = new ForeignWord(word);
