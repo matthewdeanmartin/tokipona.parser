@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using BasicTypes.Extensions;
@@ -11,14 +12,26 @@ namespace BasicTypes.Corpus
 
     public class CorpusFileReader
     {
+        private bool suppressTrace =false;
+        public CorpusFileReader()
+        {
+        }
+        public CorpusFileReader(bool suppressTrace)
+        {
+            this.suppressTrace = suppressTrace;
+        }
         //Return all files
         public IEnumerable<string> NextFile()
         {
             DirectoryInfo di;
             if (Directory.Exists(@"C:\Users\mmartin\Documents\GitHub\tokipona.parser\"))
                 di = new DirectoryInfo(@"C:\Users\mmartin\Documents\GitHub\tokipona.parser\BasicTypes\Corpus");
+            else if (Directory.Exists(@"C:\Users\mmartin.Quasimodo-PC\Documents\GitHub\tokipona.parser\BasicTypes\Corpus"))
+                di = new DirectoryInfo(@"C:\Users\mmartin.Quasimodo-PC\Documents\GitHub\tokipona.parser\BasicTypes\Corpus");
             else
-                di = new DirectoryInfo(@"C:\Users\mmartin\code\GitHub\tokipona.parser\BasicTypes\Corpus");
+            {            di = new DirectoryInfo(@"C:\Users\mmartin\code\GitHub\tokipona.parser\BasicTypes\Corpus");
+
+            }
             //"*Yves*.txt"
             foreach (FileInfo file in di.EnumerateFiles("*.txt", SearchOption.AllDirectories).Reverse())
             {
@@ -30,9 +43,12 @@ namespace BasicTypes.Corpus
 
 
                 //if(!file.FullName.ContainsCheck("jan Mato")) continue;
-                Console.WriteLine("----------------------------------");
-                Console.WriteLine(file.Directory);
-                Console.WriteLine(file.Name);
+                if (!suppressTrace)
+                {
+                    Console.WriteLine("----------------------------------");
+                    Console.WriteLine(file.Directory);
+                    Console.WriteLine(file.Name);                    
+                }
                yield return File.ReadAllText(file.FullName,Encoding.UTF8);
             }
         }

@@ -546,7 +546,7 @@ namespace BasicTypes
 
                 string[] verbPhraseParts = pu.WordsPunctuationAndCompounds(eParts[0]); //Could contain particles.
 
-                if (!Particle.IsParticle(verbPhraseParts[0]))
+                if (!Particle.CheckIsParticle(verbPhraseParts[0]))
                 {
                     throw new TpSyntaxException("uh-oh not a particle: " + verbPhraseParts[0] + " from " + liPart);
                 }
@@ -644,7 +644,7 @@ namespace BasicTypes
                 }
                 string[] verbPhraseParts = pu.WordsPunctuationAndCompounds(ppParts[0]);
 
-                if (!Particle.IsParticle(verbPhraseParts[0]))
+                if (!Particle.CheckIsParticle(verbPhraseParts[0]))
                 {
                     throw new TpSyntaxException("uh-oh not a particle: " + verbPhraseParts[0] + " from " + liPart);
                 }

@@ -10,8 +10,8 @@ namespace BasicTypes.Transliterate
     [TestFixture]
     public class TransliterateTests
     {
-        private TransliterateEngine engine = new TransliterateEngine();
-        private string trace = "";
+        private readonly TransliterateEngine engine = new TransliterateEngine();
+        //private string trace = "";
 
         [Test]
         public void SpellEnglishMary()

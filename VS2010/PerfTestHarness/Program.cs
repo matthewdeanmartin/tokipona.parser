@@ -14,5 +14,12 @@ namespace PerfTestHarness
             t.StressTestNormalizeAndParseEverything();
             Console.ReadKey();
         }
+
+        private static void WhatEver()
+        {
+            //Strict or loose text?
+            //Loose -> Normalize
+            //
+        }
     }
 }

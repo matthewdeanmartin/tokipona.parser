@@ -28,7 +28,6 @@ namespace BasicTypes.NormalizerCode
 
         public static string NormalizeText(string text, Dialect dialect)//= null
         {
-            //Console.WriteLine("Before: " + text);
             if (string.IsNullOrWhiteSpace(text))
             {
                 return "";
@@ -451,10 +450,6 @@ namespace BasicTypes.NormalizerCode
 
         private static string ProcessMi(string normalized)
         {
-            if (normalized.ContainsCheck("mi wile ala e ma li"))
-            {
-                Console.WriteLine("Ok");
-            }
             normalized = NormalizedMiLi(normalized);
             normalized = NormalizedMiLi(normalized, "'");
             normalized = NormalizedMiLi(normalized, "«");

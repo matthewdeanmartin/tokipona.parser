@@ -175,6 +175,10 @@ namespace BasicTypes
 
         public static bool CheckIsParticle(string value)
         {
+            if (value == null)
+            {
+                throw new ArgumentNullException();
+            }
             if (Particles.Prepositions.Contains("~" + value)) return true;
 
             if (Particles.Conjunctions.Contains(value)) return true;
@@ -207,10 +211,10 @@ namespace BasicTypes
             //Full regex.
             string[] matches = pu.JustTpWords(value);
 
-            if (matches.Length < 1 && !matches.Contains(value))
-            {
-                Console.WriteLine(String.Join(", ", matches));
-            }
+            //if (matches.Length < 1 && !matches.Contains(value))
+            //{
+            //    Console.WriteLine(String.Join(", ", matches));
+            //}
 
 
             return matches.Length >= 1 && matches.Contains(value);

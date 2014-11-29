@@ -25,8 +25,8 @@ namespace BasicTypes
         [DataMember]
         public List<Fragment> LaFragment { get; set; }
 
-        [DataMember]
-        private readonly ComplexChain fragments; //not used????
+        //[DataMember]
+        //private readonly ComplexChain fragments; //not used????
 
         [DataMember]
         private readonly ComplexChain subjects;

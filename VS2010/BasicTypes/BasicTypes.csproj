@@ -324,6 +324,9 @@
     <Compile Include="..\..\BasicTypes\Knowledge\PhoneNumberTests.cs">
       <Link>Knowledge\PhoneNumberTests.cs</Link>
     </Compile>
+    <Compile Include="..\..\BasicTypes\Lorem\TextGenerator.cs">
+      <Link>LoremIpsum\TextGenerator.cs</Link>
+    </Compile>
     <Compile Include="..\..\BasicTypes\MoreTypes\CustomKeyedCollection.cs">
       <Link>MoreTypes\CustomKeyedCollection.cs</Link>
     </Compile>
@@ -487,9 +490,6 @@
       <Link>Transliteration\TransliteratorTests.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="\\localhost\C%24\%40GMT-2014.11.20-05.07.33\Users\mmartin\code\GitHub\tokipona.parser\BasicTypes\Lorem\TextGenerator.cs">
-      <Link>LoremIpsum\TextGenerator.cs</Link>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\BasicTypes\en_US.aff">

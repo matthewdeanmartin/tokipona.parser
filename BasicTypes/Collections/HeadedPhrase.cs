@@ -87,7 +87,7 @@ namespace BasicTypes
             {
                 throw new ArgumentNullException("head", "Can't construct with null");
             }
-            if (Particle.IsParticle(head.Text))
+            if (Token.CheckIsParticle(head.Text))
             {
                 throw new TpSyntaxException(
                     "You can't have a headed phrase that is headed by a particle. That would be a chain. " + head.Text);
@@ -100,7 +100,7 @@ namespace BasicTypes
             {
                 foreach (Word word in modifiers)
                 {
-                    if (Particle.IsParticle(word.Text))
+                    if (Particle.CheckIsParticle(word.Text))
                     {
                         throw new TpSyntaxException("Particles shouldn't be modifiers: " + word.Text);
                     }

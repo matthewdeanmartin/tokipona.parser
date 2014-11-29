@@ -11,6 +11,31 @@ namespace BasicTypes.NormalizerCode
     [TestFixture]
     public class NormalizerTests
     {
+        [Test]
+        public void NormalizationIsIdempotent()
+        {
+            int i = 0;
+            Dialect dialect = Dialect.DialectFactory;
+            ParserUtils pu = new ParserUtils(dialect);
+
+            CorpusFileReader reader = new CorpusFileReader(true);
+            foreach (string s in reader.NextFile())
+            {
+                foreach (string sentence in pu.ParseIntoNonNormalizedSentences(s))
+                {
+                    string result1 = Normalizer.NormalizeText(sentence, dialect);
+                    string result2 = Normalizer.NormalizeText(result1, dialect);
+                    //Assert.AreEqual(result1,result2);
+                    if (result1 != result2)
+                    {
+                        Console.WriteLine("1: " + (result1??"NULL"));
+                        Console.WriteLine("2: " + (result2??"NULL"));
+                    }
+                    i++;
+                }
+            }
+            Console.WriteLine("Sentences normalized: " + i);
+        }
 
         [Test]
         public void ProcessCalmVocative_JustRunIsVocative()

@@ -180,7 +180,7 @@ namespace BasicTypes
                 normalizeForLookup = Text;
             }
 
-            if (Particle.IsParticle(Text))
+            if (Particle.CheckIsParticle(Text))
             {
                 w = Words.Dictionary[normalizeForLookup];
             }
@@ -252,23 +252,23 @@ namespace BasicTypes
                 return Text;
         }
 
-        public static bool IsParticle(string token)
-        {
-            if (token == null)
-            {
-                throw new ArgumentNullException();
-            }
-            string lookupForm;
-            if (token.ContainsCheck(",") || token.ContainsCheck("»") || token.ContainsCheck("«"))
-            {
-                lookupForm = token.Trim(new char[] {',','»','«', ' '});
-            }
-            else
-            {
-                lookupForm = token;
-            }
-            return dictionary.Contains(lookupForm);
-        }
+        //public static bool IsParticle(string token)
+        //{
+        //    if (token == null)
+        //    {
+        //        throw new ArgumentNullException();
+        //    }
+        //    string lookupForm;
+        //    if (token.ContainsCheck(",") || token.ContainsCheck("»") || token.ContainsCheck("«"))
+        //    {
+        //        lookupForm = token.Trim(new char[] {',','»','«', ' '});
+        //    }
+        //    else
+        //    {
+        //        lookupForm = token;
+        //    }
+        //    return dictionary.Contains(lookupForm);
+        //}
 
         public static bool ContainsProposition(string phrase)
         {

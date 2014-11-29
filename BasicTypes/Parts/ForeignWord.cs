@@ -21,8 +21,8 @@ namespace BasicTypes.Parts
             //For XML serialization only.
         }
 
-        [DataMember(IsRequired = false,EmitDefaultValue = false)]
-        private readonly Dictionary<string, Dictionary<string, string[]>> glossMap;
+        //[DataMember(IsRequired = false,EmitDefaultValue = false)]
+        //private readonly Dictionary<string, Dictionary<string, string[]>> glossMap;
 
         public ForeignWord(string word):base(word)
         {

@@ -55,7 +55,7 @@ namespace BasicTypes.Extensions
                         {
                             string lastWord = list[list.Count - 1];
 
-                            if (!Particle.IsParticle(lastWord) && !Token.CheckIsConjunction(lastWord))
+                            if (!Token.CheckIsParticle(lastWord) && !Token.CheckIsConjunction(lastWord))
                             {
                                 list.AddIfNotReduplicate(particle.ToString(format, formatProvider));
                             }
@@ -67,7 +67,7 @@ namespace BasicTypes.Extensions
                     if (list.Count > 0)
                     {
                         string lastWord = list[list.Count - 1];
-                        if ((!Particle.IsParticle(lastWord) && !Token.CheckIsConjunction(lastWord)))
+                        if ((!Particle.CheckIsParticle(lastWord) && !Token.CheckIsConjunction(lastWord)))
                         {
                             list.AddIfNotReduplicate(particle.ToString(format, formatProvider));
                         }
