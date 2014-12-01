@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - toki pona Parser</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -21,19 +21,29 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Change Log", "ChangeLog", "Home")</li>
+                    <li>@Html.ActionLink("Help on Brackets", "BracketHelp", "Home")</li>
+
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+
                 </ul>
+                <a href="https://github.com/matthewdeanmartin/tokipona.parser" class="btn btn-primary btn-lg" style="margin-top:3px">Open Source on GitHub</a>
+    
                 @*@Html.Partial("_LoginPartial")*@
             </div>
+            
+            
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - toki pona Parser, an open source library, based on jan Sonja's language. Corpus texts on various licenses, PD, CC and hopefully acceptible fair uses of the rest. Contact @@janMato on twitter if it isn't.</p>
+            <p>&copy; @DateTime.Now.Year - toki pona Parser, an open source library, based on jan Sonja's language. </p>
+            <p>Corpus texts on various licenses, PD, CC and hopefully acceptible fair uses of the rest. Contact <a data-ng-href="twitter.com/janmato">@@janMato</a> on twitter if it isn't.</p>
         </footer>
     </div>
 

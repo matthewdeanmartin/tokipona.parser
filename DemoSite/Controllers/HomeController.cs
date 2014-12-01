@@ -150,6 +150,18 @@ namespace DemoSite.Controllers
 
             return View();
         }
+        public ActionResult ChangeLog()
+        {
+            ViewBag.Message = "Change Log";
+
+            return View();
+        }
+        public ActionResult BracketHelp()
+        {
+            ViewBag.Message = "Bracket Help";
+
+            return View();
+        }
 
         public ActionResult Contact()
         {

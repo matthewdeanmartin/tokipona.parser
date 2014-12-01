@@ -32,7 +32,7 @@ namespace BasicTypes.NormalizerCode
                 //HACK: Could be a stray #
                 return sentence;
             }
-            TokenParserUtils tpu = new TokenParserUtils();
+            //TokenParserUtils tpu = new TokenParserUtils();
 
             string lastBit = "";
             if ("!.?:".ContainsCheck(sentence[sentence.Length - 1]))

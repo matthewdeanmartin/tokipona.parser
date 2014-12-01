@@ -133,7 +133,6 @@
     <Compile Include="FundamentalTests\ListkovSubstitutionTests.cs" />
     <Compile Include="FundamentalTests\TestEquality.cs" />
     <Compile Include="FundamentalTests\TestObjectInterface.cs" />
-    <Compile Include="Globalization\TpCalendar.cs" />
     <Compile Include="Globalization\TpCultureFactory.cs" />
     <Compile Include="Globalization\TpCultureTest.cs" />
     <Compile Include="Globalization\TpHackTests.cs" />
@@ -208,6 +207,7 @@
     <Compile Include="Parts\Particle.cs" />
     <Compile Include="Parts\Word.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ParseDiscourse\SentenceSplitter.cs" />
     <Compile Include="Serialization\WordJson.cs" />
     <Compile Include="Serialization\WordXml.cs" />
     <Compile Include="Services\Exchange.cs" />

@@ -27,7 +27,7 @@ namespace TokiPonaApi.Controllers
             ParserUtils pu = new ParserUtils(d);
             Sentence s=  pu.ParsedSentenceFactory(normalized, text);
 
-
+            return s.ToString("b",d);
         }
 
     }

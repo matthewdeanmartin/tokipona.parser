@@ -76,6 +76,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -263,8 +264,25 @@
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="TpRepository\CorpusText.cs" />
+    <Compile Include="TpRepository\Syntax.cs" />
+    <Compile Include="TpRepository\tokiAwen.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>tokiAwen.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TpRepository\tokiAwen.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>tokiAwen.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TpRepository\TokiAwenContext.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\tokiAwen.mdf" />
+    <Content Include="App_Data\tokiAwen_log.ldf">
+      <DependentUpon>tokiAwen.mdf</DependentUpon>
+    </Content>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -319,10 +337,16 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="TpRepository\tokiAwen.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>tokiAwen.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="TpRepository\tokiAwen.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>tokiAwen.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -339,6 +363,9 @@
       <Project>{6835fdda-fe9b-4d20-9c0d-646232c6dbdf}</Project>
       <Name>TokiPonaApi.SharedTypes</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
