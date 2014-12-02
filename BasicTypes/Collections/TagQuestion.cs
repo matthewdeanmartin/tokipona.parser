@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BasicTypes.Extensions;
+using BasicTypes.Html;
 
 namespace BasicTypes.Collections
 {
@@ -33,6 +34,7 @@ namespace BasicTypes.Collections
 
         public List<string> ToTokenList(string format, IFormatProvider formatProvider)
         {
+            
             List<string> sb = new List<string>();
             sb.AddRange(endTag.ToTokenList(format,formatProvider));
          
@@ -58,6 +60,7 @@ namespace BasicTypes.Collections
             {
                 format = "g";
             }
+            
             return ToString(format, Config.CurrentDialect);
         }
 

@@ -22,7 +22,7 @@ namespace BasicTypes
         private readonly Sentence[] preconditions;
 
         //Constituent parts of a basic sentence.
-        [DataMember] 
+        [DataMember]
         private Vocative[] headVocaties;
         //Breaks immutability :-(
         [DataMember]
@@ -37,7 +37,7 @@ namespace BasicTypes
         private readonly TagQuestion tagQuestion;
         [DataMember]
         private readonly Punctuation punctuation;
-        
+
         //Degenerate sentences
         [DataMember]
         private readonly Vocative degenerateVocative; //Degenerate sentence, maybe should be a subclass?
@@ -55,13 +55,13 @@ namespace BasicTypes
         //Diagnostic info.
         private readonly SentenceDiagnostics diagnostics;
 
-        public Sentence(Comment comment, SentenceDiagnostics diagnostics=null)
+        public Sentence(Comment comment, SentenceDiagnostics diagnostics = null)
         {
             this.degenerateComment = comment;
             this.diagnostics = diagnostics;
         }
         //Suggest that vocatives don't chain.  o jan o meli o soweli o => o! jan o! meli o! soweli o!
-        public Sentence(Vocative vocative, Punctuation punctuation, SentenceDiagnostics diagnostics=null)
+        public Sentence(Vocative vocative, Punctuation punctuation, SentenceDiagnostics diagnostics = null)
         {
             this.degenerateVocative = vocative;
             this.punctuation = punctuation;
@@ -69,7 +69,7 @@ namespace BasicTypes
             this.diagnostics = diagnostics;
         }
 
-        public Sentence(Fragment fragment, Punctuation punctuation, SentenceDiagnostics diagnostics=null)
+        public Sentence(Fragment fragment, Punctuation punctuation, SentenceDiagnostics diagnostics = null)
         {
             this.degenerateFragment = fragment;
             this.punctuation = punctuation;
@@ -77,7 +77,7 @@ namespace BasicTypes
             this.diagnostics = diagnostics;
         }
 
-        public Sentence(Sentence[] preconditions = null, Sentence conclusion = null,  SentenceDiagnostics diagnostics=null)
+        public Sentence(Sentence[] preconditions = null, Sentence conclusion = null, SentenceDiagnostics diagnostics = null)
         {
             LaFragment = new List<Fragment>();
             if (preconditions != null && preconditions.Length > 0 && conclusion == null)
@@ -85,7 +85,7 @@ namespace BasicTypes
                 throw new TpSyntaxException("There must be a head sentence (conclusions) if there are preconditions.");
             }
             this.conclusion = conclusion;
-            
+
             this.preconditions = preconditions;//Entire sentences.       
 
 
@@ -108,7 +108,7 @@ namespace BasicTypes
             this.diagnostics = diagnostics;
         }
 
-        public Sentence(Exclamation exclamation, Punctuation punctuation,  SentenceDiagnostics diagnostics=null)
+        public Sentence(Exclamation exclamation, Punctuation punctuation, SentenceDiagnostics diagnostics = null)
         {
             this.degenerateExclamation = exclamation;
             this.punctuation = punctuation;
@@ -116,14 +116,14 @@ namespace BasicTypes
             this.diagnostics = diagnostics;
         }
 
-        
 
-        
+
+
         //Simple Sentences
-        public Sentence(ComplexChain subjects, PredicateList predicates, SentenceOptionalParts parts=null,  SentenceDiagnostics diagnostics=null)
+        public Sentence(ComplexChain subjects, PredicateList predicates, SentenceOptionalParts parts = null, SentenceDiagnostics diagnostics = null)
         {
             LaFragment = new List<Fragment>();
-            this.subjects =  subjects ; //only (*), o, en
+            this.subjects = subjects; //only (*), o, en
             this.predicates = predicates; //only li, pi, en
             if (parts != null)
             {
@@ -131,7 +131,7 @@ namespace BasicTypes
                 tagConjunction = parts.Conjunction;
                 tagQuestion = parts.TagQuestion;
             }
-            
+
             this.diagnostics = diagnostics;
         }
 
@@ -176,7 +176,7 @@ namespace BasicTypes
         {
             return false;
         }
-        
+
 
         //If we have the following 2, we don't have the others (except punct).
         public Sentence[] Preconditions { get { return preconditions; } }
@@ -193,7 +193,7 @@ namespace BasicTypes
         public Particle Conjunction { get { return tagConjunction; } } //anu, taso (but not en)
         public ComplexChain Subjects { get { return subjects; } } //jan en meli en waso
         public PredicateList Predicates { get { return predicates; } }//li verb phrase li (noun phrase) li prep phrase
-        public TagQuestion TagQuestion{ get { return tagQuestion; } }// anu seme
+        public TagQuestion TagQuestion { get { return tagQuestion; } }// anu seme
         public Punctuation Punctuation { get { return punctuation; } } //.?!
 
         public Sentence EquivallencyGenerator()
@@ -269,7 +269,7 @@ namespace BasicTypes
                 spaceJoined = sb.SpaceJoin(format);
 
                 //Correct punctuation
-                BasicTypes.Punctuation normalizedPunctuation=null;
+                BasicTypes.Punctuation normalizedPunctuation = null;
                 if (Contains(Words.seme))
                 {
                     normalizedPunctuation = new Punctuation("?");
@@ -317,19 +317,19 @@ namespace BasicTypes
                 //{
                 //    normalizedPunctuation = new Punctuation(".");
                 //}
-                
+
                 if (normalizedPunctuation != null)
                 {
-                    spaceJoined = spaceJoined +  normalizedPunctuation.ToString();
+                    spaceJoined = spaceJoined + normalizedPunctuation.ToString();
                 }
-                
+
                 if (punctuation != null)
                 {
                     spaceJoined = spaceJoined + punctuation;//format, formatProvider
                 }
             }
 
-            
+
 
             if (format != "bs")
             {
@@ -338,7 +338,7 @@ namespace BasicTypes
                 {
                     result = result.Replace(" , ", ", ");
                 }
-                spaceJoined =result;
+                spaceJoined = result;
             }
 
             if (spaceJoined.EndCheck("..") || spaceJoined.EndCheck("??") || spaceJoined.EndCheck("::") || spaceJoined.EndCheck("!!"))
@@ -352,7 +352,6 @@ namespace BasicTypes
                 {
                     spaceJoined = spaceJoined.Replace(" <span class=\"prep\">,", "<span class=\"prep\">,");
                 }
-                
             }
             return spaceJoined;
         }
@@ -380,14 +379,14 @@ namespace BasicTypes
             //[chain]o[!.?]
             if (degenerateVocative != null)
             {
-                sb.AddRange(degenerateVocative.ToTokenList(format,formatProvider));
-                sb.Add(Particles.o.ToString(format,formatProvider)); //Seems dodgy. Why not a property of the chain or sentence?
+                sb.AddRange(degenerateVocative.ToTokenList(format, formatProvider));
+                sb.Add(Particles.o.ToString(format, formatProvider)); //Seems dodgy. Why not a property of the chain or sentence?
             }
             else if (degenerateFragment != null)
             {
                 sb.AddRange(degenerateFragment.ToTokenList(format, formatProvider));
             }
-            else if (degenerateExclamation!= null)
+            else if (degenerateExclamation != null)
             {
                 sb.AddRange(degenerateExclamation.ToTokenList(format, formatProvider));
             }
@@ -397,10 +396,10 @@ namespace BasicTypes
                 {
                     foreach (Fragment chain in LaFragment)
                     {
-                        sb.AddIfNeeded("{",format);
+                        sb.AddIfNeeded("{", format);
                         sb.AddRange(chain.ToTokenList(format, formatProvider));
                         sb.Add(Particles.la.ToString(format, formatProvider));
-                        sb.AddIfNeeded("}",format);   
+                        sb.AddIfNeeded("}", format);
                     }
                 }
 
@@ -408,10 +407,10 @@ namespace BasicTypes
                 if (subjects != null)
                 {
                     //Should only happen for imperatives
-                    sb.AddIfNeeded("[",format);
+                    sb.AddIfNeeded("[", format);
                     sb.Add(subjects == null ? "[NULL]" : subjects.ToString(format, formatProvider));
-                        //subjects.Select(x => x == null ? "[NULL]" : x.ToString(format, formatProvider)), format, formatProvider, false);
-                    sb.AddIfNeeded("]",format);
+                    //subjects.Select(x => x == null ? "[NULL]" : x.ToString(format, formatProvider)), format, formatProvider, false);
+                    sb.AddIfNeeded("]", format);
                 }
                 else
                 {
@@ -422,16 +421,34 @@ namespace BasicTypes
                     }
                 }
 
-                sb.AddIfNeeded("<",format);
-                sb.AddRange(Predicates.ToTokenList(format, formatProvider));
-                sb.AddIfNeeded(">",format);
+                sb.AddIfNeeded("<", format);
+                bool supressLi = false;
+                if (subjects != null)
+                {
+                    string test = subjects.ToString("g", formatProvider);
+                    if (test == "mi" || test == "sina")
+                    {
+                        supressLi = true;
+                    }
+                }
+
+                sb.AddRange(Predicates.ToTokenList(format, formatProvider, supressLi));
+                sb.AddIfNeeded(">", format);
             }
+
 
             if (tagQuestion != null)
             {
-                sb.AddIfNeeded("|", format);
-                sb.Add(tagQuestion.Text);
-                sb.AddIfNeeded("|", format);
+                if (format == "html")
+                {
+                    sb.Add(HtmlTagHelper.SpanWrap("conjunction", tagQuestion.Text));
+                }
+                else
+                {
+                    sb.AddIfNeeded("|", format);
+                    sb.Add(tagQuestion.Text);
+                    sb.AddIfNeeded("|", format);
+                }
             }
 
             return sb;
@@ -439,11 +456,11 @@ namespace BasicTypes
 
         private bool NeedToReplace(string value, string pronoun)
         {
-            bool startsWith = value.ContainsCheck(pronoun+ " li") && value.StartCheck(pronoun+ " ");
-            if(startsWith) return true;
+            bool startsWith = value.ContainsCheck(pronoun + " li") && value.StartCheck(pronoun + " ");
+            if (startsWith) return true;
 
-            bool followsConditional = value.ContainsCheck(pronoun + " li") && value.ContainsCheck(" la "+pronoun+" li ");
-            if(followsConditional) return true;
+            bool followsConditional = value.ContainsCheck(pronoun + " li") && value.ContainsCheck(" la " + pronoun + " li ");
+            if (followsConditional) return true;
 
             bool followsPunctuation = value.ContainsCheck(pronoun + " li") && value.ContainsCheck(". " + pronoun + " li ");
             if (followsPunctuation) return true;
@@ -453,7 +470,7 @@ namespace BasicTypes
 
             return false;
         }
-    
+
 
         private string Denormalize(string value, string format)
         {
@@ -462,17 +479,17 @@ namespace BasicTypes
                 format = "g";
             }
             //tenpo kama la jan lili mi li toki e ni
-            if (NeedToReplace(value,"mi"))
-            {
-                Regex r = new Regex(@"\bmi li\b");
-                value = r.Replace(value, "mi");
-            }
+            //if (NeedToReplace(value,"mi"))
+            //{
+            //    Regex r = new Regex(@"\bmi li\b");
+            //    value = r.Replace(value, "mi");
+            //}
 
-            if (NeedToReplace(value, "sina"))
-            {
-                Regex r = new Regex(@"\bsina li li\b");
-                value = r.Replace(value, "sina");
-            }
+            //if (NeedToReplace(value, "sina"))
+            //{
+            //    Regex r = new Regex(@"\bsina li li\b");
+            //    value = r.Replace(value, "sina");
+            //}
 
             if (value.ContainsCheck("~"))
             {
@@ -480,11 +497,11 @@ namespace BasicTypes
             }
             if (value.ContainsCheck("li ijo Nanunanuwakawakawawa."))
             {
-                value = value.Replace("li ijo Nanunanuwakawakawawa.", format.StartCheck("b")?"[NULL TOKEN]":"");
+                value = value.Replace("li ijo Nanunanuwakawakawawa.", format.StartCheck("b") ? "[NULL TOKEN]" : "");
             }
             if (value.ContainsCheck("[NULL]") && !format.StartCheck("b"))
             {
-                value = value.Replace("[NULL]","");
+                value = value.Replace("[NULL]", "");
             }
             return value;
         }

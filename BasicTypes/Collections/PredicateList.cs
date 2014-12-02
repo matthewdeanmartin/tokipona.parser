@@ -28,12 +28,21 @@ namespace BasicTypes.Collections
             return sb.SpaceJoin(format);
         }
 
-        public List<string> ToTokenList(string format, IFormatProvider formatProvider)
+        public List<string> ToTokenList(string format, IFormatProvider formatProvider, bool supressLi=false)
         {
             List<string> sb = new List<string>();
+            int i = 0;
             foreach (TpPredicate tpPredicate in this)
             {
-                sb.Add(tpPredicate.Particle.ToString(format, formatProvider));
+                if (i == 0 && supressLi && tpPredicate.Particle.Text=="li")
+                {
+                    //skip!
+                }
+                else
+                {
+                    sb.Add(tpPredicate.Particle.ToString(format, formatProvider));
+                }
+
 
                 //Don't think you can have both
                 if (tpPredicate.NominalPredicate != null)
