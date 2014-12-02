@@ -4,7 +4,7 @@
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
 
-<p>The parser doesn't look like much, but it translates tp text into C# data structures. From this I can do a variety of experiments, such as sentence diagramming, glossing to english, spell checking, and grammar checking.</p>
+<p>The parser doesn't look like much, but it translates tp text into C# data structures. From this I can do a variety of experiments, such as sentence diagramming, glossing to English, spell checking, and grammar checking.</p>
 
 <h2>Normalization</h2>
 <p>
@@ -23,7 +23,7 @@
 <p>Right now the parser is mostly in strict mode. If I write the parser to accept anything, then when I write bad toki pona and the parser doesn't mind, it is impossible to tell if it is because of leniency or because the parser has a bug. So lenient mode is something for the future.</p>
 <h2>Edgy toki pona</h2>
 <p>I like to write edgy toki pona, but the parser can't deal with it. Example include: compound prepositions, transformatives, noun phrases in the verb phrase, intentional and accidental subordinate clasues (I'm going to have to get back with an example), nor "mixed modifiers" that use en to join modifiers, e.g. kule pi laso en pimeja.</p>
-<h2>Rapidly Changing Issuse (Hopefully)</h2>
+<h2>Rapidly Changing Issues (Hopefully)</h2>
 <p>I represent sentences a series of chains joined by particles. Think beads on a string. Right now, the parser keeps messing up where to put particles-- it adds particles to beginning when it should only be in the middles, and other problems. I haven't modeled modal verbs (ken/wile), serial verbs (kama/tawa), conjunctions other than la (anu/taso). I can't gloss compound phrases yet because I haven't done the data entry for the dictionary. I need to fill in all the entries in the dictionary and I want to support switching between the jan Sonja, jan Kipo and possibly my own glosses.</p>
 <h2>Really Hard</h2>
 <p>I'm pessimistic about ever solving some problems. I can't deal with direct quotes inside of direct quotes. I can't deal with hyper dilglosia (e.g. constantly switching between English, German and toki pona and HTML markup). I can't deal with asides, e.g. an entire sentence wrapped in parenthesis either just injected into a sentence or possibly used as a modifer. I can't deal with weird text like table of contents, lists, chat logs, screen plays, and other text that doesn't behave like prose.</p>

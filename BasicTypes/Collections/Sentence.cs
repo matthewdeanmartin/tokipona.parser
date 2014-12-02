@@ -7,6 +7,7 @@ using BasicTypes.Collections;
 using BasicTypes.CollectionsDegenerate;
 using BasicTypes.Exceptions;
 using BasicTypes.Extensions;
+using BasicTypes.Html;
 using BasicTypes.Parts;
 
 namespace BasicTypes
@@ -24,10 +25,7 @@ namespace BasicTypes
         //Breaks immutability :-(
         [DataMember]
         public List<Fragment> LaFragment { get; set; }
-
-        //[DataMember]
-        //private readonly ComplexChain fragments; //not used????
-
+        
         [DataMember]
         private readonly ComplexChain subjects;
         [DataMember]
@@ -45,10 +43,10 @@ namespace BasicTypes
         private readonly Exclamation exclamation;//Degenerate sentence, maybe should be a subclass?
 
         [DataMember]
-        private readonly Comment comment;
+        private readonly Comment comment; //Also degenerate sentence.
 
         [DataMember]
-        private readonly Fragment fragment;
+        private readonly Fragment fragment; //can't remember, is this a la fragment or a dengenerate sentence (e.g. a title)
 
         [DataMember]
         private readonly bool isHortative; //o mi mute li moku e kili.
@@ -58,6 +56,9 @@ namespace BasicTypes
 
         [DataMember]
         private readonly string normalized;
+
+        [DataMember]
+        private readonly TagQuestion tagQuestion;
 
         public Sentence(Comment comment)
         {
@@ -145,6 +146,7 @@ namespace BasicTypes
             {
                 punctuation = parts.Punctuation;
                 conjunction = parts.Conjunction;
+                tagQuestion = parts.TagQuestion;
             }
             
             this.original = original;
@@ -208,6 +210,8 @@ namespace BasicTypes
         public PredicateList Predicates { get { return predicates; } }//li verb li noun li prep phrase
         public Punctuation Punctuation { get { return punctuation; } } //.?!
 
+        public TagQuestion TagQuestion{ get { return tagQuestion; } }
+
         public Sentence EquivallencyGenerator()
         {
             return (Sentence)MemberwiseClone();
@@ -225,7 +229,13 @@ namespace BasicTypes
         {
             get
             {
-                return new[] { "g", "b", "bs" };
+                return new[]
+                {
+                    "g", 
+                    "b", 
+                    "bs",
+                    "html"
+                };
             }
         }
 
@@ -323,9 +333,10 @@ namespace BasicTypes
                 //{
                 //    normalizedPunctuation = new Punctuation(".");
                 //}
+                
                 if (normalizedPunctuation != null)
                 {
-                    spaceJoined = spaceJoined + normalizedPunctuation.ToString();
+                    spaceJoined = spaceJoined +  normalizedPunctuation.ToString();
                 }
                 
                 if (punctuation != null)
@@ -361,7 +372,15 @@ namespace BasicTypes
             if (conjunction != null)
             {
                 sb.AddIfNeeded("|", format);
-                sb.Add(conjunction.Text);
+                if (format == "html")
+                {
+                    sb.Add(HtmlTagHelper.SpanWrap("conjunction", conjunction.Text));
+                }
+                else
+                {
+                    sb.Add(conjunction.Text);
+                }
+
                 sb.AddIfNeeded("|", format);
             }
 
@@ -416,6 +435,12 @@ namespace BasicTypes
                 sb.AddIfNeeded(">",format);
             }
 
+            if (tagQuestion != null)
+            {
+                sb.AddIfNeeded("|", format);
+                sb.Add(tagQuestion.Text);
+                sb.AddIfNeeded("|", format);
+            }
 
             return sb;
         }

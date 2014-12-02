@@ -10,5 +10,6 @@ namespace DemoSite.Models
         public string FormattedPos { get; set; }     
         public string Glossed { get; set; }
         public string Recovered { get; set; }
+        public string Colorized { get; set; }
     }
 }

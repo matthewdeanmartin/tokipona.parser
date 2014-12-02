@@ -22,8 +22,56 @@
         }
       
      
-    @*</div>
+        @*</div>
     <div class="col-md-6">*@
+        <style>
+            .content
+{
+    color:#800000;
+}
+.compound
+{
+    color:#800000;
+}
+.function
+{
+    color:Red;
+}
+.number
+{
+    color: green;
+}
+.neologism
+{
+    background: yellow;
+}
+.foreign
+{
+    background: orange;
+}
+.anaphora
+{
+    color: Blue;
+}
+.conjunction
+{
+    color:Green;
+}
+.proper
+{
+    color:Orange;
+    font-weight:bold;
+}
+.prep
+{
+    color:Red;
+    font-weight:bold;
+}
+        </style>
+        <h2>Colorized</h2>
+        <p>
+            @Html.Raw(Model.Colorized)
+        </p>
         <h2>Bracketed (Partial Diagram*)</h2>
     
         <p>
@@ -33,10 +81,7 @@
         <p>
             @Html.Raw(Model.Normalized)
         </p>
-        <h2>string =&gt; OOP data structure =&gt; string</h2>
-        <p>
-            @Html.Raw(Model.Recovered)
-        </p>
+        
         <h2>English Gloss (Yeah, I know, it ain't google translate)</h2>
         <p>
             @Html.Raw(Model.Glossed)

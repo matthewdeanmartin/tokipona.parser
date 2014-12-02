@@ -82,6 +82,13 @@ namespace BasicTypes.Extensions
         }
         public static string SpaceJoin(this List<string> list, string format)
         {
+            if (format == "html")
+            {
+                //At the moment, HTML generates only HTML
+                //Nothing needs to be stripped out.
+                return String.Join(" ", list);
+            }
+
             string[] parts = list.Where(x => NeedIt(format, x)).ToArray();
             if (format == "b" || format=="bs")
             {
@@ -123,8 +130,9 @@ namespace BasicTypes.Extensions
                 return String.Join(" ", parts);
         }
 
-        public static bool NeedIt( string format, string value)
+        public static bool NeedIt(string format, string value)
         {
+            
             if (format == null || format == "g" || format == "" || format == "t")
             {
                 if (value.Length == 0) return false; //Never need empties
@@ -140,11 +148,16 @@ namespace BasicTypes.Extensions
                 return !("<>{}[]()#".ContainsCheck(value[0])); //Not a bracket? Keep it.
             }
 
-            if (format == "b" || format == "bs")//bracketed
+            if (format == "b" //bracketed
+                ||
+                format == "bs" //Don't denormalize
+                // || "bhhtml"  
+                )
             {
                 //Keep it all!
                 return true;
             }
+            
             throw new ArgumentOutOfRangeException("format","Expected format of null, g (general) or b (bracketed), got " + format);
         }
     }

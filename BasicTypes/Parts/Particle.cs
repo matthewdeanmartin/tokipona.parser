@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using BasicTypes.Extensions;
+using BasicTypes.Html;
 
 namespace BasicTypes
 {
@@ -121,7 +122,15 @@ namespace BasicTypes
             // Remove spaces and convert to uppercase.
             format = format.Trim();
             if (format == null || format == "g" || format == "G")
+            {
                 return Text;
+            }
+
+            if (format == "html")
+            {
+                return HtmlTagHelper.SpanWrap("function", Text);
+            }
+
 
             bool includePos = false;
             if (format.ContainsCheck(":"))

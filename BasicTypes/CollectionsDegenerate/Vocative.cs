@@ -16,7 +16,7 @@ namespace BasicTypes.Collections
     //But probably should be jan pi ma suli o! meli pi ma suli o!
     [DataContract]
     [Serializable]
-    public class Vocative
+    public class Vocative : IContainsWord, IFormattable, IToString
     {
         [DataMember]
         private readonly ComplexChain nominal;
@@ -37,5 +37,40 @@ namespace BasicTypes.Collections
             sb.AddRange(nominal.ToTokenList(format,formatProvider));
             return sb;
         }
+
+        public bool Contains(Word word)
+        {
+            if (nominal != null)
+            {
+                return nominal.Contains(word);
+            }
+            return false;
+        }
+
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            if (nominal != null)
+            {
+                return nominal.ToString(format, formatProvider);
+            }
+            return "";
+        }
+
+        public string[] SupportedsStringFormats { get; private set; }
+
+        public string ToString(string format)
+        {
+            if (format == null)
+            {
+                format = "g";
+            }
+            return ToString(format, Config.CurrentDialect);
+        }
+
+        public override string ToString()
+        {
+            return ToString("g", Config.CurrentDialect);
+        }
+
     }
 }

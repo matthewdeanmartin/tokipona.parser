@@ -10,6 +10,11 @@ namespace BasicTypes.FundamentalTests
     [TestFixture]
     public class ListkovSubstitutionTests
     {
+        //Base Classes:
+        //Token
+        //Derived Classes:
+        //Word, etc.
+
         [Test]
         public void ExerciseTests()
         {

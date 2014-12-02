@@ -13,7 +13,7 @@ namespace BasicTypes.Collections
     {
         readonly WordList worlList = new WordList(){Words.anu, Words.seme};
 
-        //Kind of degenerate structure.
+        //Kind of degenerate structure, AFAIK, no internal structure.
         public TagQuestion()
         {
             
@@ -45,6 +45,10 @@ namespace BasicTypes.Collections
             {
                 return new[] { "g" };
             }
+        }
+
+        public string Text {
+            get { return "anu seme"; } 
         }
 
         public string ToString(string format)

@@ -82,8 +82,6 @@
     <Compile Include="Collections\ComplexChainByValue.cs" />
     <Compile Include="Collections\ComplexChainTests.cs" />
     <Compile Include="Collections\ComplexPronoun.cs" />
-    <Compile Include="Collections\DirectSpeech.cs" />
-    <Compile Include="Collections\Discourse.cs" />
     <Compile Include="CollectionsDegenerate\Fragment.cs" />
     <Compile Include="Collections\HeadedPhrase.cs" />
     <Compile Include="Collections\HeadedPhraseConverter.cs" />
@@ -139,6 +137,8 @@
     <Compile Include="Globalization\UseCulture.cs" />
     <Compile Include="Glosser\GlossMakerTests.cs" />
     <Compile Include="Glosser\GlossMaker.cs" />
+    <Compile Include="Html\HtmlFormatter.cs" />
+    <Compile Include="Html\HtmlTagHelper.cs" />
     <Compile Include="Interfaces\ICopySelf.cs" />
     <Compile Include="Interfaces\IParse.cs" />
     <Compile Include="Interfaces\ISerializeToProxy.cs" />
@@ -148,7 +148,6 @@
     <Compile Include="Knowledge\CorpusKnowledgeTests.cs" />
     <Compile Include="Dictionary\Particles.cs" />
     <Compile Include="Dictionary\Pronouns.cs" />
-    <Compile Include="Collections\DiscourseTests.cs" />
     <Compile Include="Exceptions\InvalidPhonology.cs" />
     <Compile Include="Extensions\ArrayExtensions.cs" />
     <Compile Include="Collections\HeadedPhraseTest.cs" />

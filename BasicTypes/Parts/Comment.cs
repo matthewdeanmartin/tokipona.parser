@@ -53,6 +53,10 @@ namespace BasicTypes.Parts
             {
                 format = "g";
             }
+            if (format == "html")
+            {
+                return "<span class=\"comment\">" + comment + "</span>";
+            }
             return comment;
         }
     }

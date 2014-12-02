@@ -1,6 +1,6 @@
-akesi Jaba)
+akesi "Jaba".
 
-a! tenpo Brilig la soweli jaki
+a! tenpo "Brilig" la soweli jaki
 
 li musi li moku li lape li lon.
 
@@ -10,9 +10,9 @@ li sike li tawa lon tawa kon.
 
 'jan lili, o kute, o pilin ike
 
-tan waso Jubjub, tan akesi Banda
+tan waso "Jubjub", tan akesi "Banda""
 
-o pilin ike tan akesi Jaba!
+o pilin ike tan akesi "Jaba"!
 
 uta en luka pi ona li moli.'
 
@@ -22,7 +22,7 @@ tenpo suli la jan lili li tawa.
 
 ona li awen li pilin li pona
 
-lon anpa pi kasi palisa Tumtum.
+lon anpa pi kasi palisa "Tumtum".
 
 a! tenpo ni la akesi li kama!
 
@@ -40,7 +40,7 @@ ona li moli e akesi ni
 
 li tawa musi lon poka lawa
 
-'sina moli e akesi Jaba,
+'sina moli e akesi "Jaba",
 
 anu seme? o kama, o kama!
 
@@ -48,7 +48,7 @@ jan pona mi! mi pilin pona!'
 
 ona li toki musi tan ni.
 
-a! tenpo Brilig la soweli jaki
+a! tenpo "Brilig" la soweli jaki
 
 li musi li moku li lape li lon.
 

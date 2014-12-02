@@ -32,6 +32,11 @@ namespace BasicTypes.Glosser
 
         public string Gloss(string normalized, string original, string language = "en", bool includePos = false)
         {
+            if (normalized.Contains("li, "))
+            {
+                throw new InvalidOperationException("This isn't normalized. : " + normalized);
+            }
+
             Dialect config = Dialect.DialectFactory;
             config.ThrowOnSyntaxError = false;
             config.TargetGloss = language;
@@ -72,6 +77,19 @@ namespace BasicTypes.Glosser
 
             //HACK:
             string result = gloss.SpaceJoin("g");
+
+            if (sentenceTree.Punctuation != null)
+            {
+                result += sentenceTree.Punctuation.ToString();
+            }
+            else
+            {
+                if (sentenceTree.TagQuestion != null)
+                {
+                    result += "?";
+                }
+            }
+
             if (result.ContainsCheck("and of of"))
             {
                 result = result.Replace("and of of", "");

@@ -41,8 +41,8 @@ namespace BasicTypes
             dialect.TargetGloss = "en";
 
             CorpusKnowledge ck = new CorpusKnowledge(sample, dialect);
-            Discourse[] s = ck.MakeSentences();
-            foreach (Discourse d in s)
+            List<Sentence>[] s = ck.MakeSentences();
+            foreach (List<Sentence> d in s)
             {
                 foreach (Sentence js in d)
                 {

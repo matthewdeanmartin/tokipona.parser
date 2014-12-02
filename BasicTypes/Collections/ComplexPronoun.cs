@@ -20,5 +20,7 @@ namespace BasicTypes.Collections
         public ComplexPronoun(Word head, WordSet modifiers) : base(head, modifiers)
         {
         }
+
+        
     }
 }

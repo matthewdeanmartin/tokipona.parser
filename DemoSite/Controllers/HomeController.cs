@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml.Linq;
 using BasicTypes;
 using BasicTypes.Glosser;
+using BasicTypes.Html;
 using BasicTypes.Knowledge;
 using BasicTypes.NormalizerCode;
 using BasicTypes.Parser;
@@ -31,7 +34,9 @@ namespace DemoSite.Controllers
             StringBuilder bracketSb = new StringBuilder();
             StringBuilder posSb = new StringBuilder();
             StringBuilder glossSb = new StringBuilder();
+            StringBuilder colorized = new StringBuilder();
 
+            HtmlFormatter hf = new HtmlFormatter();
 
             foreach (string sentence in sentences)
             {
@@ -43,15 +48,18 @@ namespace DemoSite.Controllers
                 catch (Exception ex)
                 {
                     normalized = "[[CANNOT NORMALIZE: nena suli! " + ex.Message + " for " + sentence + "]]";
-                    normalizedSb.AppendLine(normalized + "<br/>");
+                    normalizedSb.AppendLine(hf.BoldTheWords(normalized.ToHtml()) + "<br/>");
                     continue;
                 }
-                normalizedSb.AppendLine(normalized.ToHtml() + "<br/>");
+                //////// TP
+                normalizedSb.AppendLine(hf.BoldTheWords(normalized.ToHtml()) + "<br/>");
 
                 Sentence parsedSentence;
                 try
                 {
                     parsedSentence = pu.ParsedSentenceFactory(normalized, sentence);
+
+                    //////// TP
                     try
                     {
                         spitBackSb.AppendLine(parsedSentence.ToString("g", dialect).ToHtml() + "<br/>");
@@ -59,20 +67,37 @@ namespace DemoSite.Controllers
                     catch (Exception ex)
                     {
                         string error = "[[CANNOT REPEAT BACK: nena suli! " + ex.Message + " for " + sentence + "]]";
-                        spitBackSb.AppendLine(error.ToHtml() + "<br/>");
+                        spitBackSb.AppendLine(hf.BoldTheWords(error.ToHtml()) + "<br/>");
                     }
 
                     try
                     {
-                        bracketSb.AppendLine(parsedSentence.ToString("b", dialect).ToHtml() + "<br/>");
-                        //posSb.AppendLine(parsedSentence.ToString("bs", dialect) + "<br/>"); //bs doesn't do anything.
+                        string result = parsedSentence.ToString("html", dialect);
+                        //if (result.Replace("<span", "").Contains("<"))
+                        //{
+                        //    throw new InvalidOperationException("No HTML allowed in input");
+                        //}
+                        colorized.AppendLine(parsedSentence.ToString("html", dialect)+ "<br/>");
+                    }
+                    catch (Exception ex)
+                    {
+                        string error = "[[CANNOT COLORIZE: nena suli! " + ex.Message + " for " + sentence + "]]";
+                        spitBackSb.AppendLine(hf.BoldTheWords(error.ToHtml()) + "<br/>");
+                    }
+
+                    //////// TP
+                    try
+                    {
+                        bracketSb.AppendLine(hf.BoldTheWords(parsedSentence.ToString("b", dialect).ToHtml()) + "<br/>");
                     }
                     catch (Exception ex)
                     {
                         string error = "[[CANNOT BRACKET: nena suli! " + ex.Message + " for " + sentence + "]]";
-                        bracketSb.AppendLine(error.ToHtml() + "<br/>");
+                        bracketSb.AppendLine(hf.BoldTheWords(error.ToHtml()) + "<br/>");
                     }
 
+
+                    //////// ENGLISH
                     try
                     {
                         dialect.TargetGloss = "en";
@@ -85,7 +110,7 @@ namespace DemoSite.Controllers
                     catch (Exception ex)
                     {
                         string error = "[[CANNOT GLOSS: nena suli! " + ex.Message.ToHtml() + " for " + sentence.ToHtml() + "]]";
-                        glossSb.AppendLine(error.ToHtml() + "<br/>");
+                        glossSb.AppendLine(hf.BoldTheWords(error.ToHtml()) + "<br/>");
                     }
                 }
                 catch (Exception ex)
@@ -99,7 +124,7 @@ namespace DemoSite.Controllers
                         glossSb
                     })
                     {
-                        sb.AppendLine(cantParse.ToHtml() + "<br/>");
+                        sb.AppendLine(hf.BoldTheWords(cantParse.ToHtml()) + "<br/>");
                     }
                 }
                 finally
@@ -107,12 +132,13 @@ namespace DemoSite.Controllers
                     dialect.TargetGloss = "tp";
                 }
             }
-
-            parse.Normalized = normalizedSb.ToString();
+            
+            parse.Normalized =  normalizedSb.ToString();
             parse.Recovered = spitBackSb.ToString();
             parse.Formatted = bracketSb.ToString();
-            parse.FormattedPos = posSb.ToString();
-            parse.Glossed = glossSb.ToString();
+            parse.FormattedPos = hf.SubThePartsOfSpeech(posSb.ToString());
+            parse.Glossed =  glossSb.ToString();
+            parse.Colorized = colorized.ToString();
         }
 
         public ActionResult Index()
@@ -142,6 +168,101 @@ namespace DemoSite.Controllers
             };
             ProcessParserModel(vm);
             return View(vm);
+        }
+
+        public ActionResult Serializations()
+        {
+            
+            Random r = new Random(DateTime.Now.Millisecond);
+
+            string[] samples =
+                new string[]
+                {
+                CorpusTexts.UnpaText,
+                CorpusTexts.Gilgamesh,
+                CorpusTexts.SampleText1,
+                CorpusTexts.SampleText3,
+                CorpusTexts.Lao,
+                CorpusTexts.GeorgeSong,
+                    CorpusTexts.CrazyAnimal,
+                    CorpusTexts.CrazyAnimal2
+                    //,CorpusTexts.JanSin  //Too many neologisms to cope. 
+                    ,CorpusTexts.RuneDanceSong
+                    ,CorpusTexts.janPusaRice
+                    ,CorpusTexts.janPend,
+                    "nena meli li suli la monsi li suli kin."
+                };
+            SerializationsModel sm = new SerializationsModel()
+            {
+                SourceText = samples[r.Next(samples.Length)]
+            };
+
+            ProcessSerializationsModel(sm);
+
+            return View(sm);
+        }
+
+
+        private static void ProcessSerializationsModel(SerializationsModel parse)
+        {
+            Dialect dialect = Dialect.DialectFactory;
+            ParserUtils pu = new ParserUtils(dialect);
+            string[] sentences = pu.ParseIntoNonNormalizedSentences(parse.SourceText);
+            
+            StringBuilder errors = new StringBuilder();
+
+            List<Sentence> parseSentences = new List<Sentence>();
+            int i = 0;
+            foreach (string sentence in sentences)
+            {
+                i++;
+                if(i>=3) continue;
+                string normalized;
+                try
+                {
+                    normalized = Normalizer.NormalizeText(sentence, dialect);
+                }
+                catch (Exception ex)
+                {
+                    normalized = "[[CANNOT NORMALIZE: nena suli! " + ex.Message + " for " + sentence + "]]";
+                    errors.AppendLine(normalized + "<br/>");
+                    continue;
+                }
+                
+
+                Sentence parsedSentence;
+                try
+                {
+                    parsedSentence = pu.ParsedSentenceFactory(normalized, sentence);
+                    parseSentences.Add(parsedSentence);
+                }
+                catch (Exception ex)
+                {
+                    string cantParse = "[[CANNOT PARSE: nena suli! " + ex.Message.ToHtml() + " for " + sentence.ToHtml() + "]]";
+                    errors.AppendLine(cantParse.ToHtml() + "<br/>");
+                }
+                finally
+                {
+                    dialect.TargetGloss = "tp";
+                }
+            }
+
+            parse.Json = parseSentences.ToJsonNet();
+            parse.Xml = FormatXml(parseSentences.ToDataContractXml());
+            parse.Html = "Not implemented yet";
+        }
+
+        public static string FormatXml(string xml)
+        {
+            try
+            {
+                XDocument doc = XDocument.Parse(xml);
+                return doc.ToString();
+            }
+            catch (Exception)
+            {
+                return xml;
+            }
         }
 
         public ActionResult About()

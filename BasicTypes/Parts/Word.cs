@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using BasicTypes.Exceptions;
 using BasicTypes.Extensions;
+using BasicTypes.Html;
 using BasicTypes.Knowledge;
 using BasicTypes.MoreTypes;
 using BasicTypes.Parts;
@@ -304,6 +305,36 @@ namespace BasicTypes
             format = format.Trim();
             if (format == null || format == "g" || format == "G")
             {
+                return Text;
+            }
+
+            if (format == "html")
+            {
+                //"html"
+                if (CheckIsPreposition(word))
+                {
+                    return HtmlTagHelper.SpanWrap("prep", Text);
+                }
+                else if (word.StartCheck("#") && CheckIsNumber(word))
+                {
+                    return HtmlTagHelper.SpanWrap("number", Text);
+                }
+                else if (word.ContainsCheck("-") && CheckIsCompoundWord(word))
+                {
+                    return HtmlTagHelper.SpanWrap("compound", Text);
+                }
+                else if (CheckIsProperModifier(word))
+                {
+                    return HtmlTagHelper.SpanWrap("proper", Text);
+                }//Escaped foreign
+                else if (IsForeign(word))
+                {
+                    return HtmlTagHelper.SpanWrap("foreign", Text);
+                }
+                else if (IsNeologism(word))
+                {
+                    return HtmlTagHelper.SpanWrap("neologism", Text);
+                }
                 return Text;
             }
 

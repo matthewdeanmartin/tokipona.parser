@@ -53,6 +53,14 @@ namespace BasicTypes
                 }
             }
 
+            //Using commas as a sentence break.
+            //jan Mato o, sina li lape anu seme?
+            // o, sina
+            if (text.Contains(" o, sina "))
+            {
+                text = text.Replace(" o, sina ", " o! sina ");
+            }
+
             //Crap. If we break on \n then sentences with line feeds are cut in half.
             //If we don't break on \n, then we blow up on intentional fragments like titles.
             //Choosing to not break on \n & and manually add . to titles.
@@ -66,11 +74,11 @@ namespace BasicTypes
         }
 
 
-        public Discourse[] GroupIntoDiscourses(Sentence[] sentences)
+        public List<Sentence>[] GroupIntoDiscourses(Sentence[] sentences)
         {
-            List<Discourse> l = new List<Discourse>();
+            List<List<Sentence>> l = new List<List<Sentence>>();
 
-            Discourse d = new Discourse();
+            List<Sentence> d = new List<Sentence>();
             l.Add(d);
             for (int i = 0; i < sentences.Length - 1; i++)
             {
@@ -94,10 +102,10 @@ namespace BasicTypes
                 {
                     continue;
                 }
-                d = new Discourse();
+                d = new List<Sentence>();
                 l.Add(d);
             }
-            foreach (Discourse discourse in l.ToArray())
+            foreach (List<Sentence> discourse in l.ToArray())
             {
                 if (discourse.Count == 0)
                 {
@@ -269,6 +277,14 @@ namespace BasicTypes
 
         public Sentence ProcessSimpleSentence(string sentence, Punctuation punctuation, string original)
         {
+            //HACK: Still need a better way to deal with quotes.
+            if (sentence.EndCheck("»") || sentence.EndCheck("«"))
+            {
+                sentence = sentence.Substring(0, sentence.Length - 1);
+            }
+
+            
+
             //Comment? Get out of here!
             if (sentence.StartCheck("///"))
             {
@@ -276,7 +292,16 @@ namespace BasicTypes
                 return new Sentence(c);
             }
 
+            //Simple exclamation! Get out of here!
+            if (Exclamation.IsExclamation(sentence))
+            {
+                return new Sentence(new Exclamation(new HeadedPhrase(new Word(sentence))), punctuation, original, sentence);
+            }
+
+
+            //Process tag conjunctions and tag questions
             Particle conjunction = null;
+            TagQuestion tagQuestion = null;
             if (sentence.StartCheck("taso "))
             {
                 conjunction = Particles.taso;
@@ -297,6 +322,14 @@ namespace BasicTypes
                 conjunction = Particles.ante;
                 sentence = sentence.Substring(5);
             }
+
+            //Should already have ? stripped off
+            if (sentence.EndsWith(" anu seme"))
+            {
+                tagQuestion = new TagQuestion();
+                sentence = sentence.Substring(0, sentence.LastIndexOf(" anu seme"));
+            }
+
 
             if (sentence.EndCheck(" li"))
             {
@@ -406,7 +439,8 @@ namespace BasicTypes
                 Conjunction = conjunction,
                 //Etc
                 Punctuation = punctuation,
-                IsHortative = isHortative
+                IsHortative = isHortative,
+                TagQuestion = tagQuestion
             },
             original, sentence);
             return parsedSentence;

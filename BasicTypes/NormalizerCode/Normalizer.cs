@@ -113,10 +113,13 @@ namespace BasicTypes.NormalizerCode
                 normalized = normalized.Replace("[NULL]", "");
             }
 
+
             if (normalized.ContainsCheck(" "))
             {
                 normalized = ApplyNormalization(normalized, "ExtraWhiteSpace", ProcessExtraneousWhiteSpace);
             }
+
+            
 
             //Okay, phrases should be recognizable now.
             if (dialect.InferCompoundsPrepositionsForeignText)

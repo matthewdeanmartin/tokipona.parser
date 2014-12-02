@@ -12,7 +12,7 @@ namespace BasicTypes.CollectionsDegenerate
     //I don't think these have any interesting internal grammar.
     [DataContract]
     [Serializable]
-    public class Exclamation
+    public class Exclamation : IContainsWord, IFormattable, IToString
     {
         //Headed phrase can't be headed by a particle, but an exclamation can!
         [DataMember]
@@ -54,5 +54,40 @@ namespace BasicTypes.CollectionsDegenerate
             string token = word.Trim(new char[] { ',', '«', '»','!',' ' });
             return Exclamations.Contains(token.Trim());
         }
+
+        public bool Contains(Word word)
+        {
+            if (wordSet != null)
+            {
+                return wordSet.Contains(word);
+            }
+            return false;
+        }
+
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            if (wordSet != null)
+            {
+                return wordSet.ToString(format, formatProvider);
+            }
+            return "";
+        }
+
+        public string[] SupportedsStringFormats { get; private set; }
+
+        public string ToString(string format)
+        {
+            if (format == null)
+            {
+                format = "g";
+            }
+            return ToString(format, Config.CurrentDialect);
+        }
+
+        public override string ToString()
+        {
+            return ToString("g", Config.CurrentDialect);
+        }
+
     }
 }

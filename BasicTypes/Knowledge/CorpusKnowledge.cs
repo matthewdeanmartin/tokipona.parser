@@ -38,16 +38,17 @@ namespace BasicTypes.Knowledge
             }
         }
 
-        public Discourse[] MakeSentences()
+        public List<Sentence>[] MakeSentences()
         {
             ParserUtils pu = new ParserUtils(c);
 
-            List<Discourse> facts = new List<Discourse>();
+            List<List<Sentence>> facts = new List<List<Sentence>>();
 
             foreach (string sentence in sentences)
             {
+                if(string.IsNullOrWhiteSpace(sentence))continue;
                 Sentence parsedSentence = pu.ParsedSentenceFactory(sentence,sentence);
-                facts.Add(new Discourse()
+                facts.Add(new List<Sentence>()
                     {
                         parsedSentence
                     });

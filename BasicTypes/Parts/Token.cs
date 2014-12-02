@@ -197,9 +197,10 @@ namespace BasicTypes
             }
 
             //Invalid syllables.: "ji", "wu", "wo", "ti", "nm", "nn"
+            string toLower = value.ToLower();
             foreach (string invalid in new string[] {"ji", "wu", "wo", "ti", "nm", "nn"})
             {
-                if (value.ContainsCheck(invalid))
+                if (toLower.ContainsCheck(invalid))
                 {
                     return false;
                 }

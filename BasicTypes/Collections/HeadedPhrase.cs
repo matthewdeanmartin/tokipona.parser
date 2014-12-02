@@ -6,8 +6,10 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using BasicTypes.Collections;
+using BasicTypes.CollectionsDegenerate;
 using BasicTypes.Exceptions;
 using BasicTypes.Extensions;
+using BasicTypes.Html;
 using BasicTypes.Parts;
 
 namespace BasicTypes
@@ -50,6 +52,10 @@ namespace BasicTypes
 
         public HeadedPhrase(Word head, Word modifier1, Word modifier2 = null, Word modifier3 = null)
         {
+            if (new[] {"mi", "sina", "ona"}.Contains(head.Text))
+            {
+                throw new ArgumentException("mi, sina, ona can only be pronouns, so you must use ComplexPronoun");
+            }
             WordSet modifiers = null;
             //if (modifier2 != null || modifier3 != null)
             {
@@ -74,6 +80,10 @@ namespace BasicTypes
         //kili suwi namako anu loje
         public HeadedPhrase(Word head, WordSet modifiers = null, PrepositionalPhrase[] prepositionalPhrases = null, WordSet[] joinedModifiers=null, WordSet[] alernativeModifiers=null)
         {
+            //if (new[] { "mi", "sina", "ona" }.Contains(head.Text))
+            //{
+            //    throw new ArgumentException("mi, sina, ona can only be pronouns, so you must use ComplexPronoun");
+            //}
             ValidateConstruction(head, modifiers);
 
             this.head = head;
@@ -87,10 +97,11 @@ namespace BasicTypes
             {
                 throw new ArgumentNullException("head", "Can't construct with null");
             }
-            if (Token.CheckIsParticle(head.Text))
+            //HACK: related to taso in la fragment
+            if (!(Exclamation.IsExclamation(head.Text) || head.Text=="taso")&& Token.CheckIsParticle(head.Text))
             {
                 throw new TpSyntaxException(
-                    "You can't have a headed phrase that is headed by a particle. That would be a chain. " + head.Text);
+                    "You can't have a headed phrase that is headed by a particle. That would be a chain. " + head.Text + " "+  (modifiers==null?"":modifiers.ToString()));
             }
             if (ProperModifier.IsProperModifer(head.Text))
             {
@@ -100,6 +111,8 @@ namespace BasicTypes
             {
                 foreach (Word word in modifiers)
                 {
+                    if(word.Text =="en"|| word.Text =="anu" ) continue; //HACK: Deferring dealing with these. 
+                    if (word.Text == "taso") continue; //Taso actually is a modifier. Carry on.
                     if (Particle.CheckIsParticle(word.Text))
                     {
                         throw new TpSyntaxException("Particles shouldn't be modifiers: " + word.Text);
@@ -187,7 +200,15 @@ namespace BasicTypes
 
             List<string> words = new List<string>();
 
-            words.Add(head.ToString(format, formatProvider));
+            if (format == "html" && new String[] { "ona", "mi", "sina" }.Contains(head.Text))
+            {
+                words.Add(HtmlTagHelper.SpanWrap("anaphora", head.ToString(format, formatProvider)));
+            }
+            else
+            {
+                words.Add(head.ToString(format, formatProvider));
+            }
+            
             if (Modifiers != null && Modifiers.Count > 0)
             {
                 words.AddIfNeeded("(", format);

@@ -137,6 +137,69 @@ namespace BasicTypes.Parser
         }
 
         [Test]
+        public void StressTestNormalize_AnuSeme()
+        {
+            int i = 0;
+            Dialect dialect = Dialect.DialectFactory;
+            ParserUtils pu = new ParserUtils(dialect);
+
+            Dialect english = Dialect.DialectFactory;
+            english.ThrowOnSyntaxError = false;
+            english.TargetGloss = "en";
+            english.GlossWithFallBacks = true;
+
+            CorpusFileReader reader = new CorpusFileReader(true);
+            GlossMaker gm = new GlossMaker();
+
+            foreach (string s in reader.NextFile())
+            {
+                foreach (string original in pu.ParseIntoNonNormalizedSentences(s))
+                {
+                    Sentence structured = null;
+                    //try
+                    //{
+                    string normalized = Normalizer.NormalizeText(original, dialect);
+                    if (string.IsNullOrWhiteSpace(normalized) && !string.IsNullOrWhiteSpace(original)
+                        && !new String[] { ".", ":", "?", "!", "'.", "'!", "\".", "''.", ").", "\"«", ")\n", ")", "(", "[", "[.", "]", "]." }.Contains(original.Trim()))
+                    //BUG:happens when we have ni li ni?:  or ni li ni...
+                    //BUG:Any maybe 'ni li ni?' or 'ni li ni'? are failing due to quotes
+                    {
+                        throw new InvalidOperationException("Normalizer turned this into null or white space : " + original);
+                    }
+                    if (original == "\".") continue;//BUG:
+                    if (string.IsNullOrWhiteSpace(normalized)) continue;
+                    if (!(normalized.ContainsWholeWord("anu seme"))) continue;
+
+                    structured = pu.ParsedSentenceFactory(normalized, original);
+                    string diag = structured.ToString("b");
+
+                    //if ((normalized.ContainsCheck("%ante"))) continue; //verb!
+
+                    Console.WriteLine("O: " + (original ?? "").Trim(new[] { '\n', '\r', ' ', '\t' }));
+                    Console.WriteLine("B: " + diag);
+                    Console.WriteLine("G: " + gm.GlossOneSentence(false, structured, english));
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    if (ex.Message.ContainsCheck("all tests"))
+                    //    {
+                    //        Console.WriteLine("ORIGINAL  : " + original);
+                    //        if (structured != null)
+                    //        {
+                    //            Console.WriteLine(structured.ToString("b"));
+                    //        }
+                    //        Console.WriteLine(ex.Message);
+                    //        i++;
+                    //    }
+                    //    else throw;
+                    //}
+
+                }
+            }
+            Console.WriteLine("Failed Sentences: " + i);
+        }
+
+        [Test]
         public void StressTestNormalizeNotIndeedAlaKin()
         {
             int i = 0;
@@ -339,7 +402,7 @@ namespace BasicTypes.Parser
             c.TargetGloss = "en";
             CorpusKnowledge ck = new CorpusKnowledge(sample, c);
 
-            Discourse[] s = ck.MakeSentences();
+            List<Sentence>[] s = ck.MakeSentences();
             for (int i = 0; i < s.Length; i++)
             {
                 foreach (Sentence sentence in s[i])
@@ -386,22 +449,22 @@ namespace BasicTypes.Parser
         }
 
         [Test]
-        public void IdentifyDiscourses_CanItEvenParseTheSentences_ShowGoodOnes()
+        public void IdentifyDiscourses_ParseKnownGoodTexts_ShowGoodOnes()
         {
             //,CorpusTexts.JanSin  //Too many neologisms to cope. 
             string[] samples =
             {
                 //CorpusTexts.UnpaText,
                 //CorpusTexts.Gilgamesh,
-                //CorpusTexts.SampleText1,
-                //CorpusTexts.SampleText3,
-                //CorpusTexts.Lao,
+                CorpusTexts.SampleText1,
+                CorpusTexts.SampleText3,
+                CorpusTexts.Lao,
                 CorpusTexts.GeorgeSong,
-                //    CorpusTexts.CrazyAnimal,
-                //    CorpusTexts.CrazyAnimal2
-                //    ,CorpusTexts.RuneDanceSong
-                //    ,CorpusTexts.janPusaRice
-                //    ,CorpusTexts.janPend
+                    CorpusTexts.CrazyAnimal,
+                    CorpusTexts.CrazyAnimal2
+                    ,CorpusTexts.RuneDanceSong
+                    ,CorpusTexts.janPusaRice
+                    ,CorpusTexts.janPend
             };
             Dialect dialect = Dialect.DialectFactory;
             dialect.TargetGloss = "en";
@@ -410,22 +473,23 @@ namespace BasicTypes.Parser
             foreach (string sample in samples)
             {
                 CorpusKnowledge ck = new CorpusKnowledge(sample, dialect);
-                Discourse[] s = ck.MakeSentences();
+                List<Sentence>[] s = ck.MakeSentences();
                 for (int i = 0; i < s.Length; i++)
                 {
                     foreach (Sentence sentence in s[i])
                     {
                         string reToStringed = sentence == null ? "[NULL]" : sentence.ToString();
                         bool match = ck.Setences.Any(x => x.Trim() == reToStringed);
-                        //if (match)
-                        //{
-                        Console.WriteLine(match + " O:" + ck.Setences[i]);
-                        Console.WriteLine(match + " Rg:" + (sentence == null ? "[NULL]" : sentence.ToString("g")));
-                        Console.WriteLine(match + " Rb:" + (sentence == null ? "[NULL]" : sentence.ToString("b")));
+                        
+                        //Console.WriteLine(match + " O:" + ck.Setences[i]);
+                        //Console.WriteLine(match + " Rg:" + (sentence == null ? "[NULL]" : sentence.ToString("g")));
+                        //Console.WriteLine(match + " Rb:" + (sentence == null ? "[NULL]" : sentence.ToString("b")));
+                        Console.WriteLine(match + " HTML:" + (sentence == null ? "[NULL]" : sentence.ToString("html")));
 
-                        //TODO: Need to store original somewhere...
-                        Console.WriteLine(match + " Ren:" + (sentence == null ? "[NULL]" : gm.Gloss(sentence.ToString("g"), "n/a")));
-                        //}
+                        
+                        //string renormalized = Normalizer.NormalizeText(sentence.ToString("g"),dialect);
+                        //Console.WriteLine(match + " Ren:" + (sentence == null ? "[NULL]" : gm.Gloss(renormalized, "n/a")));
+                        
                     }
                 }
             }
@@ -444,22 +508,29 @@ namespace BasicTypes.Parser
 
             Sentence[] s = pu
                             .ParseIntoNonNormalizedSentences(CorpusTexts.UnpaText)
-                            .Select(x => pu.ParsedSentenceFactory(x, x))
-                            .Where(x => x != null)
+                            .Where(x => !string.IsNullOrWhiteSpace(x))
+                            .Select(x =>
+                            {
+                                string normalized = Normalizer.NormalizeText(x,c);
+                                if (string.IsNullOrWhiteSpace(normalized))
+                                    return null;
+                                return  pu.ParsedSentenceFactory(normalized, x);
+                            })
+                            .Where(x => x!=null)
                             .ToArray();
             Assert.Greater(s.Length, 0);
 
-            Discourse[] d = pu.GroupIntoDiscourses(s);
+            List<Sentence>[] d = pu.GroupIntoDiscourses(s);
 
             Assert.Greater(d.Length, 0);
 
-            foreach (Discourse discourse in d)
+            foreach (List<Sentence> discourse in d)
             {
                 Assert.Greater(discourse.Count, 0);
             }
 
             Console.WriteLine("-------------------");
-            foreach (Discourse discourse in d)
+            foreach (List<Sentence> discourse in d)
             {
 
                 int i = 0;

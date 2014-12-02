@@ -877,7 +877,7 @@ public static CompoundWord PilinAnte;
 public static CompoundWord PilinIkeLonKulupu;
 public static CompoundWord PilinIkeMute;
 public static CompoundWord PilinIkeNanpaLukaTu;
-public static CompoundWord PilinIkeTan;
+//public static CompoundWord PilinIkeTan;
 public static CompoundWord PilinLon;
 public static CompoundWord PilinNasaLawa;
 public static CompoundWord PilinPiPaliPiniPakala;
@@ -13831,18 +13831,18 @@ BuildIt();
             }
 
 
-            {
-                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
-                {
-                    var en = new Dictionary<string, string[]>();
-                    en.Add("pilin-ike-tan", new[] { "fear" });
-                    glossMap.Add("en", en);
-                }
-                PilinIkeTan = new CompoundWord("pilin-ike-tan");
+            //{
+            //    var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+            //    {
+            //        var en = new Dictionary<string, string[]>();
+            //        en.Add("pilin-ike-tan", new[] { "fear" });
+            //        glossMap.Add("en", en);
+            //    }
+            //    PilinIkeTan = new CompoundWord("pilin-ike-tan");
 
-                Dictionary.Add("pilin-ike-tan", PilinIkeTan);
-                Glosses.Add("pilin-ike-tan", glossMap);
-            }
+            //    Dictionary.Add("pilin-ike-tan", PilinIkeTan);
+            //    Glosses.Add("pilin-ike-tan", glossMap);
+            //}
 
 
             {
