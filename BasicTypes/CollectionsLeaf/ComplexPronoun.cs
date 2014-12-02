@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//Leaf collections contain words
 namespace BasicTypes.Collections
 {
     //mi mute li suli.
@@ -20,7 +21,5 @@ namespace BasicTypes.Collections
         public ComplexPronoun(Word head, WordSet modifiers) : base(head, modifiers)
         {
         }
-
-        
     }
 }

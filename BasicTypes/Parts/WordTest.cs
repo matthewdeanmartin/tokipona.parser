@@ -139,19 +139,19 @@ namespace BasicTypes
             Assert.Fail();
         }
 
-        [Test]
-        public void WrongWord_ValidPhonology()
-        {
-            try
-            {
-                Word f = new Word("nonon");
-            }
-            catch (Exception)
-            {
-                return;
-            }
-            Assert.Fail();
-        }
+        //[Test]
+        //public void WrongWord_ValidPhonology()
+        //{
+        //    try
+        //    {
+        //        Word f = new Word("nonon"); //Passes as neologism
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return;
+        //    }
+        //    Assert.Fail();
+        //}
 
         [Test]
         public void WrongWord_InvalidPhonology()
@@ -197,19 +197,19 @@ namespace BasicTypes
         }
 
         
-        [Test]
-        public void ImplicitConversions()
-        {
-            Word s = UseStringAsWord("luka");
-            string text = UseWordAsString(Words.luka);
-            Assert.AreEqual(s.ToString(), text);
-            //Assert.IsFalse(object.ReferenceEquals(s.ToString(), text)); //These aren't copies!
-        }
+        //[Test]
+        //public void ImplicitConversions()
+        //{
+        //    Word s = UseStringAsWord("luka");
+        //    string text = UseWordAsString(Words.luka);
+        //    Assert.AreEqual(s.ToString(), text);
+        //    //Assert.IsFalse(object.ReferenceEquals(s.ToString(), text)); //These aren't copies!
+        //}
 
-        public Word UseStringAsWord(string test)
-        {
-            return test;
-        }
+        //public Word UseStringAsWord(string test)
+        //{
+        //    return test;
+        //}
 
         public string UseWordAsString(Word test)
         {

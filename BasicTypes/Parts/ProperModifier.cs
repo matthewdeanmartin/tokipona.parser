@@ -114,22 +114,43 @@ namespace BasicTypes.Parts
             return false;
         }
 
-        public static bool IsValidProperModifer(string text)
+        //jan George Washington
+        //jan Skrillix
+        //ma tomo Berlin -- uh oh. head is actually several words.
+        //
+        public static bool IsScrewedUpProperModifer(string text, string headWord)
         {
-            //Degenerate cases.
-            if (string.IsNullOrWhiteSpace(text))
-                return false;
+            if (string.IsNullOrWhiteSpace(text)) return false;
+            if (IsProperModifer(text)) return false; //This isn't scrwed up, it is a valid one!
+            
+            //Technically can be anything, in practice, if it isn't these, it isn't a screwed up Proper Modfier
+            if (!new string[] {"jan","meli","mije","waso","kala","akesi", "soweli","ma","toki"}.Contains(headWord)) return false;
 
-            foreach (char c in text)
-            {
-                if (!"jklmnpstwaeiou".ContainsCheck(c))
-                {
-                    return false; //Foreign text. Really a different thing.
-                }    
-            }
+            return OnlyFirstLetterIsCapitalized(text);
+        }
 
-            //Mato > cap-lower-lower-etc
-            for (int index= 0; index < text.Length; index++)
+        //Dupe?
+        //public static bool IsValidProperModifer(string text)
+        //{
+        //    //Degenerate cases.
+        //    if (string.IsNullOrWhiteSpace(text))
+        //        return false;
+
+        //    foreach (char c in text)
+        //    {
+        //        if (!"jklmnpstwaeiou".ContainsCheck(c))
+        //        {
+        //            return false; //Foreign text. Really a different thing.
+        //        }    
+        //    }
+
+        //    //Mato > cap-lower-lower-etc
+        //    return OnlyFirstLetterIsCapitalized(text);
+        //}
+
+        private static bool OnlyFirstLetterIsCapitalized(string text)
+        {
+            for (int index = 0; index < text.Length; index++)
             {
                 if (index == 0)
                 {
@@ -146,7 +167,6 @@ namespace BasicTypes.Parts
                     }
                 }
             }
-
             return true;
         }
     }

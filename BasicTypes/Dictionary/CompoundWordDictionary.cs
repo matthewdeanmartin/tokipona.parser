@@ -921,7 +921,7 @@ public static CompoundWord PonaMute;
 public static CompoundWord PonaNasa;
 public static CompoundWord PonaPilin;
 public static CompoundWord PonaTawaAla;
-public static CompoundWord PonaTawaSina;
+//public static CompoundWord PonaTawaSina;
 public static CompoundWord PonaUnpa;
 public static CompoundWord TawaPona;
 public static CompoundWord MeliSama;
@@ -14461,18 +14461,18 @@ BuildIt();
             }
 
 
-            {
-                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
-                {
-                    var en = new Dictionary<string, string[]>();
-                    en.Add("pona-tawa-sina", new[] { "Thank you" });
-                    glossMap.Add("en", en);
-                }
-                PonaTawaSina = new CompoundWord("pona-tawa-sina");
+            //{
+            //    var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+            //    {
+            //        var en = new Dictionary<string, string[]>();
+            //        en.Add("pona-tawa-sina", new[] { "Thank you" });
+            //        glossMap.Add("en", en);
+            //    }
+            //    PonaTawaSina = new CompoundWord("pona-tawa-sina");
 
-                Dictionary.Add("pona-tawa-sina", PonaTawaSina);
-                Glosses.Add("pona-tawa-sina", glossMap);
-            }
+            //    Dictionary.Add("pona-tawa-sina", PonaTawaSina);
+            //    Glosses.Add("pona-tawa-sina", glossMap);
+            //}
 
 
             {

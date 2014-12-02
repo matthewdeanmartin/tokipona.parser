@@ -283,6 +283,8 @@ namespace BasicTypes.NormalizerCode
             //vocatives & exclamations are expected to be fragmentary.
 
 
+
+            //One offs for mi li/sina li
             //It's a prep, but missing the li.
             if (normalized.ContainsCheck("sina ~tawa"))
             {
@@ -292,17 +294,28 @@ namespace BasicTypes.NormalizerCode
             {
                 normalized = normalized.Replace("mi ~tawa", "mi li ~tawa");
             }
+            if (normalized.ContainsCheck("taso, sina soweli"))
+            {
+                normalized = normalized.Replace("taso, sina soweli", "taso, sina li soweli");
+            }
+            if (normalized.ContainsCheck("taso mi pilin"))
+            {
+                normalized = normalized.Replace("taso mi pilin", "taso mi li pilin");
+            }
+
+
             //"mi li ~tawa lon" -- the other one is a prep
             if (normalized.ContainsCheck("mi li ~tawa lon"))
             {
                 normalized = normalized.Replace("mi li ~tawa lon", "mi li tawa ~lon");
             }
 
-            //missing li (ha,previously I skiped this on purpose!)
-            if (normalized.ContainsCheck("taso, sina soweli"))
-            {
-                normalized = normalized.Replace("taso, sina soweli", "taso, sina li soweli");
-            }
+
+
+            
+
+
+
             //overnormalized... mi li ~tawa
             if (normalized.ContainsCheck("e mi li ~tawa"))
             {
@@ -423,7 +436,9 @@ namespace BasicTypes.NormalizerCode
             normalized = NormalizedSinaLi(normalized, "' ");
             normalized = NormalizedSinaLi(normalized, "« ");
             normalized = NormalizedSinaLi(normalized, "taso "); //conjunctions behave like leading punct
-
+            normalized = NormalizedSinaLi(normalized, "anu "); //conjunctions behave like leading punct
+            normalized = NormalizedSinaLi(normalized, "taso, "); //conjunctions behave like leading punct
+            normalized = NormalizedSinaLi(normalized, "anu, "); //conjunctions behave like leading punct
 
             foreach (Word possible in Words.Dictionary.Values)
             {
@@ -458,6 +473,11 @@ namespace BasicTypes.NormalizerCode
             normalized = NormalizedMiLi(normalized, "«");
             normalized = NormalizedMiLi(normalized, "' ");
             normalized = NormalizedMiLi(normalized, "« ");
+            normalized = NormalizedMiLi(normalized, "taso "); //conjunctions behave like leading punct
+            normalized = NormalizedMiLi(normalized, "anu "); //conjunctions behave like leading punct
+            normalized = NormalizedMiLi(normalized, "taso, "); //conjunctions behave like leading punct
+            normalized = NormalizedMiLi(normalized, "anu, "); //conjunctions behave like leading punct
+
 
             foreach (Word possible in Words.Dictionary.Values)
             {

@@ -4,29 +4,20 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Runtime.InteropServices;
-//using System.Runtime.InteropServices.WindowsRuntime;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-//using System.Web.Script.Serialization;
 using System.Xml.Serialization;
 using BasicTypes.Exceptions;
 using BasicTypes.Extensions;
 using BasicTypes.Html;
-using BasicTypes.Knowledge;
-using BasicTypes.MoreTypes;
 using BasicTypes.Parts;
-using Microsoft.SqlServer.Server;
-using Newtonsoft.Json;
 using NHunspell;
 using NUnit.Framework;
 
 namespace BasicTypes
 {
-
-
     /// <summary>
     /// Maps Particles to more common linguistic jargon
     /// </summary>
@@ -68,9 +59,8 @@ namespace BasicTypes
     [DataContract]
     [Serializable]
     public partial class Word : Token, IFormattable, ICopySelf<Word>
-    //IConvertible (Basic types, like double, int, date, etc)
     {
-        private Dialect currentDialect;
+        
         static Word()
         {
             AutoMapper.Mapper.CreateMap<Word, Word>();
@@ -80,14 +70,6 @@ namespace BasicTypes
             //For XML serialization only.
         }
 
-        
-
-
-        //[DataMember(IsRequired = true)]
-        //private readonly string word;
-        //
-        //public string Text { get { return word; } }
-        
         //The constructor that a parser uses. e.g. Parse/TryParse
         public Word(string word, IFormatProvider provider = null):base(word)
         {
@@ -99,24 +81,8 @@ namespace BasicTypes
 
             ValidateOnConstruction(word);
 
-            if (provider == null)
-            {
-                currentDialect = Config.CurrentDialect;
-            }
-            else
-            {
-                currentDialect = provider.GetFormat(typeof(Word)) as Dialect;
-            }
-            
-            //TODO:Add semantic info
-
-            //Validate
-
             this.word = word;
         }
-
-        
-
 
         public string[] ValidateOnConstruction(string prospectiveWord, bool failFast=true)
         {
@@ -142,30 +108,13 @@ namespace BasicTypes
                 if(failFast)
                     throw new InvalidLetterSetException(message);
             }
-            //TODO: How to implement this rule? Need to rework dictionary, since dictionary stores all words (particles included) as Word
-            //if (Particle.IsParticle(word))
-            //{
-            //    throw new InvalidOperationException("Don't treat particles as words : " + word);
-            //}
-            //Can be a number, word, compound word or escaped word.
             
-            //if (!CheckIsNumber(prospectiveWord)&& !ValidateCompoundWordLetterSet(prospectiveWord) && !IsEscaped(prospectiveWord))
-            //{
-            //    throw new InvalidOperationException("Unescaped, Invalid Characters : " + prospectiveWord + " ==> " +
-            //                                        ListInvalidCharacters(prospectiveWord));
-            //}
-
-            if (Words.Dictionary.Count == 141)//==125
+            if (Words.Dictionary.Count == 141)
             {
-                //Strictest test.
-                Word blah = Words.a;
+                Word blah = Words.a; //This forces the static constructor to run.
                 Word test;
                 if (!Words.Dictionary.TryGetValue(LookupForm(prospectiveWord), out test))
                 {
-                    //Console.WriteLine(prospectiveWord[0].ToString().ToUpper());
-                    //Console.WriteLine(prospectiveWord[0].ToString());
-                    //Console.WriteLine(Words.Dictionary.Count);
-
                     if (CheckIsPreposition(prospectiveWord))
                     {
                         //Console.WriteLine("PREPOSITION: " + prospectiveWord);
@@ -199,17 +148,16 @@ namespace BasicTypes
                         //    errors.Add("This is English :" + prospectiveWord);
                         //}
                         
-                        string message = "This word -->" + prospectiveWord +
-                                         "<--  failed all checks.";
+                        string message = "This word -->" + prospectiveWord +"<--  failed all checks.";
                         errors.Add(message);
                         if (failFast) throw new InvalidOperationException(message);
                     }
-
                 }
             }
             return errors.ToArray();
         }
 
+        //VERY VERY SLOW
         private static bool CheckIsEnglish(string prospectiveWord)
         {
             if (!CheckIsValidPhonology(prospectiveWord) && prospectiveWord.Length > 1)
@@ -271,17 +219,15 @@ namespace BasicTypes
             this.word = word;
         }
 
-        static public implicit operator string(Word word)
-        {
-            return word.ToString("g");
-        }
+        //static public implicit operator string(Word word)
+        //{
+        //    return word.ToString("g");
+        //}
 
-        static public implicit operator Word(string value)
-        {
-            return Word.Parse(value);
-        }
-
-
+        //static public implicit operator Word(string value)
+        //{
+        //    return Word.Parse(value);
+        //}
 
         //Lossy, human oriented serialization.
         public override string ToString()
@@ -290,12 +236,7 @@ namespace BasicTypes
 
         }
 
-        //public string ToString(string format)
-        //{
-        //    return this.ToString(format, Config.CurrentDialect);
-        //}
-
-        public string ToString(string format, IFormatProvider formatProvider)
+        public virtual string ToString(string format, IFormatProvider formatProvider)
         {
             Dialect c = formatProvider.GetFormat(typeof(Word)) as Dialect;
 
@@ -315,23 +256,23 @@ namespace BasicTypes
                 {
                     return HtmlTagHelper.SpanWrap("prep", Text);
                 }
-                else if (word.StartCheck("#") && CheckIsNumber(word))
+                if (word.StartCheck("#") && CheckIsNumber(word))
                 {
                     return HtmlTagHelper.SpanWrap("number", Text);
                 }
-                else if (word.ContainsCheck("-") && CheckIsCompoundWord(word))
+                if (word.ContainsCheck("-") && CheckIsCompoundWord(word))
                 {
                     return HtmlTagHelper.SpanWrap("compound", Text);
                 }
-                else if (CheckIsProperModifier(word))
+                if (CheckIsProperModifier(word))
                 {
                     return HtmlTagHelper.SpanWrap("proper", Text);
                 }//Escaped foreign
-                else if (IsForeign(word))
+                if (IsForeign(word))
                 {
                     return HtmlTagHelper.SpanWrap("foreign", Text);
                 }
-                else if (IsNeologism(word))
+                if (IsNeologism(word))
                 {
                     return HtmlTagHelper.SpanWrap("neologism", Text);
                 }
@@ -429,7 +370,7 @@ namespace BasicTypes
 
             //TraceMissingGloss();
 
-            if (!((Text.ToUpper())[0] == Text[0]))
+            if (Text.ToUpper()[0] != Text[0])
             {
                 return "[Error " + pos + " " + Text + " " + language + "]";
             }

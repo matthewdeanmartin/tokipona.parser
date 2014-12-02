@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using BasicTypes.Collections;
 using BasicTypes.CollectionsDegenerate;
+using BasicTypes.CollectionsLeaf;
 using BasicTypes.Exceptions;
 using BasicTypes.Extensions;
 using BasicTypes.NormalizerCode;
@@ -23,6 +24,10 @@ namespace BasicTypes
         }
         public string[] ParseIntoNonNormalizedSentences(string text)
         {
+            if (text == null)
+            {
+                throw new ArgumentNullException("text");
+            }
             //https://stackoverflow.com/questions/521146/c-sharp-split-string-but-keep-split-chars-separators
             //https://stackoverflow.com/questions/3115150/how-to-escape-regular-expression-special-characters-using-javascript
 
@@ -296,7 +301,7 @@ namespace BasicTypes
             //Simple exclamation! Get out of here!
             if (Exclamation.IsExclamation(sentence))
             {
-                return new Sentence(new Exclamation(new HeadedPhrase(new Word(sentence))), punctuation, original, sentence);
+                return new Sentence(new Exclamation(new HeadedPhrase(new Word(sentence))), punctuation, new SentenceDiagnostics(original, sentence));
             }
 
 
@@ -443,7 +448,7 @@ namespace BasicTypes
                 IsHortative = isHortative,
                 TagQuestion = tagQuestion
             },
-            original, sentence);
+            new SentenceDiagnostics(original, sentence));
             return parsedSentence;
         }
 
@@ -749,21 +754,22 @@ namespace BasicTypes
             }
         }
 
-        private VerbPhrase VerbPhraseParser(string[] tokens)
+        private VerbPhrase VerbPhraseParser(string[] verbPhraseText)
         {
             //Adjectives & noun phrases will sneak in here. Maybe need more punctuation?
+
+            Word[] asWords = verbPhraseText.Select(x => new Word(x)).ToArray();
+            List<Word>  tokens= TurnThisWordsIntoWordsWithTaggedWords(asWords);
 
             WordSet modals = new WordSet();
             Word headVerb = null;
             WordSet adverbs = new WordSet();
-            foreach (string token in tokens)
+            foreach (Word token in tokens)
             {
                 //modals until used up. Strictly by dictionary.
                 if (headVerb == null)
                 {
-                    //HACK: ala & kin, are modifiers with range over 1 word (or it helps to sometimes think so)
                     if (Token.IsModal(token))
-                        //|| token == "ala" || token == "kin")
                     {
                         modals.Add(token);
                         continue;
@@ -773,7 +779,7 @@ namespace BasicTypes
                 //head verb, only because we ran out of modals. (unless there is only one word!)
                 if (headVerb == null)
                 {
-                    headVerb = new Word(token); //If number, proper modifier, etc, then this is not really a verb!
+                    headVerb = token; //If number, proper modifier, etc, then this is not really a verb!
                     continue;
                 }
                 //Adverbs thereafter.
@@ -786,7 +792,7 @@ namespace BasicTypes
                 modals = new WordSet();
                 headVerb = null;
                 adverbs = new WordSet();
-                foreach (string token in tokens)
+                foreach (Word token in tokens)
                 {
                     //modals until used up. Strictly by dictionary.
                     //if (headVerb == null)
@@ -801,7 +807,7 @@ namespace BasicTypes
                     //head verb, only because we ran out of modals. (unless there is only one word!)
                     if (headVerb == null)
                     {
-                        headVerb = new Word(token); //If number, proper modifier, etc, then this is not really a verb!
+                        headVerb = token; //If number, proper modifier, etc, then this is not really a verb!
                         continue;
                     }
                     //Adverbs thereafter.
@@ -868,10 +874,11 @@ namespace BasicTypes
         /// <returns></returns>
         public HeadedPhrase HeadedPhraseParser(string value)
         {
-            //if (value.ContainsCheck("~"))
-            //{
-            //    throw new TpSyntaxException("Headed phrase can't contain a preposition. This one does: " + value);
-            //}
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException("Impossible to parse a null or zero length string.");
+            }
+
             foreach (string particle in new[] { "pi", "la", "e", "li" })
             {
                 if (value.StartsOrContainsOrEnds(particle))
@@ -879,12 +886,7 @@ namespace BasicTypes
                     throw new TpSyntaxException("Headed phrases have no particles. This one has " + particle + " ref: " + value);
                 }
             }
-
-            if (string.IsNullOrEmpty(value))
-            {
-                throw new ArgumentException("Impossible to parse a null or zero length string.");
-            }
-
+            
             PrepositionalPhrase[] pp = null;
             if (value.ContainsCheck("~"))
             {
@@ -896,14 +898,127 @@ namespace BasicTypes
             TokenParserUtils pu = new TokenParserUtils();
 
             Word[] words = pu.ValidWords(value);
-
+            
 
             if (words.Length == 0)
             {
                 throw new InvalidOperationException("Failed to parse: " + value);
             }
-            HeadedPhrase phrase = new HeadedPhrase(words[0], new WordSet(ArrayExtensions.Tail(words)), pp);
+            //Word head = words[0];
+            Word[] tail = words;//ArrayExtensions.Tail(words);
+
+            //EXTRACT MORPHOLOGICAL STRUCTURE OF MODIFIERS HERE.
+
+            var mergedTail = TurnThisWordsIntoWordsWithTaggedWords(tail);
+
+
+            HeadedPhrase phrase = new HeadedPhrase(mergedTail[0],
+                new WordSet(ArrayExtensions.Tail(mergedTail.ToArray())),
+                pp);
             return phrase;
+        }
+
+        public static List<Word> TurnThisWordsIntoWordsWithTaggedWords(Word[] tail)
+        {
+            Word currentWord = tail[0];
+            List<Word> mergedTail = new List<Word>();
+            bool skipNext = false;
+            //jan pona kin.
+            bool wordInProgress = false;
+            if (tail.Length > 1)
+            {
+                //mergedTail.Add(currentWord);
+                int resumeAt = -1;
+                for (int i = 0; i < tail.Length; i++)
+                {
+                    currentWord = tail[i];
+                    if (resumeAt != -1)
+                    {
+                        if (i < resumeAt) continue;
+                    }
+
+                    bool stopLookAhead = false;
+                    TaggedWord possible = null;
+                    for (int j = tail.Length - 1; j > i; j--)
+                    {
+                        if (stopLookAhead) continue; //PERF prob here.
+
+
+                        try
+                        {
+                            possible = new TaggedWord(currentWord, new WordList(new ArraySegment<Word>(tail, i + 1, j - i)));
+                            resumeAt = j + 1;
+                            stopLookAhead = true; //we found the largest possible. now stop.
+                        }
+                        catch (InvalidOperationException ex)
+                        {
+                            //resumeAt = j + 1;
+                        }
+                    }
+
+                    //Okay, we looked everywhere.
+                    if (possible == null)
+                    {
+                        //This isn't a suitable head for a TaggedWord.
+                        mergedTail.Add(currentWord);
+                    }
+                    else
+                    {
+                        mergedTail.Add(possible);
+                    }
+
+                    //if (skipNext)
+                    //{
+                    //    skipNext = false;
+                    //    continue;
+                    //}
+                    //Word following = tail[i];
+                    //if (TaggedWord.TagWords.Contains(following.Text))
+                    //{
+                    //    //kin, ala
+                    //    currentWord = new TaggedWord(currentWord, new WordList() {following});
+                    //    wordInProgress = true;
+                    //    continue;
+                    //}
+                    //if (i < tail.Length - 1 && following.Text == "ala" && tail[i + 1] == currentWord.Text)
+                    //{
+
+                    //    //x ala x
+                    //    currentWord = new TaggedWord(currentWord, new WordList() {following, tail[i + 1]});
+                    //    skipNext = true;
+                    //    wordInProgress = true;
+                    //    continue;
+                    //}
+                    //if (i < tail.Length - 1 && currentWord.Text == tail[i + 1])
+                    //{
+                    //    //reduplication, 1 level.
+                    //    currentWord = new TaggedWord(currentWord, new WordList() { tail[i + 1] });
+                    //    wordInProgress = true;
+                    //    continue;
+                    //}
+
+                    ////Done or wasn't a tag word.
+                    //if (wordInProgress)
+                    //{
+                    //    mergedTail.Add(currentWord);
+                    //}
+                    //else
+                    //{
+                    //    currentWord = following;
+                    //    mergedTail.Add(currentWord);
+                    //}
+                    //wordInProgress = false;
+                }
+                //if (wordInProgress)
+                //{
+                //    mergedTail.Add(currentWord);
+                //}
+            }
+            else
+            {
+                mergedTail.Add(tail[0]);
+            }
+            return mergedTail;
         }
 
         public string[] FindXalaX(string value)

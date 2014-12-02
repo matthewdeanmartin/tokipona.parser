@@ -6,6 +6,7 @@ using System.Runtime.Remoting.Messaging;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using BasicTypes.CollectionsLeaf;
 using BasicTypes.Extensions;
 using BasicTypes.Parser;
 using KellermanSoftware.CompareNetObjects;
@@ -25,14 +26,14 @@ namespace BasicTypes
     [Serializable]
     public class Token
     {
-    
+
         [DataMember(IsRequired = true)]
         protected string word;
 
         public string Text { get { return word; } }
 
         [DataMember]
-        protected  bool preComma;
+        protected bool preComma;
 
         [DataMember]
         protected bool postComma;
@@ -53,7 +54,9 @@ namespace BasicTypes
         //https://stackoverflow.com/questions/5490824/should-constructors-comply-with-the-liskov-substitution-principle
         public Token(string word, bool iAmAPrepositionChain = false)
         {
-            if (word.EndCheck(" ") && word!=" ")
+            if(word==null) throw new ArgumentNullException("word");
+
+            if (word.EndCheck(" ") && word != " ")
             {
                 throw new InvalidOperationException("Untrimmed word.");
             }
@@ -63,7 +66,7 @@ namespace BasicTypes
                 {
                     throw new ArgumentNullException("word", "Token can't be null or white space");
                 }
-                if (word.ContainsCheck(" "))
+                if (word.ContainsCheck(" ") && !TaggedWord.CheckIsTagWord(word))
                 {
                     throw new ArgumentNullException("word",
                         "Token can't contain white space-- must use *, - or other punctuation to join words into a single token : " +
@@ -100,7 +103,7 @@ namespace BasicTypes
                 preQuote = true;
             }
 
-            token = token.Trim(new char[] { ',', '«', '»' });
+            token = token.Trim(new[] { ',', '«', '»' });
             return token;
         }
 
@@ -122,7 +125,8 @@ namespace BasicTypes
         {
             get { return "jklmnpstw"; }
         }
-        public static string Alphabet {
+        public static string Alphabet
+        {
             get { return "jklmnpstwaeiou"; }
         }
         public static string AlphabetUpper
@@ -138,13 +142,13 @@ namespace BasicTypes
             return lowerWord.All(c => "jklmnpstwaeiou".ContainsCheck(c));
         }
 
-        public  static bool ValidateCompoundWordLetterSet(string value)
+        public static bool ValidateCompoundWordLetterSet(string value)
         {
             string lowerWord = value.ToLowerInvariant();
             return lowerWord.All(c => "jklmnpstwaeiou-".ContainsCheck(c));
         }
 
-        public  string ListInvalidCharacters(string value)
+        public string ListInvalidCharacters(string value)
         {
             string lowerWord = value.ToLowerInvariant();
 
@@ -169,7 +173,8 @@ namespace BasicTypes
             }
         }
 
-        public bool IsParticle {
+        public bool IsParticle
+        {
             get { return CheckIsParticle(word); }
         }
 
@@ -198,7 +203,7 @@ namespace BasicTypes
 
             //Invalid syllables.: "ji", "wu", "wo", "ti", "nm", "nn"
             string toLower = value.ToLower();
-            foreach (string invalid in new string[] {"ji", "wu", "wo", "ti", "nm", "nn"})
+            foreach (string invalid in new[] { "ji", "wu", "wo", "ti", "nm", "nn" })
             {
                 if (toLower.ContainsCheck(invalid))
                 {
@@ -235,7 +240,7 @@ namespace BasicTypes
             {
                 return false;
             }
-            string[] parts= prospectiveWord.Split(new char[] {'-'});
+            string[] parts = prospectiveWord.Split(new[] { '-' });
             foreach (string part in parts)
             {
                 //HACK: Should have non exception way to do this
@@ -256,7 +261,7 @@ namespace BasicTypes
             string toCheck = value;
             if (value.StartCheck("#"))
             {
-                toCheck =value.Substring(1);
+                toCheck = value.Substring(1);
             }
 
             if (toCheck.All(c => "1234567890-.".ContainsCheck(c)))
@@ -269,22 +274,22 @@ namespace BasicTypes
             {
                 return true;
             }
-            bool allPartsAreNumbers =true;
-            foreach (string part in toCheck.Split(new char[]{'-'}))
+            bool allPartsAreNumbers = true;
+            foreach (string part in toCheck.Split(new[] { '-' }))
             {
-                if (Token.RealStupidNumbers.Contains(part))continue;
+                if (Token.RealStupidNumbers.Contains(part)) continue;
                 if (Token.StupidNumbers.Contains(part)) continue;
                 if (Token.HalfStupidNumbers.Contains(part)) continue;
                 if (Token.BodyNumbers.Contains(part)) continue;
-                allPartsAreNumbers=false;
+                allPartsAreNumbers = false;
             }
 
-            if(allPartsAreNumbers) return true;
+            if (allPartsAreNumbers) return true;
 
             return false;
         }
 
-        public bool  IsProperModifier
+        public bool IsProperModifier
         {
             get
             {
@@ -339,13 +344,13 @@ namespace BasicTypes
             {
                 return false;
             }
-            if(value.Length==1) return true;
+            if (value.Length == 1) return true;
 
             if (value.Substring(1).ToLower() != value.Substring(1))
             {
                 return false;
             }
-            return true;   
+            return true;
         }
 
         public bool IsKnown
@@ -363,7 +368,7 @@ namespace BasicTypes
             {
                 return false;
             }
-            string[] parts = phrase.Split(new string[] { " ", Environment.NewLine, ".", "!", "?" }, StringSplitOptions.RemoveEmptyEntries);
+            string[] parts = phrase.Split(new[] { " ", Environment.NewLine, ".", "!", "?" }, StringSplitOptions.RemoveEmptyEntries);
             return parts.Contains(word);
         }
 
@@ -401,22 +406,19 @@ namespace BasicTypes
             {
                 return true;
             }
-            if(!s.ContainsCheck(" ") && s.ContainsCheck("*"))
+            if (!s.ContainsCheck(" ") && s.ContainsCheck("*"))
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         public static string LookupForm(string value)
         {
-            return value.Trim(new char[] {'~', ',', '«', '»','!',' ' });
+            return value.Trim(new[] { '~', ',', '«', '»', '!', ' ' });
         }
 
-        private static string[] modals = new string[]
+        private static string[] modals =
         {
             "ken", "kama", "tawa", "awen", "wile", //jan Sonja v1
             "lukin", "oko", "sona",//Jan Sonja vPu (are these really serial verbs?)
@@ -428,13 +430,13 @@ namespace BasicTypes
         {
             get
             {
-                return modals;  
+                return modals;
             }
         }
 
         //poman, stupid, half-stupid, body
 
-        private static string[] pomanNumbers = new string[]
+        private static string[] pomanNumbers =
         {
             "W",//1
             "T",//2
@@ -451,7 +453,7 @@ namespace BasicTypes
         }
 
         //Overlap with negative, verb "to divide", plural marker, and universal qualifier
-        private static string[] halfStupidNumbers = new string[]
+        private static string[] halfStupidNumbers =
         {
             "ala",//0
             "wan",//1
@@ -469,24 +471,24 @@ namespace BasicTypes
         }
 
 
-        private static string[] deprecated = new string[]
+        private static string[] deprecated =
         {
-"pata",
-"kapa", 
-"iki",
-"kan",
-"pasila",
-"kapesi",
-"leko",
-"majuno",
-"tuli",
-"po",
-"kijetesantakalu",
-"ipi",
-"jalan",
+            "pata",
+            "kapa", 
+            "iki",
+            "kan",
+            "pasila",
+            "kapesi",
+            "leko",
+            "majuno",
+            "tuli",
+            "po",
+            "kijetesantakalu",
+            "ipi",
+            "jalan",
 //"pu",//Wait and see...
-"apeja",
-"pake"};
+            "apeja",
+            "pake"};
 
         public static string[] Deprecated
         {
@@ -496,7 +498,7 @@ namespace BasicTypes
             }
         }
 
-        private static string[] realStupidNumbers = new string[]
+        private static string[] realStupidNumbers =
         {
             "ala",
             "wan",
@@ -515,7 +517,7 @@ namespace BasicTypes
 
         //Most common.
         // wan, tu, tu wan, tu tu, luka, luka wan, luka tu, luka tu wan, luka luka
-        private static string[] stupidNumbers = new string[]
+        private static string[] stupidNumbers =
         {
             "ala",
             "wan",
@@ -531,7 +533,7 @@ namespace BasicTypes
         }
 
         //TODO: make parameter driven
-        private static string[] bodyNumbers = new string[]
+        private static string[] bodyNumbers =
         {
             "ala",
             "nena", "wan",
@@ -554,7 +556,7 @@ namespace BasicTypes
         }
 
 
-        private static string[] semanticallyPlural= new string[]
+        private static string[] semanticallyPlural =
         {
             "mute", //most common
             "kulupu", //can go either way (a pack of wolves), )(two packs)
@@ -589,10 +591,8 @@ namespace BasicTypes
             {
                 return false;
             }
-            
+
             return true;
-            
-            return modals.Contains(value);
         }
 
         public static bool IsModal(string value)
@@ -602,15 +602,15 @@ namespace BasicTypes
 
         protected static bool AreMinimalPairs(string word1, string word2)
         {
-            if(word1.Length != word2.Length) return false;
-            if(word1 == word2) return true;
+            if (word1.Length != word2.Length) return false;
+            if (word1 == word2) return true;
 
-            int diff =0;
+            int diff = 0;
             for (int i = 0; i < word1.Length; i++)
             {
-                char c = word1[i];
+                //char c = word1[i];
                 if (word1[i] == word2[i]) diff++;
-                if(diff>1) return false;
+                if (diff > 1) return false;
             }
             return true; //differ only by 1 char.
         }

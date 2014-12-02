@@ -11,7 +11,8 @@ namespace BasicTypes.Collections
     //Appears only at end of sentence, I think. Not sure.
     public class TagQuestion : IContainsWord, IFormattable, IToString
     {
-        readonly WordList worlList = new WordList(){Words.anu, Words.seme};
+        readonly WordList endTag = new WordList(){Words.anu, Words.seme};
+
 
         //Kind of degenerate structure, AFAIK, no internal structure.
         public TagQuestion()
@@ -33,7 +34,7 @@ namespace BasicTypes.Collections
         public List<string> ToTokenList(string format, IFormatProvider formatProvider)
         {
             List<string> sb = new List<string>();
-            sb.AddRange(worlList.ToTokenList(format,formatProvider));
+            sb.AddRange(endTag.ToTokenList(format,formatProvider));
          
             return sb;
         }
@@ -67,7 +68,7 @@ namespace BasicTypes.Collections
 
         public bool Contains(Word word)
         {
-            return worlList.Contains(word);
+            return endTag.Contains(word);
         }
 
 

@@ -18,54 +18,66 @@ namespace BasicTypes
     {
         [DataMember]
         private readonly Sentence conclusion;
-
         [DataMember]
         private readonly Sentence[] preconditions;
 
+        //Constituent parts of a basic sentence.
+        [DataMember] 
+        private Vocative[] headVocaties;
         //Breaks immutability :-(
         [DataMember]
         public List<Fragment> LaFragment { get; set; }
-        
+        [DataMember]
+        private readonly Particle tagConjunction;
         [DataMember]
         private readonly ComplexChain subjects;
         [DataMember]
         private readonly PredicateList predicates;
         [DataMember]
+        private readonly TagQuestion tagQuestion;
+        [DataMember]
         private readonly Punctuation punctuation;
-
+        
+        //Degenerate sentences
         [DataMember]
-        private readonly Particle conjunction;
-
+        private readonly Vocative degenerateVocative; //Degenerate sentence, maybe should be a subclass?
         [DataMember]
-        private readonly Vocative vocative; //Degenerate sentence, maybe should be a subclass?
-
+        private readonly Exclamation degenerateExclamation;//Degenerate sentence, maybe should be a subclass?
         [DataMember]
-        private readonly Exclamation exclamation;//Degenerate sentence, maybe should be a subclass?
-
+        private readonly Comment degenerateComment; //Also degenerate sentence.
         [DataMember]
-        private readonly Comment comment; //Also degenerate sentence.
+        private readonly Fragment degenerateFragment; //This is something like a title "utala pi mu lili" or a signature "jan Mato"
 
-        [DataMember]
-        private readonly Fragment fragment; //can't remember, is this a la fragment or a dengenerate sentence (e.g. a title)
-
+        //Flag to indicate we have no subject.
         [DataMember]
         private readonly bool isHortative; //o mi mute li moku e kili.
 
-        [DataMember]
-        private readonly string original;
+        //Diagnostic info.
+        private readonly SentenceDiagnostics diagnostics;
 
-        [DataMember]
-        private readonly string normalized;
-
-        [DataMember]
-        private readonly TagQuestion tagQuestion;
-
-        public Sentence(Comment comment)
+        public Sentence(Comment comment, SentenceDiagnostics diagnostics=null)
         {
-            this.comment = comment;
+            this.degenerateComment = comment;
+            this.diagnostics = diagnostics;
+        }
+        //Suggest that vocatives don't chain.  o jan o meli o soweli o => o! jan o! meli o! soweli o!
+        public Sentence(Vocative vocative, Punctuation punctuation, SentenceDiagnostics diagnostics=null)
+        {
+            this.degenerateVocative = vocative;
+            this.punctuation = punctuation;
+
+            this.diagnostics = diagnostics;
         }
 
-        public Sentence(Sentence[] preconditions = null, Sentence conclusion = null, string original = null, string normalized = null)
+        public Sentence(Fragment fragment, Punctuation punctuation, SentenceDiagnostics diagnostics=null)
+        {
+            this.degenerateFragment = fragment;
+            this.punctuation = punctuation;
+
+            this.diagnostics = diagnostics;
+        }
+
+        public Sentence(Sentence[] preconditions = null, Sentence conclusion = null,  SentenceDiagnostics diagnostics=null)
         {
             LaFragment = new List<Fragment>();
             if (preconditions != null && preconditions.Length > 0 && conclusion == null)
@@ -93,51 +105,22 @@ namespace BasicTypes
                     }
                 }
             }
-            this.original = original;
-            this.normalized = normalized;
+            this.diagnostics = diagnostics;
         }
 
-        public Sentence(Exclamation exclamation, Punctuation punctuation, string original = null, string normalized = null)
+        public Sentence(Exclamation exclamation, Punctuation punctuation,  SentenceDiagnostics diagnostics=null)
         {
-            this.exclamation = exclamation;
+            this.degenerateExclamation = exclamation;
             this.punctuation = punctuation;
 
-            this.original = original;
-            this.normalized = normalized;
+            this.diagnostics = diagnostics;
         }
 
-        //Suggest that vocatives don't chain.  o jan o meli o soweli o => o! jan o! meli o! soweli o!
-        public Sentence(Vocative vocative, Punctuation punctuation, string original = null, string normalized = null)
-        {
-            this.vocative = vocative;
-            this.punctuation = punctuation;
+        
 
-            this.original = original;
-            this.normalized = normalized;
-        }
-
-        public Sentence(Fragment fragment, Punctuation punctuation, string original = null, string normalized = null)
-        {
-            this.fragment = fragment;
-            this.punctuation = punctuation;
-
-            this.original = original;
-            this.normalized = normalized;
-        }
-
-        //Preconditions
-        //public Sentence(Chain subjects, PredicateList predicates, string original = null, string normalized = null)
-        //{
-        //    LaFragment = new List<Chain>();
-        //    this.subjects =  subjects ; //only (*), o, en
-        //    this.predicates = predicates; //only li, pi, en
-        //
-        //    this.original = original;
-        //    this.normalized = normalized;
-        //}
         
         //Simple Sentences
-        public Sentence(ComplexChain subjects, PredicateList predicates, SentenceOptionalParts parts=null, string original = null, string normalized = null)
+        public Sentence(ComplexChain subjects, PredicateList predicates, SentenceOptionalParts parts=null,  SentenceDiagnostics diagnostics=null)
         {
             LaFragment = new List<Fragment>();
             this.subjects =  subjects ; //only (*), o, en
@@ -145,12 +128,11 @@ namespace BasicTypes
             if (parts != null)
             {
                 punctuation = parts.Punctuation;
-                conjunction = parts.Conjunction;
+                tagConjunction = parts.Conjunction;
                 tagQuestion = parts.TagQuestion;
             }
             
-            this.original = original;
-            this.normalized = normalized;
+            this.diagnostics = diagnostics;
         }
 
         public Sentence BindSeme(Sentence question)
@@ -194,26 +176,25 @@ namespace BasicTypes
         {
             return false;
         }
-
+        
 
         //If we have the following 2, we don't have the others (except punct).
         public Sentence[] Preconditions { get { return preconditions; } }
         public Sentence Conclusion { get { return conclusion; } } //Only preconditions have these.
         public Sentence HeadSentence { get; private set; } //Only preconditions have these.
 
-        //Also an odd ball.
-        public Vocative Vocative { get { return vocative; } }
-        public Fragment Fragment { get { return fragment; } }
-        public Exclamation Exclamation { get { return exclamation; } }
+        //Degenerate sentences
+        public Vocative Vocative { get { return degenerateVocative; } }
+        public Fragment Fragment { get { return degenerateFragment; } }
+        public Exclamation Exclamation { get { return degenerateExclamation; } }
 
-        
 
-        public Particle Conjunction { get { return conjunction; } } //Anu, taso
-        public ComplexChain Subjects { get { return subjects; } } //jan 
-        public PredicateList Predicates { get { return predicates; } }//li verb li noun li prep phrase
+        public Vocative[] HeadVocatives { get { return headVocaties; } }
+        public Particle Conjunction { get { return tagConjunction; } } //anu, taso (but not en)
+        public ComplexChain Subjects { get { return subjects; } } //jan en meli en waso
+        public PredicateList Predicates { get { return predicates; } }//li verb phrase li (noun phrase) li prep phrase
+        public TagQuestion TagQuestion{ get { return tagQuestion; } }// anu seme
         public Punctuation Punctuation { get { return punctuation; } } //.?!
-
-        public TagQuestion TagQuestion{ get { return tagQuestion; } }
 
         public Sentence EquivallencyGenerator()
         {
@@ -263,11 +244,11 @@ namespace BasicTypes
                 format = "g";
             }
 
-            if (comment != null)
+            if (degenerateComment != null)
             {
                 //We don't do anything fancy.
                 //(Maybe suppress?)
-                return comment.ToString(format, formatProvider);
+                return degenerateComment.ToString(format, formatProvider);
             }
 
             List<string> sb = new List<string>();
@@ -365,6 +346,14 @@ namespace BasicTypes
                 //HACK: WHY?!
                 spaceJoined = spaceJoined.Substring(0, spaceJoined.Length - 1);
             }
+            if (format == "html")
+            {
+                if (spaceJoined.ContainsCheck(" <span class=\"prep\">,"))
+                {
+                    spaceJoined = spaceJoined.Replace(" <span class=\"prep\">,", "<span class=\"prep\">,");
+                }
+                
+            }
             return spaceJoined;
         }
 
@@ -372,16 +361,16 @@ namespace BasicTypes
         {
             List<string> sb = new List<string>();
 
-            if (conjunction != null)
+            if (tagConjunction != null)
             {
                 sb.AddIfNeeded("|", format);
                 if (format == "html")
                 {
-                    sb.Add(HtmlTagHelper.SpanWrap("conjunction", conjunction.Text));
+                    sb.Add(HtmlTagHelper.SpanWrap("conjunction", tagConjunction.Text));
                 }
                 else
                 {
-                    sb.Add(conjunction.Text);
+                    sb.Add(tagConjunction.Text);
                 }
 
                 sb.AddIfNeeded("|", format);
@@ -389,18 +378,18 @@ namespace BasicTypes
 
             //TODO Vocative sentences
             //[chain]o[!.?]
-            if (vocative != null)
+            if (degenerateVocative != null)
             {
-                sb.AddRange(vocative.ToTokenList(format,formatProvider));
+                sb.AddRange(degenerateVocative.ToTokenList(format,formatProvider));
                 sb.Add(Particles.o.ToString(format,formatProvider)); //Seems dodgy. Why not a property of the chain or sentence?
             }
-            else if (fragment != null)
+            else if (degenerateFragment != null)
             {
-                sb.AddRange(fragment.ToTokenList(format, formatProvider));
+                sb.AddRange(degenerateFragment.ToTokenList(format, formatProvider));
             }
-            else if (exclamation!= null)
+            else if (degenerateExclamation!= null)
             {
-                sb.AddRange(exclamation.ToTokenList(format, formatProvider));
+                sb.AddRange(degenerateExclamation.ToTokenList(format, formatProvider));
             }
             else
             {
@@ -499,9 +488,6 @@ namespace BasicTypes
             }
             return value;
         }
-
-
-        
 
         public bool HasPunctuation()
         {

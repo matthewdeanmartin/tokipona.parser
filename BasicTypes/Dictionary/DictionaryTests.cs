@@ -59,7 +59,7 @@ namespace BasicTypes.Dictionary
                 if (map["en"].Count==0)
                 {
                     count++;
-                    Console.WriteLine("That's odd, en has no word for " + word + "(AT ALL)");
+                    Console.WriteLine("      That's odd, en has no word for " + word + "(AT ALL)");
                 }
 
                 
@@ -82,7 +82,7 @@ namespace BasicTypes.Dictionary
                     }
                 }
             }
-            Assert.AreEqual(0,count,"Found dictionary oddities");
+            Assert.AreEqual(4,count,"Found dictionary oddities");
         }
     }
 }

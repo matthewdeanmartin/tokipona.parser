@@ -28,7 +28,7 @@ namespace BasicTypes.Collections
         public WordList(IEnumerable<Word> strings)
             : base()
         {
-            foreach (string s in strings)
+            foreach (Word s in strings)
             {
                 this.Add(s);
             }

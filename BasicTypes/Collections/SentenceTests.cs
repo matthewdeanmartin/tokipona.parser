@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BasicTypes.Collections;
+using BasicTypes.NormalizerCode;
 using NUnit.Framework;
 
 namespace BasicTypes
@@ -67,7 +68,9 @@ namespace BasicTypes
         public void MaximalSentences_Part_Tail()
         {
             string value = "mi mute li lukin e sitelen pona, kepeken ilo-tawa mani li jo e ijo mute, lon ma-suli pi mi mute.";
-            Sentence s = Sentence.Parse(value, Dialect.DialectFactory);
+            Dialect d = Dialect.DialectFactory;
+            string normalized = Normalizer.NormalizeText(value, d);
+            Sentence s = Sentence.Parse(normalized, d);
             Console.WriteLine("Original: " + value);
             Console.WriteLine("ToString: " + s.ToString("g", Dialect.DialectFactory));
             
@@ -83,7 +86,8 @@ namespace BasicTypes
             string value = "jan li suli la tenpo pi lili mi la mi mute li lukin e sitelen pona, kepeken ilo, tawa mani li jo e ijo mute, lon ma suli pi mi mute.";
             Dialect d = Dialect.DialectFactory;
             d.InferCompoundsPrepositionsForeignText = false;
-            Sentence s = Sentence.Parse(value, d);
+            string normalized = Normalizer.NormalizeText(value, d);
+            Sentence s = Sentence.Parse(normalized, d);
             Console.WriteLine("Original: " + value);
             Console.WriteLine("ToString: " + s.ToString("g",d));
             Assert.AreEqual(value, s.ToString("g", d), s.ToString("b", d));
@@ -92,8 +96,10 @@ namespace BasicTypes
         public void LaFragment()
         {
             string value = "tenpo pi lili mi la mi lukin e sitelen pona.";
+            Dialect dialect = Dialect.DialectFactory;
+            string normalized = Normalizer.NormalizeText(value,dialect);
 
-            Sentence s = Sentence.Parse(value, Dialect.DialectFactory);
+            Sentence s = Sentence.Parse(normalized, dialect);
             Console.WriteLine(s.ToString());
             Console.WriteLine(s.ToString("b"));
             Console.WriteLine(s.ToJsonNet());

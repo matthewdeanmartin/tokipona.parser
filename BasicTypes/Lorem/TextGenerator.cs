@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 using BasicTypes.Collections;
 using BasicTypes.CollectionsDegenerate;
 using BasicTypes.Glosser;
+using BasicTypes.NormalizerCode;
 using BasicTypes.Parts;
 using Newtonsoft.Json.Converters;
 using NUnit.Framework;
@@ -101,16 +102,18 @@ namespace BasicTypes.Lorem
             foreach (Sentence sentence in sentences)
             {
                 string s = sentence.ToString();
-                Console.WriteLine(s);
+                string sn = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+                Console.WriteLine(sn);
                 Console.WriteLine(sentence.ToString("b"));
-                Console.WriteLine(gm.Gloss(s, s));
+                Console.WriteLine(gm.Gloss(sn, sn));
                 //try
                 //{
-                Sentence reparsed = pu.ParsedSentenceFactory(s, s);
+                Sentence reparsed = pu.ParsedSentenceFactory(sn, sn);
 
                 string reparseString = reparsed.ToString();
-                Console.WriteLine(reparseString);
-                Console.WriteLine(gm.Gloss(reparseString, s));
+                string normalize = Normalizer.NormalizeText(reparseString, Dialect.DialectFactory);
+                Console.WriteLine(normalize);
+                Console.WriteLine(gm.Gloss(normalize, s));
                 //}
                 //catch (Exception ex)
                 //{
@@ -149,14 +152,30 @@ namespace BasicTypes.Lorem
             //Simple, Simple + Optional Parts
             //
             int dice = random.Next(0, 100);
-            if (dice < 10)
+            if (dice < 5)
             {
                 return SingleExclamation();
             }
-
-            if (dice < 20)
+            //if (dice < 7)
+            //{
+            //    return SingleFragment(); //Boring.
+            //}
+            if (dice < 10)
             {
                 return SingleVocative();
+            }
+            if (dice < 20)
+            {
+                Sentence conclusion = SingleSimpleSentence(".");
+                List<Sentence> premesis = new List<Sentence>(2);
+                Sentence premise = SingleSimpleSentence("NONE");
+                premesis.Add(premise);
+                if (random.Next(0, 100) < 10)
+                {
+                    Sentence premise1 = SingleSimpleSentence("NONE");
+                    premesis.Add(premise1);
+                }
+                return new Sentence(premesis.ToArray(),conclusion,null);
             }
             return SingleSimpleSentence();
         }
@@ -196,7 +215,7 @@ namespace BasicTypes.Lorem
                 var howMany = odds.Where(x => dice <= x.Value).Select(x => x.Key).First();
                 while (howMany > 0)
                 {
-                    ws.Add(Token.Modals[random.Next(0, Token.Modals.Length)]);
+                    ws.Add(new Word(Token.Modals[random.Next(0, Token.Modals.Length)]));
                     howMany--;
                 }
                 Exclamation e = new Exclamation(new HeadedPhrase(interj, ws));
@@ -212,7 +231,39 @@ namespace BasicTypes.Lorem
 
         }
 
-        private Sentence SingleSimpleSentence()
+        private Sentence SingleSimpleSentence(string punct =null)
+        {
+            int howMany = 1;
+            if (random.Next(0, 100) < 10)
+            {
+                howMany = 2;
+            }
+            else if (random.Next(0, 100) < 20)
+            {
+                howMany = 3;
+            }
+            PredicateList pl = new PredicateList();
+            while(howMany>0)
+            {
+                var p = GeneratePredicate();
+                pl.Add(p);
+                howMany--;
+            }
+            
+            SentenceOptionalParts parts = OptionalParts(punct);
+            if (parts != null)
+            {
+                if (punct == "NONE")
+                {
+                    parts.Punctuation = null;
+                }
+            }
+            
+            Sentence s = new Sentence(RandomEnPiChain(), pl, parts);
+            return s;
+        }
+
+        private TpPredicate GeneratePredicate()
         {
             bool isTransitive = random.Next(0, 100) < 50;
 
@@ -240,16 +291,17 @@ namespace BasicTypes.Lorem
             {
                 p = new TpPredicate(Particles.li, nominal);
             }
-
-
-            Sentence s = new Sentence(RandomEnPiChain(), new PredicateList { p }, OptionalParts());
-            return s;
+            return p;
         }
 
-        public SentenceOptionalParts OptionalParts()
+        public SentenceOptionalParts OptionalParts(string punct=null)
         {
             if (random.Next(0, 100) < 75)
             {
+                if (punct != null && punct!="NONE")
+                {
+                    return new SentenceOptionalParts(){ Punctuation =  new Punctuation(punct)};
+                }
                 return null;
             }
             SentenceOptionalParts sop = new SentenceOptionalParts();
@@ -281,6 +333,11 @@ namespace BasicTypes.Lorem
                     sop.TagQuestion = new TagQuestion();
                 }
                 sop.Punctuation = new Punctuation("?");
+            }
+
+            if (sop.Punctuation == null && punct != null)
+            {
+                sop.Punctuation = new Punctuation(punct);
             }
             //tag
             return sop;
@@ -356,7 +413,7 @@ namespace BasicTypes.Lorem
 
             while (howMany > 0)
             {
-                ws.Add(Token.Modals[random.Next(0, Token.Modals.Length)]);
+                ws.Add(new Word(Token.Modals[random.Next(0, Token.Modals.Length)]));
                 howMany--;
             }
 
@@ -477,28 +534,19 @@ namespace BasicTypes.Lorem
 
         public Word RandomWord(string pos)
         {
-
-            //var glosses = Words.Glosses["en"].Where(x=>x.Key==pos).Select(x=>x);
-
             int count = Words.Dictionary.Count;
-
-            // Words.Glosses["soweli"]["en"]["pos"][3]
-
-
 
             Word word;
             do
             {
                 word = Words.Dictionary.ElementAt(random.Next(0, count)).Value;
-
+                
             } while (
                 word == null || word.IsParticle ||
                 (!dialect.IncludeApocrypha && Token.Deprecated.Contains(word.Text))
                 || !Words.Glosses[word.Text]["en"].ContainsKey(pos));
 
             return word;
-            //throw new InvalidOperationException("How did we get here?");
-            //RandomValues(Words.Dictionary).GetEnumerator().Current;
         }
 
         //https://stackoverflow.com/questions/1028136/random-entry-from-dictionary

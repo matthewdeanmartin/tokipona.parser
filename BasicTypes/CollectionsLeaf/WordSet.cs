@@ -33,7 +33,7 @@ namespace BasicTypes
         public WordSet(IEnumerable<Word> strings)
             : base()
         {
-            foreach (string s in strings)
+            foreach (Word s in strings)
             {
                 this.Add(s);
             }

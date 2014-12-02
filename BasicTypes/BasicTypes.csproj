@@ -72,6 +72,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CollectionsDegenerate\Exclamation.cs" />
+    <Compile Include="CollectionsLeaf\TaggedWord.cs" />
+    <Compile Include="CollectionsLeaf\TaggedWordsTests.cs" />
     <Compile Include="Collections\Chain.cs" />
     <Compile Include="Collections\ChainByValue.cs" />
     <Compile Include="Collections\ChainParse.cs" />
@@ -81,13 +83,13 @@
     <Compile Include="Collections\ComplexChain.cs" />
     <Compile Include="Collections\ComplexChainByValue.cs" />
     <Compile Include="Collections\ComplexChainTests.cs" />
-    <Compile Include="Collections\ComplexPronoun.cs" />
+    <Compile Include="CollectionsLeaf\ComplexPronoun.cs" />
     <Compile Include="CollectionsDegenerate\Fragment.cs" />
-    <Compile Include="Collections\HeadedPhrase.cs" />
-    <Compile Include="Collections\HeadedPhraseConverter.cs" />
-    <Compile Include="Collections\HeadedPhraseEquivallenceGenerator.cs" />
-    <Compile Include="Collections\HeadPhraseByValue.cs" />
-    <Compile Include="Collections\ModiferPhrase.cs" />
+    <Compile Include="CollectionsLeaf\HeadedPhrase.cs" />
+    <Compile Include="CollectionsLeaf\HeadedPhraseConverter.cs" />
+    <Compile Include="CollectionsLeaf\HeadedPhraseEquivallenceGenerator.cs" />
+    <Compile Include="CollectionsLeaf\HeadPhraseByValue.cs" />
+    <Compile Include="CollectionsLeaf\ModiferPhrase.cs" />
     <Compile Include="Collections\Phrase.cs" />
     <Compile Include="Collections\Predicate.cs" />
     <Compile Include="Collections\PredicateList.cs" />
@@ -97,6 +99,7 @@
     <Compile Include="Collections\PrepositionalPhraseTests.cs" />
     <Compile Include="Collections\Sentence.cs" />
     <Compile Include="Collections\SentenceByValue.cs" />
+    <Compile Include="Collections\SentenceDiagnostics.cs" />
     <Compile Include="Collections\SentenceOptionalParts.cs" />
     <Compile Include="Collections\SentenceParse.cs" />
     <Compile Include="Collections\SentenceSemeEqual.cs" />
@@ -105,11 +108,11 @@
     <Compile Include="Collections\TagQuestion.cs" />
     <Compile Include="Collections\VerbPhrase.cs" />
     <Compile Include="Collections\VerbPhraseTests.cs" />
-    <Compile Include="Collections\WordList.cs" />
-    <Compile Include="Collections\WordSet.cs" />
-    <Compile Include="Collections\WordSetByValue.cs" />
+    <Compile Include="CollectionsLeaf\WordList.cs" />
+    <Compile Include="CollectionsLeaf\WordSet.cs" />
+    <Compile Include="CollectionsLeaf\WordSetByValue.cs" />
     <Compile Include="Collections\SentenceTests.cs" />
-    <Compile Include="Collections\WordSetTypeConverter.cs" />
+    <Compile Include="CollectionsLeaf\WordSetTypeConverter.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Corpus\CorpusFileReader.cs" />
     <Compile Include="Diagnostics\Tracers.cs" />
@@ -150,7 +153,7 @@
     <Compile Include="Dictionary\Pronouns.cs" />
     <Compile Include="Exceptions\InvalidPhonology.cs" />
     <Compile Include="Extensions\ArrayExtensions.cs" />
-    <Compile Include="Collections\HeadedPhraseTest.cs" />
+    <Compile Include="CollectionsLeaf\HeadedPhraseTest.cs" />
     <Compile Include="Knowledge\CorpusKnowledge.cs" />
     <Compile Include="Knowledge\CorpusTexts.cs" />
     <Compile Include="Knowledge\KnowledgeScope.cs" />
@@ -199,7 +202,7 @@
     <Compile Include="Parts\WordConverter.cs" />
     <Compile Include="Parts\WordConverterTests.cs" />
     <Compile Include="Parts\WordEqualityTests.cs" />
-    <Compile Include="Collections\WordSetTest.cs" />
+    <Compile Include="CollectionsLeaf\WordSetTest.cs" />
     <Compile Include="Parts\WordFormatProvider.cs" />
     <Compile Include="Parts\WordParse.cs" />
     <Compile Include="Parts\WordTest.cs" />

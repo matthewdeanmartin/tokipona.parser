@@ -111,7 +111,8 @@ namespace BasicTypes
         {
             foreach (string s in Token.SemanticallyPlural)
             {
-                if (value.Contains(s)) return true;
+                //PERF: uh oh.
+                if (value.Contains(new Word(s))) return true;
             }
             
             //Other numbers need to detect.

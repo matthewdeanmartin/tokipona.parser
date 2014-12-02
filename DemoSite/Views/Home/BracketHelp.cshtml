@@ -1,25 +1,36 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Bracket Help";
 }
 
 <h2>Bracket Help</h2>
+<h2>Phrase Brackets</h2>
 <ul>
     <li><b>[subject]</b> - Everything right of the li.</li>
     <li><b>&lt;predicate&gt;</b> - the verb or noun phrase after li</li>
     <li><b>\modal/</b></li>
     <li><b>%verb</b> - the head verb</li>
     <li><b>\adverb/</b> - things following the head verb</li>
-    <li><b>(modifiers)</b> - words after a head</li>
+    <li><b>(modifier modifier)</b> - words after a head</li>
+    <li><b>(- simple chain -)</b> - phrases all joined by the same particle, i.e. this is words and one sort of particle, e.g. just pi (not a combo of pi and en)</li>
+    <li><b>{ complex chain }</b> - simple chains joined by another particle, for example, pi and en appear in the same phrase</li>
+    <li><b>[{(- sina -) en (- jan (ante) pi toki-pona -)}]</b>-- brackets for a en/pi chain.</li>
+    <li><b>|taso|</b> - "tag conjunction", "tagged words", question tag, yes no tags on the verb, intensifier tags (mostly just kin)</li>
+    <li><b>{kin} la</b> - la fragment(s)</li>
+</ul>
+<h2>Part of Speech markers</h2>
+<ul>
     <li><b>, preposition</b> - forces parser to read word as preposition</li>
-    <li><b>#number</b> - forces parser to read word as number</li>
+    <li><b>#number</b> - Explict number. A complete explicit number has dashes instead of spaces, e.g. #tu-wan</li>
+    <li><b>+wala</b> - Explicit neologism</li>
     <li><b>jan-pona</b> - compound phrase, i.e. noun and verb phrases that must gloss as a single unit to be coherent.</li>
     <li><b>~preposition</b> - internal/alternative symbol for marking prepositions</li>
-    <li><b>(- simple chain -)</b> - phrases all joined by the same particle</li>
-    <li><b>{ complex chain }</b> - simple chains joined by another particle</li>
-    <li><b>[{(- sina -) en (- jan (ante) pi toki-pona -)}]</b>-- brackets for a en/pi chain.</li>
-    <li><b>|taso|</b> - "tag conjunction"</li>
-    <li><b>{kin} la</b> - la fragment(s)</li>
-    <li><b>+wala</b> - Explicit neologism</li>
 </ul>
-
+<p>
+    What are tags. They are undeliminted, i.e. not set off from other phrases by particles like pi, e, li, etc.  They have a scope that can be unusual. I don't know how to describe it.
+    When a word is tagged, that word can pop up anywhere that a word can. Perfect example is anu X and ala in the verb phrase. To not invent the concept of tagged words is to suggest the
+    verb paradigm has a slot in between each word for an anu X or ala.
+</p>
+<p>
+    Close related to tagged words are conjunction tags, which sit at the front of a sentence, undeliminated from the subject and the anu seme tag, which sits
+    at the end of a sentence without deliminators from what ever might have gone before.
+</p>

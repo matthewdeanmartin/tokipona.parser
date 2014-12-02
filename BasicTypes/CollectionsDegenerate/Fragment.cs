@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BasicTypes.Exceptions;
 
+//Degenerate collections are these short sentences with little internal structure but can't easily be modeled with the regular Sentence.
 namespace BasicTypes.Collections
 {
     //It is a Pushmi-pullyu, 2 types in one!

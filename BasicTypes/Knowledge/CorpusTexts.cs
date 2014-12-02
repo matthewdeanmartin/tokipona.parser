@@ -169,11 +169,13 @@ jan suli li toki: o pali ala e sitelen akesi anu insa akesi. o sona e sona nanpa
 
 jan suli li pilin ike tawa sitelen mi la mi pali ala e sitelen sin. 
 
-mi pali e ijo ante. mi kepeken e tomo-tawa-kon. ni li lon: sona ma li pona tawa mi. mi ken sona e ante pi ma Kina en ma Alisona. tenpo pimeja la sona ni li pona. 
+mi pali e ijo ante. mi kepeken e tomo-tawa-kon. ni li lon: sona ma li pona tawa mi.
+/// en subordinate to pi (usually otherway around) mi ken sona e ante pi ma Kina en ma Alisona. 
+tenpo pimeja la sona ni li pona. 
 
 tenpo lili la mi sona mute e jan suli. taso, mi pilin ike tan ni! 
 
-tenpo ijo la mi pilin e ni: jan suli ni li pona. mi pana e sitelen pi nanpa wan tawa ona. mi wile sona e ni: jan ni li jo ala jo e pi sona pona? 
+tenpo ijo la mi pilin e ni: jan suli ni li pona. mi pana e sitelen pi nanpa wan tawa ona. mi wile sona e ni: jan ni li jo ala jo e sona pona? 
 
 tenpo ali la jan suli li toki: ni li len lawa.  mi toki ala e akesi e ma kasi e sike sewi lili tawa ona tan ni. mi toki e musi pi jan suli e nasin wawa e len pi anpa lawa. jan suli li pilin pona tawa mi tan ni.";
 

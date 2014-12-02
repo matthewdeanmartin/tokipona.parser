@@ -18,8 +18,8 @@ namespace BasicTypes.Glosser
         {
             string regular = "sona olin li alasa e mu jan e ijo sin e poka esun e ali meli, lon meli suli, tawa ala mi?";
             string s = NormalizerCode.Normalizer.NormalizeText(regular, Dialect.DialectFactory);
-            Console.WriteLine(Sentence.Parse(s,Dialect.DialectFactory).ToString());
-            
+            Console.WriteLine(Sentence.Parse(s, Dialect.DialectFactory).ToString());
+
             GlossMaker gm = new GlossMaker();
             Console.WriteLine(gm.Gloss(s, s));
         }
@@ -57,7 +57,7 @@ namespace BasicTypes.Glosser
             Console.WriteLine(gm.Gloss(s, s));
             Console.WriteLine(gm.Gloss(s, s));
             Console.WriteLine(gm.Gloss(s, s));
-            Console.WriteLine(gm.Gloss(s, s,"en",true));
+            Console.WriteLine(gm.Gloss(s, s, "en", true));
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace BasicTypes.Glosser
         {
             string s = "jan suli";
             GlossMaker gm = new GlossMaker();
-            Console.WriteLine(gm.Gloss(s,s));
+            Console.WriteLine(gm.Gloss(s, s));
         }
 
         [Test]
@@ -75,9 +75,15 @@ namespace BasicTypes.Glosser
             try
             {
                 GlossMaker gm = new GlossMaker();
-                gm.ThrowOnSyntaxErrors = true;
+                Dialect config = BasicTypes.Dialect.DialectFactory;
+                config.ThrowOnSyntaxError = true;
+                config.TargetGloss = "en";
+                config.GlossWithFallBacks = true;
+                ParserUtils pu = new ParserUtils(config);
+
                 string s = "jan suli pi pi pi";
-                Console.WriteLine(gm.Gloss(s,s));
+                Sentence sentenceTree = pu.ParsedSentenceFactory(s, s);
+                Console.WriteLine(gm.GlossOneSentence(false, sentenceTree, config));
             }
             catch (InvalidOperationException)
             {
@@ -97,7 +103,7 @@ namespace BasicTypes.Glosser
         {
             GlossMaker gm = new GlossMaker();
             string s = "jan li suli";
-            Console.WriteLine(gm.Gloss(s,s));
+            Console.WriteLine(gm.Gloss(s, s));
         }
 
 
@@ -106,7 +112,7 @@ namespace BasicTypes.Glosser
         {
             GlossMaker gm = new GlossMaker();
             string s = "jan li suli li wawa";
-            Console.WriteLine(gm.Gloss(s,s));
+            Console.WriteLine(gm.Gloss(s, s));
         }
 
         [Test]
@@ -114,7 +120,7 @@ namespace BasicTypes.Glosser
         {
             GlossMaker gm = new GlossMaker();
             string s = "jan li moku e kili";
-            Console.WriteLine(gm.Gloss(s,s));
+            Console.WriteLine(gm.Gloss(s, s));
         }
 
         [Test]
@@ -122,7 +128,7 @@ namespace BasicTypes.Glosser
         {
             GlossMaker gm = new GlossMaker();
             string s = "jan li moku, kepeken ilo moku";
-            Console.WriteLine(gm.Gloss(s,s,"en",true));
+            Console.WriteLine(gm.Gloss(s, s, "en", true));
             Console.WriteLine(gm.Gloss(s, s));
         }
 

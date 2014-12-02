@@ -39,9 +39,9 @@ namespace BasicTypes
         [DataMember]
         private readonly WordSet modifiers;
 
+        //For this to work, need to rework (possibly) the basic token processing algo.
         [DataMember]
         private readonly WordSet alternativeModifiers; //jan pona anu ike
-
         [DataMember]
         private readonly WordSet joinedModifiers;  //kili suwi en namako (does it need pi? who knows, we can a parse it)
 
@@ -50,26 +50,24 @@ namespace BasicTypes
         [DataMember]
         private readonly PrepositionalPhrase[] prepositionalPhrases;
 
+        /// <summary>
+        /// Convenience constructor.
+        /// </summary>
         public HeadedPhrase(Word head, Word modifier1, Word modifier2 = null, Word modifier3 = null)
         {
-            if (new[] {"mi", "sina", "ona"}.Contains(head.Text))
-            {
-                throw new ArgumentException("mi, sina, ona can only be pronouns, so you must use ComplexPronoun");
-            }
-            WordSet modifiers = null;
-            //if (modifier2 != null || modifier3 != null)
-            {
-                modifiers = new WordSet();
-                //if (modifier1 != null) 
-                modifiers.Add(modifier1);
-                if (modifier2 != null) modifiers.Add(modifier2);
-                if (modifier3 != null) modifiers.Add(modifier3);
-            }
+            //if (new[] {"mi", "sina", "ona"}.Contains(head.Text))
+            //{
+            //    throw new ArgumentException("mi, sina, ona can only be pronouns, so you must use ComplexPronoun");
+            //}
+            WordSet set = new WordSet();
+            set.Add(modifier1);
+            if (modifier2 != null) set.Add(modifier2);
+            if (modifier3 != null) set.Add(modifier3);
 
-            ValidateConstruction(head, modifiers);
+            ValidateConstruction(head, set);
 
             this.head = head;
-            this.modifiers = modifiers;
+            this.modifiers = set;
         }
 
 
@@ -78,17 +76,27 @@ namespace BasicTypes
         //kili suwi en namako lon tomo ...li pona tawa mi. 
         //kili suwi en namako anu loje lon tomo .... li pona tawa mi.
         //kili suwi namako anu loje
-        public HeadedPhrase(Word head, WordSet modifiers = null, PrepositionalPhrase[] prepositionalPhrases = null, WordSet[] joinedModifiers=null, WordSet[] alernativeModifiers=null)
+        public HeadedPhrase(Word head, WordSet modifiers = null, PrepositionalPhrase[] prepositionalPhrases = null, WordSet joinedModifiers = null, WordSet alternativeModifiers = null)
         {
             //if (new[] { "mi", "sina", "ona" }.Contains(head.Text))
             //{
             //    throw new ArgumentException("mi, sina, ona can only be pronouns, so you must use ComplexPronoun");
             //}
+
+            if (modifiers!=null && (modifiers.Contains(Words.kin) || modifiers.Contains(Words.ala)))
+            {
+                ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
+                var mergedTail = ParserUtils.TurnThisWordsIntoWordsWithTaggedWords(modifiers.ToArray());
+                modifiers = new WordSet(mergedTail);
+            }
+
             ValidateConstruction(head, modifiers);
 
             this.head = head;
             this.modifiers = modifiers;
             this.prepositionalPhrases = prepositionalPhrases;
+            this.joinedModifiers = joinedModifiers;
+            this.alternativeModifiers = alternativeModifiers;
         }
 
         private static void ValidateConstruction(Word head, WordSet modifiers)
@@ -98,10 +106,10 @@ namespace BasicTypes
                 throw new ArgumentNullException("head", "Can't construct with null");
             }
             //HACK: related to taso in la fragment
-            if (!(Exclamation.IsExclamation(head.Text) || head.Text=="taso")&& Token.CheckIsParticle(head.Text))
+            if (!(Exclamation.IsExclamation(head.Text) || head.Text == "taso") && Token.CheckIsParticle(head.Text))
             {
                 throw new TpSyntaxException(
-                    "You can't have a headed phrase that is headed by a particle. That would be a chain. " + head.Text + " "+  (modifiers==null?"":modifiers.ToString()));
+                    "You can't have a headed phrase that is headed by a particle. That would be a chain. " + head.Text + " " + (modifiers == null ? "" : modifiers.ToString()));
             }
             if (ProperModifier.IsProperModifer(head.Text))
             {
@@ -111,7 +119,7 @@ namespace BasicTypes
             {
                 foreach (Word word in modifiers)
                 {
-                    if(word.Text =="en"|| word.Text =="anu" ) continue; //HACK: Deferring dealing with these. 
+                    if (word.Text == "en" || word.Text == "anu") continue; //HACK: Deferring dealing with these. 
                     if (word.Text == "taso") continue; //Taso actually is a modifier. Carry on.
                     if (Particle.CheckIsParticle(word.Text))
                     {
@@ -208,7 +216,7 @@ namespace BasicTypes
             {
                 words.Add(head.ToString(format, formatProvider));
             }
-            
+
             if (Modifiers != null && Modifiers.Count > 0)
             {
                 words.AddIfNeeded("(", format);
@@ -231,7 +239,7 @@ namespace BasicTypes
 
         public bool IsPlural()
         {
-            if(modifiers==null || modifiers.Count==0) return false;
+            if (modifiers == null || modifiers.Count == 0) return false;
 
             foreach (string value in Token.SemanticallyPlural)
             {

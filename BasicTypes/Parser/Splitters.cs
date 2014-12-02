@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using BasicTypes.Exceptions;
 using BasicTypes.Extensions;
 
 namespace BasicTypes.Parser
@@ -50,7 +51,18 @@ namespace BasicTypes.Parser
                 value = value.Replace("*pi*", "VVVVVVVVVVV");
             }
             Regex splitOnPi = new Regex("\\b" + Particles.pi.Text + "\\b");
-            string[] piLessTokens = splitOnPi.Split(value).Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x)).ToArray();
+            string[] piLessTokens = splitOnPi.Split(value).Select(x => x.Trim()).ToArray();
+            if (piLessTokens.Any(string.IsNullOrEmpty))
+            {
+                //if (value.Contains(" pi "))
+                //{
+                    throw new TpSyntaxException("This implies a phrase like pi pi... source: " + value);
+                //}
+                //else
+                //{
+                //    piLessTokens = piLessTokens.Where(!string.IsNullOrEmpty(x))
+                //}
+            }
             for (int i = 0; i < piLessTokens.Length; i++)
             {
                 if (piLessTokens[i].ContainsCheck("ZZZZZZZZZZZZ"))
