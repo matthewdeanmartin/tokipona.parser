@@ -204,6 +204,9 @@ namespace BasicTypes
         //Also an odd ball.
         public Vocative Vocative { get { return vocative; } }
         public Fragment Fragment { get { return fragment; } }
+        public Exclamation Exclamation { get { return exclamation; } }
+
+        
 
         public Particle Conjunction { get { return conjunction; } } //Anu, taso
         public ComplexChain Subjects { get { return subjects; } } //jan 

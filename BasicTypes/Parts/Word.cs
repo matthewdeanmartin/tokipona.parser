@@ -358,7 +358,8 @@ namespace BasicTypes
                 language = c.TargetGloss;
             }
 
-            if (language == "tp")
+            //bracket means TP (what the heck would brackets mean in English?)
+            if (format=="b" || language == "tp")
             {
                 return Text; //And maybe POS
             }

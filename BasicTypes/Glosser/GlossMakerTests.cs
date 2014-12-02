@@ -14,6 +14,17 @@ namespace BasicTypes.Glosser
     public class GlossMakerTests
     {
         [Test]
+        public void LostDirects()
+        {
+            string regular = "sona olin li alasa e mu jan e ijo sin e poka esun e ali meli, lon meli suli, tawa ala mi?";
+            string s = NormalizerCode.Normalizer.NormalizeText(regular, Dialect.DialectFactory);
+            Console.WriteLine(Sentence.Parse(s,Dialect.DialectFactory).ToString());
+            
+            GlossMaker gm = new GlossMaker();
+            Console.WriteLine(gm.Gloss(s, s));
+        }
+
+        [Test]
         public void GlossPlural()
         {
             string s = "mi mute li wile e moku mute e soweli mute e waso mute e kala mute e mani mute.";

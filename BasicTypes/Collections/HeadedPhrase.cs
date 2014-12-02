@@ -231,6 +231,8 @@ namespace BasicTypes
 
         public bool IsPlural()
         {
+            if(modifiers==null || modifiers.Count==0) return false;
+
             foreach (string value in Token.SemanticallyPlural)
             {
                 foreach (Word modifier in modifiers)

@@ -10,7 +10,18 @@ namespace BasicTypes
 {
     [TestFixture]
     public class SentenceTests
+
     {
+        [Test]
+        public void BracketVocative()
+        {
+            string text = "jan Kiwima o!";
+            Sentence s = Sentence.Parse(text, Dialect.DialectFactory);
+            string diagram= s.ToString("b", Dialect.DialectFactory);
+            Console.WriteLine(diagram);
+            Assert.IsFalse(diagram.Contains("[Error"));
+        }
+
         [Test]
         public void ConjunctionTests_Taso_Conclusion()
         {

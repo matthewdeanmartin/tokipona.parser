@@ -106,6 +106,10 @@ namespace BasicTypes.Glosser
                 ProcessOneChain(includePos, gloss, config, s.Vocative.Nominal);
                 //Need o?
             }
+            if (s.Exclamation != null)
+            {
+                ProcessingleHeadedPhrase(includePos, gloss, config, s.Exclamation.Phrase);
+            }
 
             //The whole sentence is a fragment, ending in la.
             if (s.Fragment != null)
@@ -474,10 +478,13 @@ namespace BasicTypes.Glosser
         {
             bool shouldSupressJan = WordByValue.Instance.Equals(hp.Head, Words.jan) && hp.Modifiers.Any(x => x.IsProperModifier);
 
-            foreach (Word modifier in hp.Modifiers)
+            if (hp.Modifiers != null)
             {
-                
-                gloss.Add(GlossWithFallBack(includePos, config, modifier, PartOfSpeech.Adjective));
+                foreach (Word modifier in hp.Modifiers)
+                {
+
+                    gloss.Add(GlossWithFallBack(includePos, config, modifier, PartOfSpeech.Adjective));
+                }
             }
             if (shouldSupressJan)
             {

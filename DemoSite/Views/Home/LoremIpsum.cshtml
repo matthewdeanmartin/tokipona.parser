@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Lorem Ipsum";
+}
+<div class="row">
+    <div class="col-md-12">
+        <h2>Lorem Ipsum</h2>
+        @*</div>
+            <div class="col-md-6">*@
+        <style>
+            .content {
+                color: #800000;
+            }
+
+            .compound {
+                color: #800000;
+            }
+
+            .function {
+                color: Red;
+            }
+
+            .number {
+                color: green;
+            }
+
+            .neologism {
+                background: yellow;
+            }
+
+            .foreign {
+                background: orange;
+            }
+
+            .anaphora {
+                color: Blue;
+            }
+
+            .conjunction {
+                color: Green;
+            }
+
+            .proper {
+                color: Orange;
+                font-weight: bold;
+            }
+
+            .prep {
+                color: Red;
+                font-weight: bold;
+            }
+        </style>
+        <p>
+            @Html.Raw(Model.Html)
+        </p>
+  </div>
+    @*<div class="col-md-4">
+            <h2>Repeat Back</h2>
+            <p>
+                @Model.Recovered
+            </p>
+        </div>*@
+</div>

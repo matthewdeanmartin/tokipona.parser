@@ -181,6 +181,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LoremIpsumModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SerializationsModel.cs" />
     <Compile Include="Models\SimpleParserViewModel.cs" />
@@ -253,6 +254,7 @@
     <Content Include="Views\Home\ChangeLog.cshtml" />
     <Content Include="Views\Home\BracketHelp.cshtml" />
     <Content Include="Views\Home\Serializations.cshtml" />
+    <Content Include="Views\Home\LoremIpsum.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

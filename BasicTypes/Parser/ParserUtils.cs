@@ -9,6 +9,7 @@ using BasicTypes.Extensions;
 using BasicTypes.NormalizerCode;
 using BasicTypes.Parser;
 using BasicTypes.Parts;
+using Humanizer;
 using NUnit.Framework.Constraints;
 
 namespace BasicTypes
@@ -638,6 +639,8 @@ namespace BasicTypes
                 if (partsWithPreps != null)
                 {
                     toUse = partsWithPreps.Where(x => x.StartCheck("e ")).ToArray();
+                    directObjects[directObjects.Length - 1] = toUse[0];
+                    toUse = directObjects;
                 }
                 else
                 {

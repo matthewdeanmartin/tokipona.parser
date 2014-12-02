@@ -10,6 +10,7 @@ using BasicTypes;
 using BasicTypes.Glosser;
 using BasicTypes.Html;
 using BasicTypes.Knowledge;
+using BasicTypes.Lorem;
 using BasicTypes.NormalizerCode;
 using BasicTypes.Parser;
 using DemoSite.Models;
@@ -18,6 +19,108 @@ namespace DemoSite.Controllers
 {
     public class HomeController : Controller
     {
+        public ActionResult LoremIpsum()
+        {
+            Dialect dialect = Dialect.DialectFactory;
+            dialect.IncludeApocrypha = false;
+            TextGenerator tg = new TextGenerator(dialect);
+            List<Sentence> sentences = new List<Sentence>();
+            for (int i = 0; i < 1000; i++)
+            {
+                Sentence s = tg.GenerateSentence();
+                sentences.Add(s);
+            }
+            StringBuilder spitBackSb = new StringBuilder();
+            StringBuilder bracketSb = new StringBuilder();
+            StringBuilder posSb = new StringBuilder();
+            StringBuilder glossSb = new StringBuilder();
+            StringBuilder colorized = new StringBuilder();
+            HtmlFormatter hf = new HtmlFormatter();
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (Sentence s in sentences)
+            {
+
+                Sentence parsedSentence = s;
+                string normalized; 
+                //////// TP
+                    try
+                    {
+                        normalized = parsedSentence.ToString("g", dialect);
+                        spitBackSb.AppendLine(normalized.ToHtml() + "<br/>");
+                    }
+                    catch (Exception ex)
+                    {
+                        string error = "[[CANNOT REPEAT BACK: nena suli! " + ex.Message +"]]";
+                        spitBackSb.AppendLine(hf.BoldTheWords(error.ToHtml()) + "<br/>");
+                    }
+
+                    try
+                    {
+                        string result = parsedSentence.ToString("html", dialect);
+                        //if (result.Replace("<span", "").Contains("<"))
+                        //{
+                        //    throw new InvalidOperationException("No HTML allowed in input");
+                        //}
+                        colorized.AppendLine(result+ "<br/>");
+                    }
+                    catch (Exception ex)
+                    {
+                        string error = "[[CANNOT COLORIZE: nena suli! " + ex.Message +"]]";
+                        spitBackSb.AppendLine(hf.BoldTheWords(error.ToHtml()) + "<br/>");
+                    }
+
+                    //////// TP
+                    try
+                    {
+                        string diagrammed = parsedSentence.ToString("b", dialect);
+                        bracketSb.AppendLine(hf.BoldTheWords(diagrammed.ToHtml()) + "<br/>");
+                    }
+                    catch (Exception ex)
+                    {
+                        string error = "[[CANNOT BRACKET: nena suli! " + ex.Message +"]]";
+                        bracketSb.AppendLine(hf.BoldTheWords(error.ToHtml()) + "<br/>");
+                    }
+
+
+                    //////// ENGLISH
+                    try
+                    {
+                        dialect.TargetGloss = "en";
+                        GlossMaker gm = new GlossMaker();
+                        string glossed= gm.GlossOneSentence(false,s, dialect);
+                        glossSb.AppendLine(glossed.ToHtml() + "<br/>");
+                        glossed =  gm.GlossOneSentence(true,s, dialect);
+                        posSb.AppendLine(glossed.ToHtml() + "<br/>"); //bs doesn't do anything.
+                    }
+                    catch (Exception ex)
+                    {
+                        string error = "[[CANNOT GLOSS: nena suli! " + ex.Message.ToHtml()  + "]]";
+                        glossSb.AppendLine(hf.BoldTheWords(error.ToHtml()) + "<br/>");
+                    }
+
+
+                sb.Append(colorized.ToString());
+                //sb.Append("<br/>");
+                sb.Append(bracketSb.ToString());
+                //sb.Append("<br/>");
+                sb.Append(glossSb.ToString());
+                sb.Append(hf.SubThePartsOfSpeech(posSb.ToString()));
+                //sb.Append("<br/>");
+                sb.Append("<br/>");
+
+                spitBackSb.Clear();
+                bracketSb.Clear();
+                posSb.Clear();
+                glossSb.Clear();
+                colorized.Clear();
+            }
+        
+            return View(new LoremIpsumModel{Html = sb.ToString()});
+
+        }
+
         public ActionResult Parse(SimpleParserViewModel parse)
         {
             ProcessParserModel(parse);
