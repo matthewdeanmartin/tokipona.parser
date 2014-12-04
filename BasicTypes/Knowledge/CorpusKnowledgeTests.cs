@@ -37,7 +37,7 @@ namespace BasicTypes
         public void ParseAndToStringSimpleIntransitive()
         {
             string sample = "jan Mato li jan soweli.";
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
             dialect.TargetGloss = "en";
 
             CorpusKnowledge ck = new CorpusKnowledge(sample, dialect);
@@ -59,7 +59,7 @@ namespace BasicTypes
         [Test]
         public void SplitRealTest()
         {
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
             dialect.TargetGloss = "en";
 
             CorpusKnowledge c = new CorpusKnowledge(CorpusTexts.UnpaText,dialect);

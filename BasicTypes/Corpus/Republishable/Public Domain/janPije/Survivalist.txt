@@ -3,7 +3,10 @@ o toki ala.
 ona li lukin e mi mute!
 pakala! o tawa! o tawa! mi ken moli e ona!
 tomo mute li pakala tan utala. jan pi tomo ni li tawa seme?
-mi wile tawa ma poka / tomo pi pona sijelo / tomo pi ilo moli / ma pi tomo-tawa-kon. mi wile tawa kepeken nasin seme?
+	mi wile tawa ma poka.
+	mi wile tawa tomo pi pona sijelo.
+	mi wile tawa tomo pi ilo moli.
+	mi wile tawa ma pi tomo-tawa-kon. mi wile tawa kepeken nasin seme?
 lipu ni li toki e ni: mi tan ma Mewika.
 
 
@@ -18,9 +21,12 @@ luka ona li lon seme? ijo suli li lon ona.
  
 mi tan ma Kanata. mi jan Mewika ala. ni li lon.
 tenpo ali la nasin lawa kulupu li pona tawa mi.
-jan lawa ______ li pona mute tawa mi.
-mi mute o moli e jan _______.
-mi pakala. mi wile e ni: sina jo e ilo sitelen / ilo tenpo / mani ni.
+jan lawa "______" li pona mute tawa mi.
+mi mute o moli e jan "_______".
+mi pakala. mi wile e ni: 
+	sina jo e ilo sitelen.
+	sina jo e ilo tenpo.
+	sina jo e mani ni.
 ona li kama! mi ken ala ken awen lon tomo sina?
 sina wile ala e mi! sina wile e ona!
 jan li pini ala pini utala?
@@ -43,5 +49,5 @@ mi ken pali e ilo pi moli mute. o moli ala e mi.
 o pana e mi. mi ken unpa e sina.
 tenpo suno kama la mi mute li moli e sina.
 tenpo kama lili la mi moli e sina. sina wile ala wile toki e ijo?
-wile. mi wile toki e ni: mi--o lukin! meli ni li jo ala e len!
+wile. mi wile toki e ni: mi... o lukin! meli ni li jo ala e len!
 ona li tawa weka. o moli e ona!

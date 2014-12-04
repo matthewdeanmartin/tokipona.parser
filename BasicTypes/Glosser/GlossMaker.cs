@@ -37,7 +37,7 @@ namespace BasicTypes.Glosser
                 throw new InvalidOperationException("This isn't normalized. : " + normalized);
             }
 
-            Dialect config = Dialect.DialectFactory;
+            Dialect config = Dialect.LooseyGoosey;
             config.ThrowOnSyntaxError = false;
             config.TargetGloss = language;
             config.GlossWithFallBacks = true;

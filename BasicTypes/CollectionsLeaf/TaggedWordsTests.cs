@@ -22,7 +22,7 @@ namespace BasicTypes.CollectionsLeaf
         [Test]
         public void SuliAlaParse()
         {
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
             ParserUtils pu = new ParserUtils(dialect);
             HeadedPhrase hp = pu.HeadedPhraseParser("suli ala");
             Assert.AreEqual("suli ala", hp.ToString());
@@ -41,7 +41,7 @@ namespace BasicTypes.CollectionsLeaf
         public void SuliAlaKinParse()
         {
             string testPhrase = "suli ala";
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
             ParserUtils pu = new ParserUtils(dialect);
             HeadedPhrase hp = pu.HeadedPhraseParser(testPhrase);
             Assert.AreEqual(testPhrase, hp.ToString());
@@ -59,7 +59,7 @@ namespace BasicTypes.CollectionsLeaf
         public void MokuAlaMokuParse()
         {
             string testPhrase = "moku ala moku";
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
             ParserUtils pu = new ParserUtils(dialect);
             HeadedPhrase hp = pu.HeadedPhraseParser(testPhrase);
             Assert.AreEqual(testPhrase, hp.ToString());
@@ -78,7 +78,7 @@ namespace BasicTypes.CollectionsLeaf
         public void PonaKinParse()
         {
             string testPhrase = "pona kin";
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
             ParserUtils pu = new ParserUtils(dialect);
             HeadedPhrase hp = pu.HeadedPhraseParser(testPhrase);
             Assert.AreEqual(testPhrase, hp.ToString());
@@ -96,7 +96,7 @@ namespace BasicTypes.CollectionsLeaf
         public void KiwenKiwenParse()
         {
             string testPhrase = "kiwen kiwen";
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
             ParserUtils pu = new ParserUtils(dialect);
             HeadedPhrase hp = pu.HeadedPhraseParser(testPhrase);
             Assert.AreEqual(testPhrase, hp.ToString());
@@ -114,7 +114,7 @@ namespace BasicTypes.CollectionsLeaf
         public void KiwenKiwenKiwenParse()
         {
             string testPhrase = "kiwen kiwen kiwen";
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
             ParserUtils pu = new ParserUtils(dialect);
             HeadedPhrase hp = pu.HeadedPhraseParser(testPhrase);
             Assert.AreEqual(testPhrase, hp.ToString());

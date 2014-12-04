@@ -34,7 +34,7 @@ namespace BasicTypes.Lorem
         [Test]
         public void GenerateObjectAndStringify()
         {
-            Dialect d = Dialect.DialectFactory;
+            Dialect d = Dialect.LooseyGoosey;
             d.IncludeApocrypha = false;
             TextGenerator tg = new TextGenerator(d);
             for (int i = 0; i < 1000; i++)
@@ -48,7 +48,7 @@ namespace BasicTypes.Lorem
         [Test]
         public void GenerateObjectAndStringifyParse(Dialect dialect)
         {
-            Dialect d = Dialect.DialectFactory;
+            Dialect d = Dialect.LooseyGoosey;
             d.IncludeApocrypha = false;
             TextGenerator tg = new TextGenerator(d);
             List<Sentence> sentences = new List<Sentence>();
@@ -102,7 +102,7 @@ namespace BasicTypes.Lorem
             foreach (Sentence sentence in sentences)
             {
                 string s = sentence.ToString();
-                string sn = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+                string sn = Normalizer.NormalizeText(s, Dialect.LooseyGoosey);
                 Console.WriteLine(sn);
                 Console.WriteLine(sentence.ToString("b"));
                 Console.WriteLine(gm.Gloss(sn, sn));
@@ -111,7 +111,7 @@ namespace BasicTypes.Lorem
                 Sentence reparsed = pu.ParsedSentenceFactory(sn, sn);
 
                 string reparseString = reparsed.ToString();
-                string normalize = Normalizer.NormalizeText(reparseString, Dialect.DialectFactory);
+                string normalize = Normalizer.NormalizeText(reparseString, Dialect.LooseyGoosey);
                 Console.WriteLine(normalize);
                 Console.WriteLine(gm.Gloss(normalize, s));
                 //}

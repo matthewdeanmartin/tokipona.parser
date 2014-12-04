@@ -77,7 +77,7 @@ namespace BasicTypes.Collections
             {
                 format = "g";
             }
-            return ToString(format, Dialect.DialectFactory);
+            return ToString(format, Dialect.LooseyGoosey);
         }
 
         public string ToString(string format, IFormatProvider formatProvider)

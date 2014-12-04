@@ -536,6 +536,7 @@ namespace BasicTypes
             //jan ~tan ma pi pali suli ~tawa mani pi ma suli /en/ soweli pi tawa wawa
             //jan ~tan ma //pi// pali suli ~tawa mani //pi// ma suli /en/ soweli //pi// tawa wawa
 
+            //BUG: Following code wraps simple chain in unnecessary complex chain.
             List<ComplexChain> subChains = new List<ComplexChain>();
             for (int i = 0; i < subjectTokens.Length; i++)
             {
@@ -554,6 +555,11 @@ namespace BasicTypes
                 }
                 ComplexChain piChain = new ComplexChain(Particles.pi, piCollection.ToArray());
                 subChains.Add(piChain);
+            }
+
+            if (subChains[0].SubChains.Length>1 && subChains[0].SubChains.Last().ToString().Split(new char[] { '*', ' ', '-' }).Length == 1)
+            {
+                throw new TpSyntaxException("final pi in pi chain must be followed by 2 words, otherwise just use juxtaposition (i.e. 2 adjacent words with no particle) : " + subjects);
             }
 
             ComplexChain subject = new ComplexChain(Particles.en, subChains.ToArray());
@@ -656,7 +662,7 @@ namespace BasicTypes
                 {
                     if (directObject.Length <= 2)
                     {
-                        throw new TpParseException("This is a degenerate e phrase, i.e. it is only e or e space. ref: " + liPart);
+                        throw new TpParseException("This is a degenerate e phrase, i.e. it is only e or e space. Missing a ni, e.g. e ni: possibly. ref: " + liPart);
                     }
                     string eFree = directObject.Substring(2);
                     Chain phrase = ProcessPiChain(eFree);

@@ -23,7 +23,7 @@ namespace BasicTypes.Collections
         public void ThreePreps()
         {
             const string value = "ni li ~kepeken ilo suli ~tawa ilo suli ~poka ilo suli";
-            ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
+            ParserUtils pu = new ParserUtils(Dialect.LooseyGoosey);
             Sentence s = pu.ParsedSentenceFactory(value, value);
             string predicates = s.Predicates.ToString();
             Console.WriteLine(s.Predicates[0].Prepositionals);

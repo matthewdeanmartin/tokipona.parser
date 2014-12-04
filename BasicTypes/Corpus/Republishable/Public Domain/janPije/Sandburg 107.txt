@@ -6,7 +6,7 @@ jan ike li wile ike e jan pona.
 ali li kama tawa jan. taso jan li awen.
 jan li wile lape li sona ala
 li lon kulupu li toki:
-  "mi wile e mani.
+  'mi wile e mani.
   tenpo ali la mi pali.
   mi wile e tenpo.
   mi jo e tenpo la
@@ -14,12 +14,12 @@ li lon kulupu li toki:
     li ken lukin e toki awen
     li ken toki
     li ken kama sona.
-mi wile e tenpo."
+mi wile e tenpo.'
 
 jan li ike li pona.
 ona li ike lukin li toki e ni:
-"jan ante li pakala e mi li ike tawa mi. ali li ike.
-mi wile ala e ni. mi wile tawa tan ma ni."
+'jan ante li pakala e mi li ike tawa mi. ali li ike.
+mi wile ala e ni. mi wile tawa tan ma ni.'
 
 jan li suli.
 ona li sama ala soweli.
@@ -61,4 +61,4 @@ jan ali li wile.
 jan li lon pimeja li pilin ike mute li tawa
 li lukin e mun sewi pona.
 jan li wile.
-  "mi tawa seme? seme li kama?"
+  'mi tawa seme? seme li kama?'

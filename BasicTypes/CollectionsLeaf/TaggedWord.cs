@@ -80,7 +80,7 @@ namespace BasicTypes.CollectionsLeaf
 
         public override string ToString()
         {
-            return this.ToString("g", Dialect.DialectFactory);
+            return this.ToString("g", Dialect.LooseyGoosey);
         }
 
         public override string ToString(string format, IFormatProvider formatProvider)

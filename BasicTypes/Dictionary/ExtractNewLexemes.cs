@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper.Mappers;
+using BasicTypes.Extensions;
 using BasicTypes.Knowledge;
 using BasicTypes.Parser;
 using BasicTypes.Parts;
@@ -20,6 +21,7 @@ namespace BasicTypes.Dictionary
             string[] samples =
                    new string[]
                 {
+                    CorpusTexts.ProfesorAndMadMan,
                 CorpusTexts.UnpaText,
                 CorpusTexts.Gilgamesh,
                 CorpusTexts.SampleText1,
@@ -47,7 +49,7 @@ namespace BasicTypes.Dictionary
                             stuff.Add(toke.Text,"Compound");
                         
                     }
-                    if (toke.CheckIsNumber(toke.Text))
+                    if (toke.Text.StartCheck("#") && toke.CheckIsNumber(toke.Text))
                     {
                         //Should just have to verify we can parse. No need for dictionary.
                         if (!stuff.ContainsKey(toke.Text))
@@ -62,6 +64,12 @@ namespace BasicTypes.Dictionary
                     {
                         if (!stuff.ContainsKey(toke.Text))
                             stuff.Add(toke.Text, "Proper");
+                    }
+
+                    if (Neologism.IsNeologism(toke.Text))
+                    {
+                        if (!stuff.ContainsKey(toke.Text))
+                            stuff.Add(toke.Text, "Neologism");
                     }
                 }
 

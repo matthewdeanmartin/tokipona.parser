@@ -17,8 +17,8 @@ namespace BasicTypes.Glosser
         public void LostDirects()
         {
             string regular = "sona olin li alasa e mu jan e ijo sin e poka esun e ali meli, lon meli suli, tawa ala mi?";
-            string s = NormalizerCode.Normalizer.NormalizeText(regular, Dialect.DialectFactory);
-            Console.WriteLine(Sentence.Parse(s, Dialect.DialectFactory).ToString());
+            string s = NormalizerCode.Normalizer.NormalizeText(regular, Dialect.LooseyGoosey);
+            Console.WriteLine(Sentence.Parse(s, Dialect.LooseyGoosey).ToString());
 
             GlossMaker gm = new GlossMaker();
             Console.WriteLine(gm.Gloss(s, s));
@@ -75,7 +75,7 @@ namespace BasicTypes.Glosser
             try
             {
                 GlossMaker gm = new GlossMaker();
-                Dialect config = BasicTypes.Dialect.DialectFactory;
+                Dialect config = BasicTypes.Dialect.LooseyGoosey;
                 config.ThrowOnSyntaxError = true;
                 config.TargetGloss = "en";
                 config.GlossWithFallBacks = true;

@@ -50,7 +50,7 @@ namespace BasicTypes.Parser
             Dictionary<string, string> bad = new Dictionary<string, string>();
             List<string> good = new List<string>();
             TokenParserUtils tpu = new TokenParserUtils();
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
             ParserUtils pu = new ParserUtils(dialect);
 
             foreach (string s in reader.NextFile())
@@ -104,7 +104,7 @@ namespace BasicTypes.Parser
         public void StressTestParseThingsWithNumbers()
         {
             int i = 0;
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
             dialect.InferCompoundsPrepositionsForeignText = false;
             ParserUtils pu = new ParserUtils(dialect);
 
@@ -140,10 +140,10 @@ namespace BasicTypes.Parser
         public void StressTestNormalize_AnuSeme()
         {
             int i = 0;
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
             ParserUtils pu = new ParserUtils(dialect);
 
-            Dialect english = Dialect.DialectFactory;
+            Dialect english = Dialect.LooseyGoosey;
             english.ThrowOnSyntaxError = false;
             english.TargetGloss = "en";
             english.GlossWithFallBacks = true;
@@ -200,13 +200,138 @@ namespace BasicTypes.Parser
         }
 
         [Test]
+        public void StressTestNormalize_Pronouns()
+        {
+            int i = 0;
+            Dialect dialect = Dialect.LooseyGoosey;
+            ParserUtils pu = new ParserUtils(dialect);
+
+            Dialect english = Dialect.LooseyGoosey;
+            english.ThrowOnSyntaxError = true;
+            english.TargetGloss = "en";
+            english.GlossWithFallBacks = true;
+
+            CorpusFileReader reader = new CorpusFileReader();
+            GlossMaker gm = new GlossMaker();
+
+            foreach (string s in reader.NextFile())
+            {
+                foreach (string original in pu.ParseIntoNonNormalizedSentences(s))
+                {
+                    Sentence structured = null;
+                    //try
+                    //{
+                    string normalized = Normalizer.NormalizeText(original, dialect);
+                    if (string.IsNullOrWhiteSpace(normalized) && !string.IsNullOrWhiteSpace(original)
+                        && !new String[] { ".", ":", "?", "!", "'.", "'!", "\".", "''.", ").", "\"«" }.Contains(original.Trim()))
+                    //BUG:happens when we have ni li ni?:  or ni li ni...
+                    //BUG:Any maybe 'ni li ni?' or 'ni li ni'? are failing due to quotes
+                    {
+                        throw new InvalidOperationException("Normalizer turned this into null or white space : " + original);
+                    }
+                    if (original == "\".") continue;//BUG:
+                    if (string.IsNullOrWhiteSpace(normalized)) continue;
+                    if (!(normalized.ContainsWholeWord("mi") || normalized.ContainsWholeWord("sina") || normalized.ContainsWholeWord("ona"))) continue;
+                    if (normalized.ContainsCheck("Kinla")) continue;//Has a logical operator in one of the sample sentences that I can't deal with yet, unrelated to kin, ala
+                    if (normalized.ContainsCheck("o,")) continue;//Haven't dealt with vocatives yet.
+                    if (normalized.ContainsCheck(" li pi ")) continue;//Will deal with these when I feel like it.
+
+                    if (normalized.ContainsCheck("ona li alasa pona")) return;//Okay, this is some randome point in the middle. 100s is enough!
+
+                    structured = pu.ParsedSentenceFactory(normalized, original);
+
+                    bool foundInteresting = false;
+                    if (structured.Subjects != null)
+                    {
+                        if (structured.Subjects.ComplexChains != null)
+                        {
+                            foreach (ComplexChain innerComplexChain in structured.Subjects.ComplexChains)
+                            {
+                                if (innerComplexChain.SubChains == null) continue;
+
+                                foreach (Chain subChain in innerComplexChain.SubChains)
+                                {
+                                    if (subChain.HeadedPhrases == null) continue;
+
+                                    foreach (HeadedPhrase headedPhrase in subChain.HeadedPhrases)
+                                    {
+                                        if (headedPhrase.Modifiers == null || headedPhrase.Modifiers.Count == 0)
+                                        {
+                                            continue;
+                                        }
+                                        if (headedPhrase.Head.Text == "mi" || headedPhrase.Head.Text == "sina" ||
+                                        headedPhrase.Head.Text == "ona")
+                                        {
+                                            Console.WriteLine("Found  : " + headedPhrase.ToString());
+                                            foundInteresting = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        if (structured.Subjects.SubChains != null)
+                        {
+                            foreach (Chain subChain in structured.Subjects.SubChains)
+                            {
+                                if (subChain.HeadedPhrases == null) continue;
+
+                                foreach (HeadedPhrase headedPhrase in subChain.HeadedPhrases)
+                                {
+                                    if (headedPhrase.Modifiers == null || headedPhrase.Modifiers.Count == 0)
+                                    {
+                                        continue;
+                                    }
+                                    if (headedPhrase.Head.Text == "mi" || headedPhrase.Head.Text == "sina" ||
+                                        headedPhrase.Head.Text=="ona")
+                                    {
+                                        Console.WriteLine("Found  : " + headedPhrase.ToString());
+                                        foundInteresting = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    if(!foundInteresting) continue;
+                    
+
+                    string diag = structured.ToString("b");
+
+                    //if ((normalized.ContainsCheck("%ante"))) continue; //verb!
+
+                    Console.WriteLine("O: " + (original ?? "").Trim(new[] { '\n', '\r', ' ', '\t' }));
+                    Console.WriteLine("B: " + diag);
+                    //Console.WriteLine("G: " + gm.GlossOneSentence(false, structured, english));
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    if (ex.Message.ContainsCheck("all tests"))
+                    //    {
+                    //        Console.WriteLine("ORIGINAL  : " + original);
+                    //        if (structured != null)
+                    //        {
+                    //            Console.WriteLine(structured.ToString("b"));
+                    //        }
+                    //        Console.WriteLine(ex.Message);
+                    //        i++;
+                    //    }
+                    //    else throw;
+                    //}
+
+                }
+            }
+            Console.WriteLine("Failed Sentences: " + i);
+        }
+
+        [Test]
         public void StressTestNormalizeNotIndeedAlaKin()
         {
             int i = 0;
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
             ParserUtils pu = new ParserUtils(dialect);
 
-            Dialect english = Dialect.DialectFactory;
+            Dialect english = Dialect.LooseyGoosey;
             english.ThrowOnSyntaxError = false;
             english.TargetGloss = "en";
             english.GlossWithFallBacks = true;
@@ -232,6 +357,8 @@ namespace BasicTypes.Parser
                     if (original == "\".") continue;//BUG:
                     if (string.IsNullOrWhiteSpace(normalized)) continue;
                     if (!(normalized.ContainsWholeWord("ala") || normalized.ContainsWholeWord("kin"))) continue;
+                    if (normalized.ContainsCheck("Kinla")) continue;//Has a logical operator in one of the sample sentences that I can't deal with yet, unrelated to kin, ala
+                    
 
                     if (normalized.StartCheck("kin la ")) continue; //no big deal
 
@@ -268,10 +395,10 @@ namespace BasicTypes.Parser
         public void StressTestNormalizeAndParseLogicalOperators()
         {
             int i = 0;
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
             ParserUtils pu = new ParserUtils(dialect);
 
-            Dialect english = Dialect.DialectFactory;
+            Dialect english = Dialect.LooseyGoosey;
             english.ThrowOnSyntaxError = false;
             english.TargetGloss = "en";
             english.GlossWithFallBacks = true;
@@ -288,7 +415,7 @@ namespace BasicTypes.Parser
                     //{
                     string normalized = Normalizer.NormalizeText(original, dialect);
                     if (string.IsNullOrWhiteSpace(normalized) && !string.IsNullOrWhiteSpace(original)
-                        && !new String[] { ".", ":", "?", "!", "'.", "'!", "\".", "''.", ").", "\"«" }.Contains(original.Trim()))
+                        && !new String[] { ".", ":", "?", "!", "'.", "'!", "\".", "''.", ").", "\"«", "\".\"" }.Contains(original.Trim()))
                     //BUG:happens when we have ni li ni?:  or ni li ni...
                     //BUG:Any maybe 'ni li ni?' or 'ni li ni'? are failing due to quotes
                     {
@@ -335,10 +462,10 @@ namespace BasicTypes.Parser
         public void StressTestNormalizeAndParseEverything()
         {
             int i = 0;
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
             ParserUtils pu = new ParserUtils(dialect);
 
-            Dialect english = Dialect.DialectFactory;
+            Dialect english = Dialect.LooseyGoosey;
             english.ThrowOnSyntaxError = false;
             english.TargetGloss = "en";
             english.GlossWithFallBacks = true;
@@ -398,7 +525,7 @@ namespace BasicTypes.Parser
         public void IdentifyDiscourses_CanItEvenParseTheSentences()
         {
             string sample = CorpusTexts.UnpaText;
-            Dialect c = Dialect.DialectFactory;
+            Dialect c = Dialect.LooseyGoosey;
             c.TargetGloss = "en";
             CorpusKnowledge ck = new CorpusKnowledge(sample, c);
 
@@ -427,7 +554,7 @@ namespace BasicTypes.Parser
             {
                 CorpusTexts.GeorgeSong
             };
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
             dialect.TargetGloss = "en";
 
             ParserUtils pu = new ParserUtils(dialect);
@@ -456,6 +583,7 @@ namespace BasicTypes.Parser
             {
                 //CorpusTexts.UnpaText,
                 //CorpusTexts.Gilgamesh,
+                CorpusTexts.ProfesorAndMadMan,
                 CorpusTexts.SampleText1,
                 CorpusTexts.SampleText3,
                 CorpusTexts.Lao,
@@ -466,7 +594,7 @@ namespace BasicTypes.Parser
                     ,CorpusTexts.janPusaRice
                     ,CorpusTexts.janPend
             };
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
             dialect.TargetGloss = "en";
 
             GlossMaker gm = new GlossMaker();
@@ -502,7 +630,7 @@ namespace BasicTypes.Parser
         [Test]
         public void IdentifyDiscourses_CanWeGroupThem()
         {
-            Dialect c = Dialect.DialectFactory;
+            Dialect c = Dialect.LooseyGoosey;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -549,7 +677,7 @@ namespace BasicTypes.Parser
         [Test]
         public void CorpusKnowledge_HeadedPhraseParser()
         {
-            Dialect c = Dialect.DialectFactory;
+            Dialect c = Dialect.LooseyGoosey;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -562,7 +690,7 @@ namespace BasicTypes.Parser
         [Test]
         public void ProcessSingletonEnChainOneEn()
         {
-            Dialect c = Dialect.DialectFactory;
+            Dialect c = Dialect.LooseyGoosey;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -577,7 +705,7 @@ namespace BasicTypes.Parser
         [Test]
         public void ProcessSingletonEnChainNoEn()
         {
-            Dialect c = Dialect.DialectFactory;
+            Dialect c = Dialect.LooseyGoosey;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -590,7 +718,7 @@ namespace BasicTypes.Parser
         [Test]
         public void ProcessSingletonPredicate()
         {
-            Dialect c = Dialect.DialectFactory;
+            Dialect c = Dialect.LooseyGoosey;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 

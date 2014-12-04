@@ -5,13 +5,13 @@ toki Inli li kama tan ma Piten. taso tenpo ni la jan li kepeken kin e toki Inli 
 ma Lomani li lon ma Elopa. toki Lomani la nimi ona li "România". ona li poka e ma Masija e ma Ukawina e ma Pokasi, ma Sopisi.
 
 
-toki Katala li toki. toki Katala la nimi ona li Català.
-jan li toki e toki Katala lon ma Katala, lon ma Palensija (Valencia), lon ma Palejara (Balears).
+toki Katala li toki. toki Katala la nimi ona li "Català".
+jan li toki e toki Katala lon ma Katala, lon ma Palensija ("Valencia"), lon ma Palejara ("Balears").
 toki Katala li kama tan toki Kanse en toki Epanja.
 
 
 
-toki Epelanto li toki sin. nimi ona li Esperanto kepeken toki Epelanto.
+toki Epelanto li toki sin. nimi ona li "Esperanto" kepeken toki Epelanto.
 jan Sameno li pali e ona. ona li pali e nimi Epelanto kepeken nimi pi toki Elopa mute. jan Sameno li wile e ni: jan mute pi ma ali li kepeken e toki Epelanto.
 jan mute pi toki-pona li toki e toki Epelanto.
 
@@ -42,8 +42,8 @@ toki Iwisi.
 toki Iwisi li toki pi jan Juta. toki Iwisi la, nimi ona li "unicode lost". tenpo mute la ona li lape. lon tenpo pi lape ona jan li kepeken e toki ni taso tawa toki sewi tawa toki sona.
 jan mute li kama li sin e toki ni li pali e toki Iwisi sin.
 toki Iwisi sin en toki Iwisi pi tenpo pini li sama li jo e nasin tenpo ante.
-sina wile lukin e wikipedia:toki awen pi toki Iwisi sin la, sina ken lukin e lipu Wikipesija.
-toki awen pi toki Iwisi sin la, sina ken lukin e "unicode lost" - pi toki Iwisi
+sina wile lukin e "wikipedia": toki awen pi toki Iwisi sin la, sina ken lukin e lipu Wikipesija.
+toki awen pi toki Iwisi sin la, sina ken lukin e "unicode lost" - pi toki Iwisi.
 ///[o ante] 
 sin pi toki Iwisi.
 jan "Elijeser" pen jeuta li pana mute tawa sin pi toki Iwisi li jan lawa pi sin ona.
@@ -76,16 +76,17 @@ toki Kuwenja li pona kute.
 toki Kanse li toki. toki Kanse la nimi pi toki Kanse li "français".
 jan li toki e toki Kanse lon ma Kanse, lon ma Kanata, lon ma Suwasi, li ma Pesije. ma mute lon ma suli Apika li kepeken kin e toki Kanse.
 jan Sonja li ken toki kepeken toki Kanse pi ma Akasi "(Acadia)". nimi mute pi toki-pona li nimi pi toki Kanse en toki Kanse pi ma Akasi.
-anpa = en bas.
-kule = couleur.
-kute = écouter.
-len = linge.
-lete = frette (kepeken toki Kanse pi ma Akasi) = froid (kepeken toki Kanse).
-moli = mourir.
-monsi = mon tchu (ma Akasi) = mon cul.
-pipi = bibitte (ma Akasi) = insecte.
-supa = surface.
-waso = oiseau.
-o antekulupu toki.
+///anpa = en bas.
+///kule = couleur.
+///kute = écouter.
+///len = linge.
+///lete = frette (kepeken toki Kanse pi ma Akasi) = froid (kepeken toki Kanse).
+///moli = mourir.
+///monsi = mon tchu (ma Akasi) = mon cul.
+///pipi = bibitte (ma Akasi) = insecte.
+///supa = surface.
+///waso = oiseau.
+//o ante
+kulupu toki.
 
 toki mama pi toki Kanse li toki Lasina sama toki Italija en toki Potuke en toki Epanja...

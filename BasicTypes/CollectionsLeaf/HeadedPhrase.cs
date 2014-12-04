@@ -85,7 +85,7 @@ namespace BasicTypes
 
             if (modifiers!=null && (modifiers.Contains(Words.kin) || modifiers.Contains(Words.ala)))
             {
-                ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
+                ParserUtils pu = new ParserUtils(Dialect.LooseyGoosey);
                 var mergedTail = ParserUtils.TurnThisWordsIntoWordsWithTaggedWords(modifiers.ToArray());
                 modifiers = new WordSet(mergedTail);
             }

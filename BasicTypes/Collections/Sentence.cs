@@ -57,12 +57,16 @@ namespace BasicTypes
 
         public Sentence(Comment comment, SentenceDiagnostics diagnostics = null)
         {
+            LaFragment = new List<Fragment>();
+
             this.degenerateComment = comment;
             this.diagnostics = diagnostics;
         }
         //Suggest that vocatives don't chain.  o jan o meli o soweli o => o! jan o! meli o! soweli o!
         public Sentence(Vocative vocative, Punctuation punctuation, SentenceDiagnostics diagnostics = null)
         {
+            LaFragment = new List<Fragment>();
+
             this.degenerateVocative = vocative;
             this.punctuation = punctuation;
 
@@ -71,6 +75,8 @@ namespace BasicTypes
 
         public Sentence(Fragment fragment, Punctuation punctuation, SentenceDiagnostics diagnostics = null)
         {
+            LaFragment = new List<Fragment>();
+
             this.degenerateFragment = fragment;
             this.punctuation = punctuation;
 
@@ -110,6 +116,8 @@ namespace BasicTypes
 
         public Sentence(Exclamation exclamation, Punctuation punctuation, SentenceDiagnostics diagnostics = null)
         {
+            LaFragment = new List<Fragment>();
+
             this.degenerateExclamation = exclamation;
             this.punctuation = punctuation;
 

@@ -16,7 +16,7 @@ namespace BasicTypes
         public void ParseHeadedPhraseWithPrep()
         {
             string s = "kule ~lon palisa luka li pona ~tawa mi.";
-            ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
+            ParserUtils pu = new ParserUtils(Dialect.LooseyGoosey);
             Sentence sentence = pu.ParsedSentenceFactory(s, s);
             Console.WriteLine(sentence.ToString());
             Console.WriteLine(sentence.ToString("b"));

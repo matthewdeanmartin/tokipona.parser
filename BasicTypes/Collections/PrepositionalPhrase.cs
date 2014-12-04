@@ -57,7 +57,7 @@ namespace BasicTypes.Collections
                 throw new ArgumentException("value is null or zero length string");
             }
 
-            Dialect c = Dialect.DialectFactory;
+            Dialect c = Dialect.LooseyGoosey;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 

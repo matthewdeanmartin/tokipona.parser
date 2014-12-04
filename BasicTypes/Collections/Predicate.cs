@@ -29,6 +29,36 @@ namespace BasicTypes.Collections
         [DataMember]
         private readonly ComplexChain nominalPredicate;
 
+        [DataMember]
+        private readonly PiPredicate piPredicate;
+
+        /// <summary>
+        /// The possessive or li pi or pi predicate.
+        /// </summary>
+        public TpPredicate(Particle particle, PiPredicate piPredicate, PrepositionalPhrase[] prepositionals = null)
+        {
+            if (particle.Text != Particles.o.Text && particle.Text != Particles.li.Text)
+            {
+                throw new TpSyntaxException("Tp Predicate can only have a Predicate headed by li or o-- got " + particle.Text);
+            }
+            if (nominalPredicate == null && prepositionals == null)
+            {
+                throw new TpSyntaxException("A nominal predicate phrase or prepositional phrase required. (Directs are optional)");
+            }
+            if (nominalPredicate == null && directs == null && prepositionals == null)
+            {
+                throw new TpSyntaxException("Nominal Predicate, directs(transformatives) and prepositional phrases all null, not good");
+            }
+
+            //TODO: Validate. 
+            this.particle = particle;//li or o
+            this.prepositionals = prepositionals;//only ~prop, pi, en 
+            this.piPredicate = piPredicate; // X li pi Y == Y li jo e X
+        }
+
+        /// <summary>
+        /// Nominal or Predicate
+        /// </summary>
         public TpPredicate(Particle particle, ComplexChain nominalPredicate, ComplexChain directs = null, PrepositionalPhrase[] prepositionals = null)
         {
             if (particle.Text != Particles.o.Text && particle.Text != Particles.li.Text)
@@ -51,6 +81,9 @@ namespace BasicTypes.Collections
             this.prepositionals = prepositionals;//only ~prop, pi, en 
         }
 
+        /// <summary>
+        /// Verbal Predicate
+        /// </summary>
         public TpPredicate(Particle particle, VerbPhrase verbPhrase, ComplexChain directs = null, PrepositionalPhrase[] prepositionals = null)
         {
             if (particle.Text != Particles.o.Text && particle.Text != Particles.li.Text)

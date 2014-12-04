@@ -27,7 +27,7 @@ namespace BasicTypes.Dictionary
         public void FindProperModifiers()
         {
             int i = 0;
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
             dialect.InferCompoundsPrepositionsForeignText = false;
             ParserUtils pu = new ParserUtils(dialect);
 
@@ -89,7 +89,7 @@ namespace BasicTypes.Dictionary
         public void FindProperModifiersInCompoundDictionary()
         {
             int i = 0;
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
             dialect.InferCompoundsPrepositionsForeignText = false;
             ParserUtils pu = new ParserUtils(dialect);
             Dictionary<string, int> words = new Dictionary<string, int>();

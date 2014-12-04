@@ -18,7 +18,7 @@ namespace BasicTypes.Parser
         public void ShouldBeGoodKunpapa()
         {
             const string s = "jan Kunpapa";
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
 
             Console.WriteLine(Normalizer.NormalizeText(s, dialect));
             TokenParserUtils pu = new TokenParserUtils();
@@ -40,7 +40,7 @@ namespace BasicTypes.Parser
         public void ShouldBeGoodProperModifier()
         {
             const string s = "jan Oliwa";
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
 
             Console.WriteLine(Normalizer.NormalizeText(s, dialect));
             TokenParserUtils pu = new TokenParserUtils();
@@ -61,7 +61,7 @@ namespace BasicTypes.Parser
         {
             const string s = "jan MaliyA";
 
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
             Console.WriteLine(Normalizer.NormalizeText(s, dialect));
             TokenParserUtils pu = new TokenParserUtils();
             Word[] words;
@@ -89,7 +89,7 @@ namespace BasicTypes.Parser
         [Test]
         public void CreateTpPredicateAfterSplitingEChain()
         {
-            Dialect c = Dialect.DialectFactory;
+            Dialect c = Dialect.LooseyGoosey;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 

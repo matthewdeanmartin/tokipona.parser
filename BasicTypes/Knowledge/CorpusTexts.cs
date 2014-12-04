@@ -283,7 +283,7 @@ jan Oliwa li lon e noka sama lon insa pi noka meli. mije li open uta e sike pi l
 
 taso meli li pona e ona la meli li wile pilin suwi e ona. tan ni la palisa li kama suli li kama kiwen.. jan Malija li lon e ona lon uta sama li pilin suwi e lawa ona kepeken loje uta sama. meli li tawa en tan lon palisa kepeken uta en luka. jan Oliwa li a wawa li sewi e nena monsi mije. jan Malija li kon kepeken uta li tawa en tan wawa mute. jan Oliwa li a wawa mute li pana e linja suli pi telo walo tawa nena meli. meli li pilin sike e telo sama pona selo. meli li anpa lon supa li anpa e noka sama tawa supa anpa. 
 
-jan Oliwa li anpa e sama lon insa pi noka sama li lon e sinpin lawa ona lon insa pi noka meli. mije li open pilin suwi e nena unpa meli kepeken loje uta sama. meli li open A li sewi e nena monsi li tawa en tan wawa. taso A pini meli kama la meli li kama jo e mije li lon e ona lon monsi mije li kama lon sewi mije li kama jo palisa mije li lawa e ona tawa lupa sama. meli li awen linja e monsi sama li tawa en tan wawa. nena meli kin li tawa en tan, li kama nena pi suli en kiwen. tenpo ni la jan Malija li kama tawa a pini. jan Oliwa kin li a li pana e wan pi telo walo. jan Malija li kama jo sin e len telo seli li pona e sama en mije. tenpo lili kama la jan Oliwa en jan Malija li kulupu kepeken luka en noka li kama lape. taso ni kama la ona tu li toki e ni tawa sama: 'mi olin e sina'
+jan Oliwa li anpa e sama lon insa pi noka sama li lon e sinpin lawa ona lon insa pi noka meli. mije li open pilin suwi e nena unpa meli kepeken loje uta sama. meli li open a li sewi e nena monsi li tawa en tan wawa. taso a pini pi meli kama la meli li kama jo e mije li lon e ona lon monsi mije li kama lon sewi mije li kama jo palisa mije li lawa e ona tawa lupa sama. meli li awen linja e monsi sama li tawa en tan wawa. nena meli kin li tawa en tan, li kama nena pi suli en kiwen. tenpo ni la jan Malija li kama tawa a pini. jan Oliwa kin li a li pana e wan pi telo walo. jan Malija li kama jo sin e len telo seli li pona e sama en mije. tenpo lili kama la jan Oliwa en jan Malija li kulupu kepeken luka en noka li kama lape. taso ni kama la ona tu li toki e ni tawa sama: 'mi olin e sina'
 ";
         //This is just bad toki pona-- omitted subjects.
         //ken toki pi nasin ==> jan li ken toki...
@@ -357,6 +357,25 @@ len jan li kama lukin pona,
 tomo jan li kama lon pona,
 nasin sewi jan li kama musi.
 ";
+
+        public static string ProfesorAndMadMan =
+            @" jan pona mi li lukin pini e lipu mute ni: 'jan pi pana sona en jan nasa.'
+
+jan sona li jo e nimi jan Muwe  li pali e lipu mute pi nimi mute pi toki Inli.  jan ni li sona mute li sona e ijo mute pi toki Inli e nimi mute.
+
+lawa pi jan sona ni li wile e lipu mute pi nimi ale tawa toki Inli. lawa ni li kulupu sona pi ma Okusi.  tenpo pini ni la jan li jo e lipu mute pi nimi ale. taso lipu ni li ike tawa ni: jan li wile sona e ni: kepeken nimi li tan lipu seme?
+
+jan pali mute li pana e pali li alasa e nimi ale pi toki Inli e tan pi nimi ni.
+
+jan Minowa li meji li tan ma Mewika.  jan Minowa li sona mute. taso jan Minowa li kama nasa tan lawa insa pakala.  jan Minowa li tan ma Mewika tawa ma Inli tawa ni: jan ni li wile kama jan pi lawa insa pona. taso tenpo kama pi ma Inli la jan Minowa li moli e jan ante tan nasa pi jan Minowa.  jan lawa li lon tomo nasa e jan Minowa. jan Minowa li weka e ken ale li ken ala tawa.  jan Minowa li pilin ike tan ni: jan Minowa li lon tomo nasa li pilin e ike suli tan pakala ona. 
+
+jan sona Muwe li wile e pali pana tan jan mute tawa ni: jan sona li wile pali e lipu mute pi nimi ale pi toki Inli.  jan Muwe li weka e lipu pi wile pali tawa ma ale. jan Minowa li kama jo e lipu ni. jan Minowa li toki e ni: 'mi ken pana e pali tawa jan ante li kama jan pona.' lon lawa insa.  jan Minowa.
+
+jan Minowa li pali li alasa e kepeken pi nimi Inli lon lipu mute sin ala li kama jo e kulupu nimi mani tawa jan Muwe.  
+
+tenpo sin la jan Muwe li sona ala e ni: jan Minowa li nasa.  taso jan Muwe li kama sona e ni. jan Muwe li pilin ike tawa ni: jan Minowa li nasa. taso pali pi jan Minowa li mani mute li suli tawa jan Muwe.
+
+pali pi lipu ale pi toki Inli li wile e tenpo sike pi MMMM nanpa.  tenpo ante pi pini pi lipu mute la jan Muwe en jan Minowa li moli. taso jan ale li pana e pona suli tawa jan tu ni. jan tu ni li pali suli tawa lipu ni.  ma Inli li jo ala e pali pi jan ni la jan ala li ken ala pini e lipu mute pi nimi ale.";
 
     }
 }

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
+using BasicTypes.Exceptions;
 using NUnit.Framework;
 
 namespace BasicTypes.Collections
@@ -17,6 +19,26 @@ namespace BasicTypes.Collections
             Assert.NotNull(c.ToJsonDcJs());
         }
 
+        //mi pana e sike sewi laso pi telo.
+        [Test]
+        public void TwoWordsAfterPiRequired()
+        {
+            try
+            {
+                //mi pana e sike sewi laso pi telo
+                const string value = "sike sewi laso pi telo";
+                ComplexChain c = ComplexChain.Parse(value);
+                Assert.AreEqual(c.Particle.ToString(), Particles.en.ToString());
+                Console.WriteLine(c.ToJsonDcJs());
+                Assert.AreEqual(value, c.ToString(), c.ToString("b"));
+            }
+            catch (TpSyntaxException ex)
+            {
+                Assert.Pass();
+                return;
+            }
+            Assert.Fail();
+        }
 
         [Test]
         public void ParseTwoPiPhrasesPlusEn()

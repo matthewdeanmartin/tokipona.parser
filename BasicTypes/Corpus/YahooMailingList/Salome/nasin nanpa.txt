@@ -4,7 +4,8 @@ nasin nanpa.
 
 toki!
 
-pilin lawa pi nanpa li kama tawa mi.
+///was this- pilin lawa pi nanpa li kama tawa mi.
+pilin lawa nanpa li kama tawa mi.
 jan pi toki-pona li ken kepeken e nasin nanpa pi tu anu tu wan. ante
 la jan li kepeken e nasin nanpa pi luka luka. nasin nanpa pi luka luka li
 ike. nasin nanpa pi tu li pona. tan ni la ilo nanpa li kepeken e nasin
@@ -43,9 +44,9 @@ jan Salome.
 
 
 
-pona, mi toki sin e toki-pona. weka e ike mi e ni: mi pali e pakala. 
+pona. mi toki sin e toki-pona. o weka e ike mi e ni: mi pali e pakala. 
 
-jan salome o, sina pali e lipu ni? sina lukin e lipu ni? sina o lukin e lipu pi nasin nanpa.
+jan Salome o, sina pali e lipu ni? sina lukin e lipu ni? sina o lukin e lipu pi nasin nanpa.
 
 "http://danielmacouin.chez-alice.fr/toki_IO/en_general_toki_io.htm".
 

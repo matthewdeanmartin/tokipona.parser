@@ -16,7 +16,7 @@ namespace BasicTypes.Parser
         [Test]
         public void ProcessVocative()
         {
-            Dialect c = Dialect.DialectFactory;
+            Dialect c = Dialect.LooseyGoosey;
             //c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -32,7 +32,7 @@ namespace BasicTypes.Parser
         [Test]
         public void ProcessCalmVocative()
         {
-            Dialect c = Dialect.DialectFactory;
+            Dialect c = Dialect.LooseyGoosey;
             //c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
@@ -45,7 +45,7 @@ namespace BasicTypes.Parser
         public void DoubleObject()
         {
             const string s = "ilo lukin li waso tu e len pali e jaki sike.";
-            Dialect c = Dialect.DialectFactory;
+            Dialect c = Dialect.LooseyGoosey;
             ParserUtils pu = new ParserUtils(c);
             Sentence sentence = pu.ParsedSentenceFactory(s, s);
             Console.WriteLine(s);
@@ -60,7 +60,7 @@ namespace BasicTypes.Parser
         public void OLetsHaveThisSentenceParse()
         {
             const string s = "o mi tu li kama tomo mi.";
-            Dialect c = Dialect.DialectFactory;
+            Dialect c = Dialect.LooseyGoosey;
             //c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
             Sentence sentence = pu.ParsedSentenceFactory(s, s);
@@ -74,7 +74,7 @@ namespace BasicTypes.Parser
         public void LostPrep()
         {
             const string s = "o toki pona e mi tawa jan sewi Utu!";
-            Dialect c = Dialect.DialectFactory;
+            Dialect c = Dialect.LooseyGoosey;
             ParserUtils pu = new ParserUtils(c);
             Sentence sentence = pu.ParsedSentenceFactory(s, s);
             Assert.IsNotNull(sentence.Predicates[0].Prepositionals != null);
@@ -88,7 +88,7 @@ namespace BasicTypes.Parser
         {
             //o!
             const string s = "o!";
-            ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
+            ParserUtils pu = new ParserUtils(Dialect.LooseyGoosey);
 
             Sentence parsedSentence = pu.ParsedSentenceFactory(s, s);
             Console.WriteLine(parsedSentence.ToString());
@@ -99,7 +99,7 @@ namespace BasicTypes.Parser
         public void ParseThreePart()
         {
             const string s = "nena meli kin li tawa en tan li kama nena pi suli en kiwen.";
-            ParserUtils pu = new ParserUtils(Dialect.DialectFactory);
+            ParserUtils pu = new ParserUtils(Dialect.LooseyGoosey);
 
             Sentence parsedSentence = pu.ParsedSentenceFactory(s, s);
             Console.WriteLine(parsedSentence.ToString());

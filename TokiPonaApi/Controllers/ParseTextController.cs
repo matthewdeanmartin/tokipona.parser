@@ -21,7 +21,7 @@ namespace TokiPonaApi.Controllers
 
         public string Get(string text)
         {
-            Dialect d = Dialect.DialectFactory;
+            Dialect d = Dialect.LooseyGoosey;
             
             string normalized = Normalizer.NormalizeText(text, d);
             ParserUtils pu = new ParserUtils(d);

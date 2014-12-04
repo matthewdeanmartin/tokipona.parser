@@ -5,11 +5,11 @@ sina sitelen lon toki ni la sina wile sitelen e mun lili mute e mun lili tawa '(
 toki pali ni li kepeken e linja nanpa tawa ale.
 tan tu ni li pana e nimi pi toki ni lon toki Inli:
 toki Inli la nimi ona li "LISP". tan ni:
-tan toki "LISt-Processing" (lon toki-pona - 'ante linja').
+///tan toki "LISt-Processing" (lon toki-pona - 'ante linja').
 tan toki "Lots of Irritating Superfluous Parenthesis". lon toki-pona: 'mun lili mute li pana e pilin ike pi pona tawa ala'.
-toki pi mun lili li kama tan lawa pi jan "John McCarthy". ona li pilin mute lon pali nanpa pi nimi Lambda la ona li pali e toki ni.
+toki pi mun lili li kama tan lawa pi jan "John McCarthy". ona li pilin mute lon pali nanpa pi nimi "Lambda" la ona li pali e toki ni.
 jan li toki e ni:
-"wikipedia":jan "John McCarthy" li pali e toki ni lon lipu li wile ala pali e toki pali. jan Steve Russell li jan lili sona pi jan McCarthy. ona li toki e ni tawa jan McCarth: "ken la mi ken sitelen e ilo kute. jan "John McCarthy" li pali e toki ni lon lipu li wile ala pali e toki pali. jan "Steve Russell" li jan lili sona pi jan "McCarthy". ona li toki e ni tawa jan "McCarthy" pi toki sin sina. mi pali e ilo ni la jan ale li ken toki tawa ilo mute lon toki ni! toki sina li toki-pona!". jan "McCarthy" li toki e ni: 'a! jan lili o! sina toki nasa! toki mi li toki jan li sona li toki ilo ala! ilo li ken kepeken ala e ona!' taso jan "Steve Russell" li kute ala li pali li pali li pali e ilo kute wan pi toki pali ni li pana e pilin pona tawa jan "McCarthy".
+"wikipedia":jan "John McCarthy" li pali e toki ni lon lipu li wile ala pali e toki pali. jan Steve Russell li jan lili sona pi jan McCarthy. ona li toki e ni tawa jan "McCarthy": 'ken la mi ken sitelen e ilo kute. jan "John McCarthy" li pali e toki ni lon lipu li wile ala pali e toki pali. jan "Steve Russell" li jan lili sona pi jan "McCarthy". ona li toki e ni tawa jan "McCarthy" pi toki sin sina. mi pali e ilo ni la jan ale li ken toki tawa ilo mute lon toki ni! toki sina li toki-pona!'. jan "McCarthy" li toki e ni: 'a! jan lili o! sina toki nasa! toki mi li toki jan li sona li toki ilo ala! ilo li ken kepeken ala e ona!' taso jan "Steve Russell" li kute ala li pali li pali li pali e ilo kute wan pi toki pali ni li pana e pilin pona tawa jan "McCarthy".
 ///[o ante]
 nasin pali.
 nasin pali pona lon toki ni li nasin pi nimi pali li nasin ni: o pali e nimi sin. nimi li pali li ante ala e ijo li pana e linja sin.

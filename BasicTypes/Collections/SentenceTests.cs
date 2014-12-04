@@ -17,8 +17,8 @@ namespace BasicTypes
         public void BracketVocative()
         {
             string text = "jan Kiwima o!";
-            Sentence s = Sentence.Parse(text, Dialect.DialectFactory);
-            string diagram= s.ToString("b", Dialect.DialectFactory);
+            Sentence s = Sentence.Parse(text, Dialect.LooseyGoosey);
+            string diagram= s.ToString("b", Dialect.LooseyGoosey);
             Console.WriteLine(diagram);
             Assert.IsFalse(diagram.Contains("[Error"));
         }
@@ -27,7 +27,7 @@ namespace BasicTypes
         public void ConjunctionTests_Taso_Conclusion()
         {
             string value = "ni li soweli la taso waso li pona.";
-            Sentence s = Sentence.Parse(value, Dialect.DialectFactory);
+            Sentence s = Sentence.Parse(value, Dialect.LooseyGoosey);
             
             Assert.AreEqual("taso", s.Conclusion.Conjunction.Text);
         }
@@ -36,7 +36,7 @@ namespace BasicTypes
         public void ConjunctionTests_Taso_Precondition()
         {
             string value = "taso ni li soweli la waso li pona.";
-            Sentence s = Sentence.Parse(value, Dialect.DialectFactory);
+            Sentence s = Sentence.Parse(value, Dialect.LooseyGoosey);
 
             Assert.AreEqual("taso", s.Preconditions[0].Conjunction.Text);
         }
@@ -45,7 +45,7 @@ namespace BasicTypes
         public void SentenceWithFullSentenceConditional()
         {
             string value = "ni li soweli la waso li pona.";
-            Sentence s = Sentence.Parse(value, Dialect.DialectFactory);
+            Sentence s = Sentence.Parse(value, Dialect.LooseyGoosey);
             Assert.AreEqual(value, s.ToString());
         }
 
@@ -54,7 +54,7 @@ namespace BasicTypes
         public void MaximalSentences_Part1()
         {
             string value = "jan li suli la tenpo pi lili mi.";
-            Sentence s = Sentence.Parse(value, Dialect.DialectFactory);
+            Sentence s = Sentence.Parse(value, Dialect.LooseyGoosey);
             Console.WriteLine("Original: " + value);
             Console.WriteLine("ToString: " + s.ToString("g"));
             Console.WriteLine("ToStringb:" + s.ToString("b"));
@@ -68,11 +68,11 @@ namespace BasicTypes
         public void MaximalSentences_Part_Tail()
         {
             string value = "mi mute li lukin e sitelen pona, kepeken ilo-tawa mani li jo e ijo mute, lon ma-suli pi mi mute.";
-            Dialect d = Dialect.DialectFactory;
+            Dialect d = Dialect.LooseyGoosey;
             string normalized = Normalizer.NormalizeText(value, d);
             Sentence s = Sentence.Parse(normalized, d);
             Console.WriteLine("Original: " + value);
-            Console.WriteLine("ToString: " + s.ToString("g", Dialect.DialectFactory));
+            Console.WriteLine("ToString: " + s.ToString("g", Dialect.LooseyGoosey));
             
 
             Console.WriteLine("ToString: " + s.ToString("g"));
@@ -84,7 +84,7 @@ namespace BasicTypes
         public void MaximalSentences()
         {
             string value = "jan li suli la tenpo pi lili mi la mi mute li lukin e sitelen pona, kepeken ilo, tawa mani li jo e ijo mute, lon ma suli pi mi mute.";
-            Dialect d = Dialect.DialectFactory;
+            Dialect d = Dialect.LooseyGoosey;
             d.InferCompoundsPrepositionsForeignText = false;
             string normalized = Normalizer.NormalizeText(value, d);
             Sentence s = Sentence.Parse(normalized, d);
@@ -96,7 +96,7 @@ namespace BasicTypes
         public void LaFragment()
         {
             string value = "tenpo pi lili mi la mi lukin e sitelen pona.";
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
             string normalized = Normalizer.NormalizeText(value,dialect);
 
             Sentence s = Sentence.Parse(normalized, dialect);
@@ -118,7 +118,7 @@ namespace BasicTypes
         public void ParseAndToString()
         {
             string value = "jan li jo e nanpa 555-1234.";
-            Sentence s = Sentence.Parse(value, Dialect.DialectFactory);
+            Sentence s = Sentence.Parse(value, Dialect.LooseyGoosey);
             Assert.AreEqual(value, s.ToString());
             Console.WriteLine(s.ToString("b"));
             Console.WriteLine(s.ToString("bs"));

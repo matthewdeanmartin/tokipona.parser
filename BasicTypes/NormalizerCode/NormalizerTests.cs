@@ -15,7 +15,7 @@ namespace BasicTypes.NormalizerCode
         public void NormalizationIsIdempotent()
         {
             int i = 0;
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
             ParserUtils pu = new ParserUtils(dialect);
 
             CorpusFileReader reader = new CorpusFileReader(true);
@@ -51,7 +51,7 @@ namespace BasicTypes.NormalizerCode
         {
             const string original = "waso li tawa kon li tawa ma luka luka weka wan.";
 
-                Dialect dialect = Dialect.DialectFactory;
+                Dialect dialect = Dialect.LooseyGoosey;
             dialect.InferCompoundsPrepositionsForeignText = false;
             
 
@@ -65,7 +65,7 @@ namespace BasicTypes.NormalizerCode
         public void MiLaShouldBeFine()
         {
             const string s = "mi la jan ni li nasa.";
-            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+            string normalized = Normalizer.NormalizeText(s, Dialect.LooseyGoosey);
             Assert.AreEqual("mi la jan ni li nasa.", normalized);
         }
 
@@ -73,7 +73,7 @@ namespace BasicTypes.NormalizerCode
         public void DontScrewUpLaCompoundNormalization()
         {
             const string s = "tan ni la soweli lili li tawa poki.";
-            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+            string normalized = Normalizer.NormalizeText(s, Dialect.LooseyGoosey);
             Assert.AreEqual("tan ni la soweli-lili li ~tawa poki.",normalized);
         }
 
@@ -81,7 +81,7 @@ namespace BasicTypes.NormalizerCode
         public void NormalizeAllTextFiles()
         {
             int i = 0;
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
             ParserUtils pu  = new ParserUtils(dialect);
             
             CorpusFileReader reader =new CorpusFileReader();
@@ -106,7 +106,7 @@ namespace BasicTypes.NormalizerCode
             const string s = "taso sina tawa ma Mewika la sina ken kama jo e ijo mute kepeken ona.";
 
             Console.WriteLine("Original  : " + s);
-            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+            string normalized = Normalizer.NormalizeText(s, Dialect.LooseyGoosey);
             Console.WriteLine("Normalized: " + normalized);
 
             const string expected = "taso sina li ~tawa ma-Mewika la sina li ken kama jo e ijo mute ~kepeken ona.";
@@ -121,7 +121,7 @@ namespace BasicTypes.NormalizerCode
             const string s = "sina en jan suli li pona kin.";
 
             Console.WriteLine("Original  : " + s);
-            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+            string normalized = Normalizer.NormalizeText(s, Dialect.LooseyGoosey);
             Console.WriteLine("Normalized: " + normalized);
 
             const string expected = "sina en jan-suli li pona kin.";
@@ -134,7 +134,7 @@ namespace BasicTypes.NormalizerCode
             //ni li ijo ike mute! 
             const string s = "tenpo ni la sike mi li tawa kepeken tenpo lili.";
             Console.WriteLine("Original  : " + s);
-            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+            string normalized = Normalizer.NormalizeText(s, Dialect.LooseyGoosey);
             Console.WriteLine("Normalized: " + normalized);
 
             const string expected = "tenpo ni la sike mi li tawa ~kepeken tenpo lili.";
@@ -148,7 +148,7 @@ namespace BasicTypes.NormalizerCode
             //sina toki e ni: 
             const string s = "nena meli kin li tawa en tan, li kama nena pi suli en kiwen.";
             Console.WriteLine("Original  : " + s);
-            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+            string normalized = Normalizer.NormalizeText(s, Dialect.LooseyGoosey);
             Console.WriteLine("Normalized: " + normalized);
             //sina li toki e ni: 
             const string expected = "nena-meli kin li tawa en tan li kama nena pi suli en kiwen.";
@@ -161,12 +161,12 @@ namespace BasicTypes.NormalizerCode
             //sina toki e ni: 
             const string s = "o toki e ni ~tawa jan:'";
             Console.WriteLine("Original  : " + s);
-            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+            string normalized = Normalizer.NormalizeText(s, Dialect.LooseyGoosey);
             Console.WriteLine("Normalized: " + normalized);
             //sina li toki e ni: 
             
             Assert.IsFalse(normalized.ContainsCheck("Nanunanuwakawakawawa"));
-            normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+            normalized = Normalizer.NormalizeText(s, Dialect.LooseyGoosey);
             Assert.IsFalse(normalized.ContainsCheck("Nanunanuwakawakawawa"));
         }
 
@@ -177,7 +177,7 @@ namespace BasicTypes.NormalizerCode
             const string s = "ken la mi mute li toki ike.";
 
             Console.WriteLine("Original  : " + s);
-            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+            string normalized = Normalizer.NormalizeText(s, Dialect.LooseyGoosey);
             Console.WriteLine("Normalized: " + normalized);
 
             const string expected = "ken la mi mute li toki ike.";
@@ -190,7 +190,7 @@ namespace BasicTypes.NormalizerCode
         {
             //ken la mi mute li toki ike 
             const string s = "o pali sama mije lili pona anu meli lili pona";
-            Dialect d = Dialect.DialectFactory;
+            Dialect d = Dialect.LooseyGoosey;
             d.InferCompoundsPrepositionsForeignText = false;
             Console.WriteLine("Original  : " + s);
             string normalized = Normalizer.NormalizeText(s, d);
@@ -203,7 +203,7 @@ namespace BasicTypes.NormalizerCode
         [Test]
         public void Normalize_IntransitiveVerb()
         {
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
             string value = Normalizer.NormalizeText("jan li moku, kepeken ilo moku",dialect);
             Console.WriteLine(value);
             Assert.IsTrue(value.ContainsCheck("~"), value);
@@ -217,7 +217,7 @@ namespace BasicTypes.NormalizerCode
 
 
             Console.WriteLine("Original  : " + s);
-            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+            string normalized = Normalizer.NormalizeText(s, Dialect.LooseyGoosey);
             Console.WriteLine("Normalized: " + normalized);
             //sina li toki e ni: 
             const string expected = "mi li wile e ni.";
@@ -229,7 +229,7 @@ namespace BasicTypes.NormalizerCode
         {
             const string s = "'mi sona e ni.'";
                 Console.WriteLine("Original  : " + s);
-            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+            string normalized = Normalizer.NormalizeText(s, Dialect.LooseyGoosey);
             Console.WriteLine("Normalized: " + normalized);
 
             const string expected = "«mi li sona e ni.»";
@@ -242,7 +242,7 @@ namespace BasicTypes.NormalizerCode
             const string s = "jan Puta li lon poka ma Nepali en Inteja";
 
             Console.WriteLine("Original  : " + s);
-            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+            string normalized = Normalizer.NormalizeText(s, Dialect.LooseyGoosey);
             Console.WriteLine("Normalized: " + normalized);
 
             const string expected = "jan Puta li ~lon poka ma Nepali en Inteja";
@@ -256,7 +256,7 @@ namespace BasicTypes.NormalizerCode
             const string s = "ni li sama.";
 
             Console.WriteLine("Original  : " + s);
-            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+            string normalized = Normalizer.NormalizeText(s, Dialect.LooseyGoosey);
             Console.WriteLine("Normalized: " + normalized);
 
             const string expected = "ni li sama.";
@@ -269,7 +269,7 @@ namespace BasicTypes.NormalizerCode
             const string s = "tawa pi jan Puta li pona.";
 
             Console.WriteLine("Original  : " + s);
-            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+            string normalized = Normalizer.NormalizeText(s, Dialect.LooseyGoosey);
             Console.WriteLine("Normalized: " + normalized);
 
             const string expected = "tawa pi jan Puta li pona.";
@@ -282,7 +282,7 @@ namespace BasicTypes.NormalizerCode
         public void SplitSentenceWithColon_Normalized()
         {
             const string s = "sina toki e ni: mi wile e ni.";
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
             //c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(dialect);
             string[] sentences = pu.ParseIntoNonNormalizedSentences(s);
@@ -304,7 +304,7 @@ namespace BasicTypes.NormalizerCode
             
 
             Console.WriteLine("Original  : " + s);
-            string normalized = Normalizer.NormalizeText(s, Dialect.DialectFactory);
+            string normalized = Normalizer.NormalizeText(s, Dialect.LooseyGoosey);
             Console.WriteLine("Normalized: " + normalized);
 
             const string expected = "ilo-lukin li waso #tu e len pali e jaki sike.";

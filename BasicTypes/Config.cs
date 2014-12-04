@@ -57,7 +57,7 @@ namespace BasicTypes
         static Config()
         {
             //Check AppSettings... if none...
-            currentDialect = Dialect.DialectFactory;
+            currentDialect = Dialect.LooseyGoosey;
             Regex.CacheSize = 50;
         }
         
@@ -126,7 +126,7 @@ namespace BasicTypes
         /// <summary>
         /// For reading toki pona, which potentially is a mess.
         /// </summary>
-        public static Dialect DialectFactory
+        public static Dialect LooseyGoosey
         {
             get
             {
@@ -142,11 +142,11 @@ namespace BasicTypes
                     AllowUnpunctuated = true,
                     EmbeddedPrepositionalPhrasesRequirePi = false,
                     ColorsAreOnlyAdjectives = false,
-                    LiPiIsValid = false,
+                    LiPiIsValid = true,
                     CalendarType = "Compact",
                     NumberType = "Body",
                     WritingSystem = "Roman",
-                    ThrowOnSyntaxError = false,
+                    ThrowOnSyntaxError = true,
                     TargetGloss = "tp",
                     InferCompoundsPrepositionsForeignText = true,
                     InferNumbers =true

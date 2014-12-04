@@ -15,7 +15,7 @@ taso mi pilin e ni: sina wile toki e ni: "jan mute ala li sona e toki-pona."
 
 sina toki ala toki kepeken toki Inli? toki sina li pona tawa mi.
 
-mi wile e ni: sina tawa e lipu ni: http://groups.yahoo.com/group/tokipona/
+mi wile e ni: sina tawa e lipu ni: "groups.yahoo.com/group/tokipona/"
 
 sina tawa lipu ni la sina ken toki jan pona mute.
 

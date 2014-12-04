@@ -48,7 +48,7 @@ namespace BasicTypes.NormalizerCode
             //Normalize prepositions to ~, so that we don't have tokens with embedded spaces (e.g. foo, kepeken => [foo],[, kepeken])
 
 
-            bool hasErrors = DetectErrors(normalized, dialect.ThrowOnSyntaxError);
+            bool hasErrors = DetectErrors(normalized, dialect);
             if (hasErrors)
             {
                 normalized = ApplyNormalization(normalized, "Particles", RepairErrors);
@@ -375,6 +375,11 @@ namespace BasicTypes.NormalizerCode
                 normalized = normalized.Replace("e mi li mute", "e mi mute");
             }
 
+            //mi tu e -- dual vs to split into two
+            if (normalized.ContainsCheck("mi tu e"))
+            {
+                normalized = normalized.Replace("mi tu e", "mi li tu e");
+            }
 
             //One off that comes back?
             foreach (string oneOff in new string[] {
@@ -1152,7 +1157,7 @@ namespace BasicTypes.NormalizerCode
         }
 
 
-        public static bool DetectErrors(string phrase, bool throwOnSyntaxErrors = false)
+        public static bool DetectErrors(string phrase, Dialect dialect)
         {
 
             foreach (string s1 in new String[] { "li", "la", "e", "pi" })
@@ -1160,7 +1165,7 @@ namespace BasicTypes.NormalizerCode
                 Match found = Regex.Match(phrase, @"\b" + s1 + " " + s1 + @"\b");
                 if (found.Success)
                 {
-                    if (throwOnSyntaxErrors)
+                    if (dialect.ThrowOnSyntaxError)
                         throw new DoubleParticleException();
                     else
                     {
@@ -1172,10 +1177,15 @@ namespace BasicTypes.NormalizerCode
             {
                 foreach (string s2 in new String[] { "li", "la", "e", "pi" })
                 {
+                    
+                    if (dialect.LiPiIsValid && (s1 == "li" && s2 == "pi"))
+                    {
+                        continue;
+                    }
                     Match found = Regex.Match(phrase, @"\b" + s1 + " " + s2 + @"\b");
                     if (found.Success)
                     {
-                        if (throwOnSyntaxErrors)
+                        if (dialect.ThrowOnSyntaxError)
                             throw new TpSyntaxException("Illegal series of particles : " + s1 + " " + s2 + " in " + phrase);
                         else
                         {

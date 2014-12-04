@@ -91,6 +91,7 @@
     <Compile Include="CollectionsLeaf\HeadPhraseByValue.cs" />
     <Compile Include="CollectionsLeaf\ModiferPhrase.cs" />
     <Compile Include="Collections\Phrase.cs" />
+    <Compile Include="Collections\PiPredicate.cs" />
     <Compile Include="Collections\Predicate.cs" />
     <Compile Include="Collections\PredicateList.cs" />
     <Compile Include="Collections\PredicateTests.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="Config.cs" />
     <Compile Include="Corpus\CorpusFileReader.cs" />
     <Compile Include="Diagnostics\Tracers.cs" />
+    <Compile Include="Dictionary\CompoundPronounDictionary1.cs" />
     <Compile Include="Dictionary\CompoundWordDictionary.cs" />
     <Compile Include="Dictionary\DictionaryGenerator.cs" />
     <Compile Include="Dictionary\DictionaryGeneratorCompounds.cs" />
@@ -513,6 +515,7 @@
     <Content Include="Corpus\Republishable\BY-NC-SA\forums\jan Mato\Ardipithecus.txt" />
     <Content Include="Corpus\Republishable\BY-NC-SA\forums\jan Mato\Autobio.txt" />
     <Content Include="Corpus\Republishable\BY-NC-SA\forums\jan Mato\Babel Text.txt" />
+    <Content Include="Corpus\Republishable\BY-NC-SA\forums\jan Mato\Beyond Your Command %28c%29.txt" />
     <Content Include="Corpus\Republishable\BY-NC-SA\forums\jan Mato\Chen Sheng and Wu Guang.txt" />
     <Content Include="Corpus\Republishable\BY-NC-SA\forums\jan Mato\Chinese Encylopedia.txt" />
     <Content Include="Corpus\Republishable\BY-NC-SA\forums\jan Mato\Conf. Announcement.txt" />

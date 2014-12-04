@@ -1,7 +1,10 @@
 jan pi toki-pona o toki.
 
 tenpo lili pini la mi pali e nanpa lili pi lipu sona Wikipesija (lon
-toki-pona).  pali e lipu sona li pona tawa mi.  taso mi pilin ike lili
+toki-pona).  
+///This is a clause in the subject slot.
+///pali e lipu sona li pona tawa mi.  
+taso mi pilin ike lili
 tan ni:  tenpo ni la nanpa pi lipu sona li lili.  lipu sona ni li jo
 ala e sitelen mute.  mi mute wile pona e lipu sona Wikipesija.
 

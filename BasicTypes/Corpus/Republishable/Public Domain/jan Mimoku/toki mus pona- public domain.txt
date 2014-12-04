@@ -152,7 +152,7 @@ taso tenpo suno la jan Pona li toki e nimi ante... - mi pilin ike...
  jan Pona li telo e kasi lili. jan Pona li weka e kasi lili ike
  e lipu kule pi sin ala. ona li weka e jaki ale.
 
- jan Pona li kama jo kin e kasi. ona likama jo e ni tan
+ jan Pona li kama jo kin e kasi. ona li kama jo e ni tan
  kasi suli. kasi suli ni li jo e lipu kule mute.
 
  taso jan Pona li kama jo e kasi pi lipu ala. kasi pi jan
@@ -227,7 +227,7 @@ tan  lipu sona  Wikipesija.
 
 
  toki Epelanto.
- toki Epelanto li toki sin. nimi ona li Esperanto kepeken toki Epelanto.
+ toki Epelanto li toki sin. nimi ona li "Esperanto" kepeken toki Epelanto.
  jan Sameno li pali e ona. ona li pali e nimi Epelanto kepeken nimi pi toki Elopa mute. jan Sameno liwile e ni: jan mute pi ma ali li kepeken e toki Epelanto.
 
  jan li ken kama sona e toki Epelanto lon lipu "http://lernu.net".

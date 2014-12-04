@@ -217,7 +217,7 @@ namespace BasicTypes.Collections
 
         public static ComplexChain Parse(string value)
         {
-            Dialect c = Dialect.DialectFactory;
+            Dialect c = Dialect.LooseyGoosey;
             c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 

@@ -694,7 +694,7 @@ public static CompoundWord MaTomoPisawi;
 public static CompoundWord MaTomoPolan;
 public static CompoundWord MaTomoPutapesi;
 public static CompoundWord MaTomoSakata;
-public static CompoundWord MaTomoSalajewo;
+//public static CompoundWord MaTomoSalajewo;
 public static CompoundWord MaTomoSanpansiko;
 public static CompoundWord MaTomoSatupu;
 public static CompoundWord MaTomoSawi;
@@ -11241,18 +11241,19 @@ BuildIt();
             }
 
 
-            {
-                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
-                {
-                    var en = new Dictionary<string, string[]>();
-                    en.Add("ma-tomo-Salajewo", new[] { "Sarajevo" });
-                    glossMap.Add("en", en);
-                }
-                MaTomoSalajewo = new CompoundWord("ma-tomo-Salajewo");
+            //ILLEGAL!
+            //{
+            //    var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+            //    {
+            //        var en = new Dictionary<string, string[]>();
+            //        en.Add("ma-tomo-Salajewo", new[] { "Sarajevo" });
+            //        glossMap.Add("en", en);
+            //    }
+            //    MaTomoSalajewo = new CompoundWord("ma-tomo-Salajewo");
 
-                Dictionary.Add("ma-tomo-Salajewo", MaTomoSalajewo);
-                Glosses.Add("ma-tomo-Salajewo", glossMap);
-            }
+            //    Dictionary.Add("ma-tomo-Salajewo", MaTomoSalajewo);
+            //    Glosses.Add("ma-tomo-Salajewo", glossMap);
+            //}
 
 
             {

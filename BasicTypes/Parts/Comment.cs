@@ -36,7 +36,7 @@ namespace BasicTypes.Parts
         public override string ToString()
         {
 
-            return ToString("g", Dialect.DialectFactory);
+            return ToString("g", Dialect.LooseyGoosey);
         }
 
         public string[] SupportedsStringFormats

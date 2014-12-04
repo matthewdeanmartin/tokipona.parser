@@ -21,7 +21,7 @@ namespace DemoSite.Controllers
     {
         public ActionResult LoremIpsum()
         {
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
             dialect.IncludeApocrypha = false;
             TextGenerator tg = new TextGenerator(dialect);
             List<Sentence> sentences = new List<Sentence>();
@@ -129,7 +129,7 @@ namespace DemoSite.Controllers
 
         private static void ProcessParserModel(SimpleParserViewModel parse)
         {
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
             ParserUtils pu = new ParserUtils(dialect);
             string[] sentences = pu.ParseIntoNonNormalizedSentences(parse.SourceText);
             StringBuilder normalizedSb = new StringBuilder();
@@ -263,6 +263,7 @@ namespace DemoSite.Controllers
                     ,CorpusTexts.RuneDanceSong
                     ,CorpusTexts.janPusaRice
                     ,CorpusTexts.janPend,
+                    CorpusTexts.ProfesorAndMadMan,
                     "nena meli li suli la monsi li suli kin."
                 };
             SimpleParserViewModel vm = new SimpleParserViewModel()
@@ -308,7 +309,7 @@ namespace DemoSite.Controllers
 
         private static void ProcessSerializationsModel(SerializationsModel parse)
         {
-            Dialect dialect = Dialect.DialectFactory;
+            Dialect dialect = Dialect.LooseyGoosey;
             ParserUtils pu = new ParserUtils(dialect);
             string[] sentences = pu.ParseIntoNonNormalizedSentences(parse.SourceText);
             
