@@ -11,7 +11,7 @@ Using
 =====
 Here is the working app:
 
-        http://tokipona.net/parser/
+http://tokipona.net/parser/
 
 Currently illustrates:
     
@@ -27,15 +27,15 @@ You can contribute with VS2010, VS2013, VS2013 Community (free and allows plugin
 
 Suggestions on getting started:
 ============
-[ ] Read unit tests *inside* BasicTypes. They are all well behaved (ie. safe to run over and over)
-[ ] The DemoSite is the entry point for the UI.
+- [ ] Read unit tests *inside* BasicTypes. They are all well behaved (ie. safe to run over and over)
+- [ ] The DemoSite is the entry point for the UI.
 
 To Write Your Own Apps
 ============
-[ ] To use in your own application, use the BasicTypes dll.
-[ ] SOON. If you don't write C#, soon I will support a REST+XML+JSON API. Any day now.
+- [ ] To use in your own application, use the BasicTypes dll.
+- [ ] SOON. If you don't write C#, soon I will support a REST+XML+JSON API. Any day now.
 
 If you don't write code
 ============
-[ ] Write toki pona and create issues for text that should parse but fails to parse
-[ ] Write issues for breaks in the various features of the demo site.
+- [ ] Write toki pona and create issues for text that should parse but fails to parse
+- [ ] Write issues for breaks in the various features of the demo site.
