@@ -21,21 +21,20 @@ Currently illustrates:
 * Colorizing
 * Glossing, with & without POS
 
-Contributing
-============
+##Contributing
+
+##If you don't write code
+- [ ] Write toki pona and create issues for text that should parse but fails to parse
+- [ ] Write issues for breaks in the various features of the demo site.
+
+##Suggestions on getting started:
 You can contribute with VS2010, VS2013, VS2013 Community (free and allows plugins) or SharpDev.
 
-Suggestions on getting started:
-============
 - [ ] Read unit tests *inside* BasicTypes. They are all well behaved (ie. safe to run over and over)
 - [ ] The DemoSite is the entry point for the UI.
 
-To Write Your Own Apps
-============
+##To Write Your Own Apps
 - [ ] To use in your own application, use the BasicTypes dll.
 - [ ] SOON. If you don't write C#, soon I will support a REST+XML+JSON API. Any day now.
 
-If you don't write code
-============
-- [ ] Write toki pona and create issues for text that should parse but fails to parse
-- [ ] Write issues for breaks in the various features of the demo site.
+
