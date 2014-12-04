@@ -1,79 +1,81 @@
-﻿@model DemoSite.Models.SimpleParserViewModel
+﻿@using System.Web.UI.WebControls
+@model DemoSite.Models.SimpleParserViewModel
 @{
     ViewBag.Title = "Home Page";
 }
 
 @*<div class="jumbotron">
-    <h1>toki pona Parser</h1>
-    <p class="lead">A parser is a fundamental tool for doing natural language processing with toki pona.</p>
-    <p><a href="https://github.com/matthewdeanmartin/tokipona.parser" class="btn btn-primary btn-lg">Open Source on GitHub</a></p>
-</div>*@
+        <h1>toki pona Parser</h1>
+        <p class="lead">A parser is a fundamental tool for doing natural language processing with toki pona.</p>
+        <p><a href="https://github.com/matthewdeanmartin/tokipona.parser" class="btn btn-primary btn-lg">Open Source on GitHub</a></p>
+    </div>*@
 
 <div class="row">
     <div class="col-md-12">
         <h2>Enter toki pona text to get a bracketed, normalized, and glossed version.</h2>
         @using (Html.BeginForm("Parse", "Home"))
         {
-            <textarea id="SourceText" name="SourceText"
-                style="background-color:#F8F8F8;border:0;display:block;font-family:Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, monospace, serif;font-size:10pt;width:98%;line-height:21px;padding:1%;resize: none; overflow-y: hidden; height: 200px;"
-                      ></textarea>
+            @Html.TextArea( "SourceText",  Model.SourceText,
+            new { style= "background-color:#F8F8F8;border:0;display:block;font-family:Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, monospace, serif;font-size:10pt;width:98%;line-height:21px;padding:1%;resize: none; overflow-y: hidden; height: 200px;"}
+                )
+            @*<textarea id="SourceText" name="SourceText"
+                      style="background-color:#F8F8F8;border:0;display:block;font-family:Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, monospace, serif;font-size:10pt;width:98%;line-height:21px;padding:1%;resize: none; overflow-y: hidden; height: 200px;"></textarea>*@
             <br />
             <input type="submit" value="Submit" />
         }
-      
-     
+
+
         @*</div>
-    <div class="col-md-6">*@
+            <div class="col-md-6">*@
         <style>
-            .content
-{
-    color:#800000;
-}
-.compound
-{
-    color:#800000;
-}
-.function
-{
-    color:Red;
-}
-.number
-{
-    color: green;
-}
-.neologism
-{
-    background: yellow;
-}
-.foreign
-{
-    background: #805300;
-}
-.anaphora
-{
-    color: Blue;
-}
-.conjunction
-{
-    color:Green;
-}
-.proper
-{
-    color:#805300;
-    font-weight:bold;
-}
-.prep
-{
-    color:Red;
-    font-weight:bold;
-}
+            .content {
+                color: #800000;
+            }
+
+            .compound {
+                color: #800000;
+            }
+
+            .function {
+                color: Red;
+            }
+
+            .number {
+                color: green;
+            }
+
+            .neologism {
+                background: yellow;
+            }
+
+            .foreign {
+                background: #805300;
+            }
+
+            .anaphora {
+                color: Blue;
+            }
+
+            .conjunction {
+                color: Green;
+            }
+
+            .proper {
+                color: #805300;
+                font-weight: bold;
+            }
+
+            .prep {
+                color: Red;
+                font-weight: bold;
+            }
         </style>
         <h2>Colorized</h2>
         <p>
             @Html.Raw(Model.Colorized)
         </p>
         <h2>Bracketed (Partial Diagram*)</h2>
-    
+
         <p>
             @Html.Raw(Model.Formatted);
         </p>
@@ -81,7 +83,7 @@
         <p>
             @Html.Raw(Model.Normalized)
         </p>
-        
+
         <h2>English Gloss (Yeah, I know, it ain't google translate)</h2>
         <p>
             @Html.Raw(Model.Glossed)
