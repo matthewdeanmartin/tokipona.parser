@@ -425,7 +425,7 @@ namespace BasicTypes
                     //Not surprising if it is an imperative.
                     if (Predicates.All(x => x.Particle.Text != Particles.o.Text))
                     {
-                        Console.WriteLine("This was surprising.. no subjects and AFAIK, this isn't an imperative of any sort.");
+                        Console.WriteLine("This was surprising.. no subjects and AFAIK, this is not an imperative of any sort.");
                     }
                 }
 

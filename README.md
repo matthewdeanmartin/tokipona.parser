@@ -27,6 +27,9 @@ Currently illustrates:
 - [ ] Write toki pona and create issues for text that should parse but fails to parse
 - [ ] Write issues for breaks in the various features of the demo site.
 
+Here is the issue tracker:
+https://github.com/matthewdeanmartin/tokipona.parser/issues
+
 ###Suggestions on getting started:
 You can contribute with VS2010, VS2013, VS2013 Community (free and allows plugins) or SharpDev.
 
