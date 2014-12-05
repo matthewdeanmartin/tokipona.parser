@@ -3,6 +3,14 @@
 @{
     ViewBag.Title = "Home Page";
 }
+@section Scripts
+{
+    <script>
+        $(function () {
+            $("#tabs").tabs();
+        });
+    </script>
+}
 
 @*<div class="jumbotron">
         <h1>toki pona Parser</h1>
@@ -15,11 +23,11 @@
         <h2>Enter toki pona text to get a bracketed, normalized, and glossed version.</h2>
         @using (Html.BeginForm("Parse", "Home"))
         {
-            @Html.TextArea( "SourceText",  Model.SourceText,
-            new { style= "background-color:#F8F8F8;border:0;display:block;font-family:Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, monospace, serif;font-size:10pt;width:98%;line-height:21px;padding:1%;resize: none; overflow-y: hidden; height: 200px;"}
+            @Html.TextArea("SourceText", Model.SourceText,
+            new { style = "background-color:#F8F8F8;border:0;display:block;font-family:Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, monospace, serif;font-size:10pt;width:98%;line-height:21px;padding:1%;resize: none; overflow-y: hidden; height: 200px;" }
                 )
             @*<textarea id="SourceText" name="SourceText"
-                      style="background-color:#F8F8F8;border:0;display:block;font-family:Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, monospace, serif;font-size:10pt;width:98%;line-height:21px;padding:1%;resize: none; overflow-y: hidden; height: 200px;"></textarea>*@
+                style="background-color:#F8F8F8;border:0;display:block;font-family:Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, monospace, serif;font-size:10pt;width:98%;line-height:21px;padding:1%;resize: none; overflow-y: hidden; height: 200px;"></textarea>*@
             <br />
             <input type="submit" value="Submit" />
         }
@@ -70,28 +78,42 @@
                 font-weight: bold;
             }
         </style>
-        <h2>Colorized</h2>
-        <p>
-            @Html.Raw(Model.Colorized)
-        </p>
-        <h2>Bracketed (Partial Diagram*)</h2>
-
-        <p>
-            @Html.Raw(Model.Formatted);
-        </p>
-        <h2>Normalized* Add Punct &amp; mi li/sina li</h2>
-        <p>
-            @Html.Raw(Model.Normalized)
-        </p>
-
-        <h2>English Gloss (Yeah, I know, it ain't google translate)</h2>
-        <p>
-            @Html.Raw(Model.Glossed)
-        </p>
-        <h2>Gloss + POS (Yeah, I know, it ain't google translate)</h2>
-        <p>
-            @Html.Raw(Model.FormattedPos)
-        </p>
+        <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1">Colorized</a></li>
+                <li><a href="#tabs-2">Bracketed/Diagram</a></li>
+                <li><a href="#tabs-3">Normalized/Remove Irregularities</a></li>
+                <li><a href="#tabs-4">English Gloss</a></li>
+                <li><a href="#tabs-5">Gloss + POS</a></li>
+            </ul>
+            <div id="tabs-1">
+                <p>
+                    @Html.Raw(Model.Colorized)
+                </p>
+            </div>
+            <div id="tabs-2">
+                <p>
+                    @Html.Raw(Model.Formatted);
+                </p>
+            </div>
+            <div id="tabs-3">
+                <p>
+                    @Html.Raw(Model.Normalized)
+                </p>
+            </div>
+            <div id="tabs-4">
+                <b> (Yeah, I know, it ain't google translate)</b><br />
+                <p>
+                    @Html.Raw(Model.Glossed)
+                </p>
+            </div>
+            <div id="tabs-5">
+                <b> (Yeah, I know, it ain't google translate)</b><br />
+                <p>
+                    @Html.Raw(Model.FormattedPos)
+                </p>
+            </div>
+        </div>
     </div>
     @*<div class="col-md-4">
             <h2>Repeat Back</h2>

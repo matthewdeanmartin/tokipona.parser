@@ -37,18 +37,18 @@ namespace BasicTypes.Glosser
                 throw new InvalidOperationException("This isn't normalized. : " + normalized);
             }
 
-            Dialect config = Dialect.LooseyGoosey;
-            config.ThrowOnSyntaxError = false;
-            config.TargetGloss = language;
-            config.GlossWithFallBacks = true;
-            ParserUtils pu = new ParserUtils(config);
+            Dialect dialect = Dialect.LooseyGoosey;
+            dialect.ThrowOnSyntaxError = false;
+            dialect.TargetGloss = language;
+            dialect.GlossWithFallBacks = true;
+            ParserUtils pu = new ParserUtils(dialect);
 
             Sentence sentenceTree = pu.ParsedSentenceFactory(normalized, original);
 
-            return GlossOneSentence(includePos, sentenceTree, config);
+            return GlossOneSentence(includePos, sentenceTree, dialect);
         }
 
-        public string GlossOneSentence(bool includePos, Sentence sentenceTree, Dialect config)
+        public string GlossOneSentence(bool includePos, Sentence sentenceTree, Dialect dialect)
         {
             List<string> gloss = new List<string>();
 
@@ -61,18 +61,18 @@ namespace BasicTypes.Glosser
                 {
                     gloss.Add("if");
                     //Conditions have head sentences, but not conclusions
-                    ProcessSimpleSentence(includePos, condition, gloss, config);
+                    ProcessSimpleSentence(includePos, condition, gloss, dialect);
                 }
                 //Then
                 gloss.Add(", then");
 
 
-                ProcessSimpleSentence(includePos, sentenceTree.Conclusion, gloss, config);
+                ProcessSimpleSentence(includePos, sentenceTree.Conclusion, gloss, dialect);
             }
             else
             {
                 //Does this work for vocatives? Fragments?
-                ProcessSimpleSentence(includePos, sentenceTree, gloss, config);
+                ProcessSimpleSentence(includePos, sentenceTree, gloss, dialect);
             }
 
             //HACK:
@@ -98,24 +98,24 @@ namespace BasicTypes.Glosser
             return result;
         }
 
-        private void ProcessSimpleSentence(bool includePos, Sentence s, List<string> gloss, Dialect config)
+        private void ProcessSimpleSentence(bool includePos, Sentence s, List<string> gloss, Dialect dialect)
         {
             if (s.Vocative != null)
             {
                 //TODO: extend to many vocatives?
-                ProcessOneChain(includePos, gloss, config, s.Vocative.Nominal);
+                ProcessOneChain(includePos, gloss, dialect, s.Vocative.Nominal);
                 //Need o?
             }
             if (s.Exclamation != null)
             {
-                ProcessingleHeadedPhrase(includePos, gloss, config, s.Exclamation.Phrase);
+                ProcessingleHeadedPhrase(includePos, gloss, dialect, s.Exclamation.Phrase);
             }
 
             //The whole sentence is a fragment, ending in la.
             if (s.Fragment != null)
             {
                 //Simpler to treat fragments as degenerate, independent things.
-                ProcessOneChain(includePos, gloss, config, s.Fragment.Nominal);
+                ProcessOneChain(includePos, gloss, dialect, s.Fragment.Nominal);
                 //Need ...?
             }
 
@@ -140,7 +140,7 @@ namespace BasicTypes.Glosser
                         }
                         else
                         {
-                            ProcessOneChain(includePos, gloss, config, bit.Nominal);
+                            ProcessOneChain(includePos, gloss, dialect, bit.Nominal);
                         }
                     }
                     else
@@ -160,7 +160,7 @@ namespace BasicTypes.Glosser
                         {
                             foreach (PrepositionalPhrase phrase in bit.Prepositionals)
                             {
-                                ProcessPrepositionalPhrase(gloss, phrase, includePos, config);    
+                                ProcessPrepositionalPhrase(gloss, phrase, includePos, dialect);    
                             }
                         }
 
@@ -174,17 +174,17 @@ namespace BasicTypes.Glosser
             //Although if you have predicates, you should always have subjects.
             if (s.Subjects != null)
             {
-                ProcessSubjects(includePos, s, gloss, config);
+                ProcessSubjects(includePos, s, gloss, dialect);
             }
 
             if (s.Predicates != null)
             {
-                ProcessPredicates(includePos, s, gloss, config);
+                ProcessPredicates(includePos, s, gloss, dialect);
             }
 
         }
 
-        public void ProcessPredicates(bool includePos, Sentence s, List<string> gloss, Dialect config)
+        public void ProcessPredicates(bool includePos, Sentence s, List<string> gloss, Dialect dialect)
         {
 
             int j = 0;
@@ -224,18 +224,18 @@ namespace BasicTypes.Glosser
                         if (verb == PartOfSpeech.VerbTransitive)
                         {
                             gloss.Add("transforms into ");
-                            ProcessOneChain(includePos, gloss, config, predicate.VerbPhrase.NounComplement);
+                            ProcessOneChain(includePos, gloss, dialect, predicate.VerbPhrase.NounComplement);
                             gloss.Add(", these targets: ");
                         }
                         else
                         {
-                            ProcessOneChain(includePos, gloss, config, predicate.VerbPhrase.NounComplement);
+                            ProcessOneChain(includePos, gloss, dialect, predicate.VerbPhrase.NounComplement);
                         }
                     }
                     else
                     {
                         //Try to guess if this is a verb or something else.
-                        if (predicate.VerbPhrase.HeadVerb.ToString(verb, config).ContainsCheck("Error")
+                        if (predicate.VerbPhrase.HeadVerb.ToString(verb, dialect).ContainsCheck("Error")
                             && (predicate.VerbPhrase.Modals == null || predicate.VerbPhrase.Modals.Count == 0))
                         {
                             //No modals, Can't gloss as verb, assume we have a noun phrase
@@ -244,20 +244,20 @@ namespace BasicTypes.Glosser
                             {
                                 foreach (Word modifier in predicate.VerbPhrase.Adverbs)
                                 {
-                                    gloss.Add(GlossWithFallBack(includePos, config, modifier, PartOfSpeech.Adjective));
+                                    gloss.Add(GlossWithFallBack(includePos, dialect, modifier, PartOfSpeech.Adjective));
                                 }
                             }
 
-                            if (predicate.VerbPhrase.HeadVerb.ToString(PartOfSpeech.Noun, config).ContainsCheck("Error"))
+                            if (predicate.VerbPhrase.HeadVerb.ToString(PartOfSpeech.Noun, dialect).ContainsCheck("Error"))
                             {
                                 //Oh, this might be an adjective. jan li laso.
-                                //gloss.Add(predicate.VerbPhrase.HeadVerb.ToString(PartOfSpeech.Adjective + ":" + includePos, config));
-                                gloss.Add(GlossWithFallBack(includePos, config, predicate.VerbPhrase.HeadVerb, PartOfSpeech.Adjective));
+                                //gloss.Add(predicate.VerbPhrase.HeadVerb.ToString(PartOfSpeech.Adjective + ":" + includePos, dialect));
+                                gloss.Add(GlossWithFallBack(includePos, dialect, predicate.VerbPhrase.HeadVerb, PartOfSpeech.Adjective));
                             }
                             else
                             {
-                                //gloss.Add(predicate.VerbPhrase.HeadVerb.ToString(PartOfSpeech.Noun + ":" + includePos, config));
-                                gloss.Add(GlossWithFallBack(includePos, config, predicate.VerbPhrase.HeadVerb, PartOfSpeech.Noun));
+                                //gloss.Add(predicate.VerbPhrase.HeadVerb.ToString(PartOfSpeech.Noun + ":" + includePos, dialect));
+                                gloss.Add(GlossWithFallBack(includePos, dialect, predicate.VerbPhrase.HeadVerb, PartOfSpeech.Noun));
                             }
                         }
                         else
@@ -269,8 +269,8 @@ namespace BasicTypes.Glosser
                                 foreach (Word modal in predicate.VerbPhrase.Modals)
                                 {
                                     //HACK: What no separate POS For modal verbs?
-                                    //modal.ToString(PartOfSpeech.VerbIntransitive + ":" + includePos, config)
-                                    gloss.Add(GlossWithFallBack(includePos, config, modal, PartOfSpeech.VerbIntransitive));
+                                    //modal.ToString(PartOfSpeech.VerbIntransitive + ":" + includePos, dialect)
+                                    gloss.Add(GlossWithFallBack(includePos, dialect, modal, PartOfSpeech.VerbIntransitive));
                                 }
                             }
 
@@ -278,17 +278,22 @@ namespace BasicTypes.Glosser
                             {
                                 foreach (Word modifier in predicate.VerbPhrase.Adverbs)
                                 {
-                                    gloss.Add(GlossWithFallBack(includePos, config, modifier, PartOfSpeech.Adverb));
+                                    gloss.Add(GlossWithFallBack(includePos, dialect, modifier, PartOfSpeech.Adverb));
                                 }
                             }
 
-                            gloss.Add(predicate.VerbPhrase.HeadVerb.ToString(verb, config));
+                            gloss.Add(predicate.VerbPhrase.HeadVerb.ToString(verb, dialect));
                         }
 
                     }
 
                 }
 
+                if (predicate.NominalPredicate != null)
+                {
+                    ProcessOneChain(includePos, gloss, dialect, predicate.NominalPredicate);
+
+                }
 
                 int directCount = 0;
                 if (predicate.Directs != null)
@@ -306,13 +311,13 @@ namespace BasicTypes.Glosser
                             //deeper levels?
                             foreach (HeadedPhrase hp in sub.HeadedPhrases)
                             {
-                                ProcessingleHeadedPhrase(includePos, gloss, config, hp);
+                                ProcessingleHeadedPhrase(includePos, gloss, dialect, hp);
                                 //foreach (Word modifier in hp.Modifiers)
                                 //{
-                                //    gloss.Add(GlossWithFallBack(includePos, config, modifier, PartOfSpeech.Adjective));
+                                //    gloss.Add(GlossWithFallBack(includePos, dialect, modifier, PartOfSpeech.Adjective));
                                 //}
                                 //
-                                //gloss.Add(GlossWithFallBack(includePos, config, hp.Head, PartOfSpeech.Noun));
+                                //gloss.Add(GlossWithFallBack(includePos, dialect, hp.Head, PartOfSpeech.Noun));
                             }
                         }
                     }
@@ -322,20 +327,20 @@ namespace BasicTypes.Glosser
                 {
                         foreach (PrepositionalPhrase sub in predicate.Prepositionals)
                         {
-                            //gloss.Add(sub.Preposition.ToString(PartOfSpeech.Preposition, config));
-                            ProcessPrepositionalPhrase(gloss, sub, includePos, config);
+                            //gloss.Add(sub.Preposition.ToString(PartOfSpeech.Preposition, dialect));
+                            ProcessPrepositionalPhrase(gloss, sub, includePos, dialect);
                         }   
                     //leaf?
                 }
             }
         }
 
-        public static string GlossWithFallBack(bool includePos, IFormatProvider config, Word word, PartOfSpeech pos)
+        public static string GlossWithFallBack(bool includePos, IFormatProvider dialect, Word word, PartOfSpeech pos)
         {
-            string firstAttempt = word.ToString(pos + ":" + includePos, config);
+            string firstAttempt = word.ToString(pos + ":" + includePos, dialect);
 
             //Don't want fall backs or it was fine.
-            if (!(config as Dialect).GlossWithFallBacks || !firstAttempt.StartCheck("[Error"))
+            if (!(dialect as Dialect).GlossWithFallBacks || !firstAttempt.StartCheck("[Error"))
             {
                 return firstAttempt;
             }
@@ -344,7 +349,7 @@ namespace BasicTypes.Glosser
             {
                 foreach (PartOfSpeech alt in new PartOfSpeech[] { PartOfSpeech.Noun, PartOfSpeech.VerbIntransitive, PartOfSpeech.VerbTransitive, PartOfSpeech.Adverb })
                 {
-                    string tryAgain = word.ToString(alt + ":" + includePos, config);
+                    string tryAgain = word.ToString(alt + ":" + includePos, dialect);
 
                     //Don't want fall backs or it was fine.
                     if (!tryAgain.StartCheck("[Error"))
@@ -357,7 +362,7 @@ namespace BasicTypes.Glosser
             {
                 foreach (PartOfSpeech alt in new PartOfSpeech[] { PartOfSpeech.VerbIntransitive, PartOfSpeech.VerbTransitive, PartOfSpeech.Noun, PartOfSpeech.Adverb, PartOfSpeech.Adjective })
                 {
-                    string tryAgain = word.ToString(alt + ":" + includePos, config);
+                    string tryAgain = word.ToString(alt + ":" + includePos, dialect);
 
                     //Don't want fall backs or it was fine.
                     if (!tryAgain.StartCheck("[Error"))
@@ -370,7 +375,7 @@ namespace BasicTypes.Glosser
             {
                 foreach (PartOfSpeech alt in new[] { PartOfSpeech.VerbTransitive, PartOfSpeech.Noun, PartOfSpeech.Adverb, PartOfSpeech.Adjective })
                 {
-                    string tryAgain = word.ToString(alt + ":" + includePos, config);
+                    string tryAgain = word.ToString(alt + ":" + includePos, dialect);
 
                     //Don't want fall backs or it was fine.
                     if (!tryAgain.StartCheck("[Error"))
@@ -383,7 +388,7 @@ namespace BasicTypes.Glosser
             {
                 foreach (PartOfSpeech alt in new[] { PartOfSpeech.VerbIntransitive, PartOfSpeech.Noun, PartOfSpeech.Adverb, PartOfSpeech.Adjective })
                 {
-                    string tryAgain = word.ToString(alt + ":" + includePos, config);
+                    string tryAgain = word.ToString(alt + ":" + includePos, dialect);
 
                     //Don't want fall backs or it was fine.
                     if (!tryAgain.StartCheck("[Error"))
@@ -396,7 +401,7 @@ namespace BasicTypes.Glosser
             {
                 foreach (PartOfSpeech alt in new[] { PartOfSpeech.Adverb, PartOfSpeech.Adjective, PartOfSpeech.VerbIntransitive, PartOfSpeech.VerbTransitive })
                 {
-                    string tryAgain = word.ToString(alt + ":" + includePos, config);
+                    string tryAgain = word.ToString(alt + ":" + includePos, dialect);
 
                     //Don't want fall backs or it was fine.
                     if (!tryAgain.StartCheck("[Error"))
@@ -413,7 +418,7 @@ namespace BasicTypes.Glosser
                 PartOfSpeech.Noun, PartOfSpeech.Adjective,PartOfSpeech.VerbIntransitive, PartOfSpeech.VerbTransitive
             })
             {
-                string finalTryAgain = word.ToString(alt + ":" + includePos, config);
+                string finalTryAgain = word.ToString(alt + ":" + includePos, dialect);
 
                 //Don't want fall backs or it was fine.
                 if (!finalTryAgain.StartCheck("[Error"))
@@ -425,7 +430,7 @@ namespace BasicTypes.Glosser
             return firstAttempt;
         }
 
-        private static void ProcessSubjects(bool includePos, Sentence s, List<string> gloss, Dialect config)
+        private static void ProcessSubjects(bool includePos, Sentence s, List<string> gloss, Dialect dialect)
         {
             ComplexChain c = s.Subjects;
             if (c == null)
@@ -433,10 +438,10 @@ namespace BasicTypes.Glosser
                 //Imperatives have implicit subjects.
                 return;
             }
-            ProcessOneChain(includePos, gloss, config, c);
+            ProcessOneChain(includePos, gloss, dialect, c);
         }
 
-        private static void ProcessOneChain(bool includePos, List<string> gloss, Dialect config, ComplexChain c, bool surpressFirstPreposition=false)
+        private static void ProcessOneChain(bool includePos, List<string> gloss, Dialect dialect, ComplexChain c, bool surpressFirstPreposition=false)
         {
             //Recurse
             if (c.ComplexChains != null)
@@ -447,9 +452,9 @@ namespace BasicTypes.Glosser
                     k++;
                     if (k != 1)
                     {
-                        gloss.Add(innerComplexChain.Particle.ToString(PartOfSpeech.Conjunction + ":" + includePos, config));
+                        gloss.Add(innerComplexChain.Particle.ToString(PartOfSpeech.Conjunction + ":" + includePos, dialect));
                     }
-                    ProcessOneChain(includePos, gloss, config, innerComplexChain);
+                    ProcessOneChain(includePos, gloss, dialect, innerComplexChain);
                 }
             }
 
@@ -462,19 +467,19 @@ namespace BasicTypes.Glosser
                     i++;
                     if (i != 1)
                     {
-                        gloss.Add(sub.Particle.ToString(PartOfSpeech.Conjunction + ":" + includePos, config));
+                        gloss.Add(sub.Particle.ToString(PartOfSpeech.Conjunction + ":" + includePos, dialect));
                     }
 
                     foreach (HeadedPhrase hp in sub.HeadedPhrases)
                     {
-                        ProcessingleHeadedPhrase(includePos, gloss, config, hp);
+                        ProcessingleHeadedPhrase(includePos, gloss, dialect, hp);
                     }
                 }
             }
         }
 
 
-        private static void ProcessingleHeadedPhrase(bool includePos, List<string> gloss, Dialect config, HeadedPhrase hp)
+        private static void ProcessingleHeadedPhrase(bool includePos, List<string> gloss, Dialect dialect, HeadedPhrase hp)
         {
             bool shouldSupressJan = WordByValue.Instance.Equals(hp.Head, Words.jan) && hp.Modifiers.Any(x => x.IsProperModifier);
 
@@ -483,7 +488,7 @@ namespace BasicTypes.Glosser
                 foreach (Word modifier in hp.Modifiers)
                 {
 
-                    gloss.Add(GlossWithFallBack(includePos, config, modifier, PartOfSpeech.Adjective));
+                    gloss.Add(GlossWithFallBack(includePos, dialect, modifier, PartOfSpeech.Adjective));
                 }
             }
             if (shouldSupressJan)
@@ -492,7 +497,7 @@ namespace BasicTypes.Glosser
             }
             else
             {
-                string nounPossiblePlural = GlossWithFallBack(includePos, config, hp.Head, PartOfSpeech.Noun);
+                string nounPossiblePlural = GlossWithFallBack(includePos, dialect, hp.Head, PartOfSpeech.Noun);
 
                 if ((!new String[] { "I", "we", "he", "she", "it", "they" }.Contains(nounPossiblePlural)) && hp.IsPlural())
                 {
