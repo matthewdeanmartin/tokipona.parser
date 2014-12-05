@@ -127,12 +127,12 @@ namespace BasicTypes
         {
             if (string.IsNullOrWhiteSpace(sentence))
             {
-                throw new InvalidOperationException("Don't give me a null sentence. Can't tell if null sentence is from input or got lost in translation");
+                throw new InvalidOperationException("Do not give me a null sentence. Can't tell if null sentence is from input or got lost in translation");
             }
 
             if (sentence.StartCheck(" "))
             {
-                throw new InvalidOperationException("Don't give me a sentence that leads with whitespace, I don't want to do defensive Trim() all day.");
+                throw new InvalidOperationException("Do not give me a sentence that leads with whitespace, I do not want to do defensive Trim() all day.");
             }
 
             if (sentence.StartCheck("///"))

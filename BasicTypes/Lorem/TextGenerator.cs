@@ -32,6 +32,22 @@ namespace BasicTypes.Lorem
         //Question, Answer.
 
         [Test]
+        public void GenerateDiscourse()
+        {
+            Dialect d = Dialect.LooseyGoosey;
+            d.IncludeApocrypha = false;
+            TextGenerator tg = new TextGenerator(d);
+            
+            for (int i = 0; i < 1000; i++)
+            {
+                Sentence s = tg.GenerateSentence();
+                Console.WriteLine(s.ToString());
+                Console.WriteLine(s.ToString("b"));
+            }
+        }
+
+
+        [Test]
         public void GenerateObjectAndStringify()
         {
             Dialect d = Dialect.LooseyGoosey;

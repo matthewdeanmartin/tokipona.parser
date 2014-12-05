@@ -90,6 +90,7 @@
     <Compile Include="CollectionsLeaf\HeadedPhraseEquivallenceGenerator.cs" />
     <Compile Include="CollectionsLeaf\HeadPhraseByValue.cs" />
     <Compile Include="CollectionsLeaf\ModiferPhrase.cs" />
+    <Compile Include="CollectionsDiscourse\Discourse.cs" />
     <Compile Include="Collections\Phrase.cs" />
     <Compile Include="Collections\PiPredicate.cs" />
     <Compile Include="Collections\Predicate.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="NormalizerCode\NormalizeNumbers.cs" />
     <Compile Include="NormalizerCode\Normalizer.cs" />
     <Compile Include="NormalizerCode\NormalizerTests.cs" />
+    <Compile Include="Parser\DiscoursStrings.cs" />
     <Compile Include="Parser\ParserUtils.cs" />
     <Compile Include="Knowledge\PhoneNumbers.cs" />
     <Compile Include="Knowledge\PhoneNumberTests.cs" />

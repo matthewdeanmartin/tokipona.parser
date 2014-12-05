@@ -325,6 +325,72 @@ namespace BasicTypes.Parser
         }
 
         [Test]
+        public void StressTestNormalize_VocativeImperatives()
+        {
+            int i = 0;
+            Dialect dialect = Dialect.LooseyGoosey;
+            ParserUtils pu = new ParserUtils(dialect);
+
+            Dialect english = Dialect.LooseyGoosey;
+            english.ThrowOnSyntaxError = false;
+            english.TargetGloss = "en";
+            english.GlossWithFallBacks = true;
+
+            CorpusFileReader reader = new CorpusFileReader();
+            GlossMaker gm = new GlossMaker();
+
+            foreach (string s in reader.NextFile())
+            {
+                foreach (string original in pu.ParseIntoNonNormalizedSentences(s))
+                {
+                    Sentence structured = null;
+                    try
+                    {
+                    string normalized = Normalizer.NormalizeText(original, dialect);
+                    if (string.IsNullOrWhiteSpace(normalized) && !string.IsNullOrWhiteSpace(original)
+                        && !new String[] { ".", ":", "?", "!", "'.", "'!", "\".", "''.", ").", "\"«" }.Contains(original.Trim()))
+                    //BUG:happens when we have ni li ni?:  or ni li ni...
+                    //BUG:Any maybe 'ni li ni?' or 'ni li ni'? are failing due to quotes
+                    {
+                        throw new InvalidOperationException("Normalizer turned this into null or white space : " + original);
+                    }
+                    if (original == "\".") continue;//BUG:
+                    if (string.IsNullOrWhiteSpace(normalized)) continue;
+                    if (!(normalized.ContainsWholeWord("o"))) continue;
+                    //if ((normalized.StartsWith("o "))) continue;
+                    if (normalized.ContainsCheck("Kinla")) continue;//Has a logical operator in one of the sample sentences that I can't deal with yet, unrelated to kin, ala
+                    
+                    structured = pu.ParsedSentenceFactory(normalized, original);
+                    string diag = structured.ToString("b");
+
+                    //if ((normalized.ContainsCheck("%ante"))) continue; //verb!
+
+                    Console.WriteLine("O: " + (original ?? "").Trim(new[] { '\n', '\r', ' ', '\t' }));
+                    Console.WriteLine("B: " + diag);
+                    Console.WriteLine("...");
+
+                    //Console.WriteLine("G: " + gm.GlossOneSentence(false, structured, english));
+                    }
+                    catch (Exception ex)
+                    {
+                            Console.WriteLine("FAILED : " + original);
+                            if (structured != null)
+                            {
+                                Console.WriteLine(structured.ToString("b"));
+                            }
+                            Console.WriteLine(ex.Message);
+                            i++;
+                        
+                    }
+
+                }
+            }
+            Console.WriteLine("Failed Sentences: " + i);
+            Assert.AreEqual(0,i);
+        }
+
+
+        [Test]
         public void StressTestNormalizeNotIndeedAlaKin()
         {
             int i = 0;

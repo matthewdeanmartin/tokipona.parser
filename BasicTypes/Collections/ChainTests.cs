@@ -118,7 +118,7 @@ namespace BasicTypes.Collections
             }
             catch (NotImplementedException)
             {
-                Assert.Ignore("Oh well, eventually. But don't panic just because code isn't written yet.");
+                Assert.Ignore("Oh well, eventually. But do not panic just because code isn't written yet.");
             }
 
         }
