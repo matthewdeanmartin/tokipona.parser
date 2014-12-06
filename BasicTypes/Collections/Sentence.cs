@@ -458,7 +458,6 @@ namespace BasicTypes
                     sb.AddIfNeeded("|", format);
                 }
             }
-
             return sb;
         }
 

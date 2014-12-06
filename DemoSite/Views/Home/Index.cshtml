@@ -39,9 +39,10 @@
                             "value",
                             "text",
                             2))
-                            <br />
-                            <input type="submit" value="Submit" />
-                            }
+    @Html.ActionLink("How to Write in Strict Mode", "StrictMode", "Home")
+                                                <br />
+                            <input type="submit" value="Submit" /> 
+        }
 
 
                             @*</div>
@@ -106,7 +107,7 @@
                                 </div>
                                 <div id="tabs-2">
                                     <p>
-                                        @Html.Raw(Model.Formatted);
+                                        @Html.Raw(Model.Formatted)
                                     </p>
                                 </div>
                                 <div id="tabs-3">

@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "ChangeLog";
+}
+<h2>Normalization</h2>
+<p>Normalization is the processes of turning strings into something without surprises. Parsing perfectly clean text is hard, it is harder to 
+    force all parts of the application to deal with irregularities.</p>
+
+<h2>Things Normalized</h2>
+
+<ol>
+    <li>Internal white space forced to single space.</li>
+    <li>In loosey-goosey dialect, I infer numbers, compounds, etc</li>
+    <li>In all dialects, I infer what is a preposition and mark it with a comma or tilde</li>
+    <li>I put the li back after subject mi and sina.</li>
+    @*<li>I try to deal with foreign text by wrapping it in double quotes.</li>*@
+
+</ol>
+

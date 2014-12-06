@@ -66,28 +66,39 @@ namespace BasicTypes
     [Serializable]
     public class Dialect : IFormatProvider
     {
-        public bool InferCompoundsPrepositionsForeignText { get; set; } //Stabilizes unit tests, as the particular dictionary can change the # of words hyphenated.
-
-        public bool AllowMiOVerbPhrase { get; set; } //E.g. mi o moku. vs o mi moku.
+        //Versions of toki pona
         public int UpToVersion { get; set; } //oldest (1)| mani, pan, esun... (2)| kipisi,monsuta ...(3)| ... pu (4)|
-        public bool StrictPos { get; set; } //e.g. vt must have e phrase, adj must follow head word, etc.
-        public bool ObligatoryPlural { get; set; } //e.g. jan tu li jan mute.
-        public bool ObligatoryGender { get; set; } //e.g. meli li lukin e sama meli. (ona meli, etc.)
         public bool IncludeApocrypha { get; set; } //apeja, maljuno
+        
+        //Controversies
+        public bool LiPiIsValid { get; set; } //jan li pi ma Tosi
         public bool PreferAle { get; set; } // (otherwise ali)
         public bool TemporalLon { get; set; } // lon tenpo suno ni vs tenpo suno ni la
-        public bool AllowUnpunctuated { get; set; } // # numbers, ", " prep, "X" foreign, etc. Destroys one's ability to parse.
-        public bool EmbeddedPrepositionalPhrasesRequirePi { get; set; } //e.g. kule pi lon luka palisa li ...
+        public bool StrictPos { get; set; } //e.g. vt must have e phrase, adj must follow head word, etc.
         public bool ColorsAreOnlyAdjectives { get; set; } //ni li laso vs ni li kule laso (black and white are explicitly nouns)
-        public bool LiPiIsValid { get; set; } //jan li pi ma Tosi
+        public bool EmbeddedPrepositionalPhrasesRequirePi { get; set; } //e.g. kule pi lon luka palisa li ...
+        public bool AllowMiOVerbPhrase { get; set; } //E.g. mi o moku. vs o mi moku.
+        
+        //Deprecated. This was a bad idea.
+        public bool ThrowOnSyntaxError { get; set; }//With human users, don't throw!
+
         public string CalendarType { get; set; }
         public string NumberType { get; set; } //poman, stupid, half-stupid, body
-        public bool ThrowOnSyntaxError { get; set; }//With human users, don't throw!
         public string WritingSystem { get; set; } //ToString to a prestige or utility script (e.g. pretty or compressed)
+ 
+        //Glossing
         public string WriteProperNounsInThisLanguage { get; set; }
         public string TargetGloss { get; set; } //Language letter codes, defaults to tp, thread is special & means culture of current computer.
         public bool GlossWithFallBacks { get; set; } //Fallback to other POS if not found.
+ 
+        //Strict Mode (user explicity tells parser things)
         public bool InferNumbers { get; set; } //Stupid numbers
+        public bool AllowUnpunctuated { get; set; } // # numbers, ", " prep, "X" foreign, etc. Destroys one's ability to parse.
+        public bool InferCompoundsPrepositionsForeignText { get; set; } //Stabilizes unit tests, as the particular dictionary can change the # of words hyphenated.
+
+        //Grammaticalization, the community isn't this strict, but you can if you want to
+        public bool ObligatoryPlural { get; set; } //e.g. jan tu li jan mute.
+        public bool ObligatoryGender { get; set; } //e.g. meli li lukin e sama meli. (ona meli, etc.)
 
         //set to tp/en/eo/etc, e.g. ma tomo "New York" vs ma tomo Nujoku
 

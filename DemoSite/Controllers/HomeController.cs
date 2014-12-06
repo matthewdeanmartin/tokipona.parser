@@ -446,5 +446,12 @@ namespace DemoSite.Controllers
 
             return View();
         }
+        public ActionResult StrictMode()
+        {
+            //ViewBag.Message = "No contact info yet! Catch me on twitter maybe @janmato";
+
+            return View();
+        }
+        //
     }
 }

@@ -277,6 +277,8 @@
     <Content Include="Views\Home\BracketHelp.cshtml" />
     <Content Include="Views\Home\Serializations.cshtml" />
     <Content Include="Views\Home\LoremIpsum.cshtml" />
+    <Content Include="Views\Home\Normalization.cshtml" />
+    <Content Include="Views\Home\StrictMode.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
