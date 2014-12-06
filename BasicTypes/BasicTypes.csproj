@@ -170,7 +170,7 @@
     <Compile Include="NormalizerCode\NormalizeNumbers.cs" />
     <Compile Include="NormalizerCode\Normalizer.cs" />
     <Compile Include="NormalizerCode\NormalizerTests.cs" />
-    <Compile Include="Parser\DiscoursStrings.cs" />
+    <Compile Include="Parser\DiscourseStrings.cs" />
     <Compile Include="Parser\ParserUtils.cs" />
     <Compile Include="Knowledge\PhoneNumbers.cs" />
     <Compile Include="Knowledge\PhoneNumberTests.cs" />
