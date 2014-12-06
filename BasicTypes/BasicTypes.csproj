@@ -72,6 +72,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CollectionsDegenerate\Exclamation.cs" />
+    <Compile Include="CollectionsDiscourse\Dialog.cs" />
+    <Compile Include="CollectionsDiscourse\MixedText.cs" />
+    <Compile Include="CollectionsDiscourse\Poetry.cs" />
+    <Compile Include="CollectionsDiscourse\Prose.cs" />
+    <Compile Include="CollectionsDiscourse\Speaker.cs" />
+    <Compile Include="CollectionsDiscourse\Utterance.cs" />
     <Compile Include="CollectionsLeaf\TaggedWord.cs" />
     <Compile Include="CollectionsLeaf\TaggedWordsTests.cs" />
     <Compile Include="Collections\Chain.cs" />
@@ -145,12 +151,12 @@
     <Compile Include="Glosser\GlossMaker.cs" />
     <Compile Include="Html\HtmlFormatter.cs" />
     <Compile Include="Html\HtmlTagHelper.cs" />
-    <Compile Include="Interfaces\ICopySelf.cs" />
-    <Compile Include="Interfaces\IParse.cs" />
-    <Compile Include="Interfaces\ISerializeToProxy.cs" />
-    <Compile Include="Interfaces\IToString.cs" />
-    <Compile Include="Interfaces\MissingFrameworkInterfaces.cs" />
-    <Compile Include="Interfaces\StringableObject.cs" />
+    <Compile Include="Knowledge\Interfaces\ICopySelf.cs" />
+    <Compile Include="Knowledge\Interfaces\IParse.cs" />
+    <Compile Include="Knowledge\Interfaces\ISerializeToProxy.cs" />
+    <Compile Include="Knowledge\Interfaces\IToString.cs" />
+    <Compile Include="Knowledge\Interfaces\MissingFrameworkInterfaces.cs" />
+    <Compile Include="Knowledge\Interfaces\StringableObject.cs" />
     <Compile Include="Knowledge\CorpusKnowledgeTests.cs" />
     <Compile Include="Dictionary\Particles.cs" />
     <Compile Include="Dictionary\Pronouns.cs" />
@@ -170,6 +176,7 @@
     <Compile Include="NormalizerCode\NormalizeNumbers.cs" />
     <Compile Include="NormalizerCode\Normalizer.cs" />
     <Compile Include="NormalizerCode\NormalizerTests.cs" />
+    <Compile Include="ParseDiscourse\ParagraphSplitterTests.cs" />
     <Compile Include="Parser\DiscourseStrings.cs" />
     <Compile Include="Parser\ParserUtils.cs" />
     <Compile Include="Knowledge\PhoneNumbers.cs" />
