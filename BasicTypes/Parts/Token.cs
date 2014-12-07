@@ -64,7 +64,7 @@ namespace BasicTypes
             {
                 if (String.IsNullOrWhiteSpace(word))
                 {
-                    throw new ArgumentNullException("word", "Token can't be null or white space");
+                    throw new ArgumentNullException("word", "Token cannot be null or white space");
                 }
                 if (word.ContainsCheck(" ") && !TaggedWord.CheckIsTagWord(word))
                 {
@@ -75,11 +75,11 @@ namespace BasicTypes
             }
             if (word.ContainsCheck("\n"))
             {
-                throw new ArgumentNullException("word", "Token can't contain white space-- must use *, - or other punctuation to join words into a single token : " + word);
+                throw new ArgumentNullException("word", "Token cannot contain white space-- must use *, - or other punctuation to join words into a single token : " + word);
             }
             if (word.ContainsCheck("\t"))
             {
-                throw new ArgumentNullException("word", "Token can't contain white space-- must use *, - or other punctuation to join words into a single token : " + word);
+                throw new ArgumentNullException("word", "Token cannot contain white space-- must use *, - or other punctuation to join words into a single token : " + word);
             }
             this.word = word;
         }

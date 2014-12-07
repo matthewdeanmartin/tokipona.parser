@@ -43,6 +43,8 @@ namespace BasicTypes.NormalizerCode
                 dialect = Config.CurrentDialect;
             }
 
+            
+
             string normalized = text.Trim(new char[] { '\n', '\r', ' ' });
 
             //Normalize prepositions to ~, so that we don't have tokens with embedded spaces (e.g. foo, kepeken => [foo],[, kepeken])
@@ -54,6 +56,10 @@ namespace BasicTypes.NormalizerCode
                 normalized = ApplyNormalization(normalized, "Particles", RepairErrors);
             }
 
+            if (normalized.ContainsCheck(" li pi "))
+            {
+                normalized= normalized.Replace(" li pi ", " li XXXXZiXXXX ");
+            }
             ////"/\\*.*?\\*/"
             if (normalized.ContainsCheck("/*") || normalized.ContainsCheck("*/"))
             {

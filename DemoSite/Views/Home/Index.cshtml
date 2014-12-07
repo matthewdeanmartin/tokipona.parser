@@ -21,16 +21,17 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h2>Enter toki pona text to get a bracketed, normalized, and glossed version.</h2>
+        <h2>ilo nimi ni li pona e nimi sina.</h2>
         @using (Html.BeginForm("Parse", "Home"))
         {
             @Html.TextArea("SourceText", Model.SourceText,
-            new { style = "background-color:#F8F8F8;border:0;display:block;font-family:Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, monospace, serif;font-size:10pt;width:98%;line-height:21px;padding:1%;resize: none; overflow-y: hidden; height: 200px;" }
+                      new { style = "background-color:#F8F8F8;border:0;display:block;font-family:Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, monospace, serif;font-size:10pt;width:98%;line-height:21px;padding:1%;resize: none; overflow-y: hidden; height: 200px;overflow: auto;" }
                 )
             @*<textarea id="SourceText" name="SourceText"
                 style="background-color:#F8F8F8;border:0;display:block;font-family:Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, monospace, serif;font-size:10pt;width:98%;line-height:21px;padding:1%;resize: none; overflow-y: hidden; height: 200px;"></textarea>*@
-            @Html.LabelFor(model => model.Dialect) 
-                @Html.DropDownListFor(model => model.Dialect, new SelectList(
+            @Html.LabelFor(model => model.Dialect)
+            @:&nbsp;
+            @Html.DropDownListFor(model => model.Dialect, new SelectList(
                   new List<object>
                             {
                             new { value ="LooseyGoosey" , text = "Loosey Goosey"  },
@@ -39,106 +40,121 @@
                             "value",
                             "text",
                             2))
-    @Html.ActionLink("How to Write in Strict Mode", "StrictMode", "Home")
-                                                <br />
-                            <input type="submit" value="Submit" /> 
+            @:&nbsp; &nbsp;&nbsp;
+
+            @Html.ActionLink("How to Write in Strict Mode", "StrictMode", "Home")
+            @:&nbsp;
+            @Html.LabelFor(model => model.SentenceOrParagraph)
+            @:&nbsp;
+            @Html.DropDownListFor(model => model.SentenceOrParagraph, new SelectList(
+                  new List<object>
+                            {
+                            new { value ="Sentence" , text = "Sentences"  },
+                            new { value = "Paragraph" , text = "Paragraphs" }
+                            },
+                            "value",
+                            "text",
+                            2))
+            <br />
+            <input type="submit" value="Submit" />
         }
 
 
-                            @*</div>
-                                <div class="col-md-6">*@
-                            <style>
-                                .content {
-                                    color: #800000;
-                                }
+        @*</div>
+            <div class="col-md-6">*@
+        <style>
+            .content {
+                color: #800000;
+            }
 
-                                .compound {
-                                    color: #800000;
-                                }
+            .compound {
+                color: #800000;
+            }
 
-                                .function {
-                                    color: Red;
-                                }
+            .function {
+                color: Red;
+            }
 
-                                .number {
-                                    color: green;
-                                }
+            .number {
+                color: green;
+            }
 
-                                .neologism {
-                                    background: yellow;
-                                }
+            .neologism {
+                background: yellow;
+            }
 
-                                .foreign {
-                                    background: #805300;
-                                }
+            .foreign {
+                background: #805300;
+                color: white;
+            }
 
-                                .anaphora {
-                                    color: Blue;
-                                }
+            .anaphora {
+                color: Blue;
+            }
 
-                                .conjunction {
-                                    color: Green;
-                                }
+            .conjunction {
+                color: Green;
+            }
 
-                                .proper {
-                                    color: #805300;
-                                    font-weight: bold;
-                                }
+            .proper {
+                color: #805300;
+                font-weight: bold;
+            }
 
-                                .prep {
-                                    color: Red;
-                                    font-weight: bold;
-                                }
-                            </style>
-                            <div id="tabs">
-                                <ul>
-                                    <li><a href="#tabs-1">Colorized</a></li>
-                                    <li><a href="#tabs-2">Bracketed/Diagram</a></li>
-                                    <li><a href="#tabs-3">Normalized/Remove Irregularities</a></li>
-                                    <li><a href="#tabs-4">English Gloss</a></li>
-                                    <li><a href="#tabs-5">Gloss + POS</a></li>
-                                    <li><a href="#tabs-6">Parse &amp; Echo</a></li>
-                                    <li><a href="#tabs-7">Errors</a></li>
-                                </ul>
-                                <div id="tabs-1">
-                                    <p>
-                                        @Html.Raw(Model.Colorized)
-                                    </p>
-                                </div>
-                                <div id="tabs-2">
-                                    <p>
-                                        @Html.Raw(Model.Formatted)
-                                    </p>
-                                </div>
-                                <div id="tabs-3">
-                                    <p>
-                                        @Html.Raw(Model.Normalized)
-                                    </p>
-                                </div>
-                                <div id="tabs-4">
-                                    <b> (Yeah, I know, it ain't google translate)</b><br />
-                                    <p>
-                                        @Html.Raw(Model.Glossed)
-                                    </p>
-                                </div>
-                                <div id="tabs-5">
-                                    <b> (Yeah, I know, it ain't google translate)</b><br />
-                                    <p>
-                                        @Html.Raw(Model.FormattedPos)
-                                    </p>
-                                </div>
-                                <div id="tabs-6">
-                                    <p>
-                                        @Html.Raw(Model.Recovered)
-                                    </p>
-                                </div>
-                                <div id="tabs-7">
-                                    <p>
-                                        @Html.Raw(Model.Errors)
-                                    </p>
-                                </div>
-                            </div>
-</div>
+            .prep {
+                color: Red;
+                font-weight: bold;
+            }
+        </style>
+        <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1">Colorized</a></li>
+                <li><a href="#tabs-2">Bracketed/Diagram</a></li>
+                <li><a href="#tabs-3">Normalized/Remove Irregularities</a></li>
+                <li><a href="#tabs-4">English Gloss</a></li>
+                <li><a href="#tabs-5">Gloss + POS</a></li>
+                <li><a href="#tabs-6">Parse &amp; Echo</a></li>
+                <li><a href="#tabs-7">Errors</a></li>
+            </ul>
+            <div id="tabs-1">
+                <p>
+                    @Html.Raw(Model.Colorized)
+                </p>
+            </div>
+            <div id="tabs-2">
+                <p>
+                    @Html.Raw(Model.Formatted)
+                </p>
+            </div>
+            <div id="tabs-3">
+                <p>
+                    @Html.Raw(Model.Normalized)
+                </p>
+            </div>
+            <div id="tabs-4">
+                <b> (Yeah, I know, it ain't google translate)</b><br />
+                <p>
+                    @Html.Raw(Model.Glossed)
+                </p>
+            </div>
+            <div id="tabs-5">
+                <b> (Yeah, I know, it ain't google translate)</b><br />
+                <p>
+                    @Html.Raw(Model.FormattedPos)
+                </p>
+            </div>
+            <div id="tabs-6">
+                <p>
+                    @Html.Raw(Model.Recovered)
+                </p>
+            </div>
+            <div id="tabs-7">
+                <p>
+                    @Html.Raw(Model.Errors)
+                </p>
+            </div>
+        </div>
+    </div>
     @*<div class="col-md-4">
             <h2>Repeat Back</h2>
             <p>

@@ -48,6 +48,10 @@ namespace BasicTypes
         [DataMember]
         private readonly Fragment degenerateFragment; //This is something like a title "utala pi mu lili" or a signature "jan Mato"
 
+        [DataMember]
+        private readonly NullOrSymbols nullOrSymbols; //Blanks, stray punctuation, other garbage
+
+
         //Flag to indicate we have no subject.
         [DataMember]
         private readonly bool isHortative; //o mi mute li moku e kili.
@@ -55,6 +59,13 @@ namespace BasicTypes
         //Diagnostic info.
         private readonly SentenceDiagnostics diagnostics;
 
+        public Sentence(NullOrSymbols nullOrSymbols, SentenceDiagnostics diagnostics = null)
+        {
+            LaFragment = new List<Fragment>();
+
+            this.nullOrSymbols = nullOrSymbols;
+            this.diagnostics = diagnostics;
+        }
         public Sentence(Comment comment, SentenceDiagnostics diagnostics = null)
         {
             LaFragment = new List<Fragment>();

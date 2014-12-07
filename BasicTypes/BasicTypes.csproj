@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CollectionsDegenerate\Exclamation.cs" />
+    <Compile Include="CollectionsDegenerate\NullOrSymbols.cs" />
     <Compile Include="CollectionsDiscourse\Dialog.cs" />
     <Compile Include="CollectionsDiscourse\MixedText.cs" />
     <Compile Include="CollectionsDiscourse\Poetry.cs" />
@@ -176,6 +177,7 @@
     <Compile Include="NormalizerCode\NormalizeNumbers.cs" />
     <Compile Include="NormalizerCode\Normalizer.cs" />
     <Compile Include="NormalizerCode\NormalizerTests.cs" />
+    <Compile Include="ParseDiscourse\ParagraphSplitter.cs" />
     <Compile Include="ParseDiscourse\ParagraphSplitterTests.cs" />
     <Compile Include="Parser\DiscourseStrings.cs" />
     <Compile Include="Parser\ParserUtils.cs" />

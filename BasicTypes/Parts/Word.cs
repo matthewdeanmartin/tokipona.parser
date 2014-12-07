@@ -148,7 +148,7 @@ namespace BasicTypes
                         //    errors.Add("This is English :" + prospectiveWord);
                         //}
                         
-                        string message = "This word -->" + prospectiveWord +"<--  failed all checks.";
+                        string message = "This word [[" + prospectiveWord +"]]  failed all checks.";
                         errors.Add(message);
                         if (failFast) throw new InvalidOperationException(message);
                     }

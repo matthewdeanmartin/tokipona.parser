@@ -103,17 +103,17 @@ namespace BasicTypes
         {
             if (head == null)
             {
-                throw new ArgumentNullException("head", "Can't construct with null");
+                throw new ArgumentNullException("head", "Cannot construct with null");
             }
             //HACK: related to taso in la fragment
             if (!(Exclamation.IsExclamation(head.Text) || head.Text == "taso") && Token.CheckIsParticle(head.Text))
             {
                 throw new TpSyntaxException(
-                    "You can't have a headed phrase that is headed by a particle. That would be a chain. " + head.Text + " " + (modifiers == null ? "" : modifiers.ToString()));
+                    "You cannot have a headed phrase that is headed by a particle. That would be a chain. " + head.Text + " " + (modifiers == null ? "" : modifiers.ToString()));
             }
             if (ProperModifier.IsProperModifer(head.Text))
             {
-                throw new TpSyntaxException("Proper modifiers can't be the head of a headed phrase " + head.Text);
+                throw new TpSyntaxException("Proper modifiers cannot be the head of a headed phrase " + head.Text);
             }
             if (modifiers != null)
             {

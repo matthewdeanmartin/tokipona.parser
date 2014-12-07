@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using BasicTypes.Collections;
+using BasicTypes.CollectionsDiscourse;
 using BasicTypes.Dictionary;
 using BasicTypes.Extensions;
 using BasicTypes.Globalization;
@@ -46,6 +48,33 @@ namespace BasicTypes.Glosser
             Sentence sentenceTree = pu.ParsedSentenceFactory(normalized, original);
 
             return GlossOneSentence(includePos, sentenceTree, dialect);
+        }
+
+        public string GlossParagraph(Paragraph paragraphs, Dialect dialect, bool includePos = false)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (Sentence sentence in paragraphs)
+            {
+                sb.Append(GlossOneSentence(includePos, sentence, dialect));
+            }
+            sb.AppendLine();
+
+            return sb.ToString();
+        }
+
+        public string GlossProse(Prose prose, Dialect dialect, bool includePos = false)
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (Paragraph p in prose.Paragraphs)
+            {
+                foreach (Sentence sentence in p)
+                {
+                    sb.Append(GlossOneSentence(includePos, sentence, dialect));
+                }
+                sb.AppendLine();
+            }
+            return sb.ToString();
         }
 
         public string GlossOneSentence(bool includePos, Sentence sentenceTree, Dialect dialect)
@@ -124,7 +153,7 @@ namespace BasicTypes.Glosser
             {
                 foreach (Fragment bit in s.LaFragment)
                 {
-                    
+
                     if (bit.Nominal != null)
                     {
                         string ordinaryTp = bit.ToString("g").Replace(" ", "-");
@@ -160,13 +189,13 @@ namespace BasicTypes.Glosser
                         {
                             foreach (PrepositionalPhrase phrase in bit.Prepositionals)
                             {
-                                ProcessPrepositionalPhrase(gloss, phrase, includePos, dialect);    
+                                ProcessPrepositionalPhrase(gloss, phrase, includePos, dialect);
                             }
                         }
 
                     }
 
-                    
+
 
                 }
             }
@@ -325,11 +354,11 @@ namespace BasicTypes.Glosser
 
                 if (predicate.Prepositionals != null)
                 {
-                        foreach (PrepositionalPhrase sub in predicate.Prepositionals)
-                        {
-                            //gloss.Add(sub.Preposition.ToString(PartOfSpeech.Preposition, dialect));
-                            ProcessPrepositionalPhrase(gloss, sub, includePos, dialect);
-                        }   
+                    foreach (PrepositionalPhrase sub in predicate.Prepositionals)
+                    {
+                        //gloss.Add(sub.Preposition.ToString(PartOfSpeech.Preposition, dialect));
+                        ProcessPrepositionalPhrase(gloss, sub, includePos, dialect);
+                    }
                     //leaf?
                 }
             }
@@ -441,7 +470,7 @@ namespace BasicTypes.Glosser
             ProcessOneChain(includePos, gloss, dialect, c);
         }
 
-        private static void ProcessOneChain(bool includePos, List<string> gloss, Dialect dialect, ComplexChain c, bool surpressFirstPreposition=false)
+        private static void ProcessOneChain(bool includePos, List<string> gloss, Dialect dialect, ComplexChain c, bool surpressFirstPreposition = false)
         {
             //Recurse
             if (c.ComplexChains != null)
@@ -501,7 +530,7 @@ namespace BasicTypes.Glosser
 
                 if ((!new String[] { "I", "we", "he", "she", "it", "they" }.Contains(nounPossiblePlural)) && hp.IsPlural())
                 {
-                    nounPossiblePlural= nounPossiblePlural.Pluralize();
+                    nounPossiblePlural = nounPossiblePlural.Pluralize();
                 }
                 gloss.Add(nounPossiblePlural);
             }

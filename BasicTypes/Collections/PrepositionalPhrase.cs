@@ -36,7 +36,7 @@ namespace BasicTypes.Collections
             }
             if (complexChain == null)
             {
-                throw new ArgumentNullException("complexChain","prepositional phrases can't be a stand alone preposition");
+                throw new ArgumentNullException("complexChain", "prepositional phrases cannot be a stand alone preposition");
             }
             this.preposition = preposition;
             this.complexChain = complexChain;
@@ -72,7 +72,7 @@ namespace BasicTypes.Collections
                 }
                 return chain[0];
             }
-            throw new TpParseException("Can't parse this to a prepositional phrase: " + value);
+            throw new TpParseException("Cannot parse this to a prepositional phrase: " + value);
         }
 
         public List<string> ToTokenList(string format, IFormatProvider formatProvider)

@@ -28,7 +28,7 @@ namespace BasicTypes.Parts
         {
             if (word == null)
             {
-                throw new ArgumentNullException("word", "Can't construct words with null");
+                throw new ArgumentNullException("word", "Cannot construct words with null");
             }
             word = ProcessPuncuation(word);
             //!word.ContainsCheck("*")  foreign word might have no spaces

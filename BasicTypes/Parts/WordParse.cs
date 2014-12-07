@@ -26,7 +26,7 @@ namespace BasicTypes
             }
             if (provider == null)
             {
-                throw new ArgumentNullException("provider", "IFormatProvider can't be null");
+                throw new ArgumentNullException("provider", "IFormatProvider cannot be null");
             }
             Dialect c = provider.GetFormat(typeof(Punctuation)) as Dialect;
 

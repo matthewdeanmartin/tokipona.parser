@@ -46,19 +46,30 @@ namespace BasicTypes.CollectionsDiscourse
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
+            
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < Paragraphs.Length; i++)
             {
                 Paragraph paragraph = Paragraphs[i];
+                if (format == "html")
+                {
+                    sb.Append("<p>");
+                }
                 for (int j = 0; j < paragraph.Count; j++)
                 {
                     Sentence sentence = paragraph[j];
-                    sb.Append(sentence);
+                    sb.Append(sentence.ToString(format,formatProvider));
                     if(j!=paragraph.Count-1)
                         sb.Append(" ");
                 }
-                if(i!=Paragraphs.Length-1)
-                   sb.AppendLine();
+                if (i != Paragraphs.Length - 1)
+                {
+                        sb.AppendLine();
+                }
+                if (format == "html")
+                {
+                    sb.Append("</p>");
+                }
             }
             return sb.ToString();
         }

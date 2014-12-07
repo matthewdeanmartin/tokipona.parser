@@ -127,7 +127,8 @@ namespace BasicTypes
         {
             if (string.IsNullOrWhiteSpace(sentence))
             {
-                throw new InvalidOperationException("Do not give me a null sentence. Can't tell if null sentence is from input or got lost in translation");
+                return new Sentence(new NullOrSymbols(original));
+               //  throw new InvalidOperationException("Do not give me a null sentence. Can't tell if null sentence is from input or got lost in translation");
             }
 
             if (sentence.StartCheck(" "))
@@ -148,7 +149,7 @@ namespace BasicTypes
             }
             //Normalization is really expensive. We must stop calling it twice.
             //sentence = Normalizer.NormalizeText(sentence, config); //Any way to avoid calling this twice?
-            
+
             bool startsQuotedSpeech;
             bool endsQuotedSpeech;
             if (sentence.StartCheck("«"))
@@ -289,7 +290,7 @@ namespace BasicTypes
                 sentence = sentence.Substring(0, sentence.Length - 1);
             }
 
-            
+
 
             //Comment? Get out of here!
             if (sentence.StartCheck("///"))
@@ -365,7 +366,7 @@ namespace BasicTypes
 
             string[] liParts = Splitters.SplitOnLiOrO(sentence);
 
-            if (liParts.Length==1 && Exclamation.IsExclamation(liParts[0]) )
+            if (liParts.Length == 1 && Exclamation.IsExclamation(liParts[0]))
             {
                 //HACK: Duplicate code. & it only deals with a single final puncution mark.
                 string possiblePunctuation = sentence[sentence.Length - 1].ToString();
@@ -487,11 +488,11 @@ namespace BasicTypes
         {
             if (String.IsNullOrEmpty(value))
             {
-                throw new ArgumentException("Can't parse null/empty subjects");
+                throw new ArgumentException("Cannot parse null/empty subjects");
             }
             if (value.ContainsCheck(" la ") || value.EndCheck(" la"))
             {
-                throw new ArgumentException("Contains la. This isn't possible in a pi chain.");
+                throw new ArgumentException("Contains la. This is not possible in a pi chain.");
             }
             //if (value.ContainsCheck("~"))
             //{
@@ -517,13 +518,13 @@ namespace BasicTypes
         {
             if (String.IsNullOrEmpty(subjects))
             {
-                throw new ArgumentException("Can't parse null/empty subjects");
+                throw new ArgumentException("Cannot parse null/empty subjects");
             }
             foreach (var particle in new[] { "la", "li" })
             {
                 if (subjects.StartsOrContainsOrEnds(particle))
                 {
-                    throw new ArgumentException("Subject phrase : " + subjects + " Contains " + particle + ". This isn't possible.");
+                    throw new ArgumentException("Subject phrase : " + subjects + " Contains " + particle + ". This is not possible.");
                 }
             }
 
@@ -557,7 +558,7 @@ namespace BasicTypes
                 subChains.Add(piChain);
             }
 
-            if (subChains[0].SubChains.Length>1 && subChains[0].SubChains.Last().ToString().Split(new char[] { '*', ' ', '-' }).Length == 1)
+            if (subChains[0].SubChains.Length > 1 && subChains[0].SubChains.Last().ToString().Split(new char[] { '*', ' ', '-' }).Length == 1)
             {
                 throw new TpSyntaxException("final pi in pi chain must be followed by 2 words, otherwise just use juxtaposition (i.e. 2 adjacent words with no particle) : " + subjects);
             }
@@ -573,11 +574,11 @@ namespace BasicTypes
 
             if (string.IsNullOrWhiteSpace(liPart))
             {
-                throw new InvalidOperationException("Missing argument, can't continue");
+                throw new InvalidOperationException("Missing argument, cannot continue");
             }
             if (liPart == "li")
             {
-                throw new InvalidOperationException("Can't do anything with just li");
+                throw new InvalidOperationException("Cannot do anything with just li");
             }
             TokenParserUtils pu = new TokenParserUtils();
             Particle verbPhraseParticle;
@@ -585,6 +586,8 @@ namespace BasicTypes
             VerbPhrase verbPhrase = null;
             PrepositionalPhrase[] prepositionalChain = null;
             ComplexChain nominalPredicate = null;
+            PiPredicate piPredicate=null;
+
             //Transitive Path.
             if (liPart.Split(new[] { ' ', '\t' }).Contains("e"))
             {
@@ -605,12 +608,14 @@ namespace BasicTypes
                 {
                     if (verbPhraseParts.Any(x => x == "pi"))
                     {
-                        //nominal predicate
-                        nominalPredicate =
-                            new ComplexChain(Particles.en,
-                                new[]{
+                       
+                            //nominal predicate
+                            nominalPredicate =
+                                new ComplexChain(Particles.en,
+                                    new[]{
                                     ProcessPiChain(string.Join(" ", ArrayExtensions.Tail(verbPhraseParts)))
                                 });
+                           
                     }
                     else
                     {
@@ -701,7 +706,18 @@ namespace BasicTypes
 
                 if (verbPhraseParts.Length > 1)
                 {
-                    if (verbPhraseParts.Any(x => x == "pi"))
+                    if (verbPhraseParts[0].ContainsCheck("XXXXZiXXXX"))
+                    {
+                            //piPredicate
+                            ComplexChain phrase = new ComplexChain(Particles.en,
+                                new[]{
+                                    ProcessPiChain(string.Join(" ", ArrayExtensions.Tail(verbPhraseParts)))
+                                });
+
+                            piPredicate = new PiPredicate(Particles.pi, phrase);
+
+                    }
+                    else if (verbPhraseParts.Any(x => x == "pi"))
                     {
                         //nominal predicate
                         nominalPredicate = new ComplexChain(Particles.en,
@@ -751,7 +767,11 @@ namespace BasicTypes
                     }
                 }
             }
-            if (nominalPredicate == null)
+            if (piPredicate != null)
+            {
+                return new TpPredicate(verbPhraseParticle, piPredicate,prepositionalChain);
+            }
+            else if (nominalPredicate == null)
                 return new TpPredicate(verbPhraseParticle, verbPhrase, directObjectChain, prepositionalChain);
             else
             {
@@ -765,7 +785,7 @@ namespace BasicTypes
             //Adjectives & noun phrases will sneak in here. Maybe need more punctuation?
 
             Word[] asWords = verbPhraseText.Select(x => new Word(x)).ToArray();
-            List<Word>  tokens= TurnThisWordsIntoWordsWithTaggedWords(asWords);
+            List<Word> tokens = TurnThisWordsIntoWordsWithTaggedWords(asWords);
 
             WordSet modals = new WordSet();
             Word headVerb = null;
@@ -892,7 +912,7 @@ namespace BasicTypes
                     throw new TpSyntaxException("Headed phrases have no particles. This one has " + particle + " ref: " + value);
                 }
             }
-            
+
             PrepositionalPhrase[] pp = null;
             if (value.ContainsCheck("~"))
             {
@@ -904,7 +924,7 @@ namespace BasicTypes
             TokenParserUtils pu = new TokenParserUtils();
 
             Word[] words = pu.ValidWords(value);
-            
+
 
             if (words.Length == 0)
             {

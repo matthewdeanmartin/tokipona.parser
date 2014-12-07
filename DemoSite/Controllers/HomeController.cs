@@ -7,13 +7,16 @@ using System.Web;
 using System.Web.Mvc;
 using System.Xml.Linq;
 using BasicTypes;
+using BasicTypes.CollectionsDiscourse;
 using BasicTypes.Glosser;
 using BasicTypes.Html;
 using BasicTypes.Knowledge;
 using BasicTypes.Lorem;
 using BasicTypes.NormalizerCode;
+using BasicTypes.ParseDiscourse;
 using BasicTypes.Parser;
 using DemoSite.Models;
+using Should.Core.Exceptions;
 
 namespace DemoSite.Controllers
 {
@@ -132,11 +135,161 @@ namespace DemoSite.Controllers
             {
                 parse = RandomText();
             }
-            ProcessParserModel(parse);
+            if (parse.SentenceOrParagraph == "Paragraph")
+            {
+                ProcessParserModelParagraphs(parse);
+            }
+            else
+            {
+                ProcessParserModelSentences(parse);                
+            }
             return View("Index", parse);
         }
 
-        private static void ProcessParserModel(SimpleParserViewModel parse)
+        private static void ProcessParserModelParagraphs(SimpleParserViewModel parse)
+        {
+            ParagraphSplitter ps = new ParagraphSplitter(Dialect.LooseyGoosey);
+
+
+
+            Dialect dialect;
+            if (parse.Dialect == "LooseyGoosey")
+            {
+                dialect = Dialect.LooseyGoosey;
+            }
+            else if (parse.Dialect == "WordProcessorRules")
+            {
+                dialect = Dialect.WordProcessorRules;
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("parse", "Need a valid dialect");
+            }
+
+            StringBuilder normalizedSb = new StringBuilder();
+            StringBuilder spitBackSb = new StringBuilder();
+            StringBuilder bracketSb = new StringBuilder();
+            StringBuilder posSb = new StringBuilder();
+            StringBuilder glossSb = new StringBuilder();
+
+            StringBuilder errors = new StringBuilder();
+            StringBuilder colorized = new StringBuilder();
+
+            HtmlFormatter hf = new HtmlFormatter();
+
+            Prose prose;
+            try
+            {
+                prose = ps.ParseProse(parse.SourceText);
+            }
+            catch (Exception ex)
+            {
+                //We CAN'T.
+                ProcessParserModelSentences(parse);
+                return;
+            }
+            
+
+            foreach (Paragraph paragraph in prose.Paragraphs)
+            {
+
+                //////// TP
+                try
+                {
+                    spitBackSb.AppendLine(paragraph.ToString("g", dialect).ToHtml() + "<br/>");
+                }
+                catch (Exception ex)
+                {
+                    string error = "[[CANNOT REPEAT BACK:  " + ex.Message + "]]";
+                    spitBackSb.AppendLine(hf.BoldTheWords(error.ToHtml()) + "<br/>");
+                    //spitBackSb.AppendLine(hf.BoldTheWords(paragraph.ToHtml()) + "<br/>");
+                    //UpdateErrors(errors, error, sentence);
+                }
+
+                try
+                {
+                    //string result = parsedSentence.ToString("html", dialect);
+                    //if (result.Replace("<span", "").Contains("<"))
+                    //{
+                    //    throw new InvalidOperationException("No HTML allowed in input");
+                    //}
+                    colorized.AppendLine(paragraph.ToString("html", dialect) + "<br/>");
+                }
+                catch (Exception ex)
+                {
+                    string error = "[[CANNOT COLORIZE:  " + ex.Message + "]]";
+                    spitBackSb.AppendLine(hf.BoldTheWords(error.ToHtml()) + "<br/>");
+                    //spitBackSb.AppendLine(hf.BoldTheWords(sentence.ToHtml()) + "<br/>");
+                    //
+                    //UpdateErrors(errors, error, sentence);
+                }
+
+                //////// TP
+                try
+                {
+                    bracketSb.AppendLine(hf.BoldTheWords(paragraph.ToString("b", dialect).ToHtml()) + "<br/>");
+                }
+                catch (Exception ex)
+                {
+                    string error = "[[CANNOT BRACKET:  " + ex.Message + "]]";
+                    bracketSb.AppendLine(hf.BoldTheWords(error.ToHtml()) + "<br/>");
+                    //bracketSb.AppendLine(hf.BoldTheWords(sentence.ToHtml()) + "<br/>");
+                    //UpdateErrors(errors, error, sentence);
+
+                }
+
+
+                //////// ENGLISH
+                try
+                {
+                    dialect.TargetGloss = "en";
+                    GlossMaker gm = new GlossMaker();
+                    string glossed = gm.GlossParagraph(paragraph, dialect);
+                    glossSb.AppendLine(glossed.ToHtml() + "<br/>");
+                    glossed = gm.GlossParagraph(paragraph, dialect, true);
+                    posSb.AppendLine(glossed.ToHtml() + "<br/>"); //bs doesn't do anything.
+                }
+                catch (Exception ex)
+                {
+                    string error = "[[CANNOT GLOSS:  " + ex.Message.ToHtml() + "]]";
+                    glossSb.AppendLine(hf.BoldTheWords(error.ToHtml()) + "<br/>");
+                    //glossSb.AppendLine(hf.BoldTheWords(sentence.ToHtml()) + "<br/>");
+
+                    posSb.AppendLine(hf.BoldTheWords(error.ToHtml()) + "<br/>");
+                    //posSb.AppendLine(hf.BoldTheWords(sentence.ToHtml()) + "<br/>");
+
+                    //UpdateErrors(errors, error, sentence);
+                }
+                //}
+                //catch (Exception ex)
+                //{
+                //    string error = "[[CANNOT Parse:  " + ex.Message.ToHtml() + "]]";
+
+                //    foreach (StringBuilder sb in new StringBuilder[] { //normalizedSb,
+                //        spitBackSb, bracketSb, posSb, glossSb, colorized })
+                //    {
+                //        sb.AppendLine(hf.BoldTheWords(error.ToHtml()) + "<br/>");
+                //        sb.Append(sentence.ToHtml() + "<br/>");
+                //    }
+
+                //    UpdateErrors(errors, error, sentence);
+                //}
+                //finally
+                //{
+                //    dialect.TargetGloss = "tp";
+                //}
+            }
+
+            parse.Normalized = normalizedSb.ToString();
+            parse.Recovered = spitBackSb.ToString();
+            parse.Formatted = bracketSb.ToString();
+            parse.FormattedPos = hf.SubThePartsOfSpeech(posSb.ToString());
+            parse.Glossed = glossSb.ToString();
+            parse.Colorized = colorized.ToString();
+            parse.Errors = errors.ToString();
+        }
+
+        private static void ProcessParserModelSentences(SimpleParserViewModel parse)
         {
 
             Dialect dialect;
@@ -165,8 +318,10 @@ namespace DemoSite.Controllers
 
             HtmlFormatter hf = new HtmlFormatter();
 
+            int i = 1;
             foreach (string sentence in sentences)
             {
+                string lineNumber = LineNumber(i, true);
                 string normalized;
                 try
                 {
@@ -181,7 +336,7 @@ namespace DemoSite.Controllers
                     UpdateErrors(errors, error, sentence);
                 }
                 //////// TP
-                normalizedSb.AppendLine(hf.BoldTheWords(normalized.ToHtml()) + "<br/>");
+                normalizedSb.AppendLine(lineNumber+ hf.BoldTheWords(normalized.ToHtml()) + "<br/>");
 
                 Sentence parsedSentence;
                 try
@@ -191,13 +346,13 @@ namespace DemoSite.Controllers
                     //////// TP
                     try
                     {
-                        spitBackSb.AppendLine(parsedSentence.ToString("g", dialect).ToHtml() + "<br/>");
+                        spitBackSb.AppendLine(lineNumber + parsedSentence.ToString("g", dialect).ToHtml() + "<br/>");
                     }
                     catch (Exception ex)
                     {
                         string error = "[[CANNOT REPEAT BACK:  " + ex.Message + " for " + sentence + "]]";
-                        spitBackSb.AppendLine(hf.BoldTheWords(error.ToHtml()) + "<br/>");
-                        spitBackSb.AppendLine(hf.BoldTheWords(sentence.ToHtml()) + "<br/>");
+                        spitBackSb.AppendLine(lineNumber + hf.BoldTheWords(error.ToHtml()) + "<br/>");
+                        spitBackSb.AppendLine(lineNumber + hf.BoldTheWords(sentence.ToHtml()) + "<br/>");
                         UpdateErrors(errors, error, sentence);
                     }
 
@@ -208,13 +363,13 @@ namespace DemoSite.Controllers
                         //{
                         //    throw new InvalidOperationException("No HTML allowed in input");
                         //}
-                        colorized.AppendLine(parsedSentence.ToString("html", dialect) + "<br/>");
+                        colorized.AppendLine(lineNumber + parsedSentence.ToString("html", dialect) + "<br/>");
                     }
                     catch (Exception ex)
                     {
                         string error = "[[CANNOT COLORIZE:  " + ex.Message + "]]";
-                        spitBackSb.AppendLine(hf.BoldTheWords(error.ToHtml()) + "<br/>");
-                        spitBackSb.AppendLine(hf.BoldTheWords(sentence.ToHtml()) + "<br/>");
+                        spitBackSb.AppendLine(lineNumber + hf.BoldTheWords(error.ToHtml()) + "<br/>");
+                        spitBackSb.AppendLine(lineNumber + hf.BoldTheWords(sentence.ToHtml()) + "<br/>");
 
                         UpdateErrors(errors, error, sentence);
                     }
@@ -222,13 +377,13 @@ namespace DemoSite.Controllers
                     //////// TP
                     try
                     {
-                        bracketSb.AppendLine(hf.BoldTheWords(parsedSentence.ToString("b", dialect).ToHtml()) + "<br/>");
+                        bracketSb.AppendLine(lineNumber + hf.BoldTheWords(parsedSentence.ToString("b", dialect).ToHtml()) + "<br/>");
                     }
                     catch (Exception ex)
                     {
                         string error = "[[CANNOT BRACKET:  " + ex.Message + " for " + sentence + "]]";
-                        bracketSb.AppendLine(hf.BoldTheWords(error.ToHtml()) + "<br/>");
-                        bracketSb.AppendLine(hf.BoldTheWords(sentence.ToHtml()) + "<br/>");
+                        bracketSb.AppendLine(lineNumber + hf.BoldTheWords(error.ToHtml()) + "<br/>");
+                        bracketSb.AppendLine(lineNumber + hf.BoldTheWords(sentence.ToHtml()) + "<br/>");
                         UpdateErrors(errors, error, sentence);
 
                     }
@@ -240,18 +395,18 @@ namespace DemoSite.Controllers
                         dialect.TargetGloss = "en";
                         GlossMaker gm = new GlossMaker();
                         string glossed = gm.Gloss(normalized, sentence, "en", false);
-                        glossSb.AppendLine(glossed.ToHtml() + "<br/>");
+                        glossSb.AppendLine(lineNumber + glossed.ToHtml() + "<br/>");
                         glossed = gm.Gloss(normalized, sentence, "en", true);
-                        posSb.AppendLine(glossed.ToHtml() + "<br/>"); //bs doesn't do anything.
+                        posSb.AppendLine(lineNumber + glossed.ToHtml() + "<br/>"); //bs doesn't do anything.
                     }
                     catch (Exception ex)
                     {
                         string error = "[[CANNOT GLOSS:  " + ex.Message.ToHtml() + " for " + sentence.ToHtml() + "]]";
-                        glossSb.AppendLine(hf.BoldTheWords(error.ToHtml()) + "<br/>");
-                        glossSb.AppendLine(hf.BoldTheWords(sentence.ToHtml()) + "<br/>");
+                        glossSb.AppendLine(lineNumber + hf.BoldTheWords(error.ToHtml()) + "<br/>");
+                        glossSb.AppendLine(lineNumber + hf.BoldTheWords(sentence.ToHtml()) + "<br/>");
 
-                        posSb.AppendLine(hf.BoldTheWords(error.ToHtml()) + "<br/>");
-                        posSb.AppendLine(hf.BoldTheWords(sentence.ToHtml()) + "<br/>");
+                        posSb.AppendLine(lineNumber + hf.BoldTheWords(error.ToHtml()) + "<br/>");
+                        posSb.AppendLine(lineNumber + hf.BoldTheWords(sentence.ToHtml()) + "<br/>");
 
                         UpdateErrors(errors, error, sentence);
                     }
@@ -273,6 +428,7 @@ namespace DemoSite.Controllers
                 {
                     dialect.TargetGloss = "tp";
                 }
+                i++;
             }
 
             parse.Normalized = normalizedSb.ToString();
@@ -282,6 +438,12 @@ namespace DemoSite.Controllers
             parse.Glossed = glossSb.ToString();
             parse.Colorized = colorized.ToString();
             parse.Errors = errors.ToString();
+        }
+
+        private static string LineNumber(int i, bool enabled )
+        {
+            if (enabled) return i + ". ";
+            return "";
         }
 
         private static void UpdateErrors(StringBuilder errors, string error, string sentence)
@@ -322,7 +484,7 @@ namespace DemoSite.Controllers
             {
                 SourceText = samples[r.Next(samples.Length)]
             };
-            ProcessParserModel(vm);
+            ProcessParserModelSentences(vm);
             return vm;
         }
 

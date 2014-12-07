@@ -21,6 +21,12 @@ namespace BasicTypes.Collections
         [DataMember]
         private readonly ComplexChain nounPhrase;
 
+        public PiPredicate(Particle particle, ComplexChain nounPhrase)
+        {
+            this.particle = particle;
+            this.nounPhrase = nounPhrase;
+        }
+
         public bool Contains(Word word)
         {
             if(word.Text == particle.Text)return true;

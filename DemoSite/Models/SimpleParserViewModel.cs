@@ -17,7 +17,6 @@ namespace DemoSite.Models
         public string Recovered { get; set; }
         public string Colorized { get; set; }
         public string Errors { get; set; }
-
-        
+        public string SentenceOrParagraph { get; set; }
     }
 }

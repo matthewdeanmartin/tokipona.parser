@@ -10,7 +10,7 @@ namespace BasicTypes.CollectionsDiscourse
 {
     [DataContract]
     [Serializable]
-    public class Discourse: IContainsWord
+    public class Discourse : IContainsWord
     {
         [DataMember]
         private readonly string title;
@@ -51,13 +51,45 @@ namespace BasicTypes.CollectionsDiscourse
     }
 
 
-  
+
 
     [DataContract]
     [Serializable]
-    public class Paragraph:List<Sentence>
+    public class Paragraph : List<Sentence>
     {
-        
+        public override string ToString()
+        {
+            return ToString("g");
+        }
+        public string ToString(string format)
+        {
+            return ToString(format,Dialect.LooseyGoosey);
+        }
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+
+            StringBuilder sb = new StringBuilder();
+
+            Paragraph paragraph = this;
+            if (format == "html")
+            {
+                sb.Append("<p>");
+            }
+            for (int j = 0; j < paragraph.Count; j++)
+            {
+                Sentence sentence = paragraph[j];
+                sb.Append(sentence.ToString(format,formatProvider));
+                if (j != paragraph.Count - 1)
+                {
+                    sb.Append(" ");
+                }
+            }
+            if (format == "html")
+            {
+                sb.Append("</p>");
+            }
+            return sb.ToString();
+        }
     }
 
 }

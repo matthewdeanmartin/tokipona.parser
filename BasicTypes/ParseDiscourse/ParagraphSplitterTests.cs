@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BasicTypes.CollectionsDiscourse;
+using BasicTypes.Corpus;
+using BasicTypes.Extensions;
+using BasicTypes.Glosser;
+using BasicTypes.NormalizerCode;
 using NUnit.Framework;
 
 namespace BasicTypes.ParseDiscourse
@@ -65,6 +69,35 @@ ni li pona kin. soweli li pona. waso li tawa kon.");
             Assert.NotNull(prose);
             Assert.AreEqual(2, prose.Paragraphs.Length);
             Console.WriteLine(prose.ToString());
+        }
+
+
+        [Test]
+        public void StressTest_Paragraphs()
+        {
+            CorpusFileReader reader = new CorpusFileReader(false);
+          
+            ParagraphSplitter ps = new ParagraphSplitter(Dialect.LooseyGoosey);
+
+            foreach (string s in reader.NextFile())
+            {
+                try
+                {
+                    Prose prose = ps.ParseProse(s);
+
+                    foreach (Paragraph paragraph in prose.Paragraphs)
+                    {
+                        Console.WriteLine(paragraph);
+                        Console.WriteLine("   ---");
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                    Console.WriteLine(s);
+                }
+            }
         }
     }
 }
