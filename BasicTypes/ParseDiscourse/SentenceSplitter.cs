@@ -28,7 +28,7 @@ namespace BasicTypes.ParseDiscourse
         {
             List<Paragraph> paras = new List<Paragraph>();
 
-            string[] splitters = new string[] {"\n\n","\n"};
+            string[] splitters = new string[] { "\r\n", "\n\r","\n\n","\r\r" };
             string[] paraStrings= text.Split( splitters, StringSplitOptions.RemoveEmptyEntries);
 
             

@@ -10,7 +10,7 @@ namespace BasicTypes.CollectionsDiscourse
 {
     [DataContract]
     [Serializable]
-    public class Discourse: IContainsWord, IFormattable, IToString
+    public class Discourse: IContainsWord
     {
         [DataMember]
         private readonly string title;
@@ -47,24 +47,7 @@ namespace BasicTypes.CollectionsDiscourse
             }
         }
 
-        public string ToString(string format)
-        {
-            if (format == null)
-            {
-                format = "g";
-            }
-            return ToString(format, Config.CurrentDialect);
-        }
 
-        public override string ToString()
-        {
-            return ToString("g", Config.CurrentDialect);
-        }
-
-        public string ToString(string format, IFormatProvider formatProvider)
-        {
-            throw new NotImplementedException();
-        }
     }
 
 
