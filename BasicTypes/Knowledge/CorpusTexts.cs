@@ -314,7 +314,7 @@ ike li ike ala li wan,
 suli li suli ala li lon poka,
 sewi li tawa sewi ala.
 kalama li kalama musi li wan,
-kama li lon monsi pi pini.
+kama li lon monsi pini.
 jan lawa sona li pali ala
 li pana e sona kepeken ala toki.
 ale li kama tan ona. ona li sona e ni.
@@ -352,7 +352,7 @@ mute li kepeken ala e ni.
 jan mute li jo ilo utala. taso jan mute li pali ala
 kulupu pi jan utala.
 o toki e ni tawa jan mute: 'o kepeken e linja sona.'
-moku pi jan li kama suwi,
+moku jan li kama suwi,
 len jan li kama lukin pona,
 tomo jan li kama lon pona,
 nasin sewi jan li kama musi.

@@ -76,7 +76,6 @@ namespace BasicTypes.Glosser
             {
                 GlossMaker gm = new GlossMaker();
                 Dialect config = BasicTypes.Dialect.LooseyGoosey;
-                config.ThrowOnSyntaxError = true;
                 config.TargetGloss = "en";
                 config.GlossWithFallBacks = true;
                 ParserUtils pu = new ParserUtils(config);

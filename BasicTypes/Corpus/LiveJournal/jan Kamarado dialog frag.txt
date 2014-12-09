@@ -10,6 +10,6 @@ nimi mi: ivan.zenkov@gmail.com
 
 a.
 
-jan tu > sina jo e ilo toki Emesen la mi mute li ken toki a!
+jan tu : sina jo e ilo toki Emesen la mi mute li ken toki a!
 
-jan tu wan > nimi mi li ikojba@gmail.com lon ilo Google Talk. taso sina lon kin lon jan pona mi :).
+jan tu wan : nimi mi li ikojba@gmail.com lon ilo Google Talk. taso sina lon kin lon jan pona mi :).

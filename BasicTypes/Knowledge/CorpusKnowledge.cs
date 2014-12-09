@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using BasicTypes.Collections;
 using BasicTypes.NormalizerCode;
+using BasicTypes.ParseDiscourse;
 using BasicTypes.Parser;
 using NUnit.Framework.Constraints;
 
@@ -17,7 +18,7 @@ namespace BasicTypes.Knowledge
     public class CorpusKnowledge
     {
         private readonly string[] sentences;
-        private Dialect c;
+        private Dialect dialect;
         public string[] Setences
         {
             get { return sentences; }
@@ -28,10 +29,10 @@ namespace BasicTypes.Knowledge
             //https://stackoverflow.com/questions/521146/c-sharp-split-string-but-keep-split-chars-separators
             //https://stackoverflow.com/questions/3115150/how-to-escape-regular-expression-special-characters-using-javascript
 
-            c = dialect;
-            ParserUtils pu = new ParserUtils(c);
-
-            sentences = pu.ParseIntoNonNormalizedSentences(corpus);
+            this.dialect = dialect;
+            
+            SentenceSplitter ss = new SentenceSplitter(dialect);
+            sentences = ss.ParseIntoNonNormalizedSentences(corpus);
             for (int index= 0; index < sentences.Length; index++)
             {
                 sentences[index] = Normalizer.NormalizeText(sentences[index],dialect);
@@ -40,7 +41,7 @@ namespace BasicTypes.Knowledge
 
         public List<Sentence>[] MakeSentences()
         {
-            ParserUtils pu = new ParserUtils(c);
+            ParserUtils pu = new ParserUtils(dialect);
 
             List<List<Sentence>> facts = new List<List<Sentence>>();
 

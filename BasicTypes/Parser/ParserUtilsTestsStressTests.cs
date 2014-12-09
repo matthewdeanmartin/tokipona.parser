@@ -8,6 +8,7 @@ using BasicTypes.Extensions;
 using BasicTypes.Glosser;
 using BasicTypes.Knowledge;
 using BasicTypes.NormalizerCode;
+using BasicTypes.ParseDiscourse;
 using NUnit.Framework;
 
 namespace BasicTypes.Parser
@@ -51,11 +52,11 @@ namespace BasicTypes.Parser
             List<string> good = new List<string>();
             TokenParserUtils tpu = new TokenParserUtils();
             Dialect dialect = Dialect.LooseyGoosey;
-            ParserUtils pu = new ParserUtils(dialect);
-
+            
+            SentenceSplitter ss = new SentenceSplitter(dialect);
             foreach (string s in reader.NextFile())
             {
-                string[] rawSentences = pu.ParseIntoNonNormalizedSentences(s);
+                string[] rawSentences = ss.ParseIntoNonNormalizedSentences(s);
                 foreach (string sentence in rawSentences)
                 {
                     string normalized = Normalizer.NormalizeText(sentence, dialect);
@@ -109,9 +110,11 @@ namespace BasicTypes.Parser
             ParserUtils pu = new ParserUtils(dialect);
 
             CorpusFileReader reader = new CorpusFileReader();
+            SentenceSplitter ss = new SentenceSplitter(dialect);
+
             foreach (string s in reader.NextFile())
             {
-                foreach (string original in pu.ParseIntoNonNormalizedSentences(s))
+                foreach (string original in ss.ParseIntoNonNormalizedSentences(s))
                 {
                     try
                     {
@@ -144,16 +147,16 @@ namespace BasicTypes.Parser
             ParserUtils pu = new ParserUtils(dialect);
 
             Dialect english = Dialect.LooseyGoosey;
-            english.ThrowOnSyntaxError = false;
             english.TargetGloss = "en";
             english.GlossWithFallBacks = true;
 
             CorpusFileReader reader = new CorpusFileReader(true);
             GlossMaker gm = new GlossMaker();
+            SentenceSplitter ss = new SentenceSplitter(dialect);
 
             foreach (string s in reader.NextFile())
             {
-                foreach (string original in pu.ParseIntoNonNormalizedSentences(s))
+                foreach (string original in ss.ParseIntoNonNormalizedSentences(s))
                 {
                     Sentence structured = null;
                     //try
@@ -207,16 +210,16 @@ namespace BasicTypes.Parser
             ParserUtils pu = new ParserUtils(dialect);
 
             Dialect english = Dialect.LooseyGoosey;
-            english.ThrowOnSyntaxError = true;
             english.TargetGloss = "en";
             english.GlossWithFallBacks = true;
 
             CorpusFileReader reader = new CorpusFileReader();
             GlossMaker gm = new GlossMaker();
+            SentenceSplitter ss = new SentenceSplitter(dialect);
 
             foreach (string s in reader.NextFile())
             {
-                foreach (string original in pu.ParseIntoNonNormalizedSentences(s))
+                foreach (string original in ss.ParseIntoNonNormalizedSentences(s))
                 {
                     Sentence structured = null;
                     //try
@@ -332,16 +335,16 @@ namespace BasicTypes.Parser
             ParserUtils pu = new ParserUtils(dialect);
 
             Dialect english = Dialect.LooseyGoosey;
-            english.ThrowOnSyntaxError = false;
             english.TargetGloss = "en";
             english.GlossWithFallBacks = true;
 
             CorpusFileReader reader = new CorpusFileReader();
             GlossMaker gm = new GlossMaker();
+            SentenceSplitter ss = new SentenceSplitter(dialect);
 
             foreach (string s in reader.NextFile())
             {
-                foreach (string original in pu.ParseIntoNonNormalizedSentences(s))
+                foreach (string original in ss.ParseIntoNonNormalizedSentences(s))
                 {
                     Sentence structured = null;
                     try
@@ -398,17 +401,19 @@ namespace BasicTypes.Parser
             ParserUtils pu = new ParserUtils(dialect);
 
             Dialect english = Dialect.LooseyGoosey;
-            english.ThrowOnSyntaxError = false;
             english.TargetGloss = "en";
             english.GlossWithFallBacks = true;
 
             CorpusFileReader reader = new CorpusFileReader();
             GlossMaker gm = new GlossMaker();
+            SentenceSplitter ss = new SentenceSplitter(dialect);
 
             foreach (string s in reader.NextFile())
             {
-                foreach (string original in pu.ParseIntoNonNormalizedSentences(s))
+                foreach (string original in ss.ParseIntoNonNormalizedSentences(s))
                 {
+                    if(original.Contains(" su ")) continue; //neologism, back when we didn't know what pu was and hoped it was something like scandinavian sem
+                    
                     Sentence structured = null;
                     //try
                     //{
@@ -427,7 +432,9 @@ namespace BasicTypes.Parser
                     
 
                     if (normalized.StartCheck("kin la ")) continue; //no big deal
-
+                    if(normalized.ContainsCheck("pilin pona o")) continue; //Not trying to solve vocatives right now
+                    if (normalized.ContainsCheck(" o, ")) continue; //Not trying to solve vocatives right now
+                    
                     structured = pu.ParsedSentenceFactory(normalized, original);
                     string diag = structured.ToString("b");
 
@@ -465,16 +472,16 @@ namespace BasicTypes.Parser
             ParserUtils pu = new ParserUtils(dialect);
 
             Dialect english = Dialect.LooseyGoosey;
-            english.ThrowOnSyntaxError = false;
             english.TargetGloss = "en";
             english.GlossWithFallBacks = true;
 
             CorpusFileReader reader = new CorpusFileReader();
             GlossMaker gm = new GlossMaker();
+            SentenceSplitter ss = new SentenceSplitter(dialect);
 
             foreach (string s in reader.NextFile())
             {
-                foreach (string original in pu.ParseIntoNonNormalizedSentences(s))
+                foreach (string original in ss.ParseIntoNonNormalizedSentences(s))
                 {
                     Sentence structured = null;
                     //try
@@ -532,16 +539,16 @@ namespace BasicTypes.Parser
             ParserUtils pu = new ParserUtils(dialect);
 
             Dialect english = Dialect.LooseyGoosey;
-            english.ThrowOnSyntaxError = false;
             english.TargetGloss = "en";
             english.GlossWithFallBacks = true;
 
             CorpusFileReader reader = new CorpusFileReader();
             GlossMaker gm = new GlossMaker();
+            SentenceSplitter ss = new SentenceSplitter(dialect);
 
             foreach (string s in reader.NextFile())
             {
-                foreach (string original in pu.ParseIntoNonNormalizedSentences(s))
+                foreach (string original in ss.ParseIntoNonNormalizedSentences(s))
                 {
                     Sentence structured = null;
                     try
@@ -624,9 +631,11 @@ namespace BasicTypes.Parser
             dialect.TargetGloss = "en";
 
             ParserUtils pu = new ParserUtils(dialect);
+            SentenceSplitter ss = new SentenceSplitter(dialect);
+
             foreach (string sample in samples)
             {
-                string[] sentences = pu.ParseIntoNonNormalizedSentences(sample);
+                string[] sentences = ss.ParseIntoNonNormalizedSentences(sample);
                 foreach (string sentence in sentences)
                 {
                     if (sentence.ContainsCheck("Georgia"))
@@ -664,28 +673,38 @@ namespace BasicTypes.Parser
             dialect.TargetGloss = "en";
 
             GlossMaker gm = new GlossMaker();
+            ParserUtils pu = new ParserUtils(dialect);
+
+            int fail = 0;
+
+            List<string> BadSentence  = new List<string>();
+            List<Exception> exceptions = new List<Exception>();
+
+            SentenceSplitter ss = new SentenceSplitter(dialect);
+
             foreach (string sample in samples)
             {
-                CorpusKnowledge ck = new CorpusKnowledge(sample, dialect);
-                List<Sentence>[] s = ck.MakeSentences();
-                for (int i = 0; i < s.Length; i++)
+                string[] sentenceStrings =  ss.ParseIntoNonNormalizedSentences(sample);
+                string[] normalized = new string[sentenceStrings.Length];
+                for (int index = 0; index < sentenceStrings.Length; index++)
                 {
-                    foreach (Sentence sentence in s[i])
-                    {
-                        string reToStringed = sentence == null ? "[NULL]" : sentence.ToString();
-                        bool match = ck.Setences.Any(x => x.Trim() == reToStringed);
-                        
-                        //Console.WriteLine(match + " O:" + ck.Setences[i]);
-                        //Console.WriteLine(match + " Rg:" + (sentence == null ? "[NULL]" : sentence.ToString("g")));
-                        //Console.WriteLine(match + " Rb:" + (sentence == null ? "[NULL]" : sentence.ToString("b")));
-                        Console.WriteLine(match + " HTML:" + (sentence == null ? "[NULL]" : sentence.ToString("html")));
+                    //try
+                    //{
+                        normalized[index] = Normalizer.NormalizeText(sentenceStrings[index], dialect);
+                        Sentence sentence = pu.ParsedSentenceFactory(normalized[index], sentenceStrings[index]);
 
-                        
-                        //string renormalized = Normalizer.NormalizeText(sentence.ToString("g"),dialect);
-                        //Console.WriteLine(match + " Ren:" + (sentence == null ? "[NULL]" : gm.Gloss(renormalized, "n/a")));
-                        
-                    }
+                        Console.WriteLine(sentence.ToString("g"));
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    fail++;
+                    //    Console.WriteLine(sentenceStrings[index]);
+                    //    Console.WriteLine(ex);
+                    //}
+
                 }
+                
+                Console.WriteLine(fail + " failed sentences.");
             }
 
         }
@@ -696,16 +715,16 @@ namespace BasicTypes.Parser
         [Test]
         public void IdentifyDiscourses_CanWeGroupThem()
         {
-            Dialect c = Dialect.LooseyGoosey;
-            c.ThrowOnSyntaxError = false;
-            ParserUtils pu = new ParserUtils(c);
+            Dialect dialect = Dialect.LooseyGoosey;
+            ParserUtils pu = new ParserUtils(dialect);
+            SentenceSplitter ss = new SentenceSplitter(dialect);
 
-            Sentence[] s = pu
+            Sentence[] s = ss
                             .ParseIntoNonNormalizedSentences(CorpusTexts.UnpaText)
                             .Where(x => !string.IsNullOrWhiteSpace(x))
                             .Select(x =>
                             {
-                                string normalized = Normalizer.NormalizeText(x,c);
+                                string normalized = Normalizer.NormalizeText(x,dialect);
                                 if (string.IsNullOrWhiteSpace(normalized))
                                     return null;
                                 return  pu.ParsedSentenceFactory(normalized, x);
@@ -714,7 +733,8 @@ namespace BasicTypes.Parser
                             .ToArray();
             Assert.Greater(s.Length, 0);
 
-            List<Sentence>[] d = pu.GroupIntoDiscourses(s);
+
+            List<Sentence>[] d = ss.GroupIntoDiscourses(s);
 
             Assert.Greater(d.Length, 0);
 
@@ -744,7 +764,6 @@ namespace BasicTypes.Parser
         public void CorpusKnowledge_HeadedPhraseParser()
         {
             Dialect c = Dialect.LooseyGoosey;
-            c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
             HeadedPhrase value = pu.HeadedPhraseParser("jan Mato");
@@ -757,7 +776,6 @@ namespace BasicTypes.Parser
         public void ProcessSingletonEnChainOneEn()
         {
             Dialect c = Dialect.LooseyGoosey;
-            c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
             ComplexChain list = pu.ProcessEnPiChain("jan en soweli");
@@ -772,7 +790,6 @@ namespace BasicTypes.Parser
         public void ProcessSingletonEnChainNoEn()
         {
             Dialect c = Dialect.LooseyGoosey;
-            c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
             ComplexChain list = pu.ProcessEnPiChain("jan Mato");
@@ -785,7 +802,6 @@ namespace BasicTypes.Parser
         public void ProcessSingletonPredicate()
         {
             Dialect c = Dialect.LooseyGoosey;
-            c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
             TpPredicate predicate = pu.ProcessPredicates("li soweli lili");

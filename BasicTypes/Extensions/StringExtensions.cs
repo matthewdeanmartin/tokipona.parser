@@ -69,6 +69,19 @@ namespace BasicTypes.Extensions
             return value != null && letters.Any(value.Contains);
         }
 
+        public static bool ContainsOnlyAtoZLetters(this string value)
+        {
+            return value != null && value.ToLower().All(x=>"abcdefghijklmnopqrstuvwxyz".Contains(x));
+        }
+        public static bool ContainsOnlyPunctuation(this string value)
+        {
+            return value != null && value.ToLower().All(x => "!@#$%^&*()_+-={}[]|:,<>,/~`".Contains(x));
+        }
+        public static bool ContainsOnlyDigits(this string value)
+        {
+            return value != null && value.ToLower().All(x => "1234567890".Contains(x));
+        }
+
         public static bool IsFirstUpperCased(this string value)
         {
             if (string.IsNullOrWhiteSpace(value)) return false;

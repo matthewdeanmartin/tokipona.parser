@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper.Mappers;
 using BasicTypes.Corpus;
 using BasicTypes.Extensions;
+using BasicTypes.ParseDiscourse;
 using BasicTypes.Parser;
 using BasicTypes.NormalizerCode;
 using BasicTypes.Parts;
@@ -33,9 +34,13 @@ namespace BasicTypes.Dictionary
 
             CorpusFileReader reader = new CorpusFileReader();
             Dictionary<string, int> words = new Dictionary<string, int>(500);
+            
+            SentenceSplitter ss = new SentenceSplitter(dialect);
+            
             foreach (string s in reader.NextFile())
             {
-                foreach (string original in pu.ParseIntoNonNormalizedSentences(s))
+                string[] sentences = ss.ParseIntoNonNormalizedSentences(s);
+                foreach (string original in sentences)
                 {
                     Sentence structured = null;
                     string normalized;

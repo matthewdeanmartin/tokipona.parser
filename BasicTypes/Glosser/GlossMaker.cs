@@ -22,7 +22,6 @@ namespace BasicTypes.Glosser
     {
         public string Gloss(string normalized, string original, Dialect dialect)
         {
-            dialect.ThrowOnSyntaxError = false;
             dialect.TargetGloss = "en";
             dialect.GlossWithFallBacks = true;
             ParserUtils pu = new ParserUtils(dialect);
@@ -40,7 +39,6 @@ namespace BasicTypes.Glosser
             }
 
             Dialect dialect = Dialect.LooseyGoosey;
-            dialect.ThrowOnSyntaxError = false;
             dialect.TargetGloss = language;
             dialect.GlossWithFallBacks = true;
             ParserUtils pu = new ParserUtils(dialect);

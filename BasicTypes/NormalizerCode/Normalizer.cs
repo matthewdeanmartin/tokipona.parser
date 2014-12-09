@@ -10,6 +10,8 @@ using BasicTypes.Extensions;
 
 namespace BasicTypes.NormalizerCode
 {
+
+
     /// <summary>
     /// Turns human written text into machine parsable text.
     /// </summary>
@@ -25,6 +27,7 @@ namespace BasicTypes.NormalizerCode
     /// </remarks>
     public class Normalizer
     {
+
 
         public static string NormalizeText(string text, Dialect dialect)//= null
         {
@@ -43,9 +46,21 @@ namespace BasicTypes.NormalizerCode
                 dialect = Config.CurrentDialect;
             }
 
-            
-
             string normalized = text.Trim(new char[] { '\n', '\r', ' ' });
+
+
+            if (normalized.ContainsCheck(" ."))
+            {
+                normalized = normalized.Replace(" .", ".");
+            }
+            if (normalized.ContainsCheck(" ?"))
+            {
+                normalized = normalized.Replace(" ?", "?");
+            }
+            if (normalized.ContainsCheck(" !"))
+            {
+                normalized = normalized.Replace(" !", "!");
+            }
 
             //Normalize prepositions to ~, so that we don't have tokens with embedded spaces (e.g. foo, kepeken => [foo],[, kepeken])
 
@@ -58,7 +73,7 @@ namespace BasicTypes.NormalizerCode
 
             if (normalized.ContainsCheck(" li pi "))
             {
-                normalized= normalized.Replace(" li pi ", " li XXXXZiXXXX ");
+                normalized = normalized.Replace(" li pi ", " li XXXXZiXXXX ");
             }
             ////"/\\*.*?\\*/"
             if (normalized.ContainsCheck("/*") || normalized.ContainsCheck("*/"))
@@ -66,11 +81,19 @@ namespace BasicTypes.NormalizerCode
                 normalized = ApplyNormalization(normalized, "Comments", StripMultilineComments);
             }
 
+            //Process explicit Foreign text.
 
+            if (normalized.ContainsCheck("\""))
+            {
+                normalized = ApplyNormalization(normalized, "ForeignSpace", ProcessWhiteSpaceInForeignText, dialect);
+            }
+
+            //Process implicity Foreign Text
             if (dialect.InferCompoundsPrepositionsForeignText)
             {
-                normalized = ApplyNormalization(normalized, "Foreign", NormalizeChaos.Normalize);
+                normalized = ApplyNormalization(normalized, "Foreign", NormalizeChaos.Normalize, dialect);
             }
+
 
             //Hyphenated words. This could cause a problem for compound words that cross lines.
             if (normalized.ContainsCheck("-\n"))
@@ -95,10 +118,8 @@ namespace BasicTypes.NormalizerCode
             }
 
 
-            if (normalized.ContainsCheck("\""))
-            {
-                normalized = ApplyNormalization(normalized, "ForeignSpace", ProcessWhiteSpaceInForeignText);
-            }
+
+
 
             //Extraneous punctuation-- TODO, expand to most other symbols.
             if (normalized.ContainsCheck("(") || normalized.ContainsCheck(")"))
@@ -125,7 +146,7 @@ namespace BasicTypes.NormalizerCode
                 normalized = ApplyNormalization(normalized, "ExtraWhiteSpace", ProcessExtraneousWhiteSpace);
             }
 
-            
+
 
             //Okay, phrases should be recognizable now.
             if (dialect.InferCompoundsPrepositionsForeignText)
@@ -275,6 +296,7 @@ namespace BasicTypes.NormalizerCode
 
             normalized = Regex.Replace(normalized, @"^\s+|\s+$", ""); //Remove extraneous whitespace
 
+
             //If it is a sentence fragment, I really can't deal with prep phrase that may or may not be in it.
             if (normalized.ContainsCheck("~")
                 && !normalized.ContainsCheck(" li ") //full sentence okay
@@ -318,7 +340,7 @@ namespace BasicTypes.NormalizerCode
 
 
 
-            
+
 
 
 
@@ -367,6 +389,12 @@ namespace BasicTypes.NormalizerCode
                 //ugh what a hack.
                 normalized = "mi la " + normalized.Substring("mi li la ".Length);
             }
+            if (normalized.StartCheck("taso mi li la "))
+            {
+                //ugh what a hack.
+                normalized = "taso mi la " + normalized.Substring("taso mi li la ".Length);
+            }
+            
 
             //mi la
             if (normalized.StartCheck("sina li la "))
@@ -528,10 +556,22 @@ namespace BasicTypes.NormalizerCode
             return normalized;
         }
 
+        private static string ApplyNormalization(string normalized, string what, Func<string, Dialect, string> normalization, Dialect dialect)
+        {
+            string copy = string.Copy(normalized);
+            normalized = normalization.Invoke(normalized, dialect);
+            if (copy != normalized)
+            {
+                Tracers.Normalize.TraceInformation(what + "1:" + copy);
+                Tracers.Normalize.TraceInformation(what + "2:" + normalized);
+            }
+            return normalized;
+        }
+
         private static string ApplyNormalization(string normalized, string what, Func<string, string> normalization)
         {
             string copy = string.Copy(normalized);
-            normalized = normalization.Invoke(normalized);// NormalizeChaos.Normalize(normalized);
+            normalized = normalization.Invoke(normalized);
             if (copy != normalized)
             {
                 Tracers.Normalize.TraceInformation(what + "1:" + copy);
@@ -556,7 +596,7 @@ namespace BasicTypes.NormalizerCode
                 if (pair.Key.StartCheck("li-")) continue; //These are essentially verb markers and all verbs phrases are templates (i.e. can have additional words inserted & be the same template)
                 if (pair.Key.ContainsCheck("-e-")) continue;
 
-                
+
                 //Weak compounds, i.e. to close to noun + ordinary modifier because the modifier is excedingly common.
                 //if (pair.Key.EndCheck("-lili")) continue; //jan lili = child?  Ugh, but it is so common.
                 //if (pair.Key.EndCheck("-pona")) continue;//jan pona...
@@ -696,11 +736,12 @@ namespace BasicTypes.NormalizerCode
         }
 
 
-        private static string ProcessWhiteSpaceInForeignText(string normalized)
+        private static string ProcessWhiteSpaceInForeignText(string normalized, Dialect dialect)
         {
+
             StringBuilder sb = new StringBuilder(normalized.Length);
             bool insideForeignText = false;
-
+            StringBuilder possiblyJustTp = new StringBuilder(normalized.Length);
             foreach (char c in normalized)
             {
                 if (c == '"')
@@ -715,11 +756,29 @@ namespace BasicTypes.NormalizerCode
                 {
                     sb.Append(c);
                 }
+
+                if (insideForeignText)
+                {
+                    possiblyJustTp.Append(c);
+                }
             }
+
             if (insideForeignText)
             {
                 sb.Append('"');
             }
+
+            //Two scenarios
+            //"toki li pona" li "ni li sina". Embedded text. 
+            //mi toki e ni: "ale li pona". Used doulbe quotes instead of single.
+            //if (dialect.InferCompoundsPrepositionsForeignText)
+            //{
+            //    if (NormalizeChaos.PercentTokiPona(possiblyJustTp.ToString()) > 0.90m)
+            //    {
+            //        return normalized.Replace("\"", "'");
+            //    }
+            //}
+
             return sb.ToString();
         }
 
@@ -947,7 +1006,7 @@ namespace BasicTypes.NormalizerCode
                     string initialPrep = conjunction + "~" + prep;
                     if (normalized.StartCheck(initialPrep))
                     {
-                        normalized = normalized.Replace(initialPrep, initialPrep.Replace("~",""));
+                        normalized = normalized.Replace(initialPrep, initialPrep.Replace("~", ""));
                     }
                 }
             }
@@ -957,7 +1016,7 @@ namespace BasicTypes.NormalizerCode
                 string terminalPrep = "~" + prep;
                 if (normalized.EndCheck(terminalPrep))
                 {
-                    normalized = normalized.Remove(normalized.LastIndexOf(terminalPrep),1);
+                    normalized = normalized.Remove(normalized.LastIndexOf(terminalPrep), 1);
                 }
             }
 
@@ -1171,19 +1230,14 @@ namespace BasicTypes.NormalizerCode
                 Match found = Regex.Match(phrase, @"\b" + s1 + " " + s1 + @"\b");
                 if (found.Success)
                 {
-                    if (dialect.ThrowOnSyntaxError)
-                        throw new DoubleParticleException();
-                    else
-                    {
-                        return true;
-                    }
+                    throw new DoubleParticleException("double particle: " + s1 + " " + s1 + " in " + phrase);
                 }
             }
             foreach (string s1 in new String[] { "li", "la", "e", "pi" })
             {
                 foreach (string s2 in new String[] { "li", "la", "e", "pi" })
                 {
-                    
+
                     if (dialect.LiPiIsValid && (s1 == "li" && s2 == "pi"))
                     {
                         continue;
@@ -1191,12 +1245,7 @@ namespace BasicTypes.NormalizerCode
                     Match found = Regex.Match(phrase, @"\b" + s1 + " " + s2 + @"\b");
                     if (found.Success)
                     {
-                        if (dialect.ThrowOnSyntaxError)
-                            throw new TpSyntaxException("Illegal series of particles : " + s1 + " " + s2 + " in " + phrase);
-                        else
-                        {
-                            return true;
-                        }
+                        throw new TpSyntaxException("Illegal series of particles : " + s1 + " " + s2 + " in " + phrase);
                     }
                 }
             }

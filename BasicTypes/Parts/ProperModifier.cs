@@ -30,7 +30,7 @@ namespace BasicTypes.Parts
             }
             if (word.IndexOfAny(new char[] { '.', ' ', '?', '!' }) != -1)
             {
-                throw new InvalidLetterSetException("Words must not have spaces or punctuation, (other than the preposition marker ~)");
+                throw new InvalidLetterSetException("Words must not have spaces or punctuation, (other than the preposition marker ~): " + word);
             }
 
             //Validate

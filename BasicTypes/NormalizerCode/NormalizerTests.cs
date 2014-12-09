@@ -1,6 +1,7 @@
 ﻿using System;
 using BasicTypes.Corpus;
 using BasicTypes.Extensions;
+using BasicTypes.ParseDiscourse;
 using NUnit.Framework;
 
 namespace BasicTypes.NormalizerCode
@@ -16,12 +17,13 @@ namespace BasicTypes.NormalizerCode
         {
             int i = 0;
             Dialect dialect = Dialect.LooseyGoosey;
-            ParserUtils pu = new ParserUtils(dialect);
-
+            SentenceSplitter ss = new SentenceSplitter(dialect);
+            
             CorpusFileReader reader = new CorpusFileReader(true);
             foreach (string s in reader.NextFile())
             {
-                foreach (string sentence in pu.ParseIntoNonNormalizedSentences(s))
+                string[] sentenceStrings = ss.ParseIntoNonNormalizedSentences(s);
+                foreach (string sentence in sentenceStrings)
                 {
                     string result1 = Normalizer.NormalizeText(sentence, dialect);
                     string result2 = Normalizer.NormalizeText(result1, dialect);
@@ -85,9 +87,11 @@ namespace BasicTypes.NormalizerCode
             ParserUtils pu  = new ParserUtils(dialect);
             
             CorpusFileReader reader =new CorpusFileReader();
+            SentenceSplitter ss = new SentenceSplitter(dialect);
+
             foreach (string s in reader.NextFile())
             {
-                foreach (string sentence in pu.ParseIntoNonNormalizedSentences(s))
+                foreach (string sentence in ss.ParseIntoNonNormalizedSentences(s))
                 {
                     string result = Normalizer.NormalizeText(sentence, dialect);
                     decimal percent = NormalizeChaos.PercentTokiPona(result);
@@ -283,9 +287,9 @@ namespace BasicTypes.NormalizerCode
         {
             const string s = "sina toki e ni: mi wile e ni.";
             Dialect dialect = Dialect.LooseyGoosey;
-            //c.ThrowOnSyntaxError = false;
-            ParserUtils pu = new ParserUtils(dialect);
-            string[] sentences = pu.ParseIntoNonNormalizedSentences(s);
+            SentenceSplitter ss = new SentenceSplitter(dialect);
+
+            string[] sentences = ss.ParseIntoNonNormalizedSentences(s);
 
             for (int index = 0; index < sentences.Length; index++)
             {

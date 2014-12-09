@@ -306,7 +306,9 @@ namespace DemoSite.Controllers
                 throw new ArgumentOutOfRangeException("parse", "Need a valid dialect");
             }
             ParserUtils pu = new ParserUtils(dialect);
-            string[] sentences = pu.ParseIntoNonNormalizedSentences(parse.SourceText);
+            SentenceSplitter ss = new SentenceSplitter(dialect);
+
+            string[] sentences = ss.ParseIntoNonNormalizedSentences(parse.SourceText);
             StringBuilder normalizedSb = new StringBuilder();
             StringBuilder spitBackSb = new StringBuilder();
             StringBuilder bracketSb = new StringBuilder();
@@ -525,7 +527,9 @@ namespace DemoSite.Controllers
         {
             Dialect dialect = Dialect.LooseyGoosey;
             ParserUtils pu = new ParserUtils(dialect);
-            string[] sentences = pu.ParseIntoNonNormalizedSentences(parse.SourceText);
+            SentenceSplitter ss = new SentenceSplitter(dialect);
+
+            string[] sentences = ss.ParseIntoNonNormalizedSentences(parse.SourceText);
 
             StringBuilder errors = new StringBuilder();
 

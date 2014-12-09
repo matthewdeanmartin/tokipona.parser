@@ -1,19 +1,36 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using BasicTypes.Extensions;
+using BasicTypes.ParseDiscourse;
 using BasicTypes.Parser;
+using NUnit.Framework.Constraints;
+using Polenter.Serialization.Advanced.Serializing;
 
 namespace BasicTypes.NormalizerCode
 {
     /// <summary>
     /// Assumes text is total chaos- mixed tp & foreign languages, HTML, unicode, inconsistent punctuation
     /// </summary>
+    /// <remarks>
+    /// What is difficult about normalizing foreign text is that foreign text might be an entire sentence, phrase or just a word.
+    /// 
+    /// If it is just a word, it should be jan "Matthew"
+    /// 
+    /// If it is an entire segment or paragraph, it should be /// commented. It isn't meaningful to tp parse an English novel. Might as well tp parse tea cups and crumpets.
+    /// 
+    /// If it is a long phrase, it should be "This*is*Some*Embedded*English"
+    /// </remarks>
     public class NormalizeChaos
     {
-        public static string Normalize(string sentence)
+        public static string Normalize(string sentence, Dialect dialect)
         {
             string normalized = DetectWrongQuotes(sentence);
-            normalized = DetectEntireForeignSentence(normalized);
+            normalized = DetectEntireForeignSentence(normalized, dialect);
+
+            normalized = SentenceSplitter.SwapQuoteAndSentenceTerminatorOrder(normalized);
 
             //TODO: use english spell check to detect words
             
@@ -73,7 +90,126 @@ namespace BasicTypes.NormalizerCode
             
         }
 
-        private static string DetectIndividualForeignWords(string normalized)
+        /// <summary>
+        /// Stupidest thing that could possibly work. The goal is to get the 90% of cases and not fail in those cases
+        /// than to try to get 100% of the cases and create a hot spot of bug. See alt below.
+        /// </summary>
+        public static string DetectIndividualForeignWords(string normalized, Dialect dialect)
+        {
+            if (!dialect.InferCompoundsPrepositionsForeignText)
+            {
+                return normalized;
+            }
+
+            string[] split = normalized.Split(new char[] {' '});
+
+            for (int index = 0; index < split.Length; index++)
+            {
+                string word = split[index];
+
+                if (word.Contains("Sinfest"))
+                {
+                    int i = 42;
+                }
+
+                if (word.StartCheck("\"") && word.EndsWith("\""))
+                {
+                    //it already is fine.
+                    continue;
+                }
+                if (word.ContainsOnlyDigits())
+                {
+                    continue;
+                }
+                if (word.ContainsOnlyPunctuation())
+                {
+                    continue;
+                }
+                //Can't deal with whitespace yet.
+                if (word.ContainsCheck("\n"))
+                {
+                    continue;
+                }
+                if (word.ContainsCheck("\r"))
+                {
+                    continue;
+                }
+                if (word.ContainsCheck("\t"))
+                {
+                    continue;
+                }
+                if (word.ContainsOnlyAtoZLetters())
+                {
+                    //Simple stand alone word that clearly is not toki pona.
+                    if (!Token.CheckIsValidPhonology(word))
+                    {
+                        split[index] = "\"" + word + "\"";
+                    }
+                }
+                else
+                {
+                    StringBuilder justLetters = new StringBuilder();
+                    
+                    foreach (char c in word.ToLower())
+                    {
+                        if ("abcdefghijklmnopqrstuvwxyz".Contains(c))
+                        {
+                            justLetters.Append(c);
+                        }
+                    }
+                    if (!Token.CheckIsValidPhonology(justLetters.ToString()))
+                    {
+                        
+
+
+                        StringBuilder rebuild = new StringBuilder();
+
+                        bool firstQuote = word.StartCheck("\"");
+                        bool lastQuote = word.Contains("\"") && !firstQuote;
+                        string testWord = word;
+                        string testWordLowered = testWord.ToLower();
+
+                        for (int i = 0; i < testWord.Length; i++)
+                        {
+                            if (!firstQuote && "abcdefghijklmnopqrstuvwxyz".ContainsCheck(testWordLowered[i]))
+                            {
+                                rebuild.Append("\"" + testWord[i]);
+                                firstQuote = true;
+                                continue;
+                            }
+                            if ( testWordLowered.Length<i && firstQuote && !"abcdefghijklmnopqrstuvwxyz".Contains(testWordLowered[i+1]) && !lastQuote)
+                            {
+                                rebuild.Append(testWord[i] + "\"");
+                                lastQuote = true;
+                                continue;
+                            }
+                            rebuild.Append(testWord[i]);
+                        }
+                        if (firstQuote && !lastQuote)
+                        {
+                            rebuild.Append("\"");
+                        }
+
+                        if (!firstQuote && !lastQuote)
+                        {
+                            rebuild.Append("\"", 0, 1);//prepend
+                            rebuild.Append("\"");
+                        }
+
+                        
+                        split[index] = rebuild.ToString();
+                    }
+                    
+                }
+            }
+
+            return String.Join(" ", split);
+        }
+
+        /// <summary>
+        /// This has one fatal flaw-- it can screw up the punctuation that is between tokens.
+        /// </summary>
+        public static string DetectIndividualForeignWordsByTokens(string normalized)
         {
             if (normalized.ContainsCheck(" "))
             {
@@ -114,29 +250,33 @@ namespace BasicTypes.NormalizerCode
             return normalized;
         }
 
-        private static string DetectEntireForeignSentence(string sentence)
+        public static string DetectEntireForeignSentence(string sentence, Dialect dialect)
         {
             decimal percentTokipona = PercentTokiPona(sentence);
-            if (percentTokipona < 0.20m)
+            if (percentTokipona >= 0.20m)
             {
-                if (sentence.ContainsCheck(" "))
-                {
-                    sentence = sentence.Replace(" ", "*");
-                }
-                if (!sentence.StartCheck(@""""))
-                {
-                    sentence = @"""" + sentence;
-                }
-                if (!sentence.EndCheck(@""""))
-                {
-                    sentence = sentence + @"""";
-                }
-                return sentence;
+                //Quote on a per word basis.
+                return  NormalizeChaos.DetectIndividualForeignWords(sentence, dialect);
             }
-            else
+
+            //Quote the whole thing. 
+            if (sentence.ContainsCheck(" "))
             {
-                return sentence;
+                sentence = sentence.Replace(" ", "*");
             }
+            if (!sentence.StartCheck(@""""))
+            {
+                sentence = @"""" + sentence;
+            }
+            if (!sentence.EndCheck(@"""") && !sentence.EndCheck("\"."))
+            {
+                sentence = sentence + @"""";
+            }
+            if (sentence.EndsWith("\".\""))
+            {
+                throw new InvalidOperationException();
+            }
+            return sentence;
 
             //if 25% or less tp, this is mostly foreign text.
 

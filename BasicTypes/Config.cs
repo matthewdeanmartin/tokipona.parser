@@ -80,7 +80,7 @@ namespace BasicTypes
         public bool AllowMiOVerbPhrase { get; set; } //E.g. mi o moku. vs o mi moku.
         
         //Deprecated. This was a bad idea.
-        public bool ThrowOnSyntaxError { get; set; }//With human users, don't throw!
+        //public bool ThrowOnSyntaxError { get; set; }//With human users, don't throw!
 
         public string CalendarType { get; set; }
         public string NumberType { get; set; } //poman, stupid, half-stupid, body
@@ -126,7 +126,6 @@ namespace BasicTypes
                     CalendarType = "Compact",
                     NumberType = "Body",
                     WritingSystem = "Roman",
-                    ThrowOnSyntaxError = false,
                     TargetGloss = "tp",
                     InferCompoundsPrepositionsForeignText = false, //Make user enter their own!
                     InferNumbers =false
@@ -157,7 +156,6 @@ namespace BasicTypes
                     CalendarType = "Compact",
                     NumberType = "Body",
                     WritingSystem = "Roman",
-                    ThrowOnSyntaxError = true,
                     TargetGloss = "tp",
                     InferCompoundsPrepositionsForeignText = true,
                     InferNumbers =true

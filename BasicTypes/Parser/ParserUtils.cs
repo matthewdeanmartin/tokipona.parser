@@ -22,104 +22,8 @@ namespace BasicTypes
         {
             this.config = config;
         }
-        public string[] ParseIntoNonNormalizedSentences(string text)
-        {
-            if (text == null)
-            {
-                throw new ArgumentNullException("text");
-            }
-            //https://stackoverflow.com/questions/521146/c-sharp-split-string-but-keep-split-chars-separators
-            //https://stackoverflow.com/questions/3115150/how-to-escape-regular-expression-special-characters-using-javascript
-
-            //TODO: Normalize well known compound phrases jan pona => jan-pona
-            //TODO: Normalize foreign words zap => 'zap', alternatively assume they are tp, but a mistake
-
-            //Normalize end lines.
-            if (text.ContainsCheck("\r\n"))
-            {
-                text = text.Replace("\r\n", "\n");
-            }
-            if (text.ContainsCheck("\n\n"))
-            {
-                text = text.Replace("\n\n", "\n");
-            }
-
-            if (text.ContainsCheck(";"))
-            {
-                //2 sentences connected... or 2 phrases connected?
-                text = text.Replace(";", ":");
-            }
-
-            //swap quote/terminator order
-            foreach (string delims in new[] { ".'", ".\"", "?'", "?\"", "!'", "!\"" })
-            {
-                if (text.ContainsCheck(delims))
-                {
-                    text = text.Replace(delims, delims[1] + delims[0].ToString());
-                }
-            }
-
-            //Using commas as a sentence break.
-            //jan Mato o, sina li lape anu seme?
-            // o, sina
-            if (text.Contains(" o, sina "))
-            {
-                text = text.Replace(" o, sina ", " o! sina ");
-            }
-
-            //Crap. If we break on \n then sentences with line feeds are cut in half.
-            //If we don't break on \n, then we blow up on intentional fragments like titles.
-            //Choosing to not break on \n & and manually add . to titles.
-            return Regex
-                .Split(text, @"(?<=[\?!.:])")  //split preserving punctuation
-                .Where(x => !string.IsNullOrWhiteSpace(x)) //skip empties
-                //.Select(x => Normalizer.NormalizeText(x, config))
-                .Select(x => x)
-                .Where(x => !string.IsNullOrWhiteSpace(x))
-                .ToArray();
-        }
-
-
-        public List<Sentence>[] GroupIntoDiscourses(Sentence[] sentences)
-        {
-            List<List<Sentence>> l = new List<List<Sentence>>();
-
-            List<Sentence> d = new List<Sentence>();
-            l.Add(d);
-            for (int i = 0; i < sentences.Length - 1; i++)
-            {
-                //Always add that sentence
-                Sentence s = sentences[i];
-                d.Add(s);
-
-                //Next decide if we keep adding, or if we create a new discourse.
-                //Keep adding if current implies a link to next OR next implies link to current.
-                Sentence next = i < (sentences.Length - 1) ? null : sentences[i + 1];
-                if (s.HasPunctuation())
-                {
-                    if (s.Punctuation == new Punctuation(":"))
-                    {
-
-                        //Linked to next!
-                        continue;
-                    }
-                }
-                else if (next != null && next.HasConjunction())
-                {
-                    continue;
-                }
-                d = new List<Sentence>();
-                l.Add(d);
-            }
-            foreach (List<Sentence> discourse in l.ToArray())
-            {
-                if (discourse.Count == 0)
-                {
-                    l.Remove(discourse);
-                }
-            }
-            return l.ToArray();
-        }
+     
+        
 
 
         //This should only operate on normalized sentences.
@@ -128,7 +32,7 @@ namespace BasicTypes
             if (string.IsNullOrWhiteSpace(sentence))
             {
                 return new Sentence(new NullOrSymbols(original));
-               //  throw new InvalidOperationException("Do not give me a null sentence. Can't tell if null sentence is from input or got lost in translation");
+                //  throw new InvalidOperationException("Do not give me a null sentence. Can't tell if null sentence is from input or got lost in translation");
             }
 
             if (sentence.StartCheck(" "))
@@ -145,7 +49,7 @@ namespace BasicTypes
             string preNormalize = string.Copy(sentence);
             if (sentence.EndCheck(" li") || sentence.EndCheck(" li."))
             {
-                throw new InvalidOperationException("Something went wrong, sentence ends with li");
+                throw new InvalidOperationException("Something went wrong, sentence ends with li: " + original);
             }
             //Normalization is really expensive. We must stop calling it twice.
             //sentence = Normalizer.NormalizeText(sentence, config); //Any way to avoid calling this twice?
@@ -167,7 +71,7 @@ namespace BasicTypes
 
             if (sentence.EndCheck(" "))
             {
-                throw new InvalidOperationException("Normalizer failed to trim");
+                throw new InvalidOperationException("Normalizer failed to trim: " + original);
             }
             //Console.WriteLine("NORMALIZED: " + sentence);
 
@@ -254,7 +158,7 @@ namespace BasicTypes
                             if (headSentence == null)
                             {
                                 throw new InvalidOperationException(
-                                    "Sentence appears to be headed by a fragment. Shouldn't deal with those here.");
+                                    "Sentence appears to be headed by a fragment. Shouldn't deal with those here.: " + original);
                             }
                             headSentence.LaFragment.Add(fragment);
                         }
@@ -273,7 +177,7 @@ namespace BasicTypes
             }
             if (headSentence == null)
             {
-                throw new InvalidOperationException("This is not a sentence, should deal with it with it's own parser");
+                throw new InvalidOperationException("This is not a sentence, should deal with it with it's own parser: " + original);
             }
             if (preconditions.Count == 0)
                 return headSentence;
@@ -453,36 +357,6 @@ namespace BasicTypes
             return parsedSentence;
         }
 
-        //public ComplexChain ProcessEnPiChain2(string subjects)
-        //{
-        //    string[] subjectTokens = Splitters.SplitOnEn(subjects);
-
-        //    //Split on pi
-        //    //jan pi pali suli en soweli pi tawa wawa
-
-        //    List<Chain> piChainList = new List<Chain>();
-        //    for (int i = 0; i < subjectTokens.Length; i++)
-        //    {
-        //        string piChains = subjectTokens[i];
-
-        //        string[] piLessTokens = Splitters.SplitOnPi(piChains);
-
-        //        List<HeadedPhrase> headedPhrases = new List<HeadedPhrase>();
-        //        foreach (string piLessToken in piLessTokens)
-        //        {
-        //            //Console.WriteLine("Preparing to parse [" + piLessToken + "] as piLessToken");
-        //            //Splits on spaces & separates into head & tail
-        //            HeadedPhrase piPhrase = HeadedPhraseParser(piLessToken);
-        //            //Console.WriteLine("Ended up with " + piPhrase);
-        //            headedPhrases.Add(piPhrase);
-        //        }
-        //        Chain piChain = new Chain(Particles.pi, headedPhrases.ToArray());
-        //        piChainList.Add(piChain);
-        //    }
-
-        //    ComplexChain subject =  new ComplexChain(Particles.en, piChainList.ToArray());
-        //    return subject;
-        //}
 
         public Chain ProcessPiChain(string value)
         {
@@ -492,7 +366,7 @@ namespace BasicTypes
             }
             if (value.ContainsCheck(" la ") || value.EndCheck(" la"))
             {
-                throw new ArgumentException("Contains la. This is not possible in a pi chain.");
+                throw new ArgumentException("Contains la. This is not possible in a pi chain.: " + value);
             }
             //if (value.ContainsCheck("~"))
             //{
@@ -560,12 +434,77 @@ namespace BasicTypes
 
             if (subChains[0].SubChains.Length > 1 && subChains[0].SubChains.Last().ToString().Split(new char[] { '*', ' ', '-' }).Length == 1)
             {
-                throw new TpSyntaxException("final pi in pi chain must be followed by 2 words, otherwise just use juxtaposition (i.e. 2 adjacent words with no particle) : " + subjects);
+                if (subjects.Contains(" en "))
+                {
+                    //maybe a compound modifier.
+                    return ProcessPiEnChain(subjects);
+                }
+                else
+                {
+                    throw new TpSyntaxException("final pi in pi chain must be followed by 2 words, otherwise just use juxtaposition (i.e. 2 adjacent words with no particle) : " + subjects);
+                }
             }
 
             ComplexChain subject = new ComplexChain(Particles.en, subChains.ToArray());
             return subject;
         }
+
+
+        //This only works for 1 subject!
+        //kule pi walo en pimeja
+        public ComplexChain ProcessPiEnChain(string subjects)
+        {
+            if (String.IsNullOrEmpty(subjects))
+            {
+                throw new ArgumentException("Cannot parse null/empty subjects");
+            }
+            foreach (var particle in new[] { "la", "li" })
+            {
+                if (subjects.StartsOrContainsOrEnds(particle))
+                {
+                    throw new ArgumentException("Subject phrase : " + subjects + " Contains " + particle + ". This is not possible.");
+                }
+            }
+
+            string[] singleSubjectWithCompoundModifers = Splitters.SplitOnPi(subjects);
+
+            //Split on pi
+            //jan pi pali suli en soweli pi tawa wawa
+
+            //jan ~tan ma pi pali suli ~tawa mani pi ma suli en soweli pi tawa wawa
+            //jan ~tan ma pi pali suli ~tawa mani pi ma suli /en/ soweli pi tawa wawa
+            //jan ~tan ma //pi// pali suli ~tawa mani //pi// ma suli /en/ soweli //pi// tawa wawa
+
+            //BUG: Following code wraps simple chain in unnecessary complex chain.
+            List<ComplexChain> subChains = new List<ComplexChain>();
+            for (int i = 0; i < singleSubjectWithCompoundModifers.Length; i++)
+            {
+                string piChains = singleSubjectWithCompoundModifers[i];
+
+                if (piChains == "")
+                    continue; //But how did that happen?
+
+                string[] enLessTokens = Splitters.SplitOnEn(piChains);
+
+                List<Chain> piCollection = new List<Chain>();
+                foreach (string enLessToken in enLessTokens)
+                {
+                    Chain piPhrase = ProcessPiChain(enLessToken);
+                    piCollection.Add(piPhrase);
+                }
+                ComplexChain piChain = new ComplexChain(Particles.pi, piCollection.ToArray());
+                subChains.Add(piChain);
+            }
+
+            //if (subChains[0].SubChains.Length > 1 && subChains[0].SubChains.Last().ToString().Split(new char[] { '*', ' ', '-' }).Length == 1)
+            //{
+            //    throw new TpSyntaxException("final pi in pi chain must be followed by 2 words, otherwise just use juxtaposition (i.e. 2 adjacent words with no particle) : " + subjects);
+            //}
+
+            ComplexChain subject = new ComplexChain(Particles.en, subChains.ToArray());
+            return subject;
+        }
+
 
         // jan li jo e soweli e kili e wawa lon anpa tawa anpa
         //     li jo e soweli e kili e wawa lon anpa tawa anpa
@@ -586,7 +525,7 @@ namespace BasicTypes
             VerbPhrase verbPhrase = null;
             PrepositionalPhrase[] prepositionalChain = null;
             ComplexChain nominalPredicate = null;
-            PiPredicate piPredicate=null;
+            PiPredicate piPredicate = null;
 
             //Transitive Path.
             if (liPart.Split(new[] { ' ', '\t' }).Contains("e"))
@@ -608,14 +547,14 @@ namespace BasicTypes
                 {
                     if (verbPhraseParts.Any(x => x == "pi"))
                     {
-                       
-                            //nominal predicate
-                            nominalPredicate =
-                                new ComplexChain(Particles.en,
-                                    new[]{
+
+                        //nominal predicate
+                        nominalPredicate =
+                            new ComplexChain(Particles.en,
+                                new[]{
                                     ProcessPiChain(string.Join(" ", ArrayExtensions.Tail(verbPhraseParts)))
                                 });
-                           
+
                     }
                     else
                     {
@@ -708,13 +647,13 @@ namespace BasicTypes
                 {
                     if (verbPhraseParts[0].ContainsCheck("XXXXZiXXXX"))
                     {
-                            //piPredicate
-                            ComplexChain phrase = new ComplexChain(Particles.en,
-                                new[]{
+                        //piPredicate
+                        ComplexChain phrase = new ComplexChain(Particles.en,
+                            new[]{
                                     ProcessPiChain(string.Join(" ", ArrayExtensions.Tail(verbPhraseParts)))
                                 });
 
-                            piPredicate = new PiPredicate(Particles.pi, phrase);
+                        piPredicate = new PiPredicate(Particles.pi, phrase);
 
                     }
                     else if (verbPhraseParts.Any(x => x == "pi"))
@@ -769,7 +708,7 @@ namespace BasicTypes
             }
             if (piPredicate != null)
             {
-                return new TpPredicate(verbPhraseParticle, piPredicate,prepositionalChain);
+                return new TpPredicate(verbPhraseParticle, piPredicate, prepositionalChain);
             }
             else if (nominalPredicate == null)
                 return new TpPredicate(verbPhraseParticle, verbPhrase, directObjectChain, prepositionalChain);
@@ -909,7 +848,7 @@ namespace BasicTypes
             {
                 if (value.StartsOrContainsOrEnds(particle))
                 {
-                    throw new TpSyntaxException("Headed phrases have no particles. This one has " + particle + " ref: " + value);
+                    throw new TpSyntaxException("Headed phrases have no particles. This one has " + particle + " ref: " + value + " (Did we forget the li between the subject and verb?)");
                 }
             }
 
@@ -944,7 +883,7 @@ namespace BasicTypes
             return phrase;
         }
 
-        public static List<Word> TurnThisWordsIntoWordsWithTaggedWords(Word[] tail)
+        public List<Word> TurnThisWordsIntoWordsWithTaggedWords(Word[] tail)
         {
             Word currentWord = tail[0];
             List<Word> mergedTail = new List<Word>();

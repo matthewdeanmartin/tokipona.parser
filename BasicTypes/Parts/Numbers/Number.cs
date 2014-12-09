@@ -24,9 +24,9 @@ namespace BasicTypes.Parts
             {
                 throw new ArgumentException("Null or blank number");
             }
-            if (word.Length == 1)
+            if (word.Length == 1 && !"1234567890".Contains(word[0]))
             {
-                throw new ArgumentException("Too short to be a word.");
+                throw new ArgumentException("Too short to be a word. " + word);
             }
             if (word.StartCheck("#"))
             {

@@ -10,7 +10,7 @@ tenpo kama pi sike suno la ni li lon.
 
 sina wile ala wile pana e sona tawa toki-pona?
 o sitelen e ni tawa jan Sonja kepeken toki-pona.
-jan Sonja li lon sonja@kisa.ca
+jan Sonja li lon "sonja@kisa.ca".
 
 sina sona ala sona mute pi toki-pona?
 sina wile ala wile pali pona sin e toki-pona?

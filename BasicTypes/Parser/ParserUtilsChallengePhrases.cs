@@ -90,7 +90,6 @@ namespace BasicTypes.Parser
         public void CreateTpPredicateAfterSplitingEChain()
         {
             Dialect c = Dialect.LooseyGoosey;
-            c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
             const string ePhrase = "li moku e soweli suli mute";

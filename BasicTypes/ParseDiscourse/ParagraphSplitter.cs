@@ -57,9 +57,12 @@ namespace BasicTypes.ParseDiscourse
             Speaker speaker = null;
             string title = null;
             int i = 1;
+
+            SentenceSplitter ss = new SentenceSplitter(dialect);
+
             foreach (string paraString in paraStrings)
             {
-                string[] sentenceStrings = pu.ParseIntoNonNormalizedSentences(paraString);
+                string[] sentenceStrings = ss.ParseIntoNonNormalizedSentences(paraString);
 
                 Paragraph para = new Paragraph();
                 foreach (string sentenceString in sentenceStrings)

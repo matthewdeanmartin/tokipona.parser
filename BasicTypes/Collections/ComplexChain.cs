@@ -218,7 +218,6 @@ namespace BasicTypes.Collections
         public static ComplexChain Parse(string value)
         {
             Dialect c = Dialect.LooseyGoosey;
-            c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
             if (value.ContainsCheck(" e ") || value.StartCheck("e "))

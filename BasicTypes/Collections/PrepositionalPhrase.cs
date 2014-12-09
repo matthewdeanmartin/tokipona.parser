@@ -58,7 +58,6 @@ namespace BasicTypes.Collections
             }
 
             Dialect c = Dialect.LooseyGoosey;
-            c.ThrowOnSyntaxError = false;
             ParserUtils pu = new ParserUtils(c);
 
             if (item.ContainsCheck("~"))

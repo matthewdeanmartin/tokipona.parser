@@ -86,7 +86,7 @@ namespace BasicTypes
             if (modifiers!=null && (modifiers.Contains(Words.kin) || modifiers.Contains(Words.ala)))
             {
                 ParserUtils pu = new ParserUtils(Dialect.LooseyGoosey);
-                var mergedTail = ParserUtils.TurnThisWordsIntoWordsWithTaggedWords(modifiers.ToArray());
+                var mergedTail = pu.TurnThisWordsIntoWordsWithTaggedWords(modifiers.ToArray());
                 modifiers = new WordSet(mergedTail);
             }
 
@@ -105,8 +105,8 @@ namespace BasicTypes
             {
                 throw new ArgumentNullException("head", "Cannot construct with null");
             }
-            //HACK: related to taso in la fragment
-            if (!(Exclamation.IsExclamation(head.Text) || head.Text == "taso") && Token.CheckIsParticle(head.Text))
+            //HACK: related to taso in la fragment, and logical operators not implemented yet.
+            if (!(Exclamation.IsExclamation(head.Text) || head.Text == "taso" || head.Text == "anu") && Token.CheckIsParticle(head.Text))
             {
                 throw new TpSyntaxException(
                     "You cannot have a headed phrase that is headed by a particle. That would be a chain. " + head.Text + " " + (modifiers == null ? "" : modifiers.ToString()));
@@ -145,8 +145,12 @@ namespace BasicTypes
                 {
                     //no surprise there
                 }
+                else if( head.Text=="kama" || head.Text=="kama")
+                {
+                    //Defer kama/tawa, they take unmarked complements, so they make for long verb phrases.
+                }
                 //HACK:
-                else if (modifiers.Any(x => x.Text == "anu" || x.Text == "en")) //Because we've deferred dealing with conj.
+                else if (modifiers.Any(x => x.Text == "anu" || x.Text == "en" || x.Text == "kama" || x.Text == "tawa")) //Because we've deferred dealing with conj. & serial verbs
                 {
                 }
                 else

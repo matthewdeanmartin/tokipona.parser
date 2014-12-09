@@ -97,6 +97,10 @@ namespace BasicTypes
             {
                 prospectiveWord = prospectiveWord.Trim(new char[] {'«', '»'});
             }
+            if (prospectiveWord.ContainsCheck('[') || prospectiveWord.ContainsCheck(']'))
+            {
+                prospectiveWord = prospectiveWord.Trim(new char[] { '[', ']' });
+            }
 
             if (prospectiveWord.IndexOfAny(new char[] {'.', ' ', '?', '!', '\n', '\r'}) != -1
                 && !IsForeign(prospectiveWord))
