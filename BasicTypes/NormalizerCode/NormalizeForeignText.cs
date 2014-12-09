@@ -23,7 +23,7 @@ namespace BasicTypes.NormalizerCode
     /// 
     /// If it is a long phrase, it should be "This*is*Some*Embedded*English"
     /// </remarks>
-    public class NormalizeChaos
+    public class NormalizeForeignText
     {
         public static string Normalize(string sentence, Dialect dialect)
         {
@@ -107,7 +107,7 @@ namespace BasicTypes.NormalizerCode
             {
                 string word = split[index];
 
-                if (word.Contains("Sinfest"))
+                if (word.Contains("Liosa"))
                 {
                     int i = 42;
                 }
@@ -256,7 +256,7 @@ namespace BasicTypes.NormalizerCode
             if (percentTokipona >= 0.20m)
             {
                 //Quote on a per word basis.
-                return  NormalizeChaos.DetectIndividualForeignWords(sentence, dialect);
+                return  NormalizeForeignText.DetectIndividualForeignWords(sentence, dialect);
             }
 
             //Quote the whole thing. 

@@ -28,6 +28,9 @@ namespace BasicTypes
         public Punctuation IsQuotedText { get; set; }
 
         [DataMember]
-        public TagQuestion TagQuestion { get; set; } 
+        public TagQuestion TagQuestion { get; set; }
+
+        [DataMember]
+        public Vocative[] HeadVocatives { get; set; }
     }
 }

@@ -10,10 +10,13 @@
         <ul>
             <li>Token. Hopefully a useful abstraction for all the below types of parts</li>
             <li>Word. Fixed set of words. Can be glossed to a foreign language. Usually a content word.</li>
-            <li>Numbers. Can generate more of them. Behave somewhat like compound words. Can gloss to a somewhat universal format of Arabic numbers algorithmicly without a dictionary.</li>
-            <li>Compound Word. Essentially any noun or verb phrase (or sometimes sentence) that can be used as head noun, verb. Modifiers can be infixed.</li>
+            <li>Numbers. Can generate more of them. Behave somewhat like compound words. Can gloss to a somewhat universal format of Arabic numbers algorithmicly without a dictionary. Explicit starts with # and has dashes.</li>
+            <li>Compound Word. Essentially any noun or verb phrase (or sometimes sentence) that can be used as head noun, verb. Modifiers can be infixed. Explicit has dashes.</li>
             <li>Proper Modifier. Must be capitalized. Can't be a head of a headed phrase. Can be glossed from dictionary.</li>
-            <li>Foreign Word. Can't be glossed. Syntactically like Compound Words. Can't infix modifiers.</li>
+            <li>Foreign Word. Can't be glossed. Syntactically like Compound Words. Can't infix modifiers. Explicit wrapped in ""</li>
+            <li>Neologism. Phonotactically valid word, but it is not a word. Can't be glossed. Content words only. Explicit starts with +.</li>
+            <li>Onomatopoeia. Special type of proper modifier. Details not worked out.</li>
+            <li>Tags. Reduplication, question phrases, conjunctions, negations. Sort of a murky concept. The key is they (can) have limited scope, as limited as 1 word. So at the moment, I assume they always have scope of 1 word.</li>
             <li>
                 Particle. Different from the rest of the content words. More constrained by rules than content words.
                 In the case of prepositions, these overlap with content words.

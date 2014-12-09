@@ -24,7 +24,8 @@ namespace BasicTypes
 
         //Constituent parts of a basic sentence.
         [DataMember]
-        private Vocative[] headVocaties;
+        private Vocative[] headVocatives;
+
         //Breaks immutability :-(
         [DataMember]
         public List<Fragment> LaFragment { get; set; }
@@ -48,7 +49,6 @@ namespace BasicTypes
         private readonly Comment degenerateComment; //Also degenerate sentence.
         [DataMember]
         private readonly Fragment degenerateFragment; //This is something like a title "utala pi mu lili" or a signature "jan Mato"
-
         [DataMember]
         private readonly NullOrSymbols nullOrSymbols; //Blanks, stray punctuation, other garbage
 
@@ -150,6 +150,7 @@ namespace BasicTypes
                 punctuation = parts.Punctuation;
                 tagConjunction = parts.Conjunction;
                 tagQuestion = parts.TagQuestion;
+                headVocatives = parts.HeadVocatives;
             }
 
             this.diagnostics = diagnostics;
@@ -209,7 +210,7 @@ namespace BasicTypes
         public Exclamation Exclamation { get { return degenerateExclamation; } }
 
 
-        public Vocative[] HeadVocatives { get { return headVocaties; } }
+        public Vocative[] HeadVocatives { get { return headVocatives; } }
         public Particle Conjunction { get { return tagConjunction; } } //anu, taso (but not en)
         public ComplexChain Subjects { get { return subjects; } } //jan en meli en waso
         public PredicateList Predicates { get { return predicates; } }//li verb phrase li (noun phrase) li prep phrase

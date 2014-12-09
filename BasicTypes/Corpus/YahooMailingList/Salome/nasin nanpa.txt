@@ -6,12 +6,12 @@ toki!
 
 ///was this- pilin lawa pi nanpa li kama tawa mi.
 pilin lawa nanpa li kama tawa mi.
-jan pi toki-pona li ken kepeken e nasin nanpa pi tu anu tu wan. ante
+jan pi toki-pona li ken kepeken e nasin nanpa pi anu tu wan. ante
 la jan li kepeken e nasin nanpa pi luka luka. nasin nanpa pi luka luka li
-ike. nasin nanpa pi tu li pona. tan ni la ilo nanpa li kepeken e nasin
+ike. nasin nanpa tu li pona. tan ni la ilo nanpa li kepeken e nasin
 nanpa pi tu.
 
-nasin nanpa pi tu li ken lon e ni:
+nasin nanpa tu li ken lon e ni:
 
 "347 = 3 * 10^2 + 4 * 10 + 7".
 ni li kepeken e nasin nanpa pi luka luka.
@@ -20,9 +20,9 @@ ni li kepeken e nasin nanpa pi luka luka.
 "347 = 2^8 + 2^6 + 2^4 + 2^3 + 2 + 1".
 
 "101011011 = 1 * 2^8 + 0 * 2^7 + 1 * 2^6 + 0 * 2^5 + 1 * 2^4 + 1 * 2^3 + 0 * 2^2 + 1 * 2 + 1".
-ni li kepeken e nasin nanpa pi tu.
+ni li kepeken e nasin nanpa tu.
 
-101011011 li 347 kepeken nasin nanpa pi tu.
+101011011 li 347 kepeken nasin nanpa tu.
 
 
 "347 = 3^5 + 3^4 + 2 * 3^2 + 3 + 2".

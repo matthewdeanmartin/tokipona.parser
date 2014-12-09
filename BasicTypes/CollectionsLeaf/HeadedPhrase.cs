@@ -113,7 +113,12 @@ namespace BasicTypes
             }
             if (ProperModifier.IsProperModifer(head.Text))
             {
-                throw new TpSyntaxException("Proper modifiers cannot be the head of a headed phrase " + head.Text);
+                string warning = string.Empty;
+                if (Word.IsWord(head.Text.ToLower()))
+                {
+                    warning = " (This is a valid word, maybe it shouldn't be capitalized?)";
+                }
+                throw new TpSyntaxException("Proper modifiers cannot be the head of a headed phrase " + head.Text + warning);
             }
             if (modifiers != null)
             {

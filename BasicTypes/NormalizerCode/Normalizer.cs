@@ -91,7 +91,7 @@ namespace BasicTypes.NormalizerCode
             //Process implicity Foreign Text
             if (dialect.InferCompoundsPrepositionsForeignText)
             {
-                normalized = ApplyNormalization(normalized, "Foreign", NormalizeChaos.Normalize, dialect);
+                normalized = ApplyNormalization(normalized, "Foreign", NormalizeForeignText.Normalize, dialect);
             }
 
 

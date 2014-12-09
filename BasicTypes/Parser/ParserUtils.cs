@@ -15,6 +15,9 @@ using NUnit.Framework.Constraints;
 
 namespace BasicTypes
 {
+    /// <summary>
+    /// Turns a string into an object tree.
+    /// </summary>
     public class ParserUtils
     {
         private readonly Dialect config;
@@ -23,9 +26,6 @@ namespace BasicTypes
             this.config = config;
         }
      
-        
-
-
         //This should only operate on normalized sentences.
         public Sentence ParsedSentenceFactory(string sentence, string original)
         {
@@ -73,7 +73,6 @@ namespace BasicTypes
             {
                 throw new InvalidOperationException("Normalizer failed to trim: " + original);
             }
-            //Console.WriteLine("NORMALIZED: " + sentence);
 
             //Get the final punctuation out or it will mess up parsing later.
             string possiblePunctuation = sentence[sentence.Length - 1].ToString();
@@ -188,6 +187,7 @@ namespace BasicTypes
 
         public Sentence ProcessSimpleSentence(string sentence, Punctuation punctuation, string original)
         {
+            
             //HACK: Still need a better way to deal with quotes.
             if (sentence.EndCheck("»") || sentence.EndCheck("«"))
             {
@@ -209,6 +209,41 @@ namespace BasicTypes
                 return new Sentence(new Exclamation(new HeadedPhrase(new Word(sentence))), punctuation, new SentenceDiagnostics(original, sentence));
             }
 
+            List<Vocative> headVocatives = null;
+            //jan Mato o, ale li pona. Head vocative!
+            //kin la o moku. //not a vocative (hopefully dealt with elsewhere)
+            //jan Mato o moku! //Head vocative, & imperative, with 2nd o discarded
+            //jan Mato o o moku! //Head vocative, & imperative, with 2nd o discarded
+
+            
+            if (sentence.ContainsCheck(" o o "))//Explicit vocative & imperative
+            {
+                //Okay, we know exactly when the head vocatives end.
+                headVocatives = new List<Vocative>();
+                string justHeadVocatives= sentence.Substring(0,sentence.IndexOf(" o o "));
+
+                //Process head vocatives.
+                ProcessHeadVocatives(Splitters.SplitOnO(justHeadVocatives), headVocatives, allAreVocatives: true);
+                sentence = sentence.Substring(sentence.IndexOf(" o o ")+5);
+            }
+
+
+            //Starts with o, then we have imperative & no head vocatives.
+            if (!sentence.StartCheck("o ") && sentence.EndCheck(" o"))
+            {
+                //jan So o! (We already deal with degenerate vocative sentences elsewhere)
+                //jan So o sina li nasa.
+                //jan So o nasa!
+                //jan So o mi mute o nasa.  <-- This is the problem.
+
+                //These could be vocatives or imperatives.
+                if (sentence.ContainsCheck(" o ", " o,", ",o "))
+                {
+                    headVocatives = new List<Vocative>();
+                    
+                    ProcessHeadVocatives(Splitters.SplitOnO(sentence), headVocatives, allAreVocatives:false);
+                }
+            }
 
             //Process tag conjunctions and tag questions
             Particle conjunction = null;
@@ -357,6 +392,34 @@ namespace BasicTypes
             return parsedSentence;
         }
 
+        private void ProcessHeadVocatives(string[] vocativeParts, List<Vocative> headVocatives, bool allAreVocatives)
+        {
+            bool vocativesDone = false;
+            //Process head vocatives.
+            for (int i = 0; i < vocativeParts.Length; i++)
+            {
+                if (!allAreVocatives)
+                {
+                    if (i == vocativeParts.Length & vocativeParts.Length == 1)
+                    {
+                        continue;
+                    }
+                }
+                
+                string vocativePart = vocativeParts[i];
+                if (vocativesDone) continue;
+
+                if (vocativePart.ContainsCheck(" li ", " e "))
+                {
+                    vocativesDone = true;
+                }
+
+                ComplexChain vocativeChain = ProcessEnPiChain(vocativePart);
+                Vocative v = new Vocative(vocativeChain);
+                headVocatives.Add(v);
+            }
+        }
+
 
         public Chain ProcessPiChain(string value)
         {
@@ -434,9 +497,14 @@ namespace BasicTypes
 
             if (subChains[0].SubChains.Length > 1 && subChains[0].SubChains.Last().ToString().Split(new char[] { '*', ' ', '-' }).Length == 1)
             {
-                if (subjects.Contains(" en "))
+                string lastWord = subChains[0].SubChains.Last().ToString();
+                if (Number.IsPomanNumber(lastWord) && lastWord.Replace("#", "").Length > 1)
                 {
-                    //maybe a compound modifier.
+                    //Poman numbers with 2 letters or more represent 2+ words.
+                }
+                else if (subjects.Contains(" en "))
+                {
+                    //HACK: maybe a compound modifier.  This actually usually fails.
                     return ProcessPiEnChain(subjects);
                 }
                 else

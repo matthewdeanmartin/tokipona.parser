@@ -94,7 +94,7 @@ namespace BasicTypes.NormalizerCode
                 foreach (string sentence in ss.ParseIntoNonNormalizedSentences(s))
                 {
                     string result = Normalizer.NormalizeText(sentence, dialect);
-                    decimal percent = NormalizeChaos.PercentTokiPona(result);
+                    decimal percent = NormalizeForeignText.PercentTokiPona(result);
                     Console.WriteLine(percent + "%");
                     i++;
                 }

@@ -167,6 +167,11 @@ namespace BasicTypes.Parts
             }
         }
 
+        public static bool IsPomanNumber(string word)
+        {
+            string testWord = word.Replace("#", "");
+            return testWord.All(c => !Token.PomanNumbers.Contains(c.ToString()));
+        }
 
         //The ordinal/cardinal split in TP is fundamentally borked
         public static bool IsNumber(HeadedPhrase phrase)

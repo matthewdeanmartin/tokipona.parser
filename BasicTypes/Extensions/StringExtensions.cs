@@ -22,6 +22,15 @@ namespace BasicTypes.Extensions
             return false;
         
         }
+        public static bool ContainsCheck(this string value, string middle, string orOther, string orThird)
+        {
+            return value.ContainsCheck(middle) || value.ContainsCheck(orOther) || value.ContainsCheck(orThird);
+        }
+
+        public static bool ContainsCheck(this string value, string middle, string orOther)
+        {
+            return value.ContainsCheck(middle) || value.ContainsCheck(orOther);
+        }
 
         public static bool ContainsCheck(this string value, string middle)
         {

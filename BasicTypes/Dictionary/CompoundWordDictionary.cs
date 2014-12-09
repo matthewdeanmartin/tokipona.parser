@@ -885,7 +885,7 @@ public static CompoundWord PilinPona;
 public static CompoundWord PilinSama;
 public static CompoundWord PilinSitelen;
 public static CompoundWord PilinWawa;
-public static CompoundWord SinaPilinSeme;
+//public static CompoundWord SinaPilinSeme;
 public static CompoundWord PimejaLoje;
 public static CompoundWord PimejaSeli;
 public static CompoundWord TeloPimejaWawaPiTomoTawa;
@@ -13958,18 +13958,18 @@ BuildIt();
             }
 
 
-            {
-                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
-                {
-                    var en = new Dictionary<string, string[]>();
-                    en.Add("sina-pilin-seme", new[] { "How are you  How are you feeling" });
-                    glossMap.Add("en", en);
-                }
-                SinaPilinSeme = new CompoundWord("sina-pilin-seme");
-
-                Dictionary.Add("sina-pilin-seme", SinaPilinSeme);
-                Glosses.Add("sina-pilin-seme", glossMap);
-            }
+            //{
+            //    var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+            //    {
+            //        var en = new Dictionary<string, string[]>();
+            //        en.Add("sina-pilin-seme", new[] { "How are you  How are you feeling" });
+            //        glossMap.Add("en", en);
+            //    }
+            //    SinaPilinSeme = new CompoundWord("sina-pilin-seme");
+            //
+            //    Dictionary.Add("sina-pilin-seme", SinaPilinSeme);
+            //    Glosses.Add("sina-pilin-seme", glossMap);
+            //}
 
 
             {

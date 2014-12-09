@@ -137,6 +137,17 @@ namespace BasicTypes.Parser
             return liParts;
         }
 
+        //???
+        public static string[] SplitOnOPreserveO(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException("Impossible to parse a null or zero length string.");
+            }
+            Regex oParts = new Regex(@"\s(?=o)");
+            string[] liParts = oParts.Split(value).Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x)).ToArray();
+            return liParts;
+        }
 
         /// <summary>
         /// Preserve the la & returns at least 1 part.

@@ -6,7 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using BasicTypes.Exceptions;
 using BasicTypes.Extensions;
+using BasicTypes.NormalizerCode;
 using BasicTypes.Transliterate;
+using NUnit.Framework;
 
 namespace BasicTypes.Parts
 {
@@ -38,7 +40,14 @@ namespace BasicTypes.Parts
             }
             if (word.Split(new char[] {'*'}).Length > 5)
             {
-                throw new InvalidOperationException("This is a really long foreign word/phrase. " + word);
+                string possibleTp = word.Replace("*", " ").Trim(new char[]{'"'});
+                bool hasLetters = word.ToLower().Any(x => Token.Alphabet.Contains(x));
+                decimal percent = NormalizeForeignText.PercentTokiPona(possibleTp);
+                if (percent > 0.80m && hasLetters)
+                {
+                    throw new InvalidOperationException("This is a really long foreign word/phrase and it is " + percent + " toki pona : " + possibleTp);
+                }
+                
             }
             if (!(word.EndCheck("\"") && word.StartCheck("\"")))
             {

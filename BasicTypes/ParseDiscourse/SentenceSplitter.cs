@@ -49,6 +49,9 @@ namespace BasicTypes.ParseDiscourse
 
             //Anything between /// and \n is a comment.
 
+
+            text = SwapQuoteAndSentenceTerminatorOrder(text);
+
             string[] lines = text.Split(new char[] { '\n' });
             string[] modifiedLines = new string[lines.Length];
             for (int i = 0; i < lines.Length; i++)
@@ -85,8 +88,6 @@ namespace BasicTypes.ParseDiscourse
                 newText = newText.Replace(";", ":");
             }
 
-            newText= SwapQuoteAndSentenceTerminatorOrder(newText);
-
             //Using commas as a sentence break.
             //jan Mato o, sina li lape anu seme?
             // o, sina
@@ -94,10 +95,7 @@ namespace BasicTypes.ParseDiscourse
             {
                 newText = newText.Replace(" o, sina ", " o! sina ");
             }
-
-            //redeuce, reused, recycle!
             
-
             //Crap. If we break on \n then sentences with line feeds are cut in half.
             //If we don't break on \n, then we blow up on intentional fragments like titles.
             //Choosing to not break on \n & and manually add . to titles.
