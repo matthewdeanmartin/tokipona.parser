@@ -48,27 +48,27 @@ ten tan ton! ten tan ton!
 jan ma li jo e soweli.
 jan ma li jo e soweli
 li kalama e ona!
-"Pijopijopi Pijopijopi Pijopijopi""
++pijopijopi +pijopijopi +pijopijopi
 li nimi suli ona!
 
 jan ma li jo e soweli
 li kalama e ona!
-"*jopijopi *jopijopi  *jopijopi"
++jopijopi +jopijopi +jopijopi
 li nimi suli ona!
 
 jan ma li jo e soweli
 li kalama e ona!
-"**pijopi **pijopi **pijopi"
++pijopi +pijopi +pijopi
 li nimi suli ona!
 
 jan ma li jo e soweli
 li kalama e ona!
-"***jopi ***jopi ***jopi"
++jopi +jopi +jopi
 li nimi suli ona!
 
 jan ma li jo e soweli
 li kalama e ona!
-"****pi ****pi ****pi"
++pi +pi +pi
 li nimi suli ona!
 
 jan ma li jo e soweli

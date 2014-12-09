@@ -13,6 +13,6 @@ namespace BasicTypes.Parts
     /// </summary>
     public class EmbeddedQuote:Token
     {
-        
+        //TODO:
     }
 }

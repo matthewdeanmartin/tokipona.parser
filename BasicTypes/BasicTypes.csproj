@@ -108,7 +108,8 @@
     <Compile Include="Collections\PrepositionalPhraseTests.cs" />
     <Compile Include="Collections\Sentence.cs" />
     <Compile Include="Collections\SentenceByValue.cs" />
-    <Compile Include="Collections\SentenceDiagnostics.cs" />
+    <Compile Include="Diagnostics\AugmentException.cs" />
+    <Compile Include="Diagnostics\SentenceDiagnostics.cs" />
     <Compile Include="Collections\SentenceOptionalParts.cs" />
     <Compile Include="Collections\SentenceParse.cs" />
     <Compile Include="Collections\SentenceSemeEqual.cs" />
@@ -197,6 +198,8 @@
     <Compile Include="Parts\ContentPhrase.cs" />
     <Compile Include="Parts\ConvertWordToBasicType.cs" />
     <Compile Include="Parts\ConvertWordToBasicTypeTests.cs" />
+    <Compile Include="Parts\Dates\TpDate.cs" />
+    <Compile Include="Parts\EmbeddedQuote.cs" />
     <Compile Include="Parts\Neologism.cs" />
     <Compile Include="Parts\Numbers\EnumerateNumbers.cs" />
     <Compile Include="Parts\Numbers\NumberTest.cs" />
@@ -210,6 +213,7 @@
     <Compile Include="Parts\ProperModifier.cs" />
     <Compile Include="Parts\Punctuation.cs" />
     <Compile Include="Parts\TemplatedPhrase.cs" />
+    <Compile Include="Parts\TemplateToken.cs" />
     <Compile Include="Parts\Token.cs" />
     <Compile Include="Parts\TokenTests.cs" />
     <Compile Include="Parts\WordByValue.cs" />

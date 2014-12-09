@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace BasicTypes.Extensions
 {
     public static class StringBuilderExtensions
     {
+        [DebuggerStepThrough]
         public static void TrimEnd(this StringBuilder builder)
         {
             while (builder[builder.Length - 1] == ' ')
@@ -17,6 +19,7 @@ namespace BasicTypes.Extensions
             }
         }
 
+        [DebuggerStepThrough]
         public static void RemoveInnerWhiteSpace(this StringBuilder builder)
         {
             builder.Replace("  ", " ");

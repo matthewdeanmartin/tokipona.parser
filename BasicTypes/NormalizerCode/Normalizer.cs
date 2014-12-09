@@ -544,9 +544,12 @@ namespace BasicTypes.NormalizerCode
             return normalized;
         }
 
+        /// <summary>
+        /// So far I've never needed a , to parse (other than explicit preps) . They do get in the way though.
+        /// </summary>
         private static string ProcessExtraneousCommas(string normalized)
         {
-            foreach (string s in new String[] { ", li ", ", la ", ",la ", " la, ", " la,", ", o ", ",o " })
+            foreach (string s in new String[] { ", li ", ", la ", ",la ", " la, ", " la,", ", o ", ",o ", " o, " })
             {
                 if (normalized.ContainsCheck(s))
                 {

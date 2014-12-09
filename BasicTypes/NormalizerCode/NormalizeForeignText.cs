@@ -7,7 +7,7 @@ using BasicTypes.Extensions;
 using BasicTypes.ParseDiscourse;
 using BasicTypes.Parser;
 using NUnit.Framework.Constraints;
-using Polenter.Serialization.Advanced.Serializing;
+//using Polenter.Serialization.Advanced.Serializing;
 
 namespace BasicTypes.NormalizerCode
 {
@@ -28,6 +28,7 @@ namespace BasicTypes.NormalizerCode
         public static string Normalize(string sentence, Dialect dialect)
         {
             string normalized = DetectWrongQuotes(sentence);
+            normalized = DetectAllCapTokiPonaWords(normalized, dialect);
             normalized = DetectEntireForeignSentence(normalized, dialect);
 
             normalized = SentenceSplitter.SwapQuoteAndSentenceTerminatorOrder(normalized);
@@ -90,6 +91,37 @@ namespace BasicTypes.NormalizerCode
             
         }
 
+        public static string DetectAllCapTokiPonaWords(string normalized, Dialect dialect)
+        {
+            if (!dialect.InferCompoundsPrepositionsForeignText)
+            {
+                return normalized;
+            }
+
+            if (normalized.ToLowerInvariant() == normalized) return normalized;
+
+            string[] split = normalized.Split(new char[] { ' ' });
+
+            for (int index = 0; index < split.Length; index++)
+            {
+                string word = split[index];
+                if (word == "PANA")
+                {
+                    int i = 32;
+                }
+                if (word.ToUpperInvariant() == word)
+                {
+                    string test = word.ToLowerInvariant();
+                    if (Word.IsWord(test))
+                    {
+                        split[index] = test;
+                    }
+                }
+            }
+
+            return String.Join(" ", split);
+        }
+
         /// <summary>
         /// Stupidest thing that could possibly work. The goal is to get the 90% of cases and not fail in those cases
         /// than to try to get 100% of the cases and create a hot spot of bug. See alt below.
@@ -103,14 +135,16 @@ namespace BasicTypes.NormalizerCode
 
             string[] split = normalized.Split(new char[] {' '});
 
+            
+            
             for (int index = 0; index < split.Length; index++)
             {
                 string word = split[index];
 
-                if (word.Contains("Liosa"))
-                {
-                    int i = 42;
-                }
+                //if (word.Contains("Liosa"))
+                //{
+                //    int i = 42;
+                //}
 
                 if (word.StartCheck("\"") && word.EndsWith("\""))
                 {

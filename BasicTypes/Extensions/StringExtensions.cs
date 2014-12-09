@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ namespace BasicTypes.Extensions
 {
     public static class StringExtensions
     {
+        [DebuggerStepThrough]
         public static bool ContainsCheck(this string value, char middle)
         {
             //http://cc.davelozinski.com/c-sharp/fastest-way-to-check-if-a-string-occurs-within-a-string
@@ -22,16 +24,19 @@ namespace BasicTypes.Extensions
             return false;
         
         }
+        [DebuggerStepThrough]
         public static bool ContainsCheck(this string value, string middle, string orOther, string orThird)
         {
             return value.ContainsCheck(middle) || value.ContainsCheck(orOther) || value.ContainsCheck(orThird);
         }
 
+        [DebuggerStepThrough]
         public static bool ContainsCheck(this string value, string middle, string orOther)
         {
             return value.ContainsCheck(middle) || value.ContainsCheck(orOther);
         }
 
+        [DebuggerStepThrough]
         public static bool ContainsCheck(this string value, string middle)
         {
             //http://cc.davelozinski.com/c-sharp/fastest-way-to-check-if-a-string-occurs-within-a-string
@@ -43,6 +48,7 @@ namespace BasicTypes.Extensions
 
         }
 
+        [DebuggerStepThrough]
         public static bool StartCheck(this string value, string leadToken)
         {
             //Perf trace said this was surprisingly slow.
@@ -51,6 +57,7 @@ namespace BasicTypes.Extensions
             return value.StartsWith(leadToken, StringComparison.Ordinal);
         }
 
+        [DebuggerStepThrough]
         public static bool EndCheck(this string value, string endToken)
         {
             //Perf trace said this was surprisingly slow.
@@ -59,6 +66,7 @@ namespace BasicTypes.Extensions
             return value.EndsWith(endToken, StringComparison.Ordinal);
         }
 
+        [DebuggerStepThrough]
         public static string Remove(this string value, string letters)
         {
             StringBuilder sb = new StringBuilder(value.Length);
@@ -69,28 +77,35 @@ namespace BasicTypes.Extensions
             }
             return sb.ToString();
         }
+
+        [DebuggerStepThrough]
         public static bool ContainsWholeWord(this string value, string word)
         {
             return Regex.IsMatch(value,@"\b" + word + @"\b");
         }
+
+        [DebuggerStepThrough]
         public static bool ContainsLetter(this string value, string letters)
         {
             return value != null && letters.Any(value.Contains);
         }
 
+        [DebuggerStepThrough]
         public static bool ContainsOnlyAtoZLetters(this string value)
         {
             return value != null && value.ToLower().All(x=>"abcdefghijklmnopqrstuvwxyz".Contains(x));
         }
+        [DebuggerStepThrough]
         public static bool ContainsOnlyPunctuation(this string value)
         {
             return value != null && value.ToLower().All(x => "!@#$%^&*()_+-={}[]|:,<>,/~`".Contains(x));
         }
+        [DebuggerStepThrough]
         public static bool ContainsOnlyDigits(this string value)
         {
             return value != null && value.ToLower().All(x => "-.1234567890".Contains(x));
         }
-
+        [DebuggerStepThrough]
         public static bool IsFirstUpperCased(this string value)
         {
             if (string.IsNullOrWhiteSpace(value)) return false;
@@ -99,7 +114,7 @@ namespace BasicTypes.Extensions
             if (toTest.Length == 0) return false;
             return toTest[0].ToString().ToUpperInvariant() == value[0].ToString();
         }
-
+        [DebuggerStepThrough]
         public static string RemoveLeadingWholeWord(this string value, string word)
         {
             if (!value.ContainsCheck(word)) return value;//short circuit
@@ -115,7 +130,7 @@ namespace BasicTypes.Extensions
             }
             return value;
         }
-
+        [DebuggerStepThrough]
         public static bool StartsOrContainsOrEnds(this string value,string target)
         {
             if (value == target)
@@ -142,6 +157,7 @@ namespace BasicTypes.Extensions
         }
 
         //http://stackoverflow.com/questions/2961656/generic-tryparse
+        [DebuggerStepThrough]
         public static T Convert<T>(this string input)
         {
             var converter = TypeDescriptor.GetConverter(typeof(T));
@@ -153,6 +169,7 @@ namespace BasicTypes.Extensions
             return default(T);
         }
 
+        [DebuggerStepThrough]
         public static String PrintXml(this String xml)
         {
             String result = "";

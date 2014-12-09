@@ -360,13 +360,12 @@ namespace BasicTypes.Parser
                     if (original == "\".") continue;//BUG:
                     if (string.IsNullOrWhiteSpace(normalized)) continue;
                     if (!(normalized.ContainsWholeWord("o"))) continue;
-                    //if ((normalized.StartsWith("o "))) continue;
+                    if (!(normalized.ContainsWholeWord("li"))) continue;
+                    if ((normalized.StartsWith("o "))) continue; //These seem to be okay
                     if (normalized.ContainsCheck("Kinla")) continue;//Has a logical operator in one of the sample sentences that I can't deal with yet, unrelated to kin, ala
                     
                     structured = pu.ParsedSentenceFactory(normalized, original);
                     string diag = structured.ToString("b");
-
-                    //if ((normalized.ContainsCheck("%ante"))) continue; //verb!
 
                     Console.WriteLine("O: " + (original ?? "").Trim(new[] { '\n', '\r', ' ', '\t' }));
                     Console.WriteLine("B: " + diag);

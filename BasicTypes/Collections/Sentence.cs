@@ -420,6 +420,18 @@ namespace BasicTypes
             }
             else
             {
+                if (HeadVocatives!= null)
+                {
+                    foreach (Vocative vocative in HeadVocatives)
+                    {
+                        sb.AddIfNeeded("{", format);
+                        sb.AddRange(vocative.ToTokenList(format, formatProvider));
+                        sb.Add(Particles.o.ToString(format, formatProvider));
+                        //Do we really need a comma? Nope. Not yet.
+                        sb.AddIfNeeded("}", format);
+                    }
+                }
+
                 if (LaFragment != null)
                 {
                     foreach (Fragment chain in LaFragment)
@@ -436,7 +448,14 @@ namespace BasicTypes
                 {
                     //Should only happen for imperatives
                     sb.AddIfNeeded("[", format);
-                    sb.Add(subjects == null ? "[NULL]" : subjects.ToString(format, formatProvider));
+
+                    //HACK: Remove dummy subject. jan Sanwan
+                    string likelySubject = subjects == null ? "[NULL]" : subjects.ToString(format, formatProvider);
+                    bool isDummy = likelySubject.ContainsCheck("jan") && likelySubject.ContainsCheck("Sanwan");
+                    if (!isDummy)
+                    {
+                        sb.Add(likelySubject);
+                    }
                     //subjects.Select(x => x == null ? "[NULL]" : x.ToString(format, formatProvider)), format, formatProvider, false);
                     sb.AddIfNeeded("]", format);
                 }
@@ -481,22 +500,22 @@ namespace BasicTypes
             return sb;
         }
 
-        private bool NeedToReplace(string value, string pronoun)
-        {
-            bool startsWith = value.ContainsCheck(pronoun + " li") && value.StartCheck(pronoun + " ");
-            if (startsWith) return true;
+        //private bool NeedToReplace(string value, string pronoun)
+        //{
+        //    bool startsWith = value.ContainsCheck(pronoun + " li") && value.StartCheck(pronoun + " ");
+        //    if (startsWith) return true;
 
-            bool followsConditional = value.ContainsCheck(pronoun + " li") && value.ContainsCheck(" la " + pronoun + " li ");
-            if (followsConditional) return true;
+        //    bool followsConditional = value.ContainsCheck(pronoun + " li") && value.ContainsCheck(" la " + pronoun + " li ");
+        //    if (followsConditional) return true;
 
-            bool followsPunctuation = value.ContainsCheck(pronoun + " li") && value.ContainsCheck(". " + pronoun + " li ");
-            if (followsPunctuation) return true;
+        //    bool followsPunctuation = value.ContainsCheck(pronoun + " li") && value.ContainsCheck(". " + pronoun + " li ");
+        //    if (followsPunctuation) return true;
 
-            bool followsColon = value.ContainsCheck(pronoun + " li") && value.ContainsCheck(": " + pronoun + " li ");
-            if (followsColon) return true;
+        //    bool followsColon = value.ContainsCheck(pronoun + " li") && value.ContainsCheck(": " + pronoun + " li ");
+        //    if (followsColon) return true;
 
-            return false;
-        }
+        //    return false;
+        //}
 
 
         private string Denormalize(string value, string format)

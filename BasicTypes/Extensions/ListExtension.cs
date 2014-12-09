@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace BasicTypes.Extensions
 {
     public static class ListExtension
     {
+        [DebuggerStepThrough]
         public static void AddIfNotReduplicate(this List<string> list, string value)
         {
             if (list.Count >0 &&  list[list.Count - 1] == value)
@@ -31,6 +33,7 @@ namespace BasicTypes.Extensions
             //Can be exact, or match despite extra stuff 
         }
 
+        [DebuggerStepThrough]
         public static void AddIfNeeded(this List<string> list, string marker, string format)
         {
             if (format.StartCheck("b"))
@@ -39,6 +42,7 @@ namespace BasicTypes.Extensions
             }
         }
 
+        [DebuggerStepThrough]
         public static void AddRange(this List<string> list, Particle particle, IEnumerable<string> strings, string format, IFormatProvider formatProvider, bool hasParent)
         {
             int i = 0;
@@ -80,6 +84,8 @@ namespace BasicTypes.Extensions
                 list.Add(s);
             }
         }
+
+        [DebuggerStepThrough]
         public static string SpaceJoin(this List<string> list, string format)
         {
             if (format == "html")
@@ -130,6 +136,7 @@ namespace BasicTypes.Extensions
                 return String.Join(" ", parts);
         }
 
+        [DebuggerStepThrough]
         public static bool NeedIt(string format, string value)
         {
             

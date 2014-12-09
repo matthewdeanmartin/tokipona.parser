@@ -41,6 +41,53 @@ namespace BasicTypes.Parser
             Console.WriteLine(s.ToString("b"));
         }
 
+        //mama mi o, sina lon sewi kon
+        [Test]
+        public void HeadVocativeWithSina_WithoutNormalizing()
+        {
+            //
+            const string s = "mama mi o sina li lon sewi kon.";
+            Dialect c = Dialect.LooseyGoosey;
+            ParserUtils pu = new ParserUtils(c);
+            Sentence sentence = pu.ParsedSentenceFactory(s, s);
+            Console.WriteLine(s);
+            Console.WriteLine(sentence.ToString());
+            Console.WriteLine(sentence.ToString("b"));
+            Assert.IsNotNull(sentence.HeadVocatives);
+            Assert.IsTrue(sentence.HeadVocatives.Length == 1);
+        }
+
+        [Test]
+        public void HeadVocativeWithJan_WithNormalizing()
+        {
+            //normalizing a mid sentence sina (li) is a pain.
+            const string s = "mama mi o, jan li lon sewi kon.";
+            Dialect c = Dialect.LooseyGoosey;
+            ParserUtils pu = new ParserUtils(c);
+            string normalized = Normalizer.NormalizeText(s, c);
+            Assert.IsTrue(!normalized.Contains(","));
+            Sentence sentence = pu.ParsedSentenceFactory(normalized, s);
+            Console.WriteLine(s);
+            Console.WriteLine(sentence.ToString());
+            Console.WriteLine(sentence.ToString("b"));
+            Assert.IsNotNull(sentence.HeadVocatives);
+            Assert.IsTrue(sentence.HeadVocatives.Length == 1);
+        }
+
+        [Test]
+        public void HeadVocative()
+        {
+            const string s = "jan Enkitu o, toki sina li  toki ike li toki utala.";
+            Dialect c = Dialect.LooseyGoosey;
+            ParserUtils pu = new ParserUtils(c);
+            Sentence sentence = pu.ParsedSentenceFactory(s, s);
+            Console.WriteLine(s);
+            Console.WriteLine(sentence.ToString());
+            Console.WriteLine(sentence.ToString("b"));
+            Assert.IsNotNull(sentence.HeadVocatives);
+            Assert.IsTrue(sentence.HeadVocatives.Length==1);
+        }
+
         [Test]
         public void DoubleObject()
         {

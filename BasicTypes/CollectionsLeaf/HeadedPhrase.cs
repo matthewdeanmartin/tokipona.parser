@@ -111,6 +111,13 @@ namespace BasicTypes
                 throw new TpSyntaxException(
                     "You cannot have a headed phrase that is headed by a particle. That would be a chain. " + head.Text + " " + (modifiers == null ? "" : modifiers.ToString()));
             }
+
+            if (head.Text=="o" && modifiers!=null && modifiers.Count>0)
+            {
+                Console.WriteLine("Warning: We have an o with modifiers. This should be crazy rare.");
+                //Warning: 
+            }
+
             if (ProperModifier.IsProperModifer(head.Text))
             {
                 string warning = string.Empty;

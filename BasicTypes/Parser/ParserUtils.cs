@@ -229,7 +229,8 @@ namespace BasicTypes
 
 
             //Starts with o, then we have imperative & no head vocatives.
-            if (!sentence.StartCheck("o ") && sentence.EndCheck(" o"))
+            bool endsOrStartsWithO = sentence.StartCheck("o ") && sentence.EndCheck(" o");
+            if (!endsOrStartsWithO)
             {
                 //jan So o! (We already deal with degenerate vocative sentences elsewhere)
                 //jan So o sina li nasa.
@@ -237,11 +238,20 @@ namespace BasicTypes
                 //jan So o mi mute o nasa.  <-- This is the problem.
 
                 //These could be vocatives or imperatives.
-                if (sentence.ContainsCheck(" o ", " o,", ",o "))
+                if (sentence.ContainsCheck(" o ", " o,", ",o ") && sentence.ContainsCheck(" li "))
                 {
                     headVocatives = new List<Vocative>();
                     
                     ProcessHeadVocatives(Splitters.SplitOnO(sentence), headVocatives, allAreVocatives:false);
+
+                    //int firstLi = sentence.IndexOf(" li ");
+                    int lastO = sentence.LastIndexOf(" o ");
+                    if (lastO < 0)
+                    {
+                        lastO = sentence.LastIndexOf(" o,");
+                    }
+
+                    sentence = sentence.Substring(lastO+2);
                 }
             }
 
@@ -386,7 +396,8 @@ namespace BasicTypes
                 //Etc
                 Punctuation = punctuation,
                 IsHortative = isHortative,
-                TagQuestion = tagQuestion
+                TagQuestion = tagQuestion,
+                HeadVocatives =  headVocatives!=null?headVocatives.ToArray():null
             },
             new SentenceDiagnostics(original, sentence));
             return parsedSentence;
@@ -400,7 +411,7 @@ namespace BasicTypes
             {
                 if (!allAreVocatives)
                 {
-                    if (i == vocativeParts.Length & vocativeParts.Length == 1)
+                    if (i == vocativeParts.Length-1)
                     {
                         continue;
                     }
@@ -979,7 +990,12 @@ namespace BasicTypes
 
                         try
                         {
+#if VS2013
                             possible = new TaggedWord(currentWord, new WordList(new ArraySegment<Word>(tail, i + 1, j - i)));
+#else
+                            possible = new TaggedWord(currentWord, new WordList(tail.Skip(i + 1).Take(j - i)));
+#endif
+
                             resumeAt = j + 1;
                             stopLookAhead = true; //we found the largest possible. now stop.
                         }

@@ -75,8 +75,74 @@
     <Compile Include="..\..\BasicTypes\CollectionsDegenerate\Fragment.cs">
       <Link>CollectionsDegenerate\Fragment.cs</Link>
     </Compile>
+    <Compile Include="..\..\BasicTypes\CollectionsDegenerate\NullOrSymbols.cs">
+      <Link>CollectionsDegenerate\NullOrSymbols.cs</Link>
+    </Compile>
     <Compile Include="..\..\BasicTypes\CollectionsDegenerate\Vocative.cs">
       <Link>CollectionsDegenerate\Vocative.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\CollectionsDiscourse\Dialog.cs">
+      <Link>CollectionsDiscourse\Dialog.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\CollectionsDiscourse\Discourse.cs">
+      <Link>CollectionsDiscourse\Discourse.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\CollectionsDiscourse\MixedText.cs">
+      <Link>CollectionsDiscourse\MixedText.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\CollectionsDiscourse\Poetry.cs">
+      <Link>CollectionsDiscourse\Poetry.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\CollectionsDiscourse\Prose.cs">
+      <Link>CollectionsDiscourse\Prose.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\CollectionsDiscourse\Speaker.cs">
+      <Link>CollectionsDiscourse\Speaker.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\CollectionsDiscourse\Utterance.cs">
+      <Link>CollectionsDiscourse\Utterance.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\CollectionsLeaf\ComplexPronoun.cs">
+      <Link>CollectionsLeaf\ComplexPronoun.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\CollectionsLeaf\HeadedPhrase.cs">
+      <Link>CollectionsLeaf\HeadedPhrase.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\CollectionsLeaf\HeadedPhraseConverter.cs">
+      <Link>CollectionsLeaf\HeadedPhraseConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\CollectionsLeaf\HeadedPhraseEquivallenceGenerator.cs">
+      <Link>CollectionsLeaf\HeadedPhraseEquivallenceGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\CollectionsLeaf\HeadedPhraseTest.cs">
+      <Link>CollectionsLeaf\HeadedPhraseTest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\CollectionsLeaf\HeadPhraseByValue.cs">
+      <Link>CollectionsLeaf\HeadPhraseByValue.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\CollectionsLeaf\ModiferPhrase.cs">
+      <Link>CollectionsLeaf\ModiferPhrase.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\CollectionsLeaf\TaggedWord.cs">
+      <Link>CollectionsLeaf\TaggedWord.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\CollectionsLeaf\TaggedWordsTests.cs">
+      <Link>CollectionsLeaf\TaggedWordsTests.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\CollectionsLeaf\WordList.cs">
+      <Link>CollectionsLeaf\WordList.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\CollectionsLeaf\WordSet.cs">
+      <Link>CollectionsLeaf\WordSet.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\CollectionsLeaf\WordSetByValue.cs">
+      <Link>CollectionsLeaf\WordSetByValue.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\CollectionsLeaf\WordSetTest.cs">
+      <Link>CollectionsLeaf\WordSetTest.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\CollectionsLeaf\WordSetTypeConverter.cs">
+      <Link>CollectionsLeaf\WordSetTypeConverter.cs</Link>
     </Compile>
     <Compile Include="..\..\BasicTypes\Collections\Chain.cs">
       <Link>Collections\Chain.cs</Link>
@@ -105,32 +171,11 @@
     <Compile Include="..\..\BasicTypes\Collections\ComplexChainTests.cs">
       <Link>Collections\ComplexChainTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\BasicTypes\Collections\DirectSpeech.cs">
-      <Link>Collections\DirectSpeech.cs</Link>
-    </Compile>
-    <Compile Include="..\..\BasicTypes\Collections\Discourse.cs">
-      <Link>Collections\Discourse.cs</Link>
-    </Compile>
-    <Compile Include="..\..\BasicTypes\Collections\DiscourseTests.cs">
-      <Link>Collections\DiscourseTests.cs</Link>
-    </Compile>
-    <Compile Include="..\..\BasicTypes\Collections\HeadedPhrase.cs">
-      <Link>Collections\HeadedPhrase.cs</Link>
-    </Compile>
-    <Compile Include="..\..\BasicTypes\Collections\HeadedPhraseConverter.cs">
-      <Link>Collections\HeadedPhraseConverter.cs</Link>
-    </Compile>
-    <Compile Include="..\..\BasicTypes\Collections\HeadedPhraseEquivallenceGenerator.cs">
-      <Link>Collections\HeadedPhraseEquivallenceGenerator.cs</Link>
-    </Compile>
-    <Compile Include="..\..\BasicTypes\Collections\HeadedPhraseTest.cs">
-      <Link>Collections\HeadedPhraseTest.cs</Link>
-    </Compile>
-    <Compile Include="..\..\BasicTypes\Collections\HeadPhraseByValue.cs">
-      <Link>Collections\HeadPhraseByValue.cs</Link>
-    </Compile>
     <Compile Include="..\..\BasicTypes\Collections\Phrase.cs">
       <Link>Collections\Phrase.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\Collections\PiPredicate.cs">
+      <Link>Collections\PiPredicate.cs</Link>
     </Compile>
     <Compile Include="..\..\BasicTypes\Collections\Predicate.cs">
       <Link>Collections\Predicate.cs</Link>
@@ -180,26 +225,17 @@
     <Compile Include="..\..\BasicTypes\Collections\VerbPhraseTests.cs">
       <Link>Collections\VerbPhraseTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\BasicTypes\Collections\WordList.cs">
-      <Link>Collections\WordList.cs</Link>
-    </Compile>
-    <Compile Include="..\..\BasicTypes\Collections\WordSet.cs">
-      <Link>Collections\WordSet.cs</Link>
-    </Compile>
-    <Compile Include="..\..\BasicTypes\Collections\WordSetByValue.cs">
-      <Link>Collections\WordSetByValue.cs</Link>
-    </Compile>
-    <Compile Include="..\..\BasicTypes\Collections\WordSetTest.cs">
-      <Link>Collections\WordSetTest.cs</Link>
-    </Compile>
-    <Compile Include="..\..\BasicTypes\Collections\WordSetTypeConverter.cs">
-      <Link>Collections\WordSetTypeConverter.cs</Link>
-    </Compile>
     <Compile Include="..\..\BasicTypes\Config.cs">
       <Link>Config.cs</Link>
     </Compile>
     <Compile Include="..\..\BasicTypes\Corpus\CorpusFileReader.cs">
       <Link>Corpus\CorpusFileReader.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\Diagnostics\AugmentException.cs">
+      <Link>Diagnostics\AugmentException.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\Diagnostics\SentenceDiagnostics.cs">
+      <Link>Diagnostics\SentenceDiagnostics.cs</Link>
     </Compile>
     <Compile Include="..\..\BasicTypes\Diagnostics\Tracers.cs">
       <Link>Diagnostics\Tracers.cs</Link>
@@ -267,9 +303,6 @@
     <Compile Include="..\..\BasicTypes\FundamentalTests\TestObjectInterface.cs">
       <Link>FundamentalTests\TestObjectInterface.cs</Link>
     </Compile>
-    <Compile Include="..\..\BasicTypes\Globalization\TpCalendar.cs">
-      <Link>Globalization\TpCalendar.cs</Link>
-    </Compile>
     <Compile Include="..\..\BasicTypes\Globalization\TpCultureFactory.cs">
       <Link>Globalization\TpCultureFactory.cs</Link>
     </Compile>
@@ -288,23 +321,11 @@
     <Compile Include="..\..\BasicTypes\Glosser\GlossMakerTests.cs">
       <Link>Glosser\GlossMakerTests.cs</Link>
     </Compile>
-    <Compile Include="..\..\BasicTypes\Interfaces\ICopySelf.cs">
-      <Link>Interfaces\ICopySelf.cs</Link>
+    <Compile Include="..\..\BasicTypes\Html\HtmlFormatter.cs">
+      <Link>Html\HtmlFormatter.cs</Link>
     </Compile>
-    <Compile Include="..\..\BasicTypes\Interfaces\IParse.cs">
-      <Link>Interfaces\IParse.cs</Link>
-    </Compile>
-    <Compile Include="..\..\BasicTypes\Interfaces\ISerializeToProxy.cs">
-      <Link>Interfaces\ISerializeToProxy.cs</Link>
-    </Compile>
-    <Compile Include="..\..\BasicTypes\Interfaces\IToString.cs">
-      <Link>Interfaces\IToString.cs</Link>
-    </Compile>
-    <Compile Include="..\..\BasicTypes\Interfaces\MissingFrameworkInterfaces.cs">
-      <Link>Interfaces\MissingFrameworkInterfaces.cs</Link>
-    </Compile>
-    <Compile Include="..\..\BasicTypes\Interfaces\StringableObject.cs">
-      <Link>Interfaces\StringableObject.cs</Link>
+    <Compile Include="..\..\BasicTypes\Html\HtmlTagHelper.cs">
+      <Link>Html\HtmlTagHelper.cs</Link>
     </Compile>
     <Compile Include="..\..\BasicTypes\Knowledge\CorpusKnowledge.cs">
       <Link>Knowledge\CorpusKnowledge.cs</Link>
@@ -314,6 +335,24 @@
     </Compile>
     <Compile Include="..\..\BasicTypes\Knowledge\CorpusTexts.cs">
       <Link>Knowledge\CorpusTexts.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\Knowledge\Interfaces\ICopySelf.cs">
+      <Link>Interfaces\ICopySelf.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\Knowledge\Interfaces\IParse.cs">
+      <Link>Interfaces\IParse.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\Knowledge\Interfaces\ISerializeToProxy.cs">
+      <Link>Interfaces\ISerializeToProxy.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\Knowledge\Interfaces\IToString.cs">
+      <Link>Interfaces\IToString.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\Knowledge\Interfaces\MissingFrameworkInterfaces.cs">
+      <Link>Interfaces\MissingFrameworkInterfaces.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\Knowledge\Interfaces\StringableObject.cs">
+      <Link>Interfaces\StringableObject.cs</Link>
     </Compile>
     <Compile Include="..\..\BasicTypes\Knowledge\KnowledgeScope.cs">
       <Link>Knowledge\KnowledgeScope.cs</Link>
@@ -353,6 +392,15 @@
     </Compile>
     <Compile Include="..\..\BasicTypes\NormalizerCode\NormalizerTests.cs">
       <Link>Normalizer\NormalizerTests.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\ParseDiscourse\ParagraphSplitter.cs">
+      <Link>ParseDiscourseCode\ParagraphSplitter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\ParseDiscourse\ParagraphSplitterTests.cs">
+      <Link>ParseDiscourseCode\ParagraphSplitterTests.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\ParseDiscourse\SentenceSplitter.cs">
+      <Link>ParseDiscourseCode\SentenceSplitter.cs</Link>
     </Compile>
     <Compile Include="..\..\BasicTypes\Parser\ParserUtils.cs">
       <Link>Parser\ParserUtils.cs</Link>
@@ -512,6 +560,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
