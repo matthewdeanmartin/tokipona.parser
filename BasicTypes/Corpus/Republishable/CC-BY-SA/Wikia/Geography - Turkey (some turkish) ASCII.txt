@@ -16,7 +16,7 @@ mani: Yeni Türk Lirasi.
 ma Tuki li lon ma suli Elopa li lon ma suli Asija. ma Tuki li poka ma Pokasi li poka ma Elena li poka ma Katelo li poka ma Armenia li poka ma Ilan li poka ma Azerbaijan li poka ma Ilakija li poka ma Sulija.
 tenpo pini la kulupu jan mute li lawa e ma Tuki. kulupu ni li kulupu Armenia li kulupu Byzantine li kulupu "Seljuk" li kulupu Ottoman.
 poki lawa.
-//[o suli e poki ni.]
+///[o suli e poki ni.]
 nimi.
 
 nimi pi ma Tuki lon toki Tuki li "Türkiye". nimi ni li nimi tu. nimi nanpa wan li Türk. Türk lon toki Tuki pi tenpo pini li "wawa" li "jan Tuki." nimi nanpa tu li -iye li "jo."

@@ -79,7 +79,7 @@ namespace BasicTypes.Extensions
         }
         public static bool ContainsOnlyDigits(this string value)
         {
-            return value != null && value.ToLower().All(x => "1234567890".Contains(x));
+            return value != null && value.ToLower().All(x => "-.1234567890".Contains(x));
         }
 
         public static bool IsFirstUpperCased(this string value)

@@ -18,6 +18,6 @@ tenpo mute li pini. sina kama moli lon supa lape sina.
 
 sina pilin ala pilin e ni?: tenpo suno ali li lili. sina wile ala wile e ni taso?: sina lon ma ni li ken toki e ni tawa jan Inli:
 
-sina ken moli e mi. taso sina ken ala anpa e ken mi! /* removed dramatic pause ... */
+sina ken moli e mi. taso sina ken ala anpa e ken mi! 
 
 ma Sukosi a!

@@ -7,11 +7,11 @@ jan Uluka ni li wile e seme?
 
 seli li pona tawa jan Uluka.
 
-"Unrepairable text".
-"moku e luka jan li pona tawa jan Uluka."
-"pali e lupa pi sinpin jan li pona tawa jan Uluka."
-"anpa e kiwen tawa kawa jan li pona tawa jan Uluka."
-"tu e kawa jan li pona tawa jan Uluka."
+///Unrepairable text.
+///moku e luka jan li pona tawa jan Uluka.
+///pali e lupa pi sinpin jan li pona tawa jan Uluka.
+///anpa e kiwen tawa kawa jan li pona tawa jan Uluka.
+///tu e kawa jan li pona tawa jan Uluka.
 
 
 jan Uluka li wile kute e kalama musi utala.

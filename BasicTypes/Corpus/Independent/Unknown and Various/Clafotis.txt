@@ -1,31 +1,33 @@
-Fau aver :
-- 500 g de cireijas negras.
-[mute kili lili pi pimeja loje]
-- 4 uòus.
-[tu tu poki pi waso lili]
-- 100 g de sucre.
-[mute ko suwi]
-- 80 g de farina.
-[mute ko walo]
-- 60 g de burre e 25 cl de lach (o 100ml de crema).
-[mute ko pi telo walo]
+/// Fau aver :
+/// - 500 g de cireijas negras.
+mute kili lili pi pimeja loje.
+/// - 4 uòus.
+tu tu poki pi waso lili.
+/// - 100 g de sucre.
+mute ko suwi.
+/// - 80 g de farina.
+mute ko walo.
+/// - 60 g de burre e 25 cl de lach (o 100ml de crema).
+mute ko pi telo walo.
 
-- 1 pincada de sau.
-
-
+/// - 1 pincada de sau.
 
 
- 1- sina telo e kili lili. ona li lape tawa wan poki.
 
- 2- sina pakala e poki pi waso lili. sina tu e ni, mute mute.
 
- 3- sina wan e ko ko walo. sijelo ko li jo pona lukin.
+ 1. 
+ sina telo e kili lili. ona li lape tawa wan poki.
 
-4- sina wan e ko pi telo walo.
+ 2. 
+ sina pakala e poki pi waso lili. sina tu e ni, mute mute.
 
- 5- kili li lon poki tenpo kama lili, sina ken tu e ni: ijo ale li jo.
+ 3. sina wan e ko ko walo. sijelo ko li jo pona lukin.
 
-6- sina seli e ni tenpo mute.
+4. sina wan e ko pi telo walo.
+
+ 5. kili li lon poki tenpo kama lili, sina ken tu e ni: ijo ale li jo.
+
+6. sina seli e ni tenpo mute.
 
 
  sina jo e poki wan. poki pi ko walo luka li insa poki. sina seli e telo walo tenpo luka pi nanpa tenpo lili. o awen. sina seli e telo mute mute.

@@ -542,7 +542,7 @@ namespace BasicTypes.Parser
             english.TargetGloss = "en";
             english.GlossWithFallBacks = true;
 
-            CorpusFileReader reader = new CorpusFileReader();
+            CorpusFileReader reader = new CorpusFileReader(true);
             GlossMaker gm = new GlossMaker();
             SentenceSplitter ss = new SentenceSplitter(dialect);
 
@@ -569,22 +569,24 @@ namespace BasicTypes.Parser
 
                         //if ((normalized.ContainsCheck("%ante"))) continue; //verb!
 
-                        Console.WriteLine("O: " + (original??"").Trim(new []{'\n','\r',' ','\t'}));
-                        Console.WriteLine("B: " + diag);
-                        Console.WriteLine("G: " + gm.GlossOneSentence(false, structured, english));
+                        string gloss = gm.GlossOneSentence(false, structured, english);
+                        // Console.WriteLine("O: " + (original??"").Trim(new []{'\n','\r',' ','\t'}));
+                        // Console.WriteLine("B: " + diag);
+                        // Console.WriteLine("G: " + gloss);
                     }
                     catch (Exception ex)
                     {
-                        if (ex.Message.ContainsCheck("all tests"))
-                        {
-                            Console.WriteLine("ORIGINAL  : " + original);
-                            if (structured != null)
-                            {
-                                Console.WriteLine(structured.ToString("b"));
-                            }
-                            Console.WriteLine(ex.Message);
+                        //if (ex.Message.ContainsCheck("all tests"))
+                        //{
+                        //    Console.WriteLine("ORIGINAL  : " + original);
+                        //    if (structured != null)
+                        //    {
+                        //        Console.WriteLine(structured.ToString("b"));
+                        //    }
+                        //    Console.WriteLine(ex.Message);
                             i++;
-                        }
+                        //}
+                        //    Console.WriteLine(original);
                         Console.WriteLine(ex.Message);
                         //else throw;
                     }

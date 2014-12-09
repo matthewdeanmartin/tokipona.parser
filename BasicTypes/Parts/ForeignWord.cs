@@ -36,6 +36,10 @@ namespace BasicTypes.Parts
             {
                 throw new ArgumentNullException("word", "Normalized foreign words and phrases can have *, but no spaces [" + word + "]");
             }
+            if (word.Split(new char[] {'*'}).Length > 5)
+            {
+                throw new InvalidOperationException("This is a really long foreign word/phrase. " + word);
+            }
             if (!(word.EndCheck("\"") && word.StartCheck("\"")))
             {
                 throw new InvalidLetterSetException("Must be bracketed by double quotes ["+ word +"]");
