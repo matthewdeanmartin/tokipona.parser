@@ -565,6 +565,7 @@ namespace BasicTypes.Parser
 
             foreach (string s in reader.NextFile())
             {
+                if (reader.currentFile.ContainsCheck("janKipoCollected"))  // Can't parse:  *janMato 123 123 ni li musi!
                 foreach (string original in ss.ParseIntoNonNormalizedSentences(s))
                 {
                     Sentence structured = null;
