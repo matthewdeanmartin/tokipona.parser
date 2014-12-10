@@ -181,7 +181,7 @@ namespace BasicTypes.Parser
             string[] prepTokens = splitOnEn.Split(value).Select(x => x.Trim()).Where(x => !string.IsNullOrEmpty(x)).ToArray();
             if (prepTokens.Any(x => x.ContainsCheck(" ~")))
             {
-                throw new InvalidOperationException("Split failed");
+                throw new InvalidOperationException("Split failed : " + value);
             }
             if (prepTokens.Length == 0)
             {
