@@ -98,5 +98,5 @@ mi ken ala lukin e pini pi pali mi.
 ni li ike tawa mi.
 mi wile e pini e pali.
 
-'Copyright (C) 2002, Yves Prudhomme.'
+///Copyright (C) 2002, Yves Prudhomme.
 

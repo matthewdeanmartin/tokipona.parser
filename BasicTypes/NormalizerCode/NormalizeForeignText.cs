@@ -237,7 +237,14 @@ namespace BasicTypes.NormalizerCode
                 }
             }
 
-            return String.Join(" ", split);
+            string rejoin = String.Join(" ", split);
+            if (rejoin.ContainsCheck("\" \""))
+            {
+                //"foo" "bar" "baz" etc
+                return rejoin.Replace("\" \"", " ");
+            }
+
+            return rejoin;
         }
 
         /// <summary>

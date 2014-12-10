@@ -125,7 +125,10 @@ namespace BasicTypes
                 {
                     warning = " (This is a valid word, maybe it shouldn't be capitalized?)";
                 }
-                throw new TpSyntaxException("Proper modifiers cannot be the head of a headed phrase " + head.Text + warning);
+                if (!Number.IsPomanNumber(head.Text))
+                {
+                    throw new TpSyntaxException("Proper modifiers cannot be the head of a headed phrase " + head.Text + warning);
+                }
             }
             if (modifiers != null)
             {

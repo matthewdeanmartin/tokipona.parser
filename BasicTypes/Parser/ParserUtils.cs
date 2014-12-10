@@ -224,7 +224,8 @@ namespace BasicTypes
 
                 //Process head vocatives.
                 ProcessHeadVocatives(Splitters.SplitOnO(justHeadVocatives), headVocatives, allAreVocatives: true);
-                sentence = sentence.Substring(sentence.IndexOf(" o o ")+5);
+                //BUG: Add the dummy! (And it still doesn't work!)
+                sentence = "jan Sanwan o " + sentence.Substring(sentence.IndexOf(" o o ")+5);
             }
 
 

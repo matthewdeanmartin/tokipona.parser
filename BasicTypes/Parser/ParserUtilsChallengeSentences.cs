@@ -57,6 +57,24 @@ namespace BasicTypes.Parser
             Assert.IsTrue(sentence.HeadVocatives.Length == 1);
         }
 
+        // ona mute o pana e mije lili tawa ma kasi suli li pakala e ona.
+
+        [Test]
+        public void MixedImperativeAndNonImperativeDoubleO()
+        {
+            //normalizing a mid sentence sina (li) is a pain.
+            const string s = "ona mute o o pana e mije lili tawa ma kasi suli li pakala e ona.";
+            Dialect c = Dialect.LooseyGoosey;
+            ParserUtils pu = new ParserUtils(c);
+            string normalized = Normalizer.NormalizeText(s, c);
+            Sentence sentence = pu.ParsedSentenceFactory(normalized, s);
+            Console.WriteLine(s);
+            Console.WriteLine(sentence.ToString());
+            Console.WriteLine(sentence.ToString("b"));
+            Assert.IsNotNull(sentence.HeadVocatives);
+            Assert.IsTrue(sentence.HeadVocatives.Length == 1);
+        }
+
         [Test]
         public void HeadVocativeWithJan_WithNormalizing()
         {

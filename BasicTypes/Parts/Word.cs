@@ -77,6 +77,20 @@ namespace BasicTypes
             {
                 throw new ArgumentNullException("word");
             }
+
+            //HACK: I don't like constructor normalization.
+            if (word.ToUpperInvariant() == word)
+            {
+                Word test;
+                if (!Words.Dictionary.TryGetValue(LookupForm(word), out test))
+                {
+                    if (Words.Dictionary.TryGetValue(LookupForm(word.ToLowerInvariant()), out test))
+                    {
+                        word = word.ToLowerInvariant();
+                    }
+                }
+            }
+            
             word = ProcessPuncuation(word);
 
             ValidateOnConstruction(word);

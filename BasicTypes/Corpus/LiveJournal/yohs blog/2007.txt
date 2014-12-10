@@ -78,7 +78,7 @@ lon tenpo sike 07
 
 tenpo pimeja pini lon ma Wije la ma Nijon en ma Oselija li pali e utala musi pi "wan lon tu tu tawa pini" lon utala musi suli pi sike noka lon ma Asija. 
 
-tenpo ali lon utala musi ni la ma tu li pali pona. tenpo pini ni la ma Nijon li 1, ma Oselija li 1. tan ni la ma tu li pali e pana sike noka pi pini pakala mute (Penalty kick Shootout) . tenpo pini ni la ma Nijon li 4, ma Oselija li 3. tan ni la ma Nijon li sewi.
+tenpo ali lon utala musi ni la ma tu li pali pona. tenpo pini ni la ma Nijon li 1, ma Oselija li 1. tan ni la ma tu li pali e pana sike noka pi pini pakala mute ("Penalty kick Shootout") . tenpo pini ni la ma Nijon li 4, ma Oselija li 3. tan ni la ma Nijon li sewi.
 
 ma Oselija li wawa. tenpo sike suno pini la ma tu ni li pali lon utala musi suli pi sike noka lon ma ali (FIFA World Cup) lon ma Tosi. tenpo pini ni la ma Oselija li 3, ma Nijon li 1. jan Nijon mute li sona e ni li pana wawa tawa ma Nijon. tenpo ni la ma Nijon li sewi. ni li pona mute tawa ona.
 
@@ -115,10 +115,11 @@ ma Nijon 3, ma Imala 1.
 ma Nijon 4, ma Wije 1.
 ma Imala 2, ma Kata 1.
 
-+7 ma Nijon.
-+4 ma Wije.
-+3 ma Imala.
-+2 ma Kata.
+///Not worth modeling.
+///+7 ma Nijon.
+///+4 ma Wije.
+///+3 ma Imala.
+///+2 ma Kata.
 
 ma Nijon en ma Wije li sewi. ma Imala en ma Kata li anpa.
 ma Nijon en ma Oselija li pali e utala musi pi "wan lon tu tu tawa pini" (Quater final) .
@@ -181,7 +182,7 @@ mi kute e ni: tenpo sike ni la jan Mewika li kama e ona (jan Riyo Mori) tawa jan
 ///Note- anu-la, what is it?
 mi ken ala pilin sama. mi pilin e ni: ona li sama jan mije poka len pi jan meli. ona li ken pona lukin tan seme? kulupu "Miss Universe" li lukin e pona lukin. taso ala li lukin e pona pi insa jan anu seme? anu-la, kulupu "Miss Universe" li musi ike taso anu seme? anu-la, kulupu tawa jan meli ("Feminist Group" lon toki Inli) li lawa e kulupu "Miss Universe" li ante e nimi pi pona lukin en nimi pi ike lukin lon kulupu "Miss Universe" anu seme?
 
-tenpo sike pini kin la jan meli lili pi ma Nijon (jan Kurara Chibana) li jan pi ike lukin li kama jan meli lili nanpa tu pi ma ali. mi pilin e ni: kulupu "Miss Universe" li nasa.	 
+tenpo sike pini kin la jan meli lili pi ma Nijon (jan "Kurara Chibana") li jan pi ike lukin li kama jan meli lili nanpa tu pi ma ali. mi pilin e ni: kulupu "Miss Universe" li nasa.	 
 
  
 toki-pona li pona ala pona pali? 		 
