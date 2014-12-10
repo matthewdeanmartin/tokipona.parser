@@ -7,13 +7,15 @@ jan Antowan Te Sentesipeli "(Antoine de Saint-Exupéry)" tan ma Kanse pali e lipu
 jan li ken lukin e lipu toki ni lon toki Kanse en toki Epelanto en toki Seki en toki ante.
 
 lipu toki 'jan lawa lili' li jo e lipu mute. tenpo ni la jan li ken lukin e lipu ni:
-PANA PILIN • LIPU 1 • LIPU 21
+'pana pilin.'  lipu 1. lipu 21.
 tenpo kama la lipu ante kin li kama.
 
 jan lawa lili.
 
-nimi lon toki Kanse tan jan "Antoine de Saint Exupéry" tan tenpo sike 1943
-nimi lon toki-pona tan jan Male (tokipona@blahus.cz) tan tenpo sike 2007
+nimi lon toki Kanse tan jan "Antoine de Saint Exupéry" tan tenpo sike 1943.
+nimi lon toki-pona tan jan Male tan tenpo sike 2007.
+///(tokipona@blahus.cz)
+
 pana pilin.
 
  tawa jan Lewon Wese.
@@ -210,7 +212,7 @@ ni li lon la mi jo e tenpo pona lon tenpo ala.'
 
 tan ni la jan lawa li pali e jan poka tan soweli loje.
 taso tenpo pi kama weka li kama:
-soweli loje li toki e ni: 'a, mi pana e telo tan oko mi.'
+soweli loje li toki e ni: 'a! mi pana e telo tan oko mi.'
 jan lawa lili li toki: 'ni li pakala sina. mi wile ala pana e ike
 tawa sina, taso sina wile kama jan poka mi...'
 soweli loje li toki: 'lon.'

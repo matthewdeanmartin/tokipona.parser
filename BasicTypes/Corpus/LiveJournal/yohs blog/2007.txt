@@ -14,9 +14,9 @@ lon tenpo sike 07.
 
 tenpo pini pi sike suno wan la mi kama sona e toki-pona. mi musi mute. toki-pona li jo e nimi lili li ken toki e ijo mute. tenpo kama lili la toki-pona li ante lili. toki-pona li kama jo e lipu pi kama sona. lipu ni li jo e ijo ali lon toki-pona. mi kepeken e lipu ni la mi ken pona e pakala lon sitelen mi. 
 
-lipu ni li jo e nimi sin tu. ni li nimi "pan" en nimi "esun".
+lipu ni li jo e nimi sin tu. ni li nimi 'pan' en nimi 'esun'.
 
-jan Sonja li toki e ni: nimi sin ni tu li "bonus words". mi pilin e ni: nimi "pan" li sama 'ko seli pi kili lili kiwen'. nimi "esun" li sama 'tomo pi kama jo kepeken mani'. nimi sin ni li ken lili e kulupu nimi ni. nimi sin ni li kama la mi ken toki sama ni: 'pan lipu sike poka kiwen pi telo mama.' 'tomo suli pi esun lili mute'. mi ken toki kin sama ni: "pan Pizza" "esun Prada". nimi sin ni li nimi pona!
+jan Sonja li toki e ni: nimi sin ni tu li "bonus words". mi pilin e ni: nimi 'pan' li sama 'ko seli pi kili lili kiwen'. nimi 'esun' li sama 'tomo pi kama jo kepeken mani'. nimi sin ni li ken lili e kulupu nimi ni. nimi sin ni li kama la mi ken toki sama ni: 'pan lipu sike poka kiwen pi telo mama.' 'tomo suli pi esun lili mute'. mi ken toki kin sama ni: "pan Pizza" "esun Prada". nimi sin ni li nimi pona!
 
 mi wile kama jo e lipu pi kama sona. taso ijo ike suli li lon mi. mi ken ala lukin e toki Inli pona! mi wile e lipu ni lon toki Nijon. jan seme li kama e ni? a...	 
  
@@ -108,12 +108,13 @@ ma Wije.
 * ma Imala en ma Kata li lon lipu pi tokipona.org ala. nimi ni tu li ken pakala.
 ma Imala lon toki Inli li UAE. ma Kata lon toki Inli li Qatar.
 
-ma Wije 2, ma Imala 0.
-ma Nijon 1, ma Kata 1.
-ma Kata 1, ma Wije 1.
-ma Nijon 3, ma Imala 1.
-ma Nijon 4, ma Wije 1.
-ma Imala 2, ma Kata 1.
+///Lists changed to sentences. Don't want to have to invent yet another type of degenerate sentence.
+ma Wije 2. ma Imala 0.
+ma Nijon 1. ma Kata 1.
+ma Kata 1. ma Wije 1.
+ma Nijon 3. ma Imala 1.
+ma Nijon 4. ma Wije 1.
+ma Imala 2. ma Kata 1.
 
 ///Not worth modeling.
 ///+7 ma Nijon.
@@ -210,7 +211,8 @@ mi tawa ma tomo Tokijo li tawa tomo suli pi kama jo ijo pi nimi "Tokyu Hands" li
 
 sina wile kin kama jo e poki ni la o lukin e lipu ni. "www.bananaguard.com". sina ken kama jo e poki ni wan kepeken mani Mewika luka tu.
 
-mi kama jo e poki ni wan kepeken mani Nijon 950. ni li sama mani Mewika luka tu wan. tan ni la poki ni li kama nasin ali tan ma Kanata tawa ma Nijon kepeken mani Mewika wan taso!! ni li musi mute. o(^v^)o	 
+mi kama jo e poki ni wan kepeken mani Nijon 950. ni li sama mani Mewika luka tu wan. tan ni la poki ni li kama nasin ali tan ma Kanata tawa ma Nijon kepeken mani Mewika wan taso!! ni li musi mute. 
+/// o(^v^)o	 
 
  
 nanpa suli.

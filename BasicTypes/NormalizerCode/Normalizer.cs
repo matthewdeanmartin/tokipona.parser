@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using BasicTypes.Collections;
 using BasicTypes.Diagnostics;
 using BasicTypes.Dictionary;
 using BasicTypes.Exceptions;
@@ -31,6 +32,8 @@ namespace BasicTypes.NormalizerCode
 
         public static string NormalizeText(string text, Dialect dialect)//= null
         {
+            SentenceDiagnostics sd = new SentenceDiagnostics(text,"N/A");
+
             if (string.IsNullOrWhiteSpace(text))
             {
                 return "";
@@ -65,6 +68,8 @@ namespace BasicTypes.NormalizerCode
             {
                 normalized = normalized.Replace(" !", "!");
             }
+
+            
 
             //Normalize prepositions to ~, so that we don't have tokens with embedded spaces (e.g. foo, kepeken => [foo],[, kepeken])
 
@@ -310,7 +315,7 @@ namespace BasicTypes.NormalizerCode
                 normalized = normalized.Replace("~", ""); //HACK: This may erase ~ added by user at the start?
             }
 
-            string fakePredicate = " li ijo Nanunanuwakawakawawa.";
+            
             //normalized = UseDummyPredicateForObviousFragments(normalized, fakePredicate);
             //vocatives & exclamations are expected to be fragmentary.
 
@@ -335,6 +340,12 @@ namespace BasicTypes.NormalizerCode
                 normalized = normalized.Replace("taso mi pilin", "taso mi li pilin");
             }
 
+            
+            //mi mute o  ==> mi li mute o
+            if (normalized.ContainsCheck("mi li mute o "))
+            {
+                normalized = normalized.Replace("mi li mute o ", "mi mute o ");
+            }
 
             //"mi li ~tawa lon" -- the other one is a prep
             if (normalized.ContainsCheck("mi li ~tawa lon"))
@@ -439,14 +450,12 @@ namespace BasicTypes.NormalizerCode
                 normalized = ApplyNormalization(normalized, "DirectQuotes", AddDirectedQuotes);
             }
 
-            if (normalized == fakePredicate)
-            {
-                throw new InvalidOperationException("started with " + text);
-            }
             if (normalized.StartCheck("« »"))
             {
                 throw new InvalidOperationException("quote recognition went wrong: " + text);
             }
+
+            sd = new SentenceDiagnostics(text, normalized);
             return normalized;
         }
 
@@ -553,7 +562,7 @@ namespace BasicTypes.NormalizerCode
         /// </summary>
         private static string ProcessExtraneousCommas(string normalized)
         {
-            foreach (string s in new String[] { ", li ", ", la ", ",la ", " la, ", " la,", ", o ", ",o ", " o, " })
+            foreach (string s in new String[] { ", li ", ", la ", ",la ", " la, ", " la,", ", o ", ",o ", " o, ", "taso, ","anu, " })
             {
                 if (normalized.ContainsCheck(s))
                 {
@@ -1262,3 +1271,4 @@ namespace BasicTypes.NormalizerCode
         }
     }
 }
+

@@ -49,6 +49,12 @@ namespace BasicTypes.ParseDiscourse
 
             //Anything between /// and \n is a comment.
 
+            //‘a! mi wile moku e wan soweli seli.’
+            if (text.ContainsCheck('‘') && text.ContainsCheck('’'))
+            {
+                text = text.Replace('‘', '\'');
+                text = text.Replace('’', '\'');
+            }
 
             text = SwapQuoteAndSentenceTerminatorOrder(text);
 

@@ -17,135 +17,6 @@ using NUnit.Framework;
 
 namespace BasicTypes.Lorem
 {
-    [TestFixture]
-    public class TextGeneratorTest
-    {
-
-        //Discourse patterns.
-        //Title (sentence or fragement)
-        //Sentence 1-4, then paragraph break.
-        //Author. (jan Sowanso)
-
-        //Person one says, "...."
-        //Person two says, "...."
-
-        //Question, Answer.
-
-        [Test]
-        public void GenerateDiscourse()
-        {
-            Dialect d = Dialect.LooseyGoosey;
-            d.IncludeApocrypha = false;
-            TextGenerator tg = new TextGenerator(d);
-            
-            for (int i = 0; i < 1000; i++)
-            {
-                Sentence s = tg.GenerateSentence();
-                Console.WriteLine(s.ToString());
-                Console.WriteLine(s.ToString("b"));
-            }
-        }
-
-
-        [Test]
-        public void GenerateObjectAndStringify()
-        {
-            Dialect d = Dialect.LooseyGoosey;
-            d.IncludeApocrypha = false;
-            TextGenerator tg = new TextGenerator(d);
-            for (int i = 0; i < 1000; i++)
-            {
-                Sentence s = tg.GenerateSentence();
-                Console.WriteLine(s.ToString());
-                Console.WriteLine(s.ToString("b"));
-            }
-        }
-
-        [Test]
-        public void GenerateObjectAndStringifyParse(Dialect dialect)
-        {
-            Dialect d = Dialect.LooseyGoosey;
-            d.IncludeApocrypha = false;
-            TextGenerator tg = new TextGenerator(d);
-            List<Sentence> sentences = new List<Sentence>();
-            for (int i = 0; i < 1000; i++)
-            {
-                sentences.Add(tg.GenerateSentence());
-            }
-
-
-            ParserUtils pu = new ParserUtils(Dialect.WordProcessorRules);
-            foreach (Sentence sentence in sentences)
-            {
-                string s = sentence.ToString();
-                Console.WriteLine(s);
-                try
-                {
-                    Sentence reparsed = pu.ParsedSentenceFactory(s, s);
-
-                    Console.WriteLine(reparsed.ToString());
-                }
-                catch (Exception ex)
-                {
-                    if (ex.Message.Contains("This isn't possible in a pi chain"))
-                    {
-                        Console.WriteLine("Prep phrase in a subject :-(");
-                        continue;
-                    }
-                    else
-                        throw;
-                }
-
-            }
-        }
-
-
-        [Test]
-        public void GenerateObjectAndStringifyParseGloss()
-        {
-            List<Sentence> sentences = new List<Sentence>();
-            Dialect d = Dialect.WordProcessorRules;
-            d.IncludeApocrypha = false;
-            TextGenerator tg = new TextGenerator(d);
-            for (int i = 0; i < 1000; i++)
-            {
-                sentences.Add(tg.GenerateSentence());
-            }
-
-            ParserUtils pu = new ParserUtils(Dialect.WordProcessorRules);
-            GlossMaker gm = new GlossMaker();
-
-            foreach (Sentence sentence in sentences)
-            {
-                string s = sentence.ToString();
-                string sn = Normalizer.NormalizeText(s, Dialect.LooseyGoosey);
-                Console.WriteLine(sn);
-                Console.WriteLine(sentence.ToString("b"));
-                Console.WriteLine(gm.Gloss(sn, sn));
-                //try
-                //{
-                Sentence reparsed = pu.ParsedSentenceFactory(sn, sn);
-
-                string reparseString = reparsed.ToString();
-                string normalize = Normalizer.NormalizeText(reparseString, Dialect.LooseyGoosey);
-                Console.WriteLine(normalize);
-                Console.WriteLine(gm.Gloss(normalize, s));
-                //}
-                //catch (Exception ex)
-                //{
-                //    if (ex.Message.Contains("This isn't possible in a pi chain"))
-                //    {
-                //        Console.WriteLine("Prep phrase in a subject :-(");
-                //        continue;
-                //    }
-                //    else
-                //        throw;
-                //}
-
-            }
-        }
-    }
-
     public class TextGenerator
     {
         private readonly Dialect dialect;
@@ -191,7 +62,7 @@ namespace BasicTypes.Lorem
                     Sentence premise1 = SingleSimpleSentence("NONE");
                     premesis.Add(premise1);
                 }
-                return new Sentence(premesis.ToArray(),conclusion,null);
+                return new Sentence(SentenceDiagnostics.NotFromParser,premesis.ToArray(), conclusion);
             }
             return SingleSimpleSentence();
         }
@@ -199,7 +70,7 @@ namespace BasicTypes.Lorem
         private Sentence SingleVocative()
         {
             Vocative e = new Vocative(RandomEnPiChainOfProperModifers());
-            Sentence s = new Sentence(e, new Punctuation("!"));
+            Sentence s = new Sentence(e, new Punctuation("!"), SentenceDiagnostics.NotFromParser);
             return s;
         }
 
@@ -207,11 +78,11 @@ namespace BasicTypes.Lorem
         private Sentence SingleExclamation()
         {
             Word interj = RandomWord("interj");
-            Word[] exclamationModifiers = new Word[]
-            {
-                Words.a, Words.kin
-            };
-            Dictionary<int, int> odds = new Dictionary<int, int>()
+            //Word[] exclamationModifiers = new Word[]
+            //{
+            //    Words.a, Words.kin
+            //};
+            Dictionary<int, int> odds = new Dictionary<int, int>
             {
                 {0,85},
                 {1,10},
@@ -235,13 +106,13 @@ namespace BasicTypes.Lorem
                     howMany--;
                 }
                 Exclamation e = new Exclamation(new HeadedPhrase(interj, ws));
-                Sentence s = new Sentence(e, new Punctuation("!"));
+                Sentence s = new Sentence(e, new Punctuation("!"),SentenceDiagnostics.NotFromParser);
                 return s;
             }
             else
             {
                 Exclamation e = new Exclamation(new HeadedPhrase(interj));
-                Sentence s = new Sentence(e, new Punctuation("!"));
+                Sentence s = new Sentence(e, new Punctuation("!"), SentenceDiagnostics.NotFromParser);
                 return s;
             }
 
@@ -274,8 +145,8 @@ namespace BasicTypes.Lorem
                     parts.Punctuation = null;
                 }
             }
-            
-            Sentence s = new Sentence(RandomEnPiChain(), pl, parts);
+
+            Sentence s = new Sentence(RandomEnPiChain(), pl, SentenceDiagnostics.NotFromParser,parts);
             return s;
         }
 
@@ -316,7 +187,7 @@ namespace BasicTypes.Lorem
             {
                 if (punct != null && punct!="NONE")
                 {
-                    return new SentenceOptionalParts(){ Punctuation =  new Punctuation(punct)};
+                    return new SentenceOptionalParts { Punctuation =  new Punctuation(punct)};
                 }
                 return null;
             }
@@ -377,7 +248,7 @@ namespace BasicTypes.Lorem
 
         public WordSet RandomAdverbs()
         {
-            Dictionary<int, int> odds = new Dictionary<int, int>()
+            Dictionary<int, int> odds = new Dictionary<int, int>
             {
                 {0,88},
                 {1,7},
@@ -470,7 +341,7 @@ namespace BasicTypes.Lorem
 
         public ComplexChain RandomEChain()
         {
-            Dictionary<int, int> odds = new Dictionary<int, int>()
+            Dictionary<int, int> odds = new Dictionary<int, int>
             {
                 {1,74},
                 {2,10},
@@ -571,7 +442,7 @@ namespace BasicTypes.Lorem
             //return dict.ElementAt(rand.Next(0, dict.Count)).Value;
 
             Random rand = random;
-            List<TValue> values = Enumerable.ToList(dict.Values);
+            List<TValue> values = dict.Values.ToList();
             int size = dict.Count;
             while (true)
             {

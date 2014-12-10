@@ -162,15 +162,7 @@ namespace BasicTypes.Parser
                     //try
                     //{
                     string normalized = Normalizer.NormalizeText(original, dialect);
-                    if (string.IsNullOrWhiteSpace(normalized) && !string.IsNullOrWhiteSpace(original)
-                        && !new String[] { ".", ":", "?", "!", "'.", "'!", "\".", "''.", ").", "\"«", ")\n", ")", "(", "[", "[.", "]", "]." }.Contains(original.Trim()))
-                    //BUG:happens when we have ni li ni?:  or ni li ni...
-                    //BUG:Any maybe 'ni li ni?' or 'ni li ni'? are failing due to quotes
-                    {
-                        throw new InvalidOperationException("Normalizer turned this into null or white space : " + original);
-                    }
-                    if (original == "\".") continue;//BUG:
-                    if (string.IsNullOrWhiteSpace(normalized)) continue;
+                    
                     if (!(normalized.ContainsWholeWord("anu seme"))) continue;
 
                     structured = pu.ParsedSentenceFactory(normalized, original);
@@ -225,15 +217,7 @@ namespace BasicTypes.Parser
                     //try
                     //{
                     string normalized = Normalizer.NormalizeText(original, dialect);
-                    if (string.IsNullOrWhiteSpace(normalized) && !string.IsNullOrWhiteSpace(original)
-                        && !new String[] { ".", ":", "?", "!", "'.", "'!", "\".", "''.", ").", "\"«" }.Contains(original.Trim()))
-                    //BUG:happens when we have ni li ni?:  or ni li ni...
-                    //BUG:Any maybe 'ni li ni?' or 'ni li ni'? are failing due to quotes
-                    {
-                        throw new InvalidOperationException("Normalizer turned this into null or white space : " + original);
-                    }
-                    if (original == "\".") continue;//BUG:
-                    if (string.IsNullOrWhiteSpace(normalized)) continue;
+                    
                     if (!(normalized.ContainsWholeWord("mi") || normalized.ContainsWholeWord("sina") || normalized.ContainsWholeWord("ona"))) continue;
                     if (normalized.ContainsCheck("Kinla")) continue;//Has a logical operator in one of the sample sentences that I can't deal with yet, unrelated to kin, ala
                     if (normalized.ContainsCheck("o,")) continue;//Haven't dealt with vocatives yet.
@@ -350,14 +334,7 @@ namespace BasicTypes.Parser
                     try
                     {
                     string normalized = Normalizer.NormalizeText(original, dialect);
-                    if (string.IsNullOrWhiteSpace(normalized) && !string.IsNullOrWhiteSpace(original)
-                        && !new String[] { ".", ":", "?", "!", "'.", "'!", "\".", "''.", ").", "\"«" }.Contains(original.Trim()))
-                    //BUG:happens when we have ni li ni?:  or ni li ni...
-                    //BUG:Any maybe 'ni li ni?' or 'ni li ni'? are failing due to quotes
-                    {
-                        throw new InvalidOperationException("Normalizer turned this into null or white space : " + original);
-                    }
-                    if (original == "\".") continue;//BUG:
+                    
                     if (string.IsNullOrWhiteSpace(normalized)) continue;
                     if (!(normalized.ContainsWholeWord("o"))) continue;
                     if (!(normalized.ContainsWholeWord("li"))) continue;
@@ -417,15 +394,7 @@ namespace BasicTypes.Parser
                     //try
                     //{
                     string normalized = Normalizer.NormalizeText(original, dialect);
-                    if (string.IsNullOrWhiteSpace(normalized) && !string.IsNullOrWhiteSpace(original)
-                        && !new String[] { ".", ":", "?", "!", "'.", "'!", "\".", "''.", ").", "\"«" }.Contains(original.Trim()))
-                    //BUG:happens when we have ni li ni?:  or ni li ni...
-                    //BUG:Any maybe 'ni li ni?' or 'ni li ni'? are failing due to quotes
-                    {
-                        throw new InvalidOperationException("Normalizer turned this into null or white space : " + original);
-                    }
-                    if (original == "\".") continue;//BUG:
-                    if (string.IsNullOrWhiteSpace(normalized)) continue;
+                    
                     if (!(normalized.ContainsWholeWord("ala") || normalized.ContainsWholeWord("kin"))) continue;
                     if (normalized.ContainsCheck("Kinla")) continue;//Has a logical operator in one of the sample sentences that I can't deal with yet, unrelated to kin, ala
                     
@@ -486,14 +455,7 @@ namespace BasicTypes.Parser
                     //try
                     //{
                     string normalized = Normalizer.NormalizeText(original, dialect);
-                    if (string.IsNullOrWhiteSpace(normalized) && !string.IsNullOrWhiteSpace(original)
-                        && !new String[] { ".", ":", "?", "!", "'.", "'!", "\".", "''.", ").", "\"«", "\".\"" }.Contains(original.Trim()))
-                    //BUG:happens when we have ni li ni?:  or ni li ni...
-                    //BUG:Any maybe 'ni li ni?' or 'ni li ni'? are failing due to quotes
-                    {
-                        throw new InvalidOperationException("Normalizer turned this into null or white space : " + original);
-                    }
-                    if (original == "\".") continue;//BUG:
+                    
                     if (string.IsNullOrWhiteSpace(normalized)) continue;
                     if (!(normalized.ContainsWholeWord("anu") || normalized.ContainsWholeWord("taso")
                         || normalized.ContainsWholeWord("en") || normalized.ContainsWholeWord("xxxante"))) continue;
@@ -531,6 +493,61 @@ namespace BasicTypes.Parser
         }
 
         [Test]
+        public void StressTest_Parse_SpitBack_LooselyCompare()
+        {
+            int i = 0;
+            Dialect dialect = Dialect.LooseyGoosey;
+            ParserUtils pu = new ParserUtils(dialect);
+
+            Dialect english = Dialect.LooseyGoosey;
+            english.TargetGloss = "en";
+            english.GlossWithFallBacks = true;
+
+            CorpusFileReader reader = new CorpusFileReader(true);
+            
+            SentenceSplitter ss = new SentenceSplitter(dialect);
+
+            int total = 0;
+            int j = 0;
+            foreach (string s in reader.NextFile())
+            {
+                foreach (string original in ss.ParseIntoNonNormalizedSentences(s))
+                {
+                    if (original.StartCheck("*") && reader.currentFile.ContainsCheck("janKipoCollected"))  // Can't parse:  *janMato 123 123 ni li musi!
+                        continue;
+                    if (original.StartCheck("///"))  //Don't care if commengs got corrupted.
+                        continue;
+
+                    total++;
+                    Sentence structured = null;
+                    try
+                    {
+                        string normalized = Normalizer.NormalizeText(original, dialect);
+                        
+                        structured = pu.ParsedSentenceFactory(normalized, original);
+                        string diag = structured.ToString();
+
+                        if (!diag.TpLettersEqual(original))
+                        {
+                            Console.WriteLine("O: " + original.Trim(new char[]{' ','\t','\n','\r'}).Replace("\n"," "));
+                            Console.WriteLine("G: " + diag);
+                            Console.WriteLine(" --- ");
+                            j++;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        i++;
+                    }
+
+                }
+            }
+            Console.WriteLine("Total: " + total);
+            Console.WriteLine("Mismatched: " + j);
+            Console.WriteLine("Failed Sentences: " + i);
+        }
+
+        [Test]
         public void StressTestNormalizeAndParseEverything()
         {
             int i = 0;
@@ -553,16 +570,6 @@ namespace BasicTypes.Parser
                     try
                     {
                         string normalized = Normalizer.NormalizeText(original, dialect);
-                        //if (string.IsNullOrWhiteSpace(normalized) && !string.IsNullOrWhiteSpace(original)
-                        //    && !new String[] { ".", ":", "?", "!", "'.", "'!", "\".", "''.", ").", "\"«" }.Contains(original.Trim()))
-                        ////BUG:happens when we have ni li ni?:  or ni li ni...
-                        ////BUG:Any maybe 'ni li ni?' or 'ni li ni'? are failing due to quotes
-                        //{
-                        //    throw new InvalidOperationException("Normalizer turned this into null or white space : " + original);
-                        //}
-                        //if (original == "\".") continue;//BUG:
-                        //if (string.IsNullOrWhiteSpace(normalized)) continue;
-
                         structured = pu.ParsedSentenceFactory(normalized, original);
                         string diag = structured.ToString("b");
 
@@ -575,19 +582,9 @@ namespace BasicTypes.Parser
                     }
                     catch (Exception ex)
                     {
-                        //if (ex.Message.ContainsCheck("all tests"))
-                        //{
-                        //    Console.WriteLine("ORIGINAL  : " + original);
-                        //    if (structured != null)
-                        //    {
-                        //        Console.WriteLine(structured.ToString("b"));
-                        //    }
-                        //    Console.WriteLine(ex.Message);
                             i++;
-                        //}
-                        //    Console.WriteLine(original);
                             Console.WriteLine(SentenceDiagnostics.CurrentSentence.Original); 
-
+                    
                         Console.WriteLine(ex.Message);
                         //else throw;
                     }

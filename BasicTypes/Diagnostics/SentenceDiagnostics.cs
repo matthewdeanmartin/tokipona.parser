@@ -12,13 +12,21 @@ namespace BasicTypes.Collections
     /// </summary>
     public class SentenceDiagnostics
     {
+        //I checked, this has no appreciable affect on performance.
         private static readonly ThreadLocal<SentenceDiagnostics> currentSentence = new ThreadLocal<SentenceDiagnostics>();
-
+        //private static SentenceDiagnostics currentSentence;
         public static SentenceDiagnostics CurrentSentence
         {
+            //get { return currentSentence; }
+            //set { currentSentence = value; }
             get { return currentSentence.Value; }
             set { currentSentence.Value = value; }
         }
+
+        /// <summary>
+        /// Diagnostics is so important, I'd rather this was required when it isn't, versus missing when it is.
+        /// </summary>
+        public static SentenceDiagnostics NotFromParser  = new SentenceDiagnostics("Not From Parser","Not From Parser");
 
         public SentenceDiagnostics(string original, string normalized)
         {

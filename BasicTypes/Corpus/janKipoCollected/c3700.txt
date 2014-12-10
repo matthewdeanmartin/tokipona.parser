@@ -675,7 +675,7 @@ as we forgive the wrongs that others have done to us.
 "'Do not bring us to hard testing,
 but keep us safe from the Evil One.
 
-"'For yours is the kingdom, and the power, and the glory for ever. Amen.'
+"'For yours is the kingdom, and the power, and the glory for ever. +amen.'
 
 "If you forgive others the wrongs they have done to you, your Father in heaven will also forgive you.
 

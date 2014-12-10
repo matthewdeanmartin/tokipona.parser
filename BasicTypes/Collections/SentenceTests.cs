@@ -138,7 +138,7 @@ namespace BasicTypes
             ComplexChain directs = ComplexChain.SingleEPiChainFactory(new HeadedPhrase(nanpa, new WordSet() { fiveEtc }));
 
             TpPredicate predicate = new TpPredicate(Particles.li, verbs, directs, null);
-            Sentence fact = new Sentence(subject, new PredicateList { predicate });
+            Sentence fact = new Sentence(subject, new PredicateList { predicate }, SentenceDiagnostics.NotFromParser);
             return fact;
         }
     }

@@ -1301,7 +1301,7 @@ public static CompoundWord AkesiPiUtaSuli;
 public static CompoundWord AkesiTeloWawa;
 public static CompoundWord AwenTawa;
 public static CompoundWord AwenWeka;
-public static CompoundWord EnTenpoSunoEnTenpoPimeja;
+//public static CompoundWord EnTenpoSunoEnTenpoPimeja;
 public static CompoundWord IjoNanpaWan;
 public static CompoundWord IjoPiAnpaSelo;
 public static CompoundWord IjoPiAwenIjo;
@@ -19838,18 +19838,18 @@ BuildIt();
             }
 
 
-            {
-                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
-                {
-                    var en = new Dictionary<string, string[]>();
-                    en.Add("en-tenpo-suno-en-tenpo-pimeja", new[] { "day and night" });
-                    glossMap.Add("en", en);
-                }
-                EnTenpoSunoEnTenpoPimeja = new CompoundWord("en-tenpo-suno-en-tenpo-pimeja");
+            //{
+            //    var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+            //    {
+            //        var en = new Dictionary<string, string[]>();
+            //        en.Add("en-tenpo-suno-en-tenpo-pimeja", new[] { "day and night" });
+            //        glossMap.Add("en", en);
+            //    }
+            //    EnTenpoSunoEnTenpoPimeja = new CompoundWord("en-tenpo-suno-en-tenpo-pimeja");
 
-                Dictionary.Add("en-tenpo-suno-en-tenpo-pimeja", EnTenpoSunoEnTenpoPimeja);
-                Glosses.Add("en-tenpo-suno-en-tenpo-pimeja", glossMap);
-            }
+            //    Dictionary.Add("en-tenpo-suno-en-tenpo-pimeja", EnTenpoSunoEnTenpoPimeja);
+            //    Glosses.Add("en-tenpo-suno-en-tenpo-pimeja", glossMap);
+            //}
 
 
             {

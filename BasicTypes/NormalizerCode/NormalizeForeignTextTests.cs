@@ -12,6 +12,19 @@ namespace BasicTypes.NormalizerCode
     public class NormalizeForeignTextTests
     {
         [Test]
+        [Ignore]
+        public void LeadingExplicitNeologism()
+        {
+            //Oh boy. This is a foreign exclamation that is phonotactically valid toki pona.
+            //Decided to modal as neologism, not foreign word.
+            string s = @"
++aleluja! +amen! mi tawa tomo sona mi Tamanawisi!
+  
+";
+            Execute(s);
+        }
+
+        [Test]
         public void TwoPartForeignName()
         {
             string s = @"jan ali o, toki!

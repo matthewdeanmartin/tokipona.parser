@@ -46,7 +46,7 @@ namespace BasicTypes
             
             ComplexChain directs = ComplexChain.SingleEPiChainFactory(new HeadedPhrase(nanpa, new WordSet { fiveEtc }));
             TpPredicate predicate = new TpPredicate(Particles.li, verbs, directs);
-            Sentence fact = new Sentence(subject, new PredicateList{predicate});
+            Sentence fact = new Sentence(subject, new PredicateList { predicate }, SentenceDiagnostics.NotFromParser);
             return fact;
         }
 
@@ -62,7 +62,7 @@ namespace BasicTypes
             ComplexChain directs =ComplexChain.SingleEPiChainFactory( new HeadedPhrase(nanpa, new WordSet { fiveEtc }));
 
             TpPredicate predicate = new TpPredicate(Particles.li, verbs, directs);
-            Sentence fact = new Sentence(subject, new PredicateList { predicate });
+            Sentence fact = new Sentence(subject, new PredicateList { predicate }, SentenceDiagnostics.NotFromParser);
             return fact;
         }
     }

@@ -53,21 +53,21 @@ namespace BasicTypes
         private readonly NullOrSymbols nullOrSymbols; //Blanks, stray punctuation, other garbage
 
 
-        //Flag to indicate we have no subject.
+        ////Flag to indicate we have no subject.
         [DataMember]
         private readonly bool isHortative; //o mi mute li moku e kili.
 
         //Diagnostic info.
         private readonly SentenceDiagnostics diagnostics;
 
-        public Sentence(NullOrSymbols nullOrSymbols, SentenceDiagnostics diagnostics = null)
+        public Sentence(NullOrSymbols nullOrSymbols, SentenceDiagnostics diagnostics)
         {
             LaFragment = new List<Fragment>();
 
             this.nullOrSymbols = nullOrSymbols;
             this.diagnostics = diagnostics;
         }
-        public Sentence(Comment comment, SentenceDiagnostics diagnostics = null)
+        public Sentence(Comment comment, SentenceDiagnostics diagnostics)
         {
             LaFragment = new List<Fragment>();
 
@@ -75,7 +75,7 @@ namespace BasicTypes
             this.diagnostics = diagnostics;
         }
         //Suggest that vocatives don't chain.  o jan o meli o soweli o => o! jan o! meli o! soweli o!
-        public Sentence(Vocative vocative, Punctuation punctuation, SentenceDiagnostics diagnostics = null)
+        public Sentence(Vocative vocative, Punctuation punctuation, SentenceDiagnostics diagnostics)
         {
             LaFragment = new List<Fragment>();
 
@@ -85,7 +85,7 @@ namespace BasicTypes
             this.diagnostics = diagnostics;
         }
 
-        public Sentence(Fragment fragment, Punctuation punctuation, SentenceDiagnostics diagnostics = null)
+        public Sentence(Fragment fragment, Punctuation punctuation, SentenceDiagnostics diagnostics)
         {
             LaFragment = new List<Fragment>();
 
@@ -95,7 +95,7 @@ namespace BasicTypes
             this.diagnostics = diagnostics;
         }
 
-        public Sentence(Sentence[] preconditions = null, Sentence conclusion = null, SentenceDiagnostics diagnostics = null)
+        public Sentence(SentenceDiagnostics diagnostics, Sentence[] preconditions = null, Sentence conclusion = null)
         {
             LaFragment = new List<Fragment>();
             if (preconditions != null && preconditions.Length > 0 && conclusion == null)
@@ -126,7 +126,7 @@ namespace BasicTypes
             this.diagnostics = diagnostics;
         }
 
-        public Sentence(Exclamation exclamation, Punctuation punctuation, SentenceDiagnostics diagnostics = null)
+        public Sentence(Exclamation exclamation, Punctuation punctuation, SentenceDiagnostics diagnostics)
         {
             LaFragment = new List<Fragment>();
 
@@ -140,7 +140,7 @@ namespace BasicTypes
 
 
         //Simple Sentences
-        public Sentence(ComplexChain subjects, PredicateList predicates, SentenceOptionalParts parts = null, SentenceDiagnostics diagnostics = null)
+        public Sentence(ComplexChain subjects, PredicateList predicates, SentenceDiagnostics diagnostics, SentenceOptionalParts parts = null)
         {
             LaFragment = new List<Fragment>();
             this.subjects = subjects; //only (*), o, en
@@ -151,6 +151,7 @@ namespace BasicTypes
                 tagConjunction = parts.Conjunction;
                 tagQuestion = parts.TagQuestion;
                 headVocatives = parts.HeadVocatives;
+                isHortative = parts.IsHortative;
             }
 
             this.diagnostics = diagnostics;
@@ -413,6 +414,7 @@ namespace BasicTypes
             else if (degenerateFragment != null)
             {
                 sb.AddRange(degenerateFragment.ToTokenList(format, formatProvider));
+                sb.Add(Particles.la.ToString(format, formatProvider));
             }
             else if (degenerateExclamation != null)
             {
@@ -446,6 +448,11 @@ namespace BasicTypes
                 //Unless it is an array, delegate to member ToString();
                 if (subjects != null)
                 {
+                    if (isHortative)
+                    {
+                        sb.Add(Particles.o.ToString(format,formatProvider));
+                    }
+                    
                     //Should only happen for imperatives
                     sb.AddIfNeeded("[", format);
 
@@ -469,17 +476,17 @@ namespace BasicTypes
                 }
 
                 sb.AddIfNeeded("<", format);
-                bool supressLi = false;
+                bool suppressFirstLi = false;
                 if (subjects != null)
                 {
                     string test = subjects.ToString("g", formatProvider);
                     if (test == "mi" || test == "sina")
                     {
-                        supressLi = true;
+                        suppressFirstLi = true;
                     }
                 }
 
-                sb.AddRange(Predicates.ToTokenList(format, formatProvider, supressLi));
+                sb.AddRange(Predicates.ToTokenList(format, formatProvider, suppressFirstLi));
                 sb.AddIfNeeded(">", format);
             }
 
@@ -520,34 +527,36 @@ namespace BasicTypes
 
         private string Denormalize(string value, string format)
         {
+            if (value.ContainsCheck("mi", "sina"))
+            {
+                if (!value.TpLettersEqual(diagnostics.Original))
+                {
+                    if (diagnostics.Original.ContainsCheck("mi li", "sina li"))
+                    {
+                        //Console.WriteLine("=======li must be skipped when it is the sole, unmodified subject for mi and sina.");
+                        //This appears to work, these really are user errors.
+                        throw new TpSyntaxException("li must be skipped when it is the sole, unmodified subject for mi and sina.");
+                    }
+                }
+            }
+            
             if (format == null)
             {
                 format = "g";
             }
-            //tenpo kama la jan lili mi li toki e ni
-            //if (NeedToReplace(value,"mi"))
-            //{
-            //    Regex r = new Regex(@"\bmi li\b");
-            //    value = r.Replace(value, "mi");
-            //}
-
-            //if (NeedToReplace(value, "sina"))
-            //{
-            //    Regex r = new Regex(@"\bsina li li\b");
-            //    value = r.Replace(value, "sina");
-            //}
 
             if (value.ContainsCheck("~"))
             {
                 value = value.Replace("~", ", ");
             }
-            if (value.ContainsCheck("li ijo Nanunanuwakawakawawa."))
-            {
-                value = value.Replace("li ijo Nanunanuwakawakawawa.", format.StartCheck("b") ? "[NULL TOKEN]" : "");
-            }
+            
             if (value.ContainsCheck("[NULL]") && !format.StartCheck("b"))
             {
                 value = value.Replace("[NULL]", "");
+            }
+            if (value.ContainsCheck("XXXXZiXXXX"))
+            {
+                throw new InvalidOperationException("Token for li pi construtiosn found. Shouldn't be here anymore.");
             }
             return value;
         }

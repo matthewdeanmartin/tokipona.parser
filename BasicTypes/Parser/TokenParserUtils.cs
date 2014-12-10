@@ -30,7 +30,7 @@ namespace BasicTypes.Parser
         public Token[] ValidTokens(string value)
         {
             List<char> prePuncutation = new List<char>();
-            string punctuation = "!@#$%^&*()_+{}:<>?|,./;'[]«";
+            string punctuation = "!@#$%^&*()_+{}:<>?|,./;'[]";//«
             foreach (char c in value)
             {
                 if (punctuation.ContainsCheck("c"))

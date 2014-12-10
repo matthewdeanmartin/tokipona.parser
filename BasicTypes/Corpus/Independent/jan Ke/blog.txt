@@ -10,7 +10,9 @@ tenpo ni la mi moku e telo seli wawa mi lon poki. tenpo kama lili ni la mi telo 
 
 mi pilin mute e ni: mi wile toki tawa jan sewi lon tenpo open pi tomo sona. tenpo mute pini la mi toki ala tawa jan sewi Jawe. ken la tenpo suno ni la mi toki tawa jan sewi Jawe. toki tawa-jan-sewi anu toki tawa-ala-lon-jan-sewi li pona mute tawa mi.
 
-"Aleluja"! "Amen"! mi tawa tomo sona mi Tamanawisi!
+///Neologisms. These aren't people, nor sounds (like dogs barking or bells)
+///These are tokiponized loan words, in this case new exclamations.
++aleluja! +amen! mi tawa tomo sona mi Tamanawisi!
   
 lipu sin!
 ///"Sunday, Mar 26, 2006"

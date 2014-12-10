@@ -28,6 +28,28 @@ namespace BasicTypes.Parser
         //    Console.WriteLine(s.ToString("b"));
         //}
 
+        [Test]
+        [Ignore]
+        private void Bad_MiLi()
+        {
+            //This is really hard.
+
+            //mi li anpa li pakala kin.
+            Dialect c = Dialect.LooseyGoosey;
+            ParserUtils pu = new ParserUtils(c);
+
+            const string test = "mi li anpa li pakala kin.";
+            try
+            {
+                Sentence s = pu.ParsedSentenceFactory(test, test);
+                Console.WriteLine(s.ToString("b"));
+                Assert.Fail("mi li should throw");
+            }
+            catch (Exception)
+            {
+                Assert.Pass();
+            }
+        }
 
         [Test]
         public void ProcessVocative()
@@ -120,6 +142,21 @@ namespace BasicTypes.Parser
             Console.WriteLine(sentence.ToString("b"));
             Assert.IsNotNull(sentence.HeadVocatives);
             Assert.IsTrue(sentence.HeadVocatives.Length==1);
+        }
+
+        //.
+        [Test]
+        public void BackwardsPiAndEn()
+        {
+            const string s = "ijo pi meli en mije li sama nimi pi jan Sonja.";
+            Dialect c = Dialect.LooseyGoosey;
+            ParserUtils pu = new ParserUtils(c);
+            Sentence sentence = pu.ParsedSentenceFactory(s, s);
+            Console.WriteLine(s);
+            Console.WriteLine(sentence.ToString());
+            Console.WriteLine(sentence.ToString("b"));
+            Assert.IsNotNull(sentence.Subjects);
+            Assert.AreEqual(sentence.ToString(),s);
         }
 
         [Test]

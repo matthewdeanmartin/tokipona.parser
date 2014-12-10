@@ -14,6 +14,27 @@ namespace BasicTypes.Extensions
     public static class StringExtensions
     {
         [DebuggerStepThrough]
+        public static bool TpLettersEqual(this string value, string comparsion)
+        {
+            StringBuilder sbValue = new StringBuilder(value.Length);
+            StringBuilder sbComp = new StringBuilder(comparsion.Length);
+            GetValue(value, sbValue);
+            GetValue(comparsion, sbComp);
+            return string.Equals(sbValue.ToString(), sbComp.ToString(), StringComparison.OrdinalIgnoreCase);
+        }
+
+        private static void GetValue(string comparsion, StringBuilder sb)
+        {
+            foreach (char c in comparsion)
+            {
+                if (Token.AlphabetEitherCase.Contains(c))
+                {
+                    sb.Append(c);
+                }
+            }
+        }
+
+        [DebuggerStepThrough]
         public static bool ContainsCheck(this string value, char middle)
         {
             //http://cc.davelozinski.com/c-sharp/fastest-way-to-check-if-a-string-occurs-within-a-string
@@ -55,6 +76,18 @@ namespace BasicTypes.Extensions
 
             //https://stackoverflow.com/questions/484796/more-efficient-way-to-determine-if-a-string-starts-with-a-token-from-a-set-of-to
             return value.StartsWith(leadToken, StringComparison.Ordinal);
+        }
+
+        [DebuggerStepThrough]
+        public static bool EndCheck(this string value, string endToken, string endTokenOther)
+        {
+            return value.EndCheck(endToken) || value.EndCheck(endTokenOther);
+        }
+
+        [DebuggerStepThrough]
+        public static bool EndCheck(this string value, string endToken, string endTokenOther, string endTokenYetAnother)
+        {
+            return value.EndCheck(endToken) || value.EndCheck(endTokenOther) || value.EndCheck(endTokenYetAnother);
         }
 
         [DebuggerStepThrough]
@@ -100,10 +133,15 @@ namespace BasicTypes.Extensions
         {
             return value != null && value.ToLower().All(x => "!@#$%^&*()_+-={}[]|:,<>,/~`".Contains(x));
         }
+
+        /// <summary>
+        /// This is for normalizing arbitrary text, so it is a very broad definition of what a number is.
+        /// It would include dates, 1/1/1900, negatives, enumeration titles, 1. milk 2. bread, explicit numbers #23 and more. 
+        /// </summary>
         [DebuggerStepThrough]
-        public static bool ContainsOnlyDigits(this string value)
+        public static bool ContainsOnlyDigitsAndNumberLikeCruft(this string value)
         {
-            return value != null && value.ToLower().All(x => "#-.1234567890".Contains(x));
+            return value != null && value.ToLower().All(x => ",/#-.1234567890".Contains(x));
         }
         [DebuggerStepThrough]
         public static bool IsFirstUpperCased(this string value)

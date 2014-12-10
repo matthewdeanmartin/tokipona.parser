@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using BasicTypes.Diagnostics;
 using BasicTypes.Extensions;
 using BasicTypes.ParseDiscourse;
 using BasicTypes.Parser;
@@ -27,19 +28,47 @@ namespace BasicTypes.NormalizerCode
     {
         public static string Normalize(string sentence, Dialect dialect)
         {
+            if (string.IsNullOrWhiteSpace(sentence))
+            {
+                throw new ArgumentNullException("sentence","No null or blank sentences");
+            }
+            if (sentence.EndCheck(" "))
+            {
+                throw new ArgumentException("Must trim spaces before calling this","sentence");
+            }
+            char punct=' ';
+            if (sentence.EndCheck(".", "!", "?"))
+            {
+                punct = sentence[sentence.Length - 1];
+                sentence = sentence.Substring(0, sentence.Length-1);
+            }
+            Tracers.Normalize.TraceInformation("Early but after punct removal:" + sentence);
             string normalized = DetectWrongQuotes(sentence);
+            Tracers.Normalize.TraceInformation("DetectWrongQuotes:" + normalized);
             normalized = DetectAllCapTokiPonaWords(normalized, dialect);
+            Tracers.Normalize.TraceInformation("DetectAllCapTokiPonaWords:" + normalized);
             normalized = DetectEntireForeignSentence(normalized, dialect);
+            Tracers.Normalize.TraceInformation("DetectEntireForeignSentence:" + normalized);
 
             normalized = SentenceSplitter.SwapQuoteAndSentenceTerminatorOrder(normalized);
+            Tracers.Normalize.TraceInformation("SwapQuoteAndSentenceTerminatorOrder:" + normalized);
 
-            //TODO: use english spell check to detect words
+            //TODO: use English spell check to detect words
             
             //Doesn't work!!!
             //normalized = DetectIndividualForeignWords(normalized);
-
-            return normalized;
+            if (punct != ' ')
+            {
+                return normalized +punct;
+            }
+            return normalized ;
         }
+
+        private static readonly char[] ExtraneousPunctuation = new char[]
+        {
+            '«', '»', '@', '.', '!', ' ', '?', '!', '\n', '\r', ';', ':', '<', '>', '/', '&', '$', '\'',
+            '"', '(', ')',
+        };
 
         private static string DetectWrongQuotes(string normalized)
         {
@@ -55,37 +84,32 @@ namespace BasicTypes.NormalizerCode
             }
             if (normalized.StartCheck(@"""") && normalized.EndCheck(@""""))
             {
-                if (PercentTokiPona(normalized.Trim(new char[]
-                {
-                    '«', '»', '@', '.', '!', ' ', '?', '!', '\n', '\r', ';', ':', '<', '>', '/', '&', '$', '\'',
-                    '"','(',')',
-                })) > .80m)
+                if (PercentTokiPona(normalized.Trim(ExtraneousPunctuation)) > .80m)
                 {
                     return "'" + normalized.Substring(1, normalized.Length - 2) + "'";
                 }
             }
-            if (normalized.StartCheck(@"""") )
-            {
-                if (PercentTokiPona(normalized.Trim(new char[]
-                {
-                    '«', '»', '@', '.', '!', ' ', '?', '!', '\n', '\r', ';', ':', '<', '>', '/', '&', '$', '\'',
-                    '"','(',')',
-                })) > .80m)
-                {
-                    return "'" + normalized.Substring(1, normalized.Length - 1);
-                }
-            }
-            if (normalized.EndCheck(@""""))
-            {
-                if (PercentTokiPona(normalized.Trim(new char[]
-                {
-                    '«', '»', '@', '.', '!', ' ', '?', '!', '\n', '\r', ';', ':', '<', '>', '/', '&', '$', '\'',
-                    '"','(',')',
-                })) > .80m)
-                {
-                    return normalized.Substring(0, normalized.Length - 2) + "'";
-                }
-            }
+            //This doesn't work. It can't distinguish between:
+            // "bla blah. 
+            //  bla blah."
+
+            //and 
+            // ni li ilo "Jada".
+
+            //if (normalized.StartCheck(@"""") )
+            //{
+            //    if (PercentTokiPona(normalized.Trim(ExtraneousPunctuation)) > .80m)
+            //    {
+            //        return "'" + normalized.Substring(1, normalized.Length - 1);
+            //    }
+            //}
+            //if (normalized.EndCheck(@""""))
+            //{
+            //    if (PercentTokiPona(normalized.Trim(ExtraneousPunctuation)) > .80m)
+            //    {
+            //        return normalized.Substring(0, normalized.Length - 2) + "'";
+            //    }
+            //}
 
             return normalized;
             
@@ -105,10 +129,6 @@ namespace BasicTypes.NormalizerCode
             for (int index = 0; index < split.Length; index++)
             {
                 string word = split[index];
-                if (word == "PANA")
-                {
-                    int i = 32;
-                }
                 if (word.ToUpperInvariant() == word)
                 {
                     string test = word.ToLowerInvariant();
@@ -135,7 +155,7 @@ namespace BasicTypes.NormalizerCode
 
             if (normalized.ContainsCheck("\n"))
             {
-              normalized=  normalized.Replace("\n", " \n");
+              normalized=  normalized.Replace("\n", " \n ");
             }
             string[] split = normalized.Split(new char[] {' '});
 
@@ -145,17 +165,12 @@ namespace BasicTypes.NormalizerCode
             {
                 string word = split[index];
 
-                if (word.Contains("Polanek"))
-                {
-                    int i = 42;
-                }
-
                 if (word.StartCheck("\"") && word.EndsWith("\""))
                 {
                     //it already is fine.
                     continue;
                 }
-                if (word.ContainsOnlyDigits())
+                if (word.ContainsOnlyDigitsAndNumberLikeCruft())
                 {
                     continue;
                 }
@@ -242,9 +257,9 @@ namespace BasicTypes.NormalizerCode
             }
 
             string rejoin = String.Join(" ", split);
-            if (rejoin.ContainsCheck(" \n"))
+            if (rejoin.ContainsCheck(" \n "))
             {
-                rejoin = rejoin.Replace(" \n", "\n");
+                rejoin = rejoin.Replace(" \n ", "\n");
             }
 
             if (rejoin.ContainsCheck("\" \""))
@@ -269,12 +284,7 @@ namespace BasicTypes.NormalizerCode
                 foreach (string token in tokens)
                 {
                     //Already foreign enough.
-                    string unpunctuated =
-                        token.Trim(new char[]
-                        {
-                            '«', '»', '@', '.', '!', ' ', '?', '!', '\n', '\r', ';', ':', '<', '>', '/', '&', '$', '\'','(',')',
-                            '"'
-                        });
+                    string unpunctuated = token.Trim(ExtraneousPunctuation);
                     if (token.StartCheck(@"""") && token.EndCheck(@"""") && !token.ContainsCheck(" ")) continue;
 
                     var justLetters = Regex.Match(unpunctuated
@@ -345,12 +355,7 @@ namespace BasicTypes.NormalizerCode
             int bad = 0;
             foreach (Token token in tokens)
             {
-                string unpunctuated =
-                        token.Text.Trim(new char[]
-                        {
-                            '«', '»', '@', '.', '!', ' ', '?', '!', '\n', '\r', ';', ':', '<', '>', '/', '&', '$', '\'','(',')',
-                            '"'
-                        });
+                string unpunctuated = token.Text.Trim(ExtraneousPunctuation);
 
                 string[] errors= w.ValidateOnConstruction(unpunctuated, false);
                 if (errors.Length > 0)

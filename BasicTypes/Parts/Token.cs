@@ -129,10 +129,16 @@ namespace BasicTypes
         {
             get { return "jklmnpstwaeiou"; }
         }
+        public static string AlphabetEitherCase
+        {
+            get { return "JKLMNPSTWAEIOUjklmnpstwaeiou"; }
+        }
         public static string AlphabetUpper
         {
             get { return "JKLMNPSTWAEIOU"; }
         }
+
+
 
         public static bool ValidateLetterSet(string value)
         {

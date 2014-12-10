@@ -21,6 +21,7 @@ namespace BasicTypes
     public class ParserUtils
     {
         private readonly Dialect config;
+        private SentenceDiagnostics diagnostics;
         public ParserUtils(Dialect config)
         {
             this.config = config;
@@ -29,9 +30,11 @@ namespace BasicTypes
         //This should only operate on normalized sentences.
         public Sentence ParsedSentenceFactory(string sentence, string original)
         {
+            diagnostics= new SentenceDiagnostics(original,sentence);
+
             if (string.IsNullOrWhiteSpace(sentence))
             {
-                return new Sentence(new NullOrSymbols(original));
+                return new Sentence(new NullOrSymbols(original),diagnostics);
                 //  throw new InvalidOperationException("Do not give me a null sentence. Can't tell if null sentence is from input or got lost in translation");
             }
 
@@ -43,10 +46,10 @@ namespace BasicTypes
             if (sentence.StartCheck("///"))
             {
                 Comment c = new Comment(sentence);
-                return new Sentence(c);
+                return new Sentence(c,diagnostics);
             }
 
-            string preNormalize = string.Copy(sentence);
+            
             if (sentence.EndCheck(" li") || sentence.EndCheck(" li."))
             {
                 throw new InvalidOperationException("Something went wrong, sentence ends with li: " + original);
@@ -54,6 +57,8 @@ namespace BasicTypes
             //Normalization is really expensive. We must stop calling it twice.
             //sentence = Normalizer.NormalizeText(sentence, config); //Any way to avoid calling this twice?
 
+            //HACK: This is necessary (otherwise we have to deal with optional quotes starting, ending words)
+            //But we'd rather do this on a sentence level in Discourse.
             bool startsQuotedSpeech;
             bool endsQuotedSpeech;
             if (sentence.StartCheck("«"))
@@ -61,11 +66,12 @@ namespace BasicTypes
                 startsQuotedSpeech = true;
                 sentence = sentence.Replace("«", " ").Trim();
             }
-            if (sentence.StartCheck("»"))
+            if (sentence.EndCheck("»", "».", "»!") || sentence.EndCheck( "»:", "»?"))
             {
                 endsQuotedSpeech = true;
                 sentence = sentence.Replace("»", " ").Trim();
             }
+
             //TODO: do something with quoted speech. Big problem #1 it spans multiple sentences
 
 
@@ -105,7 +111,7 @@ namespace BasicTypes
             {
                 //We have a vocative sentence...
                 Fragment fragment = new Fragment(ProcessEnPiChain(laParts[0]));
-                Sentence fragmentSentence = new Sentence(fragment, punctuation);
+                Sentence fragmentSentence = new Sentence(fragment, punctuation, diagnostics);
                 return fragmentSentence;
             }
 
@@ -180,7 +186,7 @@ namespace BasicTypes
             }
             if (preconditions.Count == 0)
                 return headSentence;
-            Sentence s = new Sentence(preconditions.ToArray(), headSentence);
+            Sentence s = new Sentence(diagnostics,preconditions.ToArray(), headSentence);
             return s;
         }
 
@@ -188,11 +194,12 @@ namespace BasicTypes
         public Sentence ProcessSimpleSentence(string sentence, Punctuation punctuation, string original)
         {
             
-            //HACK: Still need a better way to deal with quotes.
-            if (sentence.EndCheck("»") || sentence.EndCheck("«"))
-            {
-                sentence = sentence.Substring(0, sentence.Length - 1);
-            }
+            //Think this is causing a bug.
+            ////HACK: Still need a better way to deal with quotes.
+            //if (sentence.EndCheck("»") || sentence.EndCheck("«"))
+            //{
+            //    sentence = sentence.Substring(0, sentence.Length - 1);
+            //}
 
 
 
@@ -200,7 +207,7 @@ namespace BasicTypes
             if (sentence.StartCheck("///"))
             {
                 Comment c = new Comment(sentence);
-                return new Sentence(c);
+                return new Sentence(c, diagnostics);
             }
 
             //Simple exclamation! Get out of here!
@@ -220,12 +227,12 @@ namespace BasicTypes
             {
                 //Okay, we know exactly when the head vocatives end.
                 headVocatives = new List<Vocative>();
-                string justHeadVocatives= sentence.Substring(0,sentence.IndexOf(" o o "));
+                string justHeadVocatives= sentence.Substring(0,sentence.IndexOf(" o o ", StringComparison.Ordinal));
 
                 //Process head vocatives.
                 ProcessHeadVocatives(Splitters.SplitOnO(justHeadVocatives), headVocatives, allAreVocatives: true);
                 //BUG: Add the dummy! (And it still doesn't work!)
-                sentence = "jan Sanwan o " + sentence.Substring(sentence.IndexOf(" o o ")+5);
+                sentence = "jan Sanwan o " + sentence.Substring(sentence.IndexOf(" o o ", StringComparison.Ordinal)+5);
             }
 
 
@@ -246,10 +253,10 @@ namespace BasicTypes
                     ProcessHeadVocatives(Splitters.SplitOnO(sentence), headVocatives, allAreVocatives:false);
 
                     //int firstLi = sentence.IndexOf(" li ");
-                    int lastO = sentence.LastIndexOf(" o ");
+                    int lastO = sentence.LastIndexOf(" o ", StringComparison.Ordinal);
                     if (lastO < 0)
                     {
-                        lastO = sentence.LastIndexOf(" o,");
+                        lastO = sentence.LastIndexOf(" o,", StringComparison.Ordinal);
                     }
 
                     sentence = sentence.Substring(lastO+2);
@@ -284,7 +291,7 @@ namespace BasicTypes
             if (sentence.EndsWith(" anu seme"))
             {
                 tagQuestion = new TagQuestion();
-                sentence = sentence.Substring(0, sentence.LastIndexOf(" anu seme"));
+                sentence = sentence.Substring(0, sentence.LastIndexOf(" anu seme", StringComparison.Ordinal));
             }
 
 
@@ -343,7 +350,7 @@ namespace BasicTypes
                 if (modifiersAreA)
                 {
                     Exclamation exclamation = new Exclamation(parts);
-                    Sentence s = new Sentence(exclamation, punctuation);
+                    Sentence s = new Sentence(exclamation, punctuation, diagnostics);
                     return s;
                 }
             }
@@ -354,7 +361,7 @@ namespace BasicTypes
             {
                 //We have a vocative sentence...
                 Vocative vocative = new Vocative(ProcessEnPiChain(liParts[0]));
-                Sentence s = new Sentence(vocative, punctuation);
+                Sentence s = new Sentence(vocative, punctuation,diagnostics);
                 return s;
             }
 
@@ -391,7 +398,7 @@ namespace BasicTypes
 
             //Head or complete sentence.
 
-            Sentence parsedSentence = new Sentence(subjectChain, verbPhrases, new SentenceOptionalParts
+            Sentence parsedSentence = new Sentence(subjectChain, verbPhrases, diagnostics, new SentenceOptionalParts
             {
                 Conjunction = conjunction,
                 //Etc
@@ -399,8 +406,7 @@ namespace BasicTypes
                 IsHortative = isHortative,
                 TagQuestion = tagQuestion,
                 HeadVocatives =  headVocatives!=null?headVocatives.ToArray():null
-            },
-            new SentenceDiagnostics(original, sentence));
+            });
             return parsedSentence;
         }
 
@@ -507,7 +513,7 @@ namespace BasicTypes
                 subChains.Add(piChain);
             }
 
-            if (subChains[0].SubChains.Length > 1 && subChains[0].SubChains.Last().ToString().Split(new char[] { '*', ' ', '-' }).Length == 1)
+            if (subChains[0].SubChains.Length > 1 && subChains[0].SubChains.Last().ToString().Split(new[] { '*', ' ', '-' }).Length == 1)
             {
                 string lastWord = subChains[0].SubChains.Last().ToString();
                 if (Number.IsPomanNumber(lastWord) && lastWord.Replace("#", "").Length > 1)
@@ -517,7 +523,7 @@ namespace BasicTypes
                 else if (subjects.Contains(" en "))
                 {
                     //HACK: maybe a compound modifier.  This actually usually fails.
-                    return ProcessPiEnChain(subjects);
+                    return ProcessBackwardsPiEnChain(subjects);
                 }
                 else
                 {
@@ -532,7 +538,7 @@ namespace BasicTypes
 
         //This only works for 1 subject!
         //kule pi walo en pimeja
-        public ComplexChain ProcessPiEnChain(string subjects)
+        public ComplexChain ProcessBackwardsPiEnChain(string subjects)
         {
             if (String.IsNullOrEmpty(subjects))
             {
@@ -572,7 +578,7 @@ namespace BasicTypes
                     Chain piPhrase = ProcessPiChain(enLessToken);
                     piCollection.Add(piPhrase);
                 }
-                ComplexChain piChain = new ComplexChain(Particles.pi, piCollection.ToArray());
+                ComplexChain piChain = new ComplexChain(Particles.en, piCollection.ToArray());
                 subChains.Add(piChain);
             }
 
@@ -581,7 +587,7 @@ namespace BasicTypes
             //    throw new TpSyntaxException("final pi in pi chain must be followed by 2 words, otherwise just use juxtaposition (i.e. 2 adjacent words with no particle) : " + subjects);
             //}
 
-            ComplexChain subject = new ComplexChain(Particles.en, subChains.ToArray());
+            ComplexChain subject = new ComplexChain(Particles.pi, subChains.ToArray());
             return subject;
         }
 
@@ -790,13 +796,10 @@ namespace BasicTypes
             {
                 return new TpPredicate(verbPhraseParticle, piPredicate, prepositionalChain);
             }
-            else if (nominalPredicate == null)
+            if (nominalPredicate == null)
                 return new TpPredicate(verbPhraseParticle, verbPhrase, directObjectChain, prepositionalChain);
-            else
-            {
-                return new TpPredicate(verbPhraseParticle, nominalPredicate, directObjectChain, prepositionalChain);
 
-            }
+            return new TpPredicate(verbPhraseParticle, nominalPredicate, directObjectChain, prepositionalChain);
         }
 
         private VerbPhrase VerbPhraseParser(string[] verbPhraseText)
@@ -965,18 +968,15 @@ namespace BasicTypes
 
         public List<Word> TurnThisWordsIntoWordsWithTaggedWords(Word[] tail)
         {
-            Word currentWord = tail[0];
             List<Word> mergedTail = new List<Word>();
-            bool skipNext = false;
             //jan pona kin.
-            bool wordInProgress = false;
             if (tail.Length > 1)
             {
                 //mergedTail.Add(currentWord);
                 int resumeAt = -1;
                 for (int i = 0; i < tail.Length; i++)
                 {
-                    currentWord = tail[i];
+                    Word currentWord = tail[i];
                     if (resumeAt != -1)
                     {
                         if (i < resumeAt) continue;
@@ -1016,53 +1016,7 @@ namespace BasicTypes
                     {
                         mergedTail.Add(possible);
                     }
-
-                    //if (skipNext)
-                    //{
-                    //    skipNext = false;
-                    //    continue;
-                    //}
-                    //Word following = tail[i];
-                    //if (TaggedWord.TagWords.Contains(following.Text))
-                    //{
-                    //    //kin, ala
-                    //    currentWord = new TaggedWord(currentWord, new WordList() {following});
-                    //    wordInProgress = true;
-                    //    continue;
-                    //}
-                    //if (i < tail.Length - 1 && following.Text == "ala" && tail[i + 1] == currentWord.Text)
-                    //{
-
-                    //    //x ala x
-                    //    currentWord = new TaggedWord(currentWord, new WordList() {following, tail[i + 1]});
-                    //    skipNext = true;
-                    //    wordInProgress = true;
-                    //    continue;
-                    //}
-                    //if (i < tail.Length - 1 && currentWord.Text == tail[i + 1])
-                    //{
-                    //    //reduplication, 1 level.
-                    //    currentWord = new TaggedWord(currentWord, new WordList() { tail[i + 1] });
-                    //    wordInProgress = true;
-                    //    continue;
-                    //}
-
-                    ////Done or wasn't a tag word.
-                    //if (wordInProgress)
-                    //{
-                    //    mergedTail.Add(currentWord);
-                    //}
-                    //else
-                    //{
-                    //    currentWord = following;
-                    //    mergedTail.Add(currentWord);
-                    //}
-                    //wordInProgress = false;
                 }
-                //if (wordInProgress)
-                //{
-                //    mergedTail.Add(currentWord);
-                //}
             }
             else
             {
@@ -1073,9 +1027,8 @@ namespace BasicTypes
 
         public string[] FindXalaX(string value)
         {
-            Regex x = new Regex(@"\b(\w+)\s+ala\s+\1\b");
             List<string> s = new List<string>();
-            foreach (var v in x.Matches(value))
+            foreach (var v in Regex.Matches(value,@"\b(\w+)\s+ala\s+\1\b"))
             {
                 s.Add(v.ToString());
             }

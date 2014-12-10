@@ -12,6 +12,7 @@ namespace BasicTypes.Corpus
 
     public class CorpusFileReader
     {
+        public string currentFile="";
         private bool suppressTrace =false;
         public CorpusFileReader()
         {
@@ -35,11 +36,12 @@ namespace BasicTypes.Corpus
             //"*Yves*.txt"
             foreach (FileInfo file in di.EnumerateFiles("*.txt", SearchOption.AllDirectories).Reverse())
             {
-                if (file.FullName.ContainsCheck("janKipoCollected")) continue;
-                if (file.FullName.ContainsCheck("toki sewi kolisu p2.txt")) continue;
-                if (file.FullName.ContainsCheck("nimi poka en nimi kule")) continue; //Has a defective conjunction of prep phrases, waiting to get some comm feedback before fixing text.
-                if (file.FullName.ContainsCheck("Book Summaries_Has ENGLISH.txt")) continue; //Asides in square brackets. Blaaaah!
-                if (file.FullName.ContainsCheck("Phonology")) continue; //full of prnounciation characters
+                currentFile = file.FullName;
+                //if (file.FullName.ContainsCheck("janKipoCollected")) continue;
+                //if (file.FullName.ContainsCheck("toki sewi kolisu p2.txt")) continue;
+                //if (file.FullName.ContainsCheck("nimi poka en nimi kule")) continue; //Has a defective conjunction of prep phrases, waiting to get some comm feedback before fixing text.
+                //if (file.FullName.ContainsCheck("Book Summaries_Has ENGLISH.txt")) continue; //Asides in square brackets. Blaaaah!
+                //if (file.FullName.ContainsCheck("Phonology")) continue; //full of prnounciation characters
 
 
                 //if(!file.FullName.ContainsCheck("jan Mato")) continue;

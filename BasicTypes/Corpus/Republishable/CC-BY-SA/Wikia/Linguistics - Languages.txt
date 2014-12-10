@@ -21,15 +21,18 @@ toki Anku.
 jan li kepeken e toki Anku lon ma Anku seli en ma Anku lete.
 poki lawa.
 ///[o suli e poki ni.]
-o ante "toki Anku" li seme lon toki Anku?
+///o ante 
+"toki Anku" li seme lon toki Anku?
 
 tenpo pini la jan Anku ali li pana e nimi "Choson o" tawa toki ni. taso ma Anku li tu la jan Anku li pali e nimi sin tawa toki ona.
 jan pi ma Anku seli li kepeken e nimi "hangungmal(???)". jan pi ma Anku lete li kepeken e nimi (???).
-o antetoki Anku li lon kulupu toki seme?
+///o ante
+toki Anku li lon kulupu toki seme?
 
 pilin mute li lon.
 jan sona mute li pilin e ni: toki Anku li lon kulupu toki Altaja. jan sona ante li pilin e ni: toki Anku li lon kulupu toki Sawisija. jan sona seme li toki e lon? jan ala li sona.
-o antenasin sitelen
+///o ante
+nasin sitelen
 
 tenpo pini la jan Anku li sitelen e toki ona kepeken nasin sitelen Sonko. tenpo ni la jan Anku li kepeken e nasin sitelen Anku.
 
@@ -66,7 +69,7 @@ toki Iwisi jo 22 pali nimi:
 
 toki Kuwenja li toki sin. toki Kuwenja la nimi pi toki Kuwenja li Quenya anu Quendya. jan Toliken li pali e ni. toki Kuwenja li sama lili e toki Sumi.
 jan Toliken li pali e toki Kuwenja e toki Sintalin la, ona li pali e jan Eta. jan Eta mute li toki e toki Sintalin. jan Eta pi ma pi jan sewi li toki e toki Kuwenja. jan Eta pi toki Kuwenja li kama ma pi jan Eta pi toki Sintalin tan ma pi jan sewi. taso ona li kama toki e toki Sintalin. toki Kuwenja li kama toki pi toki awen.
-toki Kuwenja li jo e nimi suli mute. toki Kuwenja la nimi wan utúvienyes li toki e ni: tenpo pini la mi kama sona e lon pi ijo. toki utúvie- li toki e ni: tenpo pini la jan li kama sona e lon. toki -nye- li toki e ni: mi pali e ijo. toki -s li toki e ni: jan li pali e ijo ni.
+toki Kuwenja li jo e nimi suli mute. toki Kuwenja la nimi wan utúvienyes li toki e ni: tenpo pini la mi kama sona e lon pi ijo. toki "utúvie-" li toki e ni: tenpo pini la jan li kama sona e lon. toki "-nye-" li toki e ni: mi pali e ijo. toki "-s" li toki e ni: jan li pali e ijo ni.
 toki Kuwenja li pona kute.
 
 

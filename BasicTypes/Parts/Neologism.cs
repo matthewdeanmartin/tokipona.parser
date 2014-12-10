@@ -10,8 +10,6 @@ using BasicTypes.Lorem;
 namespace BasicTypes.Parts
 {
 
-    //
-    //Not sure how this is to be distinguished from misspellings. (maybe via dialect-- treat new words as neologisms?)
     /// <summary>
     /// A new toki pona word of uncertain meaning.
     /// </summary>

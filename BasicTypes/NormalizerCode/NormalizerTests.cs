@@ -1,5 +1,6 @@
 ﻿using System;
 using BasicTypes.Corpus;
+using BasicTypes.Diagnostics;
 using BasicTypes.Extensions;
 using BasicTypes.ParseDiscourse;
 using NUnit.Framework;
@@ -37,6 +38,17 @@ namespace BasicTypes.NormalizerCode
                 }
             }
             Console.WriteLine("Sentences normalized: " + i);
+        }
+
+        //.
+
+        [Test]
+        public void TraceWhereEndOfSentenceExplicitForeignGoesWrong()
+        {
+            
+            const string vocative = "jan utala sin  li jo ala tomo sona  Wese \"Pojin\".";
+            string test = Normalizer.NormalizeText(vocative,Dialect.LooseyGoosey);
+            Assert.IsTrue(test.Contains("\"Pojin\""));
         }
 
         [Test]
