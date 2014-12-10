@@ -355,7 +355,7 @@ namespace BasicTypes
 
             if (format != "bs")
             {
-                string result = Denormalize(spaceJoined, format);
+                string result = Denormalize(spaceJoined, format, formatProvider);
                 while (result.ContainsCheck(" , "))
                 {
                     result = result.Replace(" , ", ", ");
@@ -525,7 +525,7 @@ namespace BasicTypes
         //}
 
 
-        private string Denormalize(string value, string format)
+        private string Denormalize(string value, string format, IFormatProvider formatProvider)
         {
             if (value.ContainsCheck("mi", "sina"))
             {
@@ -533,9 +533,13 @@ namespace BasicTypes
                 {
                     if (diagnostics.Original.ContainsCheck("mi li", "sina li"))
                     {
-                        //Console.WriteLine("=======li must be skipped when it is the sole, unmodified subject for mi and sina.");
-                        //This appears to work, these really are user errors.
-                        throw new TpSyntaxException("li must be skipped when it is the sole, unmodified subject for mi and sina.");
+                        string test = subjects.ToString("g", formatProvider);
+                        if (test == "mi" || test == "sina")
+                        {
+                            //Console.WriteLine("=======li must be skipped when it is the sole, unmodified subject for mi and sina.");
+                            //This appears to work, these really are user errors.
+                            throw new TpSyntaxException("li must be skipped when it is the sole, unmodified subject for mi and sina.");
+                        }
                     }
                 }
             }

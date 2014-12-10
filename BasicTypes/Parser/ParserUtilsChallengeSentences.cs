@@ -143,6 +143,25 @@ namespace BasicTypes.Parser
             Assert.IsNotNull(sentence.HeadVocatives);
             Assert.IsTrue(sentence.HeadVocatives.Length==1);
         }
+        //
+        [Test]
+        public void PosessiveMiInSubject()
+        {
+            Dialect c = Dialect.LooseyGoosey;
+            //const string s = "kili lon ma mi li pona tawa mi.";
+            const string s = "kili, lon ma mi li pona, tawa mi.";
+            string normalized = Normalizer.NormalizeText(s,c);
+            Console.WriteLine(normalized);
+            
+            ParserUtils pu = new ParserUtils(c);
+            
+            Sentence sentence = pu.ParsedSentenceFactory(normalized, s);
+            Console.WriteLine(s);
+            Console.WriteLine(sentence.ToString());
+            Console.WriteLine(sentence.ToString("b"));
+            Assert.IsNotNull(sentence.Subjects);
+            Assert.AreEqual(sentence.ToString(), s);
+        }
 
         //.
         [Test]

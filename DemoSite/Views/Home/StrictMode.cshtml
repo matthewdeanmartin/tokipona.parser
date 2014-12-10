@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Strict Mode";
 }
 <h2>How to Write for Strict Mode</h2>
@@ -18,4 +17,58 @@
     <li>Direct quotes are in single quotes, e.g. jan li toki e ni: 'ale li pona.'</li>
 </ol>
 
+<h2>Numbers</h2>
+<p>
+    There are lots and lots of community proposals for numbers. I support Stupid, Half-Stupid, Poman, and Body numbers. You can learn more about <a href="http://tokipona.net/tp/Numbers.aspx">half-stupid numbers here</a>.
+</p>
+<p>The parser works best with explicit numbers, i.e. #wan, #luka, #luka-wan. If you don't use explicit numbers, you can get better results by specifying what number system you are using.</p>
+<h2>Stupid</h2>
+<ul>
+    <li>0: ala</li>
+    <li>1: wan</li>
+    <li>2: tu</li>
+    <li>3: tu wan.  Select numbers from above, until they add up to your target number.</li>
+    <li>(mute isn't really a number)</li>
+</ul>
+<h2>Stupid/Poman</h2>
+<p>Poman are the same as below, except you capitalize and use only the first letter, eg. AAMMTW = 100+100+20+20+2+1 = 243.</p>
+<ul>
+    <li>0: ala</li>
+    <li>1: wan</li>
+    <li>2: tu</li>
+    <li>3: tu wan</li>
+    <li>4: tu tu</li>
+    <li>5: luka</li>
+    <li>6: luka wan</li>
+    <li>7: luka tu</li>
+    <li>8: luka tu wan</li>
+    <li>9: luka tu tu</li>
+    <li>10: luka luka</li>
+    <li>20: mute</li>
+    <li>100: ali or ale</li>
+</ul>
 
+<h2>Body</h2>
+<p>It is not a good idea to use implicit body numbers, you will get too many false positives.</p>
+<p>This system has no particular blessing, no evidence of use by anyone but me as of 2014. It happened to be easier to pick any system than to have to deal with the above systems or pretend that numbers don't show up in real life translation exercises.</p>
+<p>At the moment, until I have no names for place holders.</p>
+<p>It is still recommended to write numbers as #123 instead of #nena-oko-kute or #wan-tu-kute. Definately anything over 100 should be written in arabic numbers.</p>
+<ul>
+    <li>0: ala</li>
+    <li>1: nena or wan</li>
+    <li>2: oko or tu</li>
+    <li>3: kute</li>
+    <li>4: uta</li>
+    <li>5: luka</li>
+    <li>6: insa</li>
+    <li>7: monsi</li>
+    <li>8: palisa or lupa</li>
+    <li>9: noka</li>
+</ul>
+
+
+<h2>Punctuating Input</h2>
+<p>Also, the status of prepositional phrases as modifiers is undefined and they make things hard to parse right now. So if you have a prepositional phrase modifier, especially in the subject phrase, join it with dashes, e.g. jan lon-ma-mi li jo e mani suli. I can sometimes normalize vocatives correctly, but if you can put period, colon, question or exclamation mark, vocatives will parse better. If sentences don't have terminating punctuation, I assume it is a run on sentence. I can't easily guess that a sentence has ended just because of white space, a blank line, parenthesis or so on. The problem is especially acute with titles, conversational fragments and poetry.  Also, the parser has a hard time dealing with elipses, such as, mi wile e .... --- Which I suppose could happen in conversation, but the parser thinks the string has terminated early.</p>
+
+<h2>Edgy toki pona</h2>
+<p>I like to write edgy toki pona, but the parser can't deal with it. Example include: compound prepositions, transformatives, noun phrases in the verb phrase, intentional and accidental subordinate clasues (I'm going to have to get back with an example), nor "mixed modifiers" that use en to join modifiers, e.g. kule pi laso en pimeja.</p>

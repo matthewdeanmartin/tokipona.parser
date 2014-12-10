@@ -123,7 +123,7 @@ namespace BasicTypes.NormalizerCode
             //must be after - processing
             if (dialect.InferNumbers)
             {
-                normalized = ApplyNormalization(normalized, "Numbers", NormalizeNumbers.FindNumbers);
+                normalized = ApplyNormalization(normalized, "Numbers", NormalizeNumbers.FindNumbers, dialect);
             }
 
 

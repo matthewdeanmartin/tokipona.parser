@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using BasicTypes.Extensions;
 using BasicTypes.Parser;
+using BasicTypes.Parts;
 
 namespace BasicTypes.NormalizerCode
 {
@@ -21,7 +22,7 @@ namespace BasicTypes.NormalizerCode
             public int NumberEndsAt { get; set; }
         }
 
-        public static string FindNumbers(string sentence)
+        public static string FindNumbers(string sentence, Dialect dialect)
         {
             if (sentence.Length < 2)
             {
@@ -32,8 +33,7 @@ namespace BasicTypes.NormalizerCode
                 //HACK: Could be a stray #
                 return sentence;
             }
-            //TokenParserUtils tpu = new TokenParserUtils();
-
+            
             string lastBit = "";
             if ("!.?:".ContainsCheck(sentence[sentence.Length - 1]))
             {
@@ -45,13 +45,37 @@ namespace BasicTypes.NormalizerCode
 
             List<NumberAddress> numbers =new List<NumberAddress>();
             NumberAddress number  = new NumberAddress();
+
+            string[] validNumberTokens = Token.StupidNumbers;
+            if (dialect.NumberType == "Stupid")
+            {
+                validNumberTokens = Token.StupidNumbers;//ala, wan, tu, mute
+            }
+            else if (dialect.NumberType == "Half Stupid" || dialect.NumberType == "Poman")
+            {
+                validNumberTokens = Token.HalfStupidNumbers; //mute, ale etc.
+            }
+            else if (dialect.NumberType == "Body")
+            {
+                validNumberTokens = Token.BodyNumbers; //0-10 using various body parts.
+            }
+
             
             bool inNumber = false;
             for (int i = 0; i <= tokens.Length-1; i++)
             {
+                if (Number.IsPomanNumber(tokens[i]))
+                {
+                    number.NumberEndsAt = i;
+                    number.NumberEndsAt = i;
+                    numbers.Add(number);
+                    inNumber = false;
+                    number = new NumberAddress();
+                    continue;
+                }
                 if (inNumber)
                 {
-                    if (Token.StupidNumbers.Contains(tokens[i].Text))
+                    if (validNumberTokens.Contains(tokens[i].Text))
                     {
                         if (inNumber && i == tokens.Length - 1)
                         {
@@ -70,7 +94,7 @@ namespace BasicTypes.NormalizerCode
                         number = new NumberAddress();
                     }
                 }
-                else if (Token.StupidNumbers.Contains(tokens[i].Text))
+                else if (validNumberTokens.Contains(tokens[i].Text))
                 {
                     if (tokens[i].Text == "ala")
                     {

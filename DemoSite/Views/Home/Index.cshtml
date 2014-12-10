@@ -35,7 +35,7 @@
                   new List<object>
                             {
                             new { value ="LooseyGoosey" , text = "Loosey Goosey"  },
-                            new { value = "WordProcessorRules" , text = "Stict" }
+                            new { value = "WordProcessorRules" , text = "Strict" }
                             },
                             "value",
                             "text",
@@ -51,6 +51,20 @@
                             {
                             new { value ="Sentence" , text = "Sentences"  },
                             new { value = "Paragraph" , text = "Paragraphs" }
+                            },
+                            "value",
+                            "text",
+                            2))
+            @:&nbsp;
+            @Html.LabelFor(model => model.Numbers)
+            @:&nbsp;
+            @Html.DropDownListFor(model => model.Numbers, new SelectList(
+                  new List<object>
+                            {
+                            new { value ="Stupid" , text = "Stupid"  },
+                            new { value = "Half Stupid" , text = "Half Stupid" },
+                            new { value = "Body" , text = "Body" },
+                            new { value = "Poman" , text = "Poman" }
                             },
                             "value",
                             "text",

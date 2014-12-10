@@ -23,12 +23,10 @@
                 <ul class="nav navbar-nav">
                     
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Change Log", "ChangeLog", "Home")</li>
                     <li>@Html.ActionLink("Help on Brackets", "BracketHelp", "Home")</li>
                     <li>@Html.ActionLink("Serialized", "Serializations", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Generate Text", "LoremIpsum", "Home")</li>                
-    @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
 
                 </ul>
                 <a href="https://github.com/matthewdeanmartin/tokipona.parser" class="btn btn-primary btn-lg" style="margin-top:3px">Open Source on GitHub</a>
@@ -44,7 +42,8 @@
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - toki pona Parser, an open source library, based on jan Sonja's language. </p>
-            <p>Corpus texts on various licenses, PD, CC and hopefully acceptible fair uses of the rest. Contact <a data-ng-href="twitter.com/janmato">@@janMato</a> on twitter if it isn't.</p>
+            <p>Corpus texts on various licenses, PD, CC and hopefully acceptable fair uses of the rest. Contact <a data-ng-href="twitter.com/janmato">@@janMato</a> on twitter if it isn't.</p>
+            <p>@Html.ActionLink("Change Log", "ChangeLog", "Home")</p>
         </footer>
     </div>
 

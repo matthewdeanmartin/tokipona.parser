@@ -146,12 +146,8 @@ namespace DemoSite.Controllers
             return View("Index", parse);
         }
 
-        private static void ProcessParserModelParagraphs(SimpleParserViewModel parse)
+        private static Dialect BindDialect(SimpleParserViewModel parse)
         {
-            ParagraphSplitter ps = new ParagraphSplitter(Dialect.LooseyGoosey);
-
-
-
             Dialect dialect;
             if (parse.Dialect == "LooseyGoosey")
             {
@@ -165,6 +161,18 @@ namespace DemoSite.Controllers
             {
                 throw new ArgumentOutOfRangeException("parse", "Need a valid dialect");
             }
+
+            if (parse.Numbers != null)
+            {
+                dialect.NumberType = parse.Numbers;
+            }
+            return dialect;
+        }
+
+        private static void ProcessParserModelParagraphs(SimpleParserViewModel parse)
+        {
+            Dialect dialect = BindDialect(parse);
+            ParagraphSplitter ps = new ParagraphSplitter(dialect);
 
             StringBuilder normalizedSb = new StringBuilder();
             StringBuilder spitBackSb = new StringBuilder();
@@ -291,20 +299,8 @@ namespace DemoSite.Controllers
 
         private static void ProcessParserModelSentences(SimpleParserViewModel parse)
         {
+            Dialect dialect = BindDialect(parse);
 
-            Dialect dialect;
-            if (parse.Dialect == "LooseyGoosey")
-            {
-                dialect = Dialect.LooseyGoosey;
-            }
-            else if (parse.Dialect == "WordProcessorRules")
-            {
-                dialect = Dialect.WordProcessorRules;
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException("parse", "Need a valid dialect");
-            }
             ParserUtils pu = new ParserUtils(dialect);
             SentenceSplitter ss = new SentenceSplitter(dialect);
 
@@ -475,12 +471,12 @@ namespace DemoSite.Controllers
                     CorpusTexts.GeorgeSong,
                     CorpusTexts.CrazyAnimal,
                     CorpusTexts.CrazyAnimal2
-                    //,CorpusTexts.JanSin  //Too many neologisms to cope. 
+                    ,CorpusTexts.JanSin  
                     , CorpusTexts.RuneDanceSong
                     , CorpusTexts.janPusaRice
                     , CorpusTexts.janPend,
-                    CorpusTexts.ProfesorAndMadMan,
-                    "nena meli li suli la monsi li suli kin."
+                    CorpusTexts.ProfesorAndMadMan
+                    //"nena meli li suli la monsi li suli kin."
                 };
             SimpleParserViewModel vm = new SimpleParserViewModel()
             {
@@ -506,11 +502,10 @@ namespace DemoSite.Controllers
                 CorpusTexts.GeorgeSong,
                     CorpusTexts.CrazyAnimal,
                     CorpusTexts.CrazyAnimal2
-                    //,CorpusTexts.JanSin  //Too many neologisms to cope. 
+                    ,CorpusTexts.JanSin  
                     ,CorpusTexts.RuneDanceSong
                     ,CorpusTexts.janPusaRice
-                    ,CorpusTexts.janPend,
-                    "nena meli li suli la monsi li suli kin."
+                    ,CorpusTexts.janPend
                 };
             SerializationsModel sm = new SerializationsModel()
             {

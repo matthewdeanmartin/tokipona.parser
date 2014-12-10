@@ -107,7 +107,8 @@ namespace BasicTypes.Parser
             int i = 0;
             Dialect dialect = Dialect.LooseyGoosey;
             dialect.InferCompoundsPrepositionsForeignText = false;
-            ParserUtils pu = new ParserUtils(dialect);
+            dialect.InferNumbers = true;
+            dialect.NumberType = "Body";
 
             CorpusFileReader reader = new CorpusFileReader();
             SentenceSplitter ss = new SentenceSplitter(dialect);
@@ -119,7 +120,7 @@ namespace BasicTypes.Parser
                     try
                     {
                         string normalized = Normalizer.NormalizeText(original, dialect);
-                        string result = NormalizeNumbers.FindNumbers(normalized);
+                        string result = NormalizeNumbers.FindNumbers(normalized, dialect);
                         if (result.ContainsCheck("#"))
                         {
                             Console.WriteLine("O: " + original);
