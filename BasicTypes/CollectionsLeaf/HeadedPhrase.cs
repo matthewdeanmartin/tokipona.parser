@@ -114,7 +114,7 @@ namespace BasicTypes
 
             if (head.Text=="o" && modifiers!=null && modifiers.Count>0)
             {
-                Console.WriteLine("Warning: We have an o with modifiers. This should be crazy rare.");
+                Console.WriteLine("Warning: We have an o with modifiers. This should be crazy rare." + head.Text + " " + modifiers);
                 //Warning: 
             }
 
@@ -138,7 +138,26 @@ namespace BasicTypes
                     if (word.Text == "taso") continue; //Taso actually is a modifier. Carry on.
                     if (Particle.CheckIsParticle(word.Text))
                     {
-                        throw new TpSyntaxException("Particles shouldn't be modifiers: " + word.Text);
+                        throw new TpSyntaxException("Particles shouldn't be modifiers: " + head.Text + " " + modifiers);
+                    }
+                }
+
+                if (modifiers.Contains(Words.ona)  )
+                {
+                    if (modifiers.Contains(Words.mi))
+                    {
+                        throw new InvalidOperationException("Can't have ona and mi in modifier list." + head.Text + " " + modifiers);
+                    }
+                    if (modifiers.Contains(Words.sina))
+                    {
+                        throw new InvalidOperationException("Can't have ona and sina in modifier list." + head.Text + " " + modifiers);
+                    }
+                }
+                if (modifiers.Contains(Words.sina))
+                {
+                    if (modifiers.Contains(Words.mi))
+                    {
+                        throw new InvalidOperationException("Can't have sina and mi in modifier list." + head.Text + " " + modifiers);
                     }
                 }
             }

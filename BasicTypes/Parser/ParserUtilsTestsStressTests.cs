@@ -553,15 +553,15 @@ namespace BasicTypes.Parser
                     try
                     {
                         string normalized = Normalizer.NormalizeText(original, dialect);
-                        if (string.IsNullOrWhiteSpace(normalized) && !string.IsNullOrWhiteSpace(original)
-                            && !new String[] { ".", ":", "?", "!", "'.", "'!", "\".", "''.", ").", "\"«" }.Contains(original.Trim()))
-                        //BUG:happens when we have ni li ni?:  or ni li ni...
-                        //BUG:Any maybe 'ni li ni?' or 'ni li ni'? are failing due to quotes
-                        {
-                            throw new InvalidOperationException("Normalizer turned this into null or white space : " + original);
-                        }
-                        if (original == "\".") continue;//BUG:
-                        if (string.IsNullOrWhiteSpace(normalized)) continue;
+                        //if (string.IsNullOrWhiteSpace(normalized) && !string.IsNullOrWhiteSpace(original)
+                        //    && !new String[] { ".", ":", "?", "!", "'.", "'!", "\".", "''.", ").", "\"«" }.Contains(original.Trim()))
+                        ////BUG:happens when we have ni li ni?:  or ni li ni...
+                        ////BUG:Any maybe 'ni li ni?' or 'ni li ni'? are failing due to quotes
+                        //{
+                        //    throw new InvalidOperationException("Normalizer turned this into null or white space : " + original);
+                        //}
+                        //if (original == "\".") continue;//BUG:
+                        //if (string.IsNullOrWhiteSpace(normalized)) continue;
 
                         structured = pu.ParsedSentenceFactory(normalized, original);
                         string diag = structured.ToString("b");
@@ -586,6 +586,8 @@ namespace BasicTypes.Parser
                             i++;
                         //}
                         //    Console.WriteLine(original);
+                            Console.WriteLine(SentenceDiagnostics.CurrentSentence.Original); 
+
                         Console.WriteLine(ex.Message);
                         //else throw;
                     }

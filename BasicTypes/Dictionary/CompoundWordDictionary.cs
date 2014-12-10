@@ -1627,7 +1627,7 @@ public static CompoundWord PokaPona;
 public static CompoundWord PokaIke;
 public static CompoundWord SitelenSewi;
 public static CompoundWord SitelenWan;
-public static CompoundWord MiSewi;
+//public static CompoundWord MiSewi;
 public static CompoundWord MusiSike;
 public static CompoundWord MaPiKasiLili;
 public static CompoundWord MaSewiPona;
@@ -24415,18 +24415,18 @@ BuildIt();
             }
 
 
-            {
-                var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
-                {
-                    var en = new Dictionary<string, string[]>();
-                    en.Add("mi-sewi", new[] { "I win" });
-                    glossMap.Add("en", en);
-                }
-                MiSewi = new CompoundWord("mi-sewi");
+            //{
+            //    var glossMap = new Dictionary<string, Dictionary<string, string[]>>();
+            //    {
+            //        var en = new Dictionary<string, string[]>();
+            //        en.Add("mi-sewi", new[] { "I win" });
+            //        glossMap.Add("en", en);
+            //    }
+            //    MiSewi = new CompoundWord("mi-sewi");
 
-                Dictionary.Add("mi-sewi", MiSewi);
-                Glosses.Add("mi-sewi", glossMap);
-            }
+            //    Dictionary.Add("mi-sewi", MiSewi);
+            //    Glosses.Add("mi-sewi", glossMap);
+            //}
 
 
             {

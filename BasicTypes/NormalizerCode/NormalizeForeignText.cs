@@ -133,6 +133,10 @@ namespace BasicTypes.NormalizerCode
                 return normalized;
             }
 
+            if (normalized.ContainsCheck("\n"))
+            {
+              normalized=  normalized.Replace("\n", " \n");
+            }
             string[] split = normalized.Split(new char[] {' '});
 
             
@@ -141,10 +145,10 @@ namespace BasicTypes.NormalizerCode
             {
                 string word = split[index];
 
-                //if (word.Contains("Liosa"))
-                //{
-                //    int i = 42;
-                //}
+                if (word.Contains("Polanek"))
+                {
+                    int i = 42;
+                }
 
                 if (word.StartCheck("\"") && word.EndsWith("\""))
                 {
@@ -238,10 +242,15 @@ namespace BasicTypes.NormalizerCode
             }
 
             string rejoin = String.Join(" ", split);
+            if (rejoin.ContainsCheck(" \n"))
+            {
+                rejoin = rejoin.Replace(" \n", "\n");
+            }
+
             if (rejoin.ContainsCheck("\" \""))
             {
                 //"foo" "bar" "baz" etc
-                return rejoin.Replace("\" \"", " ");
+                return rejoin.Replace("\" \"", "*");
             }
 
             return rejoin;

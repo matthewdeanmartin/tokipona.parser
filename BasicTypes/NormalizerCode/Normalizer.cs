@@ -48,7 +48,11 @@ namespace BasicTypes.NormalizerCode
 
             string normalized = text.Trim(new char[] { '\n', '\r', ' ' });
 
-
+            //Is this better early or later?
+            if (normalized.Contains(@""""""))
+            {
+                normalized = normalized.Replace(@"""""", @"""");
+            }
             if (normalized.ContainsCheck(" ."))
             {
                 normalized = normalized.Replace(" .", ".");

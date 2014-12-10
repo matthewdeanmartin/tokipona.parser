@@ -13,6 +13,22 @@ namespace BasicTypes.Parser
     public class ParserUtilsChallengeSentences
     {
 
+        //This, is wrong. sina lili suwi is a very unusal compound pronoun, or it is a stand alone sentence.
+        //sina lili suwi, o tawa poka mi!
+        //[Test]
+        //public void ProcessHeadVocativeAndImperative()
+        //{
+        //    Dialect c = Dialect.LooseyGoosey;
+        //    ParserUtils pu = new ParserUtils(c);
+        //
+        //    const string vocative = "sina lili suwi, o tawa poka mi!";
+        //    string normalized= Normalizer.NormalizeText(vocative, c);
+        //    Sentence s = pu.ParsedSentenceFactory(normalized, vocative);
+        //    Console.WriteLine(s.ToString());
+        //    Console.WriteLine(s.ToString("b"));
+        //}
+
+
         [Test]
         public void ProcessVocative()
         {
