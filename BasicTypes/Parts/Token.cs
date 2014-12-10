@@ -525,10 +525,10 @@ namespace BasicTypes
         // wan, tu, tu wan, tu tu, luka, luka wan, luka tu, luka tu wan, luka luka
         private static string[] stupidNumbers =
         {
-            "ala",
-            "wan",
-            "tu",
-            "luka"
+            "ala", //Half and half.
+            "wan",//Generally a number, rarely verb or other
+            "tu"//Generally a number, rarely verb or other
+            //"luka" //Get's mixed up with hand.
         };
         public static string[] StupidNumbers
         {

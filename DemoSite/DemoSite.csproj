@@ -245,7 +245,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -274,7 +273,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Index - Copy.cshtml" />
     <Content Include="Views\Home\ChangeLog.cshtml" />
-    <Content Include="Views\Home\BracketHelp.cshtml" />
     <Content Include="Views\Home\Serializations.cshtml" />
     <Content Include="Views\Home\LoremIpsum.cshtml" />
     <Content Include="Views\Home\Normalization.cshtml" />

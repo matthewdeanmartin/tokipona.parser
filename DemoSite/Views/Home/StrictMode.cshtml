@@ -72,3 +72,56 @@
 
 <h2>Edgy toki pona</h2>
 <p>I like to write edgy toki pona, but the parser can't deal with it. Example include: compound prepositions, transformatives, noun phrases in the verb phrase, intentional and accidental subordinate clasues (I'm going to have to get back with an example), nor "mixed modifiers" that use en to join modifiers, e.g. kule pi laso en pimeja.</p>
+
+
+<h2>Bracket Help</h2>
+<h2>Phrase Brackets</h2>
+<ul>
+    <li><b>[subject]</b> - Everything right of the li.</li>
+    <li><b>&lt;predicate&gt;</b> - the verb or noun phrase after li</li>
+    <li><b>\modal/</b></li>
+    <li><b>%verb</b> - the head verb</li>
+    <li><b>\adverb/</b> - things following the head verb</li>
+    <li><b>(modifier modifier)</b> - words after a head</li>
+    <li><b>(- simple chain -)</b> - phrases all joined by the same particle, i.e. this is words and one sort of particle, e.g. just pi (not a combo of pi and en)</li>
+    <li><b>{ complex chain }</b> - simple chains joined by another particle, for example, pi and en appear in the same phrase</li>
+    <li><b>[{(- sina -) en (- jan (ante) pi toki-pona -)}]</b>-- brackets for a en/pi chain.</li>
+    <li><b>|taso|</b> - "tag conjunction", "tagged words", question tag, yes no tags on the verb, intensifier tags (mostly just kin)</li>
+    <li><b>{kin} la</b> - la fragment(s)</li>
+</ul>
+<h2>Part of Speech markers</h2>
+<ul>
+    <li><b>, preposition</b> - forces parser to read word as preposition</li>
+    <li><b>~preposition</b> - internal/alternative symbol for marking prepositions</li>
+    <li><b>#number</b> - Explict number. A complete explicit number has dashes instead of spaces, e.g. #tu-wan</li>
+    <li><b>+wala</b> - Explicit neologism</li>
+    <li><b>jan-pona</b> - compound phrase, i.e. noun and verb phrases that must gloss as a single unit to be coherent.</li>
+</ul>
+<p>
+    What are tags. They are undeliminted, i.e. not set off from other phrases by particles like pi, e, li, etc.  They have a scope that can be unusual. I don't know how to describe it.
+    When a word is tagged, that word can pop up anywhere that a word can. Perfect example is anu X and ala in the verb phrase. To not invent the concept of tagged words is to suggest the
+    verb paradigm has a slot in between each word for an anu X or ala.
+</p>
+<p>
+    Close related to tagged words are conjunction tags, which sit at the front of a sentence, undeliminated from the subject and the anu seme tag, which sits
+    at the end of a sentence without deliminators from what ever might have gone before.
+</p>
+
+<h2>What is this</h2>
+<p>The parser translates tp text into C# data structures. From this I can do a variety of experiments, such as sentence diagramming, glossing to English, spell checking, and grammar checking. After the text has been converted to an object-oriented data structure, I can convert it back to a toki pona string. When the code is bug free, it will be nearly identical. Right now, there are bugs and I lose white space and punctuation when converting back to toki pona.</p>
+
+<h2>Normalization</h2>
+<p>
+    TP has two design mistakes. First, there is extensive overlap between content and function words. The difference between content and function words is like porn, you know it when you see it. Function words in tp are pi, li, la, e, and the six prepositions. The prepositions can be used as nouns and verbs, the pi, li la, e particles can't. In normalization, I make best guesses at what is being used as a preposition.
+</p>
+<p>The other mistake was dropping li from mi/sina. It makes parsing more difficult and the language isn't any more concise. So I also normalize by putting back the missing li. People can do this effortlessly, computers do it poorly.</p>
+
+<h2>Implicit vs Explicit Part of Speech</h2>
+<p>Some part of speech types are really hard to identify, but if you add some annotation, the task is much easier. This includes neologism, prepositions, numbers, foreign text, numbers and a few more categories.</p>
+
+<h2>Glossing</h2>
+<p>In glossing, I look up words by part of speech and pick one alternative at random. I'm starting with the jan Sonja classic dictionary, which to my surprise is actually missing a lot of entries. Most content words can be plausibly used in all POS, but are only defined for a few. This used to lead to arguments. Right now it leads to [square bracketed] error messages. </p>
+
+<h2>Grammar Checking</h2>
+<p>I can detect things like extra li after mi, too few words after pi, missing li, missing e, but not always. Often bad grammar is missing particles, which looks like a long string of modifiers.</p>
+
