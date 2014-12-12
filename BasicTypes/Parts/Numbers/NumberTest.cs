@@ -10,6 +10,13 @@ namespace BasicTypes.Parts
     [TestFixture]
     public class NumberTest
     {
+        [Test]
+        public void ThisIsNotANumber()
+        {
+            //No sort of number.
+            string s = "#nena-meli";
+            Assert.IsFalse(Number.IsNumber(new HeadedPhrase(new Word(s)))); 
+        }
 
         [Test]
         public void StringToNumber_One_To_OneHundred_Stupid()

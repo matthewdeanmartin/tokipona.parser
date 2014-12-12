@@ -146,11 +146,11 @@ namespace BasicTypes.NormalizerCode
             }
 
             
-            //
-            if (!dialect.InferCompoundsPrepositionsForeignText)
+            if (dialect.InferCompoundsPrepositionsForeignText)
             {
                 normalized = MarkImplicitPrepositions(text, normalized);
             }
+
             //la o
             //invisible implicit subject.
             if (normalized.ContainsCheck(" la o "))

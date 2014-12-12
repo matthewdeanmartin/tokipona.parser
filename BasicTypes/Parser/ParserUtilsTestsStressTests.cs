@@ -172,8 +172,6 @@ namespace BasicTypes.Parser
                     Sentence structured = pu.ParsedSentenceFactory(normalized, original);
                     string diag = structured.ToString("b");
 
-                    //if ((normalized.ContainsCheck("%ante"))) continue; //verb!
-
                     Console.WriteLine("O: " + (original ?? "").Trim(new[] { '\n', '\r', ' ', '\t' }));
                     Console.WriteLine("B: " + diag);
                     Console.WriteLine("G: " + gm.GlossOneSentence(false, structured, english));
@@ -575,7 +573,8 @@ namespace BasicTypes.Parser
             Normalizer norm = new Normalizer(dialect);
             foreach (string s in reader.NextFile())
             {
-                if (reader.currentFile.ContainsCheck("janKipoCollected"))  // Can't parse:  *janMato 123 123 ni li musi!
+                if (reader.currentFile.ContainsCheck("janKipoCollected"))  continue; // Can't parse:  *janMato 123 123 ni li musi!
+
                 foreach (string original in ss.ParseIntoNonNormalizedSentences(s))
                 {
                     Sentence structured = null;

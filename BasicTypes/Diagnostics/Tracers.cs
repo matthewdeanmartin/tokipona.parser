@@ -15,7 +15,7 @@ namespace BasicTypes.Diagnostics
         
         static Tracers()
         {
-            SourceLevels singleSwitch = SourceLevels.Verbose;
+            SourceLevels singleSwitch = SourceLevels.Off;
             ConsoleTraceListener console = new ConsoleTraceListener();
 
             SourceSwitch stringifySwitch = new SourceSwitch("stringify", "Verbose");
@@ -33,6 +33,10 @@ namespace BasicTypes.Diagnostics
 
             Normalize = new TraceSource("normalize");
             Normalize.Switch = normalizeSwitch;
+
+            Parse.Listeners.Clear();
+            Normalize.Listeners.Clear();
+            Stringify.Listeners.Clear();
 
             Parse.Listeners.Add(console);
             Normalize.Listeners.Add(console);

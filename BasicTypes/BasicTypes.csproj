@@ -181,6 +181,7 @@
     <Compile Include="NormalizerCode\NormalizeExplicitTests.cs" />
     <Compile Include="NormalizerCode\NormalizeForeignText.cs" />
     <Compile Include="NormalizerCode\NormalizeForeignTextTests.cs" />
+    <Compile Include="NormalizerCode\NormalizeMiSina.cs" />
     <Compile Include="NormalizerCode\NormalizeNumbers.cs" />
     <Compile Include="NormalizerCode\Normalizer.cs" />
     <Compile Include="NormalizerCode\NormalizerTests.cs" />

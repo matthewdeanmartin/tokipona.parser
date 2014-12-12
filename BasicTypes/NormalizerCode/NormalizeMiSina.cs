@@ -6,13 +6,8 @@ using System.Threading.Tasks;
 
 namespace BasicTypes.NormalizerCode
 {
-    
-    //Fix 1 issue per method.
-    public static class NormalizationTasks
+    //A Whole class dedicated to putting li back after mi/sina
+    public class NormalizeMiSina
     {
-        //Whitespace
-
-        //Punctuation
-
     }
 }

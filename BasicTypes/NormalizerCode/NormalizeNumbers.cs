@@ -137,11 +137,11 @@ namespace BasicTypes.NormalizerCode
 
                 sb.Append(tokens[i]);
 
-                if (address != null)
+                if (address == null)
                 {
                     inNumber = false;
                 }
-                if (inNumber)
+                if (inNumber && address.NumberEndsAt!=address.NumberStartsAt)
                 {
                     sb.Append("-");
                 }
