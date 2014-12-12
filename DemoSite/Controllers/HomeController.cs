@@ -303,6 +303,7 @@ namespace DemoSite.Controllers
 
             ParserUtils pu = new ParserUtils(dialect);
             SentenceSplitter ss = new SentenceSplitter(dialect);
+            Normalizer norm= new Normalizer(dialect);
 
             string[] sentences = ss.ParseIntoNonNormalizedSentences(parse.SourceText);
             StringBuilder normalizedSb = new StringBuilder();
@@ -323,7 +324,7 @@ namespace DemoSite.Controllers
                 string normalized;
                 try
                 {
-                    normalized = Normalizer.NormalizeText(sentence, dialect);
+                    normalized = norm.NormalizeText(sentence);
                 }
                 catch (Exception ex)
                 {
@@ -336,10 +337,9 @@ namespace DemoSite.Controllers
                 //////// TP
                 normalizedSb.AppendLine(lineNumber+ hf.BoldTheWords(normalized.ToHtml()) + "<br/>");
 
-                Sentence parsedSentence;
                 try
                 {
-                    parsedSentence = pu.ParsedSentenceFactory(normalized, sentence);
+                    Sentence parsedSentence = pu.ParsedSentenceFactory(normalized, sentence);
 
                     //////// TP
                     try
@@ -522,6 +522,7 @@ namespace DemoSite.Controllers
         {
             Dialect dialect = Dialect.LooseyGoosey;
             ParserUtils pu = new ParserUtils(dialect);
+            Normalizer norm = new Normalizer(dialect);
             SentenceSplitter ss = new SentenceSplitter(dialect);
 
             string[] sentences = ss.ParseIntoNonNormalizedSentences(parse.SourceText);
@@ -537,7 +538,7 @@ namespace DemoSite.Controllers
                 string normalized;
                 try
                 {
-                    normalized = Normalizer.NormalizeText(sentence, dialect);
+                    normalized = norm.NormalizeText(sentence);
                 }
                 catch (Exception ex)
                 {

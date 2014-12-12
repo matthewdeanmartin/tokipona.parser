@@ -21,13 +21,14 @@ namespace TokiPonaApi.Controllers
 
         public string Get(string text)
         {
-            Dialect d = Dialect.LooseyGoosey;
-            
-            string normalized = Normalizer.NormalizeText(text, d);
-            ParserUtils pu = new ParserUtils(d);
+            Dialect dialect = Dialect.LooseyGoosey;
+            Normalizer norm = new Normalizer(dialect);
+
+            string normalized = norm.NormalizeText(text);
+            ParserUtils pu = new ParserUtils(dialect);
             Sentence s=  pu.ParsedSentenceFactory(normalized, text);
 
-            return s.ToString("b",d);
+            return s.ToString("b",dialect);
         }
 
     }

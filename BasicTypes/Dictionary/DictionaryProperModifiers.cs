@@ -31,7 +31,8 @@ namespace BasicTypes.Dictionary
             Dialect dialect = Dialect.LooseyGoosey;
             dialect.InferCompoundsPrepositionsForeignText = false;
             ParserUtils pu = new ParserUtils(dialect);
-
+            
+            Normalizer norm = new Normalizer(dialect);
             CorpusFileReader reader = new CorpusFileReader();
             Dictionary<string, int> words = new Dictionary<string, int>(500);
             
@@ -42,12 +43,10 @@ namespace BasicTypes.Dictionary
                 string[] sentences = ss.ParseIntoNonNormalizedSentences(s);
                 foreach (string original in sentences)
                 {
-                    Sentence structured = null;
-                    string normalized;
                     try
                     {
-                        normalized = Normalizer.NormalizeText(original, dialect);
-                        structured = pu.ParsedSentenceFactory(normalized, original);
+                        string normalized = norm.NormalizeText(original);
+                        Sentence structured = pu.ParsedSentenceFactory(normalized, original);
                         //string diag = structured.ToString("b");
 
 
@@ -70,14 +69,8 @@ namespace BasicTypes.Dictionary
                         }
 
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-                        //Console.WriteLine("ORIGINAL  : " + original);
-                        //if (structured != null)
-                        //{
-                        //    Console.WriteLine(structured.ToString("b"));
-                        //}
-                        //Console.WriteLine(ex.Message);
                         i++;
                     }
 
@@ -96,7 +89,7 @@ namespace BasicTypes.Dictionary
             int i = 0;
             Dialect dialect = Dialect.LooseyGoosey;
             dialect.InferCompoundsPrepositionsForeignText = false;
-            ParserUtils pu = new ParserUtils(dialect);
+            //ParserUtils pu = new ParserUtils(dialect);
             Dictionary<string, int> words = new Dictionary<string, int>();
 
             foreach (var item in CompoundWords.Dictionary)
@@ -113,6 +106,7 @@ namespace BasicTypes.Dictionary
                     {
                         words.Add(stringified, 1);
                         Console.WriteLine(i + " : " + stringified);
+                        i++;
                     }
                 }
             }

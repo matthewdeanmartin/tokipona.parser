@@ -21,14 +21,14 @@ namespace BasicTypes.ParseDiscourse
 
         public Prose ParseProse(string text, string policy = "guess")
         {
-            text = text.Trim(new char[] { '\r', '\n' });
+            text = text.Trim(new[] { '\r', '\n' });
             List<Paragraph> paras = new List<Paragraph>();
 
-            string[] doubleSpace = new string[] { "\r\n\r\n", "\n\r\n\r", "\n\n\n\n", "\r\r\r\r" };
+            string[] doubleSpace = { "\r\n\r\n", "\n\r\n\r", "\n\n\n\n", "\r\r\r\r" };
             string[] paraStrings = text.Split(doubleSpace, StringSplitOptions.RemoveEmptyEntries);
 
 
-            string[] singleSpace = new string[] { "\n", "\n" };
+            string[] singleSpace = { "\n", "\n" };
 
 
 
@@ -60,6 +60,9 @@ namespace BasicTypes.ParseDiscourse
 
             SentenceSplitter ss = new SentenceSplitter(dialect);
 
+            
+            Normalizer norm = new Normalizer(dialect);
+
             foreach (string paraString in paraStrings)
             {
                 string[] sentenceStrings = ss.ParseIntoNonNormalizedSentences(paraString);
@@ -67,7 +70,7 @@ namespace BasicTypes.ParseDiscourse
                 Paragraph para = new Paragraph();
                 foreach (string sentenceString in sentenceStrings)
                 {
-                    string normalized = Normalizer.NormalizeText(sentenceString, dialect);
+                    string normalized = norm.NormalizeText(sentenceString);
                     Sentence sentence = pu.ParsedSentenceFactory(normalized, sentenceString);
                     if (i == 1 && sentence.Fragment != null)
                     {

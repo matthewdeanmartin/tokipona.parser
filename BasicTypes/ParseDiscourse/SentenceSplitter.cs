@@ -47,7 +47,19 @@ namespace BasicTypes.ParseDiscourse
                 text = text.Replace("\n\n", "\n");
             }
 
-            //Anything between /// and \n is a comment.
+            //Hyphenated words. This could cause a problem for compound words that cross lines.
+            if (text.ContainsCheck("-\n"))
+            {
+                //TODO: Improve, should check if this actually joins a word.
+                text= text.Replace("-\n", "");
+            }
+            
+            ////"/\\*.*?\\*/"
+            if (text.ContainsCheck("/*") || text.ContainsCheck("*/"))
+            {
+                text = Normalizer.ApplyNormalization(text, "Comments", Normalizer.StripMultilineComments);
+            }
+
 
             //‘a! mi wile moku e wan soweli seli.’
             if (text.ContainsCheck('‘') && text.ContainsCheck('’'))
@@ -58,6 +70,7 @@ namespace BasicTypes.ParseDiscourse
 
             text = SwapQuoteAndSentenceTerminatorOrder(text);
 
+            //Anything between /// and \n is a comment.
             string[] lines = text.Split(new char[] { '\n' });
             string[] modifiedLines = new string[lines.Length];
             for (int i = 0; i < lines.Length; i++)

@@ -256,7 +256,7 @@ namespace BasicTypes
 
         public virtual string ToString(string format, IFormatProvider formatProvider)
         {
-            Dialect c = formatProvider.GetFormat(typeof(Word)) as Dialect;
+            Dialect dialect = formatProvider.GetFormat(typeof(Word)) as Dialect;
 
             //// Handle null or empty string. 
             if (String.IsNullOrEmpty(format)) format = "g";
@@ -308,13 +308,13 @@ namespace BasicTypes
             CultureInfo ci = Thread.CurrentThread.CurrentCulture;
 
             string language;
-            if (c.TargetGloss == "thread")
+            if (dialect.TargetGloss == "thread")
             {
                 language = ci.TwoLetterISOLanguageName;
             }
             else
             {
-                language = c.TargetGloss;
+                language = dialect.TargetGloss;
             }
 
             //bracket means TP (what the heck would brackets mean in English?)
@@ -324,15 +324,15 @@ namespace BasicTypes
             }
 
             if (includePos)
-                return TryGloss(language, format) + "(" + format + ")";
+                return TryGloss(language, format, dialect) + "(" + format + ")";
             else
             {
-                return TryGloss(language, format);
+                return TryGloss(language, format, dialect);
             }
 
         }
 
-        public string TryGloss(string language, string pos)
+        public string TryGloss(string language, string pos, Dialect dialect)
         {
             //HACK: This is wrong. Should be using Token or some other base class.
             if (word.ContainsCheck("-"))
@@ -346,7 +346,7 @@ namespace BasicTypes
             if (word.StartCheck("#") || isNumeric)
             {
                 Number n = new Number(Text);
-                return n.TryGloss(language, pos);
+                return n.TryGloss(language, pos, dialect);
             }
             
             if (Token.IsNeologism(LookupForm(word)))

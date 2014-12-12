@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BasicTypes.Exceptions;
-using BasicTypes.Parser;
+using BasicTypes.NormalizerCode;
 using NUnit.Framework;
 
 namespace BasicTypes.Glosser
@@ -13,12 +9,16 @@ namespace BasicTypes.Glosser
     [TestFixture]
     public class GlossMakerTests
     {
+        
         [Test]
         public void LostDirects()
         {
             string regular = "sona olin li alasa e mu jan e ijo sin e poka esun e ali meli, lon meli suli, tawa ala mi?";
-            string s = NormalizerCode.Normalizer.NormalizeText(regular, Dialect.LooseyGoosey);
-            Console.WriteLine(Sentence.Parse(s, Dialect.LooseyGoosey).ToString());
+            Dialect dialect = Dialect.LooseyGoosey;
+            Normalizer norm = new Normalizer(dialect);
+
+            string s = norm.NormalizeText(regular);
+            Console.WriteLine(Sentence.Parse(s, dialect).ToString());
 
             GlossMaker gm = new GlossMaker();
             Console.WriteLine(gm.Gloss(s, s));
@@ -27,7 +27,7 @@ namespace BasicTypes.Glosser
         [Test]
         public void GlossPlural()
         {
-            string s = "mi mute li wile e moku mute e soweli mute e waso mute e kala mute e mani mute.";
+            const string s = "mi mute li wile e moku mute e soweli mute e waso mute e kala mute e mani mute.";
             GlossMaker gm = new GlossMaker();
             Console.WriteLine(gm.Gloss(s, s));
             Console.WriteLine(gm.Gloss(s, s));
@@ -39,7 +39,7 @@ namespace BasicTypes.Glosser
         [Test]
         public void MissingFragment()
         {
-            string s = "tan ni la kala akesi li kama, tawa selo pi telo-suli.";
+            const string s = "tan ni la kala akesi li kama, tawa selo pi telo-suli.";
             GlossMaker gm = new GlossMaker();
             Console.WriteLine(gm.Gloss(s, s));
             Console.WriteLine(gm.Gloss(s, s));
@@ -51,7 +51,7 @@ namespace BasicTypes.Glosser
         [Test]
         public void TheBiggerTheTheBiggerThe()
         {
-            string s = "nena meli li suli la monsi li suli kin.";
+            const string s = "nena meli li suli la monsi li suli kin.";
             GlossMaker gm = new GlossMaker();
             Console.WriteLine(gm.Gloss(s, s));
             Console.WriteLine(gm.Gloss(s, s));
@@ -63,7 +63,7 @@ namespace BasicTypes.Glosser
         [Test]
         public void NounPhrase()
         {
-            string s = "jan suli";
+            const string s = "jan suli";
             GlossMaker gm = new GlossMaker();
             Console.WriteLine(gm.Gloss(s, s));
         }
@@ -75,12 +75,12 @@ namespace BasicTypes.Glosser
             try
             {
                 GlossMaker gm = new GlossMaker();
-                Dialect config = BasicTypes.Dialect.LooseyGoosey;
+                Dialect config = Dialect.LooseyGoosey;
                 config.TargetGloss = "en";
                 config.GlossWithFallBacks = true;
                 ParserUtils pu = new ParserUtils(config);
 
-                string s = "jan suli pi pi pi";
+                const string s = "jan suli pi pi pi";
                 Sentence sentenceTree = pu.ParsedSentenceFactory(s, s);
                 Console.WriteLine(gm.GlossOneSentence(false, sentenceTree, config));
             }
@@ -101,7 +101,7 @@ namespace BasicTypes.Glosser
         public void SimplePredicate()
         {
             GlossMaker gm = new GlossMaker();
-            string s = "jan li suli";
+            const string s = "jan li suli";
             Console.WriteLine(gm.Gloss(s, s));
         }
 
@@ -110,7 +110,7 @@ namespace BasicTypes.Glosser
         public void SimplePredicateConjunction()
         {
             GlossMaker gm = new GlossMaker();
-            string s = "jan li suli li wawa";
+            const string s = "jan li suli li wawa";
             Console.WriteLine(gm.Gloss(s, s));
         }
 
@@ -118,7 +118,7 @@ namespace BasicTypes.Glosser
         public void TransitiveVerb()
         {
             GlossMaker gm = new GlossMaker();
-            string s = "jan li moku e kili";
+            const string s = "jan li moku e kili";
             Console.WriteLine(gm.Gloss(s, s));
         }
 
@@ -126,7 +126,7 @@ namespace BasicTypes.Glosser
         public void IntransitiveVerb()
         {
             GlossMaker gm = new GlossMaker();
-            string s = "jan li moku, kepeken ilo moku";
+            const string s = "jan li moku, kepeken ilo moku";
             Console.WriteLine(gm.Gloss(s, s, "en", true));
             Console.WriteLine(gm.Gloss(s, s));
         }

@@ -68,11 +68,12 @@ namespace BasicTypes
         public void MaximalSentences_Part_Tail()
         {
             string value = "mi mute li lukin e sitelen pona, kepeken ilo-tawa mani li jo e ijo mute, lon ma-suli pi mi mute.";
-            Dialect d = Dialect.LooseyGoosey;
-            string normalized = Normalizer.NormalizeText(value, d);
-            Sentence s = Sentence.Parse(normalized, d);
+            Dialect dialect = Dialect.LooseyGoosey;
+            Normalizer norm = new Normalizer(dialect);
+            string normalized = norm.NormalizeText(value);
+            Sentence s = Sentence.Parse(normalized, dialect);
             Console.WriteLine("Original: " + value);
-            Console.WriteLine("ToString: " + s.ToString("g", Dialect.LooseyGoosey));
+            Console.WriteLine("ToString: " + s.ToString("g", dialect));
             
 
             Console.WriteLine("ToString: " + s.ToString("g"));
@@ -84,22 +85,24 @@ namespace BasicTypes
         public void MaximalSentences()
         {
             string value = "jan li suli la tenpo pi lili mi la mi mute li lukin e sitelen pona, kepeken ilo, tawa mani li jo e ijo mute, lon ma suli pi mi mute.";
-            Dialect d = Dialect.LooseyGoosey;
-            d.InferCompoundsPrepositionsForeignText = false;
-            string normalized = Normalizer.NormalizeText(value, d);
-            Sentence s = Sentence.Parse(normalized, d);
+            Dialect dialect = Dialect.LooseyGoosey;
+            Normalizer norm = new Normalizer(dialect);
+            dialect.InferCompoundsPrepositionsForeignText = false;
+            
+            string normalized = norm.NormalizeText(value);
+            Sentence s = Sentence.Parse(normalized, dialect);
             Console.WriteLine("Original: " + value);
-            Console.WriteLine("ToString: " + s.ToString("g",d));
-            Assert.AreEqual(value, s.ToString("g", d), s.ToString("b", d));
+            Console.WriteLine("ToString: " + s.ToString("g",dialect));
+            Assert.AreEqual(value, s.ToString("g", dialect), s.ToString("b", dialect));
         }
         [Test]
         public void LaFragment()
         {
             string value = "tenpo pi lili mi la mi lukin e sitelen pona.";
             Dialect dialect = Dialect.LooseyGoosey;
-            string normalized = Normalizer.NormalizeText(value,dialect);
+            //string normalized = Normalizer.NormalizeText(value,dialect);
 
-            Sentence s = Sentence.Parse(normalized, dialect);
+            Sentence s = Sentence.Parse(value, dialect);
             Console.WriteLine(s.ToString());
             Console.WriteLine(s.ToString("b"));
             Console.WriteLine(s.ToJsonNet());

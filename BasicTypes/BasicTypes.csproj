@@ -176,6 +176,9 @@
     <Compile Include="MoreTypes\EnumerationThing.cs" />
     <Compile Include="MoreTypes\ParseOrDefault.cs" />
     <Compile Include="MoreTypes\SerializableDictionary.cs" />
+    <Compile Include="NormalizerCode\NormalizationTasks.cs" />
+    <Compile Include="NormalizerCode\NormalizeExplicit.cs" />
+    <Compile Include="NormalizerCode\NormalizeExplicitTests.cs" />
     <Compile Include="NormalizerCode\NormalizeForeignText.cs" />
     <Compile Include="NormalizerCode\NormalizeForeignTextTests.cs" />
     <Compile Include="NormalizerCode\NormalizeNumbers.cs" />

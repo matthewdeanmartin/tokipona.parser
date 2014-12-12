@@ -51,6 +51,56 @@ namespace BasicTypes.Parser
             }
         }
 
+        //tenpo ni la jan o!
+        [Test]
+        [Ignore]
+        public void LostVocativeAfterLa()
+        {
+            //Possibley not worth addressing. In the corpus this happened because of an unmarked final exclamation.
+            Dialect c = Dialect.LooseyGoosey;
+            ParserUtils pu = new ParserUtils(c);
+
+            const string expected = "tenpo ni la jan o!";
+
+            Sentence s = pu.ParsedSentenceFactory(expected, expected);
+            string result = s.ToString();
+            Console.WriteLine();
+            Assert.AreEqual(expected,result);
+        }
+
+        [Test]
+        public void MissingVocativeHeadNoun()
+        {
+            //Possibley not worth addressing. In the corpus this happened because of an unmarked final exclamation.
+            Dialect c = Dialect.LooseyGoosey;
+            ParserUtils pu = new ParserUtils(c);
+
+            const string expected = "soweli Ja o toki!";
+
+            Sentence s = pu.ParsedSentenceFactory(expected, expected);
+            string result = s.ToString();
+            Console.WriteLine();
+            Assert.AreEqual(expected, result);
+        }
+        [Test]
+        public void MissingVocativeHeadNoun_mi()
+        {
+            //Possibley not worth addressing. In the corpus this happened because of an unmarked final exclamation.
+            Dialect c = Dialect.LooseyGoosey;
+            ParserUtils pu = new ParserUtils(c);
+
+            const string expected = "mi jan Pona.";
+            Normalizer norm = new Normalizer(c);
+            string normalized= norm.NormalizeText(expected);
+            Console.WriteLine(normalized);
+            Sentence s = pu.ParsedSentenceFactory(normalized, expected);
+            string result = s.ToString();
+            Console.WriteLine();
+            Assert.AreEqual(expected, result);
+        }
+        
+        //
+
         [Test]
         public void ProcessVocative()
         {
@@ -84,7 +134,7 @@ namespace BasicTypes.Parser
         public void HeadVocativeWithSina_WithoutNormalizing()
         {
             //
-            const string s = "mama mi o sina li lon sewi kon.";
+            const string s = "mama mi o sina, lon sewi kon.";
             Dialect c = Dialect.LooseyGoosey;
             ParserUtils pu = new ParserUtils(c);
             Sentence sentence = pu.ParsedSentenceFactory(s, s);
@@ -100,11 +150,13 @@ namespace BasicTypes.Parser
         [Test]
         public void MixedImperativeAndNonImperativeDoubleO()
         {
+
             //normalizing a mid sentence sina (li) is a pain.
             const string s = "ona mute o o pana e mije lili tawa ma kasi suli li pakala e ona.";
-            Dialect c = Dialect.LooseyGoosey;
-            ParserUtils pu = new ParserUtils(c);
-            string normalized = Normalizer.NormalizeText(s, c);
+            Dialect dialect = Dialect.LooseyGoosey;
+            Normalizer norm = new Normalizer(dialect);
+            ParserUtils pu = new ParserUtils(dialect);
+            string normalized = norm.NormalizeText(s);
             Sentence sentence = pu.ParsedSentenceFactory(normalized, s);
             Console.WriteLine(s);
             Console.WriteLine(sentence.ToString());
@@ -118,9 +170,10 @@ namespace BasicTypes.Parser
         {
             //normalizing a mid sentence sina (li) is a pain.
             const string s = "mama mi o, jan li lon sewi kon.";
-            Dialect c = Dialect.LooseyGoosey;
-            ParserUtils pu = new ParserUtils(c);
-            string normalized = Normalizer.NormalizeText(s, c);
+            Dialect dialect = Dialect.LooseyGoosey;
+            Normalizer norm = new Normalizer(dialect);
+            ParserUtils pu = new ParserUtils(dialect);
+            string normalized = norm.NormalizeText(s);
             Assert.IsTrue(!normalized.Contains(","));
             Sentence sentence = pu.ParsedSentenceFactory(normalized, s);
             Console.WriteLine(s);
@@ -141,26 +194,29 @@ namespace BasicTypes.Parser
             Console.WriteLine(sentence.ToString());
             Console.WriteLine(sentence.ToString("b"));
             Assert.IsNotNull(sentence.HeadVocatives);
-            Assert.IsTrue(sentence.HeadVocatives.Length==1);
+            Assert.IsTrue(sentence.HeadVocatives.Length == 1);
         }
         //
         [Test]
         public void PosessiveMiInSubject()
         {
-            Dialect c = Dialect.LooseyGoosey;
             //const string s = "kili lon ma mi li pona tawa mi.";
             const string s = "kili, lon ma mi li pona, tawa mi.";
-            string normalized = Normalizer.NormalizeText(s,c);
+
+            Dialect dialect = Dialect.LooseyGoosey;
+            Normalizer norm = new Normalizer(dialect);
+
+            string normalized = norm.NormalizeText(s);
             Console.WriteLine(normalized);
-            
-            ParserUtils pu = new ParserUtils(c);
-            
+
+            ParserUtils pu = new ParserUtils(dialect);
+
             Sentence sentence = pu.ParsedSentenceFactory(normalized, s);
             Console.WriteLine(s);
             Console.WriteLine(sentence.ToString());
             Console.WriteLine(sentence.ToString("b"));
             Assert.IsNotNull(sentence.Subjects);
-            Assert.AreEqual(sentence.ToString(), s);
+            Assert.AreEqual(s, sentence.ToString());
         }
 
         //.
@@ -175,7 +231,7 @@ namespace BasicTypes.Parser
             Console.WriteLine(sentence.ToString());
             Console.WriteLine(sentence.ToString("b"));
             Assert.IsNotNull(sentence.Subjects);
-            Assert.AreEqual(sentence.ToString(),s);
+            Assert.AreEqual(sentence.ToString(), s);
         }
 
         [Test]

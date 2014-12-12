@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BasicTypes.NormalizerCode;
 
 namespace BasicTypes.Collections
 {
@@ -56,11 +57,15 @@ namespace BasicTypes.Collections
 
         public static Sentence Parse(object value, IFormatProvider formatProvider)
         {
-            Dialect c = formatProvider.GetFormat(typeof(Sentence)) as Dialect;
+            Dialect dialect = formatProvider.GetFormat(typeof(Sentence)) as Dialect;
             
-            ParserUtils pu = new ParserUtils(c);
-            string result = value.ToString();
-            return pu.ParsedSentenceFactory(result, result);
+            Normalizer norm = new Normalizer(dialect);
+
+            string original= value.ToString();
+            string normalized = norm.NormalizeText(original);
+            ParserUtils pu = new ParserUtils(dialect);
+
+            return pu.ParsedSentenceFactory(normalized, original);
         }
     }
 }

@@ -54,12 +54,14 @@ namespace BasicTypes.Parser
             Dialect dialect = Dialect.LooseyGoosey;
             
             SentenceSplitter ss = new SentenceSplitter(dialect);
+            
+            Normalizer norm = new Normalizer(dialect);
             foreach (string s in reader.NextFile())
             {
                 string[] rawSentences = ss.ParseIntoNonNormalizedSentences(s);
                 foreach (string sentence in rawSentences)
                 {
-                    string normalized = Normalizer.NormalizeText(sentence, dialect);
+                    string normalized = norm.NormalizeText(sentence);
                     //Normalization improved stuff
                     string[] words = tpu.JustTokens(normalized);
                     for (int index = 0; index < words.Length; index++)
@@ -109,7 +111,7 @@ namespace BasicTypes.Parser
             dialect.InferCompoundsPrepositionsForeignText = false;
             dialect.InferNumbers = true;
             dialect.NumberType = "Body";
-
+            Normalizer norm = new Normalizer(dialect);
             CorpusFileReader reader = new CorpusFileReader();
             SentenceSplitter ss = new SentenceSplitter(dialect);
 
@@ -119,7 +121,7 @@ namespace BasicTypes.Parser
                 {
                     try
                     {
-                        string normalized = Normalizer.NormalizeText(original, dialect);
+                        string normalized = norm.NormalizeText(original);
                         string result = NormalizeNumbers.FindNumbers(normalized, dialect);
                         if (result.ContainsCheck("#"))
                         {
@@ -154,19 +156,20 @@ namespace BasicTypes.Parser
             CorpusFileReader reader = new CorpusFileReader(true);
             GlossMaker gm = new GlossMaker();
             SentenceSplitter ss = new SentenceSplitter(dialect);
-
+            
+            Normalizer norm = new Normalizer(dialect);
+            
             foreach (string s in reader.NextFile())
             {
                 foreach (string original in ss.ParseIntoNonNormalizedSentences(s))
                 {
-                    Sentence structured = null;
                     //try
                     //{
-                    string normalized = Normalizer.NormalizeText(original, dialect);
+                    string normalized = norm.NormalizeText(original);
                     
                     if (!(normalized.ContainsWholeWord("anu seme"))) continue;
-
-                    structured = pu.ParsedSentenceFactory(normalized, original);
+                    i++;
+                    Sentence structured = pu.ParsedSentenceFactory(normalized, original);
                     string diag = structured.ToString("b");
 
                     //if ((normalized.ContainsCheck("%ante"))) continue; //verb!
@@ -201,23 +204,24 @@ namespace BasicTypes.Parser
             int i = 0;
             Dialect dialect = Dialect.LooseyGoosey;
             ParserUtils pu = new ParserUtils(dialect);
+            
+            Normalizer norm = new Normalizer(dialect);
 
             Dialect english = Dialect.LooseyGoosey;
             english.TargetGloss = "en";
             english.GlossWithFallBacks = true;
 
             CorpusFileReader reader = new CorpusFileReader();
-            GlossMaker gm = new GlossMaker();
+            //GlossMaker gm = new GlossMaker();
             SentenceSplitter ss = new SentenceSplitter(dialect);
 
             foreach (string s in reader.NextFile())
             {
                 foreach (string original in ss.ParseIntoNonNormalizedSentences(s))
                 {
-                    Sentence structured = null;
                     //try
                     //{
-                    string normalized = Normalizer.NormalizeText(original, dialect);
+                    string normalized = norm.NormalizeText(original);
                     
                     if (!(normalized.ContainsWholeWord("mi") || normalized.ContainsWholeWord("sina") || normalized.ContainsWholeWord("ona"))) continue;
                     if (normalized.ContainsCheck("Kinla")) continue;//Has a logical operator in one of the sample sentences that I can't deal with yet, unrelated to kin, ala
@@ -226,7 +230,7 @@ namespace BasicTypes.Parser
 
                     if (normalized.ContainsCheck("ona li alasa pona")) return;//Okay, this is some randome point in the middle. 100s is enough!
 
-                    structured = pu.ParsedSentenceFactory(normalized, original);
+                    Sentence structured = pu.ParsedSentenceFactory(normalized, original);
 
                     bool foundInteresting = false;
                     if (structured.Subjects != null)
@@ -250,7 +254,7 @@ namespace BasicTypes.Parser
                                         if (headedPhrase.Head.Text == "mi" || headedPhrase.Head.Text == "sina" ||
                                         headedPhrase.Head.Text == "ona")
                                         {
-                                            Console.WriteLine("Found  : " + headedPhrase.ToString());
+                                            Console.WriteLine("Found  : " + headedPhrase);
                                             foundInteresting = true;
                                         }
                                     }
@@ -273,7 +277,7 @@ namespace BasicTypes.Parser
                                     if (headedPhrase.Head.Text == "mi" || headedPhrase.Head.Text == "sina" ||
                                         headedPhrase.Head.Text=="ona")
                                     {
-                                        Console.WriteLine("Found  : " + headedPhrase.ToString());
+                                        Console.WriteLine("Found  : " + headedPhrase);
                                         foundInteresting = true;
                                     }
                                 }
@@ -323,8 +327,11 @@ namespace BasicTypes.Parser
             english.TargetGloss = "en";
             english.GlossWithFallBacks = true;
 
+            
+            Normalizer norm = new Normalizer(dialect);
+
             CorpusFileReader reader = new CorpusFileReader();
-            GlossMaker gm = new GlossMaker();
+            //GlossMaker gm = new GlossMaker();
             SentenceSplitter ss = new SentenceSplitter(dialect);
 
             foreach (string s in reader.NextFile())
@@ -334,7 +341,7 @@ namespace BasicTypes.Parser
                     Sentence structured = null;
                     try
                     {
-                    string normalized = Normalizer.NormalizeText(original, dialect);
+                    string normalized = norm.NormalizeText(original);
                     
                     if (string.IsNullOrWhiteSpace(normalized)) continue;
                     if (!(normalized.ContainsWholeWord("o"))) continue;
@@ -381,6 +388,8 @@ namespace BasicTypes.Parser
             english.TargetGloss = "en";
             english.GlossWithFallBacks = true;
 
+            Normalizer norm = new Normalizer(dialect);
+
             CorpusFileReader reader = new CorpusFileReader();
             GlossMaker gm = new GlossMaker();
             SentenceSplitter ss = new SentenceSplitter(dialect);
@@ -390,11 +399,10 @@ namespace BasicTypes.Parser
                 foreach (string original in ss.ParseIntoNonNormalizedSentences(s))
                 {
                     if(original.Contains(" su ")) continue; //neologism, back when we didn't know what pu was and hoped it was something like scandinavian sem
-                    
-                    Sentence structured = null;
+
                     //try
                     //{
-                    string normalized = Normalizer.NormalizeText(original, dialect);
+                    string normalized = norm.NormalizeText(original);
                     
                     if (!(normalized.ContainsWholeWord("ala") || normalized.ContainsWholeWord("kin"))) continue;
                     if (normalized.ContainsCheck("Kinla")) continue;//Has a logical operator in one of the sample sentences that I can't deal with yet, unrelated to kin, ala
@@ -404,7 +412,7 @@ namespace BasicTypes.Parser
                     if(normalized.ContainsCheck("pilin pona o")) continue; //Not trying to solve vocatives right now
                     if (normalized.ContainsCheck(" o, ")) continue; //Not trying to solve vocatives right now
                     
-                    structured = pu.ParsedSentenceFactory(normalized, original);
+                    Sentence structured = pu.ParsedSentenceFactory(normalized, original);
                     string diag = structured.ToString("b");
 
                     //if ((normalized.ContainsCheck("%ante"))) continue; //verb!
@@ -444,6 +452,8 @@ namespace BasicTypes.Parser
             english.TargetGloss = "en";
             english.GlossWithFallBacks = true;
 
+            Normalizer norm = new Normalizer(dialect);
+
             CorpusFileReader reader = new CorpusFileReader();
             GlossMaker gm = new GlossMaker();
             SentenceSplitter ss = new SentenceSplitter(dialect);
@@ -452,10 +462,9 @@ namespace BasicTypes.Parser
             {
                 foreach (string original in ss.ParseIntoNonNormalizedSentences(s))
                 {
-                    Sentence structured = null;
                     //try
                     //{
-                    string normalized = Normalizer.NormalizeText(original, dialect);
+                    string normalized = norm.NormalizeText(original);
                     
                     if (string.IsNullOrWhiteSpace(normalized)) continue;
                     if (!(normalized.ContainsWholeWord("anu") || normalized.ContainsWholeWord("taso")
@@ -464,7 +473,7 @@ namespace BasicTypes.Parser
                     if (normalized.StartCheck("anu ")) continue; //tag conjunctions no big deal
                     if (normalized.StartCheck("taso ")) continue; //tag conjunctions no big deal
 
-                    structured = pu.ParsedSentenceFactory(normalized, original);
+                    Sentence structured = pu.ParsedSentenceFactory(normalized, original);
                     string diag = structured.ToString("b");
 
                     //if ((normalized.ContainsCheck("%ante"))) continue; //verb!
@@ -505,6 +514,7 @@ namespace BasicTypes.Parser
             english.GlossWithFallBacks = true;
 
             CorpusFileReader reader = new CorpusFileReader(true);
+            Normalizer norm = new Normalizer(dialect);
             
             SentenceSplitter ss = new SentenceSplitter(dialect);
 
@@ -520,23 +530,22 @@ namespace BasicTypes.Parser
                         continue;
 
                     total++;
-                    Sentence structured = null;
                     try
                     {
-                        string normalized = Normalizer.NormalizeText(original, dialect);
+                        string normalized = norm.NormalizeText(original);
                         
-                        structured = pu.ParsedSentenceFactory(normalized, original);
+                        Sentence structured = pu.ParsedSentenceFactory(normalized, original);
                         string diag = structured.ToString();
 
                         if (!diag.TpLettersEqual(original))
                         {
-                            Console.WriteLine("O: " + original.Trim(new char[]{' ','\t','\n','\r'}).Replace("\n"," "));
+                            Console.WriteLine("O: " + original.Trim(new[]{' ','\t','\n','\r'}).Replace("\n"," "));
                             Console.WriteLine("G: " + diag);
                             Console.WriteLine(" --- ");
                             j++;
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         i++;
                     }
@@ -563,6 +572,7 @@ namespace BasicTypes.Parser
             GlossMaker gm = new GlossMaker();
             SentenceSplitter ss = new SentenceSplitter(dialect);
 
+            Normalizer norm = new Normalizer(dialect);
             foreach (string s in reader.NextFile())
             {
                 if (reader.currentFile.ContainsCheck("janKipoCollected"))  // Can't parse:  *janMato 123 123 ni li musi!
@@ -571,7 +581,7 @@ namespace BasicTypes.Parser
                     Sentence structured = null;
                     try
                     {
-                        string normalized = Normalizer.NormalizeText(original, dialect);
+                        string normalized = norm.NormalizeText(original);
                         structured = pu.ParsedSentenceFactory(normalized, original);
                         string diag = structured.ToString("b");
 
@@ -632,8 +642,10 @@ namespace BasicTypes.Parser
             Dialect dialect = Dialect.LooseyGoosey;
             dialect.TargetGloss = "en";
 
-            ParserUtils pu = new ParserUtils(dialect);
+            //ParserUtils pu = new ParserUtils(dialect);
             SentenceSplitter ss = new SentenceSplitter(dialect);
+
+            Normalizer norm = new Normalizer(dialect);
 
             foreach (string sample in samples)
             {
@@ -642,7 +654,7 @@ namespace BasicTypes.Parser
                 {
                     if (sentence.ContainsCheck("Georgia"))
                     {
-                        string result = Normalizer.NormalizeText(sentence, dialect);
+                        string result = norm.NormalizeText(sentence);
                         Assert.IsTrue(result.ContainsCheck("\"Georgia\""));
                     }
                 }
@@ -679,10 +691,10 @@ namespace BasicTypes.Parser
 
             int fail = 0;
 
-            List<string> BadSentence  = new List<string>();
-            List<Exception> exceptions = new List<Exception>();
-
+            
             SentenceSplitter ss = new SentenceSplitter(dialect);
+            
+            Normalizer norm = new Normalizer(dialect);
 
             foreach (string sample in samples)
             {
@@ -692,7 +704,7 @@ namespace BasicTypes.Parser
                 {
                     //try
                     //{
-                        normalized[index] = Normalizer.NormalizeText(sentenceStrings[index], dialect);
+                        normalized[index] = norm.NormalizeText(sentenceStrings[index]);
                         Sentence sentence = pu.ParsedSentenceFactory(normalized[index], sentenceStrings[index]);
 
                         Console.WriteLine(sentence.ToString("g"));
@@ -718,6 +730,8 @@ namespace BasicTypes.Parser
         public void IdentifyDiscourses_CanWeGroupThem()
         {
             Dialect dialect = Dialect.LooseyGoosey;
+            Normalizer norm = new Normalizer(dialect);
+
             ParserUtils pu = new ParserUtils(dialect);
             SentenceSplitter ss = new SentenceSplitter(dialect);
 
@@ -726,7 +740,7 @@ namespace BasicTypes.Parser
                             .Where(x => !string.IsNullOrWhiteSpace(x))
                             .Select(x =>
                             {
-                                string normalized = Normalizer.NormalizeText(x,dialect);
+                                string normalized = norm.NormalizeText(x);
                                 if (string.IsNullOrWhiteSpace(normalized))
                                     return null;
                                 return  pu.ParsedSentenceFactory(normalized, x);

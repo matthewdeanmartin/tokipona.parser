@@ -16,9 +16,10 @@ namespace BasicTypes.Parts
     /// Necessarily, this entails some degree of "community proposal"
     /// </remarks>
     [Serializable]
-    public class Number:Token
+    public class Number : Token
     {
-        public Number(string word):base(word)
+        public Number(string word)
+            : base(word)
         {
             if (string.IsNullOrWhiteSpace(word))
             {
@@ -56,6 +57,8 @@ namespace BasicTypes.Parts
             ConvertDigits(i.ToString(), gender, sb);
             return ProcessNegatives(i.ToString(), sb);
         }
+        
+
         public static string ConvertToBodyNumber(double i, string gender = "M")
         {
             StringBuilder sb = new StringBuilder();
@@ -73,12 +76,12 @@ namespace BasicTypes.Parts
         private static string ProcessNegatives(string i, StringBuilder sb)
         {
 
-            string temp = "#" + sb.ToString().Trim(new[] {'-'});
+            string temp = "#" + sb.ToString().Trim(new[] { '-' });
             if (i.ContainsCheck("-"))
             {
                 temp = "nanpa-anpa " + temp;
             }
-            while(temp.ContainsCheck("--"))
+            while (temp.ContainsCheck("--"))
             {
                 temp = temp.Replace("--", "-");
             }
@@ -109,9 +112,9 @@ namespace BasicTypes.Parts
             return temp;
         }
 
-        private static void ConvertDigits(string  representation, string gender, StringBuilder sb)
+        private static void ConvertDigits(string representation, string gender, StringBuilder sb)
         {
-            foreach (char c in representation.Replace("E-","E~"))
+            foreach (char c in representation.Replace("E-", "E~"))
             {
                 switch (c)
                 {
@@ -152,7 +155,7 @@ namespace BasicTypes.Parts
                         sb.Append("wawa");
                         break;
                     case '-':
-                        //skip deal with elsewhere.
+                    //skip deal with elsewhere.
                     case '+':
                         //default to positive
                         break;
@@ -173,6 +176,40 @@ namespace BasicTypes.Parts
             testWord = testWord.Replace("\"", "");
             return testWord.All(c => Token.PomanNumbers.Contains(c.ToString()));
         }
+
+        public static int ConvertFromPoman(string value)
+        {
+            int pomanSum = 0;
+            foreach (char c in value.ToUpperInvariant())
+            {
+                if (c == 'A')
+                {
+                    pomanSum += 100;
+                }
+                else if(c =='M')
+                {
+                    pomanSum += 100;
+                }
+                else if (c == 'L')
+                {
+                    pomanSum += 5;
+                }
+                else if (c == 'T')
+                {
+                    pomanSum += 2;
+                }
+                else if (c == 'W')
+                {
+                    pomanSum += 1;
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException("Unexpected letter " + c);
+                }
+            }
+            return pomanSum;
+        }
+        
 
         //The ordinal/cardinal split in TP is fundamentally borked
         public static bool IsNumber(HeadedPhrase phrase)
@@ -203,35 +240,74 @@ namespace BasicTypes.Parts
             throw new NotImplementedException();
         }
 
-        public string TryGloss(string language, string pos)
+        public string TryGloss(string language, string pos, Dialect dialect)
         {
             //Arabic numbers. Just return them.
             int n;
             bool isNumeric = int.TryParse(word, out n);
             if (isNumeric) return word;
 
-            //Toki pona numbers of some sort.
-            int sum=0;
-            foreach (string part in word.Split(new char[]{'-'}))
+            if (Number.IsPomanNumber(word))
             {
-                switch (part)
-                {
-                    case "ala":
-                        continue;
-                    case "wan":
-                        sum += 1;
-                        break;
-                    case "tu":
-                        sum += 2;
-                        break;
-                    case "luka":
-                        sum += 5;
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException("Unexpected token " + part + " in " + word);
-                }
+                return Number.ConvertFromPoman(word).ToString();
             }
-            return sum.ToString();
+            //Toki pona numbers of any sort (body, stupid, half stupid, but must be explicit! (or via normalizer, marked with #))
+            if (dialect.NumberType == "Half Stupid" || dialect.NumberType == "Stupid")
+            {
+                int sum = 0;
+                foreach (string part in word.Split(new char[] { '-' }))
+                {
+                    switch (part)
+                    {
+                        case "ala":
+                            continue;
+                        case "wan":
+                            sum += 1;
+                            break;
+                        case "tu":
+                            sum += 2;
+                            break;
+                        case "luka":
+                            sum += 5;
+                            break;
+                        case "mute":
+                            sum += 20;
+                            break;
+                        case "ali":
+                        case "ale":
+                            sum += 5;
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException("Unexpected token " + part + " in " + word + " maybe we have the wrong numbertype set in the dialect.");
+                    }
+                }
+                return sum.ToString();
+            }
+            else
+            {
+                Dictionary<string, int> bodyNumbers = new Dictionary<string, int>(14)
+                {
+                    {"ala",0 },
+                    {"nena",1},{ "wan",1},
+                    {"oko",2}, {"tu",2},
+                    {"kute",3},
+                    {"uta",4}, 
+                    {"luka",5},
+                    {"insa",6},
+                    {"monsi",7},
+                    {"palisa",8},{ "lupa",8},
+                    {"noka",9}
+                };
+
+
+                string[] digits = word.Split(new char[] { '-' });
+                int bodySum = 0;
+                for (int i = digits.Length-1; i >= 0; i--)
+                {
+                    bodySum += bodyNumbers[digits[i]] * 10 ^ i;
+                }
+                return bodySum.ToString();
+            }
         }
     }
 }

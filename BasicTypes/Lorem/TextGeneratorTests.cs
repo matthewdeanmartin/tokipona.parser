@@ -95,45 +95,37 @@ namespace BasicTypes.Lorem
         [Test]
         public void GenerateObjectAndStringifyParseGloss()
         {
+            //Important! create teh dialect only once, mixing this is bad biz.
+            Dialect dialect = Dialect.LooseyGoosey;
+            dialect.IncludeApocrypha = false;
+
             List<Sentence> sentences = new List<Sentence>();
-            Dialect d = Dialect.WordProcessorRules;
-            d.IncludeApocrypha = false;
-            TextGenerator tg = new TextGenerator(d);
+            
+            TextGenerator tg = new TextGenerator(dialect);
             for (int i = 0; i < 1000; i++)
             {
                 sentences.Add(tg.GenerateSentence());
             }
 
-            ParserUtils pu = new ParserUtils(Dialect.WordProcessorRules);
+            ParserUtils pu = new ParserUtils(dialect);
+
             GlossMaker gm = new GlossMaker();
 
             foreach (Sentence sentence in sentences)
             {
                 string s = sentence.ToString();
-                string sn = Normalizer.NormalizeText(s, Dialect.LooseyGoosey);
-                Console.WriteLine(sn);
+
+                //string sn = Normalizer.NormalizeText(s,dialect );
+                Console.WriteLine(s);
                 Console.WriteLine(sentence.ToString("b"));
-                Console.WriteLine(gm.Gloss(sn, sn));
-                //try
-                //{
-                Sentence reparsed = pu.ParsedSentenceFactory(sn, sn);
+                Console.WriteLine(gm.Gloss(s, s,dialect));
+
+                Sentence reparsed = pu.ParsedSentenceFactory(s, s);
 
                 string reparseString = reparsed.ToString();
-                string normalize = Normalizer.NormalizeText(reparseString, Dialect.LooseyGoosey);
-                Console.WriteLine(normalize);
-                Console.WriteLine(gm.Gloss(normalize, s));
-                //}
-                //catch (Exception ex)
-                //{
-                //    if (ex.Message.Contains("This isn't possible in a pi chain"))
-                //    {
-                //        Console.WriteLine("Prep phrase in a subject :-(");
-                //        continue;
-                //    }
-                //    else
-                //        throw;
-                //}
-
+                //string normalize = Normalizer.NormalizeText(reparseString, dialect);
+                Console.WriteLine(reparseString);
+                Console.WriteLine(gm.Gloss(reparseString, s, dialect));
             }
         }
     }

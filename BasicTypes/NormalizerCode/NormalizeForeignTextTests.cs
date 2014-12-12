@@ -53,13 +53,14 @@ Pi, Pi, Pi, Kopytka li tawa e mi.";
         private static void Execute(string s)
         {
             Dialect dialect = Dialect.LooseyGoosey;
+            Normalizer norm = new Normalizer(dialect);
             ParserUtils pu = new ParserUtils(dialect);
             SentenceSplitter ss = new SentenceSplitter(dialect);
 
             foreach (string original in ss.ParseIntoNonNormalizedSentences(s))
             {
                 Console.WriteLine("----");
-                string normalized = Normalizer.NormalizeText(original, dialect);
+                string normalized = norm.NormalizeText(original);
                 Console.WriteLine(normalized);
                 Sentence structured = pu.ParsedSentenceFactory(normalized, original);
             }

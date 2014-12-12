@@ -351,7 +351,12 @@ namespace BasicTypes
                 }
             }
 
-
+            //This happens in x la x la x. sentences.
+            if (spaceJoined.EndCheck("..") || spaceJoined.EndCheck("??") || spaceJoined.EndCheck("::") || spaceJoined.EndCheck("!!"))
+            {
+                //HACK: WHY?!
+                spaceJoined = spaceJoined.Substring(0, spaceJoined.Length - 1);
+            }
 
             if (format != "bs")
             {
@@ -363,11 +368,7 @@ namespace BasicTypes
                 spaceJoined = result;
             }
 
-            if (spaceJoined.EndCheck("..") || spaceJoined.EndCheck("??") || spaceJoined.EndCheck("::") || spaceJoined.EndCheck("!!"))
-            {
-                //HACK: WHY?!
-                spaceJoined = spaceJoined.Substring(0, spaceJoined.Length - 1);
-            }
+            
             if (format == "html")
             {
                 if (spaceJoined.ContainsCheck(" <span class=\"prep\">,"))
@@ -538,7 +539,7 @@ namespace BasicTypes
                         {
                             //Console.WriteLine("=======li must be skipped when it is the sole, unmodified subject for mi and sina.");
                             //This appears to work, these really are user errors.
-                            throw new TpSyntaxException("li must be skipped when it is the sole, unmodified subject for mi and sina.");
+                            throw new TpSyntaxException("li must be skipped when it is the sole, unmodified subject for mi and sina.\n" + diagnostics.Original + "\n\n" + value);
                         }
                     }
                 }

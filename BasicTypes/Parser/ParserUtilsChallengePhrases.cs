@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BasicTypes.Collections;
 using BasicTypes.NormalizerCode;
 using NUnit.Framework;
@@ -19,8 +15,9 @@ namespace BasicTypes.Parser
         {
             const string s = "jan Kunpapa";
             Dialect dialect = Dialect.LooseyGoosey;
+            Normalizer norm = new Normalizer(dialect);
 
-            Console.WriteLine(Normalizer.NormalizeText(s, dialect));
+            Console.WriteLine(norm.NormalizeText(s));
             TokenParserUtils pu = new TokenParserUtils();
 
             Word[] words = pu.ValidWords(s);
@@ -40,9 +37,11 @@ namespace BasicTypes.Parser
         public void ShouldBeGoodProperModifier()
         {
             const string s = "jan Oliwa";
+            
             Dialect dialect = Dialect.LooseyGoosey;
+            Normalizer norm = new Normalizer(dialect);
 
-            Console.WriteLine(Normalizer.NormalizeText(s, dialect));
+            Console.WriteLine(norm.NormalizeText(s));
             TokenParserUtils pu = new TokenParserUtils();
 
             Word[] words = pu.ValidWords(s);
@@ -62,7 +61,9 @@ namespace BasicTypes.Parser
             const string s = "jan MaliyA";
 
             Dialect dialect = Dialect.LooseyGoosey;
-            Console.WriteLine(Normalizer.NormalizeText(s, dialect));
+            Normalizer norm = new Normalizer(dialect);
+
+            Console.WriteLine(norm.NormalizeText(s));
             TokenParserUtils pu = new TokenParserUtils();
             Word[] words;
             try

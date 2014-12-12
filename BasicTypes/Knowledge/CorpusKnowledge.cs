@@ -19,6 +19,7 @@ namespace BasicTypes.Knowledge
     {
         private readonly string[] sentences;
         private Dialect dialect;
+        private Normalizer norm;
         public string[] Setences
         {
             get { return sentences; }
@@ -30,12 +31,13 @@ namespace BasicTypes.Knowledge
             //https://stackoverflow.com/questions/3115150/how-to-escape-regular-expression-special-characters-using-javascript
 
             this.dialect = dialect;
-            
+            this.norm = new Normalizer(dialect);
+
             SentenceSplitter ss = new SentenceSplitter(dialect);
             sentences = ss.ParseIntoNonNormalizedSentences(corpus);
             for (int index= 0; index < sentences.Length; index++)
             {
-                sentences[index] = Normalizer.NormalizeText(sentences[index],dialect);
+                sentences[index] = norm.NormalizeText(sentences[index]);
             }
         }
 

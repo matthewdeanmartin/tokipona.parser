@@ -11,8 +11,6 @@ using BasicTypes.Extensions;
 
 namespace BasicTypes.NormalizerCode
 {
-
-
     /// <summary>
     /// Turns human written text into machine parsable text.
     /// </summary>
@@ -28,81 +26,60 @@ namespace BasicTypes.NormalizerCode
     /// </remarks>
     public class Normalizer
     {
+        private Dialect dialect;
 
-
-        public static string NormalizeText(string text, Dialect dialect)//= null
+        public Normalizer(Dialect dialect)
+        {
+            this.dialect = dialect;
+        }
+        public  string NormalizeText(string text)//= null
         {
             SentenceDiagnostics sd = new SentenceDiagnostics(text,"N/A");
 
-            if (string.IsNullOrWhiteSpace(text))
+            //Nothing to parse.
+            if (string.IsNullOrWhiteSpace(text) || IsNullWhiteOrPunctuation(text))
             {
                 return "";
             }
 
-            if (IsNullWhiteOrPunctuation(text))
-            {
-                return "";
-            }
-
-            if (dialect == null)
-            {
-                dialect = Config.CurrentDialect;
-            }
-
-            string normalized = text.Trim(new char[] { '\n', '\r', ' ' });
+            string normalized = TimeWhiteSpaceAndSpaceBeforeSentenceTerminators(text);
+            normalized = RemoveInternalWhiteSpace(normalized);
 
             //Is this better early or later?
             if (normalized.Contains(@""""""))
             {
                 normalized = normalized.Replace(@"""""", @"""");
             }
-            if (normalized.ContainsCheck(" ."))
-            {
-                normalized = normalized.Replace(" .", ".");
-            }
-            if (normalized.ContainsCheck(" ?"))
-            {
-                normalized = normalized.Replace(" ?", "?");
-            }
-            if (normalized.ContainsCheck(" !"))
-            {
-                normalized = normalized.Replace(" !", "!");
-            }
-
             
+            //Preconditions. 
+            //HACK: Maybe the ParserUtils should deal with this instead.
+            ThrowOnDoubleParticles(normalized, dialect);
 
-            //Normalize prepositions to ~, so that we don't have tokens with embedded spaces (e.g. foo, kepeken => [foo],[, kepeken])
-
-
-            bool hasErrors = DetectErrors(normalized, dialect);
-            if (hasErrors)
-            {
-                normalized = ApplyNormalization(normalized, "Particles", RepairErrors);
-            }
-
+            //Hide tokens that otherwise have a different meaning.
             if (normalized.ContainsCheck(" li pi "))
             {
                 normalized = normalized.Replace(" li pi ", " li XXXXZiXXXX ");
             }
-            ////"/\\*.*?\\*/"
-            if (normalized.ContainsCheck("/*") || normalized.ContainsCheck("*/"))
+
+            
+            //  "/\\*.*?\\*/"
+            // Things that cross sentences should already be deal with earlier.
+            if (normalized.ContainsCheck("/*") && normalized.ContainsCheck("*/"))
             {
                 normalized = ApplyNormalization(normalized, "Comments", StripMultilineComments);
             }
 
-            //Process explicit Foreign text.
-
+            //Process explicit explicit Foreign text. (this always happens)
             if (normalized.ContainsCheck("\""))
             {
                 normalized = ApplyNormalization(normalized, "ForeignSpace", ProcessWhiteSpaceInForeignText, dialect);
             }
 
-            //Process implicity Foreign Text
+            //Process explict Foreign Text (this always happens)
             if (dialect.InferCompoundsPrepositionsForeignText)
             {
                 normalized = ApplyNormalization(normalized, "Foreign", NormalizeForeignText.Normalize, dialect);
             }
-
 
             //Hyphenated words. This could cause a problem for compound words that cross lines.
             if (normalized.ContainsCheck("-\n"))
@@ -146,9 +123,14 @@ namespace BasicTypes.NormalizerCode
             //Left overs from initial parsing.
             if (normalized.ContainsCheck("[NULL]"))
             {
+#if DEBUG
+                throw new InvalidOperationException("Stop adding [NULL] to normalized sentences.");
+#else
                 normalized = normalized.Replace("[NULL]", "");
-            }
+#endif
 
+            }
+                //Normalize prepositions to ~, so that we don't have tokens with embedded spaces (e.g. foo, kepeken => [foo],[, kepeken])
 
             if (normalized.ContainsCheck(" "))
             {
@@ -163,43 +145,12 @@ namespace BasicTypes.NormalizerCode
                 normalized = ApplyNormalization(normalized, "Compounds", ProcessCompoundWords);
             }
 
-
-            string[] preps = Particles.Prepositions;
-
-            bool isPunctuated = false;
-
+            
+            //
             if (!dialect.InferCompoundsPrepositionsForeignText)
             {
-                isPunctuated = true;
+                normalized = MarkImplicitPrepositions(text, normalized);
             }
-            foreach (string prep in preps)
-            {
-                if (normalized.ContainsCheck(prep))
-                {
-                    isPunctuated = normalized.ContainsCheck(", " + prep) || normalized.ContainsCheck("," + prep);
-                    normalized = Regex.Replace(normalized, "," + prep, " ~" + prep);
-                    normalized = Regex.Replace(normalized, ", " + prep, " ~" + prep);
-
-                    if (normalized.ContainsCheck("~ ~"))
-                    {
-                        throw new InvalidOperationException(text);
-                    }
-                }
-            }
-            if (!isPunctuated && !normalized.ContainsCheck("~"))
-            {
-                foreach (string prep in preps)
-                {
-                    if (normalized.ContainsCheck(prep))
-                    {
-                        //HACK:Naive repair-- doesn't deal with unusal white space patterns.
-                        normalized = Regex.Replace(normalized, " " + prep, " ~" + prep);
-                    }
-                }
-            }
-
-
-
             //la o
             //invisible implicit subject.
             if (normalized.ContainsCheck(" la o "))
@@ -207,100 +158,11 @@ namespace BasicTypes.NormalizerCode
                 normalized = normalized.Replace(" la o ", " la jan Sanwan o ");
             }
 
-
-
-            //TODO: detect start of sentence & replace mi X and sina Y with 
-
-            if (normalized.ContainsCheck("mi"))
-            {
-                normalized = ApplyNormalization(normalized, "mi li", ProcessMi);
-            }
-
-            if (normalized.ContainsCheck("sina"))
-            {
-                normalized = ApplyNormalization(normalized, "sina li", ProcessSina);
-            }
-
-
-            Dictionary<string, string> pronounModifiersMap = new Dictionary<string, string>
-            {
-                {"mi wan li ","mi li wan li "},
-                {"mi tu li ","mi li tu li "},
-                {"mi mute li ","mi li mute li "},
-                {"mi suli li ","mi li suli li "},
-                
-                {"sina wan li ","sina li wan li "},
-                {"sina tu li ","sina li tu li "},
-                {"sina mute li ","sina li mute li "},
-                {"sina suli li ","sina li suli li "},
-                
-                {"mi en sina li ","mi li en sina li"}
-            };
-
-            //undo overnormalization
-            foreach (KeyValuePair<string, string> pair in pronounModifiersMap)
-            {
-                if (normalized.ContainsCheck(pair.Value))
-                {
-                    normalized = normalized.Replace(pair.Value, pair.Key);
-                }
-            }
-
-
-
-            if (normalized.ContainsCheck("la mi"))
-            {
-                bool dontTouch = false;
-                foreach (string pronounModifier in pronounModifiers)
-                {
-                    if (normalized.ContainsCheck("la " + pronounModifier))
-                    {
-                        dontTouch = true;
-                    }
-                }
-                if (!dontTouch)
-                {
-                    normalized = Regex.Replace(normalized, @"\bla mi\b", "la mi li"); //normalize contractions
-
-                    //If original was, say, "kin la mi li pali", we get a double li li
-                    if (normalized.ContainsCheck(" li li "))
-                    {
-                        //undo doubling.
-                        normalized = Regex.Replace(normalized, @"\bli li\b", "li"); //normalize contractions
-                    }
-                }
-
-
-            }
-
-
-            if (normalized.ContainsCheck("la sina"))
-            {
-                bool dontTouch = false;
-                foreach (string pronounModifier in pronounModifiers)
-                {
-                    if (normalized.ContainsCheck("la " + pronounModifier))
-                    {
-                        dontTouch = true;
-                    }
-                }
-                if (!dontTouch)
-                {
-                    normalized = Regex.Replace(normalized, @"\bla sina\b", "la sina li"); //normalize contractions
-
-                    //If original was, say, "kin la sina li pali", we get a double li li
-                    if (normalized.ContainsCheck(" li li "))
-                    {
-                        //undo doubling.
-                        normalized = Regex.Replace(normalized, @"\bli li\b", "li"); //normalize contractions
-                    }
-                }
-
-            }
+            normalized = MiSinaProcessAndUndoOverNormalization(normalized);
 
             if (normalized.ContainsCheck("~"))
             {
-                normalized = ThoseArentPrepositions(preps, normalized);
+                normalized = ThoseArentPrepositions(normalized);
             }
 
             normalized = Regex.Replace(normalized, @"^\s+|\s+$", ""); //Remove extraneous whitespace
@@ -315,22 +177,81 @@ namespace BasicTypes.NormalizerCode
                 normalized = normalized.Replace("~", ""); //HACK: This may erase ~ added by user at the start?
             }
 
-            
-            //normalized = UseDummyPredicateForObviousFragments(normalized, fakePredicate);
-            //vocatives & exclamations are expected to be fragmentary.
+            normalized = ProcessMiSinaOvernormalizationWithPrepositions(normalized);
 
 
+            normalized = ProcessMiSinaOverNormalizationWithoutPrepositions(text, normalized);
 
-            //One offs for mi li/sina li
-            //It's a prep, but missing the li.
-            if (normalized.ContainsCheck("sina ~tawa"))
+            //One off that comes back?
+            foreach (string oneOff in new string[] {
+                                                         "li ~lon poka e", //place something next to
+                                                         "li ~tawa tu e"
+                                                    })
             {
-                normalized = normalized.Replace("sina ~tawa", " sina li ~tawa");
+                normalized = normalized.Replace(oneOff, oneOff.Replace("~", ""));
             }
-            if (normalized.ContainsCheck("mi ~tawa"))
+
+            //Probably added above by mistake
+            normalized = RemoveInternalWhiteSpace(normalized);
+
+            if (normalized.ContainsCheck("'"))
             {
-                normalized = normalized.Replace("mi ~tawa", "mi li ~tawa");
+                normalized = ApplyNormalization(normalized, "DirectQuotes", AddDirectedQuotes);
             }
+
+            //Post conditions.
+            if (normalized.StartCheck("« »"))
+            {
+                throw new InvalidOperationException("quote recognition went wrong: " + text);
+            }
+
+            sd = new SentenceDiagnostics(text, normalized);
+            return normalized;
+        }
+
+        private static string MarkImplicitPrepositions(string original, string normalized)
+        {
+            string[] preps = Particles.Prepositions;
+            bool isPunctuated = false;
+            foreach (string prep in preps)
+            {
+                if (normalized.ContainsCheck(prep))
+                {
+                    isPunctuated = normalized.ContainsCheck(", " + prep) || normalized.ContainsCheck("," + prep);
+                    normalized = Regex.Replace(normalized, "," + prep, " ~" + prep);
+                    normalized = Regex.Replace(normalized, ", " + prep, " ~" + prep);
+
+                    if (normalized.ContainsCheck("~ ~"))
+                    {
+                        throw new InvalidOperationException(original);
+                    }
+                }
+            }
+            if (!isPunctuated && !normalized.ContainsCheck("~"))
+            {
+                foreach (string prep in preps)
+                {
+                    if (normalized.ContainsCheck(prep))
+                    {
+                        //HACK:Naive repair-- doesn't deal with unusal white space patterns.
+                        normalized = Regex.Replace(normalized, " " + prep, " ~" + prep);
+                    }
+                }
+            }
+            return normalized;
+        }
+
+        private static string RemoveInternalWhiteSpace(string normalized)
+        {
+            while (normalized.ContainsCheck("  "))
+            {
+                normalized = normalized.Replace("  ", " ");
+            }
+            return normalized;
+        }
+
+        private static string ProcessMiSinaOverNormalizationWithoutPrepositions(string text, string normalized)
+        {
             if (normalized.ContainsCheck("taso, sina soweli"))
             {
                 normalized = normalized.Replace("taso, sina soweli", "taso, sina li soweli");
@@ -340,45 +261,19 @@ namespace BasicTypes.NormalizerCode
                 normalized = normalized.Replace("taso mi pilin", "taso mi li pilin");
             }
 
-            
+
             //mi mute o  ==> mi li mute o
             if (normalized.ContainsCheck("mi li mute o "))
             {
                 normalized = normalized.Replace("mi li mute o ", "mi mute o ");
             }
 
-            //"mi li ~tawa lon" -- the other one is a prep
-            if (normalized.ContainsCheck("mi li ~tawa lon"))
-            {
-                normalized = normalized.Replace("mi li ~tawa lon", "mi li tawa ~lon");
-            }
-
-
-
-
-
-
-
-            //overnormalized... mi li ~tawa
-            if (normalized.ContainsCheck("e mi li ~tawa"))
-            {
-                normalized = normalized.Replace("e mi li ~tawa", "e mi ~tawa");
-            }
-
-            //overnormalized... mama pi mi mute o
+//overnormalized... mama pi mi mute o
             if (normalized.ContainsCheck("mama pi mi li mute o"))
             {
                 normalized = normalized.Replace("mama pi mi li mute o", "mama pi mi mute o");
             }
-            //overnorm
-            if (normalized.ContainsCheck("sina li ~tawa mi"))
-            {
-                normalized = normalized.Replace("sina li ~tawa mi", "sina ~tawa mi");
-            }
-            if (normalized.ContainsCheck("sina li o "))
-            {
-                normalized = normalized.Replace("sina li o ", "sina o ");
-            }
+
 
             if (text.StartCheck("mi la ") && normalized.StartCheck("mi li "))
             {
@@ -409,7 +304,7 @@ namespace BasicTypes.NormalizerCode
                 //ugh what a hack.
                 normalized = "taso mi la " + normalized.Substring("taso mi li la ".Length);
             }
-            
+
 
             //mi la
             if (normalized.StartCheck("sina li la "))
@@ -429,37 +324,152 @@ namespace BasicTypes.NormalizerCode
             {
                 normalized = normalized.Replace("mi tu e", "mi li tu e");
             }
-
-            //One off that comes back?
-            foreach (string oneOff in new string[] {
-                                                         "li ~lon poka e", //place something next to
-                                                         "li ~tawa tu e"
-                                                    })
-            {
-                normalized = normalized.Replace(oneOff, oneOff.Replace("~", ""));
-            }
-
-            //Probably added above by mistake
-            while (normalized.ContainsCheck("  "))
-            {
-                normalized = normalized.Replace("  ", " ");
-            }
-
-            if (normalized.ContainsCheck("'"))
-            {
-                normalized = ApplyNormalization(normalized, "DirectQuotes", AddDirectedQuotes);
-            }
-
-            if (normalized.StartCheck("« »"))
-            {
-                throw new InvalidOperationException("quote recognition went wrong: " + text);
-            }
-
-            sd = new SentenceDiagnostics(text, normalized);
             return normalized;
         }
 
-        private static string StripMultilineComments(string arg)
+        private static string ProcessMiSinaOvernormalizationWithPrepositions(string normalized)
+        {
+            //One offs for mi li/sina li
+            //It's a prep, but missing the li.
+            if (normalized.ContainsCheck("sina ~tawa"))
+            {
+                normalized = normalized.Replace("sina ~tawa", " sina li ~tawa");
+            }
+            if (normalized.ContainsCheck("mi ~tawa"))
+            {
+                normalized = normalized.Replace("mi ~tawa", "mi li ~tawa");
+            }
+
+            //"mi li ~tawa lon" -- the other one is a prep
+            if (normalized.ContainsCheck("mi li ~tawa lon"))
+            {
+                normalized = normalized.Replace("mi li ~tawa lon", "mi li tawa ~lon");
+            }
+
+//overnormalized... mi li ~tawa
+            if (normalized.ContainsCheck("e mi li ~tawa"))
+            {
+                normalized = normalized.Replace("e mi li ~tawa", "e mi ~tawa");
+            }
+            //overnorm
+            if (normalized.ContainsCheck("sina li ~tawa mi"))
+            {
+                normalized = normalized.Replace("sina li ~tawa mi", "sina ~tawa mi");
+            }
+            if (normalized.ContainsCheck("sina li o "))
+            {
+                normalized = normalized.Replace("sina li o ", "sina o ");
+            }
+            return normalized;
+        }
+
+        private static string MiSinaProcessAndUndoOverNormalization(string normalized)
+        {
+//TODO: detect start of sentence & replace mi X and sina Y with 
+
+            if (normalized.ContainsCheck("mi"))
+            {
+                normalized = ApplyNormalization(normalized, "mi li", ProcessMi);
+            }
+
+            if (normalized.ContainsCheck("sina"))
+            {
+                normalized = ApplyNormalization(normalized, "sina li", ProcessSina);
+            }
+
+
+            Dictionary<string, string> pronounModifiersMap = new Dictionary<string, string>
+            {
+                {"mi wan li ", "mi li wan li "},
+                {"mi tu li ", "mi li tu li "},
+                {"mi mute li ", "mi li mute li "},
+                {"mi suli li ", "mi li suli li "},
+                {"sina wan li ", "sina li wan li "},
+                {"sina tu li ", "sina li tu li "},
+                {"sina mute li ", "sina li mute li "},
+                {"sina suli li ", "sina li suli li "},
+                {"mi en sina li ", "mi li en sina li"}
+            };
+
+            //undo overnormalization
+            foreach (KeyValuePair<string, string> pair in pronounModifiersMap)
+            {
+                if (normalized.ContainsCheck(pair.Value))
+                {
+                    normalized = normalized.Replace(pair.Value, pair.Key);
+                }
+            }
+
+
+            if (normalized.ContainsCheck("la mi"))
+            {
+                bool dontTouch = false;
+                foreach (string pronounModifier in pronounModifiers)
+                {
+                    if (normalized.ContainsCheck("la " + pronounModifier))
+                    {
+                        dontTouch = true;
+                    }
+                }
+                if (!dontTouch)
+                {
+                    normalized = Regex.Replace(normalized, @"\bla mi\b", "la mi li"); //normalize contractions
+
+                    //If original was, say, "kin la mi li pali", we get a double li li
+                    if (normalized.ContainsCheck(" li li "))
+                    {
+                        //undo doubling.
+                        normalized = Regex.Replace(normalized, @"\bli li\b", "li"); //normalize contractions
+                    }
+                }
+            }
+
+
+            if (normalized.ContainsCheck("la sina"))
+            {
+                bool dontTouch = false;
+                foreach (string pronounModifier in pronounModifiers)
+                {
+                    if (normalized.ContainsCheck("la " + pronounModifier))
+                    {
+                        dontTouch = true;
+                    }
+                }
+                if (!dontTouch)
+                {
+                    normalized = Regex.Replace(normalized, @"\bla sina\b", "la sina li"); //normalize contractions
+
+                    //If original was, say, "kin la sina li pali", we get a double li li
+                    if (normalized.ContainsCheck(" li li "))
+                    {
+                        //undo doubling.
+                        normalized = Regex.Replace(normalized, @"\bli li\b", "li"); //normalize contractions
+                    }
+                }
+            }
+            return normalized;
+        }
+
+        private static string TimeWhiteSpaceAndSpaceBeforeSentenceTerminators(string text)
+        {
+            string normalized = text.Trim(new char[] {'\n', '\r', ' '});
+
+            if (normalized.ContainsCheck(" ."))
+            {
+                normalized = normalized.Replace(" .", ".");
+            }
+            if (normalized.ContainsCheck(" ?"))
+            {
+                normalized = normalized.Replace(" ?", "?");
+            }
+            if (normalized.ContainsCheck(" !"))
+            {
+                normalized = normalized.Replace(" !", "!");
+            }
+            return normalized;
+        }
+
+        public static string StripMultilineComments(string arg)
         {
             //https://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment
             return Regex.Replace(arg, "/\\*.*?\\*/", "");
@@ -572,7 +582,7 @@ namespace BasicTypes.NormalizerCode
             return normalized;
         }
 
-        private static string ApplyNormalization(string normalized, string what, Func<string, Dialect, string> normalization, Dialect dialect)
+        public static string ApplyNormalization(string normalized, string what, Func<string, Dialect, string> normalization, Dialect dialect)
         {
             string copy = string.Copy(normalized);
             normalized = normalization.Invoke(normalized, dialect);
@@ -584,7 +594,7 @@ namespace BasicTypes.NormalizerCode
             return normalized;
         }
 
-        private static string ApplyNormalization(string normalized, string what, Func<string, string> normalization)
+        public static string ApplyNormalization(string normalized, string what, Func<string, string> normalization)
         {
             string copy = string.Copy(normalized);
             normalized = normalization.Invoke(normalized);
@@ -798,8 +808,9 @@ namespace BasicTypes.NormalizerCode
             return sb.ToString();
         }
 
-        private static string ThoseArentPrepositions(string[] preps, string normalized)
+        private static string ThoseArentPrepositions(string normalized)
         {
+            string[] preps = Particles.Prepositions;
             //I don't even know what that means.
             //This is just so corpus texts can pass. Better solution is to write annoted text in the first place.
             foreach (string oneOff in new string[] {
@@ -1216,29 +1227,29 @@ namespace BasicTypes.NormalizerCode
                    normalized == "o";
         }
 
-        public static string RepairErrors(string phrase)
-        {
-            foreach (string s1 in new String[] { "li", "la", "e", "pi" })
-            {
-                phrase = Regex.Replace(phrase, @"\b" + s1 + " " + s1 + @"\b", "[SYNTAX ERROR: " + s1 + " " + s1 + "]");
-            }
-            foreach (string s1 in new String[] { "li", "la", "e", "pi" })
-            {
-                foreach (string s2 in new String[] { "li", "la", "e", "pi" })
-                {
-                    Match found = Regex.Match(phrase, @"\b" + s1 + " " + s2 + @"\b");
-                    if (found.Success)
-                    {
-                        phrase = Regex.Replace(phrase, @"\b" + s1 + " " + s1 + @"\b", "[SYNTAX ERROR: " + s1 + " " + s2 + "]");
-                    }
-                }
-            }
+        //public static string RepairErrors(string phrase)
+        //{
+        //    foreach (string s1 in new String[] { "li", "la", "e", "pi" })
+        //    {
+        //        phrase = Regex.Replace(phrase, @"\b" + s1 + " " + s1 + @"\b", "[SYNTAX ERROR: " + s1 + " " + s1 + "]");
+        //    }
+        //    foreach (string s1 in new String[] { "li", "la", "e", "pi" })
+        //    {
+        //        foreach (string s2 in new String[] { "li", "la", "e", "pi" })
+        //        {
+        //            Match found = Regex.Match(phrase, @"\b" + s1 + " " + s2 + @"\b");
+        //            if (found.Success)
+        //            {
+        //                phrase = Regex.Replace(phrase, @"\b" + s1 + " " + s1 + @"\b", "[SYNTAX ERROR: " + s1 + " " + s2 + "]");
+        //            }
+        //        }
+        //    }
 
-            return phrase;
-        }
+        //    return phrase;
+        //}
 
 
-        public static bool DetectErrors(string phrase, Dialect dialect)
+        public static bool ThrowOnDoubleParticles(string phrase, Dialect dialect)
         {
 
             foreach (string s1 in new String[] { "li", "la", "e", "pi" })

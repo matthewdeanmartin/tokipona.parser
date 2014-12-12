@@ -9,6 +9,12 @@ namespace BasicTypes
 {
     public partial class Sentence
     {
+        /// <summary>
+        /// Assumes non-normalized value!
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="formatProvider"></param>
+        /// <returns></returns>
         public static Sentence Parse(string value, IFormatProvider formatProvider)
         {
             if (string.IsNullOrEmpty(value))
