@@ -186,7 +186,7 @@ namespace BasicTypes.ParseDiscourse
             }
 
             //If explicit, then ' means direct quote. Otherwise, we have to guess.
-            bool[] isDirect = new bool[lines.Length];
+            bool[] isDirect = new bool[finalLines.Length];
             bool currentlyInDirect = false;
             for (int i = 0; i < finalLines.Length; i++)
             {
