@@ -69,6 +69,20 @@ namespace BasicTypes.Parser
         }
 
         [Test]
+        public void LiPi()
+        {
+            //Possibley not worth addressing. In the corpus this happened because of an unmarked final exclamation.
+            Dialect c = Dialect.LooseyGoosey;
+            ParserUtils pu = new ParserUtils(c);
+
+            const string expected = "jan li pi ma Tosi.";
+
+            Sentence s = pu.ParsedSentenceFactory(expected, expected);
+            string result = s.ToString();
+            Console.WriteLine();
+            Assert.AreEqual(expected, result);
+        }
+        [Test]
         public void MissingVocativeHeadNoun()
         {
             //Possibley not worth addressing. In the corpus this happened because of an unmarked final exclamation.

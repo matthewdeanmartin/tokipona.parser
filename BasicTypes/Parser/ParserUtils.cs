@@ -31,17 +31,22 @@ namespace BasicTypes
         {
             this.dialect = dialect;
         }
-     
+
         //This should only operate on normalized sentences.
         public Sentence ParsedSentenceFactory(string sentence, string original)
         {
-            diagnostics= new SentenceDiagnostics(original,sentence);
+            diagnostics = new SentenceDiagnostics(original, sentence);
 
+            //This may have already been done by the normalizer, but if not, no problem.
+            if (sentence.Contains(" li pi "))
+            {
+                sentence = sentence.Replace(" li pi ", " li XXXXZiXXXX ");
+            }
             ParserUtils.ThrowOnDoubleParticles(sentence, dialect);
 
             if (String.IsNullOrWhiteSpace(sentence))
             {
-                return new Sentence(new NullOrSymbols(original),diagnostics);
+                return new Sentence(new NullOrSymbols(original), diagnostics);
                 //  throw new InvalidOperationException("Do not give me a null sentence. Can't tell if null sentence is from input or got lost in translation");
             }
 
@@ -53,10 +58,10 @@ namespace BasicTypes
             if (sentence.StartCheck("///"))
             {
                 Comment c = new Comment(sentence);
-                return new Sentence(c,diagnostics);
+                return new Sentence(c, diagnostics);
             }
 
-            
+
             if (sentence.EndCheck(" li") || sentence.EndCheck(" li."))
             {
                 throw new InvalidOperationException("Something went wrong, sentence ends with li: " + original);
@@ -73,7 +78,7 @@ namespace BasicTypes
                 startsQuotedSpeech = true;
                 sentence = sentence.Replace("«", " ").Trim();
             }
-            if (sentence.EndCheck("»", "».", "»!") || sentence.EndCheck( "»:", "»?"))
+            if (sentence.EndCheck("»", "».", "»!") || sentence.EndCheck("»:", "»?"))
             {
                 endsQuotedSpeech = true;
                 sentence = sentence.Replace("»", " ").Trim();
@@ -193,14 +198,14 @@ namespace BasicTypes
             }
             if (preconditions.Count == 0)
                 return headSentence;
-            Sentence s = new Sentence(diagnostics,preconditions.ToArray(), headSentence);
+            Sentence s = new Sentence(diagnostics, preconditions.ToArray(), headSentence);
             return s;
         }
 
 
         public Sentence ProcessSimpleSentence(string sentence, Punctuation punctuation, string original)
         {
-            
+
             //Think this is causing a bug.
             ////HACK: Still need a better way to deal with quotes.
             //if (sentence.EndCheck("»") || sentence.EndCheck("«"))
@@ -229,17 +234,17 @@ namespace BasicTypes
             //jan Mato o moku! //Head vocative, & imperative, with 2nd o discarded
             //jan Mato o o moku! //Head vocative, & imperative, with 2nd o discarded
 
-            
+
             if (sentence.ContainsCheck(" o o "))//Explicit vocative & imperative
             {
                 //Okay, we know exactly when the head vocatives end.
                 headVocatives = new List<Vocative>();
-                string justHeadVocatives= sentence.Substring(0,sentence.IndexOf(" o o ", StringComparison.Ordinal));
+                string justHeadVocatives = sentence.Substring(0, sentence.IndexOf(" o o ", StringComparison.Ordinal));
 
                 //Process head vocatives.
                 ProcessHeadVocatives(Splitters.SplitOnO(justHeadVocatives), headVocatives, allAreVocatives: true);
                 //BUG: Add the dummy! (And it still doesn't work!)
-                sentence = "jan Sanwan o " + sentence.Substring(sentence.IndexOf(" o o ", StringComparison.Ordinal)+5);
+                sentence = "jan Sanwan o " + sentence.Substring(sentence.IndexOf(" o o ", StringComparison.Ordinal) + 5);
             }
 
 
@@ -256,8 +261,8 @@ namespace BasicTypes
                 if (sentence.ContainsCheck(" o ", " o,", ",o ") && sentence.ContainsCheck(" li "))
                 {
                     headVocatives = new List<Vocative>();
-                    
-                    ProcessHeadVocatives(Splitters.SplitOnO(sentence), headVocatives, allAreVocatives:false);
+
+                    ProcessHeadVocatives(Splitters.SplitOnO(sentence), headVocatives, allAreVocatives: false);
 
                     //int firstLi = sentence.IndexOf(" li ");
                     int lastO = sentence.LastIndexOf(" o ", StringComparison.Ordinal);
@@ -266,7 +271,7 @@ namespace BasicTypes
                         lastO = sentence.LastIndexOf(" o,", StringComparison.Ordinal);
                     }
 
-                    sentence = sentence.Substring(lastO+2);
+                    sentence = sentence.Substring(lastO + 2);
                 }
             }
 
@@ -283,7 +288,7 @@ namespace BasicTypes
                 conjunction = Particles.anu;
                 sentence = sentence.Substring(4);
             }
-            else if (sentence.StartCheck("en ")) 
+            else if (sentence.StartCheck("en "))
             {
                 //Well, either parse it or throw. Otherwise, this gets skipped.
                 //is this legal?
@@ -370,7 +375,7 @@ namespace BasicTypes
             {
                 //We have a vocative sentence...
                 Vocative vocative = new Vocative(ProcessEnPiChain(liParts[0]));
-                Sentence s = new Sentence(vocative, punctuation,diagnostics);
+                Sentence s = new Sentence(vocative, punctuation, diagnostics);
                 return s;
             }
 
@@ -414,7 +419,7 @@ namespace BasicTypes
                 Punctuation = punctuation,
                 IsHortative = isHortative,
                 TagQuestion = tagQuestion,
-                HeadVocatives =  headVocatives!=null?headVocatives.ToArray():null
+                HeadVocatives = headVocatives != null ? headVocatives.ToArray() : null
             });
             return parsedSentence;
         }
@@ -427,12 +432,12 @@ namespace BasicTypes
             {
                 if (!allAreVocatives)
                 {
-                    if (i == vocativeParts.Length-1)
+                    if (i == vocativeParts.Length - 1)
                     {
                         continue;
                     }
                 }
-                
+
                 string vocativePart = vocativeParts[i];
                 if (vocativesDone) continue;
 
@@ -465,7 +470,7 @@ namespace BasicTypes
                     return piChainMemo[value];
                 }
             }
-            
+
 
             string piChains = value;
 
@@ -755,8 +760,12 @@ namespace BasicTypes
 
                 if (verbPhraseParts.Length > 1)
                 {
-                    if (verbPhraseParts[0].ContainsCheck("XXXXZiXXXX"))
+                    //0:li 1:xxx 2:np...
+                    if (verbPhraseParts[1].ContainsCheck("XXXXZiXXXX"))
                     {
+                        //Make it go away. Confuses other parsers and will be picked up by container object.
+                        verbPhraseParts = ArrayExtensions.Tail(verbPhraseParts);
+
                         //piPredicate
                         ComplexChain phrase = new ComplexChain(Particles.en,
                             new[]{
@@ -928,9 +937,9 @@ namespace BasicTypes
             {
                 throw new ArgumentException("Impossible to parse a null or zero length string.");
             }
-//#if DEBUG
-//            string copyValue = String.Copy(value);
-//#endif
+            //#if DEBUG
+            //            string copyValue = String.Copy(value);
+            //#endif
             if (memoize)
             {
                 if (headedPhraseParserMemo.ContainsKey(value))
@@ -938,7 +947,7 @@ namespace BasicTypes
                     return headedPhraseParserMemo[value];
                 }
             }
-            
+
 
             foreach (string particle in new[] { "pi", "la", "e", "li" })
             {
@@ -976,16 +985,16 @@ namespace BasicTypes
             HeadedPhrase phrase = new HeadedPhrase(mergedTail[0],
                 new WordSet(ArrayExtensions.Tail(mergedTail.ToArray())),
                 pp);
-//#if DEBUG
-//            if (copyValue != value)
-//            {
-//                throw new InvalidOperationException("Invariant violation: " + copyValue +" --- "+ value);
-//            }
-//#endif
-//            if (memoize)
-//            {
-//                headedPhraseParserMemo[value] = phrase;
-//            }
+            //#if DEBUG
+            //            if (copyValue != value)
+            //            {
+            //                throw new InvalidOperationException("Invariant violation: " + copyValue +" --- "+ value);
+            //            }
+            //#endif
+            //            if (memoize)
+            //            {
+            //                headedPhraseParserMemo[value] = phrase;
+            //            }
             return phrase;
         }
 
@@ -1051,7 +1060,7 @@ namespace BasicTypes
         public string[] FindXalaX(string value)
         {
             List<string> s = new List<string>();
-            foreach (var v in Regex.Matches(value,@"\b(\w+)\s+ala\s+\1\b"))
+            foreach (var v in Regex.Matches(value, @"\b(\w+)\s+ala\s+\1\b"))
             {
                 s.Add(v.ToString());
             }

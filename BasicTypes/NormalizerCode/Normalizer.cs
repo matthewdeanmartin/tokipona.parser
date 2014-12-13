@@ -35,7 +35,12 @@ namespace BasicTypes.NormalizerCode
         }
         public  string NormalizeText(string text)//= null
         {
-            
+            if (!dialect.InferCompoundsPrepositionsForeignText)
+            {
+                //HACK: Not the way this should work.
+                NormalizeExplicit ex = new NormalizeExplicit(dialect);
+                return ex.NormalizeText(text);
+            }
             SentenceDiagnostics sd = new SentenceDiagnostics(text,"N/A");
 
             //Nothing to parse.

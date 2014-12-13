@@ -54,7 +54,11 @@ namespace BasicTypes.Collections
                     //, tpPredicate.Directs!=null
                     sb.AddRange(tpPredicate.VerbPhrase.ToTokenList(format, formatProvider));
                 }
-
+                else if (tpPredicate.PiPredicate != null)
+                {
+                    //, tpPredicate.Directs!=null
+                    sb.AddRange(tpPredicate.PiPredicate.ToTokenList(format, formatProvider));
+                }
                 //Can have nominal predicate & direct object. (tranformative thingy)
                 if (tpPredicate.Directs != null)
                 {

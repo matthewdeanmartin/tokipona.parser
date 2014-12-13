@@ -41,13 +41,9 @@ namespace BasicTypes.Collections
             {
                 throw new TpSyntaxException("Tp Predicate can only have a Predicate headed by li or o-- got " + particle.Text);
             }
-            if (nominalPredicate == null && prepositionals == null)
+            if (piPredicate == null && prepositionals == null)
             {
-                throw new TpSyntaxException("A nominal predicate phrase or prepositional phrase required. (Directs are optional)");
-            }
-            if (nominalPredicate == null && directs == null && prepositionals == null)
-            {
-                throw new TpSyntaxException("Nominal Predicate, directs(transformatives) and prepositional phrases all null, not good");
+                throw new TpSyntaxException("A nominal predicate phrase or prepositional phrase required.");
             }
 
             //TODO: Validate. 
@@ -117,6 +113,7 @@ namespace BasicTypes.Collections
         public ComplexChain Directs { get { return directs; } }
         public PrepositionalPhrase[] Prepositionals { get { return prepositionals; } }
         public ComplexChain NominalPredicate { get { return nominalPredicate; } }
+        public PiPredicate PiPredicate { get { return piPredicate; } }
 
         public bool Contains(Word word)
         {
@@ -163,9 +160,18 @@ namespace BasicTypes.Collections
 
         public List<string> ToTokenList(string format, IFormatProvider formatProvider)
         {
+            //BUG: I think this code is duped on PredicateList
+
             List<string> sb = new List<string>();
 
-            sb.AddRange(verbPhrase.ToTokenList(format, formatProvider));
+            if (piPredicate != null)
+            {
+                sb.AddRange(piPredicate.ToTokenList(format, formatProvider));
+            }
+            if (verbPhrase != null)
+            {
+                sb.AddRange(verbPhrase.ToTokenList(format, formatProvider));
+            }
 
             foreach (ComplexChain chain in new[] { directs })
             {

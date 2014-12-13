@@ -11,8 +11,8 @@ using NUnit.Framework.Constraints;
 namespace BasicTypes.Dictionary
 {
 
-    [StructLayout(LayoutKind.Sequential)]
-    public class CompoundWords
+    //[StructLayout(LayoutKind.Sequential)]
+    public partial class CompoundWords
     {
         public static Dictionary<string, CompoundWord> Dictionary;
         public static Dictionary<string, Dictionary<string, Dictionary<string, string[]>>> Glosses;

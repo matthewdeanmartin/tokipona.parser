@@ -495,6 +495,7 @@ namespace BasicTypes
                 }
 
                 sb.AddRange(Predicates.ToTokenList(format, formatProvider, suppressFirstLi));
+                
                 sb.AddIfNeeded(">", format);
             }
 

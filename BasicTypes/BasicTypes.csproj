@@ -129,6 +129,7 @@
     <Compile Include="Diagnostics\Tracers.cs" />
     <Compile Include="Dictionary\CompoundPronounDictionary1.cs" />
     <Compile Include="Dictionary\CompoundWordDictionary.cs" />
+    <Compile Include="Dictionary\CompoundWordDictionaryColors.cs" />
     <Compile Include="Dictionary\DictionaryGenerator.cs" />
     <Compile Include="Dictionary\DictionaryGeneratorCompounds.cs" />
     <Compile Include="Dictionary\DictionaryProperModifiers.cs" />
@@ -186,6 +187,7 @@
     <Compile Include="NormalizerCode\NormalizeNumbers.cs" />
     <Compile Include="NormalizerCode\Normalizer.cs" />
     <Compile Include="NormalizerCode\NormalizerTests.cs" />
+    <Compile Include="ParseDiscourse\NormalizeJanKipoSet.cs" />
     <Compile Include="ParseDiscourse\ParagraphSplitter.cs" />
     <Compile Include="ParseDiscourse\ParagraphSplitterTests.cs" />
     <Compile Include="Parser\DiscourseStrings.cs" />

@@ -155,6 +155,7 @@ namespace BasicTypes.NormalizerCode
 
         public static string AddDirectedQuotes(string normalized)
         {
+            //return normalized;
             StringBuilder sb = new StringBuilder();
             bool open = true;
             foreach (char c in normalized)

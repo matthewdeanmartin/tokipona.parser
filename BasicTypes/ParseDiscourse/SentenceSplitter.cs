@@ -16,13 +16,34 @@ namespace BasicTypes.ParseDiscourse
     //Treats double punctuation as a single thing (?!, !!, ??)
     //Treats quotes, parens, etc as its own concept. (maybe 1 level above sentence)
     //Auto close quotes on para breaks.
+
+    public class SplitSentenceStrings
+    {
+        public SplitSentenceStrings(string[] sentences, bool[] isDirect)
+        {
+            this.Sentences = sentences;
+            this.IsDirect = isDirect;
+        }
+
+        public string[] Sentences { get; private set; }
+        public bool[] IsDirect { get; private set; }
+
+    }
+
     public class SentenceSplitter
     {
         private readonly Dialect dialect;
 
+        private SplitSentenceStrings current;
         public SentenceSplitter(Dialect dialect)
         {
             this.dialect = dialect;
+        }
+
+        public SplitSentenceStrings ParseIntoNonNormalizedSentencesWithDirectStatus(string text)
+        {
+            ParseIntoNonNormalizedSentences(text);
+            return current;
         }
 
         public string[] ParseIntoNonNormalizedSentences(string text)
@@ -37,10 +58,6 @@ namespace BasicTypes.ParseDiscourse
             //TODO: Normalize well known compound phrases jan pona => jan-pona
             //TODO: Normalize foreign words zap => 'zap', alternatively assume they are tp, but a mistake
 
-            if (text.ContainsCheck("Neologism"))
-            {
-                int i = 14;
-            }
             //Normalize end lines.
             if (text.ContainsCheck("\r\n"))
             {
@@ -167,6 +184,26 @@ namespace BasicTypes.ParseDiscourse
                     throw new InvalidOperationException("WWWWAAT?");
                 }
             }
+
+            //If explicit, then ' means direct quote. Otherwise, we have to guess.
+            bool[] isDirect = new bool[lines.Length];
+            bool currentlyInDirect = false;
+            for (int i = 0; i < finalLines.Length; i++)
+            {
+                string line = finalLines[i];
+                if (line.StartCheck("'", "\""))
+                {
+                    currentlyInDirect=true;
+                    finalLines[i] = finalLines[i].Substring(1);
+                }
+                isDirect[i] = currentlyInDirect;
+                if (line.EndCheck("'","\""))
+                {
+                    currentlyInDirect = false;
+                    finalLines[i] = finalLines[i].Substring(0, finalLines[i].Length-1);
+                }
+            }
+            current=new SplitSentenceStrings(finalLines, null);
             return finalLines;
         }
 

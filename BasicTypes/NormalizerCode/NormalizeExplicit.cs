@@ -137,38 +137,11 @@ namespace BasicTypes.NormalizerCode
 
             normalized = NormalizeMiSina.MiSinaProcessAndUndoOverNormalization(normalized);
 
-            if (normalized.ContainsCheck("~"))
-            {
-                normalized = NormalizationTasks.ThoseArentPrepositions(normalized);
-            }
-
             normalized = Regex.Replace(normalized, @"^\s+|\s+$", ""); //Remove extraneous whitespace
-
-
-            //If it is a sentence fragment, I really can't deal with prep phrase that may or may not be in it.
-            if (normalized.ContainsCheck("~")
-                && !normalized.ContainsCheck(" li ") //full sentence okay
-                && !normalized.StartCheck("o ") //imperative okay
-                )
-            {
-                normalized = normalized.Replace("~", ""); //HACK: This may erase ~ added by user at the start?
-            }
 
             normalized = NormalizeMiSina.ProcessMiSinaOvernormalizationWithPrepositions(normalized);
 
-
             normalized = NormalizeMiSina.ProcessMiSinaOverNormalizationWithoutPrepositions(text, normalized);
-
-            //One off that comes back?
-            foreach (string oneOff in new[] {
-                                                         "li ~lon poka e", //place something next to
-                                                         "li ~tawa tu e"
-                                                    })
-            {
-                normalized = normalized.Replace(oneOff, oneOff.Replace("~", ""));
-            }
-
-            
 
             if (normalized.ContainsCheck("'"))
             {

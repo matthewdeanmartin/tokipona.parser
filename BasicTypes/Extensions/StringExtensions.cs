@@ -70,6 +70,12 @@ namespace BasicTypes.Extensions
         }
 
         [DebuggerStepThrough]
+        public static bool StartCheck(this string value, string leadToken, string alternate)
+        {
+            return value.StartCheck(leadToken) || value.StartCheck(alternate);
+        }
+
+        [DebuggerStepThrough]
         public static bool StartCheck(this string value, string leadToken)
         {
             //Perf trace said this was surprisingly slow.
