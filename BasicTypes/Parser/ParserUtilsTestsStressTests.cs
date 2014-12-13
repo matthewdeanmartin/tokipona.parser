@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Web.UI;
 using BasicTypes.Collections;
 using BasicTypes.Corpus;
 using BasicTypes.Extensions;
@@ -507,9 +509,9 @@ namespace BasicTypes.Parser
             Dialect dialect = Dialect.LooseyGoosey;
             ParserUtils pu = new ParserUtils(dialect);
 
-            Dialect english = Dialect.LooseyGoosey;
-            english.TargetGloss = "en";
-            english.GlossWithFallBacks = true;
+            //Dialect english = Dialect.LooseyGoosey;
+            //english.TargetGloss = "en";
+            //english.GlossWithFallBacks = true;
 
             CorpusFileReader reader = new CorpusFileReader(true);
             Normalizer norm = new Normalizer(dialect);
@@ -559,6 +561,7 @@ namespace BasicTypes.Parser
         public void StressTestNormalizeAndParseEverything()
         {
             int i = 0;
+            int total = 0;
             Dialect dialect = Dialect.LooseyGoosey;
             ParserUtils pu = new ParserUtils(dialect);
 
@@ -571,17 +574,22 @@ namespace BasicTypes.Parser
             SentenceSplitter ss = new SentenceSplitter(dialect);
 
             Normalizer norm = new Normalizer(dialect);
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
             foreach (string s in reader.NextFile())
             {
                 if (reader.currentFile.ContainsCheck("janKipoCollected"))  continue; // Can't parse:  *janMato 123 123 ni li musi!
 
                 foreach (string original in ss.ParseIntoNonNormalizedSentences(s))
                 {
+                    total++;
+                    if (watch.ElapsedMilliseconds > 15000) return;
+                    //if (total > 1000) return;
                     Sentence structured = null;
                     try
                     {
-                        string normalized = norm.NormalizeText(original);
-                        structured = pu.ParsedSentenceFactory(normalized, original);
+                        //string normalized = norm.NormalizeText(original);
+                        structured = pu.ParsedSentenceFactory(original, original);
                         string diag = structured.ToString("b");
 
                         //if ((normalized.ContainsCheck("%ante"))) continue; //verb!

@@ -13,16 +13,20 @@ namespace BasicTypes.NormalizerCode
     public class NormalizerTests
     {
         [Test]
-        public void NormalizationIsIdempotent()
+        public void Normalization_Explicit_IsIdempotent()
         {
+            //Normalize implicit is not expected to be indempotent.
+
             int i = 0;
             Dialect dialect = Dialect.LooseyGoosey;
-            Normalizer norm = new Normalizer(dialect);
+            NormalizeExplicit norm = new NormalizeExplicit(dialect);
             SentenceSplitter ss = new SentenceSplitter(dialect);
             
             CorpusFileReader reader = new CorpusFileReader(true);
             foreach (string s in reader.NextFile())
             {
+                if(reader.currentFile.ContainsCheck("janKipo"))continue;
+                
                 string[] sentenceStrings = ss.ParseIntoNonNormalizedSentences(s);
                 foreach (string sentence in sentenceStrings)
                 {
@@ -57,7 +61,7 @@ namespace BasicTypes.NormalizerCode
         {
 
             const string vocative = "jan Oliwa o, o, o.";
-            bool isIt = Normalizer.IsVocative(vocative);
+            bool isIt = NormalizationTasks.IsVocative(vocative);
             Assert.IsTrue(isIt, "Expected to ID a vocative.");
         }
 
@@ -68,7 +72,6 @@ namespace BasicTypes.NormalizerCode
 
             Dialect dialect = Dialect.LooseyGoosey;
             Normalizer norm = new Normalizer(dialect);
-            dialect.InferCompoundsPrepositionsForeignText = false;
             
 
             string normalized = norm.NormalizeText(original);
@@ -158,7 +161,7 @@ namespace BasicTypes.NormalizerCode
         }
 
         [Test]
-        public void MissingLi2()
+        public void MissingLi2_Implicit()
         {
             //ni li ijo ike mute! 
             const string s = "tenpo ni la sike mi li tawa kepeken tenpo lili.";
@@ -169,7 +172,7 @@ namespace BasicTypes.NormalizerCode
             string normalized = norm.NormalizeText(s);
             Console.WriteLine("Normalized: " + normalized);
 
-            const string expected = "tenpo ni la sike mi li tawa ~kepeken tenpo lili.";
+            const string expected = "tenpo-ni la sike mi li tawa ~kepeken tenpo-lili.";
             Assert.AreEqual(expected, normalized);
         
         }
@@ -225,7 +228,7 @@ namespace BasicTypes.NormalizerCode
 
         //"o pali sama mije lili pona anu meli lili pona"
         [Test]
-        public void DetectSamaInImperative()
+        public void DetectSamaInImperative_ImplicitText()
         {
             //ken la mi mute li toki ike 
             const string s = "o pali sama mije lili pona anu meli lili pona";
@@ -239,7 +242,7 @@ namespace BasicTypes.NormalizerCode
             string normalized = norm.NormalizeText(s);
             Console.WriteLine("Normalized: " + normalized);
 
-            const string expected = "o pali ~sama mije lili pona anu meli lili pona";
+            const string expected = "o pali ~sama mije-lili pona anu meli-lili pona";
             Assert.AreEqual(expected, normalized);
         }
 

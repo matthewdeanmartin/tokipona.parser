@@ -177,6 +177,7 @@
     <Compile Include="MoreTypes\ParseOrDefault.cs" />
     <Compile Include="MoreTypes\SerializableDictionary.cs" />
     <Compile Include="NormalizerCode\NormalizationTasks.cs" />
+    <Compile Include="NormalizerCode\NormalizeCompoundWords.cs" />
     <Compile Include="NormalizerCode\NormalizeExplicit.cs" />
     <Compile Include="NormalizerCode\NormalizeExplicitTests.cs" />
     <Compile Include="NormalizerCode\NormalizeForeignText.cs" />

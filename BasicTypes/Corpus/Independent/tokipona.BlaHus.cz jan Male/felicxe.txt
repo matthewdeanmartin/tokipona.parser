@@ -19,7 +19,7 @@ li kama ala.
 
 a... tenpo ni la pona li kama lon pilin mi.
 a... tenpo ni la pona li kama lon pilin mi.
-"tenpo ni...".
+'tenpo ni...'.
 
 mi wile sitelen e toki olin.
 taso lipu li walo.
@@ -28,7 +28,7 @@ mi jo e ala.
 
 a... tenpo ni la pona li kama lon pilin mi.
 a... tenpo ni la pona li kama lon pilin mi.
-"tenpo ni...".
+'tenpo ni...'.
 
 kili suli li kama ala tan kasi
 tawa lupa open mi.
@@ -37,7 +37,7 @@ ona li weka.
 
 a... tenpo ni la pona li kama lon pilin mi.
 a... tenpo ni la pona li kama lon pilin mi.
-"tenpo ni...".
+'tenpo ni...'.
 
 suno ala lon kon sewi pimeja
 li pana pona tawa mi.
@@ -46,4 +46,4 @@ pini li kama.
 
 a... tenpo ni la pona li kama lon pilin mi.
 a... tenpo ni la pona li kama lon pilin mi.
-"tenpo ni...".
+'tenpo ni...'.

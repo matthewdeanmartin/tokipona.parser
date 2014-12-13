@@ -37,6 +37,10 @@ namespace BasicTypes.ParseDiscourse
             //TODO: Normalize well known compound phrases jan pona => jan-pona
             //TODO: Normalize foreign words zap => 'zap', alternatively assume they are tp, but a mistake
 
+            if (text.ContainsCheck("Neologism"))
+            {
+                int i = 14;
+            }
             //Normalize end lines.
             if (text.ContainsCheck("\r\n"))
             {
@@ -57,7 +61,7 @@ namespace BasicTypes.ParseDiscourse
             ////"/\\*.*?\\*/"
             if (text.ContainsCheck("/*") || text.ContainsCheck("*/"))
             {
-                text = Normalizer.ApplyNormalization(text, "Comments", Normalizer.StripMultilineComments);
+                text = NormalizationTasks.ApplyNormalization(text, "Comments", NormalizationTasks.StripMultilineComments);
             }
 
 
@@ -71,7 +75,7 @@ namespace BasicTypes.ParseDiscourse
             text = SwapQuoteAndSentenceTerminatorOrder(text);
 
             //Anything between /// and \n is a comment.
-            string[] lines = text.Split(new char[] { '\n' });
+            string[] lines = text.Split(new[] { '\n' });
             string[] modifiedLines = new string[lines.Length];
             for (int i = 0; i < lines.Length; i++)
             {
@@ -83,7 +87,10 @@ namespace BasicTypes.ParseDiscourse
                     line = line.Replace(":", "CCCCOLON");
                     line = line.Replace("!", "EEEEXCLAMATION");
                 }
-
+                if (line.ContainsCheck("\n///"))
+                {
+                    line = line.Replace("\n///", ".");
+                }
                 if (line.ContainsCheck("\""))
                 {
                     line = ProcessDeliminterBetweenDoubleQuotes(line);
@@ -137,12 +144,14 @@ namespace BasicTypes.ParseDiscourse
                     finalLines[i].ContainsCheck("PPPPERIOD") ||
                     finalLines[i].ContainsCheck("CCCCOLON") ||
                     finalLines[i].ContainsCheck("EEEEXCLAMATION") 
+                    //|| finalLines[i].ContainsCheck("\n///", "NEEEEWLINE")
                     )
                 {
                     finalLines[i] = finalLines[i].Replace("QQQQQUESTIONMARK", "?");
                     finalLines[i] = finalLines[i].Replace("PPPPERIOD", ".");
                     finalLines[i] = finalLines[i].Replace("CCCCOLON", ":");
                     finalLines[i] = finalLines[i].Replace("EEEEXCLAMATION", "!");
+                    //finalLines[i] = finalLines[i].Replace("NEEEEWLINE","\n///");
                 }
             }
 

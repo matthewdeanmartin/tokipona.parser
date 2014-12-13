@@ -332,7 +332,7 @@ ni li pona.
 1438
 sina tu li toki e lon. taso mi wile kin toki e ni : 
 jan mute pi kulupu ali pi ma ali li wile tawa la ona li pali e ni :
-tenpo pi nanpa wan la ona li kepeken e noka 'left, gauche, links'. tenpo pi nanpa tu la ona li kepeken e noka 'right, droite, rechts'. 
+tenpo pi nanpa wan la ona li kepeken e noka "left, gauche, links". tenpo pi nanpa tu la ona li kepeken e noka "right, droite, rechts". 
 jan utala pi ma ali li kepeken e nasin ni. ona li toki ala e nimi 'left/right, gauche/droite, links/rechts'. taso ona li kepeken e nimi 'one/two, un/deux, eins/zwei'. 
 mi ken sona e ni : jan pi toki-pona li wile ala kama sona e ijo tan jan utala a ! 
 taso jan ante li kepeken e nasin sama. o lukin : jan li tawa lon kalama musi la ona li pali e sama. 

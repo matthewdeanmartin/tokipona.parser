@@ -26,7 +26,23 @@ namespace BasicTypes.NormalizerCode
     /// </remarks>
     public class NormalizeForeignText
     {
-        public static string Normalize(string sentence, Dialect dialect)
+        public static string NormalizeExplicit(string sentence, Dialect dialect)
+        {
+            if (string.IsNullOrWhiteSpace(sentence))
+            {
+                throw new ArgumentNullException("sentence", "No null or blank sentences");
+            }
+            if (sentence.EndCheck(" "))
+            {
+                throw new ArgumentException("Must trim spaces before calling this", "sentence");
+            }
+
+            string normalized = SentenceSplitter.SwapQuoteAndSentenceTerminatorOrder(sentence);
+
+            return normalized;
+        }
+
+        public static string NormalizeImplicit(string sentence, Dialect dialect)
         {
             if (string.IsNullOrWhiteSpace(sentence))
             {
@@ -42,15 +58,15 @@ namespace BasicTypes.NormalizerCode
                 punct = sentence[sentence.Length - 1];
                 sentence = sentence.Substring(0, sentence.Length-1);
             }
-            Tracers.Normalize.TraceInformation("Early but after punct removal:" + sentence);
+            //Tracers.Normalize.TraceInformation("Early but after punct removal:" + sentence);
             string normalized = DetectWrongQuotes(sentence);
-            Tracers.Normalize.TraceInformation("DetectWrongQuotes:" + normalized);
+            //Tracers.Normalize.TraceInformation("DetectWrongQuotes:" + normalized);
             normalized = DetectAllCapTokiPonaWords(normalized, dialect);
-            Tracers.Normalize.TraceInformation("DetectAllCapTokiPonaWords:" + normalized);
+            //Tracers.Normalize.TraceInformation("DetectAllCapTokiPonaWords:" + normalized);
             normalized = DetectEntireForeignSentence(normalized, dialect);
-            Tracers.Normalize.TraceInformation("DetectEntireForeignSentence:" + normalized);
+            //Tracers.Normalize.TraceInformation("DetectEntireForeignSentence:" + normalized);
 
-            normalized = SentenceSplitter.SwapQuoteAndSentenceTerminatorOrder(normalized);
+            normalized = NormalizeExplicit(normalized, dialect);// SentenceSplitter.SwapQuoteAndSentenceTerminatorOrder(normalized);
             Tracers.Normalize.TraceInformation("SwapQuoteAndSentenceTerminatorOrder:" + normalized);
 
             //TODO: use English spell check to detect words
@@ -319,23 +335,31 @@ namespace BasicTypes.NormalizerCode
                 return  NormalizeForeignText.DetectIndividualForeignWords(sentence, dialect);
             }
 
-            //Quote the whole thing. 
-            if (sentence.ContainsCheck(" "))
+            int count = sentence.Split('"').Length - 1;
+            if (count == 0)
             {
-                sentence = sentence.Replace(" ", "*");
+                //Quote the whole thing. 
+                if (sentence.ContainsCheck(" "))
+                {
+                    sentence = sentence.Replace(" ", "*");
+                }
+
+                if (!sentence.StartCheck(@""""))
+                {
+                    sentence = @"""" + sentence;
+                }
+                if (!sentence.EndCheck(@"""") && !sentence.EndCheck("\"."))
+                {
+                    sentence = sentence + @"""";
+                }
+
+                if (sentence.EndsWith("\".\""))
+                {
+                    Console.WriteLine(sentence);
+                    throw new InvalidOperationException("Ends with " + "\".\"");
+                }
             }
-            if (!sentence.StartCheck(@""""))
-            {
-                sentence = @"""" + sentence;
-            }
-            if (!sentence.EndCheck(@"""") && !sentence.EndCheck("\"."))
-            {
-                sentence = sentence + @"""";
-            }
-            if (sentence.EndsWith("\".\""))
-            {
-                throw new InvalidOperationException();
-            }
+            
             return sentence;
 
             //if 25% or less tp, this is mostly foreign text.

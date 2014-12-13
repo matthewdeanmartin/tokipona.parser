@@ -124,32 +124,38 @@ namespace BasicTypes.NormalizerCode
 
             StringBuilder sb = new StringBuilder(sentence.Length);
             inNumber = false;
+            NumberAddress address =null;
             for (int i = 0; i <= tokens.Length - 1; i++)
             {
-                NumberAddress address = numbers.FirstOrDefault(x => x.NumberStartsAt == i);
-                if (address != null)
-                {
-                    sb.Append("#");
-                    
-                    inNumber = true;
-                }
-                address = numbers.FirstOrDefault(x => x.NumberEndsAt == i);
-
-                sb.Append(tokens[i]);
-
                 if (address == null)
                 {
-                    inNumber = false;
+                    address = numbers.FirstOrDefault(x => x.NumberStartsAt == i);
+                    if (address != null)
+                    {
+                        sb.Append("#");
+                        inNumber = true;
+                    }
                 }
-                if (inNumber && address.NumberEndsAt!=address.NumberStartsAt)
+                
+                if (address != null)
                 {
-                    sb.Append("-");
+                    sb.Append(tokens[i]);
+
+                    if (i >= address.NumberStartsAt && i < address.NumberEndsAt)
+                    {
+                        sb.Append("-");
+                    }
+                    else
+                    {
+                        address = null;
+                        sb.Append(" ");
+                    }
                 }
                 else
                 {
+                    sb.Append(tokens[i]);
                     sb.Append(" ");
                 }
-                
             }
             if (sb.Length > 0)
             {

@@ -20,11 +20,16 @@ namespace BasicTypes
     /// </summary>
     public class ParserUtils
     {
-        private readonly Dialect config;
+        private bool memoize = false;
+        private readonly Dialect dialect;
         private SentenceDiagnostics diagnostics;
-        public ParserUtils(Dialect config)
+
+        public Dictionary<string, HeadedPhrase> headedPhraseParserMemo = new Dictionary<string, HeadedPhrase>();
+        public Dictionary<string, Chain> piChainMemo = new Dictionary<string, Chain>();
+
+        public ParserUtils(Dialect dialect)
         {
-            this.config = config;
+            this.dialect = dialect;
         }
      
         //This should only operate on normalized sentences.
@@ -32,7 +37,9 @@ namespace BasicTypes
         {
             diagnostics= new SentenceDiagnostics(original,sentence);
 
-            if (string.IsNullOrWhiteSpace(sentence))
+            ParserUtils.ThrowOnDoubleParticles(sentence, dialect);
+
+            if (String.IsNullOrWhiteSpace(sentence))
             {
                 return new Sentence(new NullOrSymbols(original),diagnostics);
                 //  throw new InvalidOperationException("Do not give me a null sentence. Can't tell if null sentence is from input or got lost in translation");
@@ -40,7 +47,7 @@ namespace BasicTypes
 
             if (sentence.StartCheck(" "))
             {
-                throw new InvalidOperationException("Do not give me a sentence that leads with whitespace, I do not want to do defensive Trim() all day.");
+                throw new InvalidOperationException("Do not give me a sentence that leads with whitespace, I do not want to do defensive Trim() all day. (Call at least NormalizeExplict)");
             }
 
             if (sentence.StartCheck("///"))
@@ -276,11 +283,13 @@ namespace BasicTypes
                 conjunction = Particles.anu;
                 sentence = sentence.Substring(4);
             }
-            //else if (sentence.StartCheck("en ")) //is this legal?
-            //{
-            //    conjunction = Particles.en;
-            //    sentence = sentence.Substring(4);
-            //}
+            else if (sentence.StartCheck("en ")) 
+            {
+                //Well, either parse it or throw. Otherwise, this gets skipped.
+                //is this legal?
+                conjunction = Particles.en;
+                sentence = sentence.Substring(4);
+            }
             else if (sentence.StartCheck("ante ")) //never seen it.
             {
                 conjunction = Particles.ante;
@@ -449,11 +458,14 @@ namespace BasicTypes
             {
                 throw new ArgumentException("Contains la. This is not possible in a pi chain.: " + value);
             }
-            //if (value.ContainsCheck("~"))
-            //{
-            //    throw new ArgumentException("Contains preposition. This isn't possible in a pi chain. (well not right //now. kule pi lon palisa): actual: " + value);
-            //}
-            //soweli ~lon ma ni pi ma suli ~sama ma ante
+            if (memoize)
+            {
+                if (piChainMemo.ContainsKey(value))
+                {
+                    return piChainMemo[value];
+                }
+            }
+            
 
             string piChains = value;
 
@@ -465,7 +477,12 @@ namespace BasicTypes
                 HeadedPhrase piPhrase = HeadedPhraseParser(piLessToken);
                 piCollection.Add(piPhrase);
             }
-            return new Chain(Particles.pi, piCollection.ToArray());
+            Chain piChainFinished = new Chain(Particles.pi, piCollection.ToArray());
+            if (memoize)
+            {
+                piChainMemo.Add(value, piChainFinished);
+            }
+            return piChainFinished;
 
         }
 
@@ -475,6 +492,12 @@ namespace BasicTypes
             {
                 throw new ArgumentException("Cannot parse null/empty subjects");
             }
+
+            //if (processEnPiChainMemo.ContainsKey(value))
+            //{
+            //    return processEnPiChainMemo[value];
+            //}
+
             foreach (var particle in new[] { "la", "li" })
             {
                 if (subjects.StartsOrContainsOrEnds(particle))
@@ -531,8 +554,9 @@ namespace BasicTypes
                 }
             }
 
-            ComplexChain subject = new ComplexChain(Particles.en, subChains.ToArray());
-            return subject;
+            ComplexChain subjectChain = new ComplexChain(Particles.en, subChains.ToArray());
+            //processEnPiChainMemo.Add(subjects,subjectChain);
+            return subjectChain;
         }
 
 
@@ -597,7 +621,7 @@ namespace BasicTypes
         public TpPredicate ProcessPredicates(string liPart)
         {
 
-            if (string.IsNullOrWhiteSpace(liPart))
+            if (String.IsNullOrWhiteSpace(liPart))
             {
                 throw new InvalidOperationException("Missing argument, cannot continue");
             }
@@ -620,7 +644,7 @@ namespace BasicTypes
 
                 string[] verbPhraseParts = pu.WordsPunctuationAndCompounds(eParts[0]); //Could contain particles.
 
-                if (!Particle.CheckIsParticle(verbPhraseParts[0]))
+                if (!Token.CheckIsParticle(verbPhraseParts[0]))
                 {
                     throw new TpSyntaxException("uh-oh not a particle: " + verbPhraseParts[0] + " from " + liPart);
                 }
@@ -638,7 +662,7 @@ namespace BasicTypes
                         nominalPredicate =
                             new ComplexChain(Particles.en,
                                 new[]{
-                                    ProcessPiChain(string.Join(" ", ArrayExtensions.Tail(verbPhraseParts)))
+                                    ProcessPiChain(String.Join(" ", ArrayExtensions.Tail(verbPhraseParts)))
                                 });
 
                     }
@@ -722,7 +746,7 @@ namespace BasicTypes
                 }
                 string[] verbPhraseParts = pu.WordsPunctuationAndCompounds(ppParts[0]);
 
-                if (!Particle.CheckIsParticle(verbPhraseParts[0]))
+                if (!Token.CheckIsParticle(verbPhraseParts[0]))
                 {
                     throw new TpSyntaxException("uh-oh not a particle: " + verbPhraseParts[0] + " from " + liPart);
                 }
@@ -736,7 +760,7 @@ namespace BasicTypes
                         //piPredicate
                         ComplexChain phrase = new ComplexChain(Particles.en,
                             new[]{
-                                    ProcessPiChain(string.Join(" ", ArrayExtensions.Tail(verbPhraseParts)))
+                                    ProcessPiChain(String.Join(" ", ArrayExtensions.Tail(verbPhraseParts)))
                                 });
 
                         piPredicate = new PiPredicate(Particles.pi, phrase);
@@ -747,7 +771,7 @@ namespace BasicTypes
                         //nominal predicate
                         nominalPredicate = new ComplexChain(Particles.en,
                             new[]{
-                                ProcessPiChain(string.Join(" ", ArrayExtensions.Tail(verbPhraseParts)))}
+                                ProcessPiChain(String.Join(" ", ArrayExtensions.Tail(verbPhraseParts)))}
                             );
                     }
                     else
@@ -779,7 +803,7 @@ namespace BasicTypes
                             continue;
                         }
 
-                        PrepositionalPhrase foundPrepositionalPhrase = new PrepositionalPhrase(new Word(preposition), ProcessEnPiChain(string.Join(" ", tail)));
+                        PrepositionalPhrase foundPrepositionalPhrase = new PrepositionalPhrase(new Word(preposition), ProcessEnPiChain(String.Join(" ", tail)));
                         pChains.Add(foundPrepositionalPhrase);
                     }
                     if (pChains.Count > 0)
@@ -879,7 +903,7 @@ namespace BasicTypes
                     //These chains are ordered.
                     //kepeken x lon y kepeken z lon a   NOT EQUAL TO kepeken x  kepeken z lon a lon y
                     //Maybe.
-                    prepositionalChain.Add(new PrepositionalPhrase(new Word(preposition), string.IsNullOrEmpty(tail) ? null : ProcessEnPiChain(tail)));
+                    prepositionalChain.Add(new PrepositionalPhrase(new Word(preposition), String.IsNullOrEmpty(tail) ? null : ProcessEnPiChain(tail)));
                 }
                 else
                 {
@@ -891,28 +915,6 @@ namespace BasicTypes
             return prepositionalChain;
         }
 
-        public HeadedPhrase HeadedPhraseParser(string[] value)
-        {
-            if (value == null || value.Length == 0)
-            {
-                throw new ArgumentException("Impossible to parse a null or zero length string.");
-            }
-            foreach (string s in value)
-            {
-                if (s.ContainsCheck(" "))
-                {
-                    throw new ArgumentException("One of the strings in the array contains spaces, this must not have been properly normalized.: " + s);
-                }
-                if (s.ContainsCheck("~"))
-                {
-                    throw new ArgumentException("One of the strings in the array starts with a ~, so the prep wasn't stripped off. : " + s);
-                }
-            }
-
-            //No Pi!
-            HeadedPhrase phrase = new HeadedPhrase(new Word(value[0]), new WordSet(ArrayExtensions.Tail(value)));
-            return phrase;
-        }
 
         /// <summary>
         /// Parses simple headed phrases fine. Parses some headed phrases with PP modifiers, but
@@ -922,10 +924,21 @@ namespace BasicTypes
         /// <returns></returns>
         public HeadedPhrase HeadedPhraseParser(string value)
         {
-            if (string.IsNullOrEmpty(value))
+            if (String.IsNullOrEmpty(value))
             {
                 throw new ArgumentException("Impossible to parse a null or zero length string.");
             }
+//#if DEBUG
+//            string copyValue = String.Copy(value);
+//#endif
+            if (memoize)
+            {
+                if (headedPhraseParserMemo.ContainsKey(value))
+                {
+                    return headedPhraseParserMemo[value];
+                }
+            }
+            
 
             foreach (string particle in new[] { "pi", "la", "e", "li" })
             {
@@ -963,6 +976,16 @@ namespace BasicTypes
             HeadedPhrase phrase = new HeadedPhrase(mergedTail[0],
                 new WordSet(ArrayExtensions.Tail(mergedTail.ToArray())),
                 pp);
+//#if DEBUG
+//            if (copyValue != value)
+//            {
+//                throw new InvalidOperationException("Invariant violation: " + copyValue +" --- "+ value);
+//            }
+//#endif
+//            if (memoize)
+//            {
+//                headedPhraseParserMemo[value] = phrase;
+//            }
             return phrase;
         }
 
@@ -1033,6 +1056,39 @@ namespace BasicTypes
                 s.Add(v.ToString());
             }
             return s.ToArray();
+        }
+
+
+        public static bool ThrowOnDoubleParticles(string phrase, Dialect dialect)
+        {
+
+            foreach (string s1 in new String[] { "li", "la", "e", "pi" })
+            {
+                Match found = Regex.Match(phrase, @"\b" + s1 + " " + s1 + @"\b");
+                if (found.Success)
+                {
+                    throw new DoubleParticleException("double particle: " + s1 + " " + s1 + " in " + phrase);
+                }
+            }
+            foreach (string s1 in new String[] { "li", "la", "e", "pi" })
+            {
+                foreach (string s2 in new String[] { "li", "la", "e", "pi" })
+                {
+
+                    if (dialect.LiPiIsValid && (s1 == "li" && s2 == "pi"))
+                    {
+                        continue;
+                    }
+                    Match found = Regex.Match(phrase, @"\b" + s1 + " " + s2 + @"\b");
+                    if (found.Success)
+                    {
+                        throw new TpSyntaxException("Illegal series of particles : " + s1 + " " + s2 + " in " + phrase);
+                    }
+                }
+            }
+
+            return false;
+
         }
     }
 }

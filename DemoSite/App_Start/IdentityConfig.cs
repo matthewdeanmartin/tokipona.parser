@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net.Mail;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -18,8 +19,21 @@ namespace DemoSite
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            var email = new MailMessage(new MailAddress("noreply@example.com", "(do not reply)"),
+          new MailAddress(message.Destination))
+          {
+              Subject = message.Subject,
+              Body = message.Body,
+              IsBodyHtml = true
+          };
+
+            var client = new SmtpClient();
+            client.SendCompleted += (s, e) =>
+            {
+                client.Dispose();
+            };
+            return client.SendMailAsync(email);
+            //return Task.FromResult(0);
         }
     }
 
@@ -40,7 +54,7 @@ namespace DemoSite
         {
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
+        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
             // Configure validation logic for usernames
@@ -81,7 +95,7 @@ namespace DemoSite
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider = 
+                manager.UserTokenProvider =
                     new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;

@@ -12,6 +12,7 @@ namespace PerfTestHarness
         {
             ParserUtilsTestsStressTests t = new ParserUtilsTestsStressTests();
             t.StressTestNormalizeAndParseEverything();
+            Console.WriteLine("\n\nDone!");
             Console.ReadKey();
         }
 

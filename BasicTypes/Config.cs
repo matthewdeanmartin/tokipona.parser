@@ -58,7 +58,7 @@ namespace BasicTypes
         {
             //Check AppSettings... if none...
             currentDialect = Dialect.LooseyGoosey;
-            Regex.CacheSize = 50;
+            Regex.CacheSize = 500;
         }
         
     }

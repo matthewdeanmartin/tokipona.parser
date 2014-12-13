@@ -17,6 +17,8 @@ namespace BasicTypes
     [Serializable]
     public partial class Sentence : IContainsWord, IFormattable, IToString
     {
+        private readonly Dictionary<string,string> memoizeToString = new Dictionary<string, string>();
+
         [DataMember]
         private readonly Sentence conclusion;
         [DataMember]
@@ -251,7 +253,12 @@ namespace BasicTypes
             {
                 format = "g";
             }
-            return ToString(format, Config.CurrentDialect);
+            //if (memoizeToString.ContainsKey(format))
+            //    return memoizeToString[format];
+
+            string result = ToString(format, Config.CurrentDialect);
+            //memoizeToString.Add(format,result);
+            return result;
         }
 
         public override string ToString()
@@ -437,7 +444,7 @@ namespace BasicTypes
 
                 if (LaFragment != null)
                 {
-                    foreach (Fragment chain in LaFragment)
+                    foreach (Fragment chain in LaFragment.ToArray().Reverse())
                     {
                         sb.AddIfNeeded("{", format);
                         sb.AddRange(chain.ToTokenList(format, formatProvider));

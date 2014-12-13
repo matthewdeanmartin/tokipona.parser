@@ -381,8 +381,26 @@
     <Compile Include="..\..\BasicTypes\MoreTypes\SerializableDictionary.cs">
       <Link>MoreTypes\SerializableDictionary.cs</Link>
     </Compile>
+    <Compile Include="..\..\BasicTypes\NormalizerCode\NormalizationTasks.cs">
+      <Link>Normalizer\NormalizationTasks.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\NormalizerCode\NormalizeCompoundWords.cs">
+      <Link>Normalizer\NormalizeCompoundWords.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\NormalizerCode\NormalizeExplicit.cs">
+      <Link>Normalizer\NormalizeExplicit.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\NormalizerCode\NormalizeExplicitTests.cs">
+      <Link>Normalizer\NormalizeExplicitTests.cs</Link>
+    </Compile>
     <Compile Include="..\..\BasicTypes\NormalizerCode\NormalizeForeignText.cs">
       <Link>Normalizer\NormalizeForeignText.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\NormalizerCode\NormalizeForeignTextTests.cs">
+      <Link>Normalizer\NormalizeForeignTextTests.cs</Link>
+    </Compile>
+    <Compile Include="..\..\BasicTypes\NormalizerCode\NormalizeMiSina.cs">
+      <Link>Normalizer\NormalizeMiSina.cs</Link>
     </Compile>
     <Compile Include="..\..\BasicTypes\NormalizerCode\NormalizeNumbers.cs">
       <Link>Normalizer\NormalizeNumbers.cs</Link>
