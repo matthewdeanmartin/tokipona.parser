@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using BasicTypes.Collections;
+using BasicTypes.Exceptions;
 using BasicTypes.Extensions;
 
 namespace BasicTypes.NormalizerCode
@@ -155,7 +156,7 @@ namespace BasicTypes.NormalizerCode
             //Post conditions.
             if (normalized.StartCheck("« »"))
             {
-                throw new InvalidOperationException("quote recognition went wrong: " + text);
+                throw new NormalizationException("quote recognition went wrong: " + text);
             }
 
             sd = new SentenceDiagnostics(text, normalized);

@@ -145,7 +145,7 @@ namespace BasicTypes.NormalizerCode
             if (normalized.ContainsCheck("[NULL]"))
             {
 #if DEBUG
-                throw new InvalidOperationException("Stop adding [NULL] to normalized sentences.");
+                throw new NormalizationException("Stop adding [NULL] to normalized sentences.");
 #else
                 normalized = normalized.Replace("[NULL]", "");
 #endif
@@ -221,7 +221,7 @@ namespace BasicTypes.NormalizerCode
             //Post conditions.
             if (normalized.StartCheck("« »"))
             {
-                throw new InvalidOperationException("quote recognition went wrong: " + text);
+                throw new NormalizationException("quote recognition went wrong: " + text);
             }
 
 

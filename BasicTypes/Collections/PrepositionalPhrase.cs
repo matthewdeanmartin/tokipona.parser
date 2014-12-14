@@ -66,7 +66,7 @@ namespace BasicTypes.Collections
                 List<PrepositionalPhrase> chain = pu.ProcessPrepositionalPhrases(parts);
                 if (chain.Count != 1)
                 {
-                    throw new InvalidOperationException("Tried to parse a single chain, but value contains " +
+                    throw new TpParseException("Tried to parse a single chain, but value contains " +
                                                         chain.Count);
                 }
                 return chain[0];

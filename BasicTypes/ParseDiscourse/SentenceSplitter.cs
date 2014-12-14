@@ -200,7 +200,14 @@ namespace BasicTypes.ParseDiscourse
                 if (line.EndCheck("'","\""))
                 {
                     currentlyInDirect = false;
-                    finalLines[i] = finalLines[i].Substring(0, finalLines[i].Length-1);
+                    if (line == "'")
+                    {
+                        finalLines[i] = "";
+                    }
+                    else
+                    {
+                        finalLines[i] = finalLines[i].Substring(0, finalLines[i].Length - 1);
+                    }
                 }
             }
             current=new SplitSentenceStrings(finalLines, null);

@@ -137,6 +137,7 @@
     <Compile Include="Dictionary\ExtractNewLexemes.cs" />
     <Compile Include="Dictionary\Semantics.cs" />
     <Compile Include="English\DetectEnglishTests.cs" />
+    <Compile Include="Exceptions\TpDomException.cs" />
     <Compile Include="Exceptions\SyntaxErrors.cs" />
     <Compile Include="Extensions\BinaryFormatterCopier.cs" />
     <Compile Include="Extensions\ListExtension.cs" />

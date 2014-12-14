@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using BasicTypes.Exceptions;
 using BasicTypes.Extensions;
 using BasicTypes.Parts;
 // soweli lili en waso suli en kala loje --- headed phrases joined by en
@@ -38,7 +39,7 @@ namespace BasicTypes
         {
             if (headedPhrases.Length == 0)
             {
-                throw new InvalidOperationException("Chain with no headed phrases. This would be a bare particle if written as text");
+                throw new TpSyntaxException("Chain with no headed phrases. This would be a bare particle if written as text");
             }
             this.particle = particle;
             this.headedPhrases = headedPhrases;
@@ -80,7 +81,7 @@ namespace BasicTypes
             }
             else
             {
-                throw new InvalidOperationException("No head phrases");
+                throw new TpSyntaxException("No head phrases");
             }
             return sb;
         }

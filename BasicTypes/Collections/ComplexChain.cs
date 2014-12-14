@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using BasicTypes.Exceptions;
 using BasicTypes.Extensions;
 using NUnit.Framework.Constraints;
 //using Polenter.Serialization.Advanced.Serializing;
@@ -73,11 +74,11 @@ namespace BasicTypes.Collections
         {
             if (string.IsNullOrWhiteSpace(particle.Text))
             {
-                throw new InvalidOperationException("Particle required, blank particles no longer allowed.");
+                throw new TpSyntaxException("Particle required, blank particles no longer allowed.");
             }
             if (complexChains == null || complexChains.Length == 0)
             {
-                throw new InvalidOperationException("complexChains list required else we'd have a bare particle.");
+                throw new TpSyntaxException("complexChains list required else we'd have a bare particle.");
             }
             this.particle = particle;
             this.complexChains = complexChains;
@@ -92,11 +93,11 @@ namespace BasicTypes.Collections
         {
             if (string.IsNullOrWhiteSpace(particle.Text))
             {
-                throw new InvalidOperationException("Particle required, blank particles no longer allowed.");
+                throw new TpSyntaxException("Particle required, blank particles no longer allowed.");
             }
             if (subChains == null || subChains.Length == 0)
             {
-                throw new InvalidOperationException("Chain with no no subchains. This would be a bare particle if written as text");
+                throw new TpSyntaxException("Chain with no no subchains. This would be a bare particle if written as text");
             }
 
             this.particle = particle;

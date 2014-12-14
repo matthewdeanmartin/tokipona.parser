@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BasicTypes.Collections;
+using BasicTypes.CollectionsDegenerate;
 using BasicTypes.CollectionsDiscourse;
 using BasicTypes.NormalizerCode;
 
@@ -15,9 +17,12 @@ namespace BasicTypes.ParseDiscourse
 
         public ParagraphSplitter(Dialect dialect)
         {
+            ThrowOnErrors = true;
             this.dialect = dialect;
             pu = new ParserUtils(dialect);
         }
+
+        public bool ThrowOnErrors { get; set; }
 
         public Prose ParseProse(string text, string policy = "guess")
         {
@@ -71,7 +76,23 @@ namespace BasicTypes.ParseDiscourse
                 foreach (string sentenceString in sentenceStrings)
                 {
                     string normalized = norm.NormalizeText(sentenceString);
-                    Sentence sentence = pu.ParsedSentenceFactory(normalized, sentenceString);
+                    
+                    Sentence sentence;
+                    if (ThrowOnErrors)
+                    {
+                        sentence = pu.ParsedSentenceFactory(normalized, sentenceString);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            sentence = pu.ParsedSentenceFactory(normalized, sentenceString);
+                        }
+                        catch (Exception ex)
+                        {
+                            sentence = new Sentence(new NullOrSymbols(ex.Message),new SentenceDiagnostics(sentenceString, normalized));
+                        }
+                    }
                     if (i == 1 && sentence.Fragment != null)
                     {
                         title = sentence.ToString();

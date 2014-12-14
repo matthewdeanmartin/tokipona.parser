@@ -111,7 +111,7 @@ namespace BasicTypes
 
             if (conclusion != null && conclusion.punctuation == null)
             {
-                throw new InvalidOperationException("Conclusions require punctuation, if only through normalization");
+                throw new TpSyntaxException("Conclusions require punctuation, if only through normalization");
             }
             if (preconditions != null)
             {
@@ -121,7 +121,7 @@ namespace BasicTypes
 
                     if (precondition.punctuation != null)
                     {
-                        throw new InvalidOperationException("Preconditions should have no punctuation.");
+                        throw new TpSyntaxException("Preconditions should have no punctuation.");
                     }
                 }
             }
@@ -220,6 +220,8 @@ namespace BasicTypes
         public TagQuestion TagQuestion { get { return tagQuestion; } }// anu seme
         public Punctuation Punctuation { get { return punctuation; } } //.?!
 
+        public SentenceDiagnostics Diagnostics { get { return diagnostics; } }
+
         public Sentence EquivallencyGenerator()
         {
             return (Sentence)MemberwiseClone();
@@ -247,6 +249,7 @@ namespace BasicTypes
             }
         }
 
+        
         public string ToString(string format)
         {
             if (format == null)
@@ -293,7 +296,7 @@ namespace BasicTypes
 
                 if (sb[sb.Count() - 1] == "li")
                 {
-                    throw new InvalidOperationException("Something went wrong, sentence ends in li");
+                    throw new TpSyntaxException("Something went wrong, sentence ends in li");
                 }
                 spaceJoined = sb.SpaceJoin(format);
 
@@ -324,7 +327,7 @@ namespace BasicTypes
 
                 if (sb[sb.Count() - 1] == "li")
                 {
-                    throw new InvalidOperationException("Something went wrong, sentence ends in li");
+                    throw new TpSyntaxException("Something went wrong, sentence ends in li");
                 }
                 spaceJoined = sb.SpaceJoin(format);
 
@@ -569,7 +572,7 @@ namespace BasicTypes
             }
             if (value.ContainsCheck("XXXXZiXXXX"))
             {
-                throw new InvalidOperationException("Token for li pi construtiosn found. Shouldn't be here anymore.");
+                throw new TpSyntaxException("Token for li pi construtiosn found. Shouldn't be here anymore.");
             }
             return value;
         }

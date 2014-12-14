@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web.UI;
 using BasicTypes.Collections;
+using BasicTypes.CollectionsDiscourse;
 using BasicTypes.Corpus;
 using BasicTypes.Extensions;
 using BasicTypes.Glosser;
@@ -54,9 +55,9 @@ namespace BasicTypes.Parser
             List<string> good = new List<string>();
             TokenParserUtils tpu = new TokenParserUtils();
             Dialect dialect = Dialect.LooseyGoosey;
-            
+
             SentenceSplitter ss = new SentenceSplitter(dialect);
-            
+
             Normalizer norm = new Normalizer(dialect);
             foreach (string s in reader.NextFile())
             {
@@ -158,9 +159,9 @@ namespace BasicTypes.Parser
             CorpusFileReader reader = new CorpusFileReader(true);
             GlossMaker gm = new GlossMaker();
             SentenceSplitter ss = new SentenceSplitter(dialect);
-            
+
             Normalizer norm = new Normalizer(dialect);
-            
+
             foreach (string s in reader.NextFile())
             {
                 foreach (string original in ss.ParseIntoNonNormalizedSentences(s))
@@ -168,7 +169,7 @@ namespace BasicTypes.Parser
                     //try
                     //{
                     string normalized = norm.NormalizeText(original);
-                    
+
                     if (!(normalized.ContainsWholeWord("anu seme"))) continue;
                     i++;
                     Sentence structured = pu.ParsedSentenceFactory(normalized, original);
@@ -204,7 +205,7 @@ namespace BasicTypes.Parser
             int i = 0;
             Dialect dialect = Dialect.LooseyGoosey;
             ParserUtils pu = new ParserUtils(dialect);
-            
+
             Normalizer norm = new Normalizer(dialect);
 
             Dialect english = Dialect.LooseyGoosey;
@@ -222,7 +223,7 @@ namespace BasicTypes.Parser
                     //try
                     //{
                     string normalized = norm.NormalizeText(original);
-                    
+
                     if (!(normalized.ContainsWholeWord("mi") || normalized.ContainsWholeWord("sina") || normalized.ContainsWholeWord("ona"))) continue;
                     if (normalized.ContainsCheck("Kinla")) continue;//Has a logical operator in one of the sample sentences that I can't deal with yet, unrelated to kin, ala
                     if (normalized.ContainsCheck("o,")) continue;//Haven't dealt with vocatives yet.
@@ -275,7 +276,7 @@ namespace BasicTypes.Parser
                                         continue;
                                     }
                                     if (headedPhrase.Head.Text == "mi" || headedPhrase.Head.Text == "sina" ||
-                                        headedPhrase.Head.Text=="ona")
+                                        headedPhrase.Head.Text == "ona")
                                     {
                                         Console.WriteLine("Found  : " + headedPhrase);
                                         foundInteresting = true;
@@ -284,9 +285,9 @@ namespace BasicTypes.Parser
                             }
                         }
                     }
-                    
-                    if(!foundInteresting) continue;
-                    
+
+                    if (!foundInteresting) continue;
+
 
                     string diag = structured.ToString("b");
 
@@ -327,7 +328,7 @@ namespace BasicTypes.Parser
             english.TargetGloss = "en";
             english.GlossWithFallBacks = true;
 
-            
+
             Normalizer norm = new Normalizer(dialect);
 
             CorpusFileReader reader = new CorpusFileReader();
@@ -341,39 +342,39 @@ namespace BasicTypes.Parser
                     Sentence structured = null;
                     try
                     {
-                    string normalized = norm.NormalizeText(original);
-                    
-                    if (string.IsNullOrWhiteSpace(normalized)) continue;
-                    if (!(normalized.ContainsWholeWord("o"))) continue;
-                    if (!(normalized.ContainsWholeWord("li"))) continue;
-                    if ((normalized.StartsWith("o "))) continue; //These seem to be okay
-                    if (normalized.ContainsCheck("Kinla")) continue;//Has a logical operator in one of the sample sentences that I can't deal with yet, unrelated to kin, ala
-                    
-                    structured = pu.ParsedSentenceFactory(normalized, original);
-                    string diag = structured.ToString("b");
+                        string normalized = norm.NormalizeText(original);
 
-                    Console.WriteLine("O: " + (original ?? "").Trim(new[] { '\n', '\r', ' ', '\t' }));
-                    Console.WriteLine("B: " + diag);
-                    Console.WriteLine("...");
+                        if (string.IsNullOrWhiteSpace(normalized)) continue;
+                        if (!(normalized.ContainsWholeWord("o"))) continue;
+                        if (!(normalized.ContainsWholeWord("li"))) continue;
+                        if ((normalized.StartsWith("o "))) continue; //These seem to be okay
+                        if (normalized.ContainsCheck("Kinla")) continue;//Has a logical operator in one of the sample sentences that I can't deal with yet, unrelated to kin, ala
 
-                    //Console.WriteLine("G: " + gm.GlossOneSentence(false, structured, english));
+                        structured = pu.ParsedSentenceFactory(normalized, original);
+                        string diag = structured.ToString("b");
+
+                        Console.WriteLine("O: " + (original ?? "").Trim(new[] { '\n', '\r', ' ', '\t' }));
+                        Console.WriteLine("B: " + diag);
+                        Console.WriteLine("...");
+
+                        //Console.WriteLine("G: " + gm.GlossOneSentence(false, structured, english));
                     }
                     catch (Exception ex)
                     {
-                            Console.WriteLine("FAILED : " + original);
-                            if (structured != null)
-                            {
-                                Console.WriteLine(structured.ToString("b"));
-                            }
-                            Console.WriteLine(ex.Message);
-                            i++;
-                        
+                        Console.WriteLine("FAILED : " + original);
+                        if (structured != null)
+                        {
+                            Console.WriteLine(structured.ToString("b"));
+                        }
+                        Console.WriteLine(ex.Message);
+                        i++;
+
                     }
 
                 }
             }
             Console.WriteLine("Failed Sentences: " + i);
-            Assert.AreEqual(0,i);
+            Assert.AreEqual(0, i);
         }
 
 
@@ -398,20 +399,20 @@ namespace BasicTypes.Parser
             {
                 foreach (string original in ss.ParseIntoNonNormalizedSentences(s))
                 {
-                    if(original.Contains(" su ")) continue; //neologism, back when we didn't know what pu was and hoped it was something like scandinavian sem
+                    if (original.Contains(" su ")) continue; //neologism, back when we didn't know what pu was and hoped it was something like scandinavian sem
 
                     //try
                     //{
                     string normalized = norm.NormalizeText(original);
-                    
+
                     if (!(normalized.ContainsWholeWord("ala") || normalized.ContainsWholeWord("kin"))) continue;
                     if (normalized.ContainsCheck("Kinla")) continue;//Has a logical operator in one of the sample sentences that I can't deal with yet, unrelated to kin, ala
-                    
+
 
                     if (normalized.StartCheck("kin la ")) continue; //no big deal
-                    if(normalized.ContainsCheck("pilin pona o")) continue; //Not trying to solve vocatives right now
+                    if (normalized.ContainsCheck("pilin pona o")) continue; //Not trying to solve vocatives right now
                     if (normalized.ContainsCheck(" o, ")) continue; //Not trying to solve vocatives right now
-                    
+
                     Sentence structured = pu.ParsedSentenceFactory(normalized, original);
                     string diag = structured.ToString("b");
 
@@ -465,7 +466,7 @@ namespace BasicTypes.Parser
                     //try
                     //{
                     string normalized = norm.NormalizeText(original);
-                    
+
                     if (string.IsNullOrWhiteSpace(normalized)) continue;
                     if (!(normalized.ContainsWholeWord("anu") || normalized.ContainsWholeWord("taso")
                         || normalized.ContainsWholeWord("en") || normalized.ContainsWholeWord("xxxante"))) continue;
@@ -503,19 +504,66 @@ namespace BasicTypes.Parser
         }
 
         [Test]
+        public void StressTest_ParsePARAGRAPHS_SpitBack_LooselyCompare()
+        {
+            CorpusFileReader reader = new CorpusFileReader(true);
+
+            int i = 0;
+            Dialect dialect = Dialect.LooseyGoosey;
+            ParserUtils pu = new ParserUtils(dialect);
+
+            ParagraphSplitter paragraphSplitter = new ParagraphSplitter(dialect);
+            paragraphSplitter.ThrowOnErrors = false;
+            Normalizer norm = new Normalizer(dialect);
+
+            SentenceSplitter ss = new SentenceSplitter(dialect);
+
+            int total = 0;
+            int j = 0;
+            foreach (string s in reader.NextFile())
+            {
+                if(reader.currentFile.Contains("ipoC")) continue;
+                Prose prose = paragraphSplitter.ParseProse(s);
+                foreach (Paragraph paragraph in prose.Paragraphs)
+                {
+                    foreach (Sentence sentence in paragraph)
+                    {
+                        try
+                        {
+                            string repeatBack = sentence.ToString();
+                            string original = sentence.Diagnostics.Original;
+                            if (!repeatBack.TpLettersEqual(original))
+                            {
+                                Console.WriteLine("O: " + original.Trim(new[] { ' ', '\t', '\n', '\r' }).Replace("\n", " "));
+                                Console.WriteLine("G: " + repeatBack);
+                                Console.WriteLine(" --- ");
+                                j++;
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            i++;
+                        }
+
+                    }
+                }
+            }
+            Console.WriteLine("Total: " + total);
+            Console.WriteLine("Mismatched: " + j);
+            Console.WriteLine("Failed Sentences: " + i);
+        }
+
+
+        [Test]
         public void StressTest_Parse_SpitBack_LooselyCompare()
         {
             int i = 0;
             Dialect dialect = Dialect.LooseyGoosey;
             ParserUtils pu = new ParserUtils(dialect);
 
-            //Dialect english = Dialect.LooseyGoosey;
-            //english.TargetGloss = "en";
-            //english.GlossWithFallBacks = true;
-
             CorpusFileReader reader = new CorpusFileReader(true);
             Normalizer norm = new Normalizer(dialect);
-            
+
             SentenceSplitter ss = new SentenceSplitter(dialect);
 
             int total = 0;
@@ -533,13 +581,13 @@ namespace BasicTypes.Parser
                     try
                     {
                         string normalized = norm.NormalizeText(original);
-                        
+
                         Sentence structured = pu.ParsedSentenceFactory(normalized, original);
                         string diag = structured.ToString();
 
                         if (!diag.TpLettersEqual(original))
                         {
-                            Console.WriteLine("O: " + original.Trim(new[]{' ','\t','\n','\r'}).Replace("\n"," "));
+                            Console.WriteLine("O: " + original.Trim(new[] { ' ', '\t', '\n', '\r' }).Replace("\n", " "));
                             Console.WriteLine("G: " + diag);
                             Console.WriteLine(" --- ");
                             j++;
@@ -578,7 +626,7 @@ namespace BasicTypes.Parser
             watch.Start();
             foreach (string s in reader.NextFile())
             {
-                if (reader.currentFile.ContainsCheck("janKipoCollected"))  continue; // Can't parse:  *janMato 123 123 ni li musi!
+                if (reader.currentFile.ContainsCheck("janKipoCollected")) continue; // Can't parse:  *janMato 123 123 ni li musi!
 
                 foreach (string original in ss.ParseIntoNonNormalizedSentences(s))
                 {
@@ -601,9 +649,9 @@ namespace BasicTypes.Parser
                     }
                     catch (Exception ex)
                     {
-                            i++;
-                            Console.WriteLine(SentenceDiagnostics.CurrentSentence.Original); 
-                    
+                        i++;
+                        Console.WriteLine(SentenceDiagnostics.CurrentSentence.Original);
+
                         Console.WriteLine(ex.Message);
                         //else throw;
                     }
@@ -698,23 +746,23 @@ namespace BasicTypes.Parser
 
             int fail = 0;
 
-            
+
             SentenceSplitter ss = new SentenceSplitter(dialect);
-            
+
             Normalizer norm = new Normalizer(dialect);
 
             foreach (string sample in samples)
             {
-                string[] sentenceStrings =  ss.ParseIntoNonNormalizedSentences(sample);
+                string[] sentenceStrings = ss.ParseIntoNonNormalizedSentences(sample);
                 string[] normalized = new string[sentenceStrings.Length];
                 for (int index = 0; index < sentenceStrings.Length; index++)
                 {
                     //try
                     //{
-                        normalized[index] = norm.NormalizeText(sentenceStrings[index]);
-                        Sentence sentence = pu.ParsedSentenceFactory(normalized[index], sentenceStrings[index]);
+                    normalized[index] = norm.NormalizeText(sentenceStrings[index]);
+                    Sentence sentence = pu.ParsedSentenceFactory(normalized[index], sentenceStrings[index]);
 
-                        Console.WriteLine(sentence.ToString("g"));
+                    Console.WriteLine(sentence.ToString("g"));
                     //}
                     //catch (Exception ex)
                     //{
@@ -724,13 +772,13 @@ namespace BasicTypes.Parser
                     //}
 
                 }
-                
+
                 Console.WriteLine(fail + " failed sentences.");
             }
 
         }
 
-        
+
 
 
         [Test]
@@ -750,9 +798,9 @@ namespace BasicTypes.Parser
                                 string normalized = norm.NormalizeText(x);
                                 if (string.IsNullOrWhiteSpace(normalized))
                                     return null;
-                                return  pu.ParsedSentenceFactory(normalized, x);
+                                return pu.ParsedSentenceFactory(normalized, x);
                             })
-                            .Where(x => x!=null)
+                            .Where(x => x != null)
                             .ToArray();
             Assert.Greater(s.Length, 0);
 

@@ -47,12 +47,12 @@ namespace BasicTypes
             if (String.IsNullOrWhiteSpace(sentence))
             {
                 return new Sentence(new NullOrSymbols(original), diagnostics);
-                //  throw new InvalidOperationException("Do not give me a null sentence. Can't tell if null sentence is from input or got lost in translation");
+                //  throw new TpParseException("Do not give me a null sentence. Can't tell if null sentence is from input or got lost in translation");
             }
 
             if (sentence.StartCheck(" "))
             {
-                throw new InvalidOperationException("Do not give me a sentence that leads with whitespace, I do not want to do defensive Trim() all day. (Call at least NormalizeExplict)");
+                throw new TpParseException("Do not give me a sentence that leads with whitespace, I do not want to do defensive Trim() all day. (Call at least NormalizeExplict)");
             }
 
             if (sentence.StartCheck("///"))
@@ -64,7 +64,7 @@ namespace BasicTypes
 
             if (sentence.EndCheck(" li") || sentence.EndCheck(" li."))
             {
-                throw new InvalidOperationException("Something went wrong, sentence ends with li: " + original);
+                throw new TpParseException("Something went wrong, sentence ends with li: " + original);
             }
             //Normalization is really expensive. We must stop calling it twice.
             //sentence = Normalizer.NormalizeText(sentence, config); //Any way to avoid calling this twice?
@@ -89,7 +89,7 @@ namespace BasicTypes
 
             if (sentence.EndCheck(" "))
             {
-                throw new InvalidOperationException("Normalizer failed to trim: " + original);
+                throw new TpParseException("Normalizer failed to trim: " + original);
             }
 
             //Get the final punctuation out or it will mess up parsing later.
@@ -174,7 +174,7 @@ namespace BasicTypes
                         {
                             if (headSentence == null)
                             {
-                                throw new InvalidOperationException(
+                                throw new TpParseException(
                                     "Sentence appears to be headed by a fragment. Shouldn't deal with those here.: " + original);
                             }
                             headSentence.LaFragment.Add(fragment);
@@ -194,7 +194,7 @@ namespace BasicTypes
             }
             if (headSentence == null)
             {
-                throw new InvalidOperationException("This is not a sentence, should deal with it with it's own parser: " + original);
+                throw new TpParseException("This is not a sentence, should deal with it with it's own parser: " + original);
             }
             if (preconditions.Count == 0)
                 return headSentence;
@@ -311,12 +311,12 @@ namespace BasicTypes
 
             if (sentence.EndCheck(" li"))
             {
-                throw new InvalidOperationException("Something went wrong-- sentenc ends with li. " + sentence);
+                throw new TpParseException("Something went wrong-- sentenc ends with li. " + sentence);
 
             }
             if (sentence.StartsOrContainsOrEnds("la"))
             {
-                throw new InvalidOperationException("If it contains a la, anywhere, it isn't a simple sentence. " + sentence);
+                throw new TpParseException("If it contains a la, anywhere, it isn't a simple sentence. " + sentence);
             }
 
             bool isHortative = false;
@@ -628,11 +628,11 @@ namespace BasicTypes
 
             if (String.IsNullOrWhiteSpace(liPart))
             {
-                throw new InvalidOperationException("Missing argument, cannot continue");
+                throw new TpParseException("Missing argument, cannot continue");
             }
             if (liPart == "li")
             {
-                throw new InvalidOperationException("Cannot do anything with just li");
+                throw new TpParseException("Cannot do anything with just li");
             }
             TokenParserUtils pu = new TokenParserUtils();
             Particle verbPhraseParticle;
@@ -742,12 +742,12 @@ namespace BasicTypes
 
                 if (ppParts.Length == 0) //Excect at least "li verb" or "li noun"
                 {
-                    throw new InvalidOperationException("Whoa, got " + ppParts.Length + " parts for " + liPart);
+                    throw new TpParseException("Whoa, got " + ppParts.Length + " parts for " + liPart);
                 }
 
                 if (Punctuation.ContainsPunctuation(ppParts[0]))
                 {
-                    throw new InvalidOperationException("This has punctuation, may fail to parse : " + ppParts[0]);
+                    throw new TpParseException("This has punctuation, may fail to parse : " + ppParts[0]);
                 }
                 string[] verbPhraseParts = pu.WordsPunctuationAndCompounds(ppParts[0]);
 
@@ -918,7 +918,7 @@ namespace BasicTypes
                 {
                     //Is that surprising?
                     //The first part is not a prep phrase, it is a verb intr or predicate.
-                    // throw new InvalidOperationException("Why doesn't a part with Prep contain a ~?");
+                    // throw new TpParseException("Why doesn't a part with Prep contain a ~?");
                 }
             }
             return prepositionalChain;
@@ -972,7 +972,7 @@ namespace BasicTypes
 
             if (words.Length == 0)
             {
-                throw new InvalidOperationException("Failed to parse: " + value);
+                throw new TpParseException("Failed to parse: " + value);
             }
             //Word head = words[0];
             Word[] tail = words;//ArrayExtensions.Tail(words);
@@ -988,7 +988,7 @@ namespace BasicTypes
             //#if DEBUG
             //            if (copyValue != value)
             //            {
-            //                throw new InvalidOperationException("Invariant violation: " + copyValue +" --- "+ value);
+            //                throw new TpParseException("Invariant violation: " + copyValue +" --- "+ value);
             //            }
             //#endif
             //            if (memoize)
@@ -1032,7 +1032,7 @@ namespace BasicTypes
                             resumeAt = j + 1;
                             stopLookAhead = true; //we found the largest possible. now stop.
                         }
-                        catch (InvalidOperationException ex)
+                        catch (TpSyntaxException ex)
                         {
                             //resumeAt = j + 1;
                         }

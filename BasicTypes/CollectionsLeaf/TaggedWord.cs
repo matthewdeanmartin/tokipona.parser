@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using BasicTypes.Collections;
+using BasicTypes.Exceptions;
 using BasicTypes.Extensions;
 using BasicTypes.Html;
 
@@ -29,7 +30,7 @@ namespace BasicTypes.CollectionsLeaf
         {
             if (tags == null || tags.Count == 0)
             {
-                throw new InvalidOperationException("A TaggedWord needs at least one tag, or it is just a Word.");
+                throw new TpSyntaxException("A TaggedWord needs at least one tag, or it is just a Word.");
             }
             bool unfamiliarTag = false;
             bool isXalaX = false;
@@ -62,7 +63,7 @@ namespace BasicTypes.CollectionsLeaf
 
             if (!isXalaX && unfamiliarTag && !isReduplication)
             {
-                throw new InvalidOperationException("This isn't a known tag word and isn't an X ala X construction");
+                throw new TpSyntaxException("This isn't a known tag word and isn't an X ala X construction");
             }
 
             //The main thing the base constructor did.

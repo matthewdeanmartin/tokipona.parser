@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using BasicTypes.Diagnostics;
+using BasicTypes.Exceptions;
 using BasicTypes.Extensions;
 using BasicTypes.ParseDiscourse;
 using BasicTypes.Parser;
@@ -356,7 +357,7 @@ namespace BasicTypes.NormalizerCode
                 if (sentence.EndsWith("\".\""))
                 {
                     Console.WriteLine(sentence);
-                    throw new InvalidOperationException("Ends with " + "\".\"");
+                    throw new NormalizationException("Ends with " + "\".\"");
                 }
             }
             

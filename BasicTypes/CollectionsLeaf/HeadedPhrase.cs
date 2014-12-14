@@ -146,18 +146,18 @@ namespace BasicTypes
                 {
                     if (modifiers.Contains(Words.mi))
                     {
-                        throw new InvalidOperationException("Can't have ona and mi in modifier list." + head.Text + " " + modifiers);
+                        throw new TpSyntaxException("Can't have ona and mi in modifier list." + head.Text + " " + modifiers);
                     }
                     if (modifiers.Contains(Words.sina))
                     {
-                        throw new InvalidOperationException("Can't have ona and sina in modifier list." + head.Text + " " + modifiers);
+                        throw new TpSyntaxException("Can't have ona and sina in modifier list." + head.Text + " " + modifiers);
                     }
                 }
                 if (modifiers.Contains(Words.sina))
                 {
                     if (modifiers.Contains(Words.mi))
                     {
-                        throw new InvalidOperationException("Can't have sina and mi in modifier list." + head.Text + " " + modifiers);
+                        throw new TpSyntaxException("Can't have sina and mi in modifier list." + head.Text + " " + modifiers);
                     }
                 }
             }
@@ -169,7 +169,7 @@ namespace BasicTypes
                   .ToList();
                 if (query.Count > 0)
                 {
-                    throw new InvalidOperationException("Degenerate modifiers-- doubles " + modifiers);
+                    throw new TpSyntaxException("Degenerate modifiers-- doubles " + modifiers);
                 }
             }
             //5 about never gets false positives.
@@ -189,7 +189,7 @@ namespace BasicTypes
                 }
                 else
                 {
-                    throw new InvalidOperationException("Suspiciously long headed phrase " + head + " " + modifiers);
+                    throw new TpSyntaxException("Suspiciously long headed phrase " + head + " " + modifiers);
                 }
             }
         }

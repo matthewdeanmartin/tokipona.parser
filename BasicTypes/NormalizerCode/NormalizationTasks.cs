@@ -29,7 +29,7 @@ namespace BasicTypes.NormalizerCode
 
                     if (normalized.ContainsCheck("~ ~"))
                     {
-                        throw new InvalidOperationException(original);
+                        throw new NormalizationException(original);
                     }
                 }
             }

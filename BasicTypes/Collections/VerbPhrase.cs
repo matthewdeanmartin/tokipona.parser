@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using BasicTypes.Exceptions;
 using BasicTypes.Extensions;
 using NUnit.Framework;
 
@@ -50,7 +51,7 @@ namespace BasicTypes.Collections
             }
             if (Particle.NonContentParticles.Contains(headVerb.Text))
             {
-                throw new InvalidOperationException("Head verb cannot be a particle.");
+                throw new TpSyntaxException("Head verb cannot be a particle.");
             }
             if (modals != null)
             {
@@ -58,11 +59,11 @@ namespace BasicTypes.Collections
                 {
                     if (modal.Text != "pi" && Particle.NonContentParticles.Contains(modal.Text))
                     {
-                        throw new InvalidOperationException("Modals cannot be a particle.");
+                        throw new TpSyntaxException("Modals cannot be a particle.");
                     }
                     if (!Token.IsModal(modal))
                     {
-                        throw new InvalidOperationException("Modals must be one of these: " + string.Join(",", Token.Modals) + " but got " + modal);
+                        throw new TpSyntaxException("Modals must be one of these: " + string.Join(",", Token.Modals) + " but got " + modal);
                     }
                 }
             }
@@ -73,7 +74,7 @@ namespace BasicTypes.Collections
                 {
                     if (adverb.Text != "pi" && Particle.NonContentParticles.Contains(adverb.Text))
                     {
-                        throw new InvalidOperationException("Adverbs cannot be a particle. (maybe we have a nominal predicate here?)");
+                        throw new TpSyntaxException("Adverbs cannot be a particle. (maybe we have a nominal predicate here?)");
                     }
                 }
             }
