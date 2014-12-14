@@ -293,7 +293,7 @@ namespace BasicTypes
                 //Well, either parse it or throw. Otherwise, this gets skipped.
                 //is this legal?
                 conjunction = Particles.en;
-                sentence = sentence.Substring(4);
+                sentence = sentence.Substring(3);
             }
             else if (sentence.StartCheck("ante ")) //never seen it.
             {
