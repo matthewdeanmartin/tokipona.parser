@@ -17,5 +17,10 @@ namespace BasicTypes.Html
         {
                 return "<span class=\""+cssClass+"\">" + text + "</span>";
         }
+
+        public static string ReduceTags(string tag, string text)
+        {
+            return text.Replace("</" + tag + "> <" + tag + ">", " ");
+        }
     }
 }

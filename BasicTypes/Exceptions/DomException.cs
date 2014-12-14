@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace BasicTypes.Exceptions
 {
     [Serializable]
-    public class TpDomException : Exception
+    public class DomException : Exception
     {
         //
         // For guidelines regarding the creation of new exception types, see
@@ -17,19 +17,19 @@ namespace BasicTypes.Exceptions
         //    http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dncscol/html/csharp07192001.asp
         //
 
-        public TpDomException()
+        public DomException()
         {
         }
 
-        public TpDomException(string message) : base(message)
+        public DomException(string message) : base(message)
         {
         }
 
-        public TpDomException(string message, Exception inner) : base(message, inner)
+        public DomException(string message, Exception inner) : base(message, inner)
         {
         }
 
-        protected TpDomException(
+        protected DomException(
             SerializationInfo info,
             StreamingContext context) : base(info, context)
         {

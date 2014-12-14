@@ -87,7 +87,7 @@ namespace BasicTypes.Html
             {
                 sb.Append("</b>");
             }
-            return sb.ToString().Replace("</b> <b>", " ");
+            return HtmlTagHelper.ReduceTags("b",sb.ToString());
         }
 
         public string BoldTheWords2(string sentence)

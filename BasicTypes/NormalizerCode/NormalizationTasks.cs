@@ -10,8 +10,7 @@ using BasicTypes.Extensions;
 
 namespace BasicTypes.NormalizerCode
 {
-    
-    //Fix 1 issue per method.
+    //Fix 1 issue per method, not langauge specific, e.g. whitespace, punctuation, comments.
     public static class NormalizationTasks
     {
 
