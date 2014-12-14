@@ -18,15 +18,11 @@ namespace BasicTypes
     /// <summary>
     /// Turns a string into an object tree.
     /// </summary>
-    public class ParserUtils
-    {
-        private bool memoize = false;
+    public class ParserUtils:BaseParser
+    { 
         private readonly Dialect dialect;
-        private SentenceDiagnostics diagnostics;
-
-        public Dictionary<string, HeadedPhrase> headedPhraseParserMemo = new Dictionary<string, HeadedPhrase>();
-        public Dictionary<string, Chain> piChainMemo = new Dictionary<string, Chain>();
-
+     
+       
         public ParserUtils(Dialect dialect)
         {
             this.dialect = dialect;
@@ -36,6 +32,12 @@ namespace BasicTypes
         public Sentence ParsedSentenceFactory(string sentence, string original)
         {
             diagnostics = new SentenceDiagnostics(original, sentence);
+            
+            if (String.IsNullOrWhiteSpace(sentence))
+            {
+                return new Sentence(new NullOrSymbols(original), diagnostics);
+                //  throw new TpParseException("Do not give me a null sentence. Can't tell if null sentence is from input or got lost in translation");
+            }
 
             //This may have already been done by the normalizer, but if not, no problem.
             if (sentence.Contains(" li pi "))
@@ -44,11 +46,7 @@ namespace BasicTypes
             }
             ParserUtils.ThrowOnDoubleParticles(sentence, dialect);
 
-            if (String.IsNullOrWhiteSpace(sentence))
-            {
-                return new Sentence(new NullOrSymbols(original), diagnostics);
-                //  throw new TpParseException("Do not give me a null sentence. Can't tell if null sentence is from input or got lost in translation");
-            }
+           
 
             if (sentence.StartCheck(" "))
             {
@@ -402,13 +400,6 @@ namespace BasicTypes
 
                 verbPhrases.Add(ProcessPredicates(predicate));
             }
-
-
-            //if (punctuation == null)
-            //{
-            //    //Condition
-            //    return new Sentence(subjectChain, verbPhrases);
-            //}
 
             //Head or complete sentence.
 

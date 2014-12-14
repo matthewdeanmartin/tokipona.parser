@@ -88,12 +88,7 @@ namespace BasicTypes.Lorem
                 {1,10},
                 {2,5}
             };
-            int last = 0;
-            foreach (int key in odds.Keys.Select(x => x).ToArray())
-            {
-                odds[key] = odds[key] + last;
-                last = odds[key];
-            }
+            ConvertToCummulative(odds);
             int dice = random.Next(0, 101);
             WordSet ws = new WordSet();
             if (dice < 25)
@@ -256,12 +251,7 @@ namespace BasicTypes.Lorem
                 {3,0},
                 {4,0},
             };
-            int last = 0;
-            foreach (int key in odds.Keys.Select(x => x).ToArray())
-            {
-                odds[key] = odds[key] + last;
-                last = odds[key];
-            }
+            ConvertToCummulative(odds);
             int dice = random.Next(0, 101);
             var howMany = odds.Where(x => dice <= x.Value).Select(x => x.Key).First();
 
@@ -286,12 +276,8 @@ namespace BasicTypes.Lorem
                 {3,6},
                 {4,0},
             };
-            int last = 0;
-            foreach (int key in odds.Keys.Select(x => x).ToArray())
-            {
-                odds[key] = odds[key] + last;
-                last = odds[key];
-            }
+            
+            ConvertToCummulative(odds);
 
             int dice = random.Next(0, 101);
             var howMany = odds.Where(x => dice <= x.Value).Select(x => x.Key).First();
@@ -307,6 +293,16 @@ namespace BasicTypes.Lorem
             return ws;
         }
 
+        private static void ConvertToCummulative(Dictionary<int, int> odds)
+        {
+            int last = 0;
+            foreach (int key in odds.Keys.Select(x => x).ToArray())
+            {
+                odds[key] = odds[key] + last;
+                last = odds[key];
+            }
+        }
+
         public PrepositionalPhrase[] RandomPrepChain()
         {
             Dictionary<int, int> odds = new Dictionary<int, int>
@@ -317,12 +313,7 @@ namespace BasicTypes.Lorem
                 {4,5},
                 {5,1},
             };
-            int last = 0;
-            foreach (int key in odds.Keys.Select(x => x).ToArray())
-            {
-                odds[key] = odds[key] + last;
-                last = odds[key];
-            }
+            ConvertToCummulative(odds);
 
             int dice = random.Next(0, 101);
             var howMany = odds.Where(x => dice <= x.Value).Select(x => x.Key).First();
@@ -349,12 +340,7 @@ namespace BasicTypes.Lorem
                 {4,5},
                 {5,1},
             };
-            int last = 0;
-            foreach (int key in odds.Keys.Select(x => x).ToArray())
-            {
-                odds[key] = odds[key] + last;
-                last = odds[key];
-            }
+            ConvertToCummulative(odds);
 
             int dice = random.Next(0, 101);
             var howMany = odds.Where(x => dice <= x.Value).Select(x => x.Key).First();

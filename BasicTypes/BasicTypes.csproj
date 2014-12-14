@@ -71,8 +71,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseDialect.cs" />
+    <Compile Include="Esperanto\Dictionary\RootDictionary.cs" />
+    <Compile Include="Esperanto\Tokens\EoRoot.cs" />
     <Compile Include="Extensions\IDisposableExtensions.cs" />
     <Compile Include="FileProcessing\ExcelReader.cs" />
+    <Compile Include="Parser\BaseParser.cs" />
+    <Compile Include="Parts\PureToken.cs" />
     <Compile Include="Tp\CollectionsDegenerate\Counting.cs" />
     <Compile Include="Tp\CollectionsDegenerate\Exclamation.cs" />
     <Compile Include="Tp\CollectionsDegenerate\NullOrSymbols.cs" />
