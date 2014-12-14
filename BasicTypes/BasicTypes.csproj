@@ -136,7 +136,11 @@
     <Compile Include="Dictionary\DictionaryTests.cs" />
     <Compile Include="Dictionary\ExtractNewLexemes.cs" />
     <Compile Include="Dictionary\Semantics.cs" />
+    <Compile Include="English\Collections\EnSentence.cs" />
     <Compile Include="English\DetectEnglishTests.cs" />
+    <Compile Include="English\Tokens\EnToken.cs" />
+    <Compile Include="Esperanto\Collections\EoSentence.cs" />
+    <Compile Include="Esperanto\Tokens\EoToken.cs" />
     <Compile Include="Exceptions\TpDomException.cs" />
     <Compile Include="Exceptions\SyntaxErrors.cs" />
     <Compile Include="Extensions\BinaryFormatterCopier.cs" />
@@ -762,6 +766,8 @@
   <ItemGroup>
     <Folder Include="Corpus\Traslations of JanPije%27s Lessons\" />
     <Folder Include="Corpus\YahooMailingList\AJK\" />
+    <Folder Include="English\LoremIpsum\" />
+    <Folder Include="Esperanto\LoremIpsum\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TokiPonaApi.SharedTypes\TokiPonaApi.SharedTypes.csproj">

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BasicTypes.Persist
+namespace BasicTypes.English.Tokens
 {
-    //EF muck.
-    public class SnippetCrudHelper
+    //Not trying to model all the details of real English!
+    public class EnToken
     {
     }
 }

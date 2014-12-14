@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace BasicTypes.Persist
 {
-    class Snippet
+    public class Snippet
     {
+        public Guid SnippetId { get; set; }
+        public Guid UserId { get; set; }
+        public string Original { get; set; }
+        public string[] Drafts { get; set; }
+        public string DateTime { get; set; }
     }
 }
