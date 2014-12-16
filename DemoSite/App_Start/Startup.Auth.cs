@@ -15,10 +15,18 @@ namespace DemoSite
         private static readonly string TwitterConsumerKey;
         private static readonly string TwitterConsumerSecret;
 
+        private static readonly bool TwitterActive;
         static Startup()
         {
-            TwitterConsumerKey=File.ReadAllText(@"C:\Config\TwitterConsumerKey.txt").TrimEnd(new char[]{' ','\n'});
-            TwitterConsumerSecret= File.ReadAllText(@"C:\Config\TwitterConsumerSecret.txt").TrimEnd(new char[] { ' ', '\n' });
+            //These files will never be checked into source control.
+            TwitterActive = File.Exists(@"C:\Config\TwitterConsumerKey.txt");
+            if (TwitterActive)
+            {
+                //Poor man's .ini file(s).
+                TwitterConsumerKey = File.ReadAllText(@"C:\Config\TwitterConsumerKey.txt").TrimEnd(new[] { ' ', '\n' });
+                TwitterConsumerSecret = File.ReadAllText(@"C:\Config\TwitterConsumerSecret.txt").TrimEnd(new[] { ' ', '\n' });
+            }
+
         }
 
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
@@ -44,7 +52,7 @@ namespace DemoSite
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
-            });            
+            });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.
@@ -60,9 +68,13 @@ namespace DemoSite
             //    clientId: "",
             //    clientSecret: "");
 
-            app.UseTwitterAuthentication(
+            if (TwitterActive)
+            {
+                app.UseTwitterAuthentication(
                consumerKey: TwitterConsumerKey,
                consumerSecret: TwitterConsumerSecret);
+            }
+
 
             //app.UseFacebookAuthentication(
             //   appId: "",

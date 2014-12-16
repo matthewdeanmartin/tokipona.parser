@@ -1,0 +1,7 @@
+﻿<browsers>
+    <browser refID="Safari1Plus">
+        <capabilities>
+            <capability name="supportsMaintainScrollPositionOnPostback" value="true" />
+        </capabilities>
+    </browser>
+</browsers>

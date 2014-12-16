@@ -1,0 +1,134 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Basic.master.cs" Inherits="TokiPona.Basic" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server" id="headPart">
+    <title></title>
+     <!--<link rel="Stylesheet" href="style.css" type="text/css"/>-->
+     <link rel="Stylesheet" href="css/reset.css" type="text/css"/>
+     <link rel="Stylesheet" href="css/typography.css" type="text/css"/>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-2215093-3']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+<!--
+<script src="http://ajax.microsoft.com/ajax/jquery/jquery-1.3.2.min.js" type="text/javascript"></script>  -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div style="margin-right:3%;margin-left:3%">
+    
+    
+    <table>
+    <tr>
+    <td width="15%" valign="top">
+    Corpus Tools:
+    <ul>
+        <li><a href="http://tokipona.net/parser/"><b>Word Processor</b></a> </li>
+    <li><a href="Default.aspx">Web Search</a> </li>
+    <li><a href="CorpusSearch.aspx" title="The corpus is a set of documents that is entirely written in toki pona and represenative of everything ever written in toki pona.">Corpus Search</a> </li>
+    
+        <li><a href="Gloss.aspx">Glossing</a> </li>
+        <li><a href="LoremIpsum.aspx">Lorem Ipsum</a> </li>
+        
+        <li><a href= "ReadabilityStatistics.aspx">Calc. Scores </a>/<a href= "CorpusReadability.aspx"> Corpus Scores </a></li>
+     </ul>
+     </td>
+     <td width="15%" valign="top">
+     Way To Write : 
+     <ul>
+        <li><a href="Compress.aspx">Compress/ Decompress</a></li>   
+        <li><a href="Runes.aspx">Runes</a> </li>
+        <li><a href= "SitelenSuwi.aspx"> Hieroglyphs </a></li>
+        <li><a href= "Tengwar.aspx"> Tengwar </a></li>
+        <li><a href= "DisplayText.aspx"> Colorize </a></li>
+        </ul>
+        </td>
+     <td width="20%" valign="top">
+        Word Tools:
+         <ul>
+         <li><a href="ClassicWordList.aspx"><b>Word List (Improved!)</b></a></li>
+  <li><a href="ReadingHelper.aspx">Reading Helper</a></li>
+         <li><a href="Relex.aspx">Relex</a> </li>
+        <li><a href="MinimalPairs.aspx">Min Pairs/Rhyming</a> </li>
+        <li><a href="Numbers.aspx">Count</a></li>  
+        <li><a href="SpellWords.aspx">Spell</a> </li>
+        </ul>
+        </td>
+        <td>
+    <img src="img/Toki_pona.png" height="100px" alt="" /><br />
+    </td>
+     <td width="15%" valign="top">
+     Word Tools:
+         <ul>
+           <li><a href="Transliterate.aspx">Transliterate</a></li>
+         <li><a href="CussWords.aspx">Cuss</a> </li>
+         <li><a href="Mutate.aspx">Mutate</a> </li>
+         <li><a href="Logaphones.aspx">Logaphones</a> </li>
+           <li><a href="Sandhi.aspx">Sandhi</a> </li>
+           <li><a href="DomainNamesStatic.aspx">Domain Names</a> </li>
+  </ul>
+    </td>
+    <td width="15%" valign="top">
+    Chat : 
+    <ul>
+    <li><a href="ChatGuidelines.aspx">Guidelines</a></li>
+    <li><a href="Chat.aspx">IRC</a></li>
+   <li><a href="ChatSkype.aspx">Skype</a> </li>
+   <li><a href="ChatTwitter.aspx">Twitter Chat</a> </li>
+  </ul>
+
+    <td width="15%" valign="top">
+    External Resources : 
+    <ul>
+    <li><a href="Questions.aspx">Questions</a></li>
+  <li><a href="Twitter.Aspx">Microblogging for Tokipona</a></li>
+   <li><a href="Discussion.aspx">Discussion</a> </li>
+   <li><a href="Books.aspx">Books</a> </li>
+  </ul>
+  
+    </td>
+    </tr>
+    </table>
+    <div style="text-align:center">
+   
+    </div>
+    </div>
+        <asp:ContentPlaceHolder ID="cph" runat="server">
+        
+        </asp:ContentPlaceHolder>
+        <asp:ContentPlaceHolder ID="cphBody" runat="server">
+        
+        </asp:ContentPlaceHolder>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div style="text-align:center;font-size:small">This is a fan site. The creator of toki pona is <a href="http://tokipona.org">jan Sonja</a>, which isn't me. All Content create by me is Creative Commons, by Attribution. Feel free to make derivatives to the extent you can or want to.  The toki pona corpus texts come from a variety of locations and I believe its usage is acceptable, noncommercial fair use. If you don't think so, email me tokipona@suburbandestiny.com and tell me what document is yours and I will remove it.<br/>
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
+        
+        </div>
+    </form>
+<%if(!Request.Url.Host.Contains("localhost"))
+{%><script type="text/javascript">
+        Meebo('domReady');
+</script><%}%>
+</body>
+</html>

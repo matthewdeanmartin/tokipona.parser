@@ -1,0 +1,6 @@
+﻿
+- Corpus file picker- extend to all tools
+- Numbers- extend to support other proposed systems
+- Readability stats - distinguish between poetry and other.
+
+- Corpus - 2 versions? fixed and not fixed

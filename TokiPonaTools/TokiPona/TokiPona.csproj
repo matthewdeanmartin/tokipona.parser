@@ -1,0 +1,810 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BB9D6536-C360-492D-A4EC-55699A393599}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TokiPona</RootNamespace>
+    <AssemblyName>TokiPona</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkProfile />
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DataVisualization" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Applied.aspx" />
+    <Content Include="browser.txt" />
+    <Content Include="Census.aspx" />
+    <Content Include="Chat.aspx" />
+    <Content Include="ChatGuidelines.aspx" />
+    <Content Include="ChatSkype.aspx" />
+    <Content Include="ChatTwitter.aspx" />
+    <Content Include="CorpusSearch.aspx" />
+    <Content Include="corpus\forums\jan Ape\%28c%29 Anima Libera song.txt" />
+    <Content Include="corpus\forums\jan Josan\%28C%29 MustaKrakish.txt" />
+    <Content Include="corpus\forums\jan Josan\%28c%29 toki pi kalama pona suli.txt" />
+    <Content Include="corpus\forums\jan Josan\Chinese Encylopedia.txt" />
+    <Content Include="corpus\forums\jan Josan\Sales announcement.txt" />
+    <Content Include="corpus\forums\jan Josan\Sales Contract Draft.txt" />
+    <Content Include="corpus\forums\jan Josan\toki Bo li moli - dialog.txt" />
+    <Content Include="corpus\forums\jan Kanso\afganistan abiguity.txt" />
+    <Content Include="corpus\forums\jan Kanso\nena seli pi ma Isilan - jan Kanso and akidave.txt" />
+    <Content Include="corpus\forums\jan Kipo\%28c%29 Anima Libera  song.txt" />
+    <Content Include="corpus\forums\jan Kipo\just joking.txt" />
+    <Content Include="corpus\forums\jan Kipo\Where do you use tp.txt" />
+    <Content Include="corpus\forums\jan Kipo\Why I study tp.txt" />
+    <Content Include="corpus\forums\jan Lipakek\First Writings.txt" />
+    <Content Include="corpus\forums\jan Lipakek\ma Sumava draft 1.txt" />
+    <Content Include="corpus\forums\jan Loewe\Laozi.txt" />
+    <Content Include="corpus\forums\jan Loliko\sin pi toki nanpa tan jan Sonja.txt" />
+    <Content Include="corpus\forums\jan Mato\%28b%29 where is pig %28pearls before swine%29.txt" />
+    <Content Include="corpus\forums\jan Mato\%28c%29 Anima Libre.txt" />
+    <Content Include="corpus\forums\jan Mato\%28c%29 Cider.txt" />
+    <Content Include="corpus\forums\jan Mato\%28c%29 Dilbert.txt" />
+    <Content Include="corpus\forums\jan Mato\%28c%29 Eight States Away.txt" />
+    <Content Include="corpus\forums\jan Mato\%28c%29 I Scintilla Bells.txt" />
+    <Content Include="corpus\forums\jan Mato\%28c%29 Ikea- Jonathan Coulton.txt" />
+    <Content Include="corpus\forums\jan Mato\%28c%29 Monkey vs Robot.txt" />
+    <Content Include="corpus\forums\jan Mato\%28C%29 Sinfest.txt" />
+    <Content Include="corpus\forums\jan Mato\%28C%29 Stulkan sem starir a hafid.txt" />
+    <Content Include="corpus\forums\jan Mato\%28C%29 Tatu Robot.txt" />
+    <Content Include="corpus\forums\jan Mato\%28C%29 Texas Girl at funeral of father- Randy Newman.txt" />
+    <Content Include="corpus\forums\jan Mato\%28c%29 Thank God Im pretty.txt" />
+    <Content Include="corpus\forums\jan Mato\%28c%29 Zompist.txt" />
+    <Content Include="corpus\forums\jan Mato\afganistan ambiguity.txt" />
+    <Content Include="corpus\forums\jan Mato\Ardipithecus.txt" />
+    <Content Include="corpus\forums\jan Mato\Autobio.txt" />
+    <Content Include="corpus\forums\jan Mato\Babel Text.txt" />
+    <Content Include="corpus\forums\jan Mato\Chen Sheng and Wu Guang.txt" />
+    <Content Include="corpus\forums\jan Mato\Chinese Encylopedia.txt" />
+    <Content Include="corpus\forums\jan Mato\Conf. Announcement.txt" />
+    <Content Include="corpus\forums\jan Mato\Corvus Corax Fate.txt" />
+    <Content Include="corpus\forums\jan Mato\Estonia.txt" />
+    <Content Include="corpus\forums\jan Mato\Esun- sina wile e ilo nasa tawa palisa pi pali ala.txt" />
+    <Content Include="corpus\forums\jan Mato\Fedex Neanderthals.txt" />
+    <Content Include="corpus\forums\jan Mato\Greater Harmonies.txt" />
+    <Content Include="corpus\forums\jan Mato\King Hattusili I Last Words.txt" />
+    <Content Include="corpus\forums\jan Mato\Krummi.txt" />
+    <Content Include="corpus\forums\jan Mato\Mocha coffee recipe.txt" />
+    <Content Include="corpus\forums\jan Mato\Msg to Jan Josan about sale.txt" />
+    <Content Include="corpus\forums\jan Mato\old man of toki pona.txt" />
+    <Content Include="corpus\forums\jan Mato\opening words of greek stuff.txt" />
+    <Content Include="corpus\forums\jan Mato\pilin pi toki sin ala_needs corrections.txt" />
+    <Content Include="corpus\forums\jan Mato\polyglot vows.txt" />
+    <Content Include="corpus\forums\jan Mato\Primate Food.txt" />
+    <Content Include="corpus\forums\jan Mato\shiritori.txt" />
+    <Content Include="corpus\forums\jan Mato\sike waso- joke.txt" />
+    <Content Include="corpus\forums\jan Mato\Simplicity Quotes.txt" />
+    <Content Include="corpus\forums\jan Mato\sona pi pali moku.txt" />
+    <Content Include="corpus\forums\jan Mato\The Language Damin.txt" />
+    <Content Include="corpus\forums\jan Mato\This is spam.txt" />
+    <Content Include="corpus\forums\jan Mato\Translation of Raspakants msg.txt" />
+    <Content Include="corpus\forums\jan Mato\Troll.txt" />
+    <Content Include="corpus\forums\jan Mato\VOA Space Shuttle.txt" />
+    <Content Include="corpus\forums\jan Nasakan\introduction.txt" />
+    <Content Include="corpus\forums\jan Negative Clock\olin suli.txt" />
+    <Content Include="corpus\forums\jan Niko\introduction.txt" />
+    <Content Include="corpus\forums\jan Ote\baranek.txt" />
+    <Content Include="corpus\forums\jan Ote\dialog about spammer.txt" />
+    <Content Include="corpus\forums\jan Ote\Estonia.txt" />
+    <Content Include="corpus\forums\jan Ote\kala ma- dialog.txt" />
+    <Content Include="corpus\forums\jan Ote\news of new numbers Thu Oct 08, 2009.txt" />
+    <Content Include="corpus\forums\jan Ote\opening words of Ilijon.txt" />
+    <Content Include="corpus\forums\jan Ote\Question.txt" />
+    <Content Include="corpus\forums\jan Ote\sike waso.txt" />
+    <Content Include="corpus\forums\jan Ote\soltice.txt" />
+    <Content Include="corpus\forums\jan Pasi\simple songs plus response.txt" />
+    <Content Include="corpus\forums\jan Pusa\jan lili.txt" />
+    <Content Include="corpus\forums\jan Tokipona Dave\%28c%29 Texas Girl at Funeral of Father Randy NewMan.txt" />
+    <Content Include="corpus\forums\jan Tokipona Dave\Davids House.txt" />
+    <Content Include="corpus\forums\jan Tokipona Dave\drinking water.txt" />
+    <Content Include="corpus\forums\jan Tokipona Dave\figure skating.txt" />
+    <Content Include="corpus\forums\jan Tokipona Dave\garden.txt" />
+    <Content Include="corpus\forums\jan Tokipona Dave\Ground Hog Day.txt" />
+    <Content Include="corpus\forums\jan Tokipona Dave\Halloween.txt" />
+    <Content Include="corpus\forums\jan Tokipona Dave\Lukes Nativity Narative.txt" />
+    <Content Include="corpus\forums\jan Tokipona Dave\mouse.txt" />
+    <Content Include="corpus\forums\jan Tokipona Dave\New Car.txt" />
+    <Content Include="corpus\forums\jan Wiko\introduction.txt" />
+    <Content Include="corpus\forums\jan Zeme\Estonia_ beginners text has errors.txt" />
+    <Content Include="corpus\jan Mika\soweli nasa - pipi pi moli luka.txt" />
+    <Content Include="corpus\jan Mika\soweli nasa - soweli pi uta waso.txt" />
+    <Content Include="corpus\jan Mika\soweli nasa - waso soweli.txt" />
+    <Content Include="corpus\jan Mika\toki suli pi pilin pona.txt" />
+    <Content Include="corpus\jan Ote\advanced- jan Kikamesi- jan Enkitu li kama.txt" />
+    <Content Include="corpus\jan Ote\advanced- jan Kikamesi. utala pi jan Kuwawa.txt" />
+    <Content Include="corpus\jan Ote\easy  - soweli suli li lape mute.txt" />
+    <Content Include="corpus\jan Ote\easy - pipi musi en pipi pali.txt" />
+    <Content Include="corpus\jan Ote\easy - soweli en kili.txt" />
+    <Content Include="corpus\jan Ote\easy- jan ante toki suli Intenasijonale.txt" />
+    <Content Include="corpus\jan Ote\easy- meli anu mjje.txt" />
+    <Content Include="corpus\jan Ote\easy- sike wan orig Jan Pije %28fair use%29.txt" />
+    <Content Include="corpus\jan Ote\intermediate- ma tomo Pape %28Babel%29.txt" />
+    <Content Include="corpus\jan Ote\jan Eloto - pipi pali en kiwen suno.txt" />
+    <Content Include="corpus\jan Ote\ma Alansi.txt" />
+    <Content Include="corpus\jan Ote\meli pona %28jan Pije%29.txt" />
+    <Content Include="corpus\jan Ote\mi tawa weka  %28aztec poem%29.txt" />
+    <Content Include="corpus\jan Ote\soweli nasa- kala akesi kiwen pi nimi Limulu.txt" />
+    <Content Include="corpus\jan Ote\soweli nasa- soweli pi poki sinpin.txt" />
+    <Content Include="corpus\jan Ote\soweli nasa- waso pi noka laso.txt" />
+    <Content Include="corpus\jan Ote\tan jan Eloto. jan pi ma seme --.txt" />
+    <Content Include="corpus\jan Sonja\Indigenous Quotes.txt" />
+    <Content Include="corpus\jan Sonja\Proverbs %28sonja%29.txt" />
+    <Content Include="corpus\jan Sonja\Teenage Poetry.txt" />
+    <Content Include="CorpusReadability.aspx" />
+    <Content Include="css\reset.css" />
+    <Content Include="css\typography.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="DisplayText.aspx" />
+    <Content Include="DomainNames.aspx" />
+    <Content Include="DomainNamesStatic.aspx" />
+    <Content Include="img\Toki_pona.png" />
+    <Content Include="js\addons\pager\jquery.tablesorter.pager.css" />
+    <Content Include="js\addons\pager\jquery.tablesorter.pager.js" />
+    <Content Include="js\build.xml" />
+    <Content Include="js\jquery-latest.js" />
+    <Content Include="js\jquery.metadata.js" />
+    <Content Include="js\jquery.tablesorter.js" />
+    <Content Include="js\jquery.tablesorter.min.js" />
+    <Content Include="js\tests\assets\ajax-content.html" />
+    <Content Include="js\tests\cell.metadata.html" />
+    <Content Include="js\tests\checkbox.html" />
+    <Content Include="js\tests\colspan.html" />
+    <Content Include="js\tests\demo.html" />
+    <Content Include="js\tests\index.html" />
+    <Content Include="js\tests\large.html" />
+    <Content Include="js\tests\lockedOrder.html" />
+    <Content Include="js\tests\metadata.html" />
+    <Content Include="js\tests\multiple-headers.html" />
+    <Content Include="js\tests\pager.html" />
+    <Content Include="js\themes\blue\asc.gif" />
+    <Content Include="js\themes\blue\bg.gif" />
+    <Content Include="js\themes\blue\desc.gif" />
+    <Content Include="js\themes\blue\style.css" />
+    <Content Include="js\themes\green\asc.png" />
+    <Content Include="js\themes\green\bg.png" />
+    <Content Include="js\themes\green\desc.png" />
+    <Content Include="js\themes\green\style.css" />
+    <Content Include="NumbersAnyBase.aspx" />
+    <Content Include="ReadingHelper.aspx" />
+    <Content Include="Spells.aspx" />
+    <Content Include="style.css" />
+    <Content Include="TODO.txt" />
+    <Content Include="Transliterate.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Applied.aspx.cs">
+      <DependentUpon>Applied.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Applied.aspx.designer.cs">
+      <DependentUpon>Applied.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Basic.Master.cs">
+      <DependentUpon>Basic.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Basic.Master.designer.cs">
+      <DependentUpon>Basic.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Books.aspx.cs">
+      <DependentUpon>Books.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Books.aspx.designer.cs">
+      <DependentUpon>Books.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Census.aspx.cs">
+      <DependentUpon>Census.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Census.aspx.designer.cs">
+      <DependentUpon>Census.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Chat.aspx.cs">
+      <DependentUpon>Chat.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Chat.aspx.designer.cs">
+      <DependentUpon>Chat.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChatGuidelines.aspx.cs">
+      <DependentUpon>ChatGuidelines.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChatGuidelines.aspx.designer.cs">
+      <DependentUpon>ChatGuidelines.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChatSkype.aspx.cs">
+      <DependentUpon>ChatSkype.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChatSkype.aspx.designer.cs">
+      <DependentUpon>ChatSkype.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChatTwitter.aspx.cs">
+      <DependentUpon>ChatTwitter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChatTwitter.aspx.designer.cs">
+      <DependentUpon>ChatTwitter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ClassicWordList.aspx.cs">
+      <DependentUpon>ClassicWordList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClassicWordList.aspx.designer.cs">
+      <DependentUpon>ClassicWordList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Compress.aspx.cs">
+      <DependentUpon>Compress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Compress.aspx.designer.cs">
+      <DependentUpon>Compress.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CorpusSearch.aspx.cs">
+      <DependentUpon>CorpusSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CorpusSearch.aspx.designer.cs">
+      <DependentUpon>CorpusSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CorpusReadability.aspx.cs">
+      <DependentUpon>CorpusReadability.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CorpusReadability.aspx.designer.cs">
+      <DependentUpon>CorpusReadability.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DisplayText.aspx.cs">
+      <DependentUpon>DisplayText.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DisplayText.aspx.designer.cs">
+      <DependentUpon>DisplayText.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DomainNames.aspx.cs">
+      <DependentUpon>DomainNames.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DomainNames.aspx.designer.cs">
+      <DependentUpon>DomainNames.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DomainNamesStatic.aspx.cs">
+      <DependentUpon>DomainNamesStatic.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DomainNamesStatic.aspx.designer.cs">
+      <DependentUpon>DomainNamesStatic.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FlashCards.aspx.cs">
+      <DependentUpon>FlashCards.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FlashCards.aspx.designer.cs">
+      <DependentUpon>FlashCards.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gloss2.aspx.cs">
+      <DependentUpon>Gloss2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gloss2.aspx.designer.cs">
+      <DependentUpon>Gloss2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CussWords.aspx.cs">
+      <DependentUpon>CussWords.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CussWords.aspx.designer.cs">
+      <DependentUpon>CussWords.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Discussion.aspx.cs">
+      <DependentUpon>Discussion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Discussion.aspx.designer.cs">
+      <DependentUpon>Discussion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Gloss.aspx.cs">
+      <DependentUpon>Gloss.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Gloss.aspx.designer.cs">
+      <DependentUpon>Gloss.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GlossShowHtml.aspx.cs">
+      <DependentUpon>GlossShowHtml.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GlossShowHtml.aspx.designer.cs">
+      <DependentUpon>GlossShowHtml.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Logaphones.aspx.cs">
+      <DependentUpon>Logaphones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logaphones.aspx.designer.cs">
+      <DependentUpon>Logaphones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoremIpsum.aspx.cs">
+      <DependentUpon>LoremIpsum.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoremIpsum.aspx.designer.cs">
+      <DependentUpon>LoremIpsum.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MinimalPairs.aspx.cs">
+      <DependentUpon>MinimalPairs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MinimalPairs.aspx.designer.cs">
+      <DependentUpon>MinimalPairs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mutate.aspx.cs">
+      <DependentUpon>Mutate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mutate.aspx.designer.cs">
+      <DependentUpon>Mutate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Numbers.aspx.cs">
+      <DependentUpon>Numbers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Numbers.aspx.designer.cs">
+      <DependentUpon>Numbers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NumbersAnyBase.aspx.cs">
+      <DependentUpon>NumbersAnyBase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NumbersAnyBase.aspx.designer.cs">
+      <DependentUpon>NumbersAnyBase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Questions.aspx.cs">
+      <DependentUpon>Questions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Questions.aspx.designer.cs">
+      <DependentUpon>Questions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReadabilityStatistics.aspx.cs">
+      <DependentUpon>ReadabilityStatistics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReadabilityStatistics.aspx.designer.cs">
+      <DependentUpon>ReadabilityStatistics.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReadingHelper.aspx.cs">
+      <DependentUpon>ReadingHelper.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReadingHelper.aspx.designer.cs">
+      <DependentUpon>ReadingHelper.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Relex.aspx.cs">
+      <DependentUpon>Relex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Relex.aspx.designer.cs">
+      <DependentUpon>Relex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Runes.aspx.cs">
+      <DependentUpon>Runes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Runes.aspx.designer.cs">
+      <DependentUpon>Runes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sandhi.aspx.cs">
+      <DependentUpon>Sandhi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sandhi.aspx.designer.cs">
+      <DependentUpon>Sandhi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SitelenSuwi.aspx.cs">
+      <DependentUpon>SitelenSuwi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SitelenSuwi.aspx.designer.cs">
+      <DependentUpon>SitelenSuwi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Spells.aspx.cs">
+      <DependentUpon>Spells.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Spells.aspx.designer.cs">
+      <DependentUpon>Spells.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SpellWords.aspx.cs">
+      <DependentUpon>SpellWords.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SpellWords.aspx.designer.cs">
+      <DependentUpon>SpellWords.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tengwar.aspx.cs">
+      <DependentUpon>Tengwar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tengwar.aspx.designer.cs">
+      <DependentUpon>Tengwar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Translate.aspx.cs">
+      <DependentUpon>Translate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Translate.aspx.designer.cs">
+      <DependentUpon>Translate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transliterate.aspx.cs">
+      <DependentUpon>Transliterate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transliterate.aspx.designer.cs">
+      <DependentUpon>Transliterate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Twitter.aspx.cs">
+      <DependentUpon>Twitter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Twitter.aspx.designer.cs">
+      <DependentUpon>Twitter.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Basic.Master" />
+    <Content Include="Books.aspx" />
+    <Content Include="ClassicWordList.aspx" />
+    <Content Include="Compress.aspx" />
+    <Content Include="FlashCards.aspx" />
+    <Content Include="Gloss2.aspx" />
+    <Content Include="CussWords.aspx" />
+    <Content Include="Discussion.aspx" />
+    <Content Include="Gloss.aspx" />
+    <Content Include="GlossShowHtml.aspx" />
+    <Content Include="img\t47_kalalili_a.jpg" />
+    <Content Include="img\t47_kalalili_an.jpg" />
+    <Content Include="img\t47_kalalili_e.jpg" />
+    <Content Include="img\t47_kalalili_en.jpg" />
+    <Content Include="img\t47_kalalili_i.jpg" />
+    <Content Include="img\t47_kalalili_in.jpg" />
+    <Content Include="img\t47_kalalili_ja.jpg" />
+    <Content Include="img\t47_kalalili_jan.jpg" />
+    <Content Include="img\t47_kalalili_je.jpg" />
+    <Content Include="img\t47_kalalili_jen.jpg" />
+    <Content Include="img\t47_kalalili_jo.jpg" />
+    <Content Include="img\t47_kalalili_jon.jpg" />
+    <Content Include="img\t47_kalalili_ju.jpg" />
+    <Content Include="img\t47_kalalili_jun.jpg" />
+    <Content Include="img\t47_kalalili_ka.jpg" />
+    <Content Include="img\t47_kalalili_kan.jpg" />
+    <Content Include="img\t47_kalalili_ke.jpg" />
+    <Content Include="img\t47_kalalili_ken.jpg" />
+    <Content Include="img\t47_kalalili_ki.jpg" />
+    <Content Include="img\t47_kalalili_kin.jpg" />
+    <Content Include="img\t47_kalalili_ko.jpg" />
+    <Content Include="img\t47_kalalili_kon.jpg" />
+    <Content Include="img\t47_kalalili_ku.jpg" />
+    <Content Include="img\t47_kalalili_kun.jpg" />
+    <Content Include="img\t47_kalalili_la.jpg" />
+    <Content Include="img\t47_kalalili_lan.jpg" />
+    <Content Include="img\t47_kalalili_le.jpg" />
+    <Content Include="img\t47_kalalili_len.jpg" />
+    <Content Include="img\t47_kalalili_li.jpg" />
+    <Content Include="img\t47_kalalili_lin.jpg" />
+    <Content Include="img\t47_kalalili_lo.jpg" />
+    <Content Include="img\t47_kalalili_lon.jpg" />
+    <Content Include="img\t47_kalalili_lu.jpg" />
+    <Content Include="img\t47_kalalili_lun.jpg" />
+    <Content Include="img\t47_kalalili_ma.jpg" />
+    <Content Include="img\t47_kalalili_man.jpg" />
+    <Content Include="img\t47_kalalili_me.jpg" />
+    <Content Include="img\t47_kalalili_men.jpg" />
+    <Content Include="img\t47_kalalili_mi.jpg" />
+    <Content Include="img\t47_kalalili_min.jpg" />
+    <Content Include="img\t47_kalalili_mo.jpg" />
+    <Content Include="img\t47_kalalili_mon.jpg" />
+    <Content Include="img\t47_kalalili_mu.jpg" />
+    <Content Include="img\t47_kalalili_mun.jpg" />
+    <Content Include="img\t47_kalalili_na.jpg" />
+    <Content Include="img\t47_kalalili_ne.jpg" />
+    <Content Include="img\t47_kalalili_nen.jpg" />
+    <Content Include="img\t47_kalalili_ni.jpg" />
+    <Content Include="img\t47_kalalili_nin.jpg" />
+    <Content Include="img\t47_kalalili_no.jpg" />
+    <Content Include="img\t47_kalalili_non.jpg" />
+    <Content Include="img\t47_kalalili_nu.jpg" />
+    <Content Include="img\t47_kalalili_nun.jpg" />
+    <Content Include="img\t47_kalalili_o.jpg" />
+    <Content Include="img\t47_kalalili_on.jpg" />
+    <Content Include="img\t47_kalalili_pa.jpg" />
+    <Content Include="img\t47_kalalili_pan.jpg" />
+    <Content Include="img\t47_kalalili_pe.jpg" />
+    <Content Include="img\t47_kalalili_pen.jpg" />
+    <Content Include="img\t47_kalalili_pi.jpg" />
+    <Content Include="img\t47_kalalili_pin.jpg" />
+    <Content Include="img\t47_kalalili_po.jpg" />
+    <Content Include="img\t47_kalalili_pon.jpg" />
+    <Content Include="img\t47_kalalili_pu.jpg" />
+    <Content Include="img\t47_kalalili_pun.jpg" />
+    <Content Include="img\t47_kalalili_sa.jpg" />
+    <Content Include="img\t47_kalalili_san.jpg" />
+    <Content Include="img\t47_kalalili_se.jpg" />
+    <Content Include="img\t47_kalalili_sen.jpg" />
+    <Content Include="img\t47_kalalili_si.jpg" />
+    <Content Include="img\t47_kalalili_sin.jpg" />
+    <Content Include="img\t47_kalalili_so.jpg" />
+    <Content Include="img\t47_kalalili_son.jpg" />
+    <Content Include="img\t47_kalalili_su.jpg" />
+    <Content Include="img\t47_kalalili_sun.jpg" />
+    <Content Include="img\t47_kalalili_ta.jpg" />
+    <Content Include="img\t47_kalalili_tan.jpg" />
+    <Content Include="img\t47_kalalili_te.jpg" />
+    <Content Include="img\t47_kalalili_ten.jpg" />
+    <Content Include="img\t47_kalalili_to.jpg" />
+    <Content Include="img\t47_kalalili_ton.jpg" />
+    <Content Include="img\t47_kalalili_tu.jpg" />
+    <Content Include="img\t47_kalalili_tun.jpg" />
+    <Content Include="img\t47_kalalili_u.jpg" />
+    <Content Include="img\t47_kalalili_un.jpg" />
+    <Content Include="img\t47_kalalili_wa.jpg" />
+    <Content Include="img\t47_kalalili_wan.jpg" />
+    <Content Include="img\t47_kalalili_we.jpg" />
+    <Content Include="img\t47_kalalili_wen.jpg" />
+    <Content Include="img\t47_kalalili_wi.jpg" />
+    <Content Include="img\t47_kalalili_win.jpg" />
+    <Content Include="img\t47_nimi_a.jpg" />
+    <Content Include="img\t47_nimi_akesi.jpg" />
+    <Content Include="img\t47_nimi_ala.jpg" />
+    <Content Include="img\t47_nimi_ale.jpg" />
+    <Content Include="img\t47_nimi_anpa.jpg" />
+    <Content Include="img\t47_nimi_ante.jpg" />
+    <Content Include="img\t47_nimi_anu.jpg" />
+    <Content Include="img\t47_nimi_awen.jpg" />
+    <Content Include="img\t47_nimi_e.jpg" />
+    <Content Include="img\t47_nimi_en.jpg" />
+    <Content Include="img\t47_nimi_esun.jpg" />
+    <Content Include="img\t47_nimi_ijo.jpg" />
+    <Content Include="img\t47_nimi_ike.jpg" />
+    <Content Include="img\t47_nimi_ilo.jpg" />
+    <Content Include="img\t47_nimi_insa.jpg" />
+    <Content Include="img\t47_nimi_jaki.jpg" />
+    <Content Include="img\t47_nimi_jan.jpg" />
+    <Content Include="img\t47_nimi_jelo.jpg" />
+    <Content Include="img\t47_nimi_jo.jpg" />
+    <Content Include="img\t47_nimi_kala.jpg" />
+    <Content Include="img\t47_nimi_kalama.jpg" />
+    <Content Include="img\t47_nimi_kama.jpg" />
+    <Content Include="img\t47_nimi_kasi.jpg" />
+    <Content Include="img\t47_nimi_ken.jpg" />
+    <Content Include="img\t47_nimi_kepeken.jpg" />
+    <Content Include="img\t47_nimi_kili.jpg" />
+    <Content Include="img\t47_nimi_kin.jpg" />
+    <Content Include="img\t47_nimi_kiwen.jpg" />
+    <Content Include="img\t47_nimi_ko.jpg" />
+    <Content Include="img\t47_nimi_kon.jpg" />
+    <Content Include="img\t47_nimi_kule.jpg" />
+    <Content Include="img\t47_nimi_kulupu.jpg" />
+    <Content Include="img\t47_nimi_kute.jpg" />
+    <Content Include="img\t47_nimi_la.jpg" />
+    <Content Include="img\t47_nimi_lape.jpg" />
+    <Content Include="img\t47_nimi_laso.jpg" />
+    <Content Include="img\t47_nimi_lawa.jpg" />
+    <Content Include="img\t47_nimi_len.jpg" />
+    <Content Include="img\t47_nimi_lete.jpg" />
+    <Content Include="img\t47_nimi_li.jpg" />
+    <Content Include="img\t47_nimi_lili.jpg" />
+    <Content Include="img\t47_nimi_linja.jpg" />
+    <Content Include="img\t47_nimi_lipu.jpg" />
+    <Content Include="img\t47_nimi_loje.jpg" />
+    <Content Include="img\t47_nimi_lon.jpg" />
+    <Content Include="img\t47_nimi_luka.jpg" />
+    <Content Include="img\t47_nimi_lukin.jpg" />
+    <Content Include="img\t47_nimi_lupa.jpg" />
+    <Content Include="img\t47_nimi_ma.jpg" />
+    <Content Include="img\t47_nimi_mama.jpg" />
+    <Content Include="img\t47_nimi_mani.jpg" />
+    <Content Include="img\t47_nimi_meli.jpg" />
+    <Content Include="img\t47_nimi_mi.jpg" />
+    <Content Include="img\t47_nimi_mije.jpg" />
+    <Content Include="img\t47_nimi_moku.jpg" />
+    <Content Include="img\t47_nimi_moli.jpg" />
+    <Content Include="img\t47_nimi_monsi.jpg" />
+    <Content Include="img\t47_nimi_mu.jpg" />
+    <Content Include="img\t47_nimi_mun.jpg" />
+    <Content Include="img\t47_nimi_musi.jpg" />
+    <Content Include="img\t47_nimi_mute.jpg" />
+    <Content Include="img\t47_nimi_nanpa.jpg" />
+    <Content Include="img\t47_nimi_nasa.jpg" />
+    <Content Include="img\t47_nimi_nasin.jpg" />
+    <Content Include="img\t47_nimi_nena.jpg" />
+    <Content Include="img\t47_nimi_ni.jpg" />
+    <Content Include="img\t47_nimi_nimi.jpg" />
+    <Content Include="img\t47_nimi_noka.jpg" />
+    <Content Include="img\t47_nimi_o.jpg" />
+    <Content Include="img\t47_nimi_oko.jpg" />
+    <Content Include="img\t47_nimi_olin.jpg" />
+    <Content Include="img\t47_nimi_ona.jpg" />
+    <Content Include="img\t47_nimi_open.jpg" />
+    <Content Include="img\t47_nimi_pakala.jpg" />
+    <Content Include="img\t47_nimi_pali.jpg" />
+    <Content Include="img\t47_nimi_palisa.jpg" />
+    <Content Include="img\t47_nimi_pan.jpg" />
+    <Content Include="img\t47_nimi_pana.jpg" />
+    <Content Include="img\t47_nimi_pi.jpg" />
+    <Content Include="img\t47_nimi_pilin.jpg" />
+    <Content Include="img\t47_nimi_pimeja.jpg" />
+    <Content Include="img\t47_nimi_pini.jpg" />
+    <Content Include="img\t47_nimi_pipi.jpg" />
+    <Content Include="img\t47_nimi_poka.jpg" />
+    <Content Include="img\t47_nimi_poki.jpg" />
+    <Content Include="img\t47_nimi_pona.jpg" />
+    <Content Include="img\t47_nimi_sama.jpg" />
+    <Content Include="img\t47_nimi_seli.jpg" />
+    <Content Include="img\t47_nimi_selo.jpg" />
+    <Content Include="img\t47_nimi_seme.jpg" />
+    <Content Include="img\t47_nimi_sewi.jpg" />
+    <Content Include="img\t47_nimi_sijelo.jpg" />
+    <Content Include="img\t47_nimi_sike.jpg" />
+    <Content Include="img\t47_nimi_sin.jpg" />
+    <Content Include="img\t47_nimi_sina.jpg" />
+    <Content Include="img\t47_nimi_sinpin.jpg" />
+    <Content Include="img\t47_nimi_sitelen.jpg" />
+    <Content Include="img\t47_nimi_sona.jpg" />
+    <Content Include="img\t47_nimi_soweli.jpg" />
+    <Content Include="img\t47_nimi_suli.jpg" />
+    <Content Include="img\t47_nimi_suno.jpg" />
+    <Content Include="img\t47_nimi_supa.jpg" />
+    <Content Include="img\t47_nimi_suwi.jpg" />
+    <Content Include="img\t47_nimi_tan.jpg" />
+    <Content Include="img\t47_nimi_taso.jpg" />
+    <Content Include="img\t47_nimi_tawa.jpg" />
+    <Content Include="img\t47_nimi_telo.jpg" />
+    <Content Include="img\t47_nimi_tenpo.jpg" />
+    <Content Include="img\t47_nimi_toki.jpg" />
+    <Content Include="img\t47_nimi_tomo.jpg" />
+    <Content Include="img\t47_nimi_tu.jpg" />
+    <Content Include="img\t47_nimi_unpa.jpg" />
+    <Content Include="img\t47_nimi_uta.jpg" />
+    <Content Include="img\t47_nimi_utala.jpg" />
+    <Content Include="img\t47_nimi_walo.jpg" />
+    <Content Include="img\t47_nimi_wan.jpg" />
+    <Content Include="img\t47_nimi_waso.jpg" />
+    <Content Include="img\t47_nimi_wawa.jpg" />
+    <Content Include="img\t47_nimi_weka.jpg" />
+    <Content Include="img\t47_nimi_wile.jpg" />
+    <Content Include="Logaphones.aspx" />
+    <Content Include="LoremIpsum.aspx" />
+    <Content Include="MinimalPairs.aspx" />
+    <Content Include="Mutate.aspx" />
+    <Content Include="Numbers.aspx" />
+    <Content Include="Questions.aspx" />
+    <Content Include="ReadabilityStatistics.aspx" />
+    <Content Include="Relex.aspx" />
+    <Content Include="Runes.aspx" />
+    <Content Include="Sandhi.aspx" />
+    <Content Include="SitelenSuwi.aspx" />
+    <Content Include="SpellWords.aspx" />
+    <Content Include="Tengwar.aspx" />
+    <Content Include="Translate.aspx" />
+    <Content Include="Twitter.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TpLogic\TpLogic.csproj">
+      <Project>{7389B867-28C1-4EE3-811E-C1EA58EA1B27}</Project>
+      <Name>TpLogic</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="img\Junicode-Regular.ttf" />
+    <None Include="img\TokiTengwar.ttf" />
+    <None Include="js\changelog" />
+    <Content Include="js\themes\blue\blue.zip" />
+    <Content Include="js\themes\green\green.zip" />
+    <None Include="Properties\PublishProfiles\ToFileSystem.pubxml" />
+    <None Include="tp\img\Junicode-Regular.ttf" />
+    <None Include="tp\img\TokiTengwar.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Browsers\" />
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>28267</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

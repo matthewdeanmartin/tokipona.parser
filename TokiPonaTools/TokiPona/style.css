@@ -1,0 +1,125 @@
+﻿body {
+}
+
+body 
+{
+	background-color: #ccffff
+}
+.centerText
+{
+    background-color:White;
+    }
+.tokipona 
+{
+    color:#800000;
+    font-weight:bold;
+    }
+
+/*table.definitions {width:40%; margin-left:10%; margin-right:30%;}*/
+
+table.rbl {width:40%; margin-left:30%; margin-right:30%;}
+
+
+/* simple doesn't deal with floats
+fieldset {  
+margin: 1.5em 0 0 0;  
+padding: 0; 
+} 
+*/
+
+fieldset {  
+float: left;  
+clear: left;  
+width: 100%;  
+margin: 0 0 1.5em 0;  
+padding: 0; 
+border: 1px solid #BFBAB0;  
+background-color: #F2EFE9; 
+}
+
+/* Following for MSIE*/
+<!--[if lte IE 7]>  
+<style type="text/css" media="all">  
+@import "Tokipona/MasterPages/fieldset-msie.css";  
+</style> 
+<![endif]-->
+
+legend {  
+margin-left: 1em;  
+color: #000000;  
+font-weight: bold; 
+ background-color:Blue;
+} 
+fieldset ol {  
+padding: 1em 1em 0 1em;  
+list-style: none; 
+}
+
+/* simple, doesn't deal with verbose labels 
+fieldset li {  
+padding-bottom: 1em; 
+} 
+*/
+fieldset li {  
+float: left;  
+clear: left;  
+width: 100%;  
+padding-bottom: 1em; 
+}
+
+
+
+/* labels on top */
+/*label {  
+display: block; 
+}
+*/
+
+/* Left align labels
+label {  
+float: left;  
+width: 10em;  
+margin-right: 1em; 
+}
+*/
+
+label {  
+float: left;  
+width: 10em;  
+margin-right: 1em;  
+text-align: right; 
+}
+
+/* simple doesn't deal with floats
+fieldset.submit {  
+border-style: none; 
+}
+*/
+/* stops above elements after form floating */
+fieldset.submit {  
+float: none;  
+width: auto;  
+border: 0 none #FFF;  
+padding-left: 12em; 
+
+border-style: none;  
+background-color: transparent; 
+}
+
+/* For marking required fields*/
+label em {  
+display: block;  
+color: #060;  
+font-size: 85%;  
+font-style: normal;  
+text-transform: uppercase; 
+}
+
+/* for validation error messages */
+label strong {  
+display: block;  
+color: #C00;  
+font-size: 85%;  
+font-weight: normal;  
+text-transform: uppercase; 
+}
