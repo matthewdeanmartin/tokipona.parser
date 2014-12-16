@@ -836,6 +836,7 @@ namespace BasicTypes
             WordSet modals = new WordSet();
             Word headVerb = null;
             WordSet adverbs = new WordSet();
+            
             foreach (Word token in tokens)
             {
                 //modals until used up. Strictly by dictionary.
@@ -857,6 +858,8 @@ namespace BasicTypes
                 //Adverbs thereafter.
                 adverbs.Add(token);
             }
+
+            
 
             if (headVerb == null)
             {
@@ -885,6 +888,13 @@ namespace BasicTypes
                     //Adverbs thereafter.
                     adverbs.Add(token);
                 }
+            }
+
+            if (headVerb!=null && (headVerb.Text == "tawa" || headVerb.Text == "kama") && adverbs.Count>0)
+            {
+                //This could be a noun complement.
+                string possibleNounPhrase= adverbs.ToString("g");
+                Console.WriteLine(possibleNounPhrase);
             }
 
             return new VerbPhrase(headVerb, modals, adverbs);

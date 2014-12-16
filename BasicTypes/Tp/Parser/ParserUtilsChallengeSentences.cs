@@ -64,8 +64,24 @@ namespace BasicTypes.Parser
 
             Sentence s = pu.ParsedSentenceFactory(expected, expected);
             string result = s.ToString();
-            Console.WriteLine();
+            Console.WriteLine(result);
             Assert.AreEqual(expected,result);
+        }
+        //mi wile kama sona e seme lipu.
+        [Test]
+        public void MiWileKamaSona()
+        {
+            //Possibley not worth addressing. In the corpus this happened because of an unmarked final exclamation.
+            Dialect c = Dialect.LooseyGoosey;
+            ParserUtils pu = new ParserUtils(c);
+
+            const string expected = "jan li wile kama sona e seme lipu.";
+
+            Sentence s = pu.ParsedSentenceFactory(expected, expected);
+            string result = s.ToString();
+            Console.WriteLine(result);
+            Console.WriteLine(s.ToString("b"));
+            Assert.AreEqual(expected, result);
         }
 
         [Test]

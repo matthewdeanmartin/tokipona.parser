@@ -604,6 +604,65 @@ namespace BasicTypes.Parser
             Console.WriteLine("Mismatched: " + j);
             Console.WriteLine("Failed Sentences: " + i);
         }
+        [Test]
+        public void StressTestNormalizeAndParseAll_Kama_Tawa()
+        {
+            int i = 0;
+            int total = 0;
+            Dialect dialect = Dialect.LooseyGoosey;
+            ParserUtils pu = new ParserUtils(dialect);
+
+            Dialect english = Dialect.LooseyGoosey;
+            english.TargetGloss = "en";
+            english.GlossWithFallBacks = true;
+
+            CorpusFileReader reader = new CorpusFileReader(true);
+            GlossMaker gm = new GlossMaker();
+            SentenceSplitter ss = new SentenceSplitter(dialect);
+
+            Normalizer norm = new Normalizer(dialect);
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
+            foreach (string s in reader.NextFile())
+            {
+                //if (reader.currentFile.ContainsCheck("janKipoCollected")) continue; // Can't parse:  *janMato 123 123 ni li musi!
+
+                foreach (string original in ss.ParseIntoNonNormalizedSentences(s))
+                {
+                    if (!(original.Contains("kama") || original.Contains("tawa")))
+                    {
+                        continue;
+                    }
+                    total++;
+                    if (watch.ElapsedMilliseconds > 15000) return;
+                    //if (total > 1000) return;
+                    Sentence structured = null;
+                    try
+                    {
+                        string normalized = norm.NormalizeText(original);
+                        structured = pu.ParsedSentenceFactory(normalized, original);
+                        string diag = structured.ToString("b");
+
+                        //if ((normalized.ContainsCheck("%ante"))) continue; //verb!
+
+                        string gloss = gm.GlossOneSentence(false, structured, english);
+                        Console.WriteLine("O: " + (original ?? "").Trim(new[] { '\n', '\r', ' ', '\t' }));
+                        Console.WriteLine("B: " + diag);
+                        // Console.WriteLine("G: " + gloss);
+                    }
+                    catch (Exception ex)
+                    {
+                        i++;
+                        //Console.WriteLine(SentenceDiagnostics.CurrentSentence.Original);
+                        //Console.WriteLine(ex.Message);
+                        //else throw;
+                    }
+
+                }
+            }
+            Console.WriteLine("Failed Sentences: " + i);
+        }
+
 
         [Test]
         public void StressTestNormalizeAndParseEverything()
@@ -631,16 +690,14 @@ namespace BasicTypes.Parser
                 foreach (string original in ss.ParseIntoNonNormalizedSentences(s))
                 {
                     total++;
-                    if (watch.ElapsedMilliseconds > 15000) return;
+                    //if (watch.ElapsedMilliseconds > 15000) return;
                     //if (total > 1000) return;
                     Sentence structured = null;
                     try
                     {
-                        //string normalized = norm.NormalizeText(original);
-                        structured = pu.ParsedSentenceFactory(original, original);
+                        string normalized = norm.NormalizeText(original);
+                        structured = pu.ParsedSentenceFactory(normalized, original);
                         string diag = structured.ToString("b");
-
-                        //if ((normalized.ContainsCheck("%ante"))) continue; //verb!
 
                         string gloss = gm.GlossOneSentence(false, structured, english);
                         // Console.WriteLine("O: " + (original??"").Trim(new []{'\n','\r',' ','\t'}));
@@ -651,7 +708,6 @@ namespace BasicTypes.Parser
                     {
                         i++;
                         Console.WriteLine(SentenceDiagnostics.CurrentSentence.Original);
-
                         Console.WriteLine(ex.Message);
                         //else throw;
                     }
@@ -665,21 +721,22 @@ namespace BasicTypes.Parser
         public void IdentifyDiscourses_CanItEvenParseTheSentences()
         {
             string sample = CorpusTexts.UnpaText;
-            Dialect c = Dialect.LooseyGoosey;
-            c.TargetGloss = "en";
-            CorpusKnowledge ck = new CorpusKnowledge(sample, c);
+            Dialect dialect = Dialect.LooseyGoosey;
+            dialect.TargetGloss = "en";
+            CorpusKnowledge ck = new CorpusKnowledge(sample, dialect);
+            NormalizeExplicit norm =new NormalizeExplicit(dialect);
 
             List<Sentence>[] s = ck.MakeSentences();
             for (int i = 0; i < s.Length; i++)
             {
                 foreach (Sentence sentence in s[i])
                 {
-                    string reToStringed = sentence == null ? "[NULL SENTENCE]" : sentence.ToString();
+                    string reToStringed = sentence.ToString();
                     bool match = ck.Setences.Any(x => x.Trim() == reToStringed);
                     if (!match)
                     {
                         Console.WriteLine(match + " O:" + ck.Setences[i]);
-                        Console.WriteLine(match + " R:" + (sentence == null ? "[NULL SENTENCE]" : sentence.ToString("b")));
+                        Console.WriteLine(match + " R:" + sentence.ToString("b"));
 
                     }
                 }

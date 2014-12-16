@@ -42,6 +42,55 @@ namespace BasicTypes.Collections
         public WordSet Adverbs { get { return adverbs; } }
         public ComplexChain NounComplement { get { return nounComplement; } }
 
+        public VerbPhrase(Word headVerb, WordSet modals , ComplexChain nounComplement)
+        {
+            if (headVerb == null)
+            {
+                throw new ArgumentNullException("headVerb");
+            }
+            if (!(headVerb.Text=="tawa" || headVerb.Text=="kama"))
+            {
+                throw new ArgumentException("Don't know what these are called but this sort of phrase can only have tawa or kama as the head verb.");
+            }
+            if (Particle.NonContentParticles.Contains(headVerb.Text))
+            {
+                throw new TpSyntaxException("Head verb cannot be a particle.");
+            }
+            if (modals != null)
+            {
+                foreach (Word modal in modals)
+                {
+                    if (modal.Text != "pi" && Particle.NonContentParticles.Contains(modal.Text))
+                    {
+                        throw new TpSyntaxException("Modals cannot be a particle.");
+                    }
+                    if (!Token.IsModal(modal))
+                    {
+                        throw new TpSyntaxException("Modals must be one of these: " + string.Join(",", Token.Modals) + " but got " + modal);
+                    }
+                }
+            }
+
+            //jan li (ken, wile) kama jan pali pi tomo pi telo nasa.
+            //How to split?  jan li kama sona. => ? jan li kama wawa sona.
+            //How to split?  jan li kama sona. => jan li ken kama sona. (modals are fine)
+            //if (adverbs != null)
+            //{
+            //    foreach (Word adverb in adverbs)
+            //    {
+            //        if (adverb.Text != "pi" && Particle.NonContentParticles.Contains(adverb.Text))
+            //        {
+            //            throw new TpSyntaxException("Adverbs cannot be a particle. (maybe we have a nominal predicate here?)");
+            //        }
+            //    }
+            //}
+
+            this.headVerb = headVerb; //Any content word.
+            this.modals = modals;
+            //this.adverbs = adverbs;
+            this.nounComplement = nounComplement;
+        }
+
         //Doesn't deal with adj pi adj adj
         public VerbPhrase(Word headVerb, WordSet modals = null, WordSet adverbs = null)
         {

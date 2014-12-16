@@ -26,13 +26,15 @@ namespace BasicTypes.Corpus
         //Return all files
         public IEnumerable<string> NextFile()
         {
+            string path = @"tokipona.parser\BasicTypes\Tp\Corpus";
             DirectoryInfo di;
             if (Directory.Exists(@"C:\Users\mmartin\Documents\GitHub\tokipona.parser\"))
-                di = new DirectoryInfo(@"C:\Users\mmartin\Documents\GitHub\tokipona.parser\BasicTypes\Corpus");
-            else if (Directory.Exists(@"C:\Users\mmartin.Quasimodo-PC\Documents\GitHub\tokipona.parser\BasicTypes\Corpus"))
-                di = new DirectoryInfo(@"C:\Users\mmartin.Quasimodo-PC\Documents\GitHub\tokipona.parser\BasicTypes\Corpus");
+                di = new DirectoryInfo(@"C:\Users\mmartin\Documents\GitHub\" + path);
+            else if (Directory.Exists(@"C:\Users\mmartin.Quasimodo-PC\Documents\GitHub\" + path))
+                di = new DirectoryInfo(@"C:\Users\mmartin.Quasimodo-PC\Documents\GitHub\" + path);
             else
-            {            di = new DirectoryInfo(@"C:\Users\mmartin\code\GitHub\tokipona.parser\BasicTypes\Corpus");
+            {
+                di = new DirectoryInfo(@"C:\Users\mmartin\code\GitHub\" + path);
 
             }
             //"*Yves*.txt"

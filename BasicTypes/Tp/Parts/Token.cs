@@ -426,8 +426,9 @@ namespace BasicTypes
 
         private static string[] modals =
         {
-            "ken", "kama", "tawa", "awen", "wile", //jan Sonja v1
-            "lukin", "oko", "sona",//Jan Sonja vPu (are these really serial verbs?)
+            //"kama", "tawa", Category of their own. (modal in jan Sonja v1)
+            "ken", "awen", "wile", //jan Sonja v1
+            //"lukin", "oko", "sona",//Jan Sonja vPu (are these really serial verbs?) No, they are not. These are noun complements of some head verb.
             "open","pini", //Community usage
             "seme" //because seme can replace any content word, so this can replace a modal too! Odd but seemingly true.
         };

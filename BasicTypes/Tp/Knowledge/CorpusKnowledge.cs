@@ -51,6 +51,10 @@ namespace BasicTypes.Knowledge
             {
                 if(string.IsNullOrWhiteSpace(sentence))continue;
                 Sentence parsedSentence = pu.ParsedSentenceFactory(sentence,sentence);
+                if (parsedSentence == null)
+                {
+                    throw new InvalidOperationException("Got a null sentence");
+                }
                 facts.Add(new List<Sentence>()
                     {
                         parsedSentence

@@ -1323,7 +1323,7 @@ namespace BasicTypes.Esperanto.Dictionary
     public static EoRoot zorg = new EoRoot("zorg");
 
 
-
+        //TODO: These i, a or o roots?
         //Ref: http://www.esperanto-chicago.org/rootsglossary.htm
         public const string Data = @"
 absolut/ absolute
