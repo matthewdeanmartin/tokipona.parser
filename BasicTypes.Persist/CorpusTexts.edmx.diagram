@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="13d7c352c15a48e2bbcfe7c9648c9e13" Name="Diagram1">
+        <EntityTypeShape EntityType="CorpusTextsModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CorpusTextsModel.AspNetUserClaim" Width="1.5" PointX="0.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CorpusTextsModel.AspNetUserLogin" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CorpusTextsModel.AspNetUser" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="CorpusTextsModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="CorpusTextsModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="CorpusTextsModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CorpusTextsModel.CorpusText" Width="1.5" PointX="6" PointY="1.875" />
+        <AssociationConnector Association="CorpusTextsModel.FK_CorpusTexts_AspNetUsers" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

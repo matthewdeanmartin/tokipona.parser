@@ -22,52 +22,67 @@
 <div class="row">
     <div class="col-md-12">
         <h2>ilo nimi ni li pona e nimi sina.</h2>
+        
+        @Html.Raw(Model.SnippetSavingError)
+
         @using (Html.BeginForm("Parse", "Home"))
         {
             @Html.TextArea("SourceText", Model.SourceText,
-                      new { style = "background-color:#F8F8F8;border:0;display:block;font-family:Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, monospace, serif;font-size:10pt;width:98%;line-height:21px;padding:1%;resize: none; overflow-y: hidden; height: 200px;overflow: auto;" }
+                new {style = "background-color:#F8F8F8;border:0;display:block;font-family:Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, monospace, serif;font-size:10pt;width:98%;line-height:21px;padding:1%;resize: none; overflow-y: hidden; height: 200px;overflow: auto;"}
                 )
             @*<textarea id="SourceText" name="SourceText"
                 style="background-color:#F8F8F8;border:0;display:block;font-family:Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, monospace, serif;font-size:10pt;width:98%;line-height:21px;padding:1%;resize: none; overflow-y: hidden; height: 200px;"></textarea>*@
             @Html.LabelFor(model => model.Dialect)
             @:&nbsp;
             @Html.DropDownListFor(model => model.Dialect, new SelectList(
-                  new List<object>
-                            {
-                            new { value ="LooseyGoosey" , text = "Loosey Goosey"  },
-                            new { value = "WordProcessorRules" , text = "Strict" }
-                            },
-                            "value",
-                            "text",
-                            2))
+                new List<object>
+                {
+                    new {value = "LooseyGoosey", text = "Loosey Goosey"},
+                    new {value = "WordProcessorRules", text = "Strict"}
+                },
+                "value",
+                "text",
+                2))
             @:&nbsp;
             @Html.LabelFor(model => model.SentenceOrParagraph)
             @:&nbsp;
             @Html.DropDownListFor(model => model.SentenceOrParagraph, new SelectList(
-                  new List<object>
-                            {
-                            new { value ="Sentence" , text = "Sentences"  },
-                            new { value = "Paragraph" , text = "Paragraphs" }
-                            },
-                            "value",
-                            "text",
-                            2))
+                new List<object>
+                {
+                    new {value = "Sentence", text = "Sentences"},
+                    new {value = "Paragraph", text = "Paragraphs"}
+                },
+                "value",
+                "text",
+                2))
             @:&nbsp;
             @Html.LabelFor(model => model.Numbers)
             @:&nbsp;
             @Html.DropDownListFor(model => model.Numbers, new SelectList(
-                  new List<object>
-                            {
-                            new { value ="Stupid" , text = "Stupid"  },
-                            new { value = "Half Stupid" , text = "Half Stupid" },
-                            new { value = "Body" , text = "Body" },
-                            new { value = "Poman" , text = "Poman" }
-                            },
-                            "value",
-                            "text",
-                            2))
+                new List<object>
+                {
+                    new {value = "Stupid", text = "Stupid"},
+                    new {value = "Half Stupid", text = "Half Stupid"},
+                    new {value = "Body", text = "Body"},
+                    new {value = "Poman", text = "Poman"}
+                },
+                "value",
+                "text",
+                2))
             <br />
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Parse" name="ButtonClicked" />
+            <input type="submit" name="ButtonClicked" value="SaveText" />
+            @:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @Html.TextBox("SomeName", Model.SnippetUrl, new { style = "width: 300px;" })
+
+            @*@Html.ActionLink("View Save Snippet", "Display", new { controller = "Home", shortUrl = Model.SnippetUrl })*@
+            
+            @Html.ActionLink(
+                    "View Saved Snippet", //linkText
+                    "Display", //actionName
+                    "Home", //controllerName
+                               new { @shortUrl = Model.SnippetUrlParam }, //routeValues
+                     null //htmlAttributes
+                )
         }
 
 

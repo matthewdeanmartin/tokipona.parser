@@ -1,10 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations.History;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Data.Entity;
+using System.Net.Mime;
+using System.Security.Claims;
 using System.Text;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Html;
+using System.Web.Routing;
 using System.Xml.Linq;
 using BasicTypes;
 using BasicTypes.CollectionsDiscourse;
@@ -15,13 +24,176 @@ using BasicTypes.Lorem;
 using BasicTypes.NormalizerCode;
 using BasicTypes.ParseDiscourse;
 using BasicTypes.Parser;
+using BasicTypes.Persist;
+using DemoSite.Extensions;
 using DemoSite.Models;
 using Should.Core.Exceptions;
+using System.Security.Claims;
 
 namespace DemoSite.Controllers
 {
     public class HomeController : Controller
     {
+        public class FakeView : IView
+        {
+            public void Render(ViewContext viewContext, TextWriter writer)
+            {
+                throw new InvalidOperationException();
+            }
+        }
+
+        public string MakeUrl(string id)
+        {
+            return "http://tokipona.net" + Url.Action("Index", "L", new { i = id });
+        }
+
+        public ActionResult Display(string shortUrl)
+        {
+            using (CorpusTextsContext context = new CorpusTextsContext())
+            {
+                var item = context.CorpusTexts.FirstOrDefault(x => x.ShortUrl == shortUrl);
+
+                if (item != null)
+                {
+                    SimpleParserViewModel model = new SimpleParserViewModel();
+
+                    model.SourceText = item.SnippetText;
+                    model.SentenceOrParagraph = "Paragraph";
+                    Parse(model);
+                    model.SnippetUrl = MakeUrl(item.ShortUrl);
+                    model.SnippetUrlParam = item.ShortUrl;
+                    //var h = new HtmlHelper(new ViewContext(ControllerContext, new FakeView(), new ViewDataDictionary(), new TempDataDictionary(), TextWriter.Null), new ViewPage());
+                    //MvcHtmlString adfasdfext= h.TextArea("SnippetUrl", model.SnippetUrl, 1, 50, null);
+                    //string result= adfasdfext.ToString();
+                    //string result2 = adfasdfext.ToHtmlString();
+
+                    return View("Index", model);
+                }
+
+                return View("Index", new SimpleParserViewModel() { SnippetSavingError = "Cannot find any such text at that URL" });
+            }
+        }
+
+        //[HttpParamAction]
+        private ActionResult SaveText(SimpleParserViewModel parse)
+        {
+            parse.SnippetSavingError = null;
+
+            string toSave = parse.SourceText;
+
+
+            // Cast the Thread.CurrentPrincipal
+            ClaimsPrincipal icp = Thread.CurrentPrincipal as ClaimsPrincipal;
+
+            if (icp == null)
+            {
+                parse.SnippetSavingError = "<b>NOT SAVED. You must create an account and/or login</b>";
+                parse.SnippetUrl = parse.SnippetSavingError;
+                parse.SnippetUrlParam = "";
+                return View("Index", parse);
+            }
+
+            // Access IClaimsIdentity which contains claims
+            ClaimsIdentity claimsIdentity = (ClaimsIdentity)icp.Identity;
+
+            // Access claims
+            string userId = null;
+            foreach (Claim claim in claimsIdentity.Claims)
+            {
+                if (claim.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")
+                {
+                    userId = claim.Value;
+                }
+                //Debug.WriteLine(claim.Value);
+            }
+            if (userId == null)
+            {
+                parse.SnippetSavingError = "<b>NOT SAVED. You must create an account and/or login</b>";
+                parse.SnippetUrl = parse.SnippetSavingError;
+                parse.SnippetUrlParam = "";
+                return View("Index", parse);
+            }
+
+            decimal percent = NormalizeForeignText.PercentTokiPona(toSave);
+            if (percent < 0.80m)
+            {
+                parse.SnippetSavingError = "<b>NOT SAVED. Insufficient toki pona here, only " + String.Format("Value: {0:P2}.", percent) + "</b>";
+                parse.SnippetUrl = parse.SnippetSavingError;
+                parse.SnippetUrlParam = "";
+                return View("Index", parse);
+            }
+
+           
+
+            //Save to DB
+            using (CorpusTextsContext context = new CorpusTextsContext())
+            {
+                int count = context.CorpusTexts.Count();
+
+                var query = context.CorpusTexts.Where(x => x.SnippetText == toSave).FirstOrDefault();
+                if (query == null)
+                {
+                    CorpusText text = new CorpusText();
+                    text.Id = NativeMethods.CreateGuid();
+                    text.AspNetUserId = userId;// icp.Identity.Name;
+                    text.SnippetText = toSave;
+                    text.CreatedOn = DateTime.Now;
+                    text.UpdatedOn = text.CreatedOn;
+                    text.ShortUrl = Base36Encode(Convert.ToUInt64(count));
+                    parse.SnippetUrl = MakeUrl(text.ShortUrl);
+                    parse.SnippetUrlParam = text.ShortUrl;
+                    context.CorpusTexts.Add(text);
+                    context.SaveChanges();
+                }
+                else
+                {
+                    parse.SnippetUrl = MakeUrl(query.ShortUrl); 
+                    parse.SnippetUrlParam = query.ShortUrl;
+                }
+            }
+
+            return Display(parse.SnippetUrlParam);
+        }
+
+        //From wikipedia: https://en.wikipedia.org/wiki/Base_36#C.23_implementation
+        private const string Clist = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        private static readonly char[] Clistarr = Clist.ToCharArray();
+
+        public static long Base36Decode(string inputString)
+        {
+            long result = 0;
+            var pow = 0;
+            for (var i = inputString.Length - 1; i >= 0; i--)
+            {
+                var c = inputString[i];
+                var pos = Clist.IndexOf(c);
+                if (pos > -1)
+                    result += pos * (long)Math.Pow(Clist.Length, pow);
+                else
+                    return -1;
+                pow++;
+            }
+            return result;
+        }
+
+        public static string Base36Encode(ulong inputNumber)
+        {
+            var sb = new StringBuilder();
+            do
+            {
+                sb.Append(Clistarr[inputNumber % (ulong)Clist.Length]);
+                inputNumber /= (ulong)Clist.Length;
+            } while (inputNumber != 0);
+            return Reverse(sb.ToString());
+        }
+
+        public static string Reverse(string s)
+        {
+            var charArray = s.ToCharArray();
+            Array.Reverse(charArray);
+            return new string(charArray);
+        }
+
         public ActionResult LoremIpsum()
         {
             Dialect dialect = Dialect.LooseyGoosey;
@@ -129,8 +301,14 @@ namespace DemoSite.Controllers
 
         }
 
+        //[HttpParamAction]
         public ActionResult Parse(SimpleParserViewModel parse)
         {
+            if (parse.ButtonClicked == "SaveText")
+            {
+                return SaveText(parse);
+            }
+
             if (parse.SourceText == null)
             {
                 parse = RandomText();
@@ -141,7 +319,7 @@ namespace DemoSite.Controllers
             }
             else
             {
-                ProcessParserModelSentences(parse);                
+                ProcessParserModelSentences(parse);
             }
             return View("Index", parse);
         }
@@ -196,7 +374,7 @@ namespace DemoSite.Controllers
                 ProcessParserModelSentences(parse);
                 return;
             }
-            
+
 
             foreach (Paragraph paragraph in prose.Paragraphs)
             {
@@ -303,7 +481,7 @@ namespace DemoSite.Controllers
 
             ParserUtils pu = new ParserUtils(dialect);
             SentenceSplitter ss = new SentenceSplitter(dialect);
-            Normalizer norm= new Normalizer(dialect);
+            Normalizer norm = new Normalizer(dialect);
 
             string[] sentences = ss.ParseIntoNonNormalizedSentences(parse.SourceText);
             StringBuilder normalizedSb = new StringBuilder();
@@ -335,7 +513,7 @@ namespace DemoSite.Controllers
                     UpdateErrors(errors, error, sentence);
                 }
                 //////// TP
-                normalizedSb.AppendLine(lineNumber+ hf.BoldTheWords(normalized.ToHtml()) + "<br/>");
+                normalizedSb.AppendLine(lineNumber + hf.BoldTheWords(normalized.ToHtml()) + "<br/>");
 
                 try
                 {
@@ -438,7 +616,7 @@ namespace DemoSite.Controllers
             parse.Errors = errors.ToString();
         }
 
-        private static string LineNumber(int i, bool enabled )
+        private static string LineNumber(int i, bool enabled)
         {
             if (enabled) return i + ". ";
             return "";

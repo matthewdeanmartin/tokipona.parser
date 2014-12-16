@@ -30,8 +30,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,9 +48,62 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AspNetRole.cs">
+      <DependentUpon>CorpusTexts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>CorpusTexts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim.cs">
+      <DependentUpon>CorpusTexts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>CorpusTexts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CorpusText.cs">
+      <DependentUpon>CorpusTexts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CorpusTexts.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CorpusTexts.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CorpusTexts.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CorpusTexts.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CorpusTexts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CorpusTexts.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Snippet.cs" />
     <Compile Include="SnippetCrudHelper.cs" />
+    <Compile Include="Utils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="CorpusTexts.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CorpusTexts.Context.cs</LastGenOutput>
+    </None>
+    <EntityDeploy Include="CorpusTexts.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CorpusTexts.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="CorpusTexts.edmx.diagram">
+      <DependentUpon>CorpusTexts.edmx</DependentUpon>
+    </None>
+    <None Include="CorpusTexts.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>CorpusTexts.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

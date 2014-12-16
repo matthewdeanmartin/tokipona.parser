@@ -22,6 +22,11 @@ namespace DemoSite.Models
         public string Recovered { get; set; }
         public string Colorized { get; set; }
         public string Errors { get; set; }
+
+        public string ButtonClicked { get; set; }
+        public string SnippetUrlParam { get; set; }
+        public string SnippetUrl { get; set; }
+        public string SnippetSavingError { get; set; }
         
     }
 }

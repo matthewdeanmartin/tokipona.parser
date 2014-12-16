@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
@@ -11,6 +12,15 @@ namespace DemoSite
 {
     public partial class Startup
     {
+        private static readonly string TwitterConsumerKey;
+        private static readonly string TwitterConsumerSecret;
+
+        static Startup()
+        {
+            TwitterConsumerKey=File.ReadAllText(@"C:\Config\TwitterConsumerKey.txt").TrimEnd(new char[]{' ','\n'});
+            TwitterConsumerSecret= File.ReadAllText(@"C:\Config\TwitterConsumerSecret.txt").TrimEnd(new char[] { ' ', '\n' });
+        }
+
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
@@ -50,9 +60,9 @@ namespace DemoSite
             //    clientId: "",
             //    clientSecret: "");
 
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+            app.UseTwitterAuthentication(
+               consumerKey: TwitterConsumerKey,
+               consumerSecret: TwitterConsumerSecret);
 
             //app.UseFacebookAuthentication(
             //   appId: "",
