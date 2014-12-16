@@ -115,17 +115,20 @@ namespace BasicTypes.Lorem
             {
                 string s = sentence.ToString();
 
-                //string sn = Normalizer.NormalizeText(s,dialect );
-                Console.WriteLine(s);
+                NormalizeExplicit norm = new NormalizeExplicit(dialect);
+                string sn = norm.NormalizeText(s);
+                Console.WriteLine(sn);
                 Console.WriteLine(sentence.ToString("b"));
-                Console.WriteLine(gm.Gloss(s, s,dialect));
+                Console.WriteLine(gm.Gloss(sn, s,dialect));
 
-                Sentence reparsed = pu.ParsedSentenceFactory(s, s);
+                Sentence reparsed = pu.ParsedSentenceFactory(sn, s);
 
                 string reparseString = reparsed.ToString();
                 //string normalize = Normalizer.NormalizeText(reparseString, dialect);
-                Console.WriteLine(reparseString);
-                Console.WriteLine(gm.Gloss(reparseString, s, dialect));
+                
+                string normalize = norm.NormalizeText(reparseString);
+                Console.WriteLine(normalize);
+                Console.WriteLine(gm.Gloss(normalize, s, dialect));
             }
         }
     }

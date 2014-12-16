@@ -105,11 +105,11 @@ namespace BasicTypes.NormalizerCode
                 {
                     if (normalized.ContainsCheck("," + prep))
                     {
-                        normalized = normalized.Replace("," + prep,"~" + prep);
+                        normalized = normalized.Replace("," + prep," ~" + prep);
                     }
                     if (normalized.ContainsCheck(", " + prep))
                     {
-                        normalized = normalized.Replace(", " + prep, "~" + prep);
+                        normalized = normalized.Replace(", " + prep, " ~" + prep);
                     }
                 }
             }

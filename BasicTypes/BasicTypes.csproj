@@ -73,7 +73,10 @@
   <ItemGroup>
     <Compile Include="BaseDialect.cs" />
     <Compile Include="Esperanto\Dictionary\RootDictionary.cs" />
+    <Compile Include="Esperanto\Tokens\EoAffix.cs" />
+    <Compile Include="Esperanto\Tokens\EoPartsTests.cs" />
     <Compile Include="Esperanto\Tokens\EoRoot.cs" />
+    <Compile Include="Esperanto\Tokens\EoWord.cs" />
     <Compile Include="Extensions\IDisposableExtensions.cs" />
     <Compile Include="FileProcessing\ExcelReader.cs" />
     <Compile Include="Parser\BaseParser.cs" />

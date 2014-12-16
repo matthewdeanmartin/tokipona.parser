@@ -22,12 +22,6 @@ namespace BasicTypes.Dictionary
             Dictionary.DictionaryGeneratorCompounds g = new Dictionary.DictionaryGeneratorCompounds();
             g.Generate();
         }
-
-        [Test]
-        public void TestSize()
-        {
-            Console.WriteLine(Marshal.SizeOf(typeof(CompoundWords)));
-        }
     }
 
 

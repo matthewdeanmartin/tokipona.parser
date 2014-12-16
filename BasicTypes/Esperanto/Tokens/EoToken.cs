@@ -1,22 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BasicTypes.Esperanto.Tokens
 {
-    //Content words, can be any number of the simple compound words (1 core of stems)
-    //     (prefix*)? stems* (suffixes*)? 
-    //     [singleCoreWord]* + (pos) (j/n)
+    [DataContract]
     [Serializable]
     public class EoToken
     {
+        [DataMember]
+        private string text;
 
-    }
+        public EoToken(String text)
+        {
+            this.text = text;
+        }
 
-    public class EoWord
-    {
+        public string Text{get { return text; }}
 
+        public override string ToString()
+        {
+            return text;
+        }
     }
 }
