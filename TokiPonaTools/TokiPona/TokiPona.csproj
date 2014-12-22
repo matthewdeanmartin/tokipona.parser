@@ -189,6 +189,8 @@
     <Content Include="DisplayText.aspx" />
     <Content Include="DomainNames.aspx" />
     <Content Include="DomainNamesStatic.aspx" />
+    <Content Include="GlossAnything.aspx" />
+    <Content Include="GlossAnythingDisplay.aspx" />
     <Content Include="img\Toki_pona.png" />
     <Content Include="js\addons\pager\jquery.tablesorter.pager.css" />
     <Content Include="js\addons\pager\jquery.tablesorter.pager.js" />
@@ -373,6 +375,20 @@
     </Compile>
     <Compile Include="Gloss.aspx.designer.cs">
       <DependentUpon>Gloss.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GlossAnything.aspx.cs">
+      <DependentUpon>GlossAnything.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GlossAnything.aspx.designer.cs">
+      <DependentUpon>GlossAnything.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GlossAnythingDisplay.aspx.cs">
+      <DependentUpon>GlossAnythingDisplay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GlossAnythingDisplay.aspx.designer.cs">
+      <DependentUpon>GlossAnythingDisplay.aspx</DependentUpon>
     </Compile>
     <Compile Include="GlossShowHtml.aspx.cs">
       <DependentUpon>GlossShowHtml.aspx</DependentUpon>

@@ -42,6 +42,7 @@
     <li><a href="CorpusSearch.aspx" title="The corpus is a set of documents that is entirely written in toki pona and represenative of everything ever written in toki pona.">Corpus Search</a> </li>
     
         <li><a href="Gloss.aspx">Glossing</a> </li>
+        <li><a href="GlossAnything.aspx">Interlinear Gloss HTML</a></li>
         <li><a href="LoremIpsum.aspx">Lorem Ipsum</a> </li>
         
         <li><a href= "ReadabilityStatistics.aspx">Calc. Scores </a>/<a href= "CorpusReadability.aspx"> Corpus Scores </a></li>
