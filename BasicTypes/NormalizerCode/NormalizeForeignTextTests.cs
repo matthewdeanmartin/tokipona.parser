@@ -12,6 +12,13 @@ namespace BasicTypes.NormalizerCode
     public class NormalizeForeignTextTests
     {
         [Test]
+        public void Saint()
+        {
+            string s = @"""Saint Augustine Prophecy"".";
+            Execute(s);
+        }
+
+        [Test]
         [Ignore]
         public void LeadingExplicitNeologism()
         {

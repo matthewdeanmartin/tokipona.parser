@@ -1,9 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Basic.Master" AutoEventWireup="true" CodeBehind="ReadingHelper.aspx.cs" Inherits="TokiPona.ReadingHelper" %>
+<%@ Register TagPrefix="uc1" TagName="tour" Src="~/Tour.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphBody" runat="server">
+    <div style="margin-left: 15%; margin-right: 15%">
+        <uc1:tour runat="server" id="Tour"  />
+    </div>
+
+    <br style="clear: both;" />
 <div style="margin-left:15%;margin-right:15%">
 <p>This turns all the words of your text into hyperlinks to the improved classic word list. It is link to the single word definition. Someday, if I ever get a phrase dictionary going, I'll link well known phrases as well, e.g. "jan pona".</p>
 <p>Is this of any use if you alreay know the 125 words? Mostly just for when you forget that kon also mean "soul" or telo also means "wash"</p>

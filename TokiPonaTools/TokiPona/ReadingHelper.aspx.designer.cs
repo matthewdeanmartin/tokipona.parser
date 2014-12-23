@@ -13,6 +13,15 @@ namespace TokiPona {
     public partial class ReadingHelper {
         
         /// <summary>
+        /// Tour control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::TokiPona.Tour Tour;
+        
+        /// <summary>
         /// DocumentPicker control.
         /// </summary>
         /// <remarks>

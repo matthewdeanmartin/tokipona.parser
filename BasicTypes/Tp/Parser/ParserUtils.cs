@@ -382,7 +382,12 @@ namespace BasicTypes
             ComplexChain subjectChain = null;
             int startAt = 1; //slot 0 is normally a subject
 
-            if (subjects.StartCheck("o "))
+            if (subjects.Contains("«"))
+            {
+                int foo = 3;
+            }
+            if (subjects.StartCheck("o ")
+                || subjects.StartCheck("«o "))
             {
                 //This is a verb phrase with implicit subjects!
                 startAt = 0;

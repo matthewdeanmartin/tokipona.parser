@@ -191,13 +191,17 @@ namespace BasicTypes.ParseDiscourse
             for (int i = 0; i < finalLines.Length; i++)
             {
                 string line = finalLines[i];
+                
+                if(line.Length<=2) continue; //Whut?
+
                 if (line.StartCheck("'", "\""))
                 {
                     currentlyInDirect=true;
                     finalLines[i] = finalLines[i].Substring(1);
                 }
                 isDirect[i] = currentlyInDirect;
-                if (line.EndCheck("'","\""))
+                if (line.EndCheck("'","\"")
+                    )
                 {
                     currentlyInDirect = false;
                     if (line == "'")
@@ -207,6 +211,25 @@ namespace BasicTypes.ParseDiscourse
                     else
                     {
                         finalLines[i] = finalLines[i].Substring(0, finalLines[i].Length - 1);
+                    }
+                }
+
+                if (line.EndCheck("'.","\".")||
+                    line.EndCheck("'?","\"?")||
+                    line.EndCheck("'!","\"!")||
+                    line.EndCheck("':","\":"))
+                {
+                    currentlyInDirect = false;
+                    if (line == "'")
+                    {
+                        finalLines[i] = "";
+                    }
+                    else
+                    {
+                        if (finalLines[i].Length >= 2)
+                        {
+                            finalLines[i] = finalLines[i].Substring(0, finalLines[i].Length - 2) + finalLines[i].Substring(finalLines[i].Length - 1);
+                        }
                     }
                 }
             }
@@ -262,6 +285,11 @@ namespace BasicTypes.ParseDiscourse
                     if (c == '!')
                     {
                         sb.Append("EEEEXCLAMATION");
+                        continue;
+                    }
+                    if (c == '"')
+                    {
+                        sb.Append(c);
                         continue;
                     }
                 }

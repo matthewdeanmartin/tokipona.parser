@@ -204,6 +204,7 @@
     <Compile Include="Tp\ParseDiscourse\NormalizeJanKipoSet.cs" />
     <Compile Include="Tp\ParseDiscourse\ParagraphSplitter.cs" />
     <Compile Include="Tp\ParseDiscourse\ParagraphSplitterTests.cs" />
+    <Compile Include="Tp\ParseDiscourse\SentenceSplitterTests.cs" />
     <Compile Include="Tp\Parser\DiscourseStrings.cs" />
     <Compile Include="Tp\Parser\ParserUtils.cs" />
     <Compile Include="Tp\Knowledge\PhoneNumbers.cs" />

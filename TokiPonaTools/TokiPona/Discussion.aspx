@@ -1,10 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Basic.Master" AutoEventWireup="true" CodeBehind="Discussion.aspx.cs" Inherits="TokiPona.Discussion" %>
+<%@ Register TagPrefix="uc1" TagName="tour" Src="~/Tour.ascx" %>
 <%@ OutputCache Duration="600" VaryByParam="none" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphBody" runat="server">
+    <div style="margin-left: 15%; margin-right: 15%">
+        <uc1:tour runat="server" id="Tour"  />
+    </div>
+
+    <br style="clear: both;" />
 <div style="margin-right:20%;margin-left:20%">
 
 <p><b>Wikia, Wikipedia and independent wiki's</b> The center of the toki pona community keeps moving. It started out mostly in irc and the yahoo mailing list, at one time was very active on live journal, and wikia.</p>
@@ -17,7 +23,7 @@
 <li><a href="http://tpnimi.blogspot.com">tp nimi</a></li>
 </ul>
 
-<p><b>Facebook</b>. Face book doesn't notify me if a messages is posted to a group, doesn't have RSS. At the moment, Facebook is not a successful place for groups.</p>
+<p><b>Facebook</b> is as of 2014, the center of toki pona activity, join the <a href="https://www.facebook.com/groups/sitelen/"> group here</a>.</p>
 
 <p><b>LiveJournal</b>. LiveJournal is like group blogging. It used to be very active and had active <a href="http://community.livejournal.com/ru_tp/">Russian</a> and <a href="http://community.livejournal.com/tokipona/">general (mostly English)</a> communities. At the moment, it's entirely quiet. At one time, these people were <a href="http://www.livejournal.com/directory.bml?int_like=tokipona&opt_pagesize=100&start_search=1"> interested in toki pona</a>, and <a href="http://www.livejournal.com/directory.bml?int_like=toki%20pona&opt_pagesize=100&start_search=1">these, too</a>. It's kind of uncommon to see tp text posted in personal pages either.</p>
 

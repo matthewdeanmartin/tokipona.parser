@@ -183,6 +183,7 @@
     <Content Include="corpus\jan Sonja\Proverbs %28sonja%29.txt" />
     <Content Include="corpus\jan Sonja\Teenage Poetry.txt" />
     <Content Include="CorpusReadability.aspx" />
+    <Content Include="css\FlowChart.css" />
     <Content Include="css\reset.css" />
     <Content Include="css\typography.css" />
     <Content Include="Default.aspx" />
@@ -220,9 +221,15 @@
     <Content Include="js\themes\green\style.css" />
     <Content Include="NumbersAnyBase.aspx" />
     <Content Include="ReadingHelper.aspx" />
+    <Content Include="SearchWeb.aspx" />
     <Content Include="Spells.aspx" />
     <Content Include="style.css" />
     <Content Include="TODO.txt" />
+    <Content Include="Tour.ascx" />
+    <Content Include="Tour002FlashCards.aspx" />
+    <Content Include="Tour001Why.aspx" />
+    <Content Include="Tour004ReadingWriting.aspx" />
+    <Content Include="Tour005Community.aspx" />
     <Content Include="Transliterate.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -482,6 +489,13 @@
     <Compile Include="Sandhi.aspx.designer.cs">
       <DependentUpon>Sandhi.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SearchWeb.aspx.cs">
+      <DependentUpon>SearchWeb.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SearchWeb.aspx.designer.cs">
+      <DependentUpon>SearchWeb.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SitelenSuwi.aspx.cs">
       <DependentUpon>SitelenSuwi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -509,6 +523,41 @@
     </Compile>
     <Compile Include="Tengwar.aspx.designer.cs">
       <DependentUpon>Tengwar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tour.ascx.cs">
+      <DependentUpon>Tour.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tour.ascx.designer.cs">
+      <DependentUpon>Tour.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Tour002FlashCards.aspx.cs">
+      <DependentUpon>Tour002FlashCards.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tour002FlashCards.aspx.designer.cs">
+      <DependentUpon>Tour002FlashCards.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tour001Why.aspx.cs">
+      <DependentUpon>Tour001Why.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tour001Why.aspx.designer.cs">
+      <DependentUpon>Tour001Why.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tour004ReadingWriting.aspx.cs">
+      <DependentUpon>Tour004ReadingWriting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tour004ReadingWriting.aspx.designer.cs">
+      <DependentUpon>Tour004ReadingWriting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tour005Community.aspx.cs">
+      <DependentUpon>Tour005Community.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tour005Community.aspx.designer.cs">
+      <DependentUpon>Tour005Community.aspx</DependentUpon>
     </Compile>
     <Compile Include="Translate.aspx.cs">
       <DependentUpon>Translate.aspx</DependentUpon>

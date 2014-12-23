@@ -1,14 +1,21 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Basic.Master" AutoEventWireup="true" CodeBehind="Books.aspx.cs" Inherits="TokiPona.Books" %>
+<%@ Register TagPrefix="uc1" TagName="tour" Src="~/Tour.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphBody" runat="server">
+    <div style="margin-left: 15%; margin-right: 15%">
+        <uc1:tour runat="server" id="Tour"  />
+    </div>
+
+    <br style="clear: both;" />
 <div style="margin-left:20%;margin-right:20%" >
 <h3>jan Sonja</h3>
-<p>jan Sonja wrote the <a href="http://bknight0.myweb.uga.edu/toki/about/lesson/learn.html"> original toki pona lesson plans about 2000</a>. jan Sonja has been promising to write a follow on book for years.</p>
+<p>jan Sonja wrote the <a href="http://bknight0.myweb.uga.edu/toki/about/lesson/learn.html"> original toki pona lesson plans about 2000</a>. jan Sonja finally delivered on a 10 year promise to write a book, <a href="http://www.amazon.com/Toki-Pona-Language-Sonja-Lang/dp/0978292308/ref=sr_1_1?ie=UTF8&qid=1419363655&sr=8-1&keywords=toki+pona">Toki Pona, The Language of Good</a>.</p>
 <h3>jan Pije</h3>
-<p><a href="http://bknight0.myweb.uga.edu/toki/lesson/lesson0.html">jan Pije extended the original lessons and has been kind enough to release them to public domain</a>. <a href="http://rowa.giso.de/languages/toki-pona/english/lessons.php">This lesson set on rowa.gisa.de</a> has been translated to tons of languages. This one is an older iteration, but is the best formatted for printing (it is about 100 pages).</p>
+<p><a href="http://tokipona.net/tp/janpije/lesson/lesson0.html">jan Pije extended the original lessons and has been kind enough to release them to public domain</a>. 
+    <a href="http://rowa.giso.de/languages/toki-pona/english/lessons.php">This lesson set on rowa.gisa.de</a> is an older iteration, but is the best formatted for printing (it is about 100 pages).</p>
 <h3>jan Mimoku</h3>
 <p>jan Mimoku put together a children's book and published it on <a href="http://www.lulu.com/product/file-download/toki-musi-pona/1214209">lulu</a>.</p>
 <h3>jan Elisa</h3>

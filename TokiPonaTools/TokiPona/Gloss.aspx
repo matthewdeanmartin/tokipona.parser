@@ -17,9 +17,7 @@ Enter toki pona to gloss<br/>
     <p>Another challenge is that glossing rules tend to assume one word has many meanings, while in toki pona, it takes many words to equal one meaning.</p>
     <h3>Other Resources</h3>
     <p><a href="http://inamidst.com/services/tokipana">Word for word glossing/pseudo-translator tp to English</a></p>
-    <p>
-    <a href="http://michel.jacobson.free.fr/ITE/index_en.html">An intralinear text editor, which produced XML output</a>
-    </p>
+    
     
 </div>    
 </asp:Content>

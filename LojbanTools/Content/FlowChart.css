@@ -1,0 +1,98 @@
+﻿/*
+    https://stackoverflow.com/questions/9957496/flowchart-with-css-html?rq=1
+    http://jsfiddle.net/jalbertbowdenii/NY973/1/
+*/
+#flowchart {
+    width: 580px; 
+    text-align: center;
+    font-family: sans-serif;
+    /*font-size:  .8em;*/
+    margin: auto;
+}
+#flowchart a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    background-color: #2F41B1;
+    padding: 2em 1em;
+}
+#flowchart a:hover {
+    color: #111;
+    background-color: #EFA707;
+}
+#flowchart .no1 {
+    -webkit-border-radius: 5px;
+    -moz-border-radius:5px; 
+/*-ms-border-radius:5px; -0-border-radius:5px;*/
+    border-radius: 5px;
+
+    width: 390px;
+    border: 1px solid #444;
+    margin: 0 auto;
+}
+#flowchart .line1 {
+    width: 1px;
+    height: 20px;
+    background-color: #000;
+    margin: 0 auto;
+} 
+#flowchart .clear {
+    clear:both;
+}              
+
+
+
+
+
+
+
+
+
+
+
+#flowchartWide {
+    /*width: 900px;*/
+    text-align: center;
+    font-family: sans-serif;
+    /*font-size:  .8em;*/
+    margin: auto;
+}
+#flowchartWide a {
+    /*display: block;*/
+    color: white;
+    text-decoration: none;
+    
+    padding: 2em 1em;
+}
+/*#flowchartWide a:hover {
+    color: #111;
+    background-color: #EFA707;
+}*/
+    #flowchartWide .no1:hover {
+        color: #111;
+    background-color: #EFA707;
+    }
+
+#flowchartWide .no1 {
+    -webkit-border-radius: 5px;
+    -moz-border-radius:5px; 
+/*-ms-border-radius:5px; -0-border-radius:5px;*/
+    background-color: #2F41B1;
+    border-radius: 5px;
+    float: left;
+    width: 175px;
+    height: 175px;
+    border: 1px solid #444;
+    margin: 0 auto;
+}
+#flowchartWide .line1 {
+    float: left;
+    width: 20px;
+    height: 1px;
+    background-color: #000;
+    margin: 50px auto;
+} 
+#flowchartWide .clear {
+    clear:both;
+}              
+

@@ -1,10 +1,15 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Basic.Master" AutoEventWireup="true" CodeBehind="ChatTwitter.aspx.cs" Inherits="TokiPona.ChatTwitter" %>
+<%@ Register TagPrefix="uc1" TagName="tour" Src="~/Tour.ascx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cph" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="cphBody" runat="server">
+    <div style="margin-left: 15%; margin-right: 15%">
+        <uc1:tour runat="server" id="Tour"  />
+    </div>
 
+    <br style="clear: both;" />
 <div style="margin-left:10%;margin-right:10%">
 <table>
 <tr>

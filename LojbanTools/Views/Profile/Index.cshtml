@@ -1,0 +1,17 @@
+﻿@using System.Security.Claims
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>View</h2>
+
+<table>
+    @foreach (var x in (HttpContext.Current.User.Identity as ClaimsIdentity).Claims)
+    {
+        <tr>
+            <td> @x.ValueType</td><td>  @x.Value</td>
+        </tr>
+    }
+</table>

@@ -8,7 +8,7 @@
      <!--<link rel="Stylesheet" href="style.css" type="text/css"/>-->
      <link rel="Stylesheet" href="css/reset.css" type="text/css"/>
      <link rel="Stylesheet" href="css/typography.css" type="text/css"/>
-
+    <link rel="Stylesheet" href="css/FlowChart.css" type="text/css"/>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <script type="text/javascript">
@@ -37,14 +37,13 @@
     <td width="15%" valign="top">
     Corpus Tools:
     <ul>
-        <li><a href="http://tokipona.net/parser/"><b>Word Processor</b></a> </li>
-    <li><a href="Default.aspx">Web Search</a> </li>
+        <li><a href="http://tokipona.net/parser/"><b>Word Processor (ext)</b></a> </li>
+    <li><a href="SearchWeb.aspx">Web Search</a> </li>
     <li><a href="CorpusSearch.aspx" title="The corpus is a set of documents that is entirely written in toki pona and represenative of everything ever written in toki pona.">Corpus Search</a> </li>
     
-        <li><a href="Gloss.aspx">Glossing</a> </li>
-        <li><a href="GlossAnything.aspx">Interlinear Gloss HTML</a></li>
-        <li><a href="LoremIpsum.aspx">Lorem Ipsum</a> </li>
         
+        
+        <li><a href= "DisplayText.aspx"> Colorize For Readability </a></li>
         <li><a href= "ReadabilityStatistics.aspx">Calc. Scores </a>/<a href= "CorpusReadability.aspx"> Corpus Scores </a></li>
      </ul>
      </td>
@@ -55,50 +54,59 @@
         <li><a href="Runes.aspx">Runes</a> </li>
         <li><a href= "SitelenSuwi.aspx"> Hieroglyphs </a></li>
         <li><a href= "Tengwar.aspx"> Tengwar </a></li>
-        <li><a href= "DisplayText.aspx"> Colorize </a></li>
+        
         </ul>
         </td>
      <td width="20%" valign="top">
-        Word Tools:
+        Useful Things:
          <ul>
          <li><a href="ClassicWordList.aspx"><b>Word List (Improved!)</b></a></li>
-  <li><a href="ReadingHelper.aspx">Reading Helper</a></li>
-         <li><a href="Relex.aspx">Relex</a> </li>
-        <li><a href="MinimalPairs.aspx">Min Pairs/Rhyming</a> </li>
-        <li><a href="Numbers.aspx">Count</a></li>  
+        <li><a href="ReadingHelper.aspx">Reading Helper</a></li>
+        <li><a href="Transliterate.aspx">Transliterate your Name</a></li>
+             <li><a href="Numbers.aspx">Count</a></li>  
         <li><a href="SpellWords.aspx">Spell</a> </li>
+             <li><a href="SearchWeb.aspx">Web Search</a> </li>
         </ul>
         </td>
         <td>
-    <img src="img/Toki_pona.png" height="100px" alt="" /><br />
+            <a href="~/Default.aspx" runat="server"><img src="img/Toki_pona.png" height="100px" alt="" /><br /></a>
+            <br/>
+            <a href="~/Default.aspx" runat="server">&nbsp;&nbsp;&nbsp;TOUR</a>
     </td>
      <td width="15%" valign="top">
-     Word Tools:
+     Novelties:
          <ul>
-           <li><a href="Transliterate.aspx">Transliterate</a></li>
+           
          <li><a href="CussWords.aspx">Cuss</a> </li>
          <li><a href="Mutate.aspx">Mutate</a> </li>
          <li><a href="Logaphones.aspx">Logaphones</a> </li>
            <li><a href="Sandhi.aspx">Sandhi</a> </li>
            <li><a href="DomainNamesStatic.aspx">Domain Names</a> </li>
+              <li><a href="Relex.aspx">Relex</a> </li>
+        <li><a href="MinimalPairs.aspx">Min Pairs/Rhyming</a> </li>
+        <li><a href="LoremIpsum.aspx">Lorem Ipsum</a> </li>
+
   </ul>
     </td>
     <td width="15%" valign="top">
-    Chat : 
+    Glossers : 
     <ul>
-    <li><a href="ChatGuidelines.aspx">Guidelines</a></li>
-    <li><a href="Chat.aspx">IRC</a></li>
-   <li><a href="ChatSkype.aspx">Skype</a> </li>
-   <li><a href="ChatTwitter.aspx">Twitter Chat</a> </li>
+        <li><a href="http://tokipona.net/parser/"><b>Parser (ext)</b></a> </li>
+    <li><a href="Gloss.aspx">Glossing</a> </li>
+        <li><a href="GlossAnything.aspx">Interlinear Gloss HTML</a></li>
   </ul>
 
     <td width="15%" valign="top">
-    External Resources : 
+    Community Resources: 
     <ul>
     <li><a href="Questions.aspx">Questions</a></li>
   <li><a href="Twitter.Aspx">Microblogging for Tokipona</a></li>
    <li><a href="Discussion.aspx">Discussion</a> </li>
    <li><a href="Books.aspx">Books</a> </li>
+        <li><a href="ChatGuidelines.aspx">Guidelines</a></li>
+    <li><a href="Chat.aspx">IRC</a></li>
+   <li><a href="ChatSkype.aspx">Skype</a> </li>
+   <li><a href="ChatTwitter.aspx">Twitter Chat</a> </li>
   </ul>
   
     </td>

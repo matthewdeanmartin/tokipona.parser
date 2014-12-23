@@ -15,10 +15,7 @@ Enter toki pona to gloss<br/>
     
     <p>Glossing is a pain for two reasons: the HTML tables require lots of tags, and most glossing rules are optimized for languages that inflect- not isolating languages. Also, toki pona is highly polysemous, so a decent glosser would have to pick from one of tend possible meaning for each word.</p>
     <p>Another challenge is that glossing rules tend to assume one word has many meanings, while in toki pona, it takes many words to equal one meaning.</p>
-    <h3>Other Resources</h3>
-    <p>
-    <a href="http://michel.jacobson.free.fr/ITE/index_en.html">An intralinear text editor, which produced XML output</a>
-    </p>
+    
     
 </div>    
 </asp:Content>

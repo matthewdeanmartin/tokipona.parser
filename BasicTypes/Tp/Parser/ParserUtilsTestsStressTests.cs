@@ -377,6 +377,63 @@ namespace BasicTypes.Parser
             Assert.AreEqual(0, i);
         }
 
+        [Test]
+        public void StressTestMultipleLa()
+        {
+            int i = 0;
+            Dialect dialect = Dialect.LooseyGoosey;
+            ParserUtils pu = new ParserUtils(dialect);
+            dialect.NumberType = "Stupid";
+
+            Dialect english = Dialect.LooseyGoosey;
+            english.TargetGloss = "en";
+            english.GlossWithFallBacks = true;
+
+            Normalizer norm = new Normalizer(dialect);
+
+            CorpusFileReader reader = new CorpusFileReader();
+            GlossMaker gm = new GlossMaker();
+            SentenceSplitter ss = new SentenceSplitter(dialect);
+
+            int total = 0;
+            foreach (string s in reader.NextFile())
+            {
+                foreach (string original in ss.ParseIntoNonNormalizedSentences(s))
+                {
+                    if (original.Contains(" su ")) continue; //neologism, back when we didn't know what pu was and hoped it was something like scandinavian sem
+                    if(original.Contains("o weka e  jan Opama tan tomo walo")) continue; //quoted text treated as a content word.
+                    try
+                    {
+                    string normalized = norm.NormalizeText(original);
+
+
+                    //Multiple la's
+                    if (normalized.Split(new string[] { " la " }, StringSplitOptions.RemoveEmptyEntries).Length <= 2) continue; 
+
+                    Sentence structured = pu.ParsedSentenceFactory(normalized, original);
+                    string diag = structured.ToString("b");
+                    string spitBack = structured.ToString();
+
+                    //if ((normalized.ContainsCheck("%ante"))) continue; //verb!
+
+                    Console.WriteLine("Org: " + (original ?? "").Trim(new[] { '\n', '\r', ' ', '\t' }));
+                    Console.WriteLine("Rep: " + spitBack);
+                    Console.WriteLine("Brk: " + diag);
+                    //Console.WriteLine("G: " + gm.GlossOneSentence(false, structured, english));
+                        total++;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("ORIGINAL  : " + original);
+                        Console.WriteLine(ex.Message);
+                        i++;   
+                    }
+
+                }
+            }
+            Console.WriteLine("Total : " + total);
+            Console.WriteLine("Failed Sentences: " + i);
+        }
 
         [Test]
         public void StressTestNormalizeNotIndeedAlaKin()

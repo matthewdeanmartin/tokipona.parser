@@ -10,9 +10,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{EE9E21
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoSite", "DemoSite\DemoSite.csproj", "{9D035759-0443-407F-9D88-CEAC94927DAE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokiPonaParser", "DemoSite\TokiPonaParser.csproj", "{9D035759-0443-407F-9D88-CEAC94927DAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoSite.Tests", "DemoSite.Tests\DemoSite.Tests.csproj", "{2902770A-0FD7-4F28-965C-0B9F93D8599E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokiPonaParser.Tests", "DemoSite.Tests\TokiPonaParser.Tests.csproj", "{2902770A-0FD7-4F28-965C-0B9F93D8599E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokiPonaApi", "TokiPonaApi\TokiPonaApi.csproj", "{F20BC67B-8B57-4A94-BF05-7D08BD30F8AE}"
 EndProject
@@ -29,11 +29,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicTypes.Persist", "BasicTypes.Persist\BasicTypes.Persist.csproj", "{05FD7E59-4644-4422-A4CF-9FC3F2519F50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokiPona", "TokiPonaTools\TokiPona\TokiPona.csproj", "{BB9D6536-C360-492D-A4EC-55699A393599}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokiPonaTools", "TokiPonaTools\TokiPona\TokiPonaTools.csproj", "{BB9D6536-C360-492D-A4EC-55699A393599}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TpLogic", "TokiPonaTools\TpLogic\TpLogic.csproj", "{7389B867-28C1-4EE3-811E-C1EA58EA1B27}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TpTests", "TokiPonaTools\TpTests\TpTests.csproj", "{F6205A03-1CD9-4BA1-BD94-779882489266}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojbanTools", "LojbanTools\LojbanTools.csproj", "{A3276419-57E3-4400-B254-30FC1742259C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,6 +87,10 @@ Global
 		{F6205A03-1CD9-4BA1-BD94-779882489266}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6205A03-1CD9-4BA1-BD94-779882489266}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6205A03-1CD9-4BA1-BD94-779882489266}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3276419-57E3-4400-B254-30FC1742259C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3276419-57E3-4400-B254-30FC1742259C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3276419-57E3-4400-B254-30FC1742259C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3276419-57E3-4400-B254-30FC1742259C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

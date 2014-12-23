@@ -95,9 +95,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DemoSite\DemoSite.csproj">
+    <ProjectReference Include="..\DemoSite\TokiPonaParser.csproj">
       <Project>{9D035759-0443-407F-9D88-CEAC94927DAE}</Project>
-      <Name>DemoSite</Name>
+      <Name>TokiPonaParser</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
