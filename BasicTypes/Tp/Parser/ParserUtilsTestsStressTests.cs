@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Web.UI;
+using AutoMapper.Mappers;
 using BasicTypes.Collections;
 using BasicTypes.CollectionsDiscourse;
 using BasicTypes.Corpus;
@@ -104,6 +106,116 @@ namespace BasicTypes.Parser
                 }
             }
 
+        }
+
+        [Test]
+        public void TransitionMatrix()
+        {
+            int i = 0;
+            Dialect dialect = Dialect.LooseyGoosey;
+            dialect.InferCompoundsPrepositionsForeignText = false;
+            dialect.InferNumbers = true;
+            dialect.NumberType = "Body";
+            Normalizer norm = new Normalizer(dialect);
+            CorpusFileReader reader = new CorpusFileReader();
+            SentenceSplitter ss = new SentenceSplitter(dialect);
+            ParserUtils pu = new ParserUtils(dialect);
+
+            Dictionary<string,Dictionary<string,int>>  matrix = new Dictionary<string, Dictionary<string, int>>(125);
+
+            foreach (KeyValuePair<string, Word> pair in Words.Dictionary)
+            {
+                if (Word.Deprecated.Contains(pair.Key)) continue;
+                Dictionary<string, int> following = new Dictionary<string, int>();
+                foreach (KeyValuePair<string, Word> inner in Words.Dictionary)
+                {
+                    if (!Word.Deprecated.Contains(inner.Key))
+                    {
+                        following.Add(inner.Key, 0);
+                    }
+                }
+
+                matrix.Add(pair.Key, following);
+            }
+
+            foreach (string s in reader.NextFile())
+            {
+                foreach (string original in ss.ParseIntoNonNormalizedSentences(s))
+                {
+                    try
+                    {
+                        string normalized = norm.NormalizeText(original);
+
+                        Sentence structured = pu.ParsedSentenceFactory(normalized, original);
+                        string restringed = structured.ToString("g");
+                        List<string> parts = restringed.Split(new[]{' '}).ToList();
+
+                        string last=null;
+                        string current = null;
+                        foreach (string part in parts)
+                        {
+                            current = part;
+                            if (last == null)
+                            {
+                                //Can't do anything yet.
+                            }
+                            else
+                            {
+                                if (matrix.ContainsKey(last))
+                                {
+                                    Dictionary<string, int> transitionScores = matrix[last];
+                                    if (transitionScores.ContainsKey(current))
+                                    {
+                                        transitionScores[current]++;
+                                    }
+                                }
+                            }
+
+                            last = current;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("ORIGINAL  : " + original);
+                        Console.WriteLine(ex.Message);
+                        i++;
+                    }
+
+                }
+            }
+            Console.WriteLine("Failed Sentences: " + i);
+
+            StringBuilder sb = new StringBuilder();
+            int header = 0;
+            foreach (KeyValuePair<string, Dictionary<string, int>> pair in matrix)
+            {
+                if (header == 0)
+                {
+                    header++;
+                    Console.Write("head\t");
+                    foreach (var scores in pair.Value)
+                    {
+                        Console.Write(  scores.Key + "\t");
+
+                    }
+                    Console.WriteLine();
+                }
+                Console.Write(pair.Key + "\t");
+                foreach (var scores in pair.Value)
+                {
+                    if (scores.Value > 0)
+                    {
+                        Console.Write(scores.Value + "\t");
+                    }
+                    else
+                    {
+                        Console.Write("\t");
+                    }
+                    
+
+                }
+                Console.WriteLine();
+            }
         }
 
         [Test]
