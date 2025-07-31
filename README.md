@@ -8,10 +8,7 @@ which formally can be represented in about a dozen rules. It small, toy-like siz
 linguistic experiments.
 
 ## Using
-
-Here is the working app:
-
-http://tokipona.net/parser/
+I no longer host the app. Cost too much $. Maybe someday I'll convert it all to javascript (ha!) and host it as a static file.
 
 Currently illustrates:
     
